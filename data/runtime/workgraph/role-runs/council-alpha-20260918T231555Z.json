@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "role": "council-alpha",
+  "generatedAt": "2026-09-18T23:15:55Z",
+  "sourceCycleKey": "20260918T2300Z",
+  "companiesInspected": ["AVAV"],
+  "alphaPairsCompleted": 0,
+  "scoreRecordsCompleted": 0,
+  "artifacts": ["data/runtime/workgraph/evidence/AVAV-20260918T2000Z-earth-scout.json"],
+  "result": "blocked_atomic_persistence",
+  "blockers": [
+    {
+      "ticker": "AVAV",
+      "gate": "atomic_evidence_and_role_run_commit_required",
+      "detail": "AVAV is an eligible closure-first Alpha target with current Scout evidence and current SEC primary evidence available, but the connected GitHub contents writer can create only one path per commit. The run contract requires the immutable Alpha evidence object and role-run receipt to be committed atomically, so no Alpha score artifact was lawfully persisted in this run.",
+      "nextLawfulPath": "Use a GitHub multi-path Git tree/commit write capability, or an approved repository workflow that atomically commits both data/runtime/workgraph/evidence/<ticker>-<cycle>-council-alpha-*.json and this run receipt."
+    }
+  ],
+  "beganFromGitHead": "6a831ca9d343a4692eff80c27dc31a2762058c98"
+}

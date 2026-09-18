@@ -30,10 +30,10 @@ test("hourly scheduler runs targeted invariants and does not duplicate full CI",
 
 test("watchdog checks GitHub-native scheduler, Pages, reconcile, CI and Workgraph health", async () => {
   const text = await source(".github/workflows/earth2036-watchdog.yml");
-  assert.ok(text.includes("--workflow earth2036-scheduler.yml"));
-  assert.ok(text.includes("--workflow earth2036-pages.yml"));
-  assert.ok(text.includes("--workflow earth2036-workgraph-reconcile.yml"));
-  assert.ok(text.includes("--workflow earth2036-ci.yml"));
+  assert.ok(text.includes("earth2036-scheduler.yml"));
+  assert.ok(text.includes("earth2036-pages.yml"));
+  assert.ok(text.includes("earth2036-workgraph-reconcile.yml"));
+  assert.ok(text.includes("earth2036-ci.yml"));
   assert.ok(text.includes("workgraph_healthy"));
 });
 

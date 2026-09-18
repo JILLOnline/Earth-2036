@@ -1,0 +1,78 @@
+name: Earth 2036 Scheduler Watchdog
+
+on:
+  schedule:
+    - cron: "22 * * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: earth2036-scheduler-watchdog
+  cancel-in-progress: false
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check persisted machine-cycle freshness
+        id: freshness
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api "repos/${{ github.repository }}/contents/data/runtime/system-state.json?ref=main" > /tmp/state.json
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import base64, datetime as dt, json
+          p=json.load(open('/tmp/state.json'))
+          state=json.loads(base64.b64decode(p['content']).decode())
+          stamp=state.get('lastCycleAt')
+          if not stamp:
+              print('stale=true')
+          else:
+              observed=dt.datetime.fromisoformat(stamp.replace('Z','+00:00'))
+              age=max(0,int((dt.datetime.now(dt.timezone.utc)-observed).total_seconds()))
+              print(f'age_seconds={age}')
+              print(f'stale={str(age>3600).lower()}')
+          PY
+
+      - name: Check scheduler and CI execution health
+        id: execution
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          latest_scheduler=$(gh run list --repo "${{ github.repository }}" --workflow earth2036-scheduler.yml --branch main --limit 10 --json databaseId,status,conclusion,createdAt --jq '[.[] | select(.status == "completed" and .conclusion != "cancelled")][0]')
+          latest_ci=$(gh run list --repo "${{ github.repository }}" --workflow earth2036-ci.yml --branch main --limit 10 --json databaseId,status,conclusion,createdAt --jq '[.[] | select(.status == "completed" and .conclusion != "cancelled")][0]')
+          scheduler_conclusion=$(printf '%s' "$latest_scheduler" | jq -r '.conclusion // "missing"')
+          scheduler_id=$(printf '%s' "$latest_scheduler" | jq -r '.databaseId // "missing"')
+          ci_conclusion=$(printf '%s' "$latest_ci" | jq -r '.conclusion // "missing"')
+          ci_id=$(printf '%s' "$latest_ci" | jq -r '.databaseId // "missing"')
+          echo "scheduler_conclusion=$scheduler_conclusion" >> "$GITHUB_OUTPUT"
+          echo "scheduler_id=$scheduler_id" >> "$GITHUB_OUTPUT"
+          echo "ci_conclusion=$ci_conclusion" >> "$GITHUB_OUTPUT"
+          echo "ci_id=$ci_id" >> "$GITHUB_OUTPUT"
+          unhealthy=false
+          if [ "$scheduler_conclusion" != "success" ] && [ "$scheduler_conclusion" != "missing" ]; then unhealthy=true; fi
+          if [ "$ci_conclusion" != "success" ]; then unhealthy=true; fi
+          echo "unhealthy=$unhealthy" >> "$GITHUB_OUTPUT"
+
+      - name: Dispatch machine scheduler when stale and idle
+        if: steps.freshness.outputs.stale == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          active=$(gh run list --repo "${{ github.repository }}" --workflow earth2036-scheduler.yml --limit 10 --json status --jq '[.[] | select(.status == "in_progress" or .status == "queued")] | length')
+          if [ "$active" = "0" ]; then
+            gh workflow run earth2036-scheduler.yml --repo "${{ github.repository }}" --ref main
+          fi
+
+      - name: Fail closed on unhealthy execution plane
+        if: steps.execution.outputs.unhealthy == 'true'
+        run: |
+          echo "Earth 2036 execution plane unhealthy: scheduler=${{ steps.execution.outputs.scheduler_conclusion }}, CI=${{ steps.execution.outputs.ci_conclusion }}." >&2
+          exit 1

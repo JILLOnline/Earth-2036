@@ -14,7 +14,7 @@ Earth 2036 uses a hybrid autonomous design:
 2. **Intelligent supervisor** — the Earth 2036 ChatGPT automation handles fuzzy research that should not be reduced to brittle scraping rules: source-family discovery, evidence interpretation, causal mapping, score-factor evidence, structural substitution/scarcity/premiumization analysis, and the human-facing Google Sheet mirror.
 3. **Git-backed data plane** — runtime JSON and append-only tick/history records under `data/runtime/` are the deployable technical source of truth during the v1 trial. This avoids depending on an external database secret before the methodology is proven. `database/schema.sql` plus migrations preserve a future Postgres migration path.
 4. **Google Sheet mirror** — the Weekly Candidate Ledger is the readable operating ledger. It mirrors current state and appends history; it is not allowed to override technical history.
-5. **Vercel UI** — Git data commits trigger deployment, so the site updates from the same canonical runtime files. No hand-edited dashboard values are authoritative.
+5. **GitHub Pages UI** — the dedicated `JILLOnline/Earth-2036` repository builds the static dashboard from the same canonical runtime files and publishes only through GitHub. No hand-edited dashboard values are authoritative.
 
 ## Hard integrity rules
 

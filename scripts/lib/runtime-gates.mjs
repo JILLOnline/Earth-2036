@@ -13,15 +13,6 @@ export const REQUIRED_SCORE_COMPONENTS = [
   "pricingPower",
 ];
 
-export const REQUIRED_SUPERVISOR_LANES = [
-  "source-integrity",
-  "company-underwriting",
-  "structural-causal",
-  "discovery-weak-signals",
-  "adversarial-red-team",
-  "expectations-execution",
-];
-
 export function clamp01(value) {
   return Math.max(0, Math.min(1, Number(value) || 0));
 }

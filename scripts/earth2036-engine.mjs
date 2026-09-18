@@ -17,7 +17,7 @@ const BASELINE_MANIFEST = path.join(ROOT, "data", "baselines", "earth2036-offici
 const METHODOLOGY_VERSION = "1.0.0";
 const UNIVERSE_VERSION = "u1-250";
 const EXPECTED = 250;
-const SEC_USER_AGENT = process.env.SEC_USER_AGENT || "Earth2036/1.0 research-system https://github.com/JILLOnline/Side-Projects";
+const SEC_USER_AGENT = process.env.SEC_USER_AGENT || "Earth2036/1.0 research-system https://github.com/JILLOnline/Earth-2036";
 
 const SEC_TICKERS_URL = "https://www.sec.gov/files/company_tickers.json";
 const NASDAQ_LISTED_URL = "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt";

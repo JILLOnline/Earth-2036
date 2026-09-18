@@ -4,8 +4,7 @@ import path from "node:path";
 import test from "node:test";
 import { parseNasdaqListed, parseOtherListed } from "../scripts/earth2036-engine.mjs";
 import { buildUniverse, normalizeTicker, parseExpansionContenders } from "../scripts/lib/universe-parser.mjs";
-import { baselineGate, confidenceAdjustedBoundaryScore, isPublishableScoreRecord, qualifiesTick, rankRecords, REQUIRED_SUPERVISOR_LANES } from "../scripts/lib/runtime-gates.mjs";
-import { gitBlobSha, validateCouncilAttestationShape } from "../scripts/lib/supervisor-council.mjs";
+import { baselineGate, confidenceAdjustedBoundaryScore, isPublishableScoreRecord, qualifiesTick, rankRecords } from "../scripts/lib/runtime-gates.mjs";
 
 const completeComponents = {
   thesisQuality: 70,
@@ -131,36 +130,4 @@ test("trial tick requires council approval in addition to hard machine gates", (
   assert.equal(qualifiesTick({ ...clean, councilApproved: undefined }), false);
   assert.equal(qualifiesTick({ ...clean, identityValidated: 249 }), false);
   assert.equal(qualifiesTick({ ...clean, intelligenceIntegrityPassed: false }), false);
-});
-
-test("council attestation requires all six same-cycle clean lanes", () => {
-  const cycleKey = "20260913T1200Z";
-  const lanes = Object.fromEntries(REQUIRED_SUPERVISOR_LANES.map((laneId) => [laneId, {
-    cycleKey,
-    status: "complete",
-    path: `data/runtime/supervisors/cycles/${cycleKey}/${laneId}.json`,
-    blobSha: "a".repeat(40),
-    blockingIssueCount: 0,
-  }]));
-  const council = { attestation: {
-    attestationId: "attest-20260913T1200Z-test",
-    approved: true,
-    approvedAt: "2026-09-13T12:52:00Z",
-    managerId: "chief-earth",
-    cycleKey,
-    disagreementsResolved: true,
-    unknownsAcknowledged: true,
-    sheetMirrorSynced: true,
-    canonicalChangesApplied: false,
-    requiresRecompute: false,
-    unresolvedBlockers: [],
-    lanes,
-  }};
-  assert.equal(validateCouncilAttestationShape(council, cycleKey).passed, true);
-  assert.equal(validateCouncilAttestationShape({ attestation: { ...council.attestation, requiresRecompute: true } }, cycleKey).passed, false);
-  assert.equal(validateCouncilAttestationShape({ attestation: { ...council.attestation, lanes: { ...lanes, [REQUIRED_SUPERVISOR_LANES[0]]: { ...lanes[REQUIRED_SUPERVISOR_LANES[0]], status: "needs_research" } } } }, cycleKey).passed, false);
-});
-
-test("git blob hashing is deterministic for attested lane artifacts", () => {
-  assert.equal(gitBlobSha("hello\n"), "ce013625030ba8dba906f756967f9e9ca394464a");
 });

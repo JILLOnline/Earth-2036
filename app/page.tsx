@@ -3,7 +3,7 @@ import runtimeJson from "../data/runtime/system-state.json";
 import integrityJson from "../data/runtime/intelligence-integrity.json";
 import queueJson from "../data/runtime/evidence-review-queue.json";
 import discoveryJson from "../data/runtime/discovery-pool.json";
-import councilJson from "../data/runtime/supervisor-council.json";
+import workgraphMetricsJson from "../data/runtime/workgraph/metrics.json";
 import { runtimeTime } from "../lib/dashboard-runtime";
 import { Bubble, Deck, DeckHeader, Screen, ScreenHeader, Stat, StatRail } from "./components/Display";
 
@@ -14,23 +14,24 @@ type Integrity = {
   sourceMesh: { passed: boolean };
 };
 
-type Council = {
-  activeCycleKey?: string | null;
-  attestation?: { approved?: boolean } | null;
-};
-
 const manifest = manifestJson as typeof manifestJson;
 const runtime = runtimeJson as typeof runtimeJson;
 const integrity = integrityJson as unknown as Integrity;
 const queue = queueJson as unknown as { unresolved: number };
 const discovery = discoveryJson as unknown as { items: unknown[] };
-const council = councilJson as unknown as Council;
+const workgraph = workgraphMetricsJson as unknown as {
+  healthy: boolean;
+  generatedAt: string;
+  counts: { canonical: number; blocked: number };
+};
 const pct = (value: number) => `${Math.round((Number(value) || 0) * 100)}%`;
 
 export default function CommandPage() {
   const gate = manifest.runtimeGate.checks;
   const integrityPass = integrity.passed && integrity.sourceMesh.passed;
-  const councilApproved = council.attestation?.approved === true;
+  const workgraphApproved = gate.council === true &&
+    workgraph.counts.canonical === runtime.companiesExpected &&
+    workgraph.counts.blocked === 0;
   const gates = [
     ["IDENTITY", gate.identity, `${runtime.identityValidated}/${runtime.companiesExpected}`],
     ["TRADABILITY", gate.tradability, `${runtime.tradabilityValidated}/${runtime.companiesExpected}`],
@@ -39,7 +40,7 @@ export default function CommandPage() {
     ["SOURCE COVERAGE", gate.sourceCoverage, pct(runtime.combinedSourceCoverageRatio)],
     ["DISCOVERY", gate.discovery, runtime.discoveryScanCompleted ? "COMPLETE" : "PENDING"],
     ["EVIDENCE", gate.evidenceQueue, queue.unresolved === 0 ? "CLEAR" : String(queue.unresolved)],
-    ["COUNCIL", gate.council, councilApproved ? "APPROVED" : "PENDING"],
+    ["WORKGRAPH", gate.council, workgraphApproved ? "APPROVED" : `${workgraph.counts.canonical}/${runtime.companiesExpected}`],
   ] as const;
   const blocked = gates.filter(([, passed]) => !passed).length;
 
@@ -101,8 +102,8 @@ export default function CommandPage() {
         <div className="readoutList">
           <div><span>CYCLE</span><b>{runtime.cycleKey}</b></div>
           <div><span>PHASE</span><b>{runtime.phase.replaceAll("_", " ").toUpperCase()}</b></div>
-          <div><span>COUNCIL</span><b>{councilApproved ? "APPROVED" : "PENDING"}</b></div>
-          <div><span>COUNCIL CYCLE</span><b>{council.activeCycleKey ?? "PENDING"}</b></div>
+          <div><span>WORKGRAPH</span><b>{workgraph.healthy ? "HEALTHY" : "ATTENTION"}</b></div>
+          <div><span>CANONICAL</span><b>{workgraph.counts.canonical}/{runtime.companiesExpected}</b></div>
           <div><span>QUALIFIED</span><b>{runtime.qualifiedTick ? "YES" : "NO"}</b></div>
         </div>
       </Deck>

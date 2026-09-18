@@ -1,0 +1,174 @@
+{
+  "reportVersion": 1,
+  "runner": "earth-deep-runner",
+  "cycleKey": "20260914T1200Z",
+  "timestamp": "2026-09-14T12:37:00Z",
+  "shift": "DAY",
+  "batchId": "t0-20260914T0400Z-b01",
+  "mode": "gap_closure",
+  "summary": "Primary SEC evidence materially narrows four active-batch blockers without changing canonical state. AVGO and ANET customer-concentration gates are now quantitatively bounded from filings; ALAB's Amazon-linked warrant/customer relationship is further bounded but true revenue concentration remains unresolved; VRT backlog quality is supported by a large, mostly firm order book but filing language preserves cancellation/reschedule risk and does not quantify customer concentration. Chief should review AVGO/ANET for possible gate closure, corroborate ALAB/VRT remaining unknowns, and avoid treating disclosed channel/end-customer concentration as equivalent to named AI-customer concentration unless the filing supports that mapping.",
+  "targets": [
+    {
+      "ticker": "AVGO",
+      "company": "Broadcom Inc.",
+      "batchId": "t0-20260914T0400Z-b01",
+      "unresolvedGate": "AI customer concentration",
+      "researchQuestion": "Can current primary filings quantitatively bound Broadcom's customer concentration strongly enough for Chief review without guessing the identities or AI-specific share of those customers?",
+      "evidence": [
+        "Broadcom FY2026 Q1 Form 10-Q states one semiconductor-solutions distributor represented 42% of total net revenue for the quarter ended 2026-02-01, versus 29% a year earlier.",
+        "The same filing states aggregate sales through all channels to the top five end customers were approximately 50% of total net revenue, versus 40% a year earlier, and says significant concentration is expected to continue.",
+        "The filing separately warns that AI customers may reduce expansion, cancel, reduce, or delay orders and that internal development/customer-owned tooling can reduce purchases; it does not identify the top five end customers or quantify what fraction of the 50% is AI-specific."
+      ],
+      "inference": [
+        "The concentration blocker is materially quantified at company level: Broadcom has both a very large direct distributor exposure and roughly half of quarterly revenue tied to five end customers.",
+        "This is sufficient to bound concentration risk, but not sufficient to claim named hyperscaler exposure or an AI-only concentration percentage. Chief can close the 'is concentration material?' question while preserving the 'which AI customers/how durable?' sub-question as unknown."
+      ],
+      "contradictions": [],
+      "unknowns": [
+        "Identity and individual shares of the top five end customers in the current quarter.",
+        "Exact portion of top-five concentration attributable to custom AI accelerators/networking rather than other semiconductor/software revenue.",
+        "Customer-specific insourcing trajectory beyond Broadcom's general risk disclosure."
+      ],
+      "falsifiers": [
+        "A later primary filing showing broad customer diversification and materially lower top-five concentration would weaken the current concentration-risk inference.",
+        "A primary disclosure identifying the large distributor exposure as pass-through to a diversified end-customer set would reduce direct economic concentration relative to the headline 42%."
+      ],
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000016/avgo-20260201.htm",
+        "data/runtime/supervisors/t0-bootstrap-queue.json"
+      ],
+      "confidence": 95,
+      "recommendedChiefAction": "review",
+      "lineage": {
+        "queueCycleKey": "20260914T0800Z",
+        "machineCycleKey": "20260914T1200Z",
+        "queueGate": "AI customer concentration is the principal active gate"
+      }
+    },
+    {
+      "ticker": "ANET",
+      "company": "Arista Networks, Inc.",
+      "batchId": "t0-20260914T0400Z-b01",
+      "unresolvedGate": "filing-level large-customer concentration and white-box/custom-network substitution evidence",
+      "researchQuestion": "Can current filing evidence quantify Arista's large-customer dependence and connect that dependence to margin/demand sensitivity without relying on stale named-customer percentages?",
+      "evidence": [
+        "Arista's Q2 2026 Form 10-Q states two customers each accounted for more than 10% of total revenue in each of the last three years.",
+        "The filing gives annual concentration series for the two end customers: 16%, 15%, 21% and 26%, 20%, 18% for 2025, 2024, 2023 respectively.",
+        "The same filing says high-volume customer orders are unpredictable because of large-scale order complexity, capex shifts, efficiency initiatives, deployment/qualification timing, and AI-related demand uncertainty.",
+        "Gross margin fell to 62.9% for Q2 2026 from 65.2% in Q2 2025, with the filing attributing the decrease primarily to a greater proportion of sales to large end customers that receive higher discounts.",
+        "The filing explicitly recognizes competitive alternatives from large system vendors and proprietary/custom approaches, while continuing to rely on merchant-silicon execution for new products."
+      ],
+      "inference": [
+        "The filing-level concentration gate is materially closed as a measurement problem: two customers remain structurally large, together representing roughly 42% of 2025 revenue using the disclosed individual percentages.",
+        "The filing also demonstrates an observable economic consequence of mix concentration through lower gross margin when large-customer mix rises.",
+        "Substitution risk is real but not fully closed: the filing describes integrated/proprietary alternatives and merchant-silicon dependence, but does not quantify share loss to white-box/custom networks."
+      ],
+      "contradictions": [
+        "Older filings named Microsoft and Meta for prior-year concentration; the current Q2 2026 filing excerpt used here provides percentages but does not itself name the two customers. Treat name continuity as unverified unless Chief uses a current primary filing that explicitly carries the names forward."
+      ],
+      "unknowns": [
+        "Current 2026 year-to-date named-customer revenue percentages.",
+        "Quantified white-box/custom-network displacement rate and customer-specific insourcing roadmap."
+      ],
+      "falsifiers": [
+        "Primary evidence of meaningful revenue diversification with both large customers falling below material thresholds would weaken the concentration thesis.",
+        "Customer deployment evidence showing custom/white-box networking is additive rather than substitutive to Arista would weaken the substitution-risk inference."
+      ],
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1596532/000159653226000175/anet-20260630.htm",
+        "data/runtime/supervisors/t0-bootstrap-queue.json"
+      ],
+      "confidence": 94,
+      "recommendedChiefAction": "review",
+      "lineage": {
+        "queueCycleKey": "20260914T0800Z",
+        "machineCycleKey": "20260914T1200Z",
+        "queueGate": "filing-level large-customer concentration and white-box/custom-network substitution evidence remain"
+      }
+    },
+    {
+      "ticker": "ALAB",
+      "company": "Astera Labs, Inc.",
+      "batchId": "t0-20260914T0400Z-b01",
+      "unresolvedGate": "true end-customer mapping and future customer-warrant vesting",
+      "researchQuestion": "Can primary filings bound the Amazon-linked customer relationship and future warrant overhang without inferring that Amazon is the dominant revenue customer?",
+      "evidence": [
+        "Astera's 2025 Form 10-K identifies Amazon NV Investment Holdings LLC as holder of customer-linked warrants originally covering up to 1,484,230 shares plus an additional 831,945 shares, with vesting tied to specified payment tranches by Amazon affiliates.",
+        "As of 2025-12-31, 1,165,513 shares underlying those warrants were vested/exercisable, 30,589 additional shares were probable of vesting, and none had been exercised.",
+        "The filing discloses a subsequent February 2026 warrant agreement with Amazon.com NV Investment Holdings LLC for up to 3,262,299 additional common shares at $142.82 per share.",
+        "Astera's risk disclosure explicitly states that a limited number of end customers drive revenue, but the evidence reviewed here does not provide a current named-customer revenue percentage for Amazon."
+      ],
+      "inference": [
+        "The Amazon relationship is economically material enough to warrant explicit customer-linked equity incentives across multiple agreements, and the maximum future warrant envelope can be bounded from primary filings.",
+        "The warrant evidence is not a substitute for revenue concentration evidence. It supports relationship significance, not a claim that Amazon is Astera's largest current revenue customer."
+      ],
+      "contradictions": [],
+      "unknowns": [
+        "Current named end-customer revenue mix and whether Amazon is the dominant direct or indirect end customer.",
+        "Post-2025 vesting/exercise state of the legacy warrants and vesting conditions/status of the February 2026 warrant beyond the disclosed maximum shares.",
+        "How much of sales flows indirectly through ODM/OEM/channel entities before reaching hyperscaler end customers."
+      ],
+      "falsifiers": [
+        "A current primary filing showing no material Amazon-related revenue exposure despite warrants would weaken any inference connecting warrant vesting to customer concentration.",
+        "A filing showing the 2026 warrant was terminated, materially amended, or remained wholly unvested would reduce expected dilution from this customer-linked instrument."
+      ],
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1736297/000114036126016366/ny20065212x3_ars.pdf",
+        "data/runtime/supervisors/t0-bootstrap-queue.json"
+      ],
+      "confidence": 92,
+      "recommendedChiefAction": "corroborate",
+      "lineage": {
+        "queueCycleKey": "20260914T0800Z",
+        "machineCycleKey": "20260914T1200Z",
+        "queueGate": "true end-customer mapping, refreshed governance/control ownership and future customer-warrant vesting remain"
+      }
+    },
+    {
+      "ticker": "VRT",
+      "company": "Vertiv Holdings Co",
+      "batchId": "t0-20260914T0400Z-b01",
+      "unresolvedGate": "customer concentration plus cancellation/reschedule and backlog-conversion quality",
+      "researchQuestion": "Does current primary evidence make Vertiv's backlog sufficiently firm for underwriting, and what remains unresolved about cancellation and customer concentration?",
+      "evidence": [
+        "Vertiv's 2025 Form 10-K reports estimated combined backlog of $15.0 billion at 2025-12-31 versus $7.2 billion a year earlier.",
+        "The 10-K says the majority of combined backlog is considered firm and expected to be delivered within 12 to 18 months, but customers can in some circumstances reduce or defer firm orders, usually with penalties or other termination consequences.",
+        "Vertiv's Q2 2026 Form 10-Q continues to warn about unpredictable placement/cancellation of orders, failure to realize sales expected from backlog, customer-market disruption, and reduced leverage in large-customer contract terms.",
+        "The Q2 filing reports $3.2743 billion of quarterly sales, with $2.0708 billion in the Americas, but the evidence reviewed does not quantify named-customer concentration."
+      ],
+      "inference": [
+        "Backlog is large and management characterizes most of it as firm, which strengthens conversion quality relative to a soft pipeline metric.",
+        "The backlog cannot be treated as guaranteed revenue: cancellation/reschedule rights remain explicit and acquisitions may introduce contracts with differing termination terms.",
+        "Customer concentration remains an independent open gate because geographic and backlog disclosures do not identify or quantify major end-customer exposure."
+      ],
+      "contradictions": [],
+      "unknowns": [
+        "Named-customer concentration and share of backlog attributable to the largest hyperscalers/data-center customers.",
+        "Historical cancellation/reschedule rate and realized conversion rate for firm backlog by cohort.",
+        "How acquisition-added backlog differs in cancellation economics from legacy Vertiv backlog."
+      ],
+      "falsifiers": [
+        "Material backlog cancellations, deferrals, or conversion slippage in later primary filings would weaken the current backlog-quality inference.",
+        "A primary disclosure showing highly diversified customer/backlog exposure would reduce the concentration blocker."
+      ],
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1674101/000167410126000008/vrt-20251231.htm",
+        "https://www.sec.gov/Archives/edgar/data/1674101/000162828026050609/vrt-20260630.htm",
+        "data/runtime/supervisors/t0-bootstrap-queue.json"
+      ],
+      "confidence": 93,
+      "recommendedChiefAction": "corroborate",
+      "lineage": {
+        "queueCycleKey": "20260914T0800Z",
+        "machineCycleKey": "20260914T1200Z",
+        "queueGate": "customer concentration plus cancellation/reschedule and backlog-conversion quality remain"
+      }
+    }
+  ],
+  "outside250Investigation": null,
+  "integrityNotes": [
+    "No canonical score, rank, tick, methodology, membership, causal graph, baseline evidence, supervisor-state, decision bucket, directive, queue status, or Chief attestation was changed.",
+    "All four targets are members of the current Chief active batch. Evidence and inference are separated explicitly.",
+    "This artifact is auxiliary research only; Chief remains sole promoter of accepted findings into canonical state."
+  ]
+}

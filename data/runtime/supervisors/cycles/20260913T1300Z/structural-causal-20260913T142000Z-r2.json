@@ -1,0 +1,109 @@
+{
+  "reportVersion": 1,
+  "laneId": "structural-causal",
+  "cycleKey": "20260913T1300Z",
+  "generatedAt": "2026-09-13T14:20:00Z",
+  "status": "needs_research",
+  "summary": "The current structural graph is coherent but extremely narrow: it maps GEV into reliable electricity, power-grid infrastructure, gas turbines, AI/data-center demand and grid-equipment scarcity, with three falsifiable structural signals, while 249 active companies remain structurally unmapped. The strongest missing dependency is constraint migration: as OEM turbine/grid manufacturing expands, scarce upstream materials/components and grid/interconnection capacity can become successor bottlenecks. Proposed additions below are hypotheses only and require canonical approval/recompute before entering the graph.",
+  "materialFindings": [
+    {
+      "finding": "The canonical causal graph contains one company node (GEV), five non-company nodes, six edges, three structural signals and one 2030 roadmap milestone. All three current structural signals include source IDs, confidence, horizon and falsifier, satisfying the active structural-signal evidence discipline.",
+      "sources": ["earth-2036/data/runtime/causal-graph.json", "earth-2036/data/runtime/intelligence-integrity.json"]
+    },
+    {
+      "finding": "The graph's current causal chain captures the first-order thesis that rising reliable-electricity demand and AI/data-center load increase the value of generation/grid capacity, while grid-equipment scarcity supports backlog visibility and pricing. This is supported by GEV Q2 evidence and independent power-demand corroboration already referenced in the canonical record.",
+      "sources": ["earth-2036/data/runtime/causal-graph.json", "earth-2036/data/baseline-evidence/GEV.json", "sourceId:gev-2026q2-8k", "sourceId:reuters-eia-power-20260909"]
+    },
+    {
+      "finding": "A material missing dependency is upstream critical-input scarcity. The structured baseline explicitly records limited/sole-source inputs, rare-earth and specialty-metal exposure, tariffs/geopolitical risk and persistent supply pressure, but the causal graph has no resource/material node or edge representing that potential successor bottleneck.",
+      "sources": ["earth-2036/data/baseline-evidence/GEV.json", "sourceId:gev-2025-10k", "earth-2036/data/runtime/causal-graph.json"]
+    },
+    {
+      "finding": "A second missing causal link is the demand transmission from AI/data-center growth to reliable-electricity demand and grid infrastructure. The graph currently links GEV directly to the AI-data-center market as a beneficiary, but it does not explicitly encode the intermediary market-to-need-to-infrastructure causal path that explains why the benefit persists or fails.",
+      "sources": ["earth-2036/data/runtime/causal-graph.json", "earth-2036/data/baseline-evidence/GEV.json", "sourceId:reuters-eia-power-20260909"]
+    },
+    {
+      "finding": "GEV's roadmap to 20 GW annual turbine output in Q3 2026, 24 GW in 2028 and actions toward 30 GW in 2030 implies a constraint-migration test: if turbine manufacturing capacity expands successfully, the binding bottleneck can move to upstream inputs, grid equipment, interconnection/transmission or customer project execution rather than disappear.",
+      "sources": ["earth-2036/data/runtime/causal-graph.json", "earth-2036/data/baseline-evidence/GEV.json", "sourceId:gev-2026q2-8k", "sourceId:gev-2025-10k"]
+    },
+    {
+      "finding": "The 250-company structural baseline is not complete. system-state shows 250 active observed companies while the causal graph and Beast audit currently validate structural evidence for only the scored GEV record. Structural absence for the other 249 must remain unknown, not be inferred from sectors, prototype mappings or seed labels.",
+      "sources": ["earth-2036/data/runtime/system-state.json", "earth-2036/data/runtime/causal-graph.json", "earth-2036/data/runtime/intelligence-integrity.json"]
+    }
+  ],
+  "proposedCanonicalChanges": [
+    {
+      "proposal": "Add a candidate resource/bottleneck node for critical power-equipment inputs and a provisional negative dependency edge from that bottleneck to GEV manufacturing/capacity only after source review. Proposed relationship: scarce rare-earth/specialty-metal and limited-source inputs can constrain turbine/grid-equipment production. Confidence: 78/100. Horizon: 1-5y. Falsifier: GEV demonstrates diversified/dual sourcing and substitutes at scale with no material lead-time, cost or production constraint attributable to these inputs across multiple reporting periods.",
+      "sources": ["earth-2036/data/baseline-evidence/GEV.json", "sourceId:gev-2025-10k" ]
+    },
+    {
+      "proposal": "Add a causal edge from market:ai-data-centers to human_need:reliable-electricity with relationship increases_demand. Confidence: 94/100. Horizon: 1-3y. Falsifier: data-center electricity demand and grid-connection requests materially contract or remain flat for multiple quarters while aggregate power-demand growth falls below the referenced outlook. This makes the existing GEV-benefits-AI edge causally auditable rather than merely associative.",
+      "sources": ["earth-2036/data/runtime/causal-graph.json", "sourceId:reuters-eia-power-20260909", "sourceId:gev-2026q2-8k"]
+    },
+    {
+      "proposal": "Add a provisional gas-turbine-manufacturing-capacity bottleneck node linked to technology:gas-turbines and company:GEV to distinguish scarce OEM slots from the technology itself. Confidence: 91/100. Horizon: 1-4y. Falsifier: industry and GEV turbine capacity expands faster than orders, slot reservations/backlog normalize materially, lead times compress and pricing contribution weakens without offsetting demand. Source evidence should remain GEV primary filings until independently corroborated.",
+      "sources": ["earth-2036/data/baseline-evidence/GEV.json", "sourceId:gev-2026q2-8k"]
+    },
+    {
+      "proposal": "Track a constraint-migration structural signal: successful OEM capacity expansion can shift the binding constraint downstream to transmission/interconnection/grid equipment or upstream to critical inputs. Confidence: 82/100. Horizon: 2-6y. Falsifier: turbine, grid-equipment, interconnection and critical-input lead times all normalize together while GEV backlog/pricing remain strong, indicating no meaningful migration of scarcity. This signal must not be promoted until at least one independent grid/interconnection source is added beyond company evidence.",
+      "sources": ["earth-2036/data/runtime/causal-graph.json", "earth-2036/data/baseline-evidence/GEV.json", "sourceId:gev-2026q2-8k", "sourceId:gev-2025-10k"]
+    }
+  ],
+  "contradictions": [
+    {
+      "issue": "intelligence-integrity reports causalEdges=5 for GEV while the current causal-graph artifact contains six edges involving GEV or its mapped bottleneck chain. This may reflect an audit counting rule rather than corruption, but the counting semantics should be verified before using the edge count as parity evidence.",
+      "sources": ["earth-2036/data/runtime/intelligence-integrity.json", "earth-2036/data/runtime/causal-graph.json"]
+    }
+  ],
+  "unknowns": [
+    {
+      "unknown": "The graph does not yet identify which specific critical material/component becomes binding first as GEV expands turbine and grid-equipment output, nor its supplier/geographic concentration or substitution timeline.",
+      "sources": ["earth-2036/data/baseline-evidence/GEV.json", "sourceId:gev-2025-10k"]
+    },
+    {
+      "unknown": "The relative probability that the next binding constraint migrates upstream to materials/components versus downstream to transmission/interconnection/customer execution is not established by the current canonical evidence set.",
+      "sources": ["earth-2036/data/runtime/causal-graph.json", "earth-2036/data/baseline-evidence/GEV.json"]
+    },
+    {
+      "unknown": "Causal nodes, edges, counterfactuals and roadmap hypotheses remain unbuilt for 249 active companies; no cross-company structural ranking can be inferred from the current one-company graph.",
+      "sources": ["earth-2036/data/runtime/system-state.json", "earth-2036/data/runtime/causal-graph.json"]
+    }
+  ],
+  "peerRequests": [
+    {
+      "toLane": "source-integrity",
+      "request": "Verify source-family independence for future grid/interconnection and critical-material evidence before any constraint-migration signal is promoted; company filings alone should not establish systemic scarcity.",
+      "sources": ["earth-2036/docs/SUPERVISOR_COUNCIL.md", "earth-2036/data/baseline-evidence/GEV.json"]
+    },
+    {
+      "toLane": "company-underwriting",
+      "request": "When refreshing GEV, test whether successor bottlenecks alter supply-chain resilience, pricing power, execution risk or valuation asymmetry; do not mechanically change scores from structural hypotheses alone.",
+      "sources": ["earth-2036/engine/rubric.ts", "earth-2036/data/baseline-evidence/GEV.json"]
+    }
+  ],
+  "accuracyDebates": [
+    {
+      "topic": "Whether expanding turbine/grid manufacturing removes the scarcity thesis",
+      "position": "Not necessarily. Capacity addition can resolve one bottleneck while moving scarcity to critical inputs, grid/interconnection capacity or project execution. The correct test is constraint migration with explicit falsifiers, not a binary scarcity/no-scarcity label.",
+      "sources": ["earth-2036/data/baseline-evidence/GEV.json", "earth-2036/data/runtime/causal-graph.json", "sourceId:gev-2026q2-8k", "sourceId:gev-2025-10k"]
+    },
+    {
+      "topic": "Whether GEV's direct AI-data-center benefit edge is sufficient",
+      "position": "It is evidence-backed but structurally incomplete. Encoding AI load -> electricity need -> grid/generation constraints makes the hypothesis more robust to counterfactual testing and reveals where the benefit could be interrupted.",
+      "sources": ["earth-2036/data/runtime/causal-graph.json", "sourceId:reuters-eia-power-20260909"]
+    }
+  ],
+  "blockingIssues": [
+    {
+      "issue": "The structural-causal baseline cannot be considered complete while only GEV is mapped and 249 active companies remain without sourced company-technology-resource-infrastructure-human-need causal structures.",
+      "sources": ["earth-2036/data/runtime/system-state.json", "earth-2036/data/runtime/causal-graph.json"]
+    },
+    {
+      "issue": "Constraint-migration hypotheses require additional independent primary/corroborating grid/interconnection and critical-material evidence before canonical promotion.",
+      "sources": ["earth-2036/data/baseline-evidence/GEV.json", "earth-2036/docs/SUPERVISOR_COUNCIL.md"]
+    }
+  ],
+  "directivesReviewed": [],
+  "confidence": 91,
+  "acquisitionComplete": false
+}

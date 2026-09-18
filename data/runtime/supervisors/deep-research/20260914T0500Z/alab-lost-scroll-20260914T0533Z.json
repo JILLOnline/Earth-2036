@@ -1,0 +1,68 @@
+{
+  "reportVersion": 1,
+  "cycleKey": "20260914T0500Z",
+  "timestamp": "2026-09-14T05:33:21Z",
+  "shift": "GRAVEYARD",
+  "batchId": "t0-20260914T0400Z-b01",
+  "ticker": "ALAB",
+  "company": "Astera Labs, Inc.",
+  "researchQuestionGate": "Close the active-batch underwriting gaps for fresh financials, customer concentration, liquidity/dilution and governance-adjacent capital structure sufficiently for Chief/company-underwriting to build a methodology-1.0 sourced dossier.",
+  "summary": "Primary SEC evidence materially closes ALAB's weakest batch gaps. Q2 2026 revenue was $392.4M and six-month revenue $700.8M; June 30 liquidity was about $1.253B of cash plus marketable securities. Customer concentration is high and directly quantified: four direct customers represented 29%, 25%, 15% and 13% of Q2 revenue, while customer A/B/C/D represented 29%/21%/17%/13% of six-month revenue. SBC is economically material at $112.9M for six months (16.1% of revenue in the company's non-GAAP reconciliation), and warrants continue to create contra-revenue and potential share issuance. This resolves the prior 'financials/customers/cash' under-acquisition but does not by itself complete governance or end-customer concentration normalization.",
+  "evidence": [
+    {
+      "claim": "Q2 2026 revenue was $392.4M and six-month revenue was $700.761M, with Q2 gross margin about 73.3% and GAAP operating income $89.248M.",
+      "source": "https://www.sec.gov/Archives/edgar/data/1736297/000173629726000035/alab-20260630.htm",
+      "sourceType": "primary_sec_10q",
+      "repoContext": "data/runtime/supervisors/cycles/20260914T0500Z/company-underwriting-alpha-20260914T051350Z.json"
+    },
+    {
+      "claim": "At June 30, 2026 ALAB held $111.453M cash and cash equivalents plus $1.141505B marketable securities, approximately $1.253B combined liquidity; total current assets were $1.652B.",
+      "source": "https://www.sec.gov/Archives/edgar/data/1736297/000173629726000035/alab-20260630.htm",
+      "sourceType": "primary_sec_10q"
+    },
+    {
+      "claim": "Direct-customer concentration is unusually high: Q2 2026 customers A/B/C/D were 29%/25%/15%/13% of revenue; six-month 2026 shares were 29%/21%/17%/13%. Receivable concentration at June 30 was A 30%, B 17%, D 12%, E 10%. Filing cautions that some direct customers are manufacturing partners, so these percentages are not a clean end-customer map.",
+      "source": "https://www.sec.gov/Archives/edgar/data/1736297/000173629726000035/alab-20260630.htm",
+      "sourceType": "primary_sec_10q"
+    },
+    {
+      "claim": "Six-month 2026 stock-based compensation expense was $112.905M in the company's operating-income reconciliation (16.1% of revenue). Equity activity also included option exercises, RSU/PSU vesting and warrant exercises; $12.313M of six-month warrant contra-revenue was recognized.",
+      "source": "https://www.sec.gov/Archives/edgar/data/1736297/000173629726000035/alab-20260630.htm",
+      "sourceType": "primary_sec_10q"
+    },
+    {
+      "claim": "The 2025 annual filing disclosed 2.721M options, 9.531M RSU/PSU awards and 2.442M warrants outstanding at Dec. 31, 2025, establishing a non-trivial overhang that should be normalized against the current share count rather than ignored.",
+      "source": "https://www.sec.gov/Archives/edgar/data/1736297/000114036126016366/ny20065212x3_ars.pdf",
+      "sourceType": "primary_sec_10k"
+    }
+  ],
+  "inference": [
+    "Solvency/financing dependence is not a near-term blocker given >$1.25B cash plus marketable securities and positive GAAP operating income, but dilution-adjusted value still requires explicit treatment because SBC and outstanding awards/warrants are large relative to the current equity base.",
+    "The direct-customer figures likely overstate or misstate true end-customer concentration because manufacturing partners buy on behalf of hyperscalers/OEMs; the filing itself warns about this mapping problem. Chief should not infer end-customer diversification from direct-customer labels.",
+    "ALAB's high growth and >70% gross margin support strong operating momentum, but customer/program concentration and SBC should materially constrain Data Confidence until end-customer and design-win durability are better resolved."
+  ],
+  "contradictions": [
+    "Underwriting previously had only machine identity/tradability for ALAB, while same-cycle red-team had already located Q2 filing evidence. This artifact resolves that cross-lane acquisition mismatch by preserving the primary filing data for Chief handoff.",
+    "Rapid profitability improvement coexists with very high equity compensation; non-GAAP profitability should not be treated as equivalent to dilution-free owner economics."
+  ],
+  "unknowns": [
+    "True end-customer concentration behind contract manufacturers/distributors remains unresolved.",
+    "Current post-June fully diluted share count requires a roll-forward of options, RSUs/PSUs, warrants and ESPP issuance from the 10-Q/10-K tables.",
+    "Board/control/governance quality was not fully reconstructed in this pass; proxy/DEF 14A remains the next-best primary source path.",
+    "Scorpio program cancellation rights and design-win duration are not disclosed with enough precision here to treat backlog/program visibility as contractual certainty."
+  ],
+  "falsifiers": [
+    "Loss or delay of one of the top customer/platform programs causing abrupt revenue/gross-margin compression.",
+    "SBC/share issuance growing faster than durable per-share cash generation.",
+    "Scorpio ramp failing to diversify revenue beyond a narrow set of AI platform programs."
+  ],
+  "confidence": 94,
+  "recommendedChiefAction": "review",
+  "recommendedActionDetail": "Promote the quantified financial/liquidity/concentration/SBC facts into the ALAB dossier after Chief verification; keep end-customer mapping, governance and fully diluted share-count normalization as explicit remaining gates rather than leaving the company broadly 'under-acquired'.",
+  "lineage": {
+    "queuePath": "data/runtime/supervisors/t0-bootstrap-queue.json",
+    "underwritingReport": "data/runtime/supervisors/cycles/20260914T0500Z/company-underwriting-alpha-20260914T051350Z.json",
+    "redTeamReport": "data/runtime/supervisors/cycles/20260914T0500Z/adversarial-red-team-beta-20260914T052431Z.json",
+    "rubricPath": "engine/rubric.ts"
+  }
+}

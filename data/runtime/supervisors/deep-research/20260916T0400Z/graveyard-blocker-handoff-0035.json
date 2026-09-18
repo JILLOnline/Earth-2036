@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "role": "earth-deep-runner",
+  "mode": "graveyard_lost_scroll",
+  "cycleKey": "20260916T0400Z",
+  "createdAt": "2026-09-16T04:35:00Z",
+  "canonicalMutation": false,
+  "pipelineAnomaly": {
+    "detected": true,
+    "severity": "high",
+    "detail": "At research start the active branch system-state was still persisted at cycleKey 20260916T0100Z and the expected 20260916T0400Z six-lane directory was absent. Deep Runner did not mutate workforce/automation state. Chief/Machine Keeper should verify machine and same-hour Alpha/Beta persistence before adjudicating this handoff."
+  },
+  "targets": [
+    {
+      "ticker": "SYM",
+      "company": "Symbotic Inc.",
+      "batchId": "t0-20260914T1500Z-b02",
+      "attempts": 3,
+      "exactGate": "Classify transaction-level substance of SEC Form 4 accession 0001932967-26-000007, including transaction code, amount, price and post-transaction holdings.",
+      "resolution": "still_blocked",
+      "sourceUrls": [
+        "https://ir.symbotic.com/financial-filings/sec-filings",
+        "https://www.sec.gov/search-filings"
+      ],
+      "evidence": [
+        "Symbotic's official IR filing feed confirms accession 0001932967-26-000007 is a Form 4 filed September 14, 2026.",
+        "A fresh independent filing-index read characterizes the accession as David A. Ladensohn-associated trusts making zero-price internal distributions/reclassifications across Class V-1, Class V-3, Symbotic Holdings Units and corresponding Class A Common Stock, with no open-market purchase or sale. This materially narrows economic substance but is corroboration, not a substitute for the filing table."
+      ],
+      "inference": "The filing appears economically non-sale/non-purchase and likely should not be treated as directional insider trading, but exact transaction rows remain unread from primary EDGAR and therefore the Chief-requested binary freshness classification is not fully satisfied.",
+      "contradictionStatus": "none_found",
+      "confidence": 0.86,
+      "gateImpact": "Narrows the blocker from unknown transaction substance to an apparently zero-price internal ownership reorganization; does not remove the blocker because exact primary transaction rows remain unavailable.",
+      "exactMissingEvidence": "Primary ownership XML/HTML for accession 0001932967-26-000007 showing every transaction code, amount, price and post-transaction beneficial holding.",
+      "nextBestSourcePath": "Direct EDGAR accession directory for reporting-owner CIK 1932967, accession directory 000193296726000007, then ownership XML or filing HTML; if direct retrieval remains unavailable, use the official Symbotic IR HTML/XLS link for that exact accession and preserve the downloaded filing as evidence.",
+      "recommendedChiefAction": "corroborate"
+    },
+    {
+      "ticker": "ROK",
+      "company": "Rockwell Automation, Inc.",
+      "batchId": "t0-20260915T0000Z-b03",
+      "attempts": 2,
+      "exactGate": "Customer concentration underwriting gap.",
+      "resolution": "resolved_for_chief_review",
+      "sourceUrls": [
+        "https://www.sec.gov/Archives/edgar/data/1024478/000102447825000116/rok-20250930.htm",
+        "https://www.sec.gov/Archives/edgar/data/1024478/000102447826000030/rok-20260630.htm"
+      ],
+      "evidence": [
+        "FY2025 Form 10-K reports $8.342B total company sales and provides segment/geographic/customer-related disclosures but does not identify any single major external customer at or above the ASC 280 10% revenue threshold.",
+        "The latest FY2026 quarterly filing reviewed likewise contains revenue/customer-contract disclosures without identifying a single major external customer concentration; it reports remaining performance obligations and broad geographic revenue rather than a named dominant customer."
+      ],
+      "inference": "Because U.S. GAAP segment disclosure requires disclosure of a major customer when revenue from a single external customer is 10% or more of consolidated revenue, the absence of a named major customer in Rockwell's audited FY2025 major-customer disclosures is strong evidence that no single external customer crossed that threshold. Sensia's customer-base concentration is a reporting-unit/JV risk and should not be misclassified as a consolidated single-customer concentration.",
+      "contradictionStatus": "none_found",
+      "confidence": 0.94,
+      "gateImpact": "Removes the specific customer-concentration blocker for Chief review; retain normal end-market/channel concentration risk separately rather than holding promotion for a nonexistent disclosed >=10% consolidated customer.",
+      "recommendedChiefAction": "review"
+    }
+  ],
+  "summary": {
+    "resolvedForChiefReview": 1,
+    "stillBlocked": 1,
+    "nonGatingUnknown": 0,
+    "blockersRemoved": ["ROK: consolidated customer concentration"],
+    "blockersNarrowed": ["SYM: exact Form 4 transaction rows; economic substance narrowed to zero-price internal reorganization"],
+    "optionalResearchDebtCreated": false
+  }
+}

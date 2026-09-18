@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "role": "deep-resolver",
+  "company": "TER",
+  "workId": "t0-20260915T0000Z-b03:TER",
+  "cycleKey": "20260915T2000Z",
+  "generatedAt": "2026-09-17T01:37:13Z",
+  "attemptCount": 3,
+  "status": "resolved",
+  "gatingQuestion": "Can Teradyne's governance/dilution and debt/convertible/liquidity gap be normalized sufficiently from current primary filings to stop treating legacy convertible-warrant mechanics as current dilution and to establish near-term financing dependence?",
+  "whyItMatters": "The T0 queue identifies governance/dilution normalization plus debt/convertible assembly as the remaining company-underwriting gate. Misclassifying expired legacy warrant mechanics as current dilution or leaving liquidity unknown would contaminate risk and Data Confidence evidence.",
+  "preferredPrimarySource": "Teradyne 2026 Form 10-Q and 2026 definitive proxy filed with the SEC.",
+  "lawfulFallbacks": ["Teradyne investor-relations copies of filed reports", "SEC XBRL facts for reconciliation only"],
+  "successCondition": "Primary filings establish current liquidity/financing sufficiency and clarify whether legacy convertible-note hedge/warrant dilution remains current, while preserving outstanding equity-award dilution as a separate live item.",
+  "evidence": [
+    {
+      "type": "primary",
+      "source": "https://www.sec.gov/Archives/edgar/data/97210/000119312526201058/ter-20260329.htm",
+      "claim": "Teradyne states cash, cash equivalents, marketable securities and its senior secured revolving credit facility are expected to be sufficient for working capital and expenditures for at least the next twelve months; it was in compliance with Credit Agreement covenants as of March 29, 2026. The filing separately identifies the shareholder-approved 2006 Equity and Cash Compensation Incentive Plan and 1996 Employee Stock Purchase Program.",
+      "evidenceVsInference": "evidence"
+    },
+    {
+      "type": "primary",
+      "source": "https://www.sec.gov/Archives/edgar/data/97210/000119312526327715/ter-20260628.htm",
+      "claim": "The latest located 2026 quarterly filing continues to describe outstanding performance-based RSUs, including 2024 and 2025 grants whose final vesting remains future-dependent; these are live equity-award dilution considerations distinct from the old convertible-warrant structure.",
+      "evidenceVsInference": "evidence"
+    },
+    {
+      "type": "primary",
+      "source": "https://www.sec.gov/Archives/edgar/data/97210/000095017024089858/ter-20240630.htm",
+      "claim": "The historical convertible-note hedge warrant transactions were expiring from March 18 through July 10, 2024; by June 30, 2024 only about 1.3 million warrant shares remained after 13.4 million warrants had expired during the first half of 2024. This supports treating that warrant structure as historical rather than a current 2026 financing overhang unless a later filing identifies a new instrument.",
+      "evidenceVsInference": "evidence"
+    },
+    {
+      "type": "primary",
+      "source": "https://www.sec.gov/Archives/edgar/data/97210/000119312526127504/ter-20260325.htm",
+      "claim": "The 2026 definitive proxy documents continuing performance-based RSU programs and shareholder-approved equity compensation governance; 2024 and 2025 performance awards remain in progress, so live compensation dilution must remain represented rather than collapsed into the expired warrant history.",
+      "evidenceVsInference": "evidence"
+    }
+  ],
+  "contradictionStatus": "resolved",
+  "resolution": "Current primary evidence resolves the financing-dependence/legacy-convertible portion of the gate: Teradyne reports at least twelve months of liquidity sufficiency and covenant compliance, while the cited convertible-warrant structure was an expiring 2024 instrument rather than a demonstrated current 2026 overhang. Live dilution remains through ordinary equity compensation awards and must be normalized from current plan/award tables by Alpha/packet compilation, but that is not evidence of financing dependence.",
+  "confidence": 0.91,
+  "gateImpact": "Remove legacy convertible-warrant/current-financing-dependence as a TER blocker. Preserve current equity-compensation dilution normalization as a bounded underwriting input; do not infer zero dilution. Recommended next state: evidence_complete once the packet compiler/Alpha incorporates current outstanding equity-award quantities from the 2026 proxy/10-Q; no further Deep Resolver loop on the legacy convertible question absent a newly identified instrument.",
+  "recommendedNextState": "evidence_complete",
+  "canonicalMutation": false
+}

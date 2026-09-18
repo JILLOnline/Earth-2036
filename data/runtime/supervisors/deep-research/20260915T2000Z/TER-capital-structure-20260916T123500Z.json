@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "role": "deep-resolver",
+  "status": "resolved",
+  "company": "TER",
+  "workId": "t0-20260915T0000Z-b03:TER",
+  "cycleKey": "20260915T2000Z",
+  "generatedAt": "2026-09-16T12:35:00Z",
+  "attemptCount": 3,
+  "gatingQuestion": "Normalize Teradyne governance/dilution capacity and debt/convertible exposure sufficiently to close the exact capital-structure portion of the T0 underwriting gate.",
+  "whyItMatters": "Unreconciled equity-plan capacity or legacy convertible/warrant exposure can understate dilution and financing risk; unresolved debt can distort liquidity and capital-allocation assessment.",
+  "preferredPrimarySource": "Teradyne 2026 Q2 Form 10-Q and 2025 Form 10-K filed with the SEC; 2026 definitive proxy for governance context.",
+  "lawfulFallbacks": [
+    "SEC inline-XBRL disclosure pages for the same filings",
+    "Teradyne investor-relations copies of the same filed reports"
+  ],
+  "successCondition": "Primary filings establish current common-share count, live debt/convertible status, equity-plan capacity/award overhang and liquidity sufficiency without double-counting legacy instruments.",
+  "claims": [
+    {
+      "claim": "At June 28, 2026, Teradyne had approximately 156.378 million common shares issued and outstanding.",
+      "evidenceType": "inference_from_primary_filing",
+      "basis": "Q2 2026 statement of equity begins at 156.540 million shares at March 29, adds 0.031 million net shares under stock-based plans and subtracts 0.193 million repurchased shares, yielding 156.378 million.",
+      "source": "https://www.sec.gov/Archives/edgar/data/97210/000119312526327715/ter-20260628.htm",
+      "confidence": "high"
+    },
+    {
+      "claim": "The legacy 1.25% convertible senior notes matured December 15, 2023; the associated warrant expiration process completed in 2024. They are not a live 2026 convertible-debt overhang.",
+      "evidenceType": "primary_filing",
+      "basis": "2025 Form 10-K states the notes matured December 15, 2023; prior 2024 filing documents the related warrant expiration sequence through July 10, 2024.",
+      "source": "https://www.sec.gov/Archives/edgar/data/97210/000119312526059002/ter-20251231.htm",
+      "supportingSource": "https://www.sec.gov/Archives/edgar/data/97210/000095017024089858/ter-20240630.htm",
+      "confidence": "high"
+    },
+    {
+      "claim": "Teradyne had no outstanding revolver balance at June 28, 2026 after $200 million of net repayments during the first half; the secured revolver capacity is $750 million and matures December 10, 2026, with covenant compliance reported at quarter end.",
+      "evidenceType": "primary_filing",
+      "basis": "Q2 2026 Debt disclosure and MD&A.",
+      "source": "https://www.sec.gov/Archives/edgar/data/97210/000119312526327715/R20.htm",
+      "confidence": "high"
+    },
+    {
+      "claim": "The latest annual plan-capacity anchor is 3,050,235 shares available under the 2006 Equity Plan and 3,176,598 under the ESPP as of December 31, 2025; the same 10-K separately identifies 1,634,922 restricted-stock-unit shares in the equity-compensation table.",
+      "evidenceType": "primary_filing",
+      "basis": "2025 Form 10-K equity compensation plan information.",
+      "source": "https://www.sec.gov/Archives/edgar/data/97210/000119312526059002/ter-20251231.htm",
+      "confidence": "high"
+    },
+    {
+      "claim": "During the first six months of 2026, Teradyne granted about 0.2 million employee service RSUs, less than 0.1 million director service RSUs, 0.1 million PBIT PRSUs and 0.1 million TSR PRSUs; performance awards can vest from 0% to 200% of target.",
+      "evidenceType": "primary_filing",
+      "basis": "Q2 2026 stock-based compensation note. This means target grant counts must not be treated as a fixed fully diluted share count; performance outcomes remain conditional.",
+      "source": "https://www.sec.gov/Archives/edgar/data/97210/000119312526327715/R23.htm",
+      "confidence": "high"
+    },
+    {
+      "claim": "Management states cash, cash equivalents, marketable securities and the senior secured revolver are sufficient for working-capital and expenditure needs for at least twelve months as of Q2 2026.",
+      "evidenceType": "primary_filing",
+      "basis": "Q2 2026 MD&A liquidity statement.",
+      "source": "https://www.sec.gov/Archives/edgar/data/97210/000119312526327715/ter-20260628.htm",
+      "confidence": "high"
+    }
+  ],
+  "evidenceVsInference": {
+    "evidence": "Debt status, revolver capacity/maturity, annual equity-plan availability, disclosed award grants and liquidity statement are direct filing evidence.",
+    "inference": "156.378 million quarter-end common shares is arithmetic from the filed statement-of-equity movements. No attempt is made to convert conditional PRSUs into a fabricated exact fully diluted count."
+  },
+  "contradictionStatus": "resolved",
+  "contradictions": [
+    {
+      "issue": "Legacy convertible-note language can look like current dilution exposure when read without maturity/expiration lineage.",
+      "disposition": "Resolved: notes matured in 2023 and associated warrants expired in 2024; neither is a live 2026 financing instrument."
+    }
+  ],
+  "unknowns": [
+    {
+      "item": "Exact June 28, 2026 unused share reserve under each compensation plan after 2026 grants/settlements.",
+      "gating": false,
+      "reason": "The latest filing supplies the annual reserve anchor and interim grant/settlement activity but does not present a refreshed quarter-end unused-plan-reserve table. Treat the exact interim reserve as unknown rather than subtracting conditional awards mechanically."
+    }
+  ],
+  "gateImpact": {
+    "capitalStructureGate": "resolved",
+    "recommendedNextState": "evidence_complete_if_no_other_specialist_gate_remains",
+    "canonicalMutationAuthorized": false,
+    "notes": "This artifact closes only TER's exact governance/dilution plus debt/convertible assembly exception. It does not score, rank, promote, or alter canonical evidence. Packet compiler/Chief must consume it with other specialist evidence."
+  },
+  "sourceLineage": [
+    {
+      "type": "SEC_PRIMARY",
+      "url": "https://www.sec.gov/Archives/edgar/data/97210/000119312526327715/ter-20260628.htm",
+      "filing": "Teradyne Form 10-Q",
+      "period": "2026-06-28"
+    },
+    {
+      "type": "SEC_PRIMARY_XBRL",
+      "url": "https://www.sec.gov/Archives/edgar/data/97210/000119312526327715/R20.htm",
+      "topic": "Debt"
+    },
+    {
+      "type": "SEC_PRIMARY_XBRL",
+      "url": "https://www.sec.gov/Archives/edgar/data/97210/000119312526327715/R23.htm",
+      "topic": "Stock-Based Compensation"
+    },
+    {
+      "type": "SEC_PRIMARY",
+      "url": "https://www.sec.gov/Archives/edgar/data/97210/000119312526059002/ter-20251231.htm",
+      "filing": "Teradyne Form 10-K",
+      "period": "2025-12-31"
+    },
+    {
+      "type": "SEC_PRIMARY",
+      "url": "https://www.sec.gov/Archives/edgar/data/97210/000095017024089858/ter-20240630.htm",
+      "filing": "Teradyne Form 10-Q",
+      "purpose": "legacy warrant expiration lineage"
+    }
+  ],
+  "confidence": 0.97
+}

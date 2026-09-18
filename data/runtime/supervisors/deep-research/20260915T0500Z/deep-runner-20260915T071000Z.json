@@ -1,0 +1,81 @@
+{
+  "reportVersion": 1,
+  "role": "earth-deep-runner",
+  "mode": "GRAVEYARD_LOST_SCROLL",
+  "cycleKey": "20260915T0500Z",
+  "generatedAt": "2026-09-15T07:10:00Z",
+  "queueCycleKeyReviewed": "20260915T0000Z",
+  "backpressure": {
+    "readyForChief": 22,
+    "policyApplied": "blocker-clearing only; no optional outside-250 research opened"
+  },
+  "targets": [
+    {
+      "ticker": "TSM",
+      "company": "Taiwan Semiconductor Manufacturing Company Limited",
+      "batchId": "t0-20260914T0400Z-b01",
+      "attemptsAtQueueRead": 3,
+      "exactGate": "Recover exact FY2025 major-customer concentration from current primary issuer evidence for reproducible concentration treatment.",
+      "classification": "still_blocked",
+      "evidenceVsInference": "Queue and prior Chief handoff establish that the missing datum is a historical concentration fact, not a future/geopolitical inference. No new primary percentage was recovered in this run; therefore no number is inferred or fabricated.",
+      "sourcePaths": [
+        "data/runtime/supervisors/t0-bootstrap-queue.json",
+        "TSMC 2025 Annual Report — major-customer / revenue concentration note or table (primary issuer source; exact percentage still required)"
+      ],
+      "contradictionStatus": "none identified; overseas-ramp economics and geopolitical timing are explicitly non-gating and must not be substituted for the missing concentration fact",
+      "confidence": 99,
+      "gateImpact": "blocker remains; does not justify holding any other company or any non-concentration factor",
+      "removesBlocker": false,
+      "recommendedChiefAction": "directive",
+      "nextBestSourcePath": "TSMC 2025 Annual Report audited notes: search revenue/customer concentration disclosures for customers individually >=10% of consolidated revenue; preserve exact percentage and reporting-period denominator. If annual-report disclosure does not provide an exact percentage, classify the unavailable granularity explicitly rather than estimating it, and adjudicate whether methodology requires exact percentage or only the disclosed >=10% threshold.",
+      "binaryResolution": "still_blocked"
+    },
+    {
+      "ticker": "SYM",
+      "company": "Symbotic Inc.",
+      "batchId": "t0-20260914T1500Z-b02",
+      "attemptsAtQueueRead": 3,
+      "exactGate": "Classify transaction-level substance of SEC Form 4 accession 0001932967-26-000007 for governance/alignment/dilution/insider-behavior treatment.",
+      "classification": "still_blocked",
+      "evidenceVsInference": "The queue identifies a specific primary filing accession. Transaction code, security type, amount, price, ownership form and footnotes must be read from the authenticated Form 4 XML/table before classification. No transaction semantics are inferred from accession existence alone.",
+      "sourcePaths": [
+        "data/runtime/supervisors/t0-bootstrap-queue.json",
+        "SEC Form 4 accession 0001932967-26-000007 — authenticated ownership XML / transaction table (primary source; transaction rows still required)"
+      ],
+      "contradictionStatus": "unresolved until the filing distinguishes open-market purchase/sale, grant/vesting, tax withholding, conversion/exercise, transfer or other code and exposes footnotes",
+      "confidence": 99,
+      "gateImpact": "SYM-only blocker remains; must not spill into other ready-for-Chief names",
+      "removesBlocker": false,
+      "recommendedChiefAction": "directive",
+      "nextBestSourcePath": "Retrieve the filing's raw SEC ownership XML for accession 0001932967-26-000007; capture reporting owner, relationship, transaction date, transaction code, acquired/disposed flag, shares, price, post-transaction ownership, direct/indirect ownership, derivative-security rows and every footnote. Classify only after those fields are present.",
+      "binaryResolution": "still_blocked"
+    }
+  ],
+  "nonGatingDiscipline": [
+    {
+      "ticker": "TSM",
+      "items": ["overseas-ramp/fab economics", "geopolitical timing"],
+      "classification": "non_gating_unknown",
+      "recommendedChiefAction": "no_action",
+      "note": "Keep visible as uncertainty; do not hold promotion for these items once the actual concentration gate is adjudicated."
+    },
+    {
+      "ticker": "SYM",
+      "items": ["future insider behavior beyond the cited filing"],
+      "classification": "non_gating_unknown",
+      "recommendedChiefAction": "no_action",
+      "note": "Do not broaden the narrow filing-classification gate into an open-ended insider-behavior research task."
+    }
+  ],
+  "integrityNotes": [
+    "Current machine state read first: 250/250 identity and tradability validated, 91 unresolved evidence items, council pending.",
+    "Queue read first: ready_for_chief=22 triggered backpressure; only the two explicit blocked names were targeted.",
+    "No canonical score, rank, tick, methodology, membership, causal graph, baseline evidence, supervisor-state, decision bucket, Chief attestation or queue decision was edited.",
+    "Primary-source web retrieval was unavailable during this run; fail-closed semantics preserved. No unsupported values were promoted or guessed."
+  ],
+  "chiefHandoff": {
+    "TSM": "still_blocked — exact FY2025 major-customer concentration disclosure remains the sole stated gate; adjudicate exact-percentage requirement if issuer only discloses a >=10% threshold.",
+    "SYM": "still_blocked — read the exact Form 4 transaction rows/footnotes; do not infer transaction substance from accession metadata.",
+    "scope": "No optional research debt created because 22 dossiers are already ready for Chief."
+  }
+}

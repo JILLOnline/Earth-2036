@@ -1,0 +1,59 @@
+{
+  "reportVersion": 1,
+  "laneId": "structural-causal",
+  "cycleKey": "20260913T2000Z",
+  "generatedAt": "2026-09-13T20:21:00Z",
+  "status": "complete",
+  "summary": "Independent primary-source review supports treating purpose-built autonomous-vehicle certification/regulatory throughput as a distinct deployment constraint from technical autonomy capability, but as a migratory rather than permanent bottleneck. NHTSA's September 4, 2026 Cybercab Audit Query explicitly tests the technical/process basis for self-certification under still-applicable FMVSS; separate Part 555/AVEP exemption pathways cap or condition deployment of noncompliant purpose-built vehicles while rulemaking modernizes standards. The constraint should therefore be modeled as regulatory/certification throughput that can bind commercial deployment even when autonomy technology works, with a falsifier tied to broad FMVSS modernization and standardized national AV performance requirements.",
+  "materialFindings": [
+    {
+      "finding": "NHTSA opened a September 4, 2026 Audit Query into Tesla Cybercab self-certification, stating existing FMVSS remain in force until rulemaking is completed and that the inquiry will examine technical data/processes used to claim compliance for a vehicle lacking traditional human controls. This is direct evidence that certification compliance can independently gate deployment after a developer reaches commercial-operation capability.",
+      "sources": ["https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification"]
+    },
+    {
+      "finding": "NHTSA's Part 555 framework allows purpose-built vehicles that do not fully comply with FMVSS to seek temporary exemptions, requiring equivalent safety/public-interest showings. The 2025 streamlined process explicitly covers vehicles without steering wheels, driver-operated brakes or mirrors and still limits exemptions to up to 2,500 vehicles per manufacturer per year.",
+      "sources": ["https://www.nhtsa.gov/press-releases/streamline-exemption-process-noncompliant"]
+    },
+    {
+      "finding": "On July 30, 2026 NHTSA allowed Zoox commercial deployment through a temporary exemption of up to 2,500 vehicles annually for two years while simultaneously accelerating first-ever AV performance standards through the three-year A2SCEND standards effort. This demonstrates both present regulatory throughput constraints and an explicit policy path that may relax/migrate the bottleneck over time.",
+      "sources": ["https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle"]
+    },
+    {
+      "finding": "NHTSA's June 25, 2026 brake-pedal rulemaking targets legacy manual-control requirements specifically for ADS-only vehicles while preserving braking-performance requirements. The causal constraint is therefore not simply 'regulation bad'; it is compatibility between legacy safety-standard architecture, certification evidence and purpose-built vehicle design.",
+      "sources": ["https://www.nhtsa.gov/press-releases/fmvss-updates-brake-pedal-requirements"]
+    }
+  ],
+  "proposedCanonicalChanges": [
+    {
+      "proposal": "Add a structural node `constraint:av-certification-regulatory-throughput` distinct from `technology:autonomous-driving-capability`, with edges to purpose-built AV commercial deployment. Mark it as a migrating constraint whose strength depends on FMVSS modernization, exemption throughput and development of objective national AV performance standards.",
+      "confidence": 91,
+      "horizon": "2026-2032",
+      "falsifier": "Material weakening if updated FMVSS and objective national AV performance standards allow broad purpose-built AV certification/deployment without material exemption queues, design incompatibility disputes or certification enforcement friction.",
+      "sources": ["https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification", "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle", "https://www.nhtsa.gov/press-releases/streamline-exemption-process-noncompliant"]
+    }
+  ],
+  "contradictions": [
+    {
+      "issue": "Policy is simultaneously constraining and relaxing deployment: enforcement of existing FMVSS remains active while exemptions/rulemaking are being accelerated. Treating regulation as a static long-run bottleneck would overstate durability.",
+      "sources": ["https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification", "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle"]
+    }
+  ],
+  "unknowns": [
+    "How quickly NHTSA's pending FMVSS updates and A2SCEND-derived performance standards will remove purpose-built design incompatibilities at fleet scale.",
+    "Entity-specific sensitivity across active-universe autonomy companies beyond public Tesla/Zoox examples requires company-by-company underwriting before score influence.",
+    "State/local operating permits and first-responder interaction requirements may create additional non-federal deployment constraints that are not normalized in this pass."
+  ],
+  "peerRequests": [
+    "Company-underwriting: identify active-universe autonomy names whose commercial model specifically depends on purpose-built no-manual-control vehicles and quantify dependence on exemption/certification pathways.",
+    "Discovery-weak-signals: track NHTSA FMVSS modernization, A2SCEND milestones, Part 555/AVEP exemptions and enforcement actions as constraint-strength signals.",
+    "Adversarial-red-team: test whether the proposed node duplicates broader regulatory-risk factors or whether deployment evidence shows it is independently decision-relevant."
+  ],
+  "accuracyDebates": [],
+  "blockingIssues": [],
+  "directivesReviewed": [
+    "chief-20260913t1300z-av-certification-constraint",
+    "chief-20260913t1300z-gev-constraint-migration"
+  ],
+  "confidence": 91,
+  "acquisitionComplete": true
+}

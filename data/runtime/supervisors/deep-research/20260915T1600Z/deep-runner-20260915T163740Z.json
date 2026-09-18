@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "role": "earth-deep-runner",
+  "cycleKey": "20260915T1600Z",
+  "generatedAt": "2026-09-15T16:37:40Z",
+  "mode": "DAY",
+  "backpressure": {
+    "readyForChief": 22,
+    "policyApplied": "blocker-clearing only; no optional outside-250 research"
+  },
+  "inputsReviewed": [
+    "data/runtime/system-state.json",
+    "data/runtime/supervisors/t0-bootstrap-queue.json",
+    "data/runtime/supervisors/directives.json",
+    "data/runtime/supervisors/cycles/20260915T1600Z/",
+    "docs/OFFICIAL_T0_BASELINE.md",
+    "lib/discovery-sources.ts"
+  ],
+  "laneStateObservation": "At research time the current-cycle directory exposed the three Beta lane artifacts (discovery-weak-signals, adversarial-red-team, expectations-execution); no current-cycle Alpha artifacts were present yet. Deep did not substitute for or fabricate missing lane work.",
+  "targets": [
+    {
+      "ticker": "TSM",
+      "company": "Taiwan Semiconductor Manufacturing Company Limited",
+      "batchId": "t0-20260914T0400Z-b01",
+      "attemptsAtQueue": 3,
+      "exactGate": "Recover exact FY2025 major-customer concentration from current primary issuer evidence for reproducible concentration treatment.",
+      "resolution": "resolved_for_chief_review",
+      "evidence": [
+        {
+          "type": "primary_issuer_20f",
+          "url": "https://investor.tsmc.com/sites/ir/sec-filings/2025_20F%20Report.pdf",
+          "facts": {
+            "top10CustomersPctNetRevenue2025": 78,
+            "largestCustomerPctNetRevenue2025": 19,
+            "secondLargestCustomerPctNetRevenue2025": 17,
+            "comparison2024": {
+              "top10": 76,
+              "largest": 22,
+              "secondLargest": 12
+            }
+          }
+        },
+        {
+          "type": "primary_issuer_annual_report_web",
+          "url": "https://investor.tsmc.com/static/annualReports/2025/english/index.html",
+          "facts": {
+            "customers2025": 534,
+            "products2025": 12682,
+            "processTechnologies2025": 305
+          }
+        }
+      ],
+      "evidenceVsInference": "The percentages are direct issuer disclosures, not inference. Concentration-risk interpretation remains methodology treatment for Chief/company-underwriting.",
+      "contradictionStatus": "none found; 2025 disclosure is internally coherent with prior-year 2024 annual-report sequence (top-10 76%, largest 22%, second-largest 12%).",
+      "confidence": "high",
+      "gateImpact": "removes_blocker",
+      "recommendedChiefAction": "review",
+      "handoff": "TSM's queue blocker can be removed after Chief verifies source lineage and incorporates the disclosed 78% top-10 / 19% largest / 17% second-largest FY2025 concentration into the methodology-1.0 evidence treatment. Overseas-fab economics and geopolitical timing remain explicit non-gating uncertainty per existing Chief queue note."
+    },
+    {
+      "ticker": "SYM",
+      "company": "Symbotic Inc.",
+      "batchId": "t0-20260914T1500Z-b02",
+      "attemptsAtQueue": 3,
+      "exactGate": "Classify transaction-level substance of SEC Form 4 accession 0001932967-26-000007 for governance/alignment/dilution/insider-behavior treatment.",
+      "resolution": "still_blocked",
+      "evidence": [
+        {
+          "type": "primary_sec_context",
+          "url": "https://www.sec.gov/Archives/edgar/data/1837240/000193296725000008/0001932967-25-000008-index.htm",
+          "facts": "Confirms reporting CIK 0001932967 is David A. Ladensohn and issuer CIK 0001837240 is Symbotic Inc.; this is identity/context only, not the target 2026 transaction."
+        }
+      ],
+      "evidenceVsInference": "No transaction classification is inferred from adjacent filings. Exact target accession transaction table was not independently recovered in this run.",
+      "contradictionStatus": "none established; target evidence absent",
+      "confidence": "high on identity; unknown on target transaction substance",
+      "gateImpact": "blocker_remains",
+      "exactMissingEvidence": "Authenticated SEC filing/index or ownership XML for accession 0001932967-26-000007 showing transaction date, code, amount, acquired/disposed flag, price, post-transaction ownership, derivative conversion/redemption fields and explanatory footnotes.",
+      "nextBestSourcePath": "SEC EDGAR issuer CIK 0001837240 and reporting-owner CIK 0001932967 ownership filings; recover accession 0001932967-26-000007 from EDGAR filing index/ownership XML or complete submission text, then classify without extrapolating from adjacent Form 4s.",
+      "recommendedChiefAction": "directive",
+      "handoff": "Keep SYM blocked only on this exact Form 4 classification. Do not let adjacent Form 4 patterns substitute for the missing target transaction."
+    }
+  ],
+  "summary": {
+    "targeted": 2,
+    "resolvedForChiefReview": 1,
+    "stillBlocked": 1,
+    "nonGatingUnknown": 0,
+    "optionalResearchCreated": 0
+  }
+}

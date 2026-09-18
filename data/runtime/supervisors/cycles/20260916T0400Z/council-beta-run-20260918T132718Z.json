@@ -1,0 +1,44 @@
+{
+  "reportVersion": 2,
+  "role": "council-beta",
+  "machineCycleKey": "20260916T0400Z",
+  "generatedAt": "2026-09-18T13:27:18Z",
+  "status": "blocked",
+  "perspectives": ["structural-causal", "adversarial-red-team"],
+  "routingPolicy": "closure-first",
+  "companiesInspected": [],
+  "betaPairsCompleted": 0,
+  "summary": "No company perspective pair was emitted because the newest machine-keeper state identifies 20260916T0400Z as the completed machine cycle, but the corresponding persisted supervisor-cycle directory was absent when read. Workgraph v2 forbids clock-derived or mixed-cycle lineage, so Beta failed closed rather than attaching evidence to the stale Chief queue cycle or inventing cycle identity.",
+  "blockers": [
+    {
+      "blockerId": "beta-cycle-lineage-20260916T0400Z-missing-supervisor-cycle",
+      "scope": "GLOBAL",
+      "gating": true,
+      "lockedMethodologyDefect": "Exact cycle/work lineage cannot be established reproducibly: machine-keeper-state.json marks machine cycle 20260916T0400Z completed, while data/runtime/supervisors/cycles/20260916T0400Z was not persisted/readable; the Chief-owned T0 queue remains on 20260915T2000Z and is explicitly flagged as lagging.",
+      "evidence": [
+        "earth-2036/data/runtime/supervisors/machine-keeper-state.json",
+        "earth-2036/data/runtime/supervisors/t0-bootstrap-queue.json",
+        "earth-2036/docs/WORKGRAPH_V2.md"
+      ],
+      "nextLawfulEvidencePath": "Machine Keeper/deterministic workgraph must reconcile and persist the newest COMPLETE eligible cycle/work-item lineage (or explicitly identify the newest persisted eligible predecessor). Beta can then resume closure-first processing without mixing stale queue state with a newer machine cycle.",
+      "nextOwner": "earth-machine-keeper",
+      "confidence": 99
+    }
+  ],
+  "backpressureObserved": {
+    "legacyReadyForChief": 24,
+    "active": 12,
+    "queued": 213,
+    "effect": "No fresh ordinary company work opened."
+  },
+  "lineage": {
+    "branch": "earth-2036/official-baseline-t0",
+    "pr": 4,
+    "prHeadObserved": "8e1180264e6bb36e0cb4fb5739146d3b11096fe0",
+    "machineStatePath": "earth-2036/data/runtime/supervisors/machine-keeper-state.json",
+    "queuePath": "earth-2036/data/runtime/supervisors/t0-bootstrap-queue.json",
+    "workgraphContractPath": "earth-2036/docs/WORKGRAPH_V2.md",
+    "supersedes": null
+  },
+  "mutatedCanonicalState": false
+}

@@ -1,0 +1,87 @@
+{
+  "reportVersion": 1,
+  "laneId": "structural-causal",
+  "cycleKey": "20260913T1300Z",
+  "generatedAt": "2026-09-13T13:39:00Z",
+  "status": "needs_research",
+  "summary": "The current causal graph is internally coherent for GEV and correctly links reliable electricity, grids, gas turbines, AI data-center demand and grid-equipment scarcity. However it is still a one-company world model; successor bottlenecks, cross-company dependency chains and substitution pathways are materially under-covered, so the structural lane cannot claim acquisition complete.",
+  "materialFindings": [
+    {
+      "id": "structural-gev-chain-valid",
+      "finding": "The graph contains explicit sourced links from GEV to reliable electricity, power-grid infrastructure, gas turbines, AI-data-center demand and constrained grid-equipment capacity, with confidence values in the high-80s to high-90s and explicit structural signals/falsifiers.",
+      "decisionRelevance": "This is a valid prototype for Evidence → Causal Effect → Factor reasoning rather than direct narrative-to-score jumps.",
+      "artifacts": ["data/runtime/causal-graph.json", "data/baseline-evidence/GEV.json"]
+    },
+    {
+      "id": "structural-constraint-migration-gap",
+      "finding": "The graph models grid-equipment capacity as a bottleneck but does not yet represent what becomes limiting if transformer/switchgear/gas-turbine capacity expands successfully—for example fuel infrastructure, interconnection/permitting, transmission construction, skilled labor, cooling/water, copper/electrical materials or generation-fuel constraints.",
+      "decisionRelevance": "Predicting successor bottlenecks is essential to avoid over-owning today's constraint after the market/capacity response begins solving it.",
+      "artifacts": ["data/runtime/causal-graph.json"]
+    },
+    {
+      "id": "structural-cross-company-graph-gap",
+      "finding": "Only GEV is currently represented as a company node despite a 250-company active universe.",
+      "decisionRelevance": "Earth cannot yet propagate shocks or identify second/third-order beneficiaries/fragilities across AI compute, power, cooling, materials, grid, nuclear, space, robotics and other dependencies.",
+      "artifacts": ["data/runtime/causal-graph.json", "data/runtime/entity-registry.json"]
+    },
+    {
+      "id": "structural-falsifier-quality",
+      "finding": "The existing GEV structural signals include explicit falsifiers tied to demand, order contraction, lead-time normalization, pricing contribution and margins.",
+      "decisionRelevance": "This is strong causal hygiene and should be required for every new material structural signal rather than only for the first publishable company.",
+      "artifacts": ["data/runtime/causal-graph.json"]
+    }
+  ],
+  "proposedCanonicalChanges": [
+    {
+      "id": "proposal-successor-bottleneck-map",
+      "type": "research_priority_only",
+      "proposal": "Build a sourced successor-bottleneck map around the current power/AI chain before promoting new structural edges: grid equipment → transmission/interconnection/permitting → generation/fuel → cooling/water → electrical materials/labor. Each node/edge should require a horizon, confidence and falsifier.",
+      "reason": "This directly targets constraint migration and prevents static bottleneck assumptions."
+    },
+    {
+      "id": "proposal-cross-company-dependency-expansion",
+      "type": "research_priority_only",
+      "proposal": "As the next underwriting packages are created, add causal nodes/edges for RKLB, CRDO and ALAB only after primary evidence supports their role; do not infer structural importance from seed class.",
+      "reason": "This grows the world model together with evidence rather than allowing an unsourced 250-node graph."
+    }
+  ],
+  "contradictions": [],
+  "unknowns": [
+    {
+      "id": "successor-bottleneck-unknown",
+      "detail": "The system has not yet established which constraint becomes dominant after current grid/generation manufacturing expansions."
+    },
+    {
+      "id": "substitution-paths-undercovered",
+      "detail": "The current GEV graph does not yet encode enough competing generation, storage, demand-management or grid-architecture substitution paths to quantify how the causal thesis weakens under alternate technology trajectories."
+    },
+    {
+      "id": "cross-domain-shock-propagation-unbuilt",
+      "detail": "No sufficiently broad company dependency graph exists yet to propagate geopolitical, commodity, regulatory or technology shocks through the full active universe."
+    }
+  ],
+  "peerRequests": [
+    {
+      "to": "discovery-weak-signals",
+      "request": "Search for evidence that today's grid/generation bottlenecks are being solved faster than expected and identify emerging successor constraints not yet represented in Earth."
+    },
+    {
+      "to": "adversarial-red-team",
+      "request": "Attack the GEV structural thesis with substitution scenarios: faster storage, distributed generation, demand response, competing turbine/grid suppliers, permitting changes and any factor that could weaken scarcity rents."
+    },
+    {
+      "to": "company-underwriting",
+      "request": "For each new baseline candidate, surface the exact physical/technical dependency and monetization path needed to create sourced causal edges; avoid theme membership as proof."
+    }
+  ],
+  "accuracyDebates": [],
+  "blockingIssues": [
+    {
+      "id": "world-model-coverage-incomplete",
+      "detail": "The causal graph contains only one company node from a 250-company universe, so structural acquisition is materially incomplete."
+    }
+  ],
+  "directivesReviewed": [],
+  "confidence": 98,
+  "acquisitionComplete": false
+}

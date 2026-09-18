@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "role": "deep-resolver",
+  "company": "SERV",
+  "workId": "t0-20260915T0000Z-b03:SERV",
+  "cycleKey": "20260915T2000Z",
+  "generatedAt": "2026-09-17T04:35:00Z",
+  "directive": {
+    "exactGatingQuestion": "Can SERV's ATM/warrant/SBC dilution capacity, liquidity/runway, and customer concentration be normalized from current primary filings sufficiently to close the underwriting gate?",
+    "whyItMatters": "The T0 bootstrap queue explicitly blocks SERV on financing/dilution capacity, runway and partner concentration; unresolved financing dependence or concentrated revenue prevents comparable packet preflight.",
+    "preferredPrimarySource": "Serve Robotics Form 10-Q for quarter ended 2026-06-30, SEC accession 0001832483-26-000035.",
+    "lawfulFallbacks": ["Serve Robotics 2025 Form 10-K", "Serve Robotics 2026-Q1 Form 10-Q", "SEC-filed ATM prospectus/sales agreements"],
+    "successCondition": "Primary filings quantify current liquidity, operating burn, ATM remaining capacity, warrant overhang, material SBC/unamortized award cost, and current >10% customer concentration without fabricated partner identities.",
+    "attemptCount": 3
+  },
+  "status": "resolved",
+  "evidence": [
+    {
+      "type": "primary",
+      "source": "https://www.sec.gov/Archives/edgar/data/1832483/000183248326000035/serv-20260630.htm",
+      "accession": "0001832483-26-000035",
+      "period": "2026-06-30",
+      "claims": [
+        "Liquidity at 2026-06-30: $79.112m cash and cash equivalents plus $156.295m short-term marketable securities; filing also states $5.0m long-term marketable securities, for $240.4m cash/cash-equivalent/marketable-security liquidity.",
+        "Management states existing cash, cash equivalents and marketable securities are sufficient for working-capital and capital-expenditure needs for at least the next 12 months.",
+        "Six-month 2026 operating cash use was $84.738m; investing cash use was $27.714m; financing cash inflow was $85.326m. This demonstrates meaningful financing dependence despite >12-month management liquidity assertion.",
+        "2026 ATM: $150.0m authorized. Through 2026-06-30, 8,540,900 shares sold at $9.08 weighted average, $77.6m gross / $75.2m net; approximately $72.4m gross capacity remained.",
+        "2025 ATM also sold 1,217,000 shares during the first half of 2026 at $8.21 weighted average for $10.0m gross. Total first-half ATM net proceeds were $84.922m.",
+        "Warrant overhang at 2026-06-30: 5,079,294 warrants outstanding and exercisable, weighted-average exercise price $10.18, weighted-average remaining term 4.8 years. This includes 4,000,000 Vayu/KV warrants at $10.36 expiring 2031-08-15.",
+        "Stock-based compensation was $22.038m for the six months ended 2026-06-30. Unamortized compensation cost on unvested RSUs was $92.3m, expected over about 2.8 years.",
+        "Current customer concentration is material but diversified versus earlier periods: Q2 filing reports >10% customer concentration and warns that loss/amendment of significant customers could materially affect revenue, cash and profitability. Q1 2026 quantified three customers at 17%, 14% and 11% of revenue; the latest filing preserves anonymized customer labels, so partner identity is not inferred."
+      ]
+    }
+  ],
+  "evidenceVsInference": {
+    "evidence": "All numeric capitalization, liquidity, burn, ATM, warrant, SBC and concentration statements above are SEC-filed primary evidence.",
+    "inference": "Financing dependence remains material because first-half operating cash use ($84.738m) was approximately matched by financing inflow ($85.326m), while the company simultaneously retained substantial liquidity and explicitly asserted at least 12 months of runway. This is a risk normalization inference, not a claim of imminent financing need. Customer concentration remains a gating risk factor, but no customer/partner identity should be assigned to anonymized Customer A/B/C without separate primary evidence."
+  },
+  "contradictionStatus": "resolved",
+  "confidence": "high",
+  "gateImpact": {
+    "prior": "SERV active: ATM/warrant/SBC capacity, runway and partner concentration unresolved.",
+    "recommendedNextState": "evidence_complete / packet compiler preflight. Treat financing dependence and customer concentration as explicit risks; do not block for further ordinary filing retrieval. Preserve anonymized customer identities as unknown.",
+    "canonicalMutationAuthorized": false
+  },
+  "stopRule": "Do not loop on exact customer identity unless Chief identifies identity itself as a material gate; the issuer's filing deliberately anonymizes concentration counterparties and the quantitative concentration gate is resolved."
+}

@@ -1,0 +1,70 @@
+{
+  "reportVersion": 1,
+  "laneId": "source-integrity",
+  "cycleKey": "20260913T1300Z",
+  "generatedAt": "2026-09-13T13:42:00Z",
+  "status": "needs_research",
+  "summary": "Machine inputs for cycle 20260913T1300Z are healthy and its persisted machine head 891117f5d80add03f6cf3d51b19ff5c8ec7333dc has successful explicit CI, but supervisor report persistence necessarily creates later branch commits. A strict interpretation that requires workflow_dispatch CI on the branch head after every supervisor-only report commit would create a coordination deadlock unless Chief can dispatch post-council CI. Treat machine-cycle CI identity and immutable specialist artifact blob identity as separate integrity proofs until that policy is made explicit.",
+  "materialFindings": [
+    {
+      "id": "machine-head-ci-pass",
+      "finding": "Machine cycle 20260913T1300Z persisted on head 891117f5d80add03f6cf3d51b19ff5c8ec7333dc and explicit Earth 2036 CI workflow_dispatch run 34760004102 completed successfully on that exact SHA.",
+      "sources": ["https://github.com/JILLOnline/Side-Projects/actions/runs/34760004102"],
+      "artifacts": ["data/runtime/system-state.json"]
+    },
+    {
+      "id": "post-machine-supervisor-commits",
+      "finding": "Council Alpha writes immutable lane reports after the machine CI pass; those report-only commits advance the PR ref even though the reviewed machine cycle and code/data state remain bound to the earlier machine SHA.",
+      "decisionRelevance": "If exact-head CI is interpreted as requiring a new workflow_dispatch after every report-only commit, Chief cannot safely satisfy the gate without an explicit post-council dispatch mechanism. Artifact blob verification already separately protects lane content.",
+      "artifacts": ["data/runtime/supervisors/cycles/20260913T1300Z/source-integrity-20260913T133500Z.json", "data/runtime/supervisors/cycles/20260913T1300Z/company-underwriting-20260913T133700Z.json", "data/runtime/supervisors/cycles/20260913T1300Z/structural-causal-20260913T133900Z.json"]
+    },
+    {
+      "id": "finra-capability-remains-limited",
+      "finding": "FINRA remains partition-freshness only with eventDataAvailable=false; no automated row-level corporate-action clearance is justified.",
+      "sources": ["https://api.finra.org/partitions/group/otcMarket/name/otcDailyList", "https://otce.finra.org/otce/dailyList"],
+      "artifacts": ["data/runtime/automated-source-health.json"]
+    },
+    {
+      "id": "beast-and-queue-healthy",
+      "finding": "Beast/sourceMesh integrity passes for the single scored GEV package and the evidence-review queue is empty, while 249 baseline packages remain unbuilt outside queue debt.",
+      "artifacts": ["data/runtime/intelligence-integrity.json", "data/runtime/evidence-review-queue.json", "data/runtime/system-state.json"]
+    }
+  ],
+  "proposedCanonicalChanges": [],
+  "contradictions": [
+    {
+      "id": "exact-head-policy-ambiguity",
+      "detail": "The intended exact-head CI contract protects machine persistence, but specialist reports are intentionally persisted after that CI. The policy needs an explicit distinction between machine-cycle head verification and report blob verification, or a post-council CI dispatch step."
+    }
+  ],
+  "unknowns": [
+    {"id": "sheet-parity-unverified", "detail": "Google Sheet parity remains for Chief to verify in this cycle."},
+    {"id": "finra-row-events-unavailable", "detail": "Row-level FINRA event data remains unavailable without authenticated Query API capability."}
+  ],
+  "peerRequests": [
+    {
+      "to": "chief-earth",
+      "request": "Resolve the exact-head policy without weakening integrity: preferred interpretation is successful explicit CI bound to the reviewed machine-cycle SHA plus exact immutable Git blob SHA validation for each post-machine lane report. If policy instead requires CI after council persistence, add/execute a post-council workflow_dispatch before approval."
+    },
+    {
+      "to": "chief-earth",
+      "request": "Verify the Google Sheet mirror and required manual FINRA/OTC event interpretation before approval."
+    }
+  ],
+  "accuracyDebates": [
+    {
+      "id": "post-council-ci-policy",
+      "classification": "DEBATE",
+      "accuracyGain": "Post-council exact-head CI would prove the entire branch including report artifacts passes CI.",
+      "cost": "It adds another dispatch per hour and can create timing/deadlock issues because report persistence itself changes the ref; report JSON is already content-addressed by Git blob SHA and deterministic finalizer validation.",
+      "recommendation": "Bind CI to the machine-cycle SHA and bind specialist intelligence to exact report blob SHAs unless code or canonical machine state changes after CI. Require new CI only when executable/canonical state changes, not for append-only supervisor reports."
+    }
+  ],
+  "blockingIssues": [
+    {"id": "sheet-and-event-review-incomplete", "detail": "Sheet parity and FINRA-required manual/event interpretation are incomplete in this lane."},
+    {"id": "ci-policy-needs-chief-resolution", "detail": "Chief must explicitly resolve the machine-head-versus-report-head CI interpretation before claiming persistence/CI integrity is fully healthy."}
+  ],
+  "directivesReviewed": [],
+  "confidence": 98,
+  "acquisitionComplete": false
+}

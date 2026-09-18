@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "workerId": "earth-deep-runner",
+  "cycleKey": "20260913T2000Z",
+  "generatedAt": "2026-09-13T20:33:05Z",
+  "shift": "day",
+  "researchTarget": {
+    "directiveId": "chief-20260913t1300z-av-certification-constraint",
+    "question": "Is purpose-built autonomous-vehicle certification/regulatory throughput a distinct causal constraint from technical autonomy capability?",
+    "companies": ["TSLA", "AMZN/Zoox"],
+    "lineage": [
+      "earth-2036/data/runtime/supervisors/directives.json",
+      "earth-2036/data/runtime/causal-graph.json"
+    ]
+  },
+  "summary": "Independent primary-source review supports certification/regulatory throughput as a real but transitional constraint distinct from ADS technical capability. The strongest natural experiment is Zoox: NHTSA closed its self-certification investigation only after placing its purpose-built fleet under an exemption, and in July 2026 separately allowed commercial deployment of up to 2,500 vehicles annually for two years under enhanced oversight. Tesla's September 4, 2026 Cybercab Audit Query shows the same interface remains live for a different purpose-built design: NHTSA is testing the technical/legal basis of self-certification where traditional human controls are absent. However, this should not be modeled as a permanent fixed bottleneck: NHTSA is actively rewriting multiple FMVSS and developing AV performance standards, explicitly stating that individual exemptions may eventually become unnecessary.",
+  "findings": [
+    {
+      "type": "evidence",
+      "finding": "NHTSA opened an Audit Query on September 4, 2026 into Tesla Cybercab self-certification after commercial deployment, specifically examining compliance for a vehicle lacking traditional human controls and whether Tesla treated some FMVSS requirements as inapplicable.",
+      "sourceIds": ["https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification"],
+      "confidence": 98
+    },
+    {
+      "type": "evidence",
+      "finding": "Zoox provides a cross-company control case: NHTSA's 2025 domestic AVEP exemption covered its purpose-built vehicles and closed the self-certification investigation, with Zoox required to remove/cover claims that the vehicles comply with applicable FMVSS.",
+      "sourceIds": ["https://www.nhtsa.gov/press-releases/nhtsa-issues-first-ever-demonstration-exemption-american-built-automated-vehicles"],
+      "confidence": 98
+    },
+    {
+      "type": "evidence",
+      "finding": "In July 2026 NHTSA allowed Zoox commercial deployment through a temporary exemption of up to 2,500 vehicles annually for two years, subject to enhanced adaptable oversight. This demonstrates that regulatory pathway capacity can directly bound deployment scale even when a vehicle/ADS is technically ready enough to seek commercial operation.",
+      "sourceIds": ["https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle"],
+      "confidence": 97
+    },
+    {
+      "type": "evidence",
+      "finding": "Part 555 remains another throughput-limited path for noncompliant AVs: NHTSA states the exemption permits sale of up to 2,500 vehicles per year and requires equivalent safety plus public-interest findings.",
+      "sourceIds": ["https://www.nhtsa.gov/press-releases/streamline-exemption-process-noncompliant"],
+      "confidence": 97
+    },
+    {
+      "type": "evidence",
+      "finding": "The constraint is explicitly changing over time. NHTSA has initiated multiple FMVSS modernizations (including brake-pedal requirements) and AV performance standards; the agency states that once updates are complete individual vehicle exemptions may no longer be necessary.",
+      "sourceIds": [
+        "https://www.nhtsa.gov/press-releases/fmvss-updates-brake-pedal-requirements",
+        "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle",
+        "https://www.nhtsa.gov/press-releases/av-framework-plan-modernize-safety-standards"
+      ],
+      "confidence": 97
+    },
+    {
+      "type": "inference",
+      "finding": "The evidence supports a distinct causal layer: ADS capability -> vehicle design/compliance case -> certification/exemption/regulatory review -> legally scalable deployment. Technical autonomy success does not itself establish access to the final deployment step for purpose-built vehicles.",
+      "sourceIds": [
+        "https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification",
+        "https://www.nhtsa.gov/press-releases/nhtsa-issues-first-ever-demonstration-exemption-american-built-automated-vehicles",
+        "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle"
+      ],
+      "confidence": 93
+    }
+  ],
+  "contradictions": [
+    "Regulatory throughput is simultaneously a constraint and a target of active deregulation/standard modernization. Treating it as structurally permanent would overstate the evidence.",
+    "Zoox demonstrates an exemption can unlock deployment rather than simply block it; therefore the node should represent pathway throughput/certification uncertainty, not regulation as uniformly negative.",
+    "The 2,500-vehicle figure applies to cited exemption pathways and should not be generalized to every compliant self-certified AV deployment path."
+  ],
+  "unknowns": [
+    "No primary evidence reviewed here establishes the expected duration or outcome of Tesla's Cybercab Audit Query.",
+    "No defensible company-specific probability is available for Tesla successfully sustaining its current self-certification theory versus needing an exemption or design/compliance change.",
+    "The timing and final substance of NHTSA's pending AV performance standards and remaining FMVSS modernizations are not known.",
+    "State/local operational permitting can create additional deployment constraints; this artifact isolates the federal vehicle-certification layer and does not claim it is the only regulatory bottleneck."
+  ],
+  "falsifiers": [
+    "NHTSA closes the Cybercab Audit Query without material compliance change and purpose-built AVs scale commercially without exemption/certification delay across multiple developers.",
+    "NHTSA completes FMVSS modernization and AV performance standards such that purpose-built ADS vehicles routinely self-certify on the same practical timetable as conventional vehicles.",
+    "Observed commercial deployment remains constrained primarily by technical safety performance, manufacturing economics or local operating permits while federal certification ceases to affect timing or fleet scale."
+  ],
+  "sources": [
+    {"url":"https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification","kind":"primary","observed":"2026-09-13"},
+    {"url":"https://www.nhtsa.gov/press-releases/nhtsa-issues-first-ever-demonstration-exemption-american-built-automated-vehicles","kind":"primary","observed":"2026-09-13"},
+    {"url":"https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle","kind":"primary","observed":"2026-09-13"},
+    {"url":"https://www.nhtsa.gov/press-releases/streamline-exemption-process-noncompliant","kind":"primary","observed":"2026-09-13"},
+    {"url":"https://www.nhtsa.gov/press-releases/fmvss-updates-brake-pedal-requirements","kind":"primary","observed":"2026-09-13"},
+    {"url":"https://www.nhtsa.gov/press-releases/av-framework-plan-modernize-safety-standards","kind":"primary","observed":"2026-09-13"}
+  ],
+  "confidence": 94,
+  "recommendedChiefAction": "review",
+  "chiefActionDetail": "Review for possible promotion of a narrowly defined federal AV certification/regulatory-throughput causal constraint. Preserve it as dynamic/transitional and bidirectional: it can cap or delay deployment under current standards, while exemptions and FMVSS modernization can relax the constraint. Do not infer a Tesla score/rank change from this artifact alone.",
+  "writeBoundary": "Auxiliary immutable research only; no canonical score, rank, membership, causal graph, baseline evidence, supervisor state, decision bucket, required lane report or Chief attestation modified."
+}

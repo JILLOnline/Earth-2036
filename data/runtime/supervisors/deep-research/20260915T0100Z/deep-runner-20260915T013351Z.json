@@ -1,0 +1,103 @@
+{
+  "artifactVersion": 1,
+  "runner": "earth-deep-runner",
+  "cycleKey": "20260915T0100Z",
+  "timestamp": "2026-09-15T01:33:51Z",
+  "shift": "DAY",
+  "mode": "gap_closer",
+  "summary": "Closed two high-value primary-evidence gates (TSM customer concentration; SERV financing/dilution, liquidity and customer concentration) and classified the fresh SYM insider transaction. TSM and SERV are suitable for Chief review on these exact gates. SYM's transaction is a gift, not an open-market sale or issuer dilution; because direct SEC XML retrieval was unavailable in this pass, Chief should corroborate the transaction table from EDGAR before removing the SYM freshness blocker.",
+  "targets": [
+    {
+      "ticker": "TSM",
+      "company": "Taiwan Semiconductor Manufacturing Company Limited",
+      "batchId": "t0-20260914T0400Z-b01",
+      "researchQuestion": "Recover exact FY2025 major-customer concentration from current primary issuer evidence for reproducible concentration treatment.",
+      "classification": "gating_blocker",
+      "gating": true,
+      "summary": "RESOLVED for Chief review from TSMC's filed 2025 Form 20-F. The ten largest customers represented approximately 78% of 2025 net revenue; the largest customer represented 19%; the second-largest represented 17%.",
+      "findings": [
+        {"type": "evidence", "fact": "TSMC's 2025 Form 20-F states its ten largest customers accounted for approximately 78% of 2025 net revenue."},
+        {"type": "evidence", "fact": "The largest customer accounted for 19% of 2025 net revenue and the second-largest accounted for 17%."},
+        {"type": "evidence", "fact": "TSMC separately reports 534 customers and 12,682 products manufactured in 2025, useful context but not a substitute for the concentration percentages."},
+        {"type": "inference", "fact": "The exact concentration gate in the bootstrap queue is now reproducibly answerable; future geopolitical timing and overseas-fab economics remain non-gating uncertainty as Chief already specified."}
+      ],
+      "contradictions": [],
+      "unknowns": ["The filing does not name the two largest customers in the cited concentration disclosure; identity inference is unnecessary for the exact percentage gate."],
+      "falsifiers": ["A later amended 2025 Form 20-F changing the reported concentration percentages."],
+      "sources": [
+        "https://investor.tsmc.com/sites/ir/sec-filings/2025_20F%20Report.pdf",
+        "https://investor.tsmc.com/static/annualReports/2025/english/index.html",
+        "earth-2036/data/runtime/supervisors/t0-bootstrap-queue.json"
+      ],
+      "confidence": 99,
+      "recommendedChiefAction": "review",
+      "lineage": {"queueCycleKey": "20260915T0000Z", "queueStatus": "blocked", "queueAttempts": 3, "exactGate": "FY2025 major-customer concentration"}
+    },
+    {
+      "ticker": "SERV",
+      "company": "Serve Robotics Inc.",
+      "batchId": "t0-20260915T0000Z-b03",
+      "researchQuestion": "Assemble current ATM/warrant/SBC dilution capacity and cash-burn runway from the Q2 2026 10-Q and quantify customer concentration.",
+      "classification": "gating_blocker",
+      "gating": true,
+      "summary": "RESOLVED for Chief review from the June 30, 2026 Form 10-Q. Liquidity, burn, ATM capacity, warrants, SBC and customer concentration are all explicitly quantified in the primary filing.",
+      "findings": [
+        {"type": "evidence", "fact": "June 30 liquidity was $240.4M: $79.1M cash, $156.3M short-term marketable securities and $5.0M long-term marketable securities. Management states these resources are expected to fund working capital and capex for at least 12 months."},
+        {"type": "evidence", "fact": "Six-month 2026 operating cash use was $84.738M versus $25.426M in the prior-year period; net loss was $113.131M."},
+        {"type": "evidence", "fact": "The May 11, 2026 ATM authorized up to $150M. By June 30 SERV had sold 8,540,900 shares at a $9.08 weighted-average price for $77.6M gross/$75.2M net, leaving approximately $72.4M capacity."},
+        {"type": "evidence", "fact": "Under the older 2025 ATM, SERV sold 1,217,000 shares in H1 2026 for $10.0M gross; inception-to-date through June 30 it had sold 7,716,935 shares for $91.2M gross."},
+        {"type": "evidence", "fact": "5,079,294 warrants were outstanding and exercisable at June 30, 2026 at a weighted-average $10.18 exercise price; 4,000,000 of these are Vayu-related warrants at $10.36 expiring August 15, 2031."},
+        {"type": "evidence", "fact": "H1 2026 stock-based compensation was $22.038M; unamortized compensation cost on unvested RSUs was $92.3M over an expected weighted-average 2.8 years."},
+        {"type": "evidence", "fact": "Revenue concentration in Q2 2026 was Customer A 11% and Customer B 22%; for H1 2026 Customer A was 12% and Customer B 17%."},
+        {"type": "inference", "fact": "SERV has meaningful near-term liquidity but remains materially equity-financing dependent; the evidence supports explicit dilution/survival risk treatment rather than leaving the factor unknown."}
+      ],
+      "contradictions": ["Management's at-least-12-month liquidity statement coexists with sharply higher operating cash burn and active ATM issuance; neither should erase the other."],
+      "unknowns": ["Customer A/B identities are not disclosed in the concentration table; exact identity is not required to quantify concentration."],
+      "falsifiers": ["A subsequent filing materially changing ATM capacity, warrant count, liquidity or customer concentration before Chief promotion."],
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1832483/000183248326000035/serv-20260630.htm",
+        "earth-2036/data/runtime/supervisors/cycles/20260915T0000Z/company-underwriting-alpha-20260915T011700Z.json"
+      ],
+      "confidence": 99,
+      "recommendedChiefAction": "review",
+      "lineage": {"queueCycleKey": "20260915T0000Z", "queueStatus": "active", "queueAttempts": 0, "exactGate": "ATM/warrant/SBC dilution capacity, runway and customer concentration"}
+    },
+    {
+      "ticker": "SYM",
+      "company": "Symbotic Inc.",
+      "batchId": "t0-20260914T1500Z-b02",
+      "researchQuestion": "Classify transaction-level substance of Form 4 accession 0001932967-26-000007 for governance/alignment/dilution/insider-behavior treatment.",
+      "classification": "gating_blocker",
+      "gating": true,
+      "summary": "SUBSTANTIVELY CLASSIFIED, but primary-XML corroboration remains appropriate before Chief clears the freshness gate. The indexed filing feed identifies David A. Ladensohn's September 14, 2026 transaction as code G (gift): 373,896 shares gifted, with 373,896 shown held after. It is not reported as an open-market sale, purchase, tax withholding or issuer share issuance.",
+      "findings": [
+        {"type": "evidence", "fact": "Accession 0001932967-26-000007 is indexed for SYM / David A. Ladensohn on September 14, 2026 as transaction code G, gift, 373,896 shares."},
+        {"type": "evidence", "fact": "The indexed transaction shows 373,896 shares held after and marks the transaction as not a 10b5-1 plan trade."},
+        {"type": "inference", "fact": "A gift should not be treated as open-market insider selling or issuer dilution. Beneficial-ownership/alignment interpretation depends on the filing footnotes and any indirect holdings, so Chief should not infer a bearish discretionary sale from this event."}
+      ],
+      "contradictions": [],
+      "unknowns": ["Direct SEC Form 4 XML/footnotes for accession 0001932967-26-000007 were not retrievable through the available SEC web path in this pass; indirect ownership and recipient relationship therefore remain unverified."],
+      "falsifiers": ["The SEC XML shows a different transaction code/share count or footnote materially changing beneficial-ownership interpretation."],
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1837240/000193296726000007/0001932967-26-000007-index.html",
+        "https://edgarhawk.com/insider-transactions",
+        "earth-2036/data/runtime/supervisors/t0-bootstrap-queue.json"
+      ],
+      "confidence": 94,
+      "recommendedChiefAction": "corroborate",
+      "lineage": {"queueCycleKey": "20260915T0000Z", "queueStatus": "blocked", "queueAttempts": 3, "exactGate": "fresh Form 4 transaction classification"}
+    }
+  ],
+  "nonGatingUnknowns": [
+    {"ticker": "TSM", "item": "future overseas-fab economics and geopolitical timing", "classification": "non_gating_unknown", "recommendedChiefAction": "no_action"},
+    {"ticker": "SERV", "item": "future fleet unit economics at scale", "classification": "non_gating_unknown", "recommendedChiefAction": "no_action"}
+  ],
+  "capacityRecommendation": "Do not keep TSM active/blocked on the recovered concentration gate. SERV's specified b03 financing/concentration gate is closed and should move to Chief review if no other lane has a distinct methodology-required blocker. SYM should remain blocked only until the exact SEC XML/footnotes are corroborated; do not broaden that blocker into optional insider-intent speculation.",
+  "canonicalChanges": [],
+  "lineage": {
+    "systemCycleKey": "20260915T0100Z",
+    "bootstrapQueueCycleKey": "20260915T0000Z",
+    "sourceLane": "company-underwriting",
+    "sourceLaneArtifact": "data/runtime/supervisors/cycles/20260915T0000Z/company-underwriting-alpha-20260915T011700Z.json"
+  }
+}

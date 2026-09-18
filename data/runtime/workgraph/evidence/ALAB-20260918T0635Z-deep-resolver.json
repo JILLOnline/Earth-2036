@@ -1,0 +1,67 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-deep-resolver-evidence",
+  "ticker": "ALAB",
+  "entityId": "ALAB",
+  "workId": "t0:ALAB",
+  "role": "deep-resolver",
+  "generatedAt": "2026-09-18T06:35:00Z",
+  "directive": {
+    "companyWorkId": "t0:ALAB",
+    "exactGatingQuestion": "Do the packet's unresolved_gating_issue and unresolved_gating_unknown still represent live evidence defects, or are they stale defects from superseded Alpha evidence after the later Alpha v4 supplied complete numeric scoring lineage?",
+    "whyItMatters": "These two flags are the only Deep Resolver-owned preflight failures on ALAB and prevent a fully covered, numerically complete packet from advancing to Chief adjudication.",
+    "preferredPrimarySource": "Existing immutable ALAB specialist lineage, especially council-alpha-v4 backed by SEC 10-Q 0001736297-26-000035 and 2026 DEF 14A 0001140361-26-016359.",
+    "lawfulFallbacks": [
+      "Astera Labs issuer IR already cited in Alpha v4 for product/ramp claims",
+      "Timestamped external market-data observations already cited in Alpha v4 for valuation input"
+    ],
+    "successCondition": "Establish whether every gating defect carried from Alpha v1/v3 is explicitly cured or downgraded to non-gating in the later superseding Alpha v4, without inventing new score inputs or changing canonical state.",
+    "attemptCount": 1
+  },
+  "items": [
+    {
+      "itemId": "t0:ALAB:unresolved_gating_issue",
+      "status": "resolved",
+      "evidenceVsInference": "evidence",
+      "finding": "The live packet is aggregating a stale gating issue from superseded Alpha v1/v3. Alpha v1 blocked a complete score because valuation, governance, supply-chain and pricing-power inputs were missing. Alpha v4 explicitly supersedes Alpha v3, contains current SEC 10-Q and DEF 14A lineage, timestamped external valuation observations, numeric evidence for all 12 methodology components, numeric risk and Data Confidence, and a complete publishable scoreRecord. Alpha v4 itself has gatingIssues=[] in source-integrity and no live gating defect in company-underwriting.",
+      "sourceLineage": [
+        "data/runtime/workgraph/evidence/ALAB-20260916T2200Z-council-alpha-v1.json",
+        "data/runtime/workgraph/evidence/ALAB-20260916T2200Z-council-alpha-v3.json",
+        "data/runtime/workgraph/evidence/ALAB-20260916T2200Z-council-alpha-v4.json"
+      ],
+      "contradictionStatus": "resolved_by_supersession",
+      "confidence": 99,
+      "gateImpact": "The stale unresolved_gating_issue should not block ALAB after deterministic packet recompilation honors supersession/current evidence lineage.",
+      "recommendedNextState": "packet_ready_recompile"
+    },
+    {
+      "itemId": "t0:ALAB:unresolved_gating_unknown",
+      "status": "resolved",
+      "evidenceVsInference": "evidence",
+      "finding": "The gating unknowns in Alpha v1/v3 are no longer live gating unknowns. Alpha v4 supplies the previously missing valuation and governance evidence, assigns supplyChainResilience conservatively with uncertainty preserved, and supports pricingPower from filed gross-margin/mix evidence. Residual competitive-share, supplier-diversification and future product-conversion unknowns are explicitly retained as non-gating rather than silently erased.",
+      "sourceLineage": [
+        "data/runtime/workgraph/evidence/ALAB-20260916T2200Z-council-alpha-v1.json",
+        "data/runtime/workgraph/evidence/ALAB-20260916T2200Z-council-alpha-v3.json",
+        "data/runtime/workgraph/evidence/ALAB-20260916T2200Z-council-alpha-v4.json",
+        "data/runtime/workgraph/evidence/ALAB-20260916T2200Z-council-beta.json"
+      ],
+      "contradictionStatus": "resolved_by_later_evidence_with_residual_unknowns_preserved_non_gating",
+      "confidence": 98,
+      "gateImpact": "The stale unresolved_gating_unknown should not block ALAB after deterministic packet recompilation; residual unknowns remain visible but non-gating.",
+      "recommendedNextState": "packet_ready_recompile"
+    }
+  ],
+  "attempted": ["t0:ALAB:unresolved_gating_issue", "t0:ALAB:unresolved_gating_unknown"],
+  "resolved": ["t0:ALAB:unresolved_gating_issue", "t0:ALAB:unresolved_gating_unknown"],
+  "unavailable": [],
+  "stillConflicted": [],
+  "overallStatus": "resolved",
+  "recommendedNextState": "packet_ready_recompile",
+  "recommendedOwner": "deterministic-packet-compiler",
+  "lineage": {
+    "packet": "data/runtime/workgraph/packets/ALAB.json",
+    "state": "data/runtime/workgraph/state.json",
+    "workgraphContract": "docs/WORKGRAPH_V2.md",
+    "note": "Auxiliary exception-resolution evidence only. No canonical methodology, score, rank, tick, membership, baseline evidence, or Chief decision was edited."
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "role": "earth-deep-runner",
+  "cycleKey": "20260915T2100Z",
+  "generatedAt": "2026-09-15T22:35:00Z",
+  "mode": "DAY",
+  "backpressure": {"readyForChief": 24, "policyApplied": true},
+  "summary": "Promotion-enabling blocker pass only. Materially narrowed TER and SMR using current SEC primary filings; no queued names opened and no canonical state changed.",
+  "findings": [
+    {
+      "ticker": "TER",
+      "company": "Teradyne, Inc.",
+      "batchId": "t0-20260915T0000Z-b03",
+      "gate": "debt/convertible assembly",
+      "resolution": "resolved_for_chief_review",
+      "sourceUrls": [
+        "https://www.sec.gov/Archives/edgar/data/97210/000119312526059002/ter-20251231.htm",
+        "https://www.sec.gov/Archives/edgar/data/97210/000119312526059002/R25.htm"
+      ],
+      "evidence": "FY2025 SEC 10-K reports $200.0m revolver outstanding at 2025-12-31 after $50.0m repayment; average interest rate 4.86%; covenant compliance as of 2026-02-19. The legacy 1.25% convertible senior notes matured 2023-12-15, so there is no live convertible principal to assemble for the current gate. 2025/2024 convertible interest expense was zero.",
+      "inference": "Treat current debt assembly as revolver debt, not an outstanding convertible overhang. Governance/dilution normalization remains a separate gate.",
+      "contradictionStatus": "resolved_current_vs_legacy_convertible_language",
+      "confidence": 98,
+      "gateImpact": "removes debt/convertible portion of TER blocker",
+      "recommendedChiefAction": "review"
+    },
+    {
+      "ticker": "TER",
+      "company": "Teradyne, Inc.",
+      "batchId": "t0-20260915T0000Z-b03",
+      "gate": "governance/dilution normalization",
+      "resolution": "still_blocked",
+      "sourceUrls": [
+        "https://www.sec.gov/Archives/edgar/data/97210/000119312526059002/ter-20251231.htm",
+        "https://www.sec.gov/Archives/edgar/data/97210/000119312526127504/ter-20260325.htm"
+      ],
+      "evidence": "FY2025 10-K gives $97.3m unrecognized compensation expense for non-vested RSUs/options over 2.6 years and diluted-share effects; the 2026 definitive proxy is identified as the authoritative governance/equity-plan source.",
+      "inference": "The remaining TER blocker is now isolated to Chief-normalized equity-plan/governance dilution treatment rather than debt uncertainty.",
+      "contradictionStatus": "none",
+      "confidence": 94,
+      "gateImpact": "materially narrows blocker but does not fully remove TER hold",
+      "nextBestSourcePath": "2026 Teradyne DEF 14A equity compensation plan/share reserve tables and ownership/governance sections",
+      "recommendedChiefAction": "corroborate"
+    },
+    {
+      "ticker": "SMR",
+      "company": "NuScale Power Corporation",
+      "batchId": "t0-20260915T0000Z-b03",
+      "gate": "Q2 cash burn/liquidity and financing runway",
+      "resolution": "resolved_for_chief_review",
+      "sourceUrls": [
+        "https://www.sec.gov/Archives/edgar/data/1822966/000182296626000085/smr-20260630.htm",
+        "https://www.sec.gov/Archives/edgar/data/1822966/000182296626000086/a2026-08x05xnuscaleq2202.htm"
+      ],
+      "evidence": "At 2026-06-30 NuScale reported $766.5m cash, $305.7m short-term investments and $820.8m investments, with no debt (~$1.893b aggregate). H1 2026 operating cash use was $372.86m, including the previously disclosed ENTRA1 payment effect in Q1; H1 financing cash inflow from common-stock issuance was $984.475m. Management states liquidity plus capital-market access is sufficient for at least the next 12 months and beyond.",
+      "inference": "Runway is presently large but materially equity-financing-dependent; preserve dilution risk rather than treating liquidity as self-funded operating durability.",
+      "contradictionStatus": "liquidity_strong_but_equity_financing_dependence_material",
+      "confidence": 99,
+      "gateImpact": "removes Q2 liquidity/cash-burn gate; dilution remains risk input",
+      "recommendedChiefAction": "review"
+    },
+    {
+      "ticker": "SMR",
+      "company": "NuScale Power Corporation",
+      "batchId": "t0-20260915T0000Z-b03",
+      "gate": "exact ATM capacity",
+      "resolution": "still_blocked",
+      "sourceUrls": [
+        "https://www.sec.gov/Archives/edgar/data/1822966/000182296626000054/smr-20260331.htm",
+        "https://www.sec.gov/Archives/edgar/data/1822966/000182296626000085/smr-20260630.htm"
+      ],
+      "evidence": "Q1 10-Q explicitly reported $962.1m of Class A shares eligible for sale under the 2026 ATM at 2026-03-31. Q2/H1 reports $984.475m financing proceeds from common-stock issuance, but this pass did not recover an explicit June-30 remaining-ATM-capacity sentence.",
+      "inference": "Do not subtract H1 issuance mechanically from Q1 capacity because programs/prospectus capacity may have changed; exact Q2 remaining capacity requires the Q2 equity footnote/prospectus lineage.",
+      "contradictionStatus": "none",
+      "confidence": 98,
+      "gateImpact": "narrows exact ATM gate to one explicit June-30 capacity value",
+      "nextBestSourcePath": "SMR 2026 Q2 10-Q common-stock/ATM footnote plus effective 2026 ATM prospectus supplement",
+      "recommendedChiefAction": "corroborate"
+    },
+    {
+      "ticker": "SMR",
+      "company": "NuScale Power Corporation",
+      "batchId": "t0-20260915T0000Z-b03",
+      "gate": "binding-vs-nonbinding revenue classification",
+      "resolution": "resolved_for_chief_review",
+      "sourceUrls": [
+        "https://www.sec.gov/Archives/edgar/data/1822966/000182296626000085/smr-20260630.htm",
+        "https://www.sec.gov/Archives/edgar/data/1822966/000182296626000086/a2026-08x05xnuscaleq2202.htm"
+      ],
+      "evidence": "Q2 2026 revenue was only $75k and H1 revenue $640k; the filing states the prior RoPower FEED Phase 2 revenue activity was completed in late 2025 with no comparable 2026 activity. Current commercialization discussion describes prospective customers/advanced dialogue separately from executed revenue-generating agreements.",
+      "inference": "For methodology gating, do not count prospective deployment dialogue or nonbinding deployment narrative as current binding revenue/backlog. Recognize only executed revenue-generating agreements and reported revenue unless a binding contract is separately sourced.",
+      "contradictionStatus": "resolved_by_conservative_classification",
+      "confidence": 97,
+      "gateImpact": "removes ambiguity by conservative evidence classification; commercial conversion timing remains non-gating unknown",
+      "recommendedChiefAction": "review"
+    }
+  ],
+  "nonGatingUnknowns": [
+    {"ticker":"TER","item":"future semiconductor/robotics cycle duration","recommendedChiefAction":"no_action"},
+    {"ticker":"SMR","item":"future customer conversion/licensing timing","recommendedChiefAction":"no_action"}
+  ],
+  "canonicalChanges": [],
+  "queueChanges": [],
+  "notes": [
+    "No Alpha/Beta broad coverage duplicated.",
+    "No optional outside-250 investigation opened because ready_for_chief is above backpressure ceiling.",
+    "Chief should keep TER active only for governance/dilution normalization; debt/convertible assembly is resolved for review.",
+    "Chief can treat SMR Q2 liquidity and binding-vs-nonbinding classification as resolved for review; exact remaining ATM capacity still needs one explicit Q2 equity/prospectus value."
+  ]
+}

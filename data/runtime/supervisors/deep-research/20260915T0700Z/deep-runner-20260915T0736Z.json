@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "role": "earth-deep-runner",
+  "cycleKey": "20260915T0700Z",
+  "generatedAt": "2026-09-15T07:36:47Z",
+  "mode": "GRAVEYARD",
+  "backpressure": {"readyForChief":22,"policyApplied":true,"optionalResearchCreated":false},
+  "targets": [
+    {
+      "ticker": "TSM",
+      "company": "Taiwan Semiconductor Manufacturing Company Limited",
+      "batchId": "t0-20260914T0400Z-b01",
+      "attemptsAtQueue": 3,
+      "gate": "FY2025 major-customer concentration from current primary issuer evidence",
+      "resolution": "resolved_for_chief_review",
+      "source": "https://investor.tsmc.com/sites/ir/sec-filings/2025_20F%20Report.pdf",
+      "sourceType": "primary_issuer_form_20f",
+      "evidence": {
+        "topTenCustomerShare2025Pct": 78,
+        "largestCustomerShare2025Pct": 19,
+        "secondLargestCustomerShare2025Pct": 17,
+        "comparison": {
+          "topTen2023Pct":70,
+          "topTen2024Pct":76,
+          "largest2023Pct":25,
+          "largest2024Pct":22,
+          "secondLargest2023Pct":11,
+          "secondLargest2024Pct":12
+        },
+        "issuerInterpretation": "TSMC states that a more concentrated customer base may expose revenue to seasonal demand fluctuations from large customers; it attributes concentration in part to the structural shift toward HPC and smartphone applications."
+      },
+      "evidenceVsInference": "Percentages and issuer risk characterization are direct primary evidence. Any scoring/risk-factor effect is Chief/methodology inference and is not performed here.",
+      "contradictionStatus": "none_found",
+      "confidence": "high",
+      "gateImpact": "removes_blocker",
+      "recommendedChiefAction": "review"
+    },
+    {
+      "ticker": "SYM",
+      "company": "Symbotic Inc.",
+      "batchId": "t0-20260914T1500Z-b02",
+      "attemptsAtQueue": 3,
+      "gate": "classify SEC Form 4 accession 0001932967-26-000007 transaction-level substance",
+      "resolution": "still_blocked",
+      "source": "https://www.sec.gov/Archives/edgar/data/1932967/0001932967-26-000007-index.html",
+      "sourceType": "primary_sec_target_accession",
+      "evidence": null,
+      "evidenceVsInference": "Fresh search recovered other 2026 Symbotic Form 4 records but did not authenticate the exact requested accession transaction table. Substituting another insider filing would violate the binary gate.",
+      "contradictionStatus": "not_testable_until_exact_accession_recovered",
+      "confidence": "high_on_unresolved_status",
+      "gateImpact": "blocker_remains",
+      "nextBestSourcePath": "SEC EDGAR exact accession 0001932967-26-000007 filing index, then its ownership XML/XSL transaction table; classify transaction code, acquired/disposed amount, price, post-transaction ownership, derivative/non-derivative status and 10b5-1 indicator if present.",
+      "recommendedChiefAction": "directive"
+    }
+  ],
+  "handoff": {
+    "resolvedBlockers": ["TSM"],
+    "stillBlocked": ["SYM"],
+    "nonGatingUnknowns": [],
+    "chiefNote": "Backpressure is active at 22 ready_for_chief. TSM's exact three-attempt blocker now has direct FY2025 primary evidence and should be adjudicated without further optional research. Keep SYM blocked until the exact accession is recovered; do not substitute adjacent Form 4s."
+  }
+}

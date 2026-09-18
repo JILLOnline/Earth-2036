@@ -1,0 +1,65 @@
+{
+  "reportVersion": 1,
+  "laneId": "source-integrity",
+  "cycleKey": "20260914T0000Z",
+  "generatedAt": "2026-09-14T00:17:41Z",
+  "status": "needs_research",
+  "summary": "Independent DAY source-integrity pass confirms fresh machine-layer identity/tradability coverage and Beast/source-mesh integrity, but the current exact PR head still lacks a qualifying Earth CI execution and FINRA remains partition-freshness only rather than row-level OTC event acquisition. Supervisor discovery/source coverage therefore must remain fail-closed until cadence-due intelligent review is completed.",
+  "materialFindings": [
+    {
+      "finding": "The persisted 0000Z machine cycle completed with 250/250 observed, identity validated and tradability validated, machine source coverage 1.0, but supervisor source coverage and combined source coverage remain 0 and discoveryScanCompleted remains false.",
+      "sources": ["data/runtime/system-state.json"]
+    },
+    {
+      "finding": "Beast integrity and sourceMesh both pass for the 0000Z runtime; all four required machine sources are healthy and fresh, with one audited/publishable score record (GEV).",
+      "sources": ["data/runtime/intelligence-integrity.json"]
+    },
+    {
+      "finding": "Automated source health reports 4/4 required probes healthy, but FINRA explicitly has observationMode=partition-freshness, eventDataAvailable=false, and no row-level current corporate-action records; this cannot be promoted to event-level acquisition.",
+      "sources": ["data/runtime/automated-source-health.json"]
+    },
+    {
+      "finding": "Exact current PR head 4fac6ed230e1e2f28fee6b36b55d14e4711b30d1 has Earth 2036 CI run 34791706525 completed with conclusion action_required, so it is not qualifying exact-SHA CI proof.",
+      "sources": ["GitHub Actions run 34791706525", "docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md"]
+    },
+    {
+      "finding": "Evidence-review queue is currently empty (0 unresolved), which is internally consistent with machine state but does not substitute for intelligent cadence/source acquisition.",
+      "sources": ["data/runtime/evidence-review-queue.json"]
+    }
+  ],
+  "proposedCanonicalChanges": [],
+  "contradictions": [
+    {
+      "issue": "Automated coverageRatio=1 can look like complete discovery coverage while FINRA row-level event data is unavailable and supervisor discovery is explicitly incomplete.",
+      "sources": ["data/runtime/automated-source-health.json", "data/runtime/system-state.json"]
+    }
+  ],
+  "unknowns": [
+    "Whether a qualifying exact-SHA Earth CI job will execute for the next deterministic machine-cycle boundary.",
+    "Whether cadence-due intelligent discovery families for 0000Z will reveal material events not represented by lightweight health probes.",
+    "Current row-level FINRA OTC corporate-action contents remain unavailable without the required query capability/corroboration path."
+  ],
+  "peerRequests": [
+    {
+      "laneId": "discovery-weak-signals",
+      "request": "Complete cadence-due active gating discovery review for 0000Z and preserve FINRA partition freshness versus row-level event capability explicitly."
+    }
+  ],
+  "accuracyDebates": [],
+  "blockingIssues": [
+    "No qualifying exact-SHA Earth 2036 CI proof for current PR head.",
+    "Same-cycle intelligent discovery/source review is not yet complete."
+  ],
+  "directivesReviewed": [
+    {
+      "directiveId": "chief-20260913t1300z-exact-sha-ci",
+      "progress": "New evidence path checked: current PR head still yields action_required CI rather than a qualifying job; directive remains unresolved for Chief."
+    },
+    {
+      "directiveId": "chief-20260913t1300z-discovery-cadence",
+      "progress": "Machine probes are fresh but do not satisfy intelligent cadence completion; no claim of discoveryScanCompleted is made."
+    }
+  ],
+  "confidence": 96,
+  "acquisitionComplete": false
+}

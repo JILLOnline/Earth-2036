@@ -1,0 +1,90 @@
+{
+  "reportVersion": 1,
+  "laneId": "source-integrity",
+  "cycleKey": "20260913T1300Z",
+  "generatedAt": "2026-09-13T13:35:00Z",
+  "status": "needs_research",
+  "summary": "Machine identity/tradability, required automated source freshness, Beast integrity, evidence queue, persistence and exact-head dispatched CI are healthy for the reviewed cycle, but FINRA remains freshness-only without row-level event data and Google Sheet parity has not yet been independently verified by this lane. The cycle must therefore remain non-qualifying until Chief completes the human-mirror check and required OTC/event interpretation.",
+  "materialFindings": [
+    {
+      "id": "integrity-cycle-coherent",
+      "finding": "The persisted machine cycle is 20260913T1300Z with 250/250 observed, identity validated and tradability validated; publishableCompanies remains 1 and trial ticks remain 0.",
+      "decisionRelevance": "Confirms the machine identity/tradability boundary is coherent while also proving T0 scoring is far from complete.",
+      "artifacts": ["data/runtime/system-state.json", "data/runtime/entity-registry.json"]
+    },
+    {
+      "id": "integrity-required-automated-sources-fresh",
+      "finding": "The required automated health layer reports 4/4 healthy and coverageRatio 1 for FINRA, USAspending, ClinicalTrials.gov and FDA.",
+      "decisionRelevance": "Supports machine source-health freshness but does not by itself prove company/event-level acquisition coverage.",
+      "artifacts": ["data/runtime/automated-source-health.json"]
+    },
+    {
+      "id": "integrity-finra-capability-gap",
+      "finding": "FINRA is operating in partition-freshness mode with eventDataAvailable=false and recordCount=null; current partition freshness cannot be interpreted as automatic corporate-action event clearance.",
+      "decisionRelevance": "Discovery cannot be considered fully interpreted from FINRA until material OTC events are corroborated through FINRA OTCE/primary sources or authenticated row-level access exists.",
+      "sources": ["https://api.finra.org/partitions/group/otcMarket/name/otcDailyList", "https://otce.finra.org/otce/dailyList"],
+      "artifacts": ["data/runtime/automated-source-health.json"]
+    },
+    {
+      "id": "integrity-beast-pass",
+      "finding": "intelligence-integrity.json passes with sourceMesh passed, unresolvedEvidence 0, and the sole scored record GEV passing 61 evidence leaves with zero invalid leaves, five causal edges with zero invalid edges, seven independent origins and three structural signals.",
+      "decisionRelevance": "The current scored evidence package is internally coherent, but this says nothing about the 249 unscored companies.",
+      "artifacts": ["data/runtime/intelligence-integrity.json", "data/baseline-evidence/GEV.json", "data/runtime/causal-graph.json"]
+    },
+    {
+      "id": "integrity-evidence-queue-clear",
+      "finding": "The evidence-review queue contains zero unresolved items at the persisted cycle timestamp.",
+      "decisionRelevance": "There is no pending machine evidence item silently blocking the current scored record, although missing baseline research for unscored companies is not represented as queue debt.",
+      "artifacts": ["data/runtime/evidence-review-queue.json"]
+    },
+    {
+      "id": "integrity-exact-head-ci",
+      "finding": "PR #4 head 891117f5d80add03f6cf3d51b19ff5c8ec7333dc has an explicit Earth 2036 CI workflow_dispatch run 34760004102 completed successfully; the simultaneous pull_request run is action_required with no qualifying job and is not treated as a pass or failure.",
+      "decisionRelevance": "Confirms the exact persisted machine head has real CI verification rather than relying on the anti-recursion pull_request check.",
+      "sources": ["https://github.com/JILLOnline/Side-Projects/actions/runs/34760004102", "https://github.com/JILLOnline/Side-Projects/pull/4"],
+      "artifacts": ["data/runtime/system-state.json"]
+    }
+  ],
+  "proposedCanonicalChanges": [],
+  "contradictions": [
+    {
+      "id": "machine-discovery-vs-final-discovery",
+      "detail": "system-state.json has machineDiscoveryComplete=true while discoveryScanCompleted=false. This is expected under the two-layer contract and must not be flattened into a generic discovery-complete claim.",
+      "artifacts": ["data/runtime/system-state.json", "data/runtime/automated-source-health.json"]
+    }
+  ],
+  "unknowns": [
+    {
+      "id": "sheet-parity-unverified-by-alpha",
+      "detail": "This lane did not independently read the Google Sheet mirror during this pass; repo-versus-Sheet parity remains unverified here and must be checked by Chief before attestation."
+    },
+    {
+      "id": "finra-row-events-unavailable",
+      "detail": "Automated row-level FINRA corporate-action observations are unknown because eventDataAvailable=false."
+    },
+    {
+      "id": "unscored-evidence-not-queue-debt",
+      "detail": "The queue is empty although 249 companies remain unpublished; baseline incompleteness is therefore a separate research-throughput state, not evidence-queue clearance."
+    }
+  ],
+  "peerRequests": [
+    {
+      "to": "discovery-weak-signals",
+      "request": "Corroborate any material OTC/listing/corporate-action discoveries due for this cycle through FINRA OTCE and primary issuer/exchange sources because row-level FINRA API data is unavailable."
+    },
+    {
+      "to": "chief-earth",
+      "request": "Verify Google Sheet parity for cycle 20260913T1300Z before any approval and retain the FINRA event-capability distinction in supervisor-state."
+    }
+  ],
+  "accuracyDebates": [],
+  "blockingIssues": [
+    {
+      "id": "source-lane-acquisition-incomplete",
+      "detail": "Sheet parity and required manual/event interpretation associated with FINRA eventDataAvailable=false were not completed by this lane, so acquisitionComplete cannot be true."
+    }
+  ],
+  "directivesReviewed": [],
+  "confidence": 97,
+  "acquisitionComplete": false
+}

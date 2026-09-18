@@ -1,0 +1,79 @@
+{
+  "reportVersion": 1,
+  "laneId": "source-integrity",
+  "cycleKey": "20260913T2300Z",
+  "generatedAt": "2026-09-13T23:19:00Z",
+  "status": "complete",
+  "summary": "The 2300Z deterministic machine boundary is coherent and has real exact-SHA CI proof. Machine observation is 250/250 with identity/tradability 250/250, all four machine sources healthy, zero unresolved evidence, Beast integrity PASS and sourceMesh PASS. Same-cycle supervisor coverage correctly remains zero pending Council review. FINRA OTC remains a capability caveat: partition freshness is healthy, but row-level event data is unavailable and must not be represented as event acquisition.",
+  "materialFindings": [
+    {
+      "finding": "The persisted machine state is internally coherent for cycle 20260913T2300Z: 250/250 companies observed, 250 identity validated, 250 tradability validated, machine source coverage 1.0, zero unresolved evidence, and the council state is explicitly pending rather than carrying prior supervisor coverage forward.",
+      "evidence": [
+        "data/runtime/system-state.json",
+        "data/runtime/source-health.json",
+        "data/runtime/evidence-review-queue.json"
+      ]
+    },
+    {
+      "finding": "Exact-SHA machine CI proof exists for commit 1a6b124eba21148a8620f6d74c5e72e93c66dbab. Workflow-dispatch run 34788770224 completed successfully on that exact SHA; verify job 103808986655 passed npm ci, dependency security audit, typecheck, engine invariants, production build, autonomous engine dry run, and unresolved-entity reporting. The simultaneous pull-request run 34788772251 concluded action_required and is not treated as qualification evidence.",
+      "evidence": [
+        "https://github.com/JILLOnline/Side-Projects/commit/1a6b124eba21148a8620f6d74c5e72e93c66dbab",
+        "https://github.com/JILLOnline/Side-Projects/actions/runs/34788770224",
+        "docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md"
+      ]
+    },
+    {
+      "finding": "Beast integrity and sourceMesh both pass on the current persisted runtime. GEV is the only scored record; it has 61 evidence leaves, zero invalid leaves, five valid company-incident causal edges, seven independent origins, and no integrity reasons outstanding.",
+      "evidence": [
+        "data/runtime/intelligence-integrity.json",
+        "data/runtime/score-state.json"
+      ]
+    },
+    {
+      "finding": "FINRA OTC Daily List health is reachability/freshness evidence only. The current automated-source artifact explicitly records observationMode=partition-freshness, eventDataAvailable=false and recordCount=null. Current corporate-action rows therefore require supervisor corroboration through FINRA OTCE or another primary source before discovery may be called complete.",
+      "evidence": [
+        "data/runtime/automated-source-health.json",
+        "lib/discovery-sources.ts",
+        "docs/SENSOR_MESH.md"
+      ]
+    },
+    {
+      "finding": "The Google Sheet human mirror exists under the current title Earth 2036 — Intelligence Ledger, but its latest System Health row is still the prior 1300Z Chief state. This is expected before same-cycle Chief reconciliation and must not be described as 2300Z-synced yet.",
+      "evidence": [
+        "https://docs.google.com/spreadsheets/d/1e4utNe3BPTIHDIaxupFYWEJjo61GB215fA_vpXDNmF4/edit",
+        "System Health!A1:P80"
+      ]
+    }
+  ],
+  "proposedCanonicalChanges": [],
+  "contradictions": [
+    {
+      "issue": "FINRA is labeled healthy with automated coverage while row-level current event data is unavailable.",
+      "resolution": "Not a true source-health contradiction if the distinction is preserved: healthy means the partition freshness probe succeeded, not that current corporate-action rows were acquired. Supervisor discovery completion must remain separate and fail closed until material events are corroborated."
+    }
+  ],
+  "unknowns": [
+    "Same-cycle Sheet parity cannot be asserted until Chief performs and verifies the 2300Z mirror update.",
+    "Row-level FINRA OTC event completeness is unknown without bearer-token Query API access or event-by-event supervisor corroboration."
+  ],
+  "peerRequests": [
+    {
+      "laneId": "discovery-weak-signals",
+      "request": "For 2300Z, preserve the FINRA partition-freshness versus event-acquisition distinction and corroborate any material OTC corporate action before claiming discovery completion."
+    }
+  ],
+  "accuracyDebates": [],
+  "blockingIssues": [],
+  "directivesReviewed": [
+    {
+      "directiveId": "chief-20260913t1300z-exact-sha-ci",
+      "result": "Closure criteria are now satisfied by exact machine SHA 1a6b124eba21148a8620f6d74c5e72e93c66dbab, successful workflow-dispatch run 34788770224, and verify job 103808986655. Chief may close the directive after validating this report."
+    },
+    {
+      "directiveId": "chief-20260913t1300z-discovery-cadence",
+      "result": "Source-side capability distinction remains enforced: FINRA is freshness-only and sensor sources remain non-gating. Discovery lane must still complete its own cadence-due review."
+    }
+  ],
+  "confidence": 98,
+  "acquisitionComplete": true
+}

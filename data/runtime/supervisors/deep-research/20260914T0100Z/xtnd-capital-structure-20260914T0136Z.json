@@ -1,0 +1,104 @@
+{
+  "artifactVersion": 1,
+  "cycleKey": "20260914T0100Z",
+  "generatedAt": "2026-09-14T01:36:17Z",
+  "shift": "day",
+  "researchTarget": "XTND capital structure, dilution and financing dependence",
+  "researchQuestion": "Can the post-merger XTND capitalization and financing/runway picture be reconstructed tightly enough from primary filings to reduce the open Chief underwriting directive without pretending unresolved share classes or future dilution are known?",
+  "lineage": {
+    "ticker": "XTND",
+    "company": "Xtend AI Robotics, Inc.",
+    "directiveId": "chief-20260913t1300z-xtnd-capital-structure",
+    "discoveryArtifact": "data/runtime/discovery-pool.json",
+    "directiveArtifact": "data/runtime/supervisors/directives.json"
+  },
+  "summary": "Primary SEC evidence materially narrows XTND's post-merger capitalization. The filing set supports a 277,442,600-share pro forma weighted-average denominator for the combined company, 27,544,248 pre-funded warrants issued at closing because of 4.99% beneficial-ownership caps, and a 43,567,442-share S-8 registration composed of 9,936,483 rollover-award shares plus 18,630,959 shares for the 2026 Equity Incentive Plan and 15,000,000 shares for the ESPP. The two new plan pools alone equal about 12.12% of the 277.44m pro forma denominator; the full S-8 registration equals about 15.70%, but the rollover-award component represents pre-existing awards and should not be treated as entirely new incremental dilution. XTEND's standalone June 30 cash was $34.808m after using $34.325m of operating cash in six months, while financing supplied $43.434m, mostly SAFE proceeds. The pro forma combined balance sheet adds $60m of closing cash to $39.779m of historical combined cash, while also recognizing roughly $15.5m of closing bonuses/transaction costs. This indicates meaningful financing dependence and material dilution capacity, but it does not by itself justify a final normalized fully diluted share count because pre-funded warrant exercise timing, rollover awards, post-close option treatment, and actual post-close cash movements remain unresolved.",
+  "findings": [
+    {
+      "type": "evidence",
+      "finding": "The September 3 closing 8-K states that 27,544,248 pre-funded warrants to purchase common stock were issued in the redomestication because holders subject to a 4.99% ownership cap could not receive all common shares directly.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933d8k12b.htm"
+      ]
+    },
+    {
+      "type": "evidence",
+      "finding": "The same 8-K states that former Xtend shareholders held 79.61% of fully diluted economic ownership immediately after the mergers, versus 20.39% for former JFB holders. This confirms that simple common shares outstanding and fully diluted economic ownership are not interchangeable denominators.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933d8k12b.htm"
+      ]
+    },
+    {
+      "type": "evidence",
+      "finding": "The pro forma combined financials disclose a 277,442,600 basic-and-diluted weighted-average share denominator, built from 17,645,106 historical Xtend ordinary shares, 6,328,962 conversion adjustment, 196,725,338 shares from preferred/warrant/SAFE conversion, and 56,743,194 shares issued to JFB security holders.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"
+      ]
+    },
+    {
+      "type": "evidence",
+      "finding": "The September 4 S-8 registers 43,567,442 shares in total: 9,936,483 for rollover awards, 18,630,959 for the 2026 Equity Incentive Plan, and 15,000,000 for the 2026 ESPP.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm"
+      ]
+    },
+    {
+      "type": "inference",
+      "finding": "Using 277,442,600 only as a comparison denominator, the two newly created 2026 plan pools total 33,630,959 shares, about 12.12% of that denominator. The entire S-8 registration equals about 15.70%. These are overhang ratios, not forecasts of actual issuance, and the rollover-award portion should not be double-counted as new plan capacity.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm",
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"
+      ]
+    },
+    {
+      "type": "evidence",
+      "finding": "XTEND standalone reported $34.808m of cash at June 30, 2026, $34.325m of operating cash use during the first six months of 2026, and $43.434m of financing cash inflow, including $43.423m of SAFE proceeds. Management stated existing resources and contracted demand were expected to support at least twelve months, while also acknowledging additional funding may be required until sustained profitability/positive operating cash flow is achieved.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex992.htm"
+      ]
+    },
+    {
+      "type": "evidence",
+      "finding": "The pro forma combined balance sheet shows $39.779m of historical combined cash plus a $60m closing cash contribution. The same pro forma disclosure identifies about $15.5m of closing bonuses and transaction costs. The $60m contribution was linked to warrant exercise funding by American Ventures to satisfy the merger minimum-cash condition.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"
+      ]
+    },
+    {
+      "type": "inference",
+      "finding": "A naive historical-burn calculation on XTEND standalone cash ($34.808m divided by roughly $5.72m monthly operating cash use) yields only about six months, which conflicts with management's at-least-twelve-month statement because management incorporates contracted demand, operating-plan changes and financing resources not captured by a flat historical-burn extrapolation. Therefore a single mechanical runway number would be misleading.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex992.htm"
+      ]
+    }
+  ],
+  "contradictions": [
+    "The 277,442,600 figure is a pro forma weighted-average presentation denominator, not an audited exact post-close common-shares-outstanding count. It should not be labeled the final fully diluted share count.",
+    "The 27,544,248 pre-funded warrants represent economically relevant potential common shares, but beneficial-ownership caps delay/limit direct exercise; counting them again on top of a denominator that may already reflect the underlying merger economics could double count.",
+    "A flat historical burn-rate runway implies much less than twelve months on June 30 standalone cash, while management says at least twelve months based on its current plan and contracted demand. Both can be true because the assumptions differ; the discrepancy must remain explicit rather than averaged away."
+  ],
+  "unknowns": [
+    "Exact post-close common shares outstanding after all merger issuances settled.",
+    "Exact number of pre-funded warrants exercised versus still outstanding after September 3.",
+    "Whether every rollover award share included in the S-8 should be included in a current fully diluted denominator and at what exercise/vesting probabilities.",
+    "Actual post-close unrestricted cash after transaction costs, bonuses, working-capital movements, warrant exercises and any debt draw/repayment.",
+    "Normalized combined-company forward operating cash burn after JFB integration and any post-close revenue/cost changes.",
+    "Current outstanding employee awards and future grant utilization from the 2026 plan and ESPP."
+  ],
+  "falsifiers": [
+    "A later 10-Q/10-K or 8-K providing an exact post-close common share count and detailed warrant/option reconciliation that materially changes the inferred dilution stack.",
+    "Evidence that the 60m closing contribution was not received or was materially restricted/offset beyond the disclosed pro forma adjustments.",
+    "Post-close operating cash flow that materially departs from the first-half 2026 XTEND burn profile, invalidating historical-burn runway inference."
+  ],
+  "confidence": 89,
+  "recommendedChiefAction": "corroborate",
+  "recommendedActionDetail": "Treat this as substantial progress on the XTND capital-structure directive, not closure. Chief/company-underwriting should next reconcile exact post-close common shares and outstanding pre-funded warrants from the first post-close share-count filing/beneficial-ownership disclosures, then build a current unrestricted-cash bridge before any admission, score or opportunity state. Explicitly separate common outstanding, economic fully diluted, pre-funded warrants, existing rollover awards and new plan capacity to avoid double counting.",
+  "sources": [
+    "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933d8k12b.htm",
+    "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex992.htm",
+    "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm",
+    "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm",
+    "data/runtime/discovery-pool.json",
+    "data/runtime/supervisors/directives.json"
+  ]
+}

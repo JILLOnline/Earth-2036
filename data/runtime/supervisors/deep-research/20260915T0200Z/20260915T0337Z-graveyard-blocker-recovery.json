@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "cycleKey": "20260915T0200Z",
+  "timestamp": "2026-09-15T03:37:34Z",
+  "shift": "GRAVEYARD",
+  "runner": "earth-deep-runner",
+  "batchId": "mixed-blocked-recovery",
+  "scope": "auxiliary_research_only",
+  "targets": [
+    {
+      "ticker": "TSM",
+      "company": "Taiwan Semiconductor Manufacturing Company Limited",
+      "batchId": "t0-20260914T0400Z-b01",
+      "researchQuestion": "Recover exact FY2025 major-customer concentration from current primary issuer evidence for reproducible concentration treatment.",
+      "gateClassification": "gating",
+      "gapEffect": "gating_blocker",
+      "evidence": [
+        {
+          "fact": "TSMC's 2025 Form 20-F states that its ten largest customers represented approximately 78% of 2025 net revenue; the largest customer represented 19%; the second-largest represented 17%.",
+          "source": "TSMC 2025 Form 20-F",
+          "url": "https://investor.tsmc.com/sites/ir/sec-filings/2025_20F%20Report.pdf",
+          "sourceType": "primary_issuer_sec_filing"
+        },
+        {
+          "fact": "TSMC reports serving 534 customers and manufacturing 12,682 products using 305 process technologies in 2025.",
+          "source": "TSMC investor fundamentals / 2025 annual reporting",
+          "url": "https://investor.tsmc.com/english/fundamentals",
+          "sourceType": "primary_issuer"
+        }
+      ],
+      "inference": "The exact customer-concentration quantities requested by the queue are now recoverable from current primary issuer evidence. This is sufficient for Chief to review the concentration gate; customer identities need not be inferred from the filing.",
+      "summary": "Recovered the missing FY2025 concentration table values from TSMC's primary 2025 Form 20-F: top ten 78%, largest 19%, second-largest 17% of net revenue.",
+      "findings": ["top10_customer_share_2025=78%", "largest_customer_share_2025=19%", "second_largest_customer_share_2025=17%"],
+      "contradictions": [],
+      "unknowns": ["The filing does not name the customers in the cited concentration disclosure; do not infer identities for gating treatment."],
+      "falsifiers": ["A later amended 2025 Form 20-F or issuer correction changing the concentration percentages."],
+      "confidence": "high",
+      "recommendedChiefAction": "review",
+      "binaryRecommendation": "gating gap sufficiently resolved for Chief review; do not keep TSM blocked on this concentration-recovery item.",
+      "lineage": ["data/runtime/supervisors/t0-bootstrap-queue.json", "TSMC 2025 Form 20-F primary issuer filing"]
+    },
+    {
+      "ticker": "SYM",
+      "company": "Symbotic Inc.",
+      "batchId": "t0-20260914T1500Z-b02",
+      "researchQuestion": "Classify transaction-level substance of SEC Form 4 accession 0001932967-26-000007 for governance/alignment/dilution/insider-behavior treatment.",
+      "gateClassification": "gating",
+      "gapEffect": "gating_blocker",
+      "evidence": [
+        {
+          "fact": "The accession is associated with SYM reporting person David A. Ladensohn and reports transaction code G (gift) involving 373,896 shares, with 373,896 shown held after the reported line; the filing is not identified as a Rule 10b5-1 plan trade.",
+          "source": "SEC EDGAR-derived Form 4 transaction index pointing to accession 0001932967-26-000007",
+          "url": "https://www.sec.gov/Archives/edgar/data/1837240/000193296726000007/",
+          "sourceType": "sec_accession_primary_path_plus_sec_derived_index"
+        }
+      ],
+      "inference": "Transaction code G is a gift, not an open-market sale or purchase. It should not be interpreted as discretionary bearish selling, cash realization, or issuer dilution without separate evidence. Beneficial-ownership effects across direct/indirect holdings should be read from the exact XML/footnotes before any stronger alignment conclusion.",
+      "summary": "Recovered transaction-level substance: the specified fresh SYM Form 4 is a 373,896-share gift (code G), not an open-market sale and not a 10b5-1 sale.",
+      "findings": ["transaction_code=G", "transaction_class=gift", "shares=373896", "open_market_sale=false", "10b5_1_sale=false"],
+      "contradictions": [],
+      "unknowns": ["Exact donor/recipient ownership routing and any footnote-specific direct-versus-indirect beneficial-ownership change should be confirmed from the accession XML before asserting net economic divestment."],
+      "falsifiers": ["The SEC accession XML shows a different transaction code/share amount than the SEC-derived indexed record, or an amendment supersedes the filing."],
+      "confidence": "medium_high",
+      "recommendedChiefAction": "corroborate",
+      "binaryRecommendation": "The transaction class itself is resolved; Chief should corroborate the exact SEC XML/footnotes if beneficial-ownership routing is methodology-material, but SYM should not remain blocked merely because the filing was unclassified.",
+      "lineage": ["data/runtime/supervisors/t0-bootstrap-queue.json", "SEC accession 0001932967-26-000007"]
+    }
+  ],
+  "capacityDiscipline": {
+    "nonGatingUnknownsPromotedToBlockers": 0,
+    "note": "No broad optional research launched; run concentrated on the two >=3-attempt blocked names per anti-stall policy."
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "artifactVersion": 1,
+  "cycleKey": "20260913T1700Z",
+  "generatedAt": "2026-09-13T17:34:55Z",
+  "shift": "day",
+  "researchTarget": "Active-universe entity exposure to the proposed AV certification/regulatory-throughput bottleneck",
+  "researchQuestion": "Which Earth 2036 active autonomy/mobility companies are directly exposed to NHTSA FMVSS certification/exemption throughput for purpose-built road vehicles, which are only indirectly exposed, and which belong to different regulatory regimes?",
+  "summary": "Deep Runner exposure mapping supports the structural-causal lane's proposed bottleneck but sharply narrows its company-level scope. Tesla is the clearest direct active-universe exposure because NHTSA opened a September 4, 2026 Audit Query into Cybercab self-certification for a vehicle lacking traditional human controls. Aurora is a useful falsification/control case: its own safety materials say the Aurora Driver is integrated into vehicle platforms already certified to applicable FMVSS, and its 2025-2026 filings say it does not anticipate near-term federal vehicle standards impeding foreseeable trucking deployments. Mobileye is currently primarily an ADAS/autonomy technology supplier to OEMs and mobility partners, so present certification exposure is mostly indirect, but its June 2026 plan to operate a vertically integrated U.S. robotaxi business in 2027 creates prospective direct exposure whose magnitude depends on the chosen vehicle architecture and certification allocation. Serve operates autonomous sidewalk robots and is not evidenced here as a Part 555/FMVS S road-vehicle case. Archer and Joby face a real certification bottleneck, but it is FAA aircraft type/production/airworthiness certification and should not be collapsed into the NHTSA road-vehicle node. Sensor suppliers Ouster, Aeva and Innoviz, plus industrial/off-road autonomy names, are indirect or out of scope for this specific node. Recommendation: Chief may promote a narrowly scoped `av-road-vehicle-certification-throughput` node only with conditional company edges, not a blanket autonomy-sector edge.",
+  "lineage": {
+    "directiveIds": ["chief-20260913t1300z-av-certification-constraint"],
+    "requiredLaneArtifacts": [
+      "data/runtime/supervisors/cycles/20260913T1700Z/structural-causal-alpha-20260913T171902Z.json",
+      "data/runtime/supervisors/cycles/20260913T1700Z/company-underwriting-alpha-20260913T171901Z.json",
+      "data/runtime/supervisors/cycles/20260913T1700Z/adversarial-red-team-beta-20260913T172446Z.json"
+    ],
+    "repoArtifacts": [
+      "lib/universe.ts",
+      "lib/universe-expansion.ts",
+      "data/runtime/entity-registry.json",
+      "data/runtime/causal-graph.json"
+    ],
+    "companies": ["TSLA", "AUR", "MBLY", "SERV", "PCAR", "OUST", "AEVA", "INVZ", "ACHR", "JOBY", "DE", "CAT", "TER", "ROK", "SYM"]
+  },
+  "evidence": [
+    {
+      "company": "TSLA",
+      "exposure": "direct_high",
+      "fact": "On September 4, 2026 NHTSA opened an Audit Query into Tesla Cybercab self-certification after commercial deployment, specifically examining compliance for a vehicle lacking traditional human controls. Existing FMVSS remain in force while rule modernization proceeds.",
+      "sources": ["https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification"]
+    },
+    {
+      "company": "AUR",
+      "exposure": "direct_low_current_architecture",
+      "fact": "Aurora states that its autonomous system is integrated into vehicle platforms already certified to meet or exceed applicable FMVSS. Its 2025 annual report states it does not anticipate near-term federal vehicle standards that impede foreseeable deployments, while acknowledging NHTSA/FMCSA/state oversight.",
+      "sources": [
+        "https://ir.aurora.tech/_assets/_f347170cdf7b1d12d2649008fccb089e/aurora/db/856/8007/pdf/Aurora_Driverless_Safety_Report_2025.pdf",
+        "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000016/aur-20251231.htm",
+        "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000077/aur-20260630.htm"
+      ]
+    },
+    {
+      "company": "MBLY",
+      "exposure": "indirect_now_prospective_direct",
+      "fact": "Mobileye currently sells ADAS/autonomy technology through OEM/Tier-1 relationships and mobility partners, but in June 2026 announced a vertically integrated U.S. robotaxi operating business planned for 2027. Direct certification exposure therefore depends on the vehicle architecture and contractual allocation of manufacturer/operator certification duties.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1910139/000110465926086264/mbly-20260627x10q.htm",
+        "https://ir.mobileye.com/news-releases/news-release-details/mobileye-establish-vertically-integrated-robotaxi-business"
+      ]
+    },
+    {
+      "company": "SERV",
+      "exposure": "out_of_scope_for_part555_based_on_reviewed_evidence",
+      "fact": "Serve describes its deployed product as autonomous sidewalk delivery robots operating across multiple U.S. cities. Reviewed company evidence does not establish these robots as FMVSS road motor vehicles or as Part 555 applicants.",
+      "sources": [
+        "https://ir.serverobotics.com/news-releases/news-release-details/serve-robotics-and-white-castle-launch-autonomous-delivery-uber",
+        "https://investors.serverobotics.com/news-releases/news-release-details/serve-robotics-builds-2000-autonomous-delivery-robots-creating"
+      ]
+    },
+    {
+      "companies": ["ACHR", "JOBY"],
+      "exposure": "different_regulatory_node_faa_aircraft_certification",
+      "fact": "FAA describes eVTOL aircraft as subject to its multi-phase aircraft certification process ending in type and production certification, with separate airworthiness certification. This is a genuine throughput constraint but is not the same legal/technical regime as NHTSA FMVSS/Part 555.",
+      "sources": [
+        "https://www.faa.gov/newsroom/how-it-works-aircraft-certification",
+        "https://www.faa.gov/aircraft/air_cert/aw_cert"
+      ]
+    },
+    {
+      "companies": ["OUST", "AEVA", "INVZ"],
+      "exposure": "indirect_supplier",
+      "fact": "These active-universe names are component/sensor suppliers rather than the certifying vehicle manufacturer in the reviewed Earth taxonomy. Innoviz, for example, describes itself as a LiDAR supplier into OEM/autonomy programs including Mobileye and Daimler Truck.",
+      "sources": [
+        "lib/universe-expansion.ts",
+        "https://www.sec.gov/Archives/edgar/data/1835654/000117891326000724/zk2634434.htm"
+      ]
+    },
+    {
+      "companies": ["DE", "CAT", "TER", "ROK", "SYM"],
+      "exposure": "not_supported_as_direct_nhtsa_certification_case",
+      "fact": "Earth's current taxonomy places these names in off-road/industrial/automation or broad autonomy lanes. No primary evidence reviewed in this pass supports attaching the proposed NHTSA purpose-built road-vehicle certification bottleneck directly to them.",
+      "sources": ["lib/universe.ts", "lib/universe-expansion.ts"]
+    },
+    {
+      "company": "PCAR",
+      "exposure": "potential_platform_indirect",
+      "fact": "Earth classifies PACCAR in mobility, but this pass found no evidence sufficient to treat PACCAR itself as dependent on a Part 555 exemption for a purpose-built nonconforming AV. Conventional heavy-truck platform certification and autonomous-system integration should be kept separate unless a specific nonconforming vehicle program is identified.",
+      "sources": ["lib/universe-expansion.ts"]
+    }
+  ],
+  "inferences": [
+    {
+      "inference": "The causal node should be scoped to road-vehicle certification/exemption throughput for architectures that cannot straightforwardly self-certify to current FMVSS, not to autonomy technology generally.",
+      "confidence": 96
+    },
+    {
+      "inference": "Tesla/Cybercab is presently the strongest active-universe company edge. Aurora is a strong counterexample demonstrating that Level-4 deployment can proceed on already-certified vehicle platforms without the same Part 555 bottleneck.",
+      "confidence": 95
+    },
+    {
+      "inference": "Mobileye should be modeled as conditional/prospective rather than direct until its 2027 U.S. robotaxi vehicle architecture and certification responsibility are disclosed.",
+      "confidence": 88
+    },
+    {
+      "inference": "FAA eVTOL certification deserves a separate causal node if Earth chooses to model Archer/Joby regulatory throughput; merging it into the NHTSA node would destroy causal precision.",
+      "confidence": 98
+    }
+  ],
+  "contradictions": [
+    {
+      "issue": "NHTSA is simultaneously reducing exemption friction and actively enforcing/self-certification auditing. The bottleneck can migrate or shrink; it should not be modeled as monotonically tightening regulation.",
+      "sources": [
+        "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle",
+        "https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification"
+      ]
+    },
+    {
+      "issue": "Aurora demonstrates that technical autonomy and scalable road deployment do not always require a Part 555 exemption; vehicle architecture and OEM certification strategy determine exposure.",
+      "sources": ["https://ir.aurora.tech/_assets/_f347170cdf7b1d12d2649008fccb089e/aurora/db/856/8007/pdf/Aurora_Driverless_Safety_Report_2025.pdf"]
+    }
+  ],
+  "unknowns": [
+    "Mobileye's planned 2027 U.S. vertically integrated robotaxi vehicle platform, manufacturer-of-record and certification allocation are not established by the reviewed sources.",
+    "PACCAR-specific future autonomy platform architecture and whether any planned configuration would require exemptions rather than ordinary FMVSS certification remain unverified.",
+    "This pass did not establish a comprehensive state/local regulatory map for Serve sidewalk robots; it only finds no basis to place Serve under the proposed NHTSA Part 555 node.",
+    "Future NHTSA AV-specific FMVSS modernization could materially reduce, remove or transform the Part 555 throughput constraint."
+  ],
+  "falsifiers": [
+    "NHTSA completes AV-specific FMVSS modernization such that purpose-built no-controls vehicles can routinely self-certify without material timing/capacity friction.",
+    "A multi-company sample of purpose-built nonconforming AVs repeatedly reaches commercial scale with certification/exemption timelines shorter than production and technical-validation critical paths.",
+    "Tesla's Cybercab Audit Query resolves without meaningful deployment, redesign, documentation or timing impact and similar architectures clear without case-specific friction.",
+    "Aurora-like use of already-certified OEM platforms becomes the dominant architecture for Level-4 road autonomy, making certification throughput non-binding relative to software validation, manufacturing or operations."
+  ],
+  "recommendedChiefAction": "review",
+  "recommendedActionDetail": "Use this mapping to close or materially narrow `chief-20260913t1300z-av-certification-constraint`: if promoted, create a conditional road-vehicle certification-throughput node with a strong direct TSLA edge, a low/currently non-binding AUR edge or explicit counterexample, conditional/prospective MBLY exposure, and no blanket edges to SERV, sensor suppliers, industrial/off-road robotics, or eVTOL companies. If Archer/Joby regulatory throughput is modeled, create a separate FAA aircraft-certification node. Preserve future NHTSA rule modernization as the node's principal falsifier.",
+  "confidence": 95
+}

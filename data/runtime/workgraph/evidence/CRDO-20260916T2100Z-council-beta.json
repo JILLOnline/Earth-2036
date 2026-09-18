@@ -1,0 +1,89 @@
+[
+  {
+    "version": 1,
+    "ticker": "CRDO",
+    "entityId": "CRDO",
+    "workId": "t0:CRDO",
+    "cycleKey": "20260916T2100Z",
+    "role": "council-beta",
+    "perspective": "structural-causal",
+    "generatedAt": "2026-09-16T21:22:00Z",
+    "claims": [
+      {"claim":"AI accelerator scaling increases bandwidth, power-efficiency and reliability pressure on scale-out/scale-up interconnect; Credo's electrical/optical DSP, AEC, SiPho and diagnostics stack is directly exposed to that bottleneck.","status":"supported"},
+      {"claim":"DustPhotonics integration extends Credo vertically into silicon-photonics PICs and creates a plausible successor-bottleneck path from copper reach limits toward optical/NPO/CPO architectures rather than leaving the thesis dependent on AEC alone.","status":"supported"},
+      {"claim":"The structural thesis is not architecture-proof: linear-drive optics, competing merchant DSP/PIC stacks, switch/GPU vendor integration, or CPO designs that reduce Credo content can substitute for portions of its current attach opportunity.","status":"supported"}
+    ],
+    "sources": [
+      {"url":"https://investors.credosemi.com/news-events/news/news-details/2026/Credo-Expands-ZeroFlap-Portfolio-with-224G-Based-1-6T-Optical-Transceivers-Addressing-the-Growing-Demand-for-AI-Network-Infrastructure/","kind":"primary","primary":true,"publishedAt":"2026-09-15","originFingerprint":"credosemi-ir:2026-09-15:zeroflap-1.6t"},
+      {"url":"https://investors.credosemi.com/news-events/news/news-details/2026/Credo-Completes-Acquisition-of-DustPhotonics/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-05-28","originFingerprint":"credosemi-ir:2026-05-28:dustphotonics-close"},
+      {"url":"https://investors.credosemi.com/news-events/news/news-details/2026/Credo-Introduces-Cardinal-A-LowPower-1-6T-Optical-DSP-Family-Engineered-for-MassiveScale-AI-Fabrics/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-03-17","originFingerprint":"credosemi-ir:2026-03-17:cardinal-1.6t"}
+    ],
+    "factors":[
+      {"name":"Structural bottleneck exposure","direction":"positive","basis":"AI fabric bandwidth/reliability/power pressure increases high-speed interconnect content and value."},
+      {"name":"Technology optionality","direction":"positive","basis":"portfolio spans electrical AEC/retimers and optical DSP/SiPho, improving resilience across architecture migration."},
+      {"name":"Substitution risk","direction":"negative","basis":"alternative optical architectures or vertically integrated accelerator/switch vendors can reduce merchant attach."}
+    ],
+    "causalEdges":[
+      {"from":"accelerator density and east-west AI traffic","to":"high-speed interconnect demand","mechanism":"more accelerators and larger fabrics raise aggregate bandwidth while power and uptime constrain link choices","falsifier":"fabric architectures materially reduce interconnect bandwidth/content per accelerator or AI cluster scaling stalls"},
+      {"from":"copper reach/power limits at rising lane rates","to":"optical/NPO/CPO migration","mechanism":"shorter electrical reach and thermal budgets increase optical substitution pressure","falsifier":"electrical interconnect retains materially better reach/power economics than expected at future lane rates"},
+      {"from":"Credo SiPho + DSP vertical integration","to":"continued attach through optical migration","mechanism":"in-house PIC plus DSP/diagnostics lets Credo participate when links migrate from AEC to optics","falsifier":"DustPhotonics integration fails qualification/volume or customers choose competing/in-house optical stacks"}
+    ],
+    "risks":[
+      {"risk":"Architecture migration can expand the market while simultaneously changing which layer captures economics.","gating":false},
+      {"risk":"Vertical integration adds manufacturing/qualification/integration complexity and acquisition execution risk.","gating":false}
+    ],
+    "contradictions":[],
+    "unknowns":[
+      {"unknown":"Production qualification and volume share for the new 1.6T optical family remain unproven by launch announcements.","gating":false},
+      {"unknown":"Long-run merchant content per accelerator under CPO/NPO and vendor-integrated fabrics is uncertain.","gating":false}
+    ],
+    "gatingIssues":[],
+    "confidence":84,
+    "recommendedNextState":"packet_ready",
+    "recommendedOwner":"machine packet compiler"
+  },
+  {
+    "version": 1,
+    "ticker": "CRDO",
+    "entityId": "CRDO",
+    "workId": "t0:CRDO",
+    "cycleKey": "20260916T2100Z",
+    "role": "council-beta",
+    "perspective": "adversarial-red-team",
+    "generatedAt": "2026-09-16T21:22:00Z",
+    "claims":[
+      {"claim":"The strongest present falsification pressure is customer concentration, not evidence that AI-connectivity demand is fictitious: the latest 10-Q shows the top two customers represented 71% of quarterly revenue.","status":"supported"},
+      {"claim":"The DustPhotonics transaction consumed roughly $735.6M net cash and materially reduced cash, increasing integration/capital-allocation sensitivity even while reported liquidity remains sufficient for at least twelve months.","status":"supported"},
+      {"claim":"Inventory built for backlog/new-product ramps is consistent with demand preparation but is not proof of sell-through; it becomes a falsifier if inventory/receivables rise without shipment diversification or cash conversion.","status":"supported"}
+    ],
+    "sources":[
+      {"url":"https://www.sec.gov/Archives/edgar/data/1807794/000162828026060111/crdo-20260801.htm","kind":"primary","primary":true,"publishedAt":"2026-09-02","originFingerprint":"sec:CRDO:0001628280-26-060111:10-Q"},
+      {"url":"https://investors.credosemi.com/news-events/news/news-details/2026/Credo-Expands-ZeroFlap-Portfolio-with-224G-Based-1-6T-Optical-Transceivers-Addressing-the-Growing-Demand-for-AI-Network-Infrastructure/","kind":"primary","primary":true,"publishedAt":"2026-09-15","originFingerprint":"credosemi-ir:2026-09-15:zeroflap-1.6t"}
+    ],
+    "factors":[
+      {"name":"Customer concentration","direction":"negative","basis":"two customers account for a dominant share of current revenue and receivables."},
+      {"name":"Financing/liquidity","direction":"mixed","basis":"large acquisition cash use reduced liquidity, but current filing states at least twelve months sufficiency."},
+      {"name":"Execution credibility","direction":"mixed-positive","basis":"rapid realized revenue growth exists, while optical ramp and diversification remain to be demonstrated."}
+    ],
+    "causalEdges":[
+      {"from":"customer concentration","to":"revenue/receivable fragility","mechanism":"qualification loss, capex digestion or buyer bargaining at one hyperscaler can disproportionately affect results","falsifier":"sustained diversification reduces top-two share while maintaining growth and cash conversion"},
+      {"from":"inventory build","to":"future shipments","mechanism":"management builds inventory for unfulfilled backlog and product ramps","falsifier":"inventory/receivables persistently outgrow realized sales or require write-downs"}
+    ],
+    "risks":[
+      {"risk":"A small number of hyperscale customers can create step-function revenue volatility and bargaining pressure.","gating":false},
+      {"risk":"DustPhotonics goodwill/intangibles and integration may fail to produce expected optical economics.","gating":false},
+      {"risk":"Product-launch/TAM language can overstate near-term monetization; shipment qualification and realized margins remain the relevant test.","gating":false}
+    ],
+    "contradictions":[
+      {"claim":"Very strong realized growth coexists with unusually high customer concentration.","resolution":"No contradiction requires blocking: both are supported; concentration lowers resilience/confidence but does not negate realized execution.","resolved":true,"gating":false}
+    ],
+    "unknowns":[
+      {"unknown":"No evidence in this Beta object establishes an attractive market valuation or entry price; that is intentionally separate from Earth Score.","gating":false},
+      {"unknown":"Customer-specific 1.6T optical qualification, share and margin are not yet established.","gating":false}
+    ],
+    "gatingIssues":[],
+    "confidence":89,
+    "recommendedNextState":"packet_ready",
+    "recommendedOwner":"machine packet compiler"
+  }
+]

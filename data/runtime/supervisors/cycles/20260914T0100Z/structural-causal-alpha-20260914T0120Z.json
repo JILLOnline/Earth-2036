@@ -1,0 +1,58 @@
+{
+  "reportVersion": 1,
+  "laneId": "structural-causal",
+  "cycleKey": "20260914T0100Z",
+  "generatedAt": "2026-09-14T01:20:00Z",
+  "status": "complete",
+  "summary": "Independent primary-source review supports treating purpose-built AV certification/regulatory throughput as a causal constraint distinct from autonomy software capability. NHTSA's current actions show that nontraditional vehicle architecture can require exemption, certification review or standards adaptation even when the ADS itself is technically deployable. This is a constraint-migration signal, not yet a score change.",
+  "materialFindings": [
+    {
+      "finding": "NHTSA opened a September 4, 2026 Audit Query into Tesla Cybercab self-certification after commercial deployment, directly demonstrating that certification compliance can become a deployment constraint after technical capability reaches market use.",
+      "sources": ["https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification"]
+    },
+    {
+      "finding": "NHTSA's July 30, 2026 AV actions allowed Zoox commercial deployment through a temporary exemption capped at up to 2,500 vehicles annually for two years while also accelerating AV performance standards, showing a regulatory throughput path separate from ADS performance itself.",
+      "sources": ["https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle"]
+    },
+    {
+      "finding": "NHTSA's June 25, 2026 rulemaking to remove manual-brake-pedal requirements for ADS-only vehicles while preserving stopping-distance performance illustrates constraint migration from legacy equipment prescriptions toward performance-based compliance rather than disappearance of the safety gate.",
+      "sources": ["https://www.nhtsa.gov/press-releases/fmvss-updates-brake-pedal-requirements"]
+    },
+    {
+      "finding": "The causal edge is non-duplicative with technical autonomy capability: a company can possess adequate ADS capability yet face deployment delay/volume limits because vehicle architecture must satisfy FMVSS, exemption or certification oversight.",
+      "sources": ["https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification", "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle"]
+    }
+  ],
+  "proposedCanonicalChanges": [
+    {
+      "classification": "IMPLEMENT",
+      "proposal": "Chief may add a sourced structural node/edge for AV certification-regulatory throughput as a deployment constraint distinct from ADS technical capability, with horizon 2026-2036 and explicit company-level applicability only where purpose-built/nontraditional vehicle architecture creates FMVSS or exemption exposure.",
+      "confidence": 91,
+      "horizon": "2026-2036",
+      "falsifier": "Constraint weakens materially if purpose-built ADS vehicles obtain routine standards-compliant certification without exemptions/audits and regulatory processing ceases to affect deployment timing or scale across multiple manufacturers.",
+      "sources": ["https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification", "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle", "https://www.nhtsa.gov/press-releases/fmvss-updates-brake-pedal-requirements"]
+    }
+  ],
+  "contradictions": [
+    "Regulatory reform is simultaneously reducing some legacy-equipment barriers, so the constraint should not be modeled as monotonically worsening; it is a throughput/transition constraint whose severity can decline as standards adapt."
+  ],
+  "unknowns": [
+    "Cross-manufacturer distribution of certification processing times and exemption dependence is not yet quantified.",
+    "Long-run federal/state interaction may shift the dominant deployment constraint away from federal vehicle certification toward state operating permissions, insurance or local infrastructure."
+  ],
+  "peerRequests": [
+    {
+      "laneId": "discovery-weak-signals",
+      "request": "Track future NHTSA exemption/audit/rulemaking events for evidence that certification throughput is broadening or collapsing as a constraint."
+    },
+    {
+      "laneId": "adversarial-red-team",
+      "request": "Attempt to falsify this edge with manufacturers achieving scaled purpose-built AV deployment without material certification/exemption friction."
+    }
+  ],
+  "accuracyDebates": [],
+  "blockingIssues": [],
+  "directivesReviewed": ["chief-20260913t1300z-av-certification-constraint", "chief-20260913t1300z-gev-constraint-migration"],
+  "confidence": 91,
+  "acquisitionComplete": true
+}

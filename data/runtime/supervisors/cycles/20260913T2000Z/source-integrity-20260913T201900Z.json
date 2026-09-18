@@ -1,0 +1,56 @@
+{
+  "reportVersion": 1,
+  "laneId": "source-integrity",
+  "cycleKey": "20260913T2000Z",
+  "generatedAt": "2026-09-13T20:19:00Z",
+  "status": "blocked",
+  "summary": "Machine observation is internally coherent at the runtime/source layer (250/250 observed, identity validated and tradability validated; four machine sources healthy; Beast integrity/sourceMesh pass; evidence queue empty), but this cycle cannot be integrity-approved because the exact machine-cycle SHA 9a282d7eca50e74e0acde7bb2ea104284b919f00 has only an action_required Earth 2036 CI run with zero jobs. Supervisor coverage is correctly fail-closed rather than inherited from the prior 1300Z review. FINRA remains freshness-only at partition level with eventDataAvailable=false, so it cannot be represented as row-level corporate-action ingestion.",
+  "materialFindings": [
+    {
+      "finding": "Current machine state is coherent and complete at the observation/identity/tradability layer: 250/250 observed, 250/250 identity validated, 250/250 tradability validated, machine source coverage 1.0, zero unresolved evidence.",
+      "sources": ["data/runtime/system-state.json", "data/runtime/source-health.json", "data/runtime/evidence-review-queue.json"]
+    },
+    {
+      "finding": "Beast integrity and sourceMesh both pass for the 2000Z persisted runtime. Only one score record is currently audited/publishable, so source integrity passing does not imply T0 ranking completeness.",
+      "sources": ["data/runtime/intelligence-integrity.json", "data/runtime/score-state.json"]
+    },
+    {
+      "finding": "Exact machine-cycle commit 9a282d7eca50e74e0acde7bb2ea104284b919f00 has Earth 2036 CI run 34779962300 with conclusion action_required and zero jobs; under the integrity contract this is neither a qualifying pass nor execution proof.",
+      "sources": ["GitHub commit 9a282d7eca50e74e0acde7bb2ea104284b919f00", "GitHub Actions run 34779962300", "docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md"]
+    },
+    {
+      "finding": "Supervisor coverage is correctly reset to zero for the new cycle instead of carrying forward the prior 1300Z council state.",
+      "sources": ["data/runtime/source-health.json", "data/runtime/system-state.json"]
+    },
+    {
+      "finding": "FINRA OTC Daily List health is partition-freshness only: latestCalendarDay 2026-09-11, eventDataAvailable=false and recordCount null. Current row-level event capability remains unavailable without the required public Query API bearer token/corroboration path.",
+      "sources": ["data/runtime/automated-source-health.json"]
+    }
+  ],
+  "proposedCanonicalChanges": [],
+  "contradictions": [
+    {
+      "issue": "Automated source health reports coverageRatio=1 while FINRA eventDataAvailable=false. This is not a contradiction if coverage is interpreted as probe/freshness coverage, but it would become misleading if represented as event-level capability coverage.",
+      "sources": ["data/runtime/automated-source-health.json"]
+    }
+  ],
+  "unknowns": [
+    "Whether a real exact-SHA CI verification job will be dispatched/persisted for machine SHA 9a282d7eca50e74e0acde7bb2ea104284b919f00 before Chief reconciliation.",
+    "Row-level current FINRA OTC corporate-action content remains unavailable from the automated probe; freshness does not establish event completeness.",
+    "Sheet mirror parity for the 2000Z cycle is not yet established by Alpha and remains Chief-owned."
+  ],
+  "peerRequests": [
+    "Chief/source-integrity follow-up: obtain or verify a real Earth 2036 CI job for exact machine SHA 9a282d7eca50e74e0acde7bb2ea104284b919f00; do not accept the action_required zero-job run as proof.",
+    "Discovery lane: preserve FINRA capability-vs-freshness semantics and independently corroborate material OTC events before claiming discovery completeness."
+  ],
+  "accuracyDebates": [],
+  "blockingIssues": [
+    "Missing qualifying exact-SHA Earth 2036 CI execution proof for the 2000Z deterministic machine-cycle SHA."
+  ],
+  "directivesReviewed": [
+    "chief-20260913t1300z-exact-sha-ci",
+    "chief-20260913t1300z-discovery-cadence"
+  ],
+  "confidence": 97,
+  "acquisitionComplete": true
+}

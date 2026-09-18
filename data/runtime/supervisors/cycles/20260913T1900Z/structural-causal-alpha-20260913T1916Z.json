@@ -1,0 +1,98 @@
+{
+  "reportVersion": 1,
+  "laneId": "structural-causal",
+  "cycleKey": "20260913T1900Z",
+  "generatedAt": "2026-09-13T19:16:00Z",
+  "status": "complete",
+  "summary": "Primary NHTSA evidence supports treating purpose-built AV certification/regulatory throughput as a distinct, regime-dependent deployment constraint rather than merely a subset of technical autonomy capability. Tesla's Cybercab self-certification is under an Audit Query specifically because existing FMVSS remain in force for a vehicle lacking traditional controls; separately, Zoox obtained an exemption pathway permitting limited commercial deployment while NHTSA modernizes AV standards. This establishes a causal chain in which technical ADS capability can exist while market deployment remains conditional on certification, exemption capacity, FMVSS modernization and enforcement review. The constraint is not permanent: NHTSA is actively rewriting standards and says individual exemptions may become unnecessary as rules modernize. Therefore the correct causal model is a transition bottleneck with an explicit sunset/falsifier, not a timeless regulatory moat.",
+  "materialFindings": [
+    {
+      "claim": "NHTSA opened an Audit Query on September 4, 2026 into Tesla Cybercab's self-certification and stated that existing FMVSS remain in force while modernization is incomplete. The inquiry specifically examines the basis for certifying a vehicle without traditional human controls.",
+      "sources": [
+        "https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification"
+      ],
+      "confidence": 100,
+      "horizon": "near-term / transition regime",
+      "falsifier": "If NHTSA closes the audit with no material deployment consequence and finalized standards make no-control AV certification routine, certification throughput ceases to be a meaningful separate constraint."
+    },
+    {
+      "claim": "NHTSA's July 30, 2026 AV framework actions granted Zoox a temporary exemption for commercial deployment of up to 2,500 vehicles annually for two years and described exemption modernization as a bridge while FMVSS are updated.",
+      "sources": [
+        "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle"
+      ],
+      "confidence": 99,
+      "horizon": "2026-2028 transition regime",
+      "falsifier": "If finalized AV-specific FMVSS remove the need for exemptions and approval throughput no longer limits fleet deployment, the exemption bottleneck should be retired from the graph."
+    },
+    {
+      "claim": "NHTSA began rulemaking to remove manual-brake-pedal requirements for vehicles designed exclusively for ADS operation while preserving stopping-distance performance requirements, proving that legacy equipment rules and technical driving performance are separate regulatory dimensions.",
+      "sources": [
+        "https://www.nhtsa.gov/press-releases/fmvss-updates-brake-pedal-requirements"
+      ],
+      "confidence": 99,
+      "horizon": "rulemaking transition",
+      "falsifier": "Once the relevant FMVSS revisions are final and widely applicable, the legacy-equipment mismatch should no longer be modeled as an active bottleneck."
+    },
+    {
+      "claim": "The causal structure is therefore: ADS technical capability -> vehicle architecture -> applicable FMVSS/self-certification or exemption path -> agency oversight/enforcement -> deployable fleet scale. Regulatory throughput can delay deployment independently of autonomy software maturity, but the constraint migrates as standards modernize.",
+      "sources": [
+        "https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification",
+        "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle",
+        "https://www.nhtsa.gov/press-releases/fmvss-updates-brake-pedal-requirements"
+      ],
+      "confidence": 94,
+      "horizon": "transition to AV-native federal standards",
+      "falsifier": "Evidence that deployment scale is unaffected by certification/exemption timing across purpose-built AV developers, or completion of AV-native standards that eliminates the distinct approval path."
+    }
+  ],
+  "proposedCanonicalChanges": [
+    {
+      "classification": "IMPLEMENT",
+      "proposal": "Add a transition-regime causal node for `purpose-built AV certification / FMVSS transition throughput` separate from `technical autonomy capability`, with edges to U.S. commercial deployment scale and explicit sunset/falsifier metadata. Do not encode it as a permanent moat or score boost; it is a constraint-migration node whose importance should decay as AV-native standards finalize.",
+      "sources": [
+        "https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification",
+        "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle",
+        "https://www.nhtsa.gov/press-releases/fmvss-updates-brake-pedal-requirements"
+      ]
+    }
+  ],
+  "contradictions": [],
+  "unknowns": [
+    "Exact timing and final content of the remaining AV-specific FMVSS rulemakings.",
+    "How quickly exemption/certification throughput will scale relative to fleet manufacturing and state/local operating permissions.",
+    "Entity-specific exposure for active-universe autonomy names whose vehicle OEM partner, rather than the autonomy developer itself, may bear federal certification responsibility.",
+    "Whether state/local permitting, insurance/liability or remote-assistance requirements become the successor bottleneck after federal FMVSS modernization."
+  ],
+  "peerRequests": [
+    {
+      "targetLane": "company-underwriting",
+      "request": "For active-universe autonomy names, map who legally owns vehicle certification/exemption responsibility (developer vs OEM partner) before applying the new transition constraint at company level.",
+      "priority": "medium"
+    },
+    {
+      "targetLane": "discovery-weak-signals",
+      "request": "Track NHTSA AV rulemaking completions and exemption/audit outcomes as constraint-migration signals; retire or reduce the node when finalized standards make purpose-built certification routine.",
+      "priority": "high"
+    },
+    {
+      "targetLane": "adversarial-red-team",
+      "request": "Test whether state/local operating approvals, insurance or first-responder interaction requirements are already more binding than federal certification for current commercial AV deployments.",
+      "priority": "medium"
+    }
+  ],
+  "accuracyDebates": [],
+  "blockingIssues": [],
+  "directivesReviewed": [
+    {
+      "directiveId": "chief-20260913t1300z-av-certification-constraint",
+      "status": "resolved_for_causal_question",
+      "evidence": [
+        "https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification",
+        "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle",
+        "https://www.nhtsa.gov/press-releases/fmvss-updates-brake-pedal-requirements"
+      ]
+    }
+  ],
+  "confidence": 95,
+  "acquisitionComplete": true
+}

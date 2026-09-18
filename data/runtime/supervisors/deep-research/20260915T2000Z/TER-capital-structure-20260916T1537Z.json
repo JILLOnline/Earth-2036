@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "role": "deep-resolver",
+  "company": "TER",
+  "workId": "t0-20260915T0000Z-b03:TER",
+  "cycleKey": "20260915T2000Z",
+  "generatedAt": "2026-09-16T15:37:33Z",
+  "status": "resolved",
+  "directive": {
+    "question": "Normalize Teradyne governance/dilution overhang and assemble current debt/convertible exposure sufficiently to close the exact T0 underwriting gate.",
+    "whyItMatters": "The bootstrap queue marks governance/dilution normalization plus debt/convertible assembly as gating before packet completion and Chief adjudication.",
+    "preferredPrimarySource": "Teradyne 2025 Form 10-K and latest 2026 Form 10-Q filings with the SEC; 2026 definitive proxy for governance context.",
+    "lawfulFallbacks": ["Teradyne investor-relations copies of the same filings", "SEC XBRL filing facts"],
+    "successCondition": "Primary filings establish current shares, plan capacity/dilutive securities, stock-compensation burden, current debt/convertible state and liquidity without double counting legacy convertible/warrant instruments.",
+    "attemptCount": 3
+  },
+  "evidence": [
+    {
+      "type": "primary",
+      "source": "SEC Form 10-K, fiscal 2025",
+      "url": "https://www.sec.gov/Archives/edgar/data/97210/000119312526059002/ter-20251231.htm",
+      "claims": [
+        "156,555,950 common shares were outstanding as of 2026-02-16.",
+        "At 2025-12-31, 3,050,235 shares were available under the 2006 Equity Plan and 3,176,598 securities were available under the ESPP; the equity-compensation table includes 1,634,922 restricted-stock units outside weighted-average exercise-price calculation.",
+        "Unrecognized compensation expense related to non-vested RSUs/options was $97.3 million, expected over a weighted-average 2.6 years.",
+        "2025 stock-based compensation expense was $63.999 million.",
+        "The legacy 1.25% convertible senior notes matured in December 2023; no live convertible principal is presented as current 2025 debt."
+      ]
+    },
+    {
+      "type": "primary",
+      "source": "SEC Form 10-Q, quarter ended 2026-03-29",
+      "url": "https://www.sec.gov/Archives/edgar/data/97210/000119312526201058/ter-20260329.htm",
+      "claims": [
+        "156,542,162 common shares were outstanding as of 2026-04-27.",
+        "Quarter-end common shares were 156.540 million; Q1 net issuance under stock-based plans was 0.476 million shares and stock-based compensation expense recognized in equity was $20.649 million.",
+        "Diluted EPS used 1.226 million dilutive potential common shares: 1.148 million RSUs, 0.074 million options and 0.004 million ESPP shares; less than 0.1 million RSUs were anti-dilutive.",
+        "The $750 million senior secured revolver had zero outstanding balance at 2026-03-29 versus $200 million at 2025-12-31; Teradyne was covenant-compliant and stated it intended to extend the facility before its 2026-12-10 expiry.",
+        "Cash, cash equivalents and marketable securities totaled $394.0 million at 2026-03-29 and management stated these resources plus the revolver were sufficient for at least twelve months."
+      ]
+    },
+    {
+      "type": "primary",
+      "source": "SEC Form 10-Q, quarter ended 2026-06-28",
+      "url": "https://www.sec.gov/Archives/edgar/data/97210/000119312526327715/ter-20260628.htm",
+      "claims": [
+        "Teradyne reported $200 million of net revolver repayments during the first half of 2026 and remained covenant-compliant at 2026-06-28.",
+        "Management again stated cash, marketable securities and the senior secured revolver were sufficient for at least the next twelve months.",
+        "The filing continues to identify only the shareholder-approved ESPP and 2006 Equity Plan as equity-compensation plans and does not identify a new live convertible financing instrument."
+      ]
+    }
+  ],
+  "evidenceVsInference": {
+    "evidence": "Primary SEC filings directly establish outstanding shares, plan reserves, RSU/options dilution, stock-compensation expense, revolver capacity/balance and liquidity statements.",
+    "inference": "The old convertible-note/warrant complex should not be carried forward as current dilution: the notes matured in 2023 and associated warrants expired through July 2024. Current 2026 diluted-share disclosures instead identify RSUs, options and ESPP as the live incremental share sources. This is a normalization inference from the filing chronology, not a claim that Teradyne can never issue future convertibles."
+  },
+  "contradictionStatus": "resolved",
+  "contradictions": [
+    {
+      "issue": "Legacy filings describe a large convertible-note/warrant dilution complex, while the T0 gate asks for current convertible assembly.",
+      "disposition": "Historical only. The notes matured in December 2023 and warrants expired by July 2024; current 2026 diluted-share tables contain RSUs/options/ESPP rather than convertible/warrant shares. Do not double-count legacy instruments."
+    }
+  ],
+  "confidence": "high",
+  "gateImpact": {
+    "gating": true,
+    "recommendedNextState": "evidence_complete",
+    "reason": "The exact capital-structure/debt/convertible blocker has a reconciled primary-source answer. Ordinary packet compilation may now consume this auxiliary evidence; Deep Resolver should not continue looping on this gate."
+  },
+  "unknowns": [
+    "Future equity grants and future financing choices remain uncertain and are non-gating future uncertainty.",
+    "The revolver extension terms after the disclosed 2026 intention are not needed to resolve the present historical/current capital-structure gate."
+  ],
+  "canonicalMutation": false
+}

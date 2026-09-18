@@ -1,0 +1,93 @@
+{
+  "reportVersion": 1,
+  "laneId": "structural-causal",
+  "cycleKey": "20260913T1300Z",
+  "generatedAt": "2026-09-13T16:21:00Z",
+  "status": "blocked",
+  "summary": "Independent structural review confirms that the canonical GEV graph now includes the Chief-promoted successor bottlenecks for transformer/core-steel capacity and large-load interconnection, with explicit falsifiers and primary DOE/FERC/EIA provenance. Those additions were made after the 1300Z machine boundary, so they cannot support qualification of that old cycle until recompute. The larger structural baseline remains incomplete because 249 active companies still lack sourced company↔technology↔resource/bottleneck↔infrastructure↔human-need maps.",
+  "materialFindings": [
+    {
+      "finding": "The current canonical causal graph contains GEV plus reliable-electricity, power-grid, gas-turbine, AI-data-center and grid-equipment nodes, and now also contains transformer/core-steel and large-load-interconnection bottleneck nodes promoted at 2026-09-13T15:47:44Z.",
+      "sources": ["earth-2036/data/runtime/causal-graph.json"]
+    },
+    {
+      "finding": "The transformer/core-steel bottleneck is represented as a negative constraint on power-grid buildout and is backed by DOE primary evidence describing limited domestic capacity, long procurement timelines and electrical-core-steel dependence. Its falsifier requires material normalization of procurement lead times/capacity constraints across multiple periods.",
+      "sources": ["earth-2036/data/runtime/causal-graph.json", "https://www.energy.gov/cmei/articles/doe-issues-request-information-rfi-energy-conservation-standards-distribution", "https://www.energy.gov/sites/default/files/2025-01/Identifying_Risks_in_the_Energy_Industrial_Base-Supply_Chain_Readiness_Levels_vFinalPublication_0.pdf"]
+    },
+    {
+      "finding": "The large-load-interconnection bottleneck is represented separately from physical equipment scarcity, with FERC primary evidence supporting queue/tariff constraints and EIA evidence supporting rising electricity demand. This is structurally useful because speculative queue demand is not treated one-for-one as realized load.",
+      "sources": ["earth-2036/data/runtime/causal-graph.json", "https://www.ferc.gov/news-events/news/ferc-launches-aggressive-targeted-action-speed-large-load-integration", "https://www.ferc.gov/news-events/news/commissioner-rosners-remarks-large-load-show-cause-orders-e-7-e-12-june-18-2026", "https://www.eia.gov/pressroom/releases/press592.php"]
+    },
+    {
+      "finding": "The prior five-versus-six direct-edge concern is resolved by scope: per-company Beast integrity counts only edges incident to company:GEV, while the total graph can contain non-company structural edges. Current graph growth should therefore be audited using explicit direct-versus-total semantics rather than naive count parity.",
+      "sources": ["earth-2036/data/runtime/causal-graph.json", "earth-2036/data/runtime/intelligence-integrity.json", "earth-2036/engine/beast-integrity.mjs"]
+    },
+    {
+      "finding": "The structural system remains non-comparable across the full universe: 250 companies are active but only GEV has a canonical company node and sourced causal structure. Division/lane labels are not substitutes for evidence-backed bottleneck control, substitution resilience, scenario robustness or supply-chain mappings.",
+      "sources": ["earth-2036/data/runtime/system-state.json", "earth-2036/data/runtime/causal-graph.json", "earth-2036/engine/rubric.ts"]
+    }
+  ],
+  "proposedCanonicalChanges": [
+    {
+      "proposal": "No additional GEV graph mutation is proposed this pass. Preserve the newly promoted transformer/core-steel and interconnection nodes/signals, but require the next machine recompute before they influence a qualified cycle or derived score/rank state.",
+      "sources": ["earth-2036/data/runtime/causal-graph.json", "earth-2036/docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md"]
+    },
+    {
+      "proposal": "Prioritize structural mapping for the highest-information-value unscored companies rather than broad shallow labels: each map should include durable human need, enabling infrastructure/technology, actual bottleneck/resource exposure, substitution path, successor bottleneck and falsifier before structural rubric factors are scored.",
+      "sources": ["earth-2036/docs/SUPERVISOR_COUNCIL.md", "earth-2036/engine/rubric.ts"]
+    }
+  ],
+  "contradictions": [
+    {
+      "issue": "Strong data-center/grid demand does not imply every queued large-load request becomes realized demand. FERC explicitly highlights speculative/duplicative queue risk, so realized EIA sales/load and actual interconnection progress must remain the confirmation layer.",
+      "sources": ["https://www.ferc.gov/news-events/news/commissioner-rosners-remarks-large-load-show-cause-orders-e-7-e-12-june-18-2026", "https://www.eia.gov/pressroom/releases/press592.php"]
+    }
+  ],
+  "unknowns": [
+    {
+      "unknown": "For GEV specifically, it remains unresolved which successor constraint becomes binding first in practice: transformer/core-steel availability, interconnection/transmission, labor, other components or customer project execution.",
+      "sources": ["earth-2036/data/runtime/causal-graph.json", "earth-2036/data/baseline-evidence/GEV.json"]
+    },
+    {
+      "unknown": "The other 249 active companies still lack sourced structural maps, preventing comparable scoring of alignment2036, crossDivisionLeverage, bottleneckControl, scenarioRobustness, substitutionResilience and supplyChainResilience.",
+      "sources": ["earth-2036/data/runtime/system-state.json", "earth-2036/engine/rubric.ts"]
+    }
+  ],
+  "peerRequests": [
+    {
+      "toLane": "company-underwriting",
+      "request": "When GEV is recomputed, test whether transformer/core-steel and interconnection constraints improve scarcity/pricing evidence or instead raise backlog-conversion and supply-chain execution risk; do not mechanically increase bottleneckControl.",
+      "sources": ["earth-2036/data/runtime/causal-graph.json", "earth-2036/engine/rubric.ts"]
+    },
+    {
+      "toLane": "discovery-weak-signals",
+      "request": "Search for independent evidence of successor constraints outside the existing GEV frame and for technologies/material substitutions that could collapse transformer/core-steel or interconnection scarcity faster than assumed.",
+      "sources": ["earth-2036/data/runtime/causal-graph.json", "earth-2036/docs/SENSOR_MESH.md"]
+    }
+  ],
+  "accuracyDebates": [
+    {
+      "topic": "Does identifying successor bottlenecks automatically strengthen GEV's Earth Score?",
+      "position": "No. A systemic bottleneck can create scarcity rent for GEV or create execution/supply-chain risk against GEV. The direction belongs to company-specific underwriting after recompute, not to structural narrative alone.",
+      "sources": ["earth-2036/engine/rubric.ts", "earth-2036/data/runtime/causal-graph.json"]
+    }
+  ],
+  "blockingIssues": [
+    {
+      "issue": "The current causal-graph additions are material canonical changes made after the 1300Z machine boundary, so that cycle requires recompute before structural intelligence can support qualification.",
+      "sources": ["earth-2036/data/runtime/causal-graph.json", "earth-2036/docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md"]
+    },
+    {
+      "issue": "Structural-causal baseline completion remains blocked because 249 active companies lack sourced causal maps.",
+      "sources": ["earth-2036/data/runtime/system-state.json", "earth-2036/data/runtime/causal-graph.json"]
+    }
+  ],
+  "directivesReviewed": [
+    {
+      "directiveId": "chief-20260913t1300z-gev-constraint-migration",
+      "result": "Closed by Chief with the proposed successor bottlenecks promoted into causal-graph.json. This lane independently verifies the resulting graph semantics and flags that the promotion is post-machine material canonical state requiring recompute before qualification."
+    }
+  ],
+  "confidence": 98,
+  "acquisitionComplete": false
+}

@@ -1,0 +1,84 @@
+{
+  "reportVersion": 1,
+  "role": "earth-deep-runner",
+  "cycleKey": "20260915T2000Z",
+  "generatedAt": "2026-09-15T20:33:00Z",
+  "mode": "DAY",
+  "batchId": "t0-20260915T0000Z-b03",
+  "backpressure": {
+    "readyForChief": 23,
+    "policyApplied": "blocker-clearing only; no optional outside-250 research opened"
+  },
+  "targets": [
+    {
+      "ticker": "MBLY",
+      "company": "Mobileye Global Inc.",
+      "batchId": "t0-20260915T0000Z-b03",
+      "gate": "major-customer concentration",
+      "status": "resolved_for_chief_review",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1910139/000110465926014300/mbly-20251227x10k.htm",
+      "sourceType": "SEC Form 10-K primary filing",
+      "evidence": "FY2025 major-customer table reports Customer A 30%, Customer B 17%, Customer C 15%, Customer D 14% of revenue; filing narrative identifies the three largest Tier 1 customers as ZF 30%, Valeo 17%, Aptiv 15%. Four OEM programs contributed 17%, 12%, 11% and 11%, and eight OEMs together represented 82% of revenue through Tier 1 customers.",
+      "inference": "Customer concentration is quantitatively material and should be reflected conservatively in underwriting, but the exact concentration gate is no longer unknown.",
+      "contradictionStatus": "none; concentration risk is confirmed rather than contradicted",
+      "confidence": 99,
+      "gateImpact": "removes_blocker",
+      "recommendedChiefAction": "review"
+    },
+    {
+      "ticker": "TER",
+      "company": "Teradyne, Inc.",
+      "batchId": "t0-20260915T0000Z-b03",
+      "gate": "cash/debt",
+      "status": "resolved_for_chief_review",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/97210/000119312526327715/ter-20260628.htm",
+      "sourceType": "SEC Form 10-Q primary filing",
+      "evidence": "At June 28, 2026 Teradyne reported $349.538m cash and cash equivalents, $5.291m current marketable securities, and $2.366022b total current assets. The latest quarter therefore supplies current liquidity evidence; the FY2025 10-K separately provides the debt-note/convertible context and year-end financial-instrument carrying values.",
+      "supportingSourceUrl": "https://www.sec.gov/Archives/edgar/data/97210/000119312526059002/ter-20251231.htm",
+      "inference": "The queue's generic cash/debt gap can be narrowed: current liquidity is directly evidenced. Chief should assemble the debt/convertible note alongside this liquidity evidence rather than hold TER for missing cash data.",
+      "contradictionStatus": "none",
+      "confidence": 97,
+      "gateImpact": "materially_narrows_blocker",
+      "recommendedChiefAction": "review"
+    },
+    {
+      "ticker": "TER",
+      "company": "Teradyne, Inc.",
+      "batchId": "t0-20260915T0000Z-b03",
+      "gate": "governance/dilution",
+      "status": "still_blocked",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/97210/000119312526059002/ter-20251231.htm",
+      "sourceType": "SEC Form 10-K primary filing",
+      "evidence": "FY2025 10-K states $97.3m of unrecognized compensation expense related to non-vested RSUs/options, expected over 2.6 years, and describes stock-award plan limits. This establishes active equity-compensation overhang but does not by itself normalize current fully diluted share overhang or governance alignment.",
+      "inference": "Do not hold TER for absence of any dilution evidence; hold only for normalization of plan/share overhang and governance/alignment if required by the locked factor rubric.",
+      "contradictionStatus": "none",
+      "confidence": 94,
+      "gateImpact": "narrows_exact_missing_evidence",
+      "recommendedChiefAction": "corroborate",
+      "nextBestSourcePath": "Teradyne 2026 definitive proxy statement / equity-compensation plan table plus latest 10-Q share-count and convertible-note disclosures"
+    },
+    {
+      "ticker": "SYM",
+      "company": "Symbotic Inc.",
+      "batchId": "t0-20260914T1500Z-b02",
+      "gate": "classify SEC Form 4 accession 0001932967-26-000007",
+      "status": "still_blocked",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1932967/000193296726000007/",
+      "sourceType": "expected SEC EDGAR exact-accession directory",
+      "evidence": "The exact transaction-level ownership document was not recoverable through the available indexed web path in this run. SEC documentation confirms accession directories expose index.html/index.xml/index.json and filing documents when the accession is publicly retrievable.",
+      "inference": "Do not infer purchase, sale, option exercise, tax withholding or grant treatment from the accession number alone.",
+      "contradictionStatus": "unresolved transaction substance",
+      "confidence": 100,
+      "gateImpact": "blocker_remains",
+      "recommendedChiefAction": "directive",
+      "nextBestSourcePath": "Authenticated/direct EDGAR accession directory index.json or ownership XML for CIK 1932967 accession 0001932967-26-000007; if unavailable, issuer ownership-filings index keyed to filing date. Preserve SYM-only quarantine until transaction code, amount, price and post-transaction holdings are read."
+    }
+  ],
+  "chiefHandoff": {
+    "resolvedOrMateriallyNarrowed": 2,
+    "stillBlocked": 2,
+    "nonGatingUnknowns": 0,
+    "recommendedOrder": ["MBLY major-customer concentration -> review/promote gate", "TER cash/liquidity -> review with debt note", "TER governance/dilution -> proxy normalization", "SYM exact Form 4 -> keep quarantined"],
+    "note": "No canonical state changed. This is auxiliary immutable evidence only. MBLY is the strongest binary blocker removal in this run; TER cash/liquidity is materially narrowed."
+  }
+}

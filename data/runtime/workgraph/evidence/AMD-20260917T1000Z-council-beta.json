@@ -1,0 +1,96 @@
+[
+  {
+    "version": 2,
+    "contract": "workgraph-v2-specialist-evidence",
+    "ticker": "AMD",
+    "entityId": "AMD",
+    "workId": "t0:AMD",
+    "cycleKey": "20260917T1000Z",
+    "role": "council-beta",
+    "perspective": "structural-causal",
+    "generatedAt": "2026-09-18T06:24:00Z",
+    "claims": [
+      {"claim":"AMD's 2036-relevant causal position is broader than accelerator silicon alone: Instinct GPUs, EPYC CPUs, Pensando networking and ROCm form a rack-scale stack that can convert hyperscaler/frontier-lab compute diversification into platform demand.","status":"supported"},
+      {"claim":"The principal successor bottlenecks move upstream and downstream from AMD silicon into leading-edge foundry capacity, advanced packaging/HBM, power/land/data-center capacity, networking and workload/software qualification; AMD does not control all of these constraints.","status":"supported"},
+      {"claim":"Named multi-gigawatt commitments from Meta and Anthropic plus Microsoft deployment and Core Scientific infrastructure capacity strengthen the causal path from AI demand to AMD deployment, but realization still requires physical buildout, qualification, shipment and utilization.","status":"supported"},
+      {"claim":"Scenario robustness is improved by multiple customers and CPU/GPU/network/software attach paths, while substitution resilience remains incomplete because NVIDIA platforms and hyperscaler/custom accelerators can absorb workloads if AMD software, system economics or delivery execution underperform.","status":"supported"}
+    ],
+    "sources": [
+      {"sourceId":"sec:AMD:0000002488-26-000123:10-Q","url":"https://www.sec.gov/Archives/edgar/data/2488/000000248826000123/amd-20260627.htm","kind":"primary","primary":true,"publishedAt":"2026-08-04","originFingerprint":"sec:AMD:0000002488-26-000123:10-Q"},
+      {"sourceId":"amd-ir:2026-02-24:meta-6gw","url":"https://ir.amd.com/news-events/press-releases/detail/1279/amd-and-meta-announce-expanded-strategic-partnership-to-deploy-6-gigawatts-of-amd-gpus","kind":"primary","primary":true,"publishedAt":"2026-02-24","originFingerprint":"issuer:AMD:2026-02-24:meta-6gw"},
+      {"sourceId":"amd-ir:2026-07-22:anthropic-2gw","url":"https://ir.amd.com/news-events/press-releases/detail/1292/amd-and-anthropic-announce-strategic-partnership-to-deploy-up-to-2-gigawatts-of-amd-instinct-mi450-series-gpus","kind":"primary","primary":true,"publishedAt":"2026-07-22","originFingerprint":"issuer:AMD:2026-07-22:anthropic-2gw"},
+      {"sourceId":"amd-ir:2026-07-20:microsoft-helios","url":"https://ir.amd.com/news-events/press-releases/detail/1291/microsoft-to-deploy-next-gen-amd-instinct-and-amd-epyc-processors-as-the-companies-expand-their-long-term-strategic-partnership","kind":"primary","primary":true,"publishedAt":"2026-07-20","originFingerprint":"issuer:AMD:2026-07-20:microsoft-helios"},
+      {"sourceId":"sec:CORZ:2026-07-28:AMD-infrastructure-exhibit","url":"https://www.sec.gov/Archives/edgar/data/1839341/000183934126000012/amdpr.htm","kind":"primary","primary":true,"publishedAt":"2026-07-28","originFingerprint":"sec:CORZ:2026-07-28:AMD-infrastructure-exhibit"}
+    ],
+    "affectedMethodologyFactors":["thesisQuality","alignment2036","crossDivisionLeverage","bottleneckControl","scenarioRobustness","substitutionResilience","supplyChainResilience","pricingPower"],
+    "causalEdges":[
+      {"from":"hyperscaler/frontier-lab compute diversification","to":"AMD rack-scale platform demand","mechanism":"customers add AMD accelerators, CPUs, networking and ROCm to diversify supply and optimize workload economics","falsifier":"named deployments fail to scale, utilization remains immaterial, or customers materially revert to incumbent/custom accelerators"},
+      {"from":"advanced foundry/packaging/HBM capacity","to":"AMD accelerator shipment scale","mechanism":"leading-edge wafers, packaging and memory are required to turn designs into deployable accelerators","falsifier":"capacity ceases to constrain AMD delivery or alternative supply paths remove the dependency"},
+      {"from":"power/land/data-center infrastructure","to":"installed AMD compute","mechanism":"energized rack-ready capacity is required for multi-gigawatt accelerator deployments","falsifier":"announced infrastructure fails to energize on schedule or customer demand no longer supports buildout"},
+      {"from":"ROCm and workload qualification","to":"production adoption","mechanism":"software compatibility/performance lowers switching friction and broadens economically viable workloads","falsifier":"software gaps or system economics prevent sustained production workload migration"}
+    ],
+    "risks":[
+      {"risk":"AMD controls important compute layers but remains structurally dependent on third-party manufacturing, packaging/memory and customer infrastructure buildout.","gating":false},
+      {"risk":"Large named deployment plans can overstate realized causal control if customer utilization or software economics fail to convert physical capacity into durable workload share.","gating":false}
+    ],
+    "contradictions":[
+      {"claim":"Strong full-stack breadth versus incomplete control of successor bottlenecks","resolution":"Both are true: AMD can capture more rack-level value while foundry, packaging/HBM, power and customer qualification remain outside full company control.","resolved":true,"gating":false}
+    ],
+    "unknowns":[
+      {"unknown":"Long-run workload share and utilization of AMD systems at the announced multi-gigawatt scale are not yet observable.","gating":false},
+      {"unknown":"Relative future economics versus NVIDIA and custom accelerators across diverse production workloads remain uncertain.","gating":false}
+    ],
+    "gatingIssues":[],
+    "confidence":91,
+    "recommendedNextState":"evidence_complete",
+    "recommendedOwner":"deterministic-packet-compiler",
+    "lineage":{"inputEvidence":["data/runtime/workgraph/evidence/AMD-20260917T1000Z-earth-scout.json","data/runtime/workgraph/evidence/AMD-20260917T1000Z-council-alpha-v1.json"],"independentChallenge":"Beta independently tested bottleneck transfer, substitutes, counterfactuals and infrastructure dependencies against primary issuer/SEC evidence; Alpha/Scout evidence was reused only with preserved source lineage.","methodology":"engine/methodology.ts@1.0.0"}
+  },
+  {
+    "version": 2,
+    "contract": "workgraph-v2-specialist-evidence",
+    "ticker": "AMD",
+    "entityId": "AMD",
+    "workId": "t0:AMD",
+    "cycleKey": "20260917T1000Z",
+    "role": "council-beta",
+    "perspective": "adversarial-red-team",
+    "generatedAt": "2026-09-18T06:24:00Z",
+    "claims": [
+      {"claim":"The strongest present falsification pressure is not solvency: AMD reported substantial liquidity and operating cash generation; the sharper risks are execution against large commitments, customer-warrant dilution, supply dependence and competitive substitution.","status":"supported"},
+      {"claim":"Meta and OpenAI strategic warrants can each reach 160 million AMD shares; these align counterparties but create material potential dilution and make headline deployment scale non-equivalent to unencumbered economics.","status":"supported"},
+      {"claim":"Approximately $30.3 billion of unconditional commitments plus material future data-center leases increase operating leverage to successful AI deployment conversion; these obligations are a real execution/capital-allocation risk despite strong current liquidity.","status":"supported"},
+      {"claim":"No present evidence reviewed falsifies AMD's AI infrastructure thesis, but headline gigawatt/TAM claims should not be treated as realized revenue or durable market share until deployment, utilization and economics are evidenced.","status":"supported"}
+    ],
+    "sources":[
+      {"sourceId":"sec:AMD:0000002488-26-000123:10-Q","url":"https://www.sec.gov/Archives/edgar/data/2488/000000248826000123/amd-20260627.htm","kind":"primary","primary":true,"publishedAt":"2026-08-04","originFingerprint":"sec:AMD:0000002488-26-000123:10-Q"},
+      {"sourceId":"sec:AMD:2026:DEF14A","url":"https://www.sec.gov/Archives/edgar/data/2488/000119312526129057/d85856ddef14a.htm","kind":"primary","primary":true,"publishedAt":"2026-03-27","originFingerprint":"sec:AMD:2026:DEF14A"},
+      {"sourceId":"amd-ir:2026-02-24:meta-6gw","url":"https://ir.amd.com/news-events/press-releases/detail/1279/amd-and-meta-announce-expanded-strategic-partnership-to-deploy-6-gigawatts-of-amd-gpus","kind":"primary","primary":true,"publishedAt":"2026-02-24","originFingerprint":"issuer:AMD:2026-02-24:meta-6gw"},
+      {"sourceId":"amd-ir:2026-07-22:anthropic-2gw","url":"https://ir.amd.com/news-events/press-releases/detail/1292/amd-and-anthropic-announce-strategic-partnership-to-deploy-up-to-2-gigawatts-of-amd-instinct-mi450-series-gpus","kind":"primary","primary":true,"publishedAt":"2026-07-22","originFingerprint":"issuer:AMD:2026-07-22:anthropic-2gw"}
+    ],
+    "affectedMethodologyFactors":["thesisQuality","financialOperatingMomentum","catalystScore","governancePower","bottleneckControl","scenarioRobustness","substitutionResilience","supplyChainResilience","pricingPower","risk","dataConfidence"],
+    "causalEdges":[
+      {"from":"strategic customer warrants","to":"shareholder dilution risk","mechanism":"deployment-linked warrant vesting can increase shares outstanding as strategic programs scale","falsifier":"warrants expire/unvested or dilution is economically outweighed by demonstrated incremental value creation"},
+      {"from":"large unconditional supply/cloud commitments","to":"execution fragility","mechanism":"committed costs require successful product ramp and demand conversion to avoid margin/cash-flow pressure","falsifier":"commitments convert into high-utilization profitable deployments with resilient margins"},
+      {"from":"competitive accelerators/software","to":"AMD share capture","mechanism":"NVIDIA and custom silicon can substitute if performance, software or total-cost economics are superior","falsifier":"AMD demonstrates sustained production share gains and workload retention across independent customers"}
+    ],
+    "risks":[
+      {"risk":"Potential dilution from large strategic warrants is material and should not be hidden by deployment headlines.","gating":false},
+      {"risk":"Supply, packaging/HBM, power and infrastructure dependencies can delay revenue conversion even when end demand exists.","gating":false},
+      {"risk":"Customer concentration can rise as a small number of hyperscalers/frontier labs account for outsized AI deployment plans.","gating":false},
+      {"risk":"Competitive response from NVIDIA and custom accelerators can compress pricing, share and software leverage.","gating":false}
+    ],
+    "contradictions":[
+      {"claim":"Large strategic commitments are simultaneously evidence of demand and sources of dilution/execution risk.","resolution":"Treat deployment agreements as positive demand evidence while separately carrying warrant dilution and realization risk; do not net them into a single narrative claim.","resolved":true,"gating":false}
+    ],
+    "unknowns":[
+      {"unknown":"Exact realized revenue, margin and utilization from future multi-gigawatt deployments remain unknown.","gating":false},
+      {"unknown":"Future warrant vesting and resulting net economic dilution depend on deployment milestones and market outcomes.","gating":false}
+    ],
+    "gatingIssues":[],
+    "confidence":93,
+    "recommendedNextState":"evidence_complete",
+    "recommendedOwner":"deterministic-packet-compiler",
+    "lineage":{"inputEvidence":["data/runtime/workgraph/evidence/AMD-20260917T1000Z-earth-scout.json","data/runtime/workgraph/evidence/AMD-20260917T1000Z-council-alpha-v1.json"],"independentChallenge":"Beta independently sought thesis falsifiers across financing/dilution, concentration, supply dependence, substitution, governance and headline-demand realization; no locked-methodology blocker was found.","methodology":"engine/methodology.ts@1.0.0"}
+  }
+]

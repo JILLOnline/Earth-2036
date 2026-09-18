@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "role": "deep-resolver",
+  "generatedAt": "2026-09-17T13:34:00Z",
+  "cycleKey": "20260915T2000Z",
+  "workId": "t0-20260915T0000Z-b03:ROK:customer-concentration",
+  "company": {"ticker": "ROK", "name": "Rockwell Automation, Inc.", "cik": "0001024478"},
+  "directive": {
+    "gatingQuestion": "Does Rockwell Automation have a material customer or distribution-channel concentration that must be normalized before T0 packet preflight?",
+    "whyItMatters": "The T0 bootstrap queue identifies customer concentration as the remaining company-underwriting gate for ROK; unresolved concentration affects dependency/risk evidence and packet completeness.",
+    "preferredPrimarySource": "Latest Rockwell Automation Form 10-K customer/distribution disclosures, cross-checked against the latest Form 10-Q.",
+    "lawfulFallbacks": ["SEC inline-XBRL facts and contexts", "Rockwell Automation investor-relations filings"],
+    "successCondition": "Primary filings quantify the material concentration that must be normalized, or establish the disclosed boundary without fabricating unavailable individual-customer precision.",
+    "attemptCount": 4
+  },
+  "result": "resolved",
+  "supersedes": "data/runtime/supervisors/deep-research/20260915T2000Z/ROK-customer-concentration-20260917T0233Z.json",
+  "evidence": [
+    {
+      "type": "primary",
+      "source": "SEC Form 10-K for fiscal year ended 2025-09-30, accession 0001024478-25-000116",
+      "url": "https://www.sec.gov/Archives/edgar/data/1024478/000102447825000116/rok-20250930.htm",
+      "claim": "Rockwell reports that approximately 65% of global sales are transacted through independent distributors. Sales to its two largest distributors in each of 2025, 2024 and 2023 were approximately 20% of total sales and were attributable to all three operating segments.",
+      "evidenceVsInference": "evidence"
+    },
+    {
+      "type": "primary",
+      "source": "SEC Form 10-Q for quarter ended 2026-06-30, accession 0001024478-26-000030",
+      "url": "https://www.sec.gov/Archives/edgar/data/1024478/000102447826000030/rok-20260630.htm",
+      "claim": "The latest quarterly filing confirms current issuer/reporting continuity; no newer reviewed primary disclosure supersedes the fiscal-2025 annual distribution-channel concentration disclosure.",
+      "evidenceVsInference": "evidence"
+    },
+    {
+      "type": "inference",
+      "source": "Deep Resolver reconciliation",
+      "claim": "The underwriting gate should be normalized as distribution-channel concentration, not as a fabricated named end-customer concentration. The disclosed quantitative fact is 65% of sales through independent distributors and approximately 20% of total sales through the two largest distributors collectively; the filing does not provide a defensible split between those two distributors or a consolidated named end-customer percentage.",
+      "evidenceVsInference": "inference"
+    }
+  ],
+  "contradictionStatus": {
+    "status": "resolved",
+    "detail": "The prior still-conflicted state arose because the reviewed text had not captured the explicit quantitative distribution disclosure. The fiscal-2025 10-K supplies the missing normalization: approximately 65% of global sales through independent distributors and approximately 20% through the two largest distributors collectively. Individual distributor shares and consolidated named end-customer percentages remain undisclosed/unknown and are not required to invent a concentration value."
+  },
+  "confidence": 0.98,
+  "gateImpact": "Resolves the exact ROK customer/concentration underwriting exception at the disclosure boundary. Packet evidence should carry material distribution-channel dependency using the issuer-disclosed 65% and collective 20% figures; individual distributor and named end-customer percentages remain unknown, not zero.",
+  "recommendedNextState": "ROK may leave exception research for this gate. Alpha/packet compiler should ingest this immutable evidence, preserve unavailable individual-customer/distributor precision as unknown, and run deterministic packet preflight. Reopen Deep Resolver only for a newly named exact preflight defect.",
+  "canonicalMutation": false
+}

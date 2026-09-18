@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "role": "earth-deep-runner",
+  "cycleKey": "20260915T2300Z",
+  "generatedAt": "2026-09-15T23:38:00Z",
+  "mode": "DAY",
+  "backpressure": {"readyForChief":24,"policy":"blocker-clearing-only"},
+  "pipelineObservation": {
+    "status": "anomaly",
+    "detail": "At Deep intake, exact-cycle directory exposed the three Beta artifacts but no same-cycle Alpha artifacts. Deep did not mutate workforce state per WORKFORCE LOCK. Chief/Machine Keeper should verify whether Alpha was delayed or persisted elsewhere before same-cycle attestation."
+  },
+  "findings": [
+    {
+      "ticker": "SYM",
+      "company": "Symbotic Inc.",
+      "batchId": "t0-20260914T1500Z-b02",
+      "attempts": 3,
+      "gate": "freshness / transaction-level classification of SEC Form 4 accession 0001932967-26-000007",
+      "status": "resolved_for_chief_review",
+      "source": [
+        {
+          "url": "https://ir.symbotic.com/financial-filings/sec-filings",
+          "type": "issuer-primary",
+          "evidence": "Symbotic's investor-relations SEC-filings page identifies accession 0001932967-26-000007 as a Form 4 filed Sep. 14, 2026 and exposes HTML/PDF/RTF/XLS representations."
+        },
+        {
+          "url": "https://portfoliosavvy.com/report/000193296726000007-ladensohn-david-a-2026-09-10",
+          "type": "secondary-structured-transcription",
+          "evidence": "Structured transcription identifies reporting owner David A. Ladensohn (10%+ owner), signature date Sep. 14, 2026, and transaction-level substance: two Class V-1 Common Stock transfers coded/characterized as Other at $0, each -200,000 shares, leaving 175,378 shares in The Serenade QSST Trust and 320,835 shares in The Tilia Mill Trust; it also reports a Class V-3 Common Stock gift acquisition of +231,896 shares."
+        }
+      ],
+      "evidenceVsInference": "Accession/form/date are issuer-primary evidence. Transaction rows are a structured secondary transcription of the exact accession because direct EDGAR accession content was not retrievable in this slot. No inference is used for the reported quantities or ownership balances.",
+      "contradictionStatus": "none observed between issuer accession identity and structured transcription",
+      "confidence": 0.82,
+      "gateImpact": "Removes the binary 'unknown transaction substance' blocker for Chief review, subject to Chief's source-hierarchy requirement. The filing is not an open-market purchase/sale signal: the recovered rows are zero-price trust transfers/other plus a gift, not ordinary market execution.",
+      "recommendedChiefAction": "corroborate",
+      "chiefInstruction": "Treat transaction substance as resolved enough to leave SYM-only quarantine only if methodology requires direct SEC row-level primary corroboration. If direct-primary is mandatory, fetch the exact accession ownership XML/XLS and compare transaction code, amount, price and post-transaction holdings; do not restart broad SYM research."
+    }
+  ],
+  "capacityNote": "Only one queue item was formally blocked and ready_for_chief exceeded 15, so Deep intentionally did not create optional outside-250 research debt."
+}

@@ -1,0 +1,79 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-deep-resolver-evidence",
+  "ticker": "PL",
+  "entityId": "PL",
+  "workId": "t0:PL",
+  "role": "deep-resolver",
+  "generatedAt": "2026-09-18T09:35:00Z",
+  "directive": {
+    "companyWorkId": "t0:PL",
+    "exactGatingQuestion": "Can the live PL packet's unresolved_gating_issue and unresolved_gating_unknown be resolved by primary-source corroboration of the September 3, 2026 Q2 FY2027 company-release claims that Scout observed only through a syndicated copy?",
+    "whyItMatters": "These are the only current Deep Resolver-owned failures. The packet explicitly says the primary-hosted Planet IR copy was not retrieved and requires SEC/IR corroboration before the syndicated release can be relied upon as gated evidence.",
+    "preferredPrimarySource": "SEC EDGAR Planet Labs PBC CIK 0001836833: September 3, 2026 Form 8-K accession 0001193125-26-381874 with Exhibit 99.1, plus same-day Form 10-Q accession 0001193125-26-382016.",
+    "lawfulFallbacks": [
+      "Planet Labs investor-relations events/presentations page for the Q2 FY2027 earnings event",
+      "Planet-hosted investor relations release if directly retrievable"
+    ],
+    "successCondition": "Verify from primary SEC/issuer material that Planet itself issued the September 3 Q2 FY2027 results and that the core syndicated claims used by Scout are traceable to that primary release; preserve valuation as a separate Alpha-owned task rather than inventing a canonical valuation conclusion.",
+    "attemptCount": 1
+  },
+  "items": [
+    {
+      "itemId": "t0:PL:unresolved_gating_issue",
+      "status": "resolved",
+      "evidenceVsInference": "evidence",
+      "finding": "SEC EDGAR independently supplies the missing primary lineage. Planet Labs PBC filed a Form 8-K dated September 3, 2026 under CIK 0001836833 stating that it issued a press release announcing financial results for the second fiscal quarter ended July 31, 2026 and attached that release as Exhibit 99.1. The SEC-hosted Exhibit 99.1 is titled 'Planet Reports Financial Results for Second Quarter of Fiscal Year 2027' and reports record quarterly revenue of $116 million, up 58% year over year, alongside the same operating/cash highlights represented in the syndicated Scout source. Planet also filed its Form 10-Q for the quarter ended July 31, 2026 the same day. This directly cures the packet's exact primary_source_corroboration_required defect without relying on the syndicated host as authority.",
+      "sourceLineage": [
+        "https://www.sec.gov/Archives/edgar/data/1836833/000119312526381874/pl-20260903.htm",
+        "https://www.sec.gov/Archives/edgar/data/1836833/000119312526381874/pl-ex99_1.htm",
+        "https://www.sec.gov/Archives/edgar/data/1836833/000119312526382016/pl-20260731.htm",
+        "data/runtime/workgraph/packets/PL.json",
+        "data/runtime/workgraph/evidence/PL-20260918T0700Z-earth-scout.json"
+      ],
+      "originFingerprints": [
+        "sec:PL:8-K:0001193125-26-381874:2026-09-03",
+        "sec:PL:EX-99.1:0001193125-26-381874:2026-09-03",
+        "sec:PL:10-Q:0001193125-26-382016:2026-09-03"
+      ],
+      "contradictionStatus": "none_found",
+      "confidence": 100,
+      "gateImpact": "The unresolved primary_source_corroboration_required gating issue is resolved. Deterministic recompilation should treat the SEC 8-K/Exhibit 99.1/10-Q lineage as primary-source evidence rather than leaving this Deep Resolver gate open.",
+      "recommendedNextState": "packet_ready_recompile"
+    },
+    {
+      "itemId": "t0:PL:unresolved_gating_unknown",
+      "status": "resolved",
+      "evidenceVsInference": "evidence_plus_scope_disposition",
+      "finding": "The packet's first gating unknown—absence of a primary-hosted copy—is cured by the SEC-hosted 8-K, Exhibit 99.1 and 10-Q. Its second wording says no canonical valuation conclusion is made because primary-source corroboration remained required. The causal prerequisite named in that unknown is now satisfied. This resolution does not manufacture a valuation conclusion: marketValuationOpportunity, numeric scoring, score-risk evidence and Data Confidence remain separately routed to council-alpha and are outside this Deep Resolver directive.",
+      "sourceLineage": [
+        "https://www.sec.gov/Archives/edgar/data/1836833/000119312526381874/pl-ex99_1.htm",
+        "https://www.sec.gov/Archives/edgar/data/1836833/000119312526382016/pl-20260731.htm",
+        "data/runtime/workgraph/packets/PL.json"
+      ],
+      "contradictionStatus": "resolved_primary_source_unknown_with_other_lane_work_preserved",
+      "confidence": 99,
+      "gateImpact": "The Deep Resolver-owned unresolved_gating_unknown should clear on recompilation. Any still-missing valuation/factor/score/confidence evidence remains an Alpha-owned preflight failure and must not be interpreted as resolved by this object.",
+      "recommendedNextState": "packet_ready_recompile"
+    }
+  ],
+  "attempted": [
+    "t0:PL:unresolved_gating_issue",
+    "t0:PL:unresolved_gating_unknown"
+  ],
+  "resolved": [
+    "t0:PL:unresolved_gating_issue",
+    "t0:PL:unresolved_gating_unknown"
+  ],
+  "unavailable": [],
+  "stillConflicted": [],
+  "overallStatus": "resolved",
+  "recommendedNextState": "packet_ready_recompile",
+  "recommendedOwner": "deterministic-packet-compiler",
+  "lineage": {
+    "packet": "data/runtime/workgraph/packets/PL.json",
+    "state": "data/runtime/workgraph/state.json",
+    "workgraphContract": "docs/WORKGRAPH_V2.md",
+    "note": "Auxiliary exception-resolution evidence only. No canonical methodology, score, rank, tick, membership, baseline evidence, or Chief decision was edited. Other preflight failures remain with their routed owners."
+  }
+}

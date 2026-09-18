@@ -1,0 +1,60 @@
+{
+  "reportVersion": 1,
+  "laneId": "company-underwriting",
+  "cycleKey": "20260914T0000Z",
+  "generatedAt": "2026-09-14T00:17:41Z",
+  "status": "needs_research",
+  "summary": "Independent DAY underwriting pass prioritizes the open XTND capital-structure gap. Primary SEC evidence materially strengthens dilution-risk visibility: the Sept. 4 S-8 registers 43,567,442 shares across rollover awards, the 2026 incentive plan and ESPP, and a same-day S-3 creates additional financing optionality. These facts reinforce the existing prohibition on admission/scoring until the post-close basic/fully diluted denominator and normalized cash runway are reconciled without double counting.",
+  "materialFindings": [
+    {
+      "finding": "XTND remains outside_challenger_pending_full_methodology with admissionEligible=false; the canonical discovery record itself says full methodology score and dilution/capital-structure review are pending.",
+      "sources": ["data/runtime/discovery-pool.json"]
+    },
+    {
+      "finding": "XTND's Sept. 4, 2026 Form S-8 registers 9,936,483 rollover-award shares, 18,630,959 shares under the 2026 Equity Incentive Plan, and 15,000,000 shares under the 2026 ESPP, an aggregate 43,567,442 registered plan/award shares. Registration is not equivalent to immediate dilution, so these amounts must be reconciled against existing rollover awards and the post-close denominator before calculating fully diluted ownership.",
+      "sources": ["https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm"]
+    },
+    {
+      "finding": "A Sept. 4, 2026 XTND Form S-3 registration statement establishes additional capital-markets financing capacity; it is financing optionality, not evidence that securities have already been issued or that cash runway is solved.",
+      "sources": ["https://www.sec.gov/Archives/edgar/data/2111860/000119312526383724/d924164ds3asr.htm"]
+    },
+    {
+      "finding": "SEC Form 3 for Matteo Shapira reports 3,356,974 common shares plus an option for 2,298,417 shares at $0.47, illustrating that insider derivative awards are material enough to require explicit option/award reconciliation in a fully diluted denominator.",
+      "sources": ["https://www.sec.gov/Archives/edgar/data/2111860/000119312526381981/xslF345X06/ownership.xml"]
+    },
+    {
+      "finding": "NYSE certification confirms listing/registration of XTND common stock following the Sept. 3 merger close; listing status is therefore primary-source supported but says nothing about underwriting quality or dilution-adjusted valuation.",
+      "sources": ["https://www.sec.gov/Archives/edgar/data/2111860/000087666126000717/XTND090326.pdf"]
+    }
+  ],
+  "proposedCanonicalChanges": [],
+  "contradictions": [],
+  "unknowns": [
+    "Exact post-close basic common shares outstanding after reconciling merger consideration, legacy JFB holders and any pre-funded warrants.",
+    "Exact fully diluted denominator after removing double counts among rollover awards, S-8 registrations, options, earnouts and plan reserves.",
+    "Normalized operating cash burn and defensible cash runway after merger-close cash movements and transaction costs.",
+    "Extent and timing of actual issuance under the S-3 and employee/equity plans."
+  ],
+  "peerRequests": [
+    {
+      "laneId": "source-integrity",
+      "request": "Fingerprint XTND merger/S-8/S-3/ownership sources by origin and flag any denominator fields that are duplicated across filings before Chief canonicalizes capitalization evidence."
+    },
+    {
+      "laneId": "adversarial-red-team",
+      "request": "Attack any proposed XTND fully diluted denominator for rollover-award, option, earnout, warrant and plan-reserve double counting."
+    }
+  ],
+  "accuracyDebates": [],
+  "blockingIssues": [
+    "XTND capitalization and normalized cash runway remain unreconciled; admission, score and opportunity assessment must remain blocked."
+  ],
+  "directivesReviewed": [
+    {
+      "directiveId": "chief-20260913t1300z-xtnd-capital-structure",
+      "progress": "Primary SEC evidence adds a concrete 43,567,442-share S-8 registration overhang and S-3 financing optionality, but does not close the directive because the post-close basic/fully diluted denominator and normalized runway remain unresolved."
+    }
+  ],
+  "confidence": 93,
+  "acquisitionComplete": false
+}

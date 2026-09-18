@@ -1,0 +1,23 @@
+{
+  "reportVersion": 1,
+  "laneId": "source-integrity",
+  "cycleKey": "20260913T2100Z",
+  "generatedAt": "2026-09-13T21:13:31Z",
+  "status": "needs_research",
+  "summary": "Same-cycle machine source layer is fresh and internally consistent: 250/250 identities and tradability records are validated, all four required machine sources are healthy, and Beast/sourceMesh integrity passes. The blocking integrity issue is exact-head CI: the current machine-cycle SHA 405c70ab8acaa07d388c29960399a74140432fd4 has Earth 2036 CI run 34782936749 completed as action_required, so it is not qualifying exact-SHA execution proof. Supervisor coverage correctly remains fail-closed at zero pending same-cycle Council review.",
+  "materialFindings": [
+    {"finding":"Machine state is current for 20260913T2100Z with 250 observed, 250 identity validated, 250 tradability validated, machineSourceCoverageRatio=1 and machineDiscoveryComplete=true.","sources":["data/runtime/system-state.json","data/runtime/source-health.json"]},
+    {"finding":"Beast integrity and sourceMesh both pass; four required machine sources are healthy and automated coverage is 1.0.","sources":["data/runtime/intelligence-integrity.json"]},
+    {"finding":"Exact-head Earth CI is not qualifying: run 34782936749 for head SHA 405c70ab8acaa07d388c29960399a74140432fd4 concluded action_required with no demonstrated passing job.","sources":["https://github.com/JILLOnline/Side-Projects/actions/runs/34782936749","docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md"]},
+    {"finding":"Prior supervisor cycle 20260913T1300Z is not carried forward; same-cycle supervisor coverage remains zero, which is correct fail-closed behavior.","sources":["data/runtime/source-health.json","data/runtime/system-state.json"]}
+  ],
+  "proposedCanonicalChanges": [],
+  "contradictions": [],
+  "unknowns": ["Whether a real exact-SHA Earth CI job can be made to execute successfully for this deterministic machine-cycle boundary.","Same-cycle Sheet mirror parity is not yet established by Alpha and remains Chief-owned."],
+  "peerRequests": [{"laneId":"chief-earth","request":"Preserve the exact-SHA CI directive for the 2100Z boundary; do not attest this cycle unless qualifying CI execution proof exists."}],
+  "accuracyDebates": [],
+  "blockingIssues": ["Current deterministic machine-cycle SHA lacks qualifying exact-SHA Earth CI execution proof."],
+  "directivesReviewed": ["chief-20260913t1300z-exact-sha-ci","chief-20260913t1300z-discovery-cadence"],
+  "confidence": 97,
+  "acquisitionComplete": true
+}

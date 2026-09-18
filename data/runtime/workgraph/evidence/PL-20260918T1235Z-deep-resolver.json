@@ -1,0 +1,64 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-deep-resolver-evidence",
+  "ticker": "PL",
+  "entityId": "PL",
+  "workId": "t0:PL",
+  "role": "deep-resolver",
+  "generatedAt": "2026-09-18T12:35:00Z",
+  "directive": {
+    "companyWorkId": "t0:PL",
+    "exactGatingQuestion": "Why does the current PL packet still report missing_primary_source / primary_source_corroboration_required after the prior Deep Resolver evidence resolved the exact primary-source question with SEC EDGAR primary filings?",
+    "whyItMatters": "The current packet generated 2026-09-18T12:30:20.675Z explicitly includes PL-20260918T0935Z-deep-resolver.json in evidencePaths and marks gating_issue/gating_unknown resolved, yet primarySourcePresence remains false and preflight still contains missing_primary_source. Repeating the same external research would waste exception capacity; the remaining conflict is between accepted auxiliary evidence and deterministic packet source classification/ingestion.",
+    "preferredPrimarySource": "SEC EDGAR Planet Labs PBC CIK 0001836833: 2026-09-03 Form 8-K accession 0001193125-26-381874, SEC-hosted Exhibit 99.1, and 2026-09-03 Form 10-Q accession 0001193125-26-382016.",
+    "lawfulFallbacks": [
+      "Planet Labs investor-relations events/presentations page for the Q2 FY2027 earnings event",
+      "Planet-hosted investor-relations release if directly retrievable"
+    ],
+    "successCondition": "The current packet recognizes the already-verified SEC lineage as primary-source corroboration, or Chief explicitly dispositions the deterministic ingestion/classification conflict without requesting another unchanged external-research loop.",
+    "attemptCount": 2
+  },
+  "items": [
+    {
+      "itemId": "t0:PL:primary_source_ingestion_conflict",
+      "status": "still_conflicted",
+      "evidenceVsInference": "evidence_plus_system_state_comparison",
+      "finding": "External evidence is not the unresolved part. SEC EDGAR currently and directly confirms Planet Labs PBC filed the September 3, 2026 Form 8-K announcing Q2 FY2027 results, attached the issuer release as Exhibit 99.1, and filed the quarter-ended July 31, 2026 Form 10-Q the same day. The prior Deep Resolver object already recorded those exact primary URLs and marked both routed gating items resolved. Nevertheless, the newer PL packet includes that resolver object while still computing primarySourcePresence.present=false/count=0 and missing_primary_source. This is an internal packet ingestion/source-classification conflict, not a missing external source. Per the repeated-unchanged-failure rule, Deep Resolver stops re-researching the same fact and preserves the conflict for Chief/deterministic compiler disposition.",
+      "sourceLineage": [
+        "https://www.sec.gov/Archives/edgar/data/1836833/000119312526381874/pl-20260903.htm",
+        "https://www.sec.gov/Archives/edgar/data/1836833/000119312526381874/pl-ex99_1.htm",
+        "https://www.sec.gov/Archives/edgar/data/1836833/000119312526382016/pl-20260731.htm",
+        "data/runtime/workgraph/evidence/PL-20260918T0935Z-deep-resolver.json",
+        "data/runtime/workgraph/packets/PL.json",
+        "data/runtime/workgraph/state.json"
+      ],
+      "originFingerprints": [
+        "sec:PL:8-K:0001193125-26-381874:2026-09-03",
+        "sec:PL:EX-99.1:0001193125-26-381874:2026-09-03",
+        "sec:PL:10-Q:0001193125-26-382016:2026-09-03"
+      ],
+      "contradictionStatus": "system_state_conflict_external_evidence_resolved_packet_classification_unresolved",
+      "confidence": 100,
+      "gateImpact": "Do not treat PL as lacking discoverable primary evidence. The gate remains mechanically open only because the packet is not counting the already-preserved SEC primary lineage. Deep Resolver should not loop on this unchanged research target.",
+      "recommendedNextState": "chief_or_compiler_disposition_required"
+    }
+  ],
+  "attempted": [
+    "t0:PL:primary_source_ingestion_conflict"
+  ],
+  "resolved": [],
+  "unavailable": [],
+  "stillConflicted": [
+    "t0:PL:primary_source_ingestion_conflict"
+  ],
+  "overallStatus": "still_conflicted",
+  "recommendedNextState": "chief_or_compiler_disposition_required",
+  "recommendedOwner": "chief-earth",
+  "lineage": {
+    "packet": "data/runtime/workgraph/packets/PL.json",
+    "priorResolution": "data/runtime/workgraph/evidence/PL-20260918T0935Z-deep-resolver.json",
+    "state": "data/runtime/workgraph/state.json",
+    "workgraphContract": "docs/WORKGRAPH_V2.md",
+    "note": "Auxiliary exception-resolution evidence only. No canonical methodology, score, rank, tick, membership, baseline evidence, or Chief decision was edited. The external primary-source question is resolved; the remaining issue is deterministic packet ingestion/classification. Deep Resolver stops repeated unchanged research on this target."
+  }
+}

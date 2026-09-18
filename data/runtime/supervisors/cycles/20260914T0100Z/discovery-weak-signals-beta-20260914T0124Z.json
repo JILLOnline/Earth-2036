@@ -1,0 +1,57 @@
+{
+  "reportVersion": 1,
+  "laneId": "discovery-weak-signals",
+  "cycleKey": "20260914T0100Z",
+  "generatedAt": "2026-09-14T01:24:20Z",
+  "status": "needs_research",
+  "summary": "Independent DAY discovery pass found decision-relevant autonomy-regulation and grid-planning signals, but the cadence-due gating discovery family set was not exhaustively acquired in this pass. FINRA remains partition-freshness only with eventDataAvailable=false, so discovery completion must remain false.",
+  "materialFindings": [
+    {
+      "finding": "Purpose-built AV certification remains a live emerging constraint distinct from autonomy capability. NHTSA opened an Audit Query on September 4, 2026 into Tesla Cybercab self-certification after commercial deployment and states existing FMVSS remain in force while eight rulemakings are underway.",
+      "materiality": "Supports continued investigation of certification/regulatory-throughput as a separate autonomy bottleneck, without yet promoting a canonical causal edge.",
+      "sources": ["https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification", "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle", "https://www.nhtsa.gov/press-releases/fmvss-updates-brake-pedal-requirements"]
+    },
+    {
+      "finding": "DOE announced GridFM 2.0 on September 1, 2026, targeting orders-of-magnitude faster utility scenario analysis as electricity demand grows.",
+      "materiality": "Weak signal that grid-planning throughput/software may become a distinct constraint/beneficiary layer alongside physical transformers, generation and interconnection capacity.",
+      "sources": ["https://www.energy.gov/oe/articles/does-office-electricity-announces-115m-genesis-mission-project-meet-growing-electricity"]
+    },
+    {
+      "finding": "DOE closed a loan of up to $1.9B on September 8, 2026 to support restart of the Duane Arnold nuclear plant.",
+      "materiality": "Reinforces the nuclear-restart / power-supply response to rising electricity demand and merits continued monitoring for second-order equipment, fuel and grid beneficiaries.",
+      "sources": ["https://www.energy.gov/articles/energy-department-closes-19-billion-loan-restart-duane-arnold-nuclear-plant"]
+    },
+    {
+      "finding": "Current machine source health shows required automated probes healthy, but FINRA OTC is explicitly only partition freshness with row-level event data unavailable.",
+      "materiality": "Reachability is not event acquisition; OTC additions/corporate actions cannot be treated as fully reviewed from the health probe alone.",
+      "sources": ["data/runtime/automated-source-health.json", "lib/discovery-sources.ts", "docs/SENSOR_MESH.md"]
+    }
+  ],
+  "proposedCanonicalChanges": [],
+  "contradictions": [
+    "Machine automated source coverage is 1.0 while current supervisor discoveryScanCompleted remains false; these are not contradictory once probe freshness is separated from full cadence-due event interpretation."
+  ],
+  "unknowns": [
+    "Cadence-due NYSE, Nasdaq IPO, Cboe new listings, OTC row-level actions, NASA, DOE, ClinicalTrials/FDA event-level materiality, and other active gating discovery families were not exhaustively reviewed in this lane pass.",
+    "No evidence yet establishes that AV certification throughput is financially material to any specific active-universe company beyond the observed Tesla/NHTSA case.",
+    "GridFM 2.0 may improve planning throughput without changing the physical grid bottleneck; company-level beneficiaries remain unresolved.",
+    "What important 2036 dependency has no source, metric, company, or graph node? Candidate gap from this pass: grid-planning/computational interconnection workflow throughput is not clearly represented as its own measured node."
+  ],
+  "peerRequests": [
+    {
+      "lane": "structural-causal",
+      "request": "Continue testing whether AV certification/regulatory throughput is a non-duplicative causal constraint with company-level materiality and explicit falsifiers."
+    },
+    {
+      "lane": "source-integrity",
+      "request": "Reconcile the full cadence-due gating-family checklist for cycle 20260914T0100Z and preserve FINRA capability-vs-freshness semantics."
+    }
+  ],
+  "accuracyDebates": [],
+  "blockingIssues": [
+    "Cannot defensibly set discoveryScanCompleted=true because the full cadence-due active gating discovery family set was not exhaustively acquired/interpreted in this pass."
+  ],
+  "directivesReviewed": ["chief-20260913t1300z-discovery-cadence", "chief-20260913t1300z-av-certification-constraint"],
+  "confidence": 84,
+  "acquisitionComplete": false
+}

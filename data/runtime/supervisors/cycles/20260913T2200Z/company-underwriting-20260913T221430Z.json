@@ -1,0 +1,96 @@
+{
+  "reportVersion": 1,
+  "laneId": "company-underwriting",
+  "cycleKey": "20260913T2200Z",
+  "generatedAt": "2026-09-13T22:14:30Z",
+  "status": "needs_research",
+  "summary": "Highest-information-value work remained XTND capitalization/runway normalization. Primary SEC pro forma and S-8 evidence materially tighten dilution bounds but still do not support a clean fully diluted post-close denominator or normalized cash runway. No score, admission or opportunity state should be promoted yet. The broader T0 underwriting program also remains incomplete with only one publishable company in canonical score state.",
+  "materialFindings": [
+    {
+      "finding": "XTND's September 3, 2026 merger closed with Xtend holders owning about 79.61% of economic interests and 87.41% of voting power on a fully diluted basis excluding amounts reserved under the new equity incentive plan.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm",
+        "data/runtime/discovery-pool.json"
+      ]
+    },
+    {
+      "finding": "The merger pro forma uses 277,442,600 weighted-average basic and diluted shares, including conversion of Xtend preferred shares/warrants/SAFEs and shares issued to JFB security holders. This is a useful provisional denominator, not a reconciled current fully diluted share count.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"
+      ]
+    },
+    {
+      "finding": "The S-8 registers 9,936,483 rollover-award shares, 18,630,959 shares under the 2026 Equity Incentive Plan and 15,000,000 shares under an additional plan category, creating 43,567,442 registered plan/award shares. The rollover portion may overlap securities already reflected in the pro forma denominator, so treating all 43.57 million as incremental dilution would risk double counting.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm"
+      ]
+    },
+    {
+      "finding": "If the 33,630,959 non-rollover plan shares are incremental to the 277,442,600 pro forma denominator, they represent roughly 12.1% additional share capacity. Separately, the merger earnout can issue up to 20,000,000 shares if 2026 and 2027 revenue thresholds are achieved, roughly 7.2% of the provisional denominator. These are scenario bounds, not a claim that all awards/earnouts will be issued.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm",
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm"
+      ]
+    },
+    {
+      "finding": "The June 30 pro forma balance sheet shows about $39.8 million cash plus $60.0 million PIPE cash and about $39.8 million current liabilities. The six-month pro forma net loss is about $27.5 million. Those figures improve gross liquidity visibility but are insufficient for a normalized cash-runway conclusion because the pro forma includes transaction/accounting adjustments and does not substitute for post-close cash-flow data.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"
+      ]
+    },
+    {
+      "finding": "Canonical runtime still has only one scored/publishable company, so baseline underwriting breadth is far from T0 completion regardless of XTND discovery quality.",
+      "sources": ["data/runtime/system-state.json"]
+    }
+  ],
+  "proposedCanonicalChanges": [
+    {
+      "proposal": "Keep XTND outside the active universe and unscored until a post-close capitalization table reconciles common shares, pre-funded warrants, rollover awards, plan reserves, earnout shares and any remaining financing instruments without double counting.",
+      "classification": "IMPLEMENT"
+    },
+    {
+      "proposal": "On the next XTND underwriting pass, prioritize the first post-close 10-Q/8-K or registration statement that provides actual shares outstanding, cash balance, operating cash flow and financing obligations; use those to replace provisional merger accounting with a normalized runway model.",
+      "classification": "IMPLEMENT"
+    }
+  ],
+  "contradictions": [
+    {
+      "issue": "The 277.44 million pro forma weighted-average denominator is often tempting to treat as current fully diluted shares, but the S-8 and earnout mechanics show material additional/overlapping equity capacity. A single fully diluted number is not yet defensible.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm",
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm"
+      ]
+    }
+  ],
+  "unknowns": [
+    "Exact post-close common shares outstanding after conversion/exercise mechanics.",
+    "Exact pre-funded-warrant count and overlap with beneficial-ownership caps.",
+    "Which registered rollover awards are already economically represented in the 277.44 million pro forma denominator.",
+    "Normalized post-close operating cash burn and cash runway.",
+    "Probability and timing of the two 10 million-share earnout tranches."
+  ],
+  "peerRequests": [
+    {
+      "laneId": "source-integrity",
+      "request": "When a new post-close XTND filing appears, fingerprint the capitalization disclosure and flag any denominator mismatch against the 277,442,600 pro forma baseline."
+    },
+    {
+      "laneId": "adversarial-red-team",
+      "request": "Stress-test XTND financing dependence, plan overhang, earnout incentives and controlling-holder governance before any admission recommendation."
+    },
+    {
+      "laneId": "expectations-execution",
+      "request": "Do not compute opportunity/valuation ratios from a provisional share count; wait for reconciled post-close capitalization."
+    }
+  ],
+  "accuracyDebates": [],
+  "blockingIssues": [
+    "XTND capitalization and normalized runway are not yet sufficiently reconciled for methodology-1.0 scoring or admission comparison.",
+    "T0 company underwriting remains incomplete across the active universe; canonical state has only one publishable score."
+  ],
+  "directivesReviewed": [
+    "chief-20260913t1300z-xtnd-capital-structure"
+  ],
+  "confidence": 90,
+  "acquisitionComplete": true
+}

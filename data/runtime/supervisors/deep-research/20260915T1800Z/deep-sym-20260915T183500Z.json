@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "role": "earth-deep-runner",
+  "cycleKey": "20260915T1800Z",
+  "generatedAt": "2026-09-15T18:35:00Z",
+  "mode": "DAY",
+  "backpressure": {
+    "readyForChiefObserved": 23,
+    "policyApplied": "blocker-clearing-only"
+  },
+  "findings": [
+    {
+      "ticker": "SYM",
+      "company": "Symbotic Inc.",
+      "batchId": "t0-20260914T1500Z-b02",
+      "attemptsObserved": 3,
+      "targetGate": "Classify transaction-level substance of Ladensohn Form 4 referenced by queue as accession 0001932967-26-000007 for governance/alignment/dilution/insider-behavior treatment.",
+      "resolution": "resolved_for_chief_review",
+      "evidenceType": "primary",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1837240/000183724026000033/xslF345X06/wk-form4_1779239936.xml",
+      "corroboratingSourceUrl": "https://www.sec.gov/Archives/edgar/data/1837240/000119312526231421/xslSCHEDULE_13D_X02/primary_doc.xml",
+      "evidence": {
+        "reportingPerson": "David A. Ladensohn",
+        "issuer": "Symbotic Inc. [SYM]",
+        "formFiledAt": "2026-05-19",
+        "earliestTransactionDate": "2026-05-15",
+        "transactionCode": "J",
+        "form4Substance": "The 2014 QSST F/B/O Perry Cohen distributed 384,222 Class V-1 shares, 12,469,262 Class V-3 shares and 12,853,484 paired Symbotic Holdings Units to other trusts for the same beneficiary at the trustee's instruction. The reporting person disclaims beneficial ownership. The securities were reported at $0 and the source trust's reported balance went to zero.",
+        "schedule13dCorroboration": "The same May 15 distribution moved 10,853,484 V-3 shares plus matching OpCo Units to The Goose Pond Trust and 384,222 V-1 shares plus 1,615,484 V-3 shares and 2,000,000 OpCo Units to the Diamond Trust. The Schedule 13D states the 2014 QSST ceased to be a beneficial owner and reports no other common-stock transactions by the reporting persons during the prior 60 days.",
+        "classification": "non-market trust distribution / beneficial-ownership reorganization; not an open-market sale, not an insider purchase, and not evidence of issuer share issuance by itself",
+        "dilutionImpact": "No incremental issuer dilution is evidenced by this transaction itself: existing paired securities were redistributed among trusts. Any separate redemption/conversion or issuer issuance must be evidenced independently and must not be inferred from this Form 4.",
+        "governanceAlignmentImpact": "Relevant to control/beneficial-ownership mapping because a large block moved out of the 2014 QSST and the reporting person's reported beneficial-ownership structure changed; weak/no direct signal of management conviction because the event was a trust distribution rather than a market trade."
+      },
+      "inference": "Treat as a governance/control-structure update, not a bearish insider-sale signal and not a dilution event. Do not assign purchase/sale conviction from the J-code distribution.",
+      "contradictionStatus": "resolved: primary Form 4 and same-day Schedule 13D/A describe the same trust distribution consistently. Queue accession uses reporting-owner CIK 1932967; the directly recovered issuer archive Form 4 is accession 0001837240-26-000033. Chief should reconcile this accession alias/provenance rather than treating them as separate transactions.",
+      "confidence": "high",
+      "gateImpact": "removes_blocker",
+      "recommendedChiefAction": "review",
+      "chiefHandoff": "Accept transaction classification for the SYM freshness gate after verifying the queue accession alias against EDGAR filing metadata. Preserve the event as control/beneficial-ownership restructuring; do not score it as open-market insider selling or issuer dilution."
+    }
+  ],
+  "notes": [
+    "Backpressure respected: ready_for_chief was 23, so no optional outside-250 research was opened.",
+    "No canonical score, rank, tick, methodology, membership, causal graph, baseline evidence, supervisor-state, decision bucket, Chief attestation or queue decision was edited."
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "reportVersion": 1,
+  "laneId": "adversarial-red-team",
+  "cycleKey": "20260913T1300Z",
+  "generatedAt": "2026-09-13T15:23:02Z",
+  "status": "complete",
+  "summary": "Independent falsification pass finds no primary-evidence basis to overturn GEV's current high-quality operating thesis, but identifies three confidence constraints that should remain explicit: 2026 free-cash-flow strength is partly working-capital driven, Wind remains operationally weak, and premium valuation makes execution misses more consequential. XTND cannot be treated as a clean challenger until its post-merger capital structure is normalized; the Sept. 4 S-8 alone registers 43.57M shares across rollover awards, equity-plan capacity and ESPP capacity. No bearish conclusion is manufactured and no score/rank mutation is proposed.",
+  "materialFindings": [
+    {
+      "finding": "GEV's Q2 free cash flow of $5.1B and first-half free cash flow of $9.9B are real reported results, but management states the Q2 increase was primarily due to higher positive working-capital benefits plus stronger adjusted EBITDA. A red-team view should not extrapolate the full cash conversion rate as purely recurring operating economics.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000147/gevpressrelease2q26.htm",
+        "data/baseline-evidence/GEV.json"
+      ]
+    },
+    {
+      "finding": "GEV Wind is a live counterexample to a uniformly strong execution narrative: Q2 Wind orders fell 40% organically, revenue fell 11% organically, and segment EBITDA losses increased due to lower Onshore volume and higher Offshore project costs. Diversification helps, but the weak segment should remain visible in scenario robustness/execution discussions.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000147/gevpressrelease2q26.htm",
+        "data/baseline-evidence/GEV.json"
+      ]
+    },
+    {
+      "finding": "GEV's demand evidence remains unusually strong even under adversarial review: Q2 orders were $24.2B, backlog $176B, gas backlog plus slot reservations 116 GW, and Electrification equipment backlog $40.6B. The falsification target is therefore backlog quality/conversion, capacity execution and price/margin durability rather than denying observed demand.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000147/gevpressrelease2q26.htm",
+        "data/runtime/causal-graph.json"
+      ]
+    },
+    {
+      "finding": "XTND's Sept. 4 S-8 registers 9,936,483 rollover-award shares, 18,630,959 shares under the 2026 Equity Incentive Plan and 15,000,000 ESPP shares, totaling 43,567,442 registered shares. Without a reconciled post-merger basic/fully diluted denominator, treating this as a dilution percentage would be false precision; it is nevertheless a material financing/overhang flag.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm",
+        "data/runtime/discovery-pool.json",
+        "data/runtime/supervisors/directives.json"
+      ]
+    }
+  ],
+  "proposedCanonicalChanges": [],
+  "contradictions": [
+    {
+      "issue": "GEV baseline evidence scores financial/operating momentum very highly, while the primary Q2 filing explicitly attributes a large part of FCF growth to working-capital benefits and shows Wind deterioration. This does not falsify the score, but it limits confidence in straight-line extrapolation.",
+      "sources": ["data/baseline-evidence/GEV.json", "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000147/gevpressrelease2q26.htm"]
+    },
+    {
+      "issue": "The causal graph's broad scenario robustness can coexist with a weak Wind segment; portfolio breadth is not evidence that every technology lane is executing well.",
+      "sources": ["data/runtime/causal-graph.json", "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000147/gevpressrelease2q26.htm"]
+    }
+  ],
+  "unknowns": [
+    "GEV customer concentration by largest individual customer/project is not quantified in the reviewed evidence bundle.",
+    "GEV backlog cancellation, deferral and margin-at-booking distributions are not sufficiently granular to stress backlog quality from repo evidence alone.",
+    "XTND reconciled post-merger basic shares, fully diluted shares, cash runway, debt and financing dependence remain unknown.",
+    "No evidence reviewed here supports a fraud/accounting accusation against GEV or XTND; uncertainty must not be converted into allegation."
+  ],
+  "peerRequests": [
+    {
+      "lane": "company-underwriting",
+      "request": "For GEV, isolate recurring versus working-capital-driven cash generation and quantify Wind loss trajectory/backlog quality where primary disclosure permits."
+    },
+    {
+      "lane": "structural-causal",
+      "request": "Stress-test whether gas/grid bottleneck scarcity migrates to permitting, labor, transformers, specialty materials or customer interconnection constraints that GEV does not control."
+    },
+    {
+      "lane": "expectations-execution",
+      "request": "Use premium valuation to model downside sensitivity to backlog conversion, margin and capacity misses without changing Earth Score."
+    }
+  ],
+  "accuracyDebates": [
+    {
+      "classification": "IMPLEMENT",
+      "proposal": "Add explicit cash-quality decomposition to future underwriting/red-team review when free cash flow is materially affected by working capital."
+    },
+    {
+      "classification": "IMPLEMENT",
+      "proposal": "Keep segment-level failure modes visible even when consolidated portfolio diversification is strong."
+    },
+    {
+      "classification": "DEFER",
+      "proposal": "Do not infer XTND dilution percentage from S-8 registered shares until the post-merger denominator and award overlap are reconciled."
+    }
+  ],
+  "blockingIssues": [],
+  "directivesReviewed": [
+    {
+      "directiveId": "chief-20260913t1300z-xtnd-capital-structure",
+      "status": "in_progress",
+      "progress": "Confirmed 43,567,442 S-8 registered shares across three buckets and explicitly avoided converting that amount into a dilution percentage before denominator reconciliation."
+    },
+    {
+      "directiveId": "chief-20260913t1300z-gev-constraint-migration",
+      "status": "peer_support",
+      "progress": "Red-team falsifiers emphasize successor constraints outside GEV control; no independent canonical edge change proposed."
+    }
+  ],
+  "confidence": 91,
+  "acquisitionComplete": true
+}

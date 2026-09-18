@@ -1,0 +1,77 @@
+{
+  "reportVersion": 1,
+  "laneId": "source-integrity",
+  "cycleKey": "20260913T2200Z",
+  "generatedAt": "2026-09-13T22:13:30Z",
+  "status": "complete",
+  "summary": "Current 2200Z machine boundary is coherent: 250/250 observed, identity and tradability validated, four required machine sources healthy, evidence queue empty, Beast/sourceMesh integrity passing, and the exact machine commit has a real successful workflow-dispatch CI run. The automatic PR CI is action_required with zero usable verification, but it is superseded for execution-proof purposes by successful run 34785863081 on the same exact SHA. Current-cycle Sheet mirror has not yet been written by Chief, so parity is explicitly pending rather than inferred.",
+  "materialFindings": [
+    {
+      "finding": "Deterministic machine cycle 20260913T2200Z persisted at exact commit 11b5a2f1fb9a1c3054eb324b68d2d783811774e9.",
+      "sources": [
+        "data/runtime/system-state.json",
+        "https://github.com/JILLOnline/Side-Projects/commit/11b5a2f1fb9a1c3054eb324b68d2d783811774e9"
+      ]
+    },
+    {
+      "finding": "Earth 2036 CI workflow-dispatch run 34785863081 completed successfully on the exact machine-cycle SHA. The parallel pull_request run 34785865653 ended action_required and is not treated as proof or failure under the integrity contract.",
+      "sources": [
+        "docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md",
+        "https://github.com/JILLOnline/Side-Projects/actions/runs/34785863081",
+        "https://github.com/JILLOnline/Side-Projects/actions/runs/34785865653"
+      ]
+    },
+    {
+      "finding": "Machine source health is 1.0 across SEC ticker identity, Nasdaq directory, other-listed directory and SEC submissions; 250/250 active companies were observed. Beast integrity and sourceMesh both pass with zero unresolved evidence.",
+      "sources": [
+        "data/runtime/source-health.json",
+        "data/runtime/intelligence-integrity.json",
+        "data/runtime/evidence-review-queue.json"
+      ]
+    },
+    {
+      "finding": "Automated discovery health reports 4/4 required probes healthy, but FINRA OTC is partition-freshness only with eventDataAvailable=false; this proves endpoint/dataset freshness, not row-level corporate-action acquisition.",
+      "sources": [
+        "data/runtime/automated-source-health.json",
+        "lib/discovery-sources.ts",
+        "docs/SENSOR_MESH.md"
+      ]
+    },
+    {
+      "finding": "The Intelligence Ledger contains no System Health row for cycle 20260913T2200Z yet. That is expected before Chief reconciliation, but same-cycle parity must remain pending until Chief writes and verifies the mirror.",
+      "sources": [
+        "https://docs.google.com/spreadsheets/d/1e4utNe3BPTIHDIaxupFYWEJjo61GB215fA_vpXDNmF4/edit",
+        "data/runtime/system-state.json"
+      ]
+    }
+  ],
+  "proposedCanonicalChanges": [],
+  "contradictions": [
+    {
+      "issue": "Surface automated coverage is 1.0 while FINRA row-level event data is unavailable. Coverage must continue to distinguish freshness/reachability from event-level capability.",
+      "sources": ["data/runtime/automated-source-health.json"]
+    }
+  ],
+  "unknowns": [
+    "Current-cycle Google Sheet mirror parity is pending Chief reconciliation.",
+    "FINRA current corporate-action rows remain unavailable to the automated probe without bearer-token query access; material OTC events require manual/corroborative review."
+  ],
+  "peerRequests": [
+    {
+      "laneId": "discovery-weak-signals",
+      "request": "Keep FINRA event-level capability distinct from partition freshness when completing cadence-due discovery review for 2200Z."
+    },
+    {
+      "laneId": "chief-earth",
+      "request": "Write and verify the 2200Z Sheet mirror before any same-cycle approval."
+    }
+  ],
+  "accuracyDebates": [],
+  "blockingIssues": [],
+  "directivesReviewed": [
+    "chief-20260913t1300z-exact-sha-ci",
+    "chief-20260913t1300z-discovery-cadence"
+  ],
+  "confidence": 97,
+  "acquisitionComplete": true
+}

@@ -1,0 +1,100 @@
+{
+  "reportVersion": 1,
+  "laneId": "source-integrity",
+  "cycleKey": "20260913T1300Z",
+  "generatedAt": "2026-09-13T14:18:00Z",
+  "status": "blocked",
+  "summary": "The persisted 20260913T1300Z machine state is internally coherent at the machine/source-health layer, but Council approval is blocked by missing real exact-SHA CI execution proof for the machine-cycle commit and by incomplete same-cycle supervisor discovery/parity proof. Machine and automated source surfaces are healthy, yet FINRA is partition-freshness only with no row-level event data, and green health must not be promoted into event-ingestion or discovery-complete claims.",
+  "materialFindings": [
+    {
+      "finding": "The exact persisted cycle remains 20260913T1300Z with 250/250 companies observed, identity/tradability validated, 1 scored and publishable company, machineSourceCoverageRatio 1, supervisorSourceCoverageRatio 0, combinedSourceCoverageRatio 0, discoveryScanCompleted false, qualifiedTick false, and councilReviewStatus pending.",
+      "sources": ["earth-2036/data/runtime/system-state.json", "earth-2036/data/runtime/current-ranking.json"]
+    },
+    {
+      "finding": "The machine-cycle persistence commit is 31800bad5e349a9aae447477534533d4c7a98f30 (Earth 2036 machine cycle 2026-09-13T13:00Z). Its associated Earth 2036 CI run 34760931146 concluded action_required and contains zero jobs. Under docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md, an empty action_required shell is not execution proof and cannot satisfy exact-SHA machine-cycle CI.",
+      "sources": ["GitHub commit 31800bad5e349a9aae447477534533d4c7a98f30", "GitHub Actions run 34760931146", "earth-2036/docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md"]
+    },
+    {
+      "finding": "A later successful PR CI at branch head cannot substitute for the missing exact-SHA machine-cycle execution proof. The reviewed post-machine diff from 31800bad to 85364ef contained only application/UI presentation paths, not engine, methodology, scoring, canonical runtime, or workflow paths, so that reviewed UI-only interval does not itself force recompute; any later material canonical/executable change still would.",
+      "sources": ["GitHub compare 31800bad5e349a9aae447477534533d4c7a98f30...85364ef508bd1d0e63039cae6717582e354d62f9", "earth-2036/docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md"]
+    },
+    {
+      "finding": "Automated source health reports 4/4 required automated sources healthy, but FINRA OTC Daily List is explicitly observationMode=partition-freshness with eventDataAvailable=false and recordCount=null. This proves dataset/partition reachability and freshness only, not row-level corporate-action ingestion.",
+      "sources": ["earth-2036/data/runtime/automated-source-health.json", "earth-2036/lib/discovery-sources.ts"]
+    },
+    {
+      "finding": "The source-health runtime correctly shows machineCoverageRatio 1 while same-cycle supervisorCoverageRatio and combinedCoverageRatio are 0; supervisorDiscoveryComplete is false. A clear evidence-review queue (0 unresolved items) does not override incomplete discovery.",
+      "sources": ["earth-2036/data/runtime/source-health.json", "earth-2036/data/runtime/evidence-review-queue.json", "earth-2036/engine/ranking.ts"]
+    },
+    {
+      "finding": "Beast/intelligence integrity passes for the one scored record (GEV): 61 evidence leaves, zero invalid leaves, six causal edges represented by the graph audit count context, seven independent origins, three structural signals, sovereign share about 0.7702 and max external-provider share about 0.1532. This is an integrity pass on the audited record, not proof that the 250-company baseline or discovery pass is complete.",
+      "sources": ["earth-2036/data/runtime/intelligence-integrity.json", "earth-2036/data/runtime/score-state.json"]
+    },
+    {
+      "finding": "Sensor sources are deliberately non-gating under the active contract. Sensor blind spots should be tracked as provenance/coverage observations but must not enter the active gating denominator absent an explicit future methodology promotion.",
+      "sources": ["earth-2036/docs/SENSOR_MESH.md", "earth-2036/lib/discovery-sources.ts"]
+    }
+  ],
+  "proposedCanonicalChanges": [
+    {
+      "proposal": "Do not approve or qualify this cycle until a real Earth 2036 CI execution is tied to the exact machine-cycle SHA or the machine cycle is recomputed at a new exact SHA with passing CI. This is a Chief/machine action, not a specialist write.",
+      "sources": ["earth-2036/docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md", "GitHub Actions run 34760931146"]
+    },
+    {
+      "proposal": "Preserve FINRA OTC status as partition-freshness/eventDataAvailable=false until authenticated row-level event retrieval or lawful primary corroboration is actually completed; do not count partition freshness as event ingestion.",
+      "sources": ["earth-2036/data/runtime/automated-source-health.json", "earth-2036/lib/discovery-sources.ts"]
+    }
+  ],
+  "contradictions": [
+    {
+      "issue": "Surface health is green (machine and automated coverage 1.0) while same-cycle supervisor coverage is 0 and discoveryScanCompleted is false. This is not a data contradiction if capability/reachability and discovery completion are kept separate, but it becomes a contradiction if green status is interpreted as complete evidence acquisition.",
+      "sources": ["earth-2036/data/runtime/automated-source-health.json", "earth-2036/data/runtime/source-health.json", "earth-2036/data/runtime/system-state.json"]
+    },
+    {
+      "issue": "The historical supervisor-state notes describe 10/10 gating discovery families covered at an earlier supervisor timestamp, while the current same-cycle source-health intentionally resets supervisor coverage to 0 pending review. Prior-cycle supervisor coverage must not be carried forward.",
+      "sources": ["earth-2036/data/runtime/supervisor-state.json", "earth-2036/data/runtime/source-health.json", "earth-2036/docs/SUPERVISOR_COUNCIL.md"]
+    }
+  ],
+  "unknowns": [
+    {
+      "unknown": "No same-cycle repository artifact reviewed here proves repo-versus-Sheet parity for 20260913T1300Z. system-state identifies spreadsheetMirror=chatgpt-supervisor, but that label is not parity evidence.",
+      "sources": ["earth-2036/data/runtime/system-state.json", "earth-2036/data/runtime/supervisor-council.json", "earth-2036/docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md"]
+    },
+    {
+      "unknown": "FINRA row-level current corporate-action contents remain unavailable from the committed automated health artifact because eventDataAvailable=false.",
+      "sources": ["earth-2036/data/runtime/automated-source-health.json"]
+    }
+  ],
+  "peerRequests": [
+    {
+      "toLane": "company-underwriting",
+      "request": "Treat the one-record publishable set as the current evidence boundary; do not infer completeness for the remaining 249 companies from green source health.",
+      "sources": ["earth-2036/data/runtime/system-state.json", "earth-2036/data/runtime/score-state.json"]
+    },
+    {
+      "toLane": "structural-causal",
+      "request": "Keep any new causal proposal source-bound and provisional; Beast passing on GEV does not validate missing causal maps for the rest of the universe.",
+      "sources": ["earth-2036/data/runtime/intelligence-integrity.json", "earth-2036/data/runtime/causal-graph.json"]
+    }
+  ],
+  "accuracyDebates": [
+    {
+      "topic": "Whether later successful CI can cure the machine-cycle proof gap",
+      "position": "No. The contract explicitly requires real exact-SHA CI for the reviewed machine-cycle SHA; later append-only specialist artifacts use immutable blob identity instead, and later successful branch-head CI is not retroactive machine execution proof.",
+      "sources": ["earth-2036/docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md", "GitHub Actions run 34760931146"]
+    }
+  ],
+  "blockingIssues": [
+    {
+      "issue": "Missing real exact-SHA Earth 2036 CI execution proof for machine-cycle SHA 31800bad5e349a9aae447477534533d4c7a98f30; the associated run has action_required with zero jobs.",
+      "sources": ["GitHub Actions run 34760931146", "earth-2036/docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md"]
+    },
+    {
+      "issue": "Same-cycle supervisor discovery remains incomplete and repo-versus-Sheet parity is not proven by a reviewed same-cycle artifact.",
+      "sources": ["earth-2036/data/runtime/source-health.json", "earth-2036/data/runtime/system-state.json", "earth-2036/data/runtime/supervisor-council.json"]
+    }
+  ],
+  "directivesReviewed": [],
+  "confidence": 96,
+  "acquisitionComplete": false
+}

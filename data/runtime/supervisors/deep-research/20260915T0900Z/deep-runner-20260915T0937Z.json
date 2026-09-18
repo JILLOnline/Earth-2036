@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "role": "earth-deep-runner",
+  "cycleKey": "20260915T0900Z",
+  "mode": "LOST_SCROLL",
+  "generatedAt": "2026-09-15T09:37:05Z",
+  "backpressure": {"readyForChief": 22, "policyTriggered": true, "optionalResearchCreated": false},
+  "targets": [
+    {
+      "ticker": "TSM",
+      "company": "Taiwan Semiconductor Manufacturing Company Limited",
+      "batchId": "t0-20260914T0400Z-b01",
+      "attemptsAtQueueRead": 3,
+      "exactGate": "Recover exact FY2025 major-customer concentration from current primary issuer evidence for reproducible concentration treatment.",
+      "resolution": "resolved_for_chief_review",
+      "evidenceType": "primary_issuer_20f",
+      "sourceUrl": "https://investor.tsmc.com/sites/ir/sec-filings/2025_20F%20Report.pdf",
+      "finding": {
+        "evidence": "TSMC's 2025 Form 20-F states its ten largest customers accounted for approximately 78% of 2025 net revenue; its largest customer accounted for 19%; its second-largest customer accounted for 17%.",
+        "historicalComparators": "Top ten: 70% (2023), 76% (2024), 78% (2025). Largest: 25%, 22%, 19%. Second-largest: 11%, 12%, 17%.",
+        "inference": "The exact FY2025 concentration percentages requested by Chief are now reproducible from current primary issuer evidence. Customer concentration remains material, but no customer identity should be inferred from this disclosure.",
+        "contradictionStatus": "none_identified",
+        "confidence": "high"
+      },
+      "gateImpact": "removes_blocker",
+      "recommendedChiefAction": "review",
+      "chiefHandoff": "Use 78% top-ten / 19% largest / 17% second-largest for FY2025 concentration treatment. Do not hold TSM on overseas-ramp economics or geopolitical timing; queue already classifies those as non-blocking uncertainty. If no independent contradiction exists in current lane evidence, TSM can leave blocked status after Chief lineage/factor review."
+    },
+    {
+      "ticker": "SYM",
+      "company": "Symbotic Inc.",
+      "batchId": "t0-20260914T1500Z-b02",
+      "attemptsAtQueueRead": 3,
+      "exactGate": "Classify transaction-level substance of SEC Form 4 accession 0001932967-26-000007.",
+      "resolution": "still_blocked",
+      "evidenceType": "source_recovery_attempt",
+      "sourceUrl": "https://www.sec.gov/edgar/browse/?CIK=1932967&owner=exclude",
+      "finding": {
+        "evidence": "Public indexed search did not recover accession 0001932967-26-000007 or its authenticated XML transaction table during this run. Nearby SEC Form 4 filings confirm CIK 0001932967 is David A. Ladensohn reporting Symbotic beneficial-ownership changes, but they cannot establish the substance of the requested accession.",
+        "inference": "No transaction code, amount, price, ownership delta, derivative conversion, gift, sale, award, or 10b5-1 characterization may be inferred for the missing accession.",
+        "contradictionStatus": "unresolved_source_recovery",
+        "confidence": "high_on_non_inference"
+      },
+      "exactMissingEvidence": "Authenticated SEC filing index/XML for accession 0001932967-26-000007, including nonDerivativeTransaction/derivativeTransaction rows, transactionCode, shares, price, acquired/disposed flag, post-transaction ownership and footnotes.",
+      "nextBestSourcePath": "SEC EDGAR submissions/filing index for reporting-owner CIK 0001932967 and issuer CIK 0001837240; recover exact accession XML directly, then classify only from transaction rows and footnotes.",
+      "gateImpact": "blocker_remains",
+      "recommendedChiefAction": "directive"
+    }
+  ],
+  "integrity": {
+    "canonicalStateEdited": false,
+    "queueDecisionEdited": false,
+    "scoreOrRankEdited": false,
+    "methodologyEdited": false,
+    "unknownsPreserved": true
+  }
+}

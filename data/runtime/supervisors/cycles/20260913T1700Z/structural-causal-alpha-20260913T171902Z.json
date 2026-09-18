@@ -1,0 +1,103 @@
+{
+  "reportVersion": 1,
+  "laneId": "structural-causal",
+  "cycleKey": "20260913T1700Z",
+  "generatedAt": "2026-09-13T17:19:02Z",
+  "status": "needs_research",
+  "summary": "Independent structural review finds strong primary evidence that certification/regulatory throughput can be a causal constraint distinct from technical autonomy capability for purpose-built automated vehicles that do not fit legacy FMVSS assumptions. NHTSA's Part 555 process explicitly governs temporary commercial deployment of noncompliant vehicles; the agency says that process historically took years, has now been streamlined, and in July 2026 granted Zoox a temporary commercial exemption for up to 2,500 vehicles annually for two years. Separately, NHTSA opened a September 4, 2026 Audit Query into Tesla Cybercab self-certification after commercial deployment, specifically testing compliance for a vehicle lacking traditional controls. This establishes a real regulatory/certification layer between technical capability and scalable deployment, but scope is not universal across all autonomy business models and company-level exposure across Earth's active autonomy names still requires mapping before canonical promotion. The current causal graph contains no autonomy certification node, so this is a candidate missing dependency rather than a duplicate of an existing edge.",
+  "materialFindings": [
+    {
+      "finding": "NHTSA states that Part 555 allows manufacturers to sell up to 2,500 vehicles per year that do not fully comply with FMVSS, including vehicles lacking traditional steering wheels, driver-operated brakes or rearview mirrors, provided equivalent safety and public-interest requirements are demonstrated. The agency also states the prior exemption process could take years, directly supporting regulatory throughput as a potential deployment constraint.",
+      "sources": ["https://www.nhtsa.gov/press-releases/streamline-exemption-process-noncompliant"]
+    },
+    {
+      "finding": "On July 30, 2026, NHTSA announced a temporary exemption allowing Zoox commercial robotaxi deployment up to 2,500 vehicles annually for two years, while simultaneously accelerating AV performance standards and Part 555 processing. This demonstrates that technical AV capability and federal authorization for purpose-built deployment are separable stages.",
+      "sources": ["https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle"]
+    },
+    {
+      "finding": "On September 4, 2026, NHTSA opened an Audit Query into Tesla Cybercab self-certification after commercial deployment. NHTSA says the inquiry will examine technical data and processes supporting compliance for a vehicle lacking traditional human controls. This is company-level primary evidence that certification interpretation can become an active constraint even after a technically deployable vehicle reaches the road.",
+      "sources": ["https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification"]
+    },
+    {
+      "finding": "Earth's current canonical causal graph contains only the GEV power/grid model and no autonomy certification/regulatory-throughput node or edge, so the identified dependency is not already represented in canonical graph state.",
+      "sources": ["earth-2036/data/runtime/causal-graph.json"]
+    },
+    {
+      "finding": "The regulatory constraint is conditional, not universal: NHTSA itself states that ongoing FMVSS modernization may eliminate the need for individual exemptions, and conventional-platform AV programs that already comply with applicable standards may not face the same Part 555 bottleneck.",
+      "sources": ["https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle"]
+    }
+  ],
+  "proposedCanonicalChanges": [
+    {
+      "proposal": "After entity-level exposure mapping, consider a causal node `bottleneck:av-certification-throughput` representing federal certification/exemption/standards throughput for purpose-built FMVSS-nonconforming AV deployment, distinct from autonomy software capability. Candidate relationship: certification throughput bottlenecks scalable commercial deployment; confidence 88/100; horizon 1-5 years. Falsifier: purpose-built AV programs consistently obtain certification/exemptions on timelines shorter than technical validation and production scaling, or FMVSS modernization removes the need for case-by-case exemptions without introducing an equivalent approval bottleneck.",
+      "sources": [
+        "https://www.nhtsa.gov/press-releases/streamline-exemption-process-noncompliant",
+        "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle",
+        "https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification"
+      ]
+    }
+  ],
+  "contradictions": [
+    {
+      "issue": "Regulatory policy is moving in both directions relevant to the constraint: NHTSA is actively reducing exemption friction while simultaneously preserving enforcement oversight and investigating self-certification. Therefore the correct model is a changing throughput constraint, not a permanently tightening regulatory barrier.",
+      "sources": [
+        "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle",
+        "https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification"
+      ]
+    }
+  ],
+  "unknowns": [
+    {
+      "unknown": "Entity-by-entity exposure across Earth's active autonomy companies has not yet been mapped: conventional-platform autonomy, autonomy software suppliers, delivery robots and purpose-built robotaxis may have materially different certification dependencies.",
+      "sources": ["earth-2036/data/runtime/entity-registry.json"]
+    },
+    {
+      "unknown": "The future steady-state duration and throughput of Part 555 exemptions after the 2025-2026 process reforms is not yet empirically established across enough purpose-built AV applications to quantify a durable bottleneck magnitude.",
+      "sources": [
+        "https://www.nhtsa.gov/press-releases/streamline-exemption-process-noncompliant",
+        "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle"
+      ]
+    }
+  ],
+  "peerRequests": [
+    {
+      "toLane": "company-underwriting",
+      "request": "Map which active-universe autonomy companies depend directly on purpose-built FMVSS-nonconforming vehicle certification versus conventional compliant platforms or component/software exposure before Chief promotes a company-specific edge.",
+      "sources": ["earth-2036/data/runtime/entity-registry.json"]
+    },
+    {
+      "toLane": "discovery-weak-signals",
+      "request": "Track NHTSA Part 555/AVEP grants, denials, processing times and FMVSS modernization as a non-score weak-signal series so Earth can test whether certification throughput is tightening, easing or migrating into another approval layer.",
+      "sources": ["https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle"]
+    },
+    {
+      "toLane": "adversarial-red-team",
+      "request": "Try to falsify the proposed certification bottleneck by finding purpose-built AV programs whose deployment cadence is not constrained by federal certification/exemption timing or whose critical path is demonstrably elsewhere.",
+      "sources": ["earth-2036/data/runtime/supervisors/directives.json"]
+    }
+  ],
+  "accuracyDebates": [
+    {
+      "topic": "Should AV certification be modeled as a standalone 2036 bottleneck or folded into generic regulation risk?",
+      "position": "Model it separately only when the vehicle architecture creates a concrete certification/exemption dependency. NHTSA's explicit Part 555 vehicle limits, process timing and Cybercab audit support causal distinctness, but generic regulation risk would be more accurate for business models without that dependency.",
+      "sources": [
+        "https://www.nhtsa.gov/press-releases/streamline-exemption-process-noncompliant",
+        "https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification"
+      ]
+    }
+  ],
+  "blockingIssues": [
+    {
+      "issue": "Canonical promotion should wait for active-universe entity exposure mapping so the proposed constraint is not overgeneralized across heterogeneous autonomy companies.",
+      "sources": ["earth-2036/data/runtime/entity-registry.json", "earth-2036/data/runtime/causal-graph.json"]
+    }
+  ],
+  "directivesReviewed": [
+    {
+      "directiveId": "chief-20260913t1300z-av-certification-constraint",
+      "result": "Primary NHTSA evidence supports certification/regulatory throughput as a distinct conditional constraint for purpose-built vehicles lacking traditional FMVSS features, with a clear falsifier. Directive is materially advanced but should remain open until active-universe company exposure is mapped and overgeneralization risk is resolved."
+    }
+  ],
+  "confidence": 93,
+  "acquisitionComplete": false
+}

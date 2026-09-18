@@ -1,0 +1,80 @@
+[
+  {
+    "version": 1,
+    "ticker": "CRDO",
+    "entityId": "CRDO",
+    "workId": "t0:CRDO",
+    "cycleKey": "20260916T2200Z",
+    "role": "council-alpha",
+    "perspective": "source-integrity",
+    "generatedAt": "2026-09-16T22:13:00Z",
+    "claims": [
+      {"claim":"Identity and current reporting lineage are reproducible through SEC CIK 0001807794 and accession 0001628280-26-060111, filed 2026-09-02 for period 2026-08-01.","status":"supported"},
+      {"claim":"The current 10-Q is the controlling primary origin for quarterly financial, concentration and liquidity evidence; issuer IR material is retained as a separate origin for product events and is not counted as independent corroboration of SEC financial facts.","status":"supported"},
+      {"claim":"Prior fiscal-2026 10-K evidence remains valid cumulative lineage for annual trajectory and ATM history, but current-quarter values defer to the newer 10-Q.","status":"supported"}
+    ],
+    "sources": [
+      {"sourceId":"sec-crdo-2026q1-index","url":"https://www.sec.gov/Archives/edgar/data/1807794/000162828026060111/0001628280-26-060111-index.htm","kind":"primary","primary":true,"publishedAt":"2026-09-02","originFingerprint":"sec:CIK1807794:0001628280-26-060111"},
+      {"sourceId":"sec-crdo-2026q1-10q","url":"https://www.sec.gov/Archives/edgar/data/1807794/000162828026060111/crdo-20260801.htm","kind":"primary","primary":true,"publishedAt":"2026-09-02","originFingerprint":"sec:CIK1807794:0001628280-26-060111"},
+      {"sourceId":"sec-crdo-fy2026-10k","url":"https://www.sec.gov/Archives/edgar/data/1807794/000162828026043303/crdo-20260502.htm","kind":"primary","primary":true,"publishedAt":"2026-06-17","originFingerprint":"sec:CIK1807794:0001628280-26-043303"}
+    ],
+    "factors":[
+      {"name":"Data Confidence","direction":"positive","basis":"Current SEC filing plus cumulative annual filing provide direct primary lineage; duplicate SEC document/index origins collapse to one filing origin."},
+      {"name":"Evidence freshness","direction":"positive","basis":"Quarterly filing dated 2026-09-02 is current for this work cycle."}
+    ],
+    "risks":[],
+    "contradictions":[],
+    "unknowns":[
+      {"unknown":"Issuer product announcements are management-origin claims and require realized filing evidence before being treated as shipment/share proof.","gating":false}
+    ],
+    "gatingIssues":[],
+    "confidence":96,
+    "recommendedNextState":"packet_ready",
+    "recommendedOwner":"machine packet compiler"
+  },
+  {
+    "version": 1,
+    "ticker": "CRDO",
+    "entityId": "CRDO",
+    "workId": "t0:CRDO",
+    "cycleKey": "20260916T2200Z",
+    "role": "council-alpha",
+    "perspective": "company-underwriting",
+    "generatedAt": "2026-09-16T22:13:00Z",
+    "claims": [
+      {"claim":"Realized operating trajectory is strong: fiscal 2026 revenue was approximately $1.3B versus $436.8M in fiscal 2025, with fiscal-2026 net income $472.3M; the quarter ended 2026-08-01 produced $479.0M revenue and $129.4M net income.","status":"supported"},
+      {"claim":"Customer concentration is a material resilience risk rather than an unresolved evidence gap: fiscal-2026 top-10 customers represented about 90% of revenue, and the latest quarter's two largest customers represented 71% of quarterly revenue as documented in the current filing lineage.","status":"supported"},
+      {"claim":"Liquidity/runway evidence is sufficient for reproducible treatment: fiscal year-end cash and equivalents were about $1.2B and working capital $1.8B; management stated existing liquidity was sufficient for at least twelve months and longer term. Fiscal 2026 also included $736.3M net ATM proceeds from 4.8M ordinary shares, making dilution history explicit rather than unknown.","status":"supported"},
+      {"claim":"Share-based compensation remains economically material: the latest quarter reports $87.979M of share-based compensation on $479.003M revenue; this is a dilution/capital-allocation risk to carry explicitly rather than a blocker.","status":"supported"},
+      {"claim":"DustPhotonics acquisition and optical expansion increase product optionality but also consume capital and create integration/qualification risk; launch/TAM claims are not treated as realized revenue evidence.","status":"supported"}
+    ],
+    "sources": [
+      {"sourceId":"sec-crdo-2026q1-10q","url":"https://www.sec.gov/Archives/edgar/data/1807794/000162828026060111/crdo-20260801.htm","kind":"primary","primary":true,"publishedAt":"2026-09-02","originFingerprint":"sec:CIK1807794:0001628280-26-060111"},
+      {"sourceId":"sec-crdo-fy2026-10k","url":"https://www.sec.gov/Archives/edgar/data/1807794/000162828026043303/crdo-20260502.htm","kind":"primary","primary":true,"publishedAt":"2026-06-17","originFingerprint":"sec:CIK1807794:0001628280-26-043303"}
+    ],
+    "factors":[
+      {"name":"Execution / operating trajectory","direction":"positive","basis":"Large realized year-over-year revenue and earnings expansion persists into the latest quarter."},
+      {"name":"Balance sheet / survival","direction":"positive","basis":"Substantial cash/working capital and explicit at-least-12-month liquidity statement."},
+      {"name":"Dilution / capital allocation","direction":"negative","basis":"Material fiscal-2026 ATM issuance and high current share-based compensation must be carried in risk treatment."},
+      {"name":"Customer concentration","direction":"negative","basis":"Revenue remains highly concentrated despite expanding customer engagement."},
+      {"name":"Moat / pricing power","direction":"mixed-positive","basis":"Proprietary SerDes/DSP and tailored-to-broadly-reusable product model support differentiation, but filing evidence does not establish durable pricing power independently of customer concentration."}
+    ],
+    "risks":[
+      {"risk":"Hyperscaler/customer concentration creates step-function revenue and bargaining-power exposure.","gating":false},
+      {"risk":"ATM issuance and material SBC can dilute owners even while operating results improve.","gating":false},
+      {"risk":"DustPhotonics integration and optical qualification can consume capital without delivering expected economics.","gating":false}
+    ],
+    "contradictions":[
+      {"claim":"Rapid realized growth coexists with severe customer concentration and meaningful equity issuance.","resolution":"Both are primary-supported and should be represented simultaneously in factor/risk treatment; neither invalidates the other.","resolved":true,"gating":false}
+    ],
+    "unknowns":[
+      {"unknown":"Long-run customer diversification pace remains uncertain.","gating":false},
+      {"unknown":"Future optical product qualification/share and acquisition synergies are not yet realized filing facts.","gating":false},
+      {"unknown":"Durable standalone pricing power is not directly quantified in the filing evidence.","gating":false}
+    ],
+    "gatingIssues":[],
+    "confidence":92,
+    "recommendedNextState":"packet_ready",
+    "recommendedOwner":"machine packet compiler"
+  }
+]

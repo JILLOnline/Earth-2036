@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "role": "earth-deep-runner",
+  "cycleKey": "20260915T1200Z",
+  "generatedAt": "2026-09-15T12:35:20Z",
+  "mode": "DAY",
+  "backpressure": {
+    "readyForChiefObserved": 22,
+    "policyApplied": "blocker-clearing-only",
+    "optionalResearchDebtCreated": false
+  },
+  "findings": [
+    {
+      "ticker": "TSM",
+      "company": "Taiwan Semiconductor Manufacturing Company Limited",
+      "batchId": "t0-20260914T0400Z-b01",
+      "targetGate": "FY2025 major-customer concentration",
+      "resolution": "resolved_for_chief_review",
+      "sourceUrl": "https://investor.tsmc.com/sites/ir/sec-filings/2025_20F%20Report.pdf",
+      "sourceRepoPath": null,
+      "evidenceVsInference": "evidence",
+      "evidence": {
+        "top10CustomerShare2025Pct": 78,
+        "largestCustomerShare2025Pct": 19,
+        "secondLargestCustomerShare2025Pct": 17,
+        "comparativeLargestCustomerSharePct": {"2023": 25, "2024": 22, "2025": 19},
+        "comparativeSecondLargestCustomerSharePct": {"2023": 11, "2024": 12, "2025": 17},
+        "issuerLanguage": "TSMC states its ten largest customers represented approximately 78% of 2025 net revenue; its largest and second-largest customers represented 19% and 17%, respectively."
+      },
+      "contradictionStatus": "none_observed",
+      "confidence": "high",
+      "gateImpact": "removes_blocker",
+      "recommendedChiefAction": "review",
+      "notes": "This is the exact narrow source-recovery item named by Chief. Overseas-ramp economics and geopolitical timing remain outside this blocker."
+    },
+    {
+      "ticker": "SYM",
+      "company": "Symbotic Inc.",
+      "batchId": "t0-20260914T1500Z-b02",
+      "targetGate": "Classify SEC Form 4 accession 0001932967-26-000007 for governance/alignment/dilution/insider-behavior treatment",
+      "resolution": "resolved_for_chief_review",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1837240/000193296726000007/0001932967-26-000007-index.html",
+      "sourceRepoPath": null,
+      "evidenceVsInference": "corroborated filing classification; exact SEC XML transaction table should be checked by Chief/source-integrity before canonical use",
+      "evidence": {
+        "filingType": "Form 4",
+        "reportingPerson": "David A. Ladensohn",
+        "classification": "non-market internal ownership reorganization",
+        "transactionSubstance": "zero-price internal distributions/reclassifications among trusts associated with the insider involving Symbotic Class V-1, Class V-3, Symbotic Holdings Units and corresponding Class A common stock",
+        "openMarketPurchaseOrSaleObserved": false,
+        "economicInterpretation": "Do not treat this accession as an open-market insider buy or sale. It is primarily an ownership-structure/governance-lineage event unless the authenticated XML reveals contrary transaction coding."
+      },
+      "corroborationUrl": "https://www.attn.today/en/filings",
+      "contradictionStatus": "none_observed",
+      "confidence": "medium_high",
+      "gateImpact": "removes_blocker_subject_to_primary_xml_corroboration",
+      "recommendedChiefAction": "corroborate",
+      "notes": "The exact accession is indexed as a current SYM Form 4 and independently summarized as zero-price internal distributions/reclassifications with no open-market purchase/sale. Because direct SEC XML retrieval was not available in this run, Chief/source-integrity should authenticate transaction codes before canonical promotion; this is a narrow corroboration step, not an open-ended research blocker."
+    }
+  ],
+  "summary": {
+    "targetedBlockers": 2,
+    "resolvedForChiefReview": 2,
+    "stillBlocked": 0,
+    "nonGatingUnknown": 0,
+    "recommendedQueueEffect": "TSM blocker can be removed after Chief verifies issuer 20-F lineage. SYM should move out of blocked once exact SEC XML confirms the already-corroborated non-market reorganization classification.",
+    "outside250InvestigationPerformed": false
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "reportVersion": 1,
+  "laneId": "expectations-execution",
+  "cycleKey": "20260913T1300Z",
+  "generatedAt": "2026-09-13T15:23:02Z",
+  "status": "complete",
+  "summary": "Independent expectations pass keeps business quality separate from investment attractiveness. GEV's primary guidance supports a powerful 2026 operating base, but the Sept. 11 market value around $255.7B embeds substantial execution: against 2026 revenue guidance of $45.5-$46.5B the equity value is about 5.5-5.6x guided revenue, and against $11.5-$12.5B FCF guidance it is about 20.5-22.2x guided FCF. That leaves upside if backlog converts with sustained margins, but raises compression risk if capacity, pricing or backlog conversion disappoint. External consensus precision is treated as secondary/unknown and does not alter Earth Score. Provisional Action State: WATCH/SELECTIVE, not a canonical recommendation.",
+  "materialFindings": [
+    {
+      "finding": "GEV's July 22 primary filing raised 2026 revenue guidance to $45.5-$46.5B and free cash flow guidance to $11.5-$12.5B while retaining 12%-14% adjusted EBITDA margin guidance. This is the reproducible operating anchor for expectation scenarios.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000147/gevpressrelease2q26.htm",
+        "data/baseline-evidence/GEV.json"
+      ]
+    },
+    {
+      "finding": "A Sept. 11, 2026 secondary market snapshot reports GEV market capitalization near $255.68B. Relative to current company guidance, that implies approximately 5.5-5.6x 2026 guided revenue and 20.5-22.2x 2026 guided free cash flow. These are simple equity-value ratios, not intrinsic-value estimates.",
+      "sources": [
+        "https://stockanalysis.com/stocks/gev/market-cap/",
+        "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000147/gevpressrelease2q26.htm"
+      ]
+    },
+    {
+      "finding": "The operating bridge has unusually strong forward evidence: $176B backlog, 116 GW gas backlog plus slot reservations, a target of at least 125 GW by year-end 2026, 20 GW annual gas-turbine output targeted in Q3 2026, and Electrification data-center orders above $5B year-to-date. These support a base/bull execution path but also create measurable miss points.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000147/gevpressrelease2q26.htm",
+        "data/runtime/causal-graph.json"
+      ]
+    },
+    {
+      "finding": "A secondary consensus snapshot reports a Buy consensus and wide analyst target range, but consensus data are not primary and are not used as a canonical score input. Crowding/positioning data were not available with sufficient provenance in this pass.",
+      "sources": ["https://stockanalysis.com/stocks/gev/forecast/", "engine/scoring.ts"]
+    }
+  ],
+  "proposedCanonicalChanges": [],
+  "contradictions": [
+    {
+      "issue": "GEV can simultaneously have high long-horizon Earth quality and only moderate valuation opportunity. The current ranking already reflects this separation with Earth Score 81.8 and marketValuationOpportunity 56; market momentum must not silently raise long-horizon quality.",
+      "sources": ["data/runtime/current-ranking.json", "engine/methodology.ts", "engine/scoring.ts"]
+    }
+  ],
+  "unknowns": [
+    "No primary exchange-grade end-of-day price/market-cap artifact is persisted in the reviewed repo for Sept. 11; the market-cap snapshot used here is secondary and timestamped.",
+    "Reliable current short interest, options-implied distribution, institutional crowding and fund-flow data were not available with sufficient provenance.",
+    "Consensus estimate dispersion and revision history are not persisted canonically; secondary analyst targets are contextual only.",
+    "A defensible terminal valuation multiple for 2028/2030 is not established; assigning one would create false precision."
+  ],
+  "peerRequests": [
+    {
+      "lane": "company-underwriting",
+      "request": "Provide normalized recurring FCF bridge excluding unusually favorable working-capital timing so execution scenarios can distinguish durable cash power from timing effects."
+    },
+    {
+      "lane": "structural-causal",
+      "request": "Provide quantified successor-bottleneck cases that could cap backlog conversion despite strong demand."
+    },
+    {
+      "lane": "source-integrity",
+      "request": "Persist a reproducible market-data provenance path for price/share count/market cap and, if available, consensus revisions/crowding inputs used by Opportunity/Execution."
+    }
+  ],
+  "accuracyDebates": [
+    {
+      "classification": "IMPLEMENT",
+      "proposal": "Use scenario bridges anchored to primary company guidance and explicitly timestamped market inputs; keep valuation ratios separate from Earth Score."
+    },
+    {
+      "classification": "IMPLEMENT",
+      "proposal": "Treat backlog conversion, gas-output milestones, pricing and Wind losses as measurable execution checkpoints rather than narrative catalysts."
+    },
+    {
+      "classification": "DEFER",
+      "proposal": "Do not create precise bull/base/bear price targets until a versioned terminal-multiple/market-data convention exists; scenario economics can be expressed without invented precision."
+    }
+  ],
+  "blockingIssues": [],
+  "directivesReviewed": [
+    {
+      "directiveId": "chief-20260913t1300z-gev-expectations",
+      "status": "material_progress",
+      "progress": "Built a reproducible primary-guidance bridge and timestamped valuation ratios; retained unknown treatment for crowding and consensus precision. A formal terminal-value convention remains intentionally absent rather than invented."
+    },
+    {
+      "directiveId": "chief-20260913t1300z-xtnd-capital-structure",
+      "status": "peer_dependency",
+      "progress": "No XTND opportunity assessment attempted because normalized basic/fully diluted shares, runway and financing dependence are not yet reconciled."
+    }
+  ],
+  "confidence": 88,
+  "acquisitionComplete": true
+}

@@ -1,0 +1,65 @@
+{
+  "reportVersion": 1,
+  "role": "earth-deep-runner",
+  "cycleKey": "20260916T0500Z",
+  "generatedAt": "2026-09-16T06:35:56Z",
+  "mode": "GRAVEYARD",
+  "backpressure": true,
+  "summary": "Focused only on exact blocker-clearing paths. Same-cycle Alpha left 11 active b03 underwriting gates; queue has 24 ready_for_chief and one blocked name. This pass materially narrowed TER and SYM and identified a false ROK search path that must not contaminate Rockwell Automation underwriting.",
+  "findings": [
+    {
+      "ticker": "TER",
+      "company": "Teradyne, Inc.",
+      "batchId": "t0-20260915T0000Z-b03",
+      "gate": "debt/convertible assembly and current liquidity",
+      "resolution": "resolved_for_chief_review",
+      "sourceUrls": [
+        "https://www.sec.gov/Archives/edgar/data/97210/000119312526327715/ter-20260628.htm",
+        "https://www.sec.gov/Archives/edgar/data/97210/000119312526201058/ter-20260329.htm"
+      ],
+      "evidence": "Primary SEC 2026 10-Q evidence establishes current balance-sheet/equity context. Q1 filing states cash, cash equivalents, marketable securities and the senior secured revolver are sufficient for at least twelve months and that Teradyne was covenant-compliant at March 29, 2026. Q2 filing supplies the June 28, 2026 equity statement and current quarter filing anchor. This removes the generic liquidity/runway portion of TER's debt gate; Chief should still assemble any specific convertible-note terms from the Q2 debt footnote before calling the full debt/convertible gate closed.",
+      "inference": "Liquidity adequacy is directly stated; absence/presence and exact economics of convertibles require the debt-note table and should not be inferred from liquidity language.",
+      "contradictionStatus": "none",
+      "confidence": 0.97,
+      "gateImpact": "removes blocker component; narrows remaining gate to exact debt/convertible terms plus governance/dilution normalization",
+      "recommendedChiefAction": "review"
+    },
+    {
+      "ticker": "SYM",
+      "company": "Symbotic Inc.",
+      "batchId": "t0-20260914T1500Z-b02",
+      "gate": "classify SEC Form 4 accession 0001932967-26-000007 transaction substance",
+      "resolution": "still_blocked",
+      "sourceUrls": [
+        "https://www.sec.gov/Archives/edgar/data/1837240/000193297326000021/xslF345X06/wk-form4_1785186579.xml",
+        "https://www.sec.gov/Archives/edgar/data/1837240/000187734626000021/xslF345X06/wk-form4_1787702660.xml"
+      ],
+      "evidence": "Direct SEC search recovered other 2026 Symbotic Form 4 ownership XMLs, proving the lawful EDGAR ownership-document path is available, but did not recover the exact accession 0001932967-26-000007. The requested accession number embeds filer CIK 1932967, whereas recovered current SYM ownership forms show issuer CIK 1837240 and reporting-person accession filers such as 1932973/1877346. Do not substitute a nearby Form 4 or infer transaction code/amount/price/holdings.",
+      "inference": "The accession may be a reporting-person filing whose index must be opened directly; ticker-level search is insufficient for binary classification.",
+      "contradictionStatus": "exact-accession mismatch unresolved",
+      "confidence": 0.99,
+      "gateImpact": "blocker remains; exact transaction-level classification unavailable",
+      "nextBestSourcePath": "https://www.sec.gov/Archives/edgar/data/1932967/000193296726000007/ — fetch index.json first, then the listed ownership XML/xslF345 document; if SEC returns no accession, query submissions/CIK0001932967.json to verify accession existence before any further search.",
+      "recommendedChiefAction": "quarantine"
+    },
+    {
+      "ticker": "ROK",
+      "company": "Rockwell Automation, Inc.",
+      "batchId": "t0-20260915T0000Z-b03",
+      "gate": "customer concentration",
+      "resolution": "still_blocked",
+      "sourceUrls": [],
+      "evidence": "A web result surfaced a 2025 filing for Rockwell Medical (RMTI), not Rockwell Automation (ROK), containing DaVita concentration data. This is an entity-name collision and must be rejected rather than used as ROK evidence.",
+      "inference": "None; this is an identity-integrity rejection.",
+      "contradictionStatus": "false-positive source rejected",
+      "confidence": 1.0,
+      "gateImpact": "prevents contamination; does not resolve ROK concentration",
+      "nextBestSourcePath": "Rockwell Automation CIK 1024478 latest 10-K/10-Q segment/customer concentration footnotes on SEC EDGAR; search within exact issuer filing for 'customer', '10%', 'concentration', and 'accounts receivable'.",
+      "recommendedChiefAction": "corroborate"
+    }
+  ],
+  "nonGatingUnknowns": [],
+  "chiefHandoff": "TER liquidity/runway component is primary-source resolved; retain only exact debt/convertible terms and governance/dilution as TER gating work. Keep SYM quarantined until the exact accession XML is read. Reject the Rockwell Medical/DaVita result as wrong-entity evidence and continue ROK only against CIK 1024478.",
+  "canonicalChangesProposed": [],
+  "canonicalStateEdited": false
+}

@@ -1,0 +1,215 @@
+{
+  "artifactVersion": 1,
+  "cycleKey": "20260914T2100Z",
+  "timestamp": "2026-09-14T21:33:35Z",
+  "shift": "DAY",
+  "runner": "earth-deep-runner",
+  "mode": "gap-closer",
+  "batchContext": {
+    "activeBatchId": "t0-20260914T1500Z-b02",
+    "blockedBatchId": "t0-20260914T0400Z-b01",
+    "sourceQueuePath": "data/runtime/supervisors/t0-bootstrap-queue.json",
+    "blockedTargets": ["AMD", "TSM", "ASML"]
+  },
+  "methodologyContract": {
+    "path": "engine/rubric.ts",
+    "relevantRequiredFactors": [
+      "crossDivisionLeverage.customerDiversification",
+      "bottleneckControl.switchingCost",
+      "scenarioRobustness.geographicDiversification",
+      "supplyChainResilience.supplierDiversification",
+      "pricingPower.marginEvidence",
+      "pricingPower.scarcityRent",
+      "risk.customerConcentration",
+      "risk.regulatory",
+      "risk.execution",
+      "risk.solvencyDilution",
+      "dataConfidence.primaryCoverage",
+      "dataConfidence.completeness"
+    ],
+    "discipline": "A rubric factor needs reproducible sourced evidence; the locked methodology does not require unavailable segment-specific customer identities, future market-share certainty, or hypothetical future policy timing. Those remain explicit unknowns and should not become synthetic T0 blockers when conservative scoring is possible from current primary evidence."
+  },
+  "targets": [
+    {
+      "ticker": "AMD",
+      "company": "Advanced Micro Devices",
+      "batchId": "t0-20260914T0400Z-b01",
+      "attemptsObserved": 3,
+      "researchQuestion": "Is accelerator-specific end-customer concentration or exact switching/share economics actually required to promote AMD under methodology 1.0, and what current primary evidence supports a reproducible concentration/moat/pricing treatment?",
+      "gateClassification": "gating_blocker_review",
+      "summary": "The existing blocker is over-scoped. AMD's FY2025 Form 10-K states no customer represented at least 10% of consolidated revenue in 2025 or 2024, giving direct primary evidence for company-level customer-concentration risk and diversification treatment. The same filing reports 2025 Client processor ASP increased 31%, while current 2026 primary company disclosures show scaled Instinct deployments plus named committed AI infrastructure deployments. Exact Instinct end-customer concentration below disclosure thresholds and future accelerator share persistence are not required locked-rubric fields. They should remain documented unknowns, not prevent conservative scoring.",
+      "findings": [
+        {
+          "type": "evidence",
+          "claim": "AMD disclosed that no customer accounted for at least 10% of consolidated net revenue in fiscal 2025 or 2024; one Client and Gaming customer was 18% in 2023.",
+          "source": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+          "supports": ["risk.customerConcentration", "crossDivisionLeverage.customerDiversification"]
+        },
+        {
+          "type": "evidence",
+          "claim": "AMD's corrected FY2025 MD&A states Client processor average selling price increased 31% year over year, providing observed price/mix evidence rather than a fabricated pricing assumption.",
+          "source": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000021/amd-20251227.htm",
+          "supports": ["pricingPower.marginEvidence", "pricingPower.scarcityRent"]
+        },
+        {
+          "type": "evidence",
+          "claim": "AMD's Q2 2026 release reported $11.5B quarterly revenue and said Data Center revenue more than doubled year over year while Instinct deployments scaled and Helios began ramping.",
+          "source": "https://newsroom.amd.com/news/amd-2q-2026-earnings/",
+          "supports": ["thesisQuality.productMarketFitEvidence", "financialOperatingMomentum.revenueMomentum"]
+        },
+        {
+          "type": "evidence",
+          "claim": "AMD and Anthropic announced a primary-source strategic partnership for up to 2 GW of MI450 deployments, with the first gigawatt beginning in 1H 2027; this validates a named large-scale deployment path without proving future share persistence.",
+          "source": "https://ir.amd.com/news-events/press-releases/detail/1292/amd-and-anthropic-announce-strategic-partnership-to-deploy-up-to-2-gigawatts-of-amd-instinct-mi450-series-gpus",
+          "supports": ["thesisQuality.productMarketFitEvidence", "bottleneckControl.switchingCost"]
+        }
+      ],
+      "inference": [
+        "Company-level customer concentration is reproducibly scorable from the 10-K even though Instinct-only customer concentration is not separately disclosed.",
+        "Observed ASP/mix and named deployment commitments can support conservative moat/pricing evidence; they do not justify assuming NVIDIA-like switching costs or future accelerator share."
+      ],
+      "contradictions": [
+        "Named large AI deployments increase confidence in product-market fit but can still create undisclosed segment-level concentration; absence of a >=10% consolidated customer does not prove Instinct diversification."
+      ],
+      "unknowns": [
+        {"classification":"non_gating_unknown","item":"Exact Instinct accelerator end-customer concentration below issuer disclosure thresholds."},
+        {"classification":"non_gating_unknown","item":"Future MI450/Helios market-share persistence and precise switching economics versus competing accelerators."}
+      ],
+      "falsifiers": [
+        "A later primary filing reveals a material >=10% customer dependence or contract structure that materially weakens current concentration treatment.",
+        "Primary evidence shows current Instinct deployments are predominantly non-economic trials or materially adverse pricing concessions."
+      ],
+      "confidence": 93,
+      "blockerDisposition": "resolved_for_chief_review",
+      "recommendedChiefAction": "review",
+      "recommendedActionDetail": "Remove AMD from blocked status if Chief agrees the locked rubric can be conservatively scored from company-level concentration plus current deployment/pricing evidence. Preserve Instinct-specific concentration/share precision as non_gating_unknown; do not invent it."
+    },
+    {
+      "ticker": "TSM",
+      "company": "Taiwan Semiconductor Manufacturing Company",
+      "batchId": "t0-20260914T0400Z-b01",
+      "attemptsObserved": 3,
+      "researchQuestion": "Can TSMC's major-customer dependence and overseas-fab/capital-efficiency risk now be reproduced from current primary disclosures without waiting for unknowable geopolitical timing?",
+      "gateClassification": "gating_blocker_review",
+      "summary": "Yes. TSMC's 2025 Form 20-F quantifies customer concentration directly: top ten customers were 78% of 2025 revenue, the largest customer 19%, and the second largest 17%. Current Q2 2026 primary materials quantify the capital-efficiency tradeoff: full-year 2026 capex was raised to $60B-$64B, overseas fabs diluted gross margin, and slightly higher utilization plus cost improvements supported Q2 margin. These facts permit reproducible concentration, geographic-resilience, execution, capital-efficiency and risk treatment. Exact future geopolitical outcomes and mature utilization by individual overseas fab remain uncertainty, not missing historical evidence.",
+      "findings": [
+        {
+          "type": "evidence",
+          "claim": "TSMC disclosed top-ten customer concentration of approximately 78% of 2025 revenue; its largest customer represented 19% and second-largest 17%.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1046179/000162828026025362/tsm-20251231.htm",
+          "supports": ["risk.customerConcentration", "crossDivisionLeverage.customerDiversification"]
+        },
+        {
+          "type": "evidence",
+          "claim": "TSMC Q2 2026 revenue was $40.2B with 67.7% gross margin, 60.3% operating margin, and 2nm already 3% of wafer revenue.",
+          "source": "https://pr.cld.tsmc.com/english/news/3326",
+          "supports": ["financialOperatingMomentum.revenueMomentum", "financialOperatingMomentum.marginCashFlow", "bottleneckControl.constraintShare"]
+        },
+        {
+          "type": "evidence",
+          "claim": "TSMC's Q2 2026 earnings-call materials state slightly higher utilization and cost improvements lifted Q2 gross margin while overseas fabs were a margin dilution; 2026 capex was raised to $60B-$64B, with 70%-80% for advanced process technologies.",
+          "source": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-07/57b65edbfe6e480e74abe202be983ecbde79e934/TSMC%202Q26%20Transcript.pdf",
+          "supports": ["financialOperatingMomentum.balanceSheetExecution", "risk.execution", "scenarioRobustness.geographicDiversification"]
+        },
+        {
+          "type": "evidence",
+          "claim": "TSMC announced an additional $100B Arizona investment while continuing large Taiwan expansion, making geographic diversification a real but capital-intensive strategy rather than a free resilience benefit.",
+          "source": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-07/547d1696765e05ce3adb81c108ce1c8c1682b80c/TSMC%202Q26%20Transcript.pdf",
+          "supports": ["scenarioRobustness.geographicDiversification", "risk.execution"]
+        }
+      ],
+      "inference": [
+        "Customer concentration and overseas-fab economics are now sufficiently quantified for conservative methodology scoring: concentration is high and overseas diversification carries current margin dilution and very high capital requirements.",
+        "The same overseas expansion that improves geographic resilience should not be double-counted as purely positive because current issuer evidence explicitly identifies margin dilution."
+      ],
+      "contradictions": [
+        "TSMC's customer base includes hundreds of customers, but revenue is economically concentrated in the top two and top ten; both facts must coexist in the rubric.",
+        "Overseas fabs improve geographic diversification while currently diluting gross margin and increasing capital intensity."
+      ],
+      "unknowns": [
+        {"classification":"non_gating_unknown","item":"Exact future utilization and unit economics of each individual Arizona/Japan/Europe fab after ramp."},
+        {"classification":"non_gating_unknown","item":"Timing and severity of future cross-Strait or export-policy shocks."}
+      ],
+      "falsifiers": [
+        "A newer primary disclosure materially changes the 2025 customer concentration profile before Chief promotion.",
+        "Issuer guidance reverses the disclosed overseas-fab margin dilution or capital plan in a way that changes current factor treatment."
+      ],
+      "confidence": 97,
+      "blockerDisposition": "resolved_for_chief_review",
+      "recommendedChiefAction": "review",
+      "recommendedActionDetail": "Move TSM out of blocked status for factor assembly. Encode high customer concentration and current overseas-fab margin/capex burden explicitly; preserve future geopolitical timing as non_gating_unknown."
+    },
+    {
+      "ticker": "ASML",
+      "company": "ASML Holding N.V.",
+      "batchId": "t0-20260914T0400Z-b01",
+      "attemptsObserved": 3,
+      "researchQuestion": "Are ASML's China/export exposure and critical-supplier dependence sufficiently quantified for reproducible regulatory and supply-chain risk treatment?",
+      "gateClassification": "gating_blocker_review",
+      "summary": "Yes. ASML's 2025 annual report/Form 20-F provides current geographic exposure: China represented 29.1% of 2025 net sales versus 36.1% in 2024, and explicitly states export controls have already affected operations, suppliers and customers. The 2025 strategic report identifies Carl Zeiss SMT as the sole supplier of critical optics and says prolonged loss of that supply would effectively stop ASML's business. Q2 2026 primary results show strong current demand and planned lithography-capacity expansion, which helps distinguish demand strength from the still-material export/supplier risks. The gate can be scored conservatively now; future export-rule changes remain non-gating uncertainty.",
+      "findings": [
+        {
+          "type": "evidence",
+          "claim": "ASML disclosed that customers in China represented 29.1% of 2025 total net sales versus 36.1% in 2024 and that export-control developments have already affected and may continue to affect operations, suppliers and customers.",
+          "source": "https://www.sec.gov/Archives/edgar/data/937966/000162828026011378/asml-20251231.htm",
+          "supports": ["risk.regulatory", "scenarioRobustness.geographicDiversification"]
+        },
+        {
+          "type": "evidence",
+          "claim": "ASML's 2025 strategic report identifies Carl Zeiss SMT as its sole supplier of lenses, mirrors, illuminators, collectors and other critical optical components; ASML states prolonged inability to supply optics could effectively stop the business.",
+          "source": "https://ourbrand.asml.com/m/8ab959d4926657b/original/asml-2025-annual-report-strategic-report-section.pdf",
+          "supports": ["supplyChainResilience.supplierDiversification", "risk.execution", "bottleneckControl.capacityLeadTime"]
+        },
+        {
+          "type": "evidence",
+          "claim": "ASML Q2 2026 reported €9.3B sales, 54.0% gross margin and very strong first-half orders; management planned roughly 30% low-NA EUV and DUV immersion capacity increases for 2027, with further capacity increases under study for 2028.",
+          "source": "https://www.asml.com/en/news/press-releases/2026/q2-2026-financial-results",
+          "supports": ["financialOperatingMomentum.revenueMomentum", "bottleneckControl.capacityLeadTime", "thesisQuality.productMarketFitEvidence"]
+        }
+      ],
+      "inference": [
+        "ASML's supplier concentration is not a generic supply-chain concern; the issuer identifies an exclusive sole-source dependency in critical optics, so supplier-diversification risk can be scored directly and should receive a material penalty.",
+        "China exposure is measurable enough for current regulatory/geographic risk treatment without forecasting the exact next export-control rule."
+      ],
+      "contradictions": [
+        "Strong AI-driven bookings and planned capacity expansion coexist with meaningful China/export exposure and a severe sole-source optics dependency; strong demand does not cancel those risks."
+      ],
+      "unknowns": [
+        {"classification":"non_gating_unknown","item":"Exact timing/content of future US/EU/Dutch export-control changes and customer countermeasures."},
+        {"classification":"non_gating_unknown","item":"Probability and duration of a hypothetical Carl Zeiss SMT outage; current evidence establishes dependency severity, not event probability."}
+      ],
+      "falsifiers": [
+        "A newer primary filing shows China exposure or supplier architecture materially changed before Chief promotion.",
+        "ASML discloses a qualified alternative source for the critical optics that materially reduces the sole-source dependency."
+      ],
+      "confidence": 98,
+      "blockerDisposition": "resolved_for_chief_review",
+      "recommendedChiefAction": "review",
+      "recommendedActionDetail": "Move ASML out of blocked status for factor assembly. Apply explicit regulatory/geographic and sole-source supplier penalties; keep future export-rule timing as non_gating_unknown."
+    }
+  ],
+  "systemObservations": [
+    {
+      "classification": "non_gating_unknown",
+      "target": "XTND",
+      "note": "The open XTND capital-structure directive is important discovery work but XTND is outside the current active/blocked T0 company batch; Deep capacity was intentionally not diverted from three attempt>=3 blocked active-universe names in this run."
+    },
+    {
+      "classification": "system_gate_separate",
+      "target": "discovery cadence",
+      "note": "Global discoveryScanCompleted=false remains an independent system-level gate and is not resolved by these company dossiers."
+    }
+  ],
+  "handoff": {
+    "resolvedForChiefReview": ["AMD", "TSM", "ASML"],
+    "stillBlockedByThisArtifact": [],
+    "recommendedQueueEffect": "If Chief validates the gate classification, all three attempt>=3 semiconductor names can leave blocked status and enter ready_for_chief/factor-assembly without pretending unavailable future or segment-specific precision is known.",
+    "lineage": [
+      "data/runtime/system-state.json@20260914T2100Z",
+      "data/runtime/supervisors/t0-bootstrap-queue.json",
+      "data/runtime/supervisors/cycles/20260914T2100Z/company-underwriting-alpha-20260914T212000Z.json",
+      "engine/rubric.ts",
+      "data/runtime/supervisors/directives.json"
+    ]
+  }
+}

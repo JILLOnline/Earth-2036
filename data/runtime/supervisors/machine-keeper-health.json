@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "owner": "earth-machine-keeper",
+  "checkedAt": "2026-09-15T11:05:47Z",
+  "cycleKey": "20260915T1100Z",
+  "period": "DAY",
+  "machine": {
+    "freshForCurrentUtcHour": true,
+    "cycleStatus": "completed",
+    "companiesObserved": 250,
+    "identityValidated": 250,
+    "tradabilityValidated": 250,
+    "machineSourceCoverageRatio": 1,
+    "machineDiscoveryComplete": true,
+    "integrityPassed": true,
+    "sourceMeshPassed": true,
+    "unresolvedEvidence": 99
+  },
+  "queue": {
+    "cycleKey": "20260915T0000Z",
+    "promoted": 1,
+    "ready_for_chief": 22,
+    "active": 12,
+    "blocked": 2,
+    "queued": 213,
+    "total": 250,
+    "countsValid": true,
+    "oldestReadyLastUpdatedAt": "2026-09-14T20:58:26-04:00"
+  },
+  "warnings": [
+    {
+      "code": "READY_FOR_CHIEF_BACKPRESSURE",
+      "severity": "throughput",
+      "condition": "ready_for_chief > 15",
+      "observed": 22,
+      "threshold": 15,
+      "message": "Chief review queue has 22 ready dossiers. This is a throughput warning only; Machine Keeper made no promotion, blocking, ranking, scoring, evidence, causal, or membership decision."
+    }
+  ],
+  "actions": [
+    "No scheduler rerun started because the persisted machine cycle already matches the current UTC hour and is completed.",
+    "Persisted backpressure visibility for Chief review."
+  ]
+}

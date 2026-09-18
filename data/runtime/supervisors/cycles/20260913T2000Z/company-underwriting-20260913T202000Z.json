@@ -1,0 +1,59 @@
+{
+  "reportVersion": 1,
+  "laneId": "company-underwriting",
+  "cycleKey": "20260913T2000Z",
+  "generatedAt": "2026-09-13T20:20:00Z",
+  "status": "needs_research",
+  "summary": "The baseline remains far from underwriting-complete: runtime contains only one publishable methodology-1.0 score record (GEV), so 249 active-universe companies still require sourced comparable underwriting before T0. The targeted XTND capital-structure directive advanced materially from primary SEC evidence: the September 4 S-8 registers 43,567,442 shares across rollover awards, the 2026 incentive plan and ESPP, while the September 3 pro forma shows a 277,442,600 basic/diluted pro forma weighted-average denominator, $32.3M six-month pro forma revenue, $34.5M operating loss, and preliminary merger accounting. Exact post-close common/pre-funded-warrant capitalization and normalized cash-flow runway remain unresolved, so XTND must not be admitted/scored on this evidence alone.",
+  "materialFindings": [
+    {
+      "finding": "T0 underwriting breadth is incomplete: score-state currently contains only GEV while system-state reports scoredCompanies=1 and publishableCompanies=1 out of 250.",
+      "sources": ["data/runtime/score-state.json", "data/runtime/system-state.json"]
+    },
+    {
+      "finding": "XTND filed Form S-8 on 2026-09-04 registering 9,936,483 rollover-award shares, 18,630,959 shares under the 2026 Equity Incentive Plan, and 15,000,000 shares under the 2026 Employee Stock Purchase Plan, totaling 43,567,442 registered plan/rollover shares. This is material potential equity overhang and must be normalized against post-close outstanding shares rather than treated as immediate dilution.",
+      "sources": ["https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm"]
+    },
+    {
+      "finding": "XTND's merger pro forma reports 277,442,600 weighted-average shares basic and diluted for both the six months ended 2026-06-30 and FY2025 pro forma periods. The filing also reports six-month pro forma revenue of $32.333M, gross profit $3.207M, operating loss $34.465M and net loss $27.545M, highlighting substantial current operating-loss intensity relative to revenue.",
+      "sources": ["https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"]
+    },
+    {
+      "finding": "The pro forma states merger accounting/purchase-price allocations remain preliminary and may differ materially after final valuation; it also shows the minimum-cash condition depended on a $60M contribution tied to warrant exercises. These facts prevent treating the pro forma denominator or liquidity presentation as a final normalized post-close capitalization/runway view.",
+      "sources": ["https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"]
+    },
+    {
+      "finding": "The S-8 confirms the merger closed September 3, 2026 and details conversion/cash exercise/cashless exercise mechanics for legacy JFB securities and rollover awards, creating multiple share-issuance pathways that must be reconciled before any fully diluted per-share valuation.",
+      "sources": ["https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm"]
+    }
+  ],
+  "proposedCanonicalChanges": [
+    {
+      "proposal": "Preserve XTND as unscored/unadmitted for opportunity assessment until a reconciled post-close cap table separates issued common, pre-funded warrants/options/RSUs, registered-but-unissued plan capacity and contingent/earnout instruments; then compute dilution percentages without double-counting rollover awards.",
+      "sources": ["https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm", "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"]
+    }
+  ],
+  "contradictions": [],
+  "unknowns": [
+    "Exact XTND common shares outstanding immediately after close, reconciled to the 277,442,600 pro forma weighted-average denominator.",
+    "Exact post-close pre-funded warrant, option, RSU and other potentially dilutive security counts after settlement/exercise mechanics.",
+    "Normalized unrestricted cash and debt after closing cash movements, transaction costs and any restricted/earmarked amounts.",
+    "Sustainable cash runway based on normalized post-close operating cash burn rather than merger-period pro forma losses alone.",
+    "Company-underwriting evidence remains incomplete for 249 of 250 active-universe companies."
+  ],
+  "peerRequests": [
+    "Source-integrity: verify the final post-close XTND 8-K/8-A capitalization chain and identify any later filing that supersedes the preliminary pro forma denominator.",
+    "Adversarial-red-team: test whether the 43.57M S-8 registration materially understates total dilution when warrants/options/contingent instruments are reconciled.",
+    "Expectations-execution: do not construct XTND per-share valuation bands until the normalized denominator and runway are defensible."
+  ],
+  "accuracyDebates": [],
+  "blockingIssues": [
+    "T0 cannot be underwriting-complete with only 1/250 methodology-1.0 publishable score records.",
+    "XTND exact post-close fully diluted capitalization and normalized cash runway remain unresolved."
+  ],
+  "directivesReviewed": [
+    "chief-20260913t1300z-xtnd-capital-structure"
+  ],
+  "confidence": 94,
+  "acquisitionComplete": false
+}

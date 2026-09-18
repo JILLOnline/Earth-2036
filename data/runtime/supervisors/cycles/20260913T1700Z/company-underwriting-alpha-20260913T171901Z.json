@@ -1,0 +1,126 @@
+{
+  "reportVersion": 1,
+  "laneId": "company-underwriting",
+  "cycleKey": "20260913T1700Z",
+  "generatedAt": "2026-09-13T17:19:01Z",
+  "status": "needs_research",
+  "summary": "Independent underwriting review confirms the new machine cycle is operationally complete but T0 underwriting remains materially incomplete: only 1 of 250 active companies has a publishable methodology-1.0 score record. The highest-information-value open Alpha directive remains XTND capital structure/runway. Fresh SEC review finds September 10 beneficial-ownership filings, but these do not provide the reconciled post-close issuer cap table or normalized cash-flow runway needed to close the directive. Existing primary pro forma evidence supports only a provisional 277,442,600-share weighted-average denominator, meaningful gross liquidity, substantial losses, concentrated control and contingent earnout dilution. XTND must remain outside the active 250 and unscored until instrument-level capitalization and runway are reconciled from primary evidence.",
+  "materialFindings": [
+    {
+      "finding": "T0 company underwriting remains incomplete because the current persisted state has 1 publishable methodology-1.0 company record out of 250. Identity/tradability validation and source availability cannot substitute for sourced rubric evidence.",
+      "sources": [
+        "earth-2036/data/runtime/system-state.json",
+        "earth-2036/engine/methodology.ts",
+        "earth-2036/engine/rubric.ts",
+        "earth-2036/engine/ranking.ts"
+      ]
+    },
+    {
+      "finding": "XTND remains an outside challenger with admissionEligible=false and a pending full methodology/dilution review; no seed or discovery status is a rank or score.",
+      "sources": ["earth-2036/data/runtime/discovery-pool.json"]
+    },
+    {
+      "finding": "The September 3 merger pro forma remains the strongest capitalization anchor reviewed: it reports a 277,442,600 weighted-average basic/diluted pro forma denominator, but also describes pre-funded-warrant substitution under beneficial-ownership caps and excludes equity-plan reserves from stated ownership percentages. Therefore the denominator is not a transfer-agent-confirmed current fully diluted share count.",
+      "sources": ["https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"]
+    },
+    {
+      "finding": "The same primary pro forma materials show $39.779m cash plus $60m PIPE cash, $15.520m closing bonuses/transaction costs in accrued liabilities, six-month revenue of $32.333m, operating loss of $34.465m and net loss of $27.545m. These establish gross liquidity and loss scale, not normalized post-close operating cash runway.",
+      "sources": ["https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"]
+    },
+    {
+      "finding": "Fresh September 10 SEC filings for XTND are Schedule 13G beneficial-ownership statements (including accessions 0001213900-26-098780 and 0001178913-26-004489). They add ownership provenance but do not replace a reconciled issuer cap table, instrument schedule or post-close cash-flow statement.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000121390026098780/0001213900-26-098780-index.html",
+        "https://www.sec.gov/Archives/edgar/data/2111860/000117891326004489/0001178913-26-004489-index.html"
+      ]
+    },
+    {
+      "finding": "The S-8 is evidence of registered compensation-plan capacity, not proof that all registered shares are outstanding. Rollover awards, options, plan reserves, pre-funded warrants and earnouts require instrument-level anti-double-counting before a fully diluted denominator can be asserted.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm",
+        "earth-2036/engine/rubric.ts"
+      ]
+    }
+  ],
+  "proposedCanonicalChanges": [
+    {
+      "proposal": "Keep XTND outside the active universe and unscored until exact post-close common shares, pre-funded warrants, rollover/options/plan reserves, earnout exposure and normalized cash runway are reconciled from primary issuer filings.",
+      "sources": [
+        "earth-2036/data/runtime/discovery-pool.json",
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"
+      ]
+    },
+    {
+      "proposal": "Retain 277,442,600 only as a provisional pro forma denominator for sensitivity work; do not label it current fully diluted shares.",
+      "sources": ["https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"]
+    }
+  ],
+  "contradictions": [
+    {
+      "issue": "A single reported pro forma weighted-average denominator coexists with pre-funded-warrant mechanics, equity-plan reserves and contingent earnouts. Treating that denominator as current fully diluted shares would collapse economically distinct instruments and overstate precision.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm",
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm"
+      ]
+    }
+  ],
+  "unknowns": [
+    {
+      "unknown": "Exact current post-close common shares outstanding and pre-funded warrants outstanding/exercisable have not been reconciled to one issuer-level cap table.",
+      "sources": ["https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"]
+    },
+    {
+      "unknown": "Normalized post-close XTND cash runway remains unknown because operating cash flow, working-capital use, capex and financing flows after close are not yet available in a reviewed primary issuer filing.",
+      "sources": ["https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"]
+    },
+    {
+      "unknown": "249 active companies still lack complete publishable methodology-1.0 underwriting records across all rubric components, risk and Data Confidence.",
+      "sources": ["earth-2036/data/runtime/system-state.json", "earth-2036/engine/rubric.ts"]
+    }
+  ],
+  "peerRequests": [
+    {
+      "toLane": "source-integrity",
+      "request": "Maintain accession- and instrument-level provenance for XTND; do not collapse Schedule 13G ownership, common shares, pre-funded warrants, options, plan reserves and earnouts into a single denominator without explicit reconciliation.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000121390026098780/0001213900-26-098780-index.html",
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"
+      ]
+    },
+    {
+      "toLane": "adversarial-red-team",
+      "request": "Continue challenging XTND capital survival, control concentration, contract/customer quality and dilution until post-close issuer financials and a reconciled cap table exist.",
+      "sources": ["earth-2036/data/runtime/discovery-pool.json"]
+    },
+    {
+      "toLane": "earth-deep-runner",
+      "request": "Search the next issuer filing set for a post-close capitalization table, warrant/option reconciliation and cash-flow disclosure capable of closing the XTND directive without double counting.",
+      "sources": ["earth-2036/data/runtime/supervisors/directives.json"]
+    }
+  ],
+  "accuracyDebates": [
+    {
+      "topic": "Can pro forma gross cash be translated directly into a runway estimate?",
+      "position": "No. A defensible runway requires normalized post-close operating cash burn, working-capital needs, capex and financing timing; gross cash divided by accounting loss would create false precision.",
+      "sources": ["https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm", "earth-2036/engine/rubric.ts"]
+    }
+  ],
+  "blockingIssues": [
+    {
+      "issue": "T0 underwriting cannot be considered complete while 249/250 active companies lack publishable methodology-1.0 records.",
+      "sources": ["earth-2036/data/runtime/system-state.json", "earth-2036/engine/methodology.ts"]
+    },
+    {
+      "issue": "XTND admission/scoring remains blocked by unreconciled post-close capitalization and cash-flow-based runway.",
+      "sources": ["earth-2036/data/runtime/supervisors/directives.json"]
+    }
+  ],
+  "directivesReviewed": [
+    {
+      "directiveId": "chief-20260913t1300z-xtnd-capital-structure",
+      "result": "Still open. Fresh ownership filings add provenance but do not provide the issuer-level post-close capitalization/runway evidence required for closure. No admission, score, rank or opportunity state is supportable."
+    }
+  ],
+  "confidence": 97,
+  "acquisitionComplete": false
+}

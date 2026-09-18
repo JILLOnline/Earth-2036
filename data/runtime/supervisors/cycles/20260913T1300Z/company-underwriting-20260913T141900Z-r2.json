@@ -1,0 +1,96 @@
+{
+  "reportVersion": 1,
+  "laneId": "company-underwriting",
+  "cycleKey": "20260913T1300Z",
+  "generatedAt": "2026-09-13T14:19:00Z",
+  "status": "needs_research",
+  "summary": "Methodology-1.0 underwriting remains evidence-complete for GEV but not for the 250-company baseline: only 1 of 250 companies has a complete scored/publishable record. No pending evidence-review item outranks baseline completion this cycle, so the highest information-value task is to build full sourced rubric records for unscored active companies without inheriting prototype or gut scores. GEV's existing score should remain unchanged absent new material evidence; its most decision-sensitive open questions are valuation asymmetry and supply-chain constraint durability rather than basic solvency or demand validation.",
+  "materialFindings": [
+    {
+      "finding": "The current machine cycle has 250 observed companies but only one scored and publishable methodology-1.0 record, GEV. Therefore 249 active companies remain underwriting-unknown for ranking purposes and must not receive inferred scores from seed order, prototype state, identity validation, or source availability.",
+      "sources": ["earth-2036/data/runtime/system-state.json", "earth-2036/data/runtime/score-state.json", "earth-2036/data/runtime/current-ranking.json", "earth-2036/engine/rubric.ts", "earth-2036/engine/scoring.ts"]
+    },
+    {
+      "finding": "GEV is the sole complete baseline record: Earth Score 81.8, Risk 30.7, Data Confidence 92.4, with complete factor evidence across every methodology-1.0 component, risk factor, and Data Confidence factor. Core financial/operating evidence is primary SEC evidence, including the 2026 Q2 10-Q, Q2 results 8-K/press release, 2026 proxy and 2025 10-K.",
+      "sources": ["earth-2036/data/baseline-evidence/GEV.json", "earth-2036/data/runtime/score-state.json", "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000148/gev-20260630.htm", "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000147/gevpressrelease2q26.htm", "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000049/gev-20260402.htm", "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000015/gev-20251231.htm"]
+    },
+    {
+      "finding": "GEV's operating evidence is strong and internally consistent: Q2 revenue growth, margin/cash-flow expansion, $24.2B orders, $176B backlog, 116 GW gas backlog plus slot reservations, and $13.1B cash support high financialOperatingMomentum and low solvency/dilution risk. These claims are already captured in canonical evidence and do not justify a score change without newer material primary evidence.",
+      "sources": ["earth-2036/data/baseline-evidence/GEV.json", "sourceId:gev-2026q2-10q", "sourceId:gev-2026q2-8k"]
+    },
+    {
+      "finding": "The highest-sensitivity GEV underwriting area is valuation, not demand or balance-sheet survival: marketValuationOpportunity is 56 while valuation risk is 70, materially weaker than the operating/thesis components. The canonical evidence itself states that a roughly $246B market capitalization discounts substantial future execution.",
+      "sources": ["earth-2036/data/baseline-evidence/GEV.json", "earth-2036/data/runtime/score-state.json", "sourceId:gev-marketcap-202609"]
+    },
+    {
+      "finding": "The second-highest information-value GEV gap is supply-chain durability: supplierDiversification 72, recyclingSubstitution 75 and leadTimeResilience 78 are among the weakest non-valuation factors, and the 2025 10-K evidence explicitly notes limited/sole-source inputs, rare-earth/specialty-metal exposure, geopolitical/tariff risk and persistent supply pressure.",
+      "sources": ["earth-2036/data/baseline-evidence/GEV.json", "sourceId:gev-2025-10k"]
+    },
+    {
+      "finding": "The evidence-review queue contains zero unresolved items for this cycle, so there is no pending material evidence that should displace baseline methodology completion. This does not mean the 249 unscored companies are researched; it only means no current review-queue item is outstanding.",
+      "sources": ["earth-2036/data/runtime/evidence-review-queue.json", "earth-2036/data/runtime/system-state.json"]
+    }
+  ],
+  "proposedCanonicalChanges": [
+    {
+      "proposal": "Do not change GEV's score, risk, rank or Data Confidence from this lane on the present evidence. Re-open only on new material primary evidence affecting backlog conversion, margin/cash realization, balance sheet/capital allocation, valuation, supply-chain constraints, customer concentration, governance or catalysts.",
+      "sources": ["earth-2036/data/baseline-evidence/GEV.json", "earth-2036/engine/rubric.ts", "earth-2036/engine/scoring.ts"]
+    },
+    {
+      "proposal": "For baseline throughput, choose the next unscored active company by highest information value: first any company with newly material evidence, then the company whose missing full-rubric record is most likely to alter the 250-company opportunity set. Do not select alphabetically and do not populate partial/gut factor values. A company becomes rankable only after complete sourced factors, Risk and Data Confidence are present.",
+      "sources": ["earth-2036/engine/rubric.ts", "earth-2036/engine/scoring.ts", "earth-2036/engine/ranking.ts", "earth-2036/data/runtime/system-state.json"]
+    },
+    {
+      "proposal": "For the next GEV refresh, prioritize two next-best questions: (1) what backlog-to-revenue/margin conversion is required to justify the current valuation under downside/base/upside cases, and (2) which sole/limited-source critical inputs can migrate the bottleneck as GEV expands turbine and grid-equipment capacity. Require primary filing/company evidence plus independent corroboration before any numeric factor revision.",
+      "sources": ["earth-2036/data/baseline-evidence/GEV.json", "sourceId:gev-2026q2-8k", "sourceId:gev-2025-10k", "sourceId:gev-marketcap-202609"]
+    }
+  ],
+  "contradictions": [],
+  "unknowns": [
+    {
+      "unknown": "The 249 unscored active companies have no complete methodology-1.0 underwriting record in score-state, so their thesis quality, financial/operating momentum, valuation, catalysts, governance, moat/pricing power, concentration, capital survival/dilution, risks and Data Confidence remain unknown for ranking purposes.",
+      "sources": ["earth-2036/data/runtime/system-state.json", "earth-2036/data/runtime/score-state.json"]
+    },
+    {
+      "unknown": "For GEV, the canonical snapshot does not yet quantify a full scenario-based valuation bridge from backlog/capacity milestones to per-share downside/base/upside value; current evidence supports a valuation-risk warning but not a new valuation factor score.",
+      "sources": ["earth-2036/data/baseline-evidence/GEV.json", "sourceId:gev-marketcap-202609", "sourceId:gev-2026q2-8k"]
+    },
+    {
+      "unknown": "GEV's precise exposure by critical material, supplier, geography and substitution timeline is not sufficiently granular in the current structured baseline to determine which upstream input becomes the successor bottleneck as manufacturing capacity expands.",
+      "sources": ["earth-2036/data/baseline-evidence/GEV.json", "sourceId:gev-2025-10k"]
+    }
+  ],
+  "peerRequests": [
+    {
+      "toLane": "structural-causal",
+      "request": "Investigate GEV's likely successor bottlenecks as turbine/grid capacity expands, especially critical materials, transformer/grid-component manufacturing and other upstream constraints; return only sourced edges/signals with confidence, horizon and falsifier.",
+      "sources": ["earth-2036/data/baseline-evidence/GEV.json", "sourceId:gev-2025-10k", "sourceId:gev-2026q2-8k"]
+    },
+    {
+      "toLane": "source-integrity",
+      "request": "Preserve the distinction between source reachability and company-level evidence acquisition when reporting baseline progress; 4/4 healthy automated sources cannot be interpreted as 249 companies underwritten.",
+      "sources": ["earth-2036/data/runtime/automated-source-health.json", "earth-2036/data/runtime/system-state.json"]
+    }
+  ],
+  "accuracyDebates": [
+    {
+      "topic": "Whether GEV's strong operating momentum should mechanically raise its score this cycle",
+      "position": "No. Those operating facts are already incorporated into the existing complete methodology-1.0 record. Without new material evidence, re-scoring upward would double-count known evidence and violate evidence-first comparable scoring.",
+      "sources": ["earth-2036/data/baseline-evidence/GEV.json", "earth-2036/engine/rubric.ts", "earth-2036/engine/scoring.ts"]
+    },
+    {
+      "topic": "Whether zero unresolved evidence means underwriting acquisition is complete",
+      "position": "No. The review queue being clear means no queued contradiction is pending; system-state still shows only 1 scored company out of 250.",
+      "sources": ["earth-2036/data/runtime/evidence-review-queue.json", "earth-2036/data/runtime/system-state.json"]
+    }
+  ],
+  "blockingIssues": [
+    {
+      "issue": "The methodology-1.0 baseline cannot be considered company-underwriting complete while 249 of 250 active companies lack complete scored evidence records.",
+      "sources": ["earth-2036/data/runtime/system-state.json", "earth-2036/data/runtime/score-state.json", "earth-2036/engine/rubric.ts"]
+    }
+  ],
+  "directivesReviewed": [],
+  "confidence": 94,
+  "acquisitionComplete": false
+}

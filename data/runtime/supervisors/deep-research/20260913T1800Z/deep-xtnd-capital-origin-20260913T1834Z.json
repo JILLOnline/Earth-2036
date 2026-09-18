@@ -1,0 +1,123 @@
+{
+  "artifactVersion": 1,
+  "cycleKey": "20260913T1800Z",
+  "generatedAt": "2026-09-13T18:34:00Z",
+  "shift": "day",
+  "researchTarget": "XTND post-merger capitalization, dilution overhang and runway evidence-origin reconstruction",
+  "researchQuestion": "Can the open XTND capitalization/runway directive be narrowed by reconstructing which share counts are actual closing economics, which are pre-close maxima, which are post-close plan reserves, and where apparent closing-mechanics inconsistencies remain?",
+  "lineage": {
+    "company": "XTND",
+    "directiveIds": ["chief-20260913t1300z-xtnd-capital-structure"],
+    "relatedArtifacts": [
+      "data/runtime/discovery-pool.json",
+      "data/runtime/supervisors/directives.json",
+      "data/runtime/supervisors/cycles/20260913T1800Z/company-underwriting-alpha-20260913T181419Z.json",
+      "data/runtime/supervisors/cycles/20260913T1800Z/adversarial-red-team-beta-20260913T182430Z.json"
+    ]
+  },
+  "summary": "Primary SEC filings materially narrow the XTND denominator problem but do not fully close it. The September 3 pro forma filing gives a 277,442,600 pro forma weighted-average basic/diluted denominator and decomposes it into 17,645,106 historical Xtend ordinary shares, a 6,328,962 conversion adjustment, 196,725,338 shares from Xtend preferred/warrant/SAFE conversion, and 56,743,194 shares to JFB security holders. A July S-4 filing-fee exhibit separately registered a maximum 24,873,730 pre-funded warrants, but that number was an estimated pre-close maximum and the closing filing says pre-funded warrants substitute for common stock when the 4.99% ownership cap would otherwise be breached. Therefore the 24,873,730 maximum must not be blindly added to 277,442,600. The September 4 S-8 creates a distinct 43,567,442-share registered equity-plan/rollover envelope, including 33,630,959 shares under the new 2026 incentive and ESPP reserves; those reserves are not evidence of current issuance and should be modeled as overhang, not current basic shares. Gross pro forma cash was $99.779M before $15.5M of closing bonuses/transaction-cost accruals; treating pro forma net loss as cash burn would be an invalid runway shortcut. One closing-mechanics discrepancy remains: the September 3 pro forma exhibit states a $6.3391 cashless-exercise value for remaining JFB warrants, while the September 4 S-8 states $6.25 for the same 6,999,928-share result. Exact merger/support-agreement terms or a definitive cap table should govern before Chief closes the directive.",
+  "findings": [
+    {
+      "type": "evidence",
+      "claim": "The September 3 pro forma filing reports 277,442,600 pro forma weighted-average shares, basic and diluted, and explicitly decomposes the denominator into 17,645,106 historical Xtend ordinary shares, 6,328,962 conversion adjustment, 196,725,338 shares from conversion of preferred shares/warrants/SAFEs, and 56,743,194 shares issued to JFB security holders.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"
+      ],
+      "confidence": 99
+    },
+    {
+      "type": "evidence",
+      "claim": "The same closing pro forma states that Xtend shareholders beneficially owned approximately 87.41% of voting power and 79.61% of economic interests, while JFB holders had 12.59% voting power and 20.39% economic interests, on a fully diluted basis excluding amounts reserved under the new equity incentive plan.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"
+      ],
+      "confidence": 99
+    },
+    {
+      "type": "evidence",
+      "claim": "A July 16 S-4 filing-fee exhibit registered an estimated maximum of 24,873,730 pre-funded warrants and states that these could be issued to holders of JFB Series C preferred stock and JFB warrants subject to the beneficial-ownership limit.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526306234/d121457dexfilingfees.htm",
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526306234/d121457dex51.htm"
+      ],
+      "confidence": 99
+    },
+    {
+      "type": "inference",
+      "claim": "The 24,873,730 pre-funded-warrant figure is a pre-close maximum, not evidence that exactly that many warrants were outstanding after closing. Because closing documents describe pre-funded warrants as alternative consideration when the 4.99% cap blocks direct common issuance, adding the entire maximum on top of the 277,442,600 pro forma denominator risks double counting.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526306234/d121457dexfilingfees.htm",
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"
+      ],
+      "confidence": 94
+    },
+    {
+      "type": "evidence",
+      "claim": "The September 4 S-8 registers 9,936,483 shares for rollover equity awards, 18,630,959 shares for the 2026 Equity Incentive Plan, and 15,000,000 shares for the 2026 Employee Stock Purchase Plan, for a total registered envelope of 43,567,442 shares.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm"
+      ],
+      "confidence": 99
+    },
+    {
+      "type": "inference",
+      "claim": "Relative to the 277,442,600 pro forma denominator, the full S-8 registration envelope is about 15.70%; the new 2026 incentive-plan plus ESPP reserves alone are about 12.12%. These percentages describe potential registered overhang, not current dilution, because reserved/issuable plan shares are not the same as shares currently outstanding.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm",
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"
+      ],
+      "confidence": 96
+    },
+    {
+      "type": "evidence",
+      "claim": "The June 30 pro forma balance sheet shows $39.779M of combined cash and cash equivalents plus a $60M PIPE/cash contribution adjustment, or $99.779M gross pro forma cash, while closing-related accrued liabilities include $3.7M of bonuses and $11.8M of transaction costs.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"
+      ],
+      "confidence": 99
+    },
+    {
+      "type": "inference",
+      "claim": "A rough cash-after-closing-costs bridge is approximately $84.279M before considering restricted cash, working-capital movement, debt/liability settlement, post-June-30 operations, or other closing adjustments. This is not a runway calculation. The filing's six-month pro forma net loss of $27.545M and FY2025 pro forma net loss of $55.217M are accounting losses, not operating cash burn, so using them directly to state months of runway would be methodologically unsound.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"
+      ],
+      "confidence": 92
+    },
+    {
+      "type": "evidence",
+      "claim": "The September 3 pro forma exhibit says remaining JFB warrants were cashless exercised at a value of $6.3391 per share, producing 6,999,928 JFB shares, while the September 4 S-8 says the remaining warrants were deemed cashless exercised at $6.25 per share but cites the same 6,999,928-share result.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm",
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm"
+      ],
+      "confidence": 99
+    }
+  ],
+  "contradictions": [
+    {
+      "issue": "Cashless-exercise value discrepancy: $6.3391 in the September 3 pro forma closing exhibit versus $6.25 in the September 4 S-8 for the remaining JFB warrants, despite both reporting 6,999,928 resulting shares.",
+      "impact": "Likely immaterial to the resulting share count if 6,999,928 is definitive, but it proves that narrative closing-mechanics fields are not perfectly harmonized across filings. Chief/company-underwriting should anchor the final cap table to definitive merger/support-agreement terms and actual issued securities rather than mixing rounded or narrative values.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm",
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm"
+      ]
+    }
+  ],
+  "unknowns": [
+    "Exact post-close common shares actually outstanding as of/after September 3, 2026 in a definitive issuer cap-table disclosure.",
+    "Exact number of pre-funded warrants actually issued at closing versus the 24,873,730 pre-close maximum.",
+    "Which rollover awards represented in the 9,936,483-share S-8 bucket overlap with pre-close merger-registration maxima and which should enter a normalized fully diluted denominator independently.",
+    "Post-close operating cash burn and cash balance after all transaction costs, working-capital changes and September operations; pro forma accounting loss is not a substitute.",
+    "Earnout or contingent-equity mechanics, if any, that remain outside the currently reconstructed denominator."
+  ],
+  "falsifiers": [
+    "A post-close 10-Q/8-K/13D or definitive capitalization table that explicitly states common shares outstanding, actual pre-funded warrants outstanding, outstanding options/RSUs and contingent equity would supersede the provisional denominator reconstruction.",
+    "If definitive merger/support-agreement documents show the $6.25 versus $6.3391 difference is solely a rounding/amendment convention with no economic effect, the contradiction should be closed as immaterial provenance noise.",
+    "A post-close cash-flow statement showing materially positive operating cash flow would falsify the working assumption that financing dependence remains a major near-term risk."
+  ],
+  "confidence": 96,
+  "recommendedChiefAction": "corroborate",
+  "recommendedActionDetail": "Route this artifact to company-underwriting/source-integrity. Treat 277,442,600 as the best current pro forma economic denominator anchor, keep pre-funded warrants as unresolved substitution-versus-addition until actual issued count is sourced, classify the 33,630,959 new-plan/ESPP shares as potential overhang rather than current shares, and do not close the XTND directive until an actual post-close cap table plus operating-cash-flow/runway source is obtained. Reconcile the $6.25/$6.3391 narrative discrepancy against definitive transaction documents before promotion.",
+  "evidenceVsInferencePolicy": "Only filing-stated numbers are evidence. Percentage calculations and denominator/runway interpretations are labeled inference. No score, rank, admission or opportunity state is proposed."
+}

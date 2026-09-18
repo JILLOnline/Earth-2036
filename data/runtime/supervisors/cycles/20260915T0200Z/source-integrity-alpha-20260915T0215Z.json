@@ -1,0 +1,46 @@
+{
+  "reportVersion": 1,
+  "laneId": "source-integrity",
+  "cycleKey": "20260915T0200Z",
+  "generatedAt": "2026-09-15T02:15:55Z",
+  "status": "complete",
+  "summary": "DAY batch pass over Chief-selected b03. All 12 active companies are identity- and tradability-validated in the current entity registry; machine gating coverage is 1.0 and machine discovery is complete. Global T0 remains fail-closed because supervisor coverage/discovery are not yet reconciled and 90 evidence items remain unresolved; those global defects do not by themselves make the 12 companies individually unready.",
+  "materialFindings": [
+    {"scope":"system","finding":"Current machine state is coherent at 250/250 identity and 250/250 tradability with machineSourceCoverageRatio=1 and machineDiscoveryComplete=true; council review remains pending."},
+    {"scope":"batch","finding":"TER, ROK, MBLY, SERV, AUR, ETN, PWR, POWL, CEG, VST, BE and SMR are current active-universe securities with validated identity/tradability in the same 20260915T0200Z registry snapshot."},
+    {"scope":"global-gate","finding":"supervisorSourceCoverageRatio=0, discoveryScanCompleted=false and unresolvedEvidence=90 remain global T0 blockers, not company-specific provenance failures."},
+    {"scope":"source-capability","finding":"Primary issuer/SEC-derived evidence was obtainable this pass for TER, ROK, MBLY, SERV, AUR, ETN, PWR, POWL, CEG, VST, BE and SMR through issuer filings/results or current registry lineage; no identity collision was observed."}
+  ],
+  "companyCoverage": [
+    {"ticker":"TER","ready_for_chief":true,"gatingGaps":[],"documentedUnknowns":["claim-level underwriting completeness is owned by company-underwriting"]},
+    {"ticker":"ROK","ready_for_chief":true,"gatingGaps":[],"documentedUnknowns":[]},
+    {"ticker":"MBLY","ready_for_chief":true,"gatingGaps":[],"documentedUnknowns":[]},
+    {"ticker":"SERV","ready_for_chief":true,"gatingGaps":[],"documentedUnknowns":[]},
+    {"ticker":"AUR","ready_for_chief":true,"gatingGaps":[],"documentedUnknowns":[]},
+    {"ticker":"ETN","ready_for_chief":true,"gatingGaps":[],"documentedUnknowns":[]},
+    {"ticker":"PWR","ready_for_chief":true,"gatingGaps":[],"documentedUnknowns":[]},
+    {"ticker":"POWL","ready_for_chief":true,"gatingGaps":[],"documentedUnknowns":[]},
+    {"ticker":"CEG","ready_for_chief":true,"gatingGaps":[],"documentedUnknowns":[]},
+    {"ticker":"VST","ready_for_chief":true,"gatingGaps":[],"documentedUnknowns":[]},
+    {"ticker":"BE","ready_for_chief":true,"gatingGaps":[],"documentedUnknowns":[]},
+    {"ticker":"SMR","ready_for_chief":true,"gatingGaps":[],"documentedUnknowns":[]}
+  ],
+  "proposedCanonicalChanges": [],
+  "contradictions": [],
+  "unknowns": ["Global supervisor discoveryScanCompleted remains false until the full six-lane same-cycle process is reconciled.","The 90 unresolved evidence items require Chief/canonical evidence workflow treatment and are not writable by Alpha."],
+  "peerRequests": ["Beta discovery lane: explicitly finish cadence-due gating discovery families for this exact cycle so global supervisor coverage can be adjudicated."],
+  "accuracyDebates": [],
+  "blockingIssues": [],
+  "directivesReviewed": ["chief-20260913t1300z-discovery-cadence","chief-20260913t1300z-av-certification-constraint"],
+  "confidence": 94,
+  "acquisitionComplete": true,
+  "sources": [
+    "data/runtime/system-state.json",
+    "data/runtime/entity-registry.json",
+    "data/runtime/supervisors/t0-bootstrap-queue.json",
+    "data/runtime/supervisors/directives.json",
+    "docs/SUPERVISOR_COUNCIL.md",
+    "docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md",
+    "docs/SENSOR_MESH.md"
+  ]
+}

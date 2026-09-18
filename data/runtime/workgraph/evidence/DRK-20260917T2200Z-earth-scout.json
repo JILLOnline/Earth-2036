@@ -1,0 +1,90 @@
+[
+  {
+    "version": 1,
+    "ticker": "DRK",
+    "entityId": "DRK",
+    "workId": "discovery:DRK:20260917T2200Z",
+    "cycleKey": "20260917T2200Z",
+    "role": "earth-scout",
+    "perspective": "discovery-weak-signals",
+    "generatedAt": "2026-09-17T23:07:44Z",
+    "claims": [
+      {"claim":"DRK is not a new operating company: DarkHorse Technologies Inc. is the renamed and continued Sphere 3D Corp.; its common shares began Nasdaq Capital Market trading under DRK on September 17, 2026, replacing ANY, with a new CUSIP.","status":"supported"},
+      {"claim":"The company is repositioning toward AI/HPC infrastructure in the TVA region and states that, after the planned Iowa divestiture, it expects approximately 50 MW of operating capacity across Tennessee and Kentucky, a proposed 50 MW Kentucky data center, and roughly 100 MW of additional development pipeline.","status":"supported"},
+      {"claim":"The proposed Kentucky development and broader pipeline are not equivalent to contracted AI/HPC demand; company disclosure explicitly describes key development/use expectations as forward-looking.","status":"supported"}
+    ],
+    "factors": [
+      {"name":"Identity/listing continuity","direction":"neutral","basis":"DRK is a ticker/name transition from ANY rather than an independent newly listed challenger."},
+      {"name":"AI infrastructure exposure","direction":"positive","basis":"Power-ready TVA-region sites create a potentially relevant AI/HPC infrastructure pathway if customer demand and approvals convert."},
+      {"name":"Execution maturity","direction":"mixed-negative","basis":"A material portion of the AI/HPC thesis remains proposed/development-stage rather than contracted production capacity."}
+    ],
+    "sources": [
+      {"url":"https://www.sec.gov/Archives/edgar/data/1591956/000106299326004571/form8-k.htm","kind":"primary","primary":true,"publishedAt":"2026-09-17","originFingerprint":"sec:1591956:8-k:2026-09-17:darkhorse-name-ticker-continuance"},
+      {"url":"https://www.sec.gov/Archives/edgar/data/1591956/000121390026099276/ea030512901ex99-1.htm","kind":"primary","primary":true,"publishedAt":"2026-09-08","originFingerprint":"sec:1591956:ex99.1:2026-09-08:strategic-review-tva"}
+    ],
+    "risks": [
+      {"risk":"Discovery systems could double-count ANY and DRK as separate entities unless CIK/entity continuity is enforced.","gating":true},
+      {"risk":"Development pipeline and proposed capacity can be mistaken for contracted/energized AI capacity.","gating":false},
+      {"risk":"Recent strategic repositioning from digital-asset infrastructure toward AI/HPC raises execution and customer-conversion risk.","gating":false}
+    ],
+    "causalEdges": [
+      {"from":"power-ready TVA-region assets","to":"AI/HPC infrastructure opportunity","mechanism":"available power and smaller modular sites can shorten deployment paths where hyperscale interconnection queues are constrained","falsifier":"zoning/interconnection/customer contracting fails or economics remain inferior to competing sites"}
+    ],
+    "contradictions": [
+      {"claim":"The symbol directory flags DRK as a new symbol while SEC lineage shows it is the same issuer formerly trading as ANY.","resolution":"Treat DRK as an identity/ticker transition and require entity deduplication before challenger admission consideration.","resolved":true,"gating":true}
+    ],
+    "unknowns": [
+      {"unknown":"No cited primary evidence establishes contracted AI/HPC tenants, committed utilization, realized AI revenue or economics for the proposed Kentucky site/pipeline.","gating":false},
+      {"unknown":"Whether ANY already exists in the active or historical Earth entity graph under the same issuer identity requires deterministic registry reconciliation.","gating":true}
+    ],
+    "gatingIssues": ["Resolve DRK↔ANY issuer continuity by SEC CIK/entity registry before treating DRK as a distinct challenger."],
+    "confidence": 96,
+    "recommendedNextState": "triaged",
+    "recommendedOwner": "machine-identity-registry"
+  },
+  {
+    "version": 1,
+    "ticker": "DRK",
+    "entityId": "DRK",
+    "workId": "discovery:DRK:20260917T2200Z",
+    "cycleKey": "20260917T2200Z",
+    "role": "earth-scout",
+    "perspective": "expectations-execution",
+    "generatedAt": "2026-09-17T23:07:44Z",
+    "claims": [
+      {"claim":"The September 8 financing closed September 11 for approximately $5.0 million gross through 1,666,661 units at $3.00, each including one common share and one five-year $3.50 warrant; insiders including the chairman and CEO subscribed for approximately $1.0 million gross.","status":"supported"},
+      {"claim":"If all placement warrants are exercised for cash, the company states it could receive approximately $5.8 million additional gross proceeds, but that also represents potential future share issuance/dilution.","status":"supported"},
+      {"claim":"The AI/HPC narrative has advanced through rebrand, asset rationalization, financing and a Kentucky land option, but primary evidence does not yet establish contracted AI/HPC customer revenue; execution proof therefore lags the strategic narrative.","status":"analytical_inference"}
+    ],
+    "factors": [
+      {"name":"Capital formation","direction":"mixed","basis":"Fresh capital supports development, while shares plus five-year warrants increase dilution overhang."},
+      {"name":"Insider alignment signal","direction":"positive","basis":"Chairman/CEO and another affiliate participated in the private placement, though participation does not validate project economics."},
+      {"name":"Narrative-to-execution gap","direction":"mixed-negative","basis":"Strategic repositioning and site pipeline are tangible steps, but contracted AI/HPC demand and realized economics remain unproven."},
+      {"name":"Security-level valuation attractiveness","direction":"unknown","basis":"No canonical live valuation/entry input is part of this Scout work item; absence is non-gating."}
+    ],
+    "sources": [
+      {"url":"https://www.sec.gov/Archives/edgar/data/1591956/000121390026099276/ea0305129-8k_sphere.htm","kind":"primary","primary":true,"publishedAt":"2026-09-11","originFingerprint":"sec:1591956:8-k:2026-09-11:private-placement-close"},
+      {"url":"https://www.sec.gov/Archives/edgar/data/1591956/000106299326004571/form8-k.htm","kind":"primary","primary":true,"publishedAt":"2026-09-17","originFingerprint":"sec:1591956:8-k:2026-09-17:darkhorse-name-ticker-continuance"}
+    ],
+    "risks": [
+      {"risk":"1,666,661 newly issued common shares and matching five-year warrants create material dilution/overhang relative to a small-cap issuer.","gating":false},
+      {"risk":"Development capital needs may exceed the disclosed $5.0 million financing if the proposed 50 MW Kentucky site and broader pipeline advance.","gating":false},
+      {"risk":"AI/HPC positioning should not be treated as customer validation until contracts, deployments or revenue disclosures establish conversion.","gating":false}
+    ],
+    "causalEdges": [
+      {"from":"private-placement capital","to":"development runway","mechanism":"cash proceeds can fund working capital and TVA-region AI/HPC development","falsifier":"capital is insufficient, diverted, or development fails to reach approvals/customer commitments"},
+      {"from":"warrant exercise","to":"additional funding and dilution","mechanism":"cash exercise adds capital while issuing additional common shares","falsifier":"warrants expire/unexercised or are otherwise restructured"}
+    ],
+    "contradictions": [
+      {"claim":"The financing was priced at a premium and included insider participation, but its warrant structure still creates future dilution exposure.","resolution":"Preserve both signals: financing terms/insider participation are supportive evidence; dilution and capital sufficiency remain separate risks.","resolved":true,"gating":false}
+    ],
+    "unknowns": [
+      {"unknown":"Current fully diluted capitalization after the Cathedra combination, September placement and all outstanding warrants/options is not established in this Scout packet.","gating":false},
+      {"unknown":"No primary evidence cited here establishes binding AI/HPC tenant contracts or project-level returns for the Kentucky development.","gating":false}
+    ],
+    "gatingIssues": [],
+    "confidence": 94,
+    "recommendedNextState": "triaged",
+    "recommendedOwner": "council-alpha"
+  }
+]

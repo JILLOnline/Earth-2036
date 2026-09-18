@@ -1,0 +1,89 @@
+{
+  "reportVersion": 1,
+  "laneId": "structural-causal",
+  "cycleKey": "20260914T0200Z",
+  "generatedAt": "2026-09-14T02:17:34Z",
+  "status": "complete",
+  "summary": "Independent structural/causal review tested the open autonomy-certification directive with primary NHTSA evidence. The evidence supports treating U.S. purpose-built AV certification/exemption throughput as a causal constraint distinct from technical autonomy capability: Tesla's Cybercab can be technically deployed yet still face an FMVSS self-certification audit, while Zoox required an exemption pathway for noncompliant purpose-built vehicles. The constraint is dynamic rather than permanent because NHTSA is simultaneously streamlining exemptions and rewriting AV-specific standards. This lane proposes a candidate regulatory-throughput node/edge set for Chief review, with explicit falsifiers; it does not modify the canonical graph.",
+  "materialFindings": [
+    {
+      "finding": "On Sept. 4, 2026 NHTSA opened an Audit Query into Tesla Cybercab self-certification after commercial deployment in Austin. This directly demonstrates that technical deployment capability does not eliminate the separate federal certification/compliance gate.",
+      "sources": ["https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification"]
+    },
+    {
+      "finding": "NHTSA's exemption framework allows noncompliant purpose-built AVs to operate only through a distinct regulatory pathway. In 2025 NHTSA granted Zoox an exemption covering purpose-built vehicles that did not claim compliance with all applicable FMVSS, and in July 2026 announced a temporary commercial exemption allowing up to 2,500 Zoox vehicles annually for two years subject to oversight.",
+      "sources": ["https://www.nhtsa.gov/press-releases/nhtsa-issues-first-ever-demonstration-exemption-american-built-automated-vehicles", "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle"]
+    },
+    {
+      "finding": "The regulatory constraint is migrating rather than disappearing: NHTSA is rewriting FMVSS requirements for vehicles without traditional human controls, including proposed brake-pedal changes, while preserving performance requirements. Therefore the bottleneck can shift from exemption availability toward standards interpretation, validation evidence, audit exposure and regulatory throughput.",
+      "sources": ["https://www.nhtsa.gov/press-releases/fmvss-updates-brake-pedal-requirements", "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle"]
+    },
+    {
+      "finding": "NHTSA separately highlighted operational interaction with first responders as a safety concern for driverless AVs in July 2026. This suggests a second-order constraint: even after vehicle-control standards are modernized, real-world deployment can remain bounded by operational-safety requirements and oversight rather than autonomy software performance alone.",
+      "sources": ["https://www.nhtsa.gov/press-releases/av-developers-automated-vehicle-that-cannot-safely-interact-first-responders-danger"]
+    }
+  ],
+  "proposedCanonicalChanges": [
+    {
+      "proposal": "Chief should consider adding a causal node such as `regulatory-certification-throughput` under the autonomy/mobility branch, with an edge to `purpose-built-AV-commercial-deployment`. Confidence: 90/100. Horizon: 1-5 years. Mechanism: vehicles with nontraditional controls may require certification interpretation, exemption, validation evidence and/or audit clearance even when the autonomy stack is technically deployable.",
+      "sources": ["https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification", "https://www.nhtsa.gov/press-releases/nhtsa-issues-first-ever-demonstration-exemption-american-built-automated-vehicles", "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle"]
+    },
+    {
+      "proposal": "If promoted, encode the node as a migrating constraint rather than a static moat: policy changes can lower exemption friction while shifting the binding constraint toward proving equivalent safety, satisfying revised FMVSS, operational oversight and audit resilience.",
+      "sources": ["https://www.nhtsa.gov/press-releases/fmvss-updates-brake-pedal-requirements", "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle"]
+    }
+  ],
+  "contradictions": [
+    {
+      "issue": "Regulatory friction is simultaneously a deployment constraint and an area of active deregulation/standard modernization. Treating regulation as only a worsening bottleneck would be wrong; the evidence supports constraint migration, not a one-directional regulatory thesis.",
+      "sources": ["https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification", "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle", "https://www.nhtsa.gov/press-releases/fmvss-updates-brake-pedal-requirements"]
+    }
+  ],
+  "unknowns": [
+    {
+      "unknown": "The materiality of certification throughput varies by architecture. Vehicles that retain conventional controls and already comply with FMVSS may face less friction than purpose-built driverless vehicles, so the edge should not be generalized equally across all autonomy companies.",
+      "sources": ["https://www.nhtsa.gov/press-releases/nhtsa-issues-first-ever-demonstration-exemption-american-built-automated-vehicles"]
+    },
+    {
+      "unknown": "Earth has not yet quantified average certification/exemption time, cost or probability of delay across active-universe autonomy names; current evidence establishes the causal mechanism, not a universal magnitude.",
+      "sources": ["https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle"]
+    }
+  ],
+  "peerRequests": [
+    {
+      "toLane": "company-underwriting",
+      "request": "For active-universe autonomy names, classify vehicle architecture and deployment path: conventional-control compliant vehicle, purpose-built nontraditional-control vehicle, exemption-dependent vehicle, or software-only supplier. Do not apply this constraint uniformly.",
+      "sources": ["https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification", "https://www.nhtsa.gov/press-releases/nhtsa-issues-first-ever-demonstration-exemption-american-built-automated-vehicles"]
+    },
+    {
+      "toLane": "discovery-weak-signals",
+      "request": "Track NHTSA rulemaking, exemptions and audit actions as sensor evidence for constraint migration, but preserve sensor non-gating semantics until a primary event is normalized and tied to a specific company or causal mechanism.",
+      "sources": ["earth-2036/docs/SENSOR_MESH.md", "https://www.nhtsa.gov/press-releases/fmvss-updates-brake-pedal-requirements"]
+    },
+    {
+      "toLane": "adversarial-red-team",
+      "request": "Attempt to falsify the regulatory-throughput node by finding purpose-built U.S. AV deployments where certification/exemption imposes negligible time/cost and no material launch constraint, or by showing that revised FMVSS eliminates the distinction.",
+      "sources": ["https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle"]
+    }
+  ],
+  "accuracyDebates": [
+    {
+      "topic": "Is AV regulation a durable 2036 bottleneck or a temporary policy artifact?",
+      "position": "Current evidence supports a real near/intermediate-term causal constraint, but not permanence. Encode it as a migrating regulatory/certification throughput constraint with a falsifier rather than as an enduring scarcity moat.",
+      "sources": ["https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification", "https://www.nhtsa.gov/press-releases/fmvss-updates-brake-pedal-requirements"]
+    }
+  ],
+  "blockingIssues": [],
+  "directivesReviewed": [
+    {
+      "directiveId": "chief-20260913t1300z-av-certification-constraint",
+      "result": "Independent primary evidence supports certification/regulatory throughput as a distinct, non-duplicative autonomy constraint with explicit entity examples and falsifiers. The analytical question is sufficiently answered for Chief review; any graph promotion must be performed by Chief and would require recompute before approval."
+    },
+    {
+      "directiveId": "chief-20260913t1300z-gev-constraint-migration",
+      "result": "Previously closed; no new GEV-specific canonical proposal was generated in this independent pass. The current pass concentrated on the higher-information-value open autonomy constraint directive."
+    }
+  ],
+  "confidence": 94,
+  "acquisitionComplete": true
+}

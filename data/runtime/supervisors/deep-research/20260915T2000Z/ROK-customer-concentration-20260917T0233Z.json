@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "role": "deep-resolver",
+  "generatedAt": "2026-09-17T02:33:00Z",
+  "cycleKey": "20260915T2000Z",
+  "workId": "t0-20260915T0000Z-b03:ROK:customer-concentration",
+  "company": {"ticker": "ROK", "name": "Rockwell Automation, Inc.", "cik": "0001024478"},
+  "directive": {
+    "gatingQuestion": "Does Rockwell Automation have a material customer or distribution-channel concentration that must be normalized before T0 packet preflight?",
+    "whyItMatters": "The T0 bootstrap queue identifies customer concentration as the remaining company-underwriting gate for ROK; unresolved concentration affects dependency/risk evidence and packet completeness.",
+    "preferredPrimarySource": "Latest Rockwell Automation Form 10-K customer/concentration disclosures, cross-checked against the latest Form 10-Q.",
+    "lawfulFallbacks": ["SEC inline-XBRL facts and contexts", "Rockwell Automation investor-relations filings"],
+    "successCondition": "Primary filings either quantify a material customer/channel concentration or establish that no issuer-disclosed individual-customer concentration requiring normalization is present, while preserving any channel/subsidiary concentration explicitly disclosed.",
+    "attemptCount": 3
+  },
+  "result": "still_conflicted",
+  "evidence": [
+    {
+      "type": "primary",
+      "source": "SEC Form 10-K for fiscal year ended 2025-09-30, accession 0001024478-25-000116",
+      "url": "https://www.sec.gov/Archives/edgar/data/1024478/000102447825000116/rok-20250930.htm",
+      "claim": "Rockwell states that a large percentage of North American sales are through distributors and that in certain other countries the majority of sales are through a limited number of distributors. The filing therefore establishes material distribution-channel dependency even though the reviewed text does not identify a consolidated end-customer exceeding a stated percentage threshold.",
+      "evidenceVsInference": "evidence"
+    },
+    {
+      "type": "primary",
+      "source": "SEC Form 10-K for fiscal year ended 2025-09-30, accession 0001024478-25-000116",
+      "url": "https://www.sec.gov/Archives/edgar/data/1024478/000102447825000116/rok-20250930.htm",
+      "claim": "The filing explicitly states that Sensia forecasts may be affected by concentration within Oil & Gas and with its customer base. It also states that the Sensia parents signed a term sheet for dissolution and distribution of assets after fiscal year end.",
+      "evidenceVsInference": "evidence"
+    },
+    {
+      "type": "primary",
+      "source": "SEC Form 10-Q for quarter ended 2026-06-30, accession 0001024478-26-000030",
+      "url": "https://www.sec.gov/Archives/edgar/data/1024478/000102447826000030/rok-20260630.htm",
+      "claim": "The latest quarterly filing confirms the issuer identity and current reporting period. Its inline-XBRL document contains customer-concentration-risk contexts, but the reviewed rendered filing did not expose a reliable named-customer percentage suitable for normalization without inventing precision.",
+      "evidenceVsInference": "evidence"
+    }
+  ],
+  "contradictionStatus": {
+    "status": "still_conflicted",
+    "detail": "Primary evidence clearly establishes distribution-channel concentration and historical Sensia customer/industry concentration, but does not provide a defensible consolidated named-customer percentage in the reviewed current filings. Absence of a rendered percentage is not evidence that no concentration exists."
+  },
+  "confidence": 0.88,
+  "gateImpact": "The vague 'customer concentration' gate can be narrowed: channel dependency is established and must be carried as risk evidence; an exact consolidated end-customer percentage remains unavailable from the reviewed primary disclosure and must stay unknown rather than be fabricated.",
+  "recommendedNextState": "Stop unchanged broad searching. Alpha/packet compiler should ingest the explicit distributor-channel and Sensia concentration evidence, preserve consolidated named-customer concentration as unknown, and decide packet completeness under the methodology's disclosure/unknown rules. Reopen Deep Resolver only if preflight names a specific missing concentration fact or XBRL fact/context requiring reconciliation.",
+  "canonicalMutation": false
+}

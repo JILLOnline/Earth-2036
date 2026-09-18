@@ -1,0 +1,91 @@
+{
+  "reportVersion": 1,
+  "laneId": "structural-causal",
+  "cycleKey": "20260913T2200Z",
+  "generatedAt": "2026-09-13T22:15:30Z",
+  "status": "complete",
+  "summary": "Primary NHTSA evidence supports certification/regulatory throughput as a distinct autonomy deployment constraint rather than a duplicate of technical driving capability. The distinction is visible at entity level: Zoox required exemptions for purpose-built noncompliant vehicles, while Tesla Cybercab is subject to an active NHTSA audit query over self-certification. Regulatory modernization is reducing the constraint, but not eliminating it; exemptions, FMVSS adaptation, objective AV performance standards and enforcement remain separate gates between autonomous capability and commercial scale.",
+  "materialFindings": [
+    {
+      "finding": "NHTSA states that automakers must certify vehicles against applicable FMVSS to access the U.S. market and opened an Audit Query on September 4, 2026 into Tesla's Cybercab self-certification after commercial deployment. This demonstrates that technical autonomous operation does not itself clear the certification gate.",
+      "sources": [
+        "https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification"
+      ]
+    },
+    {
+      "finding": "NHTSA's Part 555 framework permits limited deployment of vehicles that do not fully comply with existing FMVSS, including purpose-built AVs without traditional controls, but requires an equivalent-safety showing and agency approval. This creates a regulatory throughput dependency distinct from ADS technical performance.",
+      "sources": [
+        "https://www.nhtsa.gov/press-releases/streamline-exemption-process-noncompliant"
+      ]
+    },
+    {
+      "finding": "Zoox received an exemption pathway for its purpose-built driverless vehicles; NHTSA later allowed commercial deployment of up to 2,500 vehicles annually for two years under enhanced oversight. Entity-level exemption capacity can therefore bound deployment scale even when the underlying autonomy stack is operational.",
+      "sources": [
+        "https://www.nhtsa.gov/press-releases/nhtsa-issues-first-ever-demonstration-exemption-american-built-automated-vehicles",
+        "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle"
+      ]
+    },
+    {
+      "finding": "NHTSA is simultaneously updating FMVSS for vehicles without human controls and funding first-ever AV performance standards. Constraint migration is therefore plausible: today's vehicle-design compliance/exemption bottleneck may gradually shift toward objective AV performance standards, safety-management evidence, first-responder interaction and post-crash behavior rather than disappear entirely.",
+      "sources": [
+        "https://www.nhtsa.gov/press-releases/fmvss-updates-brake-pedal-requirements",
+        "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle",
+        "https://www.nhtsa.gov/press-releases/av-developers-automated-vehicle-that-cannot-safely-interact-first-responders-danger"
+      ]
+    }
+  ],
+  "proposedCanonicalChanges": [
+    {
+      "proposal": "Add a causal bottleneck concept for purpose-built AV certification/regulatory throughput, separate from core ADS technical capability, only after Chief/Beta confirms entity mapping and deduplicates it against any existing autonomy-regulation node.",
+      "classification": "IMPLEMENT",
+      "suggestedNode": {
+        "id": "bottleneck:av-certification-throughput",
+        "type": "bottleneck",
+        "label": "Purpose-built AV certification and exemption throughput"
+      },
+      "suggestedSignal": {
+        "kind": "constraint_migration",
+        "timeHorizon": "1-5y",
+        "direction": -1,
+        "confidence": 91,
+        "thesis": "Commercial scaling of purpose-built AV fleets depends not only on ADS capability but also on certification, exemptions and evolving FMVSS/performance-standard pathways; regulatory modernization can reduce legacy equipment constraints while shifting scrutiny toward objective AV safety performance and operational oversight.",
+        "falsifier": "Purpose-built AV fleets scale materially across U.S. jurisdictions without exemptions, self-certification disputes or certification-related deployment limits, while FMVSS modernization makes regulatory approval timing immaterial to commercial fleet growth for multiple years."
+      }
+    }
+  ],
+  "contradictions": [
+    {
+      "issue": "Regulation is both a constraint and an easing mechanism. Treating 'regulation' as uniformly negative would be wrong: NHTSA is actively removing legacy design barriers while retaining certification, exemption and enforcement gates.",
+      "sources": [
+        "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle",
+        "https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification"
+      ]
+    }
+  ],
+  "unknowns": [
+    "Long-run throughput and approval-time distribution for Part 555/AVEP applications under the streamlined process.",
+    "Whether future national AV performance standards materially compress entity-specific certification timelines or instead add a new evidence burden.",
+    "Company-specific economic sensitivity for active-universe autonomy names beyond the primary examples reviewed here."
+  ],
+  "peerRequests": [
+    {
+      "laneId": "discovery-weak-signals",
+      "request": "Track NHTSA exemption grants, audit queries, FMVSS modernization and A2SCEND performance-standard milestones as non-score-moving weak signals until independently normalized and mapped."
+    },
+    {
+      "laneId": "company-underwriting",
+      "request": "For autonomy companies in the active universe, separate technical milestones from regulatory-certification milestones and quantify commercial dependence where primary filings permit."
+    },
+    {
+      "laneId": "adversarial-red-team",
+      "request": "Test the falsifier by searching for purpose-built AV programs scaling commercially without certification/exemption friction and for cases where regulation accelerated rather than delayed deployment."
+    }
+  ],
+  "accuracyDebates": [],
+  "blockingIssues": [],
+  "directivesReviewed": [
+    "chief-20260913t1300z-av-certification-constraint"
+  ],
+  "confidence": 92,
+  "acquisitionComplete": true
+}

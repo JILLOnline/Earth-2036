@@ -1,0 +1,182 @@
+{
+  "reportVersion": 1,
+  "laneId": "source-integrity",
+  "cycleKey": "20260913T1300Z",
+  "generatedAt": "2026-09-13T15:12:42Z",
+  "status": "blocked",
+  "summary": "Same-cycle source and integrity review remains blocked on the exact machine-cycle CI proof and same-cycle supervisor/Sheet completion, but one prior apparent inconsistency is now resolved: Beast reports five GEV causal edges because its audit intentionally counts only edges directly touching company:GEV, while causal-graph.json contains six total edges including one bottleneck-to-infrastructure edge. Machine identity/tradability/source reachability remain healthy; FINRA remains partition-freshness only, sensors remain non-gating, and an empty evidence queue does not imply discovery completion.",
+  "materialFindings": [
+    {
+      "finding": "The authoritative persisted cycle is 20260913T1300Z with 250/250 companies observed and identity/tradability validated, but only 1/250 scored and publishable, supervisor source coverage 0, discoveryScanCompleted false, qualifiedTick false and council review pending.",
+      "sources": [
+        "earth-2036/data/runtime/system-state.json",
+        "earth-2036/data/runtime/source-health.json"
+      ]
+    },
+    {
+      "finding": "The exact machine-cycle SHA remains 31800bad5e349a9aae447477534533d4c7a98f30 for the reviewed deterministic boundary. Earth 2036 CI run 34760931146 is completed with conclusion action_required and no qualifying execution job, so it is neither a pass nor valid exact-SHA execution proof under the integrity contract.",
+      "sources": [
+        "GitHub commit 31800bad5e349a9aae447477534533d4c7a98f30",
+        "GitHub Actions run 34760931146",
+        "earth-2036/docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md"
+      ]
+    },
+    {
+      "finding": "Required machine-source health is internally coherent at its stated layer: all four machine sources are healthy with coverage 1.0, and Beast/sourceMesh passes for the single audited score record. That does not establish supervisor evidence acquisition or discovery completion, which are explicitly reset to zero/false for the new cycle.",
+      "sources": [
+        "earth-2036/data/runtime/source-health.json",
+        "earth-2036/data/runtime/intelligence-integrity.json",
+        "earth-2036/docs/SUPERVISOR_COUNCIL.md"
+      ]
+    },
+    {
+      "finding": "FINRA OTC Daily List is healthy only for partition freshness. The committed artifact explicitly has observationMode=partition-freshness, eventDataAvailable=false and recordCount=null, so current row-level corporate actions remain unavailable from the automated probe and require lawful event-level retrieval/corroboration.",
+      "sources": [
+        "earth-2036/data/runtime/automated-source-health.json",
+        "earth-2036/lib/discovery-sources.ts"
+      ]
+    },
+    {
+      "finding": "The prior five-versus-six GEV causal-edge discrepancy is resolved by code semantics, not by altering data. beast-integrity.mjs defines companyEdges as edges where edge.from===company:GEV or edge.to===company:GEV. causal-graph.json has six total edges, but exactly five directly touch company:GEV; edge:grid-capacity-bottlenecks-grid connects bottleneck:grid-equipment-capacity to infrastructure:power-grid and is intentionally excluded from the per-company count.",
+      "sources": [
+        "earth-2036/engine/beast-integrity.mjs",
+        "earth-2036/data/runtime/causal-graph.json",
+        "earth-2036/data/runtime/intelligence-integrity.json"
+      ]
+    },
+    {
+      "finding": "The evidence-review queue is empty with unresolved=0. This clears the queue-specific check only; it does not convert incomplete same-cycle discovery, supervisor coverage or company underwriting into complete acquisition.",
+      "sources": [
+        "earth-2036/data/runtime/evidence-review-queue.json",
+        "earth-2036/data/runtime/system-state.json"
+      ]
+    },
+    {
+      "finding": "Registered sensor sources remain explicitly non-gating. Their failures or blind spots must be visible as unknowns or research priorities, but they cannot change the active gating denominator unless a later explicit methodology decision changes their coverage role.",
+      "sources": [
+        "earth-2036/docs/SENSOR_MESH.md",
+        "earth-2036/lib/discovery-sources.ts"
+      ]
+    }
+  ],
+  "proposedCanonicalChanges": [
+    {
+      "proposal": "Document the Beast causal-edge counting semantics in an integrity-facing note or test: per-company causalEdges counts only direct company edges, while graph.edges is the total graph edge count. No causal data mutation is required for the resolved five-versus-six observation.",
+      "sources": [
+        "earth-2036/engine/beast-integrity.mjs",
+        "earth-2036/data/runtime/causal-graph.json"
+      ]
+    },
+    {
+      "proposal": "Keep the reviewed cycle unapproved until a real Earth 2036 CI verification job passes on an exact deterministic machine-cycle SHA. Do not substitute later branch-head CI for the missing 31800bad execution proof.",
+      "sources": [
+        "earth-2036/docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md",
+        "GitHub Actions run 34760931146"
+      ]
+    },
+    {
+      "proposal": "Keep FINRA semantics at partition-freshness/eventDataAvailable=false until row-level event retrieval or primary corroboration is actually acquired; do not convert endpoint freshness into event truth.",
+      "sources": [
+        "earth-2036/data/runtime/automated-source-health.json",
+        "earth-2036/lib/discovery-sources.ts"
+      ]
+    }
+  ],
+  "contradictions": [
+    {
+      "issue": "Machine and automated health are green while supervisorCoverageRatio is 0 and discoveryScanCompleted is false. This is not a data contradiction if capability/reachability is kept separate from same-cycle intelligent acquisition; presenting all green states as equivalent completeness would be misleading.",
+      "sources": [
+        "earth-2036/data/runtime/source-health.json",
+        "earth-2036/data/runtime/automated-source-health.json",
+        "earth-2036/data/runtime/system-state.json"
+      ]
+    }
+  ],
+  "unknowns": [
+    {
+      "unknown": "No reviewed same-cycle artifact proves repo-versus-Sheet parity for 20260913T1300Z; spreadsheetMirror=chatgpt-supervisor is not itself a content-parity proof.",
+      "sources": [
+        "earth-2036/data/runtime/system-state.json",
+        "earth-2036/docs/SUPERVISOR_COUNCIL.md"
+      ]
+    },
+    {
+      "unknown": "FINRA row-level current OTC event data remains unavailable in the committed automated source artifact because eventDataAvailable=false.",
+      "sources": [
+        "earth-2036/data/runtime/automated-source-health.json"
+      ]
+    },
+    {
+      "unknown": "Same-cycle supervisor discovery completion remains false until the discovery lane completes cadence-due gating-family review and Chief reconciles it.",
+      "sources": [
+        "earth-2036/data/runtime/source-health.json",
+        "earth-2036/data/runtime/system-state.json"
+      ]
+    }
+  ],
+  "peerRequests": [
+    {
+      "toLane": "company-underwriting",
+      "request": "Continue treating source availability as distinct from company-level evidence completeness; 4/4 machine health cannot support inferred factors for unscored companies.",
+      "sources": [
+        "earth-2036/data/runtime/source-health.json",
+        "earth-2036/engine/rubric.ts"
+      ]
+    },
+    {
+      "toLane": "structural-causal",
+      "request": "The five-versus-six causal-edge audit issue is resolved: Beast counts five direct GEV edges and excludes the one bottleneck-to-grid edge. Use this code-defined scope in future parity checks rather than treating total graph edges as per-company edges.",
+      "sources": [
+        "earth-2036/engine/beast-integrity.mjs",
+        "earth-2036/data/runtime/causal-graph.json"
+      ]
+    }
+  ],
+  "accuracyDebates": [
+    {
+      "topic": "Can later successful branch-head CI cure the missing exact machine-SHA execution proof?",
+      "position": "No. The contract explicitly requires a real verification job for the exact deterministic machine-cycle SHA; later append-only report identity is protected by blob SHA and finalizer validation instead.",
+      "sources": [
+        "earth-2036/docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md",
+        "GitHub Actions run 34760931146"
+      ]
+    },
+    {
+      "topic": "Was the GEV five-versus-six edge observation evidence of graph corruption?",
+      "position": "No. Direct inspection of beast-integrity.mjs resolves it deterministically: the audit counts only edges incident to company:GEV, while the graph also stores one non-company bottleneck-to-infrastructure edge.",
+      "sources": [
+        "earth-2036/engine/beast-integrity.mjs",
+        "earth-2036/data/runtime/causal-graph.json"
+      ]
+    }
+  ],
+  "blockingIssues": [
+    {
+      "issue": "Missing real exact-SHA Earth 2036 CI execution proof for deterministic machine-cycle SHA 31800bad5e349a9aae447477534533d4c7a98f30.",
+      "sources": [
+        "GitHub Actions run 34760931146",
+        "earth-2036/docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md"
+      ]
+    },
+    {
+      "issue": "Same-cycle supervisor discovery/coverage is not yet complete and repo-versus-Sheet parity is not proven by a same-cycle reviewed artifact.",
+      "sources": [
+        "earth-2036/data/runtime/source-health.json",
+        "earth-2036/data/runtime/system-state.json",
+        "earth-2036/docs/SUPERVISOR_COUNCIL.md"
+      ]
+    }
+  ],
+  "directivesReviewed": [
+    {
+      "directiveId": "chief-20260913t1300z-exact-sha-ci",
+      "result": "Still open: exact-SHA run 34760931146 remains action_required without a qualifying job; no substitute proof found."
+    },
+    {
+      "directiveId": "chief-20260913t1300z-gev-constraint-migration",
+      "result": "Peer issue partially resolved: causal-edge audit count semantics are now deterministically explained by beast-integrity.mjs; no graph mutation required."
+    }
+  ],
+  "confidence": 99,
+  "acquisitionComplete": false
+}

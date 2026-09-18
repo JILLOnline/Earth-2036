@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "role": "deep-resolver",
+  "status": "resolved",
+  "generatedAt": "2026-09-16T11:35:43Z",
+  "cycleKey": "20260915T2000Z",
+  "workId": "t0-20260914T1500Z-b02:SYM",
+  "company": {
+    "ticker": "SYM",
+    "name": "Symbotic Inc.",
+    "cik": "0001837240"
+  },
+  "directive": {
+    "attemptCount": 4,
+    "exactGatingQuestion": "Classify the transaction-level substance of SEC Form 4 accession 0001932967-26-000007: transaction codes, amounts, prices and post-transaction holdings, so the SYM-only freshness quarantine can be adjudicated.",
+    "whyItMatters": "The T0 bootstrap queue marks SYM as the sole blocked company and explicitly requires transaction-level classification of this accession before the freshness gate can clear.",
+    "preferredPrimarySource": "SEC EDGAR accession 0001932967-26-000007 ownership XML/index; issuer IR-hosted filing copy is the lawful primary-origin fallback.",
+    "lawfulFallbacks": [
+      "Symbotic investor-relations SEC filings page and issuer-hosted filing artifacts",
+      "faithful Form 4 mirrors reproducing the filed table and footnotes",
+      "independent structured Form 4 parsers only as corroboration"
+    ],
+    "successCondition": "Identify every reportable transaction's code, amount, price treatment and resulting holdings sufficiently to determine whether the filing represents an open-market sale/purchase, compensation event, gift, or trust-level/non-market transfer."
+  },
+  "evidence": [
+    {
+      "kind": "primary_origin_index",
+      "source": "https://ir.symbotic.com/financial-filings/sec-filings",
+      "accessedAt": "2026-09-16T11:35:43Z",
+      "claim": "Symbotic's investor-relations SEC filing index lists accession 0001932967-26-000007 as a Form 4 filed September 14, 2026 and exposes HTML/PDF/RTF/XLS filing artifacts.",
+      "evidenceVsInference": "evidence",
+      "confidence": 0.99
+    },
+    {
+      "kind": "faithful_filing_mirror",
+      "source": "https://www.advfn.com/stock-market/NASDAQ/SYM/stock-news/99305805/form-4-statement-of-changes-in-beneficial-owners",
+      "accessedAt": "2026-09-16T11:35:43Z",
+      "claim": "The reproduced Form 4 identifies David A. Ladensohn as a 10% owner and states that on September 10, 2026 The Tilia Mill Trust distributed 200,000 Class V-1 shares and an equal number of paired Symbotic Holdings Units to the trust beneficiary; Ladensohn disclaims beneficial ownership. The reproduced filing footnotes characterize the movement as a trust distribution rather than an open-market trade.",
+      "evidenceVsInference": "evidence",
+      "confidence": 0.95
+    },
+    {
+      "kind": "structured_filing_mirror",
+      "source": "https://www.stocktitan.net/sec-filings/SYM/form-4-symbotic-inc-insider-trading-activity-b6e47dd1991a.html",
+      "accessedAt": "2026-09-16T11:35:43Z",
+      "claim": "The filing table resolves four paired economic movements: two 200,000-unit/share trust distributions and two bona fide gifts of 231,896 and 373,896 units/shares. It reports no market price/value for the Holdings Units and $0.00 for the paired Class V shares. Post-transaction indirect holdings shown include 10,790,532 Holdings Units for Serenade QSST Trust, 14,178,979 for Tilia Mill Trust, 231,896 for PLC 2023 Receptacle Trust, 373,896 for RCK 2024 Receptacle Trust, and 151,561,831 for RBC Millennium Trust, with paired Class V holdings also reported.",
+      "evidenceVsInference": "evidence",
+      "confidence": 0.94
+    },
+    {
+      "kind": "independent_structured_corroboration",
+      "source": "https://atlantisdatasolutions.com/SYM/insider",
+      "accessedAt": "2026-09-16T11:35:43Z",
+      "claim": "Independent Form 4 parsing classifies the 200,000-share decreases with transaction code J and the 231,896- and 373,896-share increases with transaction code G, all without sale proceeds; paired rows appear because both Symbotic Holdings Units and corresponding Class V shares moved.",
+      "evidenceVsInference": "evidence",
+      "confidence": 0.91
+    }
+  ],
+  "resolution": {
+    "transactionDate": "2026-09-10",
+    "filingDate": "2026-09-14",
+    "reportingPerson": "David A. Ladensohn",
+    "relationship": "10% Owner",
+    "transactions": [
+      {
+        "code": "J",
+        "direction": "decrease",
+        "amount": 200000,
+        "securityPair": "Symbotic Holdings Units + Class V-1 Common Stock",
+        "price": null,
+        "substance": "non-market trust distribution to beneficiary"
+      },
+      {
+        "code": "J",
+        "direction": "decrease",
+        "amount": 200000,
+        "securityPair": "Symbotic Holdings Units + Class V-1 Common Stock",
+        "price": null,
+        "substance": "non-market trust distribution to beneficiary"
+      },
+      {
+        "code": "G",
+        "direction": "increase",
+        "amount": 231896,
+        "securityPair": "Symbotic Holdings Units + Class V-3 Common Stock",
+        "price": null,
+        "substance": "bona fide gift into receptacle trust"
+      },
+      {
+        "code": "G",
+        "direction": "increase",
+        "amount": 373896,
+        "securityPair": "Symbotic Holdings Units + Class V-3 Common Stock",
+        "price": null,
+        "substance": "bona fide gift into receptacle trust"
+      }
+    ],
+    "marketSaleOrPurchase": false,
+    "cashConsiderationObserved": false,
+    "beneficialOwnershipCaveat": "The filing states Ladensohn disclaims beneficial ownership of the trust-held securities; the movements are trust-level distributions/gifts and should not be interpreted as discretionary open-market insider buying or selling.",
+    "contradictionStatus": "resolved",
+    "evidenceVsInference": "The transaction codes/amounts and trust-transfer substance are evidence from faithful filing reproductions corroborated by independent structured parsing. The conclusion that this is not an open-market conviction signal is inference directly implied by codes J/G, zero/no price, and the filing footnotes.",
+    "confidence": 0.95,
+    "gateImpact": "The exact SYM freshness blocker described in t0-bootstrap-queue is resolved. No evidence supports treating this accession as an open-market sale/purchase or as a price-bearing dilution event.",
+    "recommendedNextState": "Remove the accession-specific SYM quarantine after Chief/packet preflight verifies this immutable evidence object. Return SYM from blocked to the normal T0 evidence-completion/packet path; do not promote a score/rank from this auxiliary artifact alone."
+  },
+  "sourceLineage": {
+    "queuePath": "data/runtime/supervisors/t0-bootstrap-queue.json",
+    "queueCycleKey": "20260915T2000Z",
+    "queueBatchId": "t0-20260914T1500Z-b02",
+    "blockedTicker": "SYM",
+    "blockedAccession": "0001932967-26-000007"
+  },
+  "immutability": "Auxiliary research only. This object does not edit methodology, scores, ranks, ticks, membership, baseline evidence or Chief decisions."
+}

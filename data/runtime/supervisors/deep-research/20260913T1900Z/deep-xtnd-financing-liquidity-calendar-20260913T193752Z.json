@@ -1,0 +1,133 @@
+{
+  "artifactVersion": 1,
+  "cycleKey": "20260913T1900Z",
+  "generatedAt": "2026-09-13T19:37:52Z",
+  "shift": "day",
+  "researchTarget": "XTND post-close financing optionality, lock-up/liquidity calendar and ownership concentration",
+  "researchQuestion": "Beyond the already-reconstructed XTND cap-table origin, what post-close financing and liquidity mechanics could materially change dilution, float and execution risk even after the exact current denominator is reconciled?",
+  "lineage": {
+    "company": "XTND",
+    "directiveIds": ["chief-20260913t1300z-xtnd-capital-structure"],
+    "relatedArtifacts": [
+      "data/runtime/discovery-pool.json",
+      "data/runtime/supervisors/directives.json",
+      "data/runtime/supervisors/deep-research/20260913T1800Z/deep-xtnd-capital-origin-20260913T1834Z.json",
+      "data/runtime/supervisors/cycles/20260913T1900Z/company-underwriting-alpha-20260913T1915Z.json",
+      "data/runtime/supervisors/cycles/20260913T1900Z/adversarial-red-team-beta-20260913T1924Z.json",
+      "data/runtime/supervisors/cycles/20260913T1900Z/expectations-execution-beta-20260913T1925Z.json"
+    ]
+  },
+  "summary": "A second-order review adds a distinct risk layer that the current XTND cap-table work does not yet capture: on September 4, one day after the merger close, XTND filed a Form S-3 shelf as a well-known seasoned issuer. The shelf permits future offerings of common stock, preferred stock, debt, warrants and units, with registration fees deferred under Rules 456(b)/457(r), so there is no fixed aggregate issuance amount to treat as realized dilution today. This is financing optionality, not evidence that a financing has occurred, but it materially increases the importance of future prospectus-supplement monitoring. The same S-3 describes a staged lock-up regime for merger-related equity: generally 180 days of initial transfer restriction followed by a 90-day coordinated-sale period with a 25%-of-Base-Holdings limit per 30-day period, while specified buckets are exempt. For a September 3, 2026 close, the contractual calendar points to approximately March 2, April 1, May 1 and May 31, 2027 as the 180/210/240/270-day boundaries. This means current trading float cannot be inferred from the 277.4M pro forma denominator and may change discontinuously as exemptions, warrant/common substitutions and staged unlocks become saleable. A September 8 Form 3 also shows Union Investments & Development Ltd. holding 35,454,544 common shares and reporting as a 10% owner; that block is about 12.8% of the 277,442,600 pro forma denominator, but the denominator is not an exact post-close outstanding-share count, so the percentage is only a scale indicator. Chief should keep XTND unscored and add a financing/float-monitoring requirement to the open capitalization directive rather than treating denominator reconciliation alone as sufficient.",
+  "findings": [
+    {
+      "type": "evidence",
+      "claim": "On September 4, 2026, XTND filed a Form S-3 shelf registration stating that it filed as a well-known seasoned issuer and may sell securities from time to time in one or more offerings, including common stock, preferred stock, debt securities, warrants and units.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383724/d924164ds3asr.htm"
+      ],
+      "confidence": 100
+    },
+    {
+      "type": "evidence",
+      "claim": "The S-3 defers registration-fee payment under Rules 456(b) and 457(r), and says offering-specific terms and proceeds will be supplied in future prospectus supplements. Therefore the shelf does not establish a fixed current financing amount or realized dilution.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383724/d924164ds3asr.htm"
+      ],
+      "confidence": 100
+    },
+    {
+      "type": "inference",
+      "claim": "The new shelf creates material financing optionality immediately after the merger close. It should be modeled as a forward dilution/financing watch item, not added to the current fully diluted denominator until a prospectus supplement or other primary issuance evidence specifies actual securities sold.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383724/d924164ds3asr.htm"
+      ],
+      "confidence": 97
+    },
+    {
+      "type": "evidence",
+      "claim": "The S-3 states that merger-related lock-up shares are generally subject to an initial 180-day transfer restriction, followed by a coordinated-sale period through day 270. During each successive 30-day measurement period in that coordinated phase, a locked-up holder may not sell more than 25% of Base Holdings through the designated coordinating broker process.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383724/d924164ds3asr.htm"
+      ],
+      "confidence": 100
+    },
+    {
+      "type": "evidence",
+      "claim": "The S-3 also lists material lock-up exceptions, including certain non-restricted/non-affiliate JFB shares, 1,604,000 JFB private-placement shares, Xtend SAFE-related shares and American Ventures LLC Series XIV JFB shares governed by separate support-agreement transfer terms.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383724/d924164ds3asr.htm"
+      ],
+      "confidence": 99
+    },
+    {
+      "type": "inference",
+      "claim": "Because some merger-related buckets are locked and others are explicitly exempt, the 277,442,600 pro forma denominator cannot be used as a free-float proxy. Exact tradable float requires mapping actual post-close common and pre-funded-warrant holders into the lock-up and exception buckets.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383724/d924164ds3asr.htm",
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"
+      ],
+      "confidence": 96
+    },
+    {
+      "type": "inference",
+      "claim": "Using the September 3, 2026 close date, the staged lock-up calendar falls approximately on March 2, 2027 (180 days), April 1 (210), May 1 (240) and May 31 (270). These dates are mechanical calendar calculations and should be rechecked against the bylaw's exact time-of-day language before any execution decision.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383724/d924164ds3asr.htm"
+      ],
+      "confidence": 98
+    },
+    {
+      "type": "evidence",
+      "claim": "A September 8 Form 3 reports Union Investments & Development Ltd. directly holding 35,454,544 XTND common shares and identifies the reporting relationship as a 10% owner.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1885902/000121390026098031/xslF345X06/ownership.xml"
+      ],
+      "confidence": 100
+    },
+    {
+      "type": "inference",
+      "claim": "Union's 35,454,544-share block is approximately 12.8% of the 277,442,600 pro forma denominator, illustrating meaningful ownership concentration. This is only a scale comparison because the pro forma weighted-average denominator is not the definitive current common-share count and the filing does not by itself establish which lock-up bucket applies to Union's entire block.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1885902/000121390026098031/xslF345X06/ownership.xml",
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"
+      ],
+      "confidence": 94
+    },
+    {
+      "type": "evidence",
+      "claim": "The S-3 states that XTND had no preferred stock outstanding as of the prospectus date but its board may issue up to 10,000,000 preferred shares in one or more series, adding another financing/security-design channel that is separate from current common-share dilution.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383724/d924164ds3asr.htm"
+      ],
+      "confidence": 100
+    }
+  ],
+  "contradictions": [
+    {
+      "issue": "Current underwriting correctly treats the exact post-close denominator as unresolved, while the new S-3 creates broad future issuance authority and a heterogeneous lock-up regime. A single 'fully diluted share count' cannot answer both current capitalization and future float/financing risk.",
+      "impact": "The open directive should be split conceptually into current-cap-table normalization and ongoing financing/float monitoring. Closing the first should not automatically close the second.",
+      "sources": [
+        "data/runtime/supervisors/cycles/20260913T1900Z/company-underwriting-alpha-20260913T1915Z.json",
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383724/d924164ds3asr.htm"
+      ]
+    }
+  ],
+  "unknowns": [
+    "Whether XTND will actually use the September 4 shelf, and if so which securities, amount, timing and price will be used.",
+    "Exact post-close common shares outstanding and actual pre-funded warrants outstanding.",
+    "Exact number of shares currently subject to the bylaw lock-up versus exempt or separately governed transfer arrangements.",
+    "Whether Union Investments & Development Ltd.'s 35,454,544-share block is entirely subject to the bylaw lock-up, partly exempt, or governed by a separate agreement.",
+    "Actual freely tradable public float today and how much float is expected to become saleable at each 2027 lock-up boundary.",
+    "Post-close unrestricted cash and normalized operating cash burn, which determine whether the shelf is merely optional flexibility or likely financing dependence."
+  ],
+  "falsifiers": [
+    "A definitive post-close cap-table disclosure that maps common stock, pre-funded warrants and each major holder into lock-up/exempt buckets would supersede the current float uncertainty.",
+    "A prospectus supplement or 8-K announcing an actual shelf takedown would convert financing optionality into a quantified issuance event and require immediate recalculation.",
+    "Sustained positive operating cash flow with ample unrestricted cash and no shelf usage would weaken the inference that near-term financing dependence is material.",
+    "Primary evidence showing that most of the 277.4M economic denominator is freely tradable immediately would falsify the expectation of a materially staged float release."
+  ],
+  "confidence": 97,
+  "recommendedChiefAction": "review",
+  "recommendedActionDetail": "Keep the existing XTND capitalization directive open, but add a separate monitoring requirement inside its resolution criteria: (1) exact post-close issued common and pre-funded warrants, (2) lock-up/exemption mapping by major holder and expected 2027 float-release calendar, and (3) continuous SEC monitoring for any S-3 prospectus supplement or actual financing. Do not score or value XTND from the shelf itself; it is financing capacity, not realized dilution. Route the S-3/lock-up finding to company-underwriting, adversarial-red-team and expectations-execution as a second-order risk layer after the current denominator is reconciled.",
+  "evidenceVsInferencePolicy": "Filing-stated securities, ownership and lock-up terms are evidence. Percentages, calendar dates and financing/float implications are labeled inference. No canonical score, rank, admission, opportunity state or causal edge is modified by this artifact."
+}

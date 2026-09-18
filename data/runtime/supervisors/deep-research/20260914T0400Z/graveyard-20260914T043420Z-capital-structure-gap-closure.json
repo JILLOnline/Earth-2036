@@ -1,0 +1,194 @@
+{
+  "artifactVersion": 1,
+  "workerId": "earth-deep-runner",
+  "cycleKey": "20260914T0400Z",
+  "generatedAt": "2026-09-14T04:34:20Z",
+  "shift": "graveyard",
+  "batchId": null,
+  "batchContext": "No canonical Chief t0-bootstrap queue/batchId exists on this branch. This artifact maps to the provisional 12-company batch explicitly named by company-underwriting-alpha-20260914T042100Z; XTND is an outside-batch open Chief directive.",
+  "researchTargets": [
+    {
+      "ticker": "NBIS",
+      "company": "Nebius Group N.V.",
+      "batchId": null,
+      "gate": "post-offering net cash; coupon/conversion economics; dilution sensitivity; capex commitments; customer concentration",
+      "sourceGatePath": "data/runtime/supervisors/cycles/20260914T0400Z/company-underwriting-alpha-20260914T042100Z.json"
+    },
+    {
+      "ticker": "IONQ",
+      "company": "IonQ, Inc.",
+      "batchId": null,
+      "gate": "SkyWater purchase accounting; integration costs; post-close liquidity; pro forma dilution",
+      "sourceGatePath": "data/runtime/supervisors/cycles/20260914T0400Z/company-underwriting-alpha-20260914T042100Z.json"
+    },
+    {
+      "ticker": "ALAB",
+      "company": "Astera Labs, Inc.",
+      "batchId": null,
+      "gate": "customer concentration; stock compensation; fully diluted share normalization",
+      "sourceGatePath": "data/runtime/supervisors/cycles/20260914T0400Z/company-underwriting-alpha-20260914T042100Z.json"
+    },
+    {
+      "ticker": "XTND",
+      "company": "Xtend AI Robotics, Inc.",
+      "batchId": null,
+      "gate": "exact post-close common/pre-funded-warrant denominator; rollover/plan overhang; normalized runway without double counting",
+      "sourceGatePath": "data/runtime/supervisors/directives.json#chief-20260913t1300z-xtnd-capital-structure"
+    }
+  ],
+  "researchQuestion": "Can obscure/current primary filings close the highest-value capital-structure, concentration and liquidity gaps without turning registration capacity, transaction accounting or timing-driven cash flows into false economic precision?",
+  "summary": "Four high-value gaps were attacked from SEC primary documents. NBIS financing terms are now substantially normalized: the August offering actually closed at $5.75B original principal after full option exercise, while $0.8B of older notes were exchanged for about 15.8M Class A shares; the June cash balance and first-half cash-flow statement show why simple 'cash runway' math would be misleading because $4.395B of deferred-revenue/customer-advance inflow helped produce positive operating cash flow while $8.130B was spent on PP&E/intangibles. IONQ's filing supports a first-order post-SkyWater liquidity/dilution stress bridge but explicitly says acquisition accounting is incomplete, so a final post-close balance sheet remains unknown. ALAB's concentration, SBC and weighted diluted-share gaps are materially narrowed from its 10-Q, but a spot-date fully diluted cap table is still not proven. XTND's filings sharpen the dilution stack and prove that S-8/S-4 amounts are registration ceilings/reserves rather than automatically additive current dilution; the 277.443M pro forma weighted-average denominator is useful but is not an exact post-close legal common-share count, and normalized runway remains unresolved. No canonical score/rank/admission inference is made.",
+  "findings": [
+    {
+      "ticker": "NBIS",
+      "evidence": [
+        "The August 24 SEC-filed closing release says the option was exercised in full: $3.45B 0.50% notes due 2030 plus $2.30B 4.50% notes due 2034, $5.75B total original principal. This supersedes the earlier $5.0B pricing headline for capital-structure normalization.",
+        "The same closing release confirms $400M of 2029 notes and $400M of 2031 notes were exchanged for approximately 15.8M Class A shares, creating immediate equity dilution while retiring $0.8B original principal.",
+        "The pricing filing gives initial conversion prices of about $313.46 for the 2030 notes and $324.65 for the 2034 notes, with accreted-principal effective conversion prices of about $344.81 and $405.82 at maturity. Estimated net proceeds with the option fully exercised were about $5.68B.",
+        "Nebius reported $8.0421B cash/cash equivalents at June 30. First-half operating cash flow was +$4.5041B, but management attributes most of that to a $4.395B increase in deferred revenue from customer advances; first-half PP&E/intangible purchases were $8.1303B. Therefore headline positive operating cash flow is not a defensible steady-state runway proxy."
+      ],
+      "inference": "The coupon/conversion and immediate exchange-dilution gate is largely closed. The financing is much larger than the provisional $5.0B headline and materially increases both capacity funding and capital-structure complexity. Post-offering liquidity cannot be treated as June cash plus proceeds without reconciling August capex, customer advances, other financings and settlement flows.",
+      "contradictions": [
+        "Strong positive first-half operating cash flow coexists with operating losses because customer advances drove deferred revenue; treating OCF as recurring cash generation would overstate self-funding capacity."
+      ],
+      "unknowns": [
+        "Exact post-August net cash/debt after settlement, subsequent capex and other financing activity.",
+        "Fully normalized customer-level concentration and project-level returns on the funded AI infrastructure buildout."
+      ],
+      "falsifiers": [
+        "If subsequent filings show capex delivery and contracted gross profit converting to durable free cash flow without recurring capital issuance, financing-dependence risk should be reduced.",
+        "If customer advances reverse, utilization/pricing disappoint, or new financing continues to outpace gross-profit generation, financing-dependence risk strengthens."
+      ],
+      "confidence": 94,
+      "recommendedChiefAction": "review",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1513845/000110465926100347/tm2623863d1_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/1513845/000110465926098924/tm2623617d1_ex99-1.htm",
+        "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d1.htm",
+        "data/runtime/supervisors/cycles/20260914T0400Z/company-underwriting-alpha-20260914T042100Z.json",
+        "data/runtime/supervisors/cycles/20260914T0400Z/adversarial-red-team-beta-20260914T042700Z.json"
+      ]
+    },
+    {
+      "ticker": "IONQ",
+      "evidence": [
+        "IonQ's Q2 10-Q says the July 31 SkyWater acquisition used approximately $1.0564B cash in total: $741.3M purchase consideration plus about $315.1M debt repayment/transaction costs, and issued 24,135,775 IonQ shares as part of approximately $1.8B total consideration.",
+        "The same filing explicitly says initial business-combination accounting was incomplete at filing date, so acquired assets/liabilities and final purchase accounting were not yet available.",
+        "June 30 cash plus short- and long-term investments were approximately $2.959B before the closing. Subtracting the disclosed $1.0564B acquisition cash use gives an analytical residual of about $1.903B before post-June operations/investing movements; this is a stress bridge, not a closing cash balance.",
+        "24.136M acquisition shares are about 6.33% of the 381.002M shares reported outstanding near closing. This gives a first-order dilution magnitude, but does not capture assumed awards, subsequent issuance or final purchase-accounting effects.",
+        "First-half operating cash outflow was approximately $254.8M and operating loss $608.8M. A naive annualization would imply about 3.7 years against the analytical residual liquidity, but that ratio excludes foundry working capital, integration, capex and future acquisitions and therefore must not be promoted as canonical runway."
+      ],
+      "inference": "Post-close liquidity and dilution can now be bounded well enough for Chief review, but purchase accounting/integration economics remain legitimately unknown. The acquisition moved IonQ from a primarily quantum-platform liquidity profile toward a vertically integrated foundry operating model whose cash requirements cannot be inferred from pre-close burn alone.",
+      "contradictions": [
+        "The acquisition can improve technical control while simultaneously increasing operating-model complexity and cash requirements; vertical integration is not automatically risk reduction."
+      ],
+      "unknowns": [
+        "Final SkyWater purchase-price allocation and acquired liabilities.",
+        "Post-close combined-company working capital, foundry capex and integration cash costs.",
+        "Exact spot-date fully diluted denominator after assumed employee awards and other post-close equity activity."
+      ],
+      "falsifiers": [
+        "Risk falls if subsequent filings show stable third-party foundry economics, contained integration cash use and commercial quantum growth sufficient to absorb combined fixed costs.",
+        "Risk rises if merchant foundry revenue/margins deteriorate, integration cash use materially exceeds disclosed expectations, or quantum commercialization fails to scale."
+      ],
+      "confidence": 92,
+      "recommendedChiefAction": "review",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1824920/000119312526341001/ionq-20260630.htm",
+        "data/runtime/supervisors/cycles/20260914T0400Z/company-underwriting-alpha-20260914T042100Z.json",
+        "data/runtime/supervisors/cycles/20260914T0400Z/adversarial-red-team-beta-20260914T042700Z.json",
+        "data/runtime/supervisors/cycles/20260914T0400Z/expectations-execution-beta-20260914T043000Z.json"
+      ]
+    },
+    {
+      "ticker": "ALAB",
+      "evidence": [
+        "Astera Labs' Q2 10-Q reports direct-customer revenue concentration of 29%, 25%, 15% and 13% for four customers in Q2 (82% combined) and 29%, 21%, 17% and 13% for the first half (80% combined). The filing cautions that some named customers are manufacturing partners purchasing for end customers, so direct-customer concentration can move without equivalent changes in underlying end-customer demand.",
+        "June 30 accounts-receivable concentration was 30%, 17%, 12% and 10% for four customers (69% combined).",
+        "Q2 stock-based compensation was $63.992M and first-half SBC was $112.905M; Q2 SBC equaled roughly 16.3 percentage points of revenue in the company's operating-income reconciliation. Unrecognized RSU compensation was $640.1M over a weighted-average 2.0 years and PSU compensation $40.3M over 2.1 years.",
+        "Q2 weighted-average basic shares were 172.378M and diluted shares 183.340M, a 10.962M or roughly 6.36% treasury-method dilutive effect. June 30 marketable securities were $1.142B and the company says cash/cash equivalents/marketable securities totaled about $1.3B; first-half operating cash flow was +$162.3M."
+      ],
+      "inference": "The concentration and SBC gates are materially closed, and a defensible period-average diluted denominator is available. However, the filing itself warns that direct-customer concentration is not identical to end-customer concentration, and weighted-average diluted shares are not an exact spot-date fully diluted cap table. ALAB should advance to Chief review for these fields while retaining a narrower follow-up on end-customer mapping and spot-date awards/warrants.",
+      "contradictions": [
+        "Exceptional operating profitability and liquidity coexist with economically meaningful SBC and very high direct-customer concentration; neither strength nor concentration should erase the other."
+      ],
+      "unknowns": [
+        "Underlying end-customer concentration after manufacturing-partner pass-through.",
+        "Exact spot-date fully diluted share count under a consistent treasury-method/award treatment."
+      ],
+      "falsifiers": [
+        "Concentration risk falls if future filings show durable diversification across underlying end customers and product families without margin erosion.",
+        "Dilution risk falls if SBC growth materially trails revenue/cash generation and unrecognized award overhang amortizes without replacement at similar scale."
+      ],
+      "confidence": 96,
+      "recommendedChiefAction": "review",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1736297/000173629726000035/alab-20260630.htm",
+        "data/runtime/supervisors/cycles/20260914T0400Z/company-underwriting-alpha-20260914T042100Z.json",
+        "data/runtime/supervisors/cycles/20260914T0400Z/adversarial-red-team-beta-20260914T042700Z.json"
+      ]
+    },
+    {
+      "ticker": "XTND",
+      "evidence": [
+        "The merger pro forma uses 277,442,600 weighted-average basic/diluted shares, comprising historical Xtend shares plus conversion adjustment, preferred/warrant/SAFE conversion and JFB securities. The filing says this is a pro forma period assumption as if business-combination shares had been outstanding for the entire period; it is not an explicit current legal common-shares-outstanding statement.",
+        "The same pro forma reports six-month 2026 combined operating loss of about $34.465M and net loss of about $27.545M, but the purchase-price allocation/accounting-policy conformity remained preliminary. Net loss therefore cannot substitute for a normalized cash-burn/runway calculation.",
+        "The September 4 S-8 registers 9,936,483 shares for rollover equity awards, 18,630,959 under the 2026 equity incentive plan and 15,000,000 under the ESPP. Those categories have different economic meanings: rollover awards are assumed awards; plan/ESPP amounts are issuance reserves/capacity and must not be blindly added as current shares outstanding.",
+        "The July S-4 fee table states 24,873,730 pre-funded warrants were the estimated maximum potentially issuable to JFB Series C preferred/warrant holders. This is a registration maximum, not proof that all 24.874M were actually issued at closing.",
+        "Against the 277.443M pro forma denominator, the two 10M earnout tranches would represent about 7.21% additional shares if both revenue thresholds are achieved. The rollover-award registration equals about 3.58% of that denominator, the new-plan reserve about 6.72%, and ESPP reserve about 5.41%; these percentages describe potential layers only and must not be summed without eliminating overlap/double counting."
+      ],
+      "inference": "The directive is not closed, but the failure mode is now sharply bounded: the remaining task is a legal/economic reconciliation of actual common shares, actual pre-funded warrants and assumed rollover awards, not a generic search for every registered share. Registration ceilings and future plan capacity are explicitly quarantined from current dilution. Normalized runway remains blocked because a post-close combined cash-flow/cash balance is not yet available.",
+      "contradictions": [
+        "A 277.443M pro forma denominator is useful for merger-period EPS framing but cannot be treated as exact current common shares outstanding.",
+        "The S-4/S-8 authorize/register substantially more securities than necessarily exist economically at closing; treating registered capacity as issued dilution would materially overstate dilution."
+      ],
+      "unknowns": [
+        "Exact September 3 post-close common shares legally outstanding.",
+        "Actual pre-funded warrants issued due to 4.99% ownership caps versus the 24.874M registration maximum.",
+        "Whether all rollover awards are outside the 277.443M pro forma denominator or partly represented in the transaction share calculations; additive treatment remains unsafe without reconciliation.",
+        "Post-close combined unrestricted cash and normalized operating/investing cash burn."
+      ],
+      "falsifiers": [
+        "A post-close 10-Q/8-K or transfer-agent/cap-table disclosure that explicitly reconciles common outstanding, pre-funded warrants and assumed awards can close the denominator gate.",
+        "A combined cash-flow statement and closing/post-close balance sheet can close runway; until then, pro forma net loss is not a cash-runway proxy."
+      ],
+      "confidence": 95,
+      "recommendedChiefAction": "corroborate",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm",
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm",
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526306234/d121457dexfilingfees.htm",
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526306234/d121457dex51.htm",
+        "data/runtime/supervisors/directives.json",
+        "data/runtime/supervisors/deep-research/20260914T0200Z/adaptation-20260914T033653Z-handoff.json"
+      ]
+    }
+  ],
+  "systemContradictions": [
+    "The canonical current cycle is 20260914T0400Z but Chief directives still reference the older reviewed 20260913T1300Z boundary. This artifact does not reinterpret or close the exact-SHA-CI/discovery directives; those remain owned by their assigned lanes.",
+    "No canonical t0-bootstrap-queue.json/active batch identifier exists. The same-cycle 12-name underwriting batch is therefore referenced by report lineage rather than inventing a Chief batchId."
+  ],
+  "systemUnknowns": [
+    "Whether Chief will preserve the provisional 12-name batch composition or publish a formal queue/batch identifier before next reconciliation.",
+    "Exact-SHA CI and cadence-due discovery completion remain separate system blockers and are not resolved by this capital-structure artifact."
+  ],
+  "recommendedChiefAction": "review",
+  "recommendedActionDetail": "Review NBIS, IONQ and ALAB for targeted promotion of the newly closed evidence fields only. Keep all three non-publishable until the rest of their methodology gates are complete. Keep XTND's directive open but narrow the next attempt to actual post-close common/pre-funded/rollover reconciliation and post-close cash flow; quarantine registered plan/ESPP capacity from current dilution. Do not use any analytical residual/annualized runway number as canonical fact.",
+  "confidence": 95,
+  "lineage": {
+    "pr": 4,
+    "branch": "earth-2036/official-baseline-t0",
+    "sourceCycle": "20260914T0400Z",
+    "sourceLaneReports": [
+      "data/runtime/supervisors/cycles/20260914T0400Z/company-underwriting-alpha-20260914T042100Z.json",
+      "data/runtime/supervisors/cycles/20260914T0400Z/adversarial-red-team-beta-20260914T042700Z.json",
+      "data/runtime/supervisors/cycles/20260914T0400Z/expectations-execution-beta-20260914T043000Z.json"
+    ],
+    "chiefDirectiveIds": [
+      "chief-20260913t1300z-xtnd-capital-structure"
+    ],
+    "priorDeepArtifacts": [
+      "data/runtime/supervisors/deep-research/20260914T0200Z/adaptation-20260914T033653Z-handoff.json"
+    ]
+  }
+}

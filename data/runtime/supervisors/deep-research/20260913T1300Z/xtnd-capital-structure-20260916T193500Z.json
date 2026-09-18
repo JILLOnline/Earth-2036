@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "role": "deep-resolver",
+  "status": "still_conflicted",
+  "generatedAt": "2026-09-16T19:35:00Z",
+  "cycleKey": "20260913T1300Z",
+  "workId": "chief-20260913t1300z-xtnd-capital-structure",
+  "company": {
+    "ticker": "XTND",
+    "name": "Xtend AI Robotics, Inc.",
+    "cik": "0002111860"
+  },
+  "directive": {
+    "attemptCount": 4,
+    "exactGatingQuestion": "Normalize XTND post-merger basic and fully diluted shares, S-8/plan overhang, cash runway and financing dependence before any admission or opportunity assessment.",
+    "whyItMatters": "Capitalization and liquidity must be reconciled without double-counting pre-funded warrants, rollover securities or plan awards before dilution, runway, admission or opportunity conclusions are defensible.",
+    "preferredPrimarySource": "SEC successor 8-K12B, post-close S-8, merger registration/prospectus filings and first post-close periodic report for CIK 0002111860.",
+    "lawfulFallbacks": [
+      "NYSE issuer/listing disclosures",
+      "issuer investor-relations filings reproducing filed capitalization tables"
+    ],
+    "successCondition": "Primary filings support a reconciled post-close common-share, pre-funded-warrant, option/plan-overhang and cash/runway view with dilution percentages and no double-counting."
+  },
+  "evidence": [
+    {
+      "type": "primary",
+      "source": "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm",
+      "filing": "S-8",
+      "filed": "2026-09-04",
+      "claim": "The post-close S-8 registers 9,936,483 common shares issuable on vesting of rollover equity awards, 18,630,959 common shares issuable under the 2026 Equity Incentive Plan, and 15,000,000 common shares issuable under the 2026 Employee Stock Purchase Plan.",
+      "evidenceVsInference": "evidence"
+    },
+    {
+      "type": "primary",
+      "source": "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm",
+      "filing": "S-8",
+      "filed": "2026-09-04",
+      "claim": "The same filing states that JFB warrants for 3,328,407 shares at $2.875 and 16,137,866 shares at $3.125 were cash exercised, while remaining JFB warrants were deemed cashless exercised and produced 6,999,928 common shares.",
+      "evidenceVsInference": "evidence"
+    },
+    {
+      "type": "primary",
+      "source": "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933d8k12b.htm",
+      "filing": "8-K12B",
+      "filed": "2026-09-03",
+      "claim": "At closing, 27,544,248 pre-funded warrants were issued due to beneficial-ownership blockers; Xtend ordinary shares converted at 1.36324 common shares; former Xtend holders had 79.61% of fully diluted economic ownership and former JFB holders 20.39%.",
+      "evidenceVsInference": "evidence"
+    }
+  ],
+  "analysis": {
+    "confirmed": [
+      "The previously unresolved S-8/plan-overhang component is now materially resolved from a post-close primary filing.",
+      "Registered post-close equity-plan/rollover capacity is 43,567,442 shares in aggregate across rollover awards, the 2026 Equity Incentive Plan and the 2026 ESPP; this aggregate is a registration/issuance-capacity figure and must not be treated as currently outstanding common stock.",
+      "The closing 8-K reports 27,544,248 pre-funded warrants issued due to beneficial-ownership blockers; these are economically dilutive and must not be double-counted as both common shares and warrant shares.",
+      "JFB cash/cashless warrant mechanics are now more precisely evidenced by the post-close S-8."
+    ],
+    "inference": [
+      "The S-8 materially narrows the dilution uncertainty but does not disclose a single exact post-close basic common-share count or a post-close operating cash-burn runway basis.",
+      "The 43,567,442 registered shares represent potential/award-related issuance capacity across distinct plans and rollover awards, not proof that all are unvested, unissued or incrementally dilutive at the same time."
+    ],
+    "contradictionStatus": "still_conflicted",
+    "remainingExactUnavailableEvidence": [
+      "Exact post-close common shares outstanding after all closing conversions/issuances.",
+      "Exact current unexercised pre-funded warrants after any exercises subsequent to closing.",
+      "A post-close cash balance plus normalized operating cash-burn basis sufficient for runway and financing-dependence calculation."
+    ],
+    "confidence": 0.97,
+    "gateImpact": "KEEP BLOCK on admission/opportunity and normalized dilution/runway conclusion. The plan-overhang sub-gate is substantially resolved, but exact basic/common capitalization and cash-runway gates remain unresolved.",
+    "recommendedNextState": "unavailable_pending_new_primary_periodic_or_capitalization_filing"
+  },
+  "loopControl": {
+    "unchangedFailureCount": 0,
+    "stopLooping": true,
+    "reason": "A new lawful primary path (post-close S-8) produced material incremental evidence and resolved the plan-overhang sub-question. Remaining gates require facts not disclosed in the located filings. Do not repeat the same search until a new primary periodic/capitalization filing appears or Chief elects conservative/block treatment."
+  }
+}

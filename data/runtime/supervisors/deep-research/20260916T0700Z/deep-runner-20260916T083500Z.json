@@ -1,0 +1,108 @@
+{
+  "reportVersion": 1,
+  "role": "earth-deep-runner",
+  "cycleKey": "20260916T0700Z",
+  "generatedAt": "2026-09-16T08:35:00Z",
+  "mode": "GRAVEYARD_LOST_SCROLL",
+  "backpressure": {"readyForChief": 24, "policyApplied": "blocker-clearing-only"},
+  "inputs": [
+    "data/runtime/system-state.json",
+    "data/runtime/supervisors/t0-bootstrap-queue.json",
+    "data/runtime/supervisors/directives.json",
+    "data/runtime/supervisors/cycles/20260916T0700Z/company-underwriting-alpha-20260916T071800Z.json"
+  ],
+  "findings": [
+    {
+      "ticker": "SMR",
+      "company": "NuScale Power Corporation",
+      "batchId": "t0-20260915T0000Z-b03",
+      "gate": "Q2 liquidity / exact ATM capacity / binding-vs-nonbinding revenue classification",
+      "disposition": "resolved_for_chief_review",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1822966/000182296626000085/smr-20260630.htm",
+      "sourceType": "primary_SEC_10-Q",
+      "evidence": [
+        "The 2026 ATM program was completed in June 2026 after 89,727,165 shares were sold during the first six months for $1.0 billion gross and $984.475 million net; therefore remaining capacity under that specific program at June 30 was zero.",
+        "At June 30, 2026 NuScale reported $766.5 million cash and cash equivalents, $305.7 million short-term investments and $820.8 million investments, with no debt, and stated it expected these resources plus continued capital-market access to satisfy cash requirements for at least twelve months and beyond.",
+        "The filing explicitly says the 72-NPM ENTRA1 milestone was triggered by a non-binding agreement. Milestone Contribution 2 requires a binding PPA/offtake document and Milestone Contribution 3 requires OEM or other binding purchase/deployment documentation; neither criterion had been met at June 30. Significant revenue generated to date was engineering/licensing/services rather than NPM sales."
+      ],
+      "inference": "The queue's exact ATM-capacity and binding-vs-nonbinding classification gaps are closed by the latest primary filing. Future financing dependence remains a risk, not an unresolved factual gate.",
+      "contradictionStatus": "none_found",
+      "confidence": 99,
+      "gateImpact": "removes_blocker",
+      "recommendedChiefAction": "review"
+    },
+    {
+      "ticker": "TER",
+      "company": "Teradyne, Inc.",
+      "batchId": "t0-20260915T0000Z-b03",
+      "gate": "debt/convertible assembly within governance/dilution normalization",
+      "disposition": "resolved_for_chief_review",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/97210/000119312526327715/ter-20260628.htm",
+      "sourceType": "primary_SEC_10-Q",
+      "evidence": [
+        "Latest Q2 2026 10-Q states cash, cash equivalents, marketable securities and the senior secured revolving credit facility are expected to cover working-capital and expenditure needs for at least twelve months and that Teradyne was in compliance with Credit Agreement covenants at June 28, 2026.",
+        "The latest filing contains no current convertible-note debt disclosure; the historical 1.25% convertible senior notes matured December 15, 2023, so they must not be carried into current dilution/debt assembly.",
+        "During the first six months of 2026 Teradyne repurchased 0.2 million shares for $74.2 million; cumulative repurchases under the 2023 authorization were 12.2 million shares for $1.3829 billion including commissions/excise tax."
+      ],
+      "secondaryHistoricalSourceUrl": "https://www.sec.gov/Archives/edgar/data/97210/000095017024089858/ter-20240630.htm",
+      "inference": "Current convertible-note overhang is not supported; the debt/convertible sub-gate can be closed. The separate governance/equity-plan dilution normalization gate remains for proxy/share-plan assembly.",
+      "contradictionStatus": "resolves_stale_convertible_overhang_risk",
+      "confidence": 97,
+      "gateImpact": "materially_narrows_blocker",
+      "recommendedChiefAction": "review"
+    },
+    {
+      "ticker": "ROK",
+      "company": "Rockwell Automation, Inc.",
+      "batchId": "t0-20260915T0000Z-b03",
+      "gate": "customer/channel concentration",
+      "disposition": "resolved_for_chief_review",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1024478/000102447825000116/rok-20250930.htm",
+      "sourceType": "primary_SEC_10-K",
+      "evidence": [
+        "Rockwell states that in most countries it sells primarily through independent distributors together with its direct sales force; in North America a large percentage of sales is through distributors and in certain other countries the majority of sales is through a limited number of distributors.",
+        "Fiscal-2025 sales were geographically diversified: North America $5.270B, EMEA $1.488B, Asia Pacific $1.024B and Latin America $0.560B; U.S. sales were $4.847B.",
+        "The filing discloses channel/distributor concentration risk but the reviewed customer/revenue notes do not identify a named individual customer as a material revenue concentration."
+      ],
+      "inference": "The gating concentration question is answerable as material distribution-channel concentration rather than a disclosed named-customer dependency. Exact distributor-by-distributor revenue percentages are not disclosed and should remain unknown rather than block promotion unless locked methodology explicitly requires them.",
+      "contradictionStatus": "none_found",
+      "confidence": 94,
+      "gateImpact": "removes_blocker_with_non_gating_residual_unknown",
+      "recommendedChiefAction": "review",
+      "residualUnknown": {"classification": "non_gating_unknown", "detail": "Exact revenue share by individual distributor is not disclosed in the reviewed filing."}
+    },
+    {
+      "ticker": "SYM",
+      "company": "Symbotic Inc.",
+      "batchId": "t0-20260914T1500Z-b02",
+      "gate": "transaction-level substance of Form 4 accession 0001932967-26-000007",
+      "disposition": "still_blocked",
+      "sourceUrl": "https://ir.symbotic.com/financial-filings/sec-filings",
+      "sourceType": "issuer_IR_filing_index_plus_secondary_transaction_parser",
+      "evidence": [
+        "Issuer IR confirms accession 0001932967-26-000007 is a Form 4 filed September 14, 2026.",
+        "A transaction parser attributes the filing to David A. Ladensohn, a 10% owner, and exposes four zero-price Class V-1 / Class V-3 common-stock rows involving 200,000 and 231,896/373,896-share balances, strongly suggesting a non-market internal/conversion-style movement rather than an open-market priced sale or purchase."
+      ],
+      "inference": "The available evidence materially narrows the event away from an ordinary priced open-market trade, but the SEC ownership XML/footnotes were not directly retrievable in this run, so transaction code, exact acquired/disposed direction, and explanatory footnotes are not primary-verified.",
+      "contradictionStatus": "none_found",
+      "confidence": 72,
+      "gateImpact": "narrows_only_does_not_remove_blocker",
+      "recommendedChiefAction": "corroborate",
+      "exactMissingEvidence": "Primary SEC ownership XML or filing footnotes for accession 0001932967-26-000007 showing transactionCode, A/D flag, price, post-transaction holdings and footnote explanation.",
+      "nextBestSourcePath": "Issuer IR View HTML/XLS for accession 0001932967-26-000007 or direct SEC ownership XML once retrievable; keep SYM-only quarantine until read."
+    }
+  ],
+  "summary": {
+    "resolvedForChiefReview": ["SMR", "ROK"],
+    "materiallyNarrowed": ["TER", "SYM"],
+    "stillBlocked": ["SYM"],
+    "nonGatingUnknowns": ["ROK exact individual-distributor revenue percentages"],
+    "recommendedChiefSequence": ["SMR review", "ROK review", "TER close debt/convertible sub-gate then finish proxy dilution normalization", "SYM keep quarantined pending primary ownership XML"]
+  },
+  "canonicalChanges": [],
+  "queueDecisions": [],
+  "notes": [
+    "Auxiliary immutable research only; no canonical score/rank/tick/methodology/membership/causal/baseline/supervisor-state/decision/attestation/queue state changed.",
+    "Backpressure honored: no optional outside-250 research opened while ready_for_chief is 24."
+  ]
+}

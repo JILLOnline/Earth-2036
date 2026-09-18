@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "incidentId": "machine-keeper-20260914T0400Z-exact-sha-ci",
+  "cycleKey": "20260914T0400Z",
+  "detectedAt": "2026-09-14T04:07:00Z",
+  "classification": "infrastructure_integrity",
+  "status": "open",
+  "severity": "blocking_for_exact_sha_attestation",
+  "machineState": {
+    "cycleStatus": "completed",
+    "companiesObserved": 250,
+    "identityValidated": 250,
+    "tradabilityValidated": 250,
+    "machineSourceCoverageRatio": 1,
+    "unresolvedEvidence": 0
+  },
+  "schedulerRecovery": {
+    "sourceRunId": 34793550112,
+    "rerunJobId": 103854378083,
+    "result": "success",
+    "persistedHead": "9f45007f0b46165d08851ff3b91de5786b7852d2"
+  },
+  "exactShaCi": {
+    "requiredHead": "9f45007f0b46165d08851ff3b91de5786b7852d2",
+    "runId": 34804851171,
+    "workflow": "Earth 2036 CI",
+    "status": "completed",
+    "conclusion": "action_required",
+    "jobCount": 0,
+    "retryAttempt": "rerun_failed_jobs",
+    "retryResult": "403 This workflow run cannot be retried"
+  },
+  "impact": "The 04:00Z machine cycle is fresh and machine/source integrity is healthy, but this cycle does not have a real exact-SHA CI job and therefore cannot satisfy the CI artifact integrity contract or qualify for Chief approval/T0 publication.",
+  "allowedRecovery": "Obtain a real Earth 2036 CI execution for the deterministic machine-cycle SHA or a later deterministic machine-cycle SHA. Do not fabricate CI proof and do not alter methodology, scoring, evidence interpretation, ranking, causal state or membership to clear this incident.",
+  "owner": "chief-earth",
+  "sourceArtifacts": [
+    "data/runtime/system-state.json",
+    "data/runtime/intelligence-integrity.json",
+    "data/runtime/source-health.json",
+    "data/runtime/supervisors/directives.json"
+  ]
+}

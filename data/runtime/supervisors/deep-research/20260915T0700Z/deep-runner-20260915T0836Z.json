@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "role": "earth-deep-runner",
+  "cycleKey": "20260915T0700Z",
+  "generatedAt": "2026-09-15T08:36:25Z",
+  "mode": "GRAVEYARD",
+  "backpressure": {"readyForChief": 22, "policyApplied": "blocker-clearing-only"},
+  "targets": [
+    {
+      "ticker": "TSM",
+      "company": "Taiwan Semiconductor Manufacturing Company Limited",
+      "batchId": "t0-20260914T0400Z-b01",
+      "attempts": 3,
+      "exactGate": "FY2025 major-customer concentration from current primary issuer evidence",
+      "resolution": "resolved_for_chief_review",
+      "evidence": [
+        {
+          "sourceUrl": "https://investor.tsmc.com/sites/ir/sec-filings/2025_20F%20Report.pdf",
+          "sourceClass": "primary_issuer_SEC_20F",
+          "fact": "TSMC reports that its ten largest customers represented approximately 78% of 2025 net revenue; the largest customer represented 19% and the second-largest represented 17%. Comparative 2024 values were 76%, 22%, and 12%, respectively.",
+          "evidenceVsInference": "evidence"
+        },
+        {
+          "sourceUrl": "https://investor.tsmc.com/static/annualReports/2025/english/index.html",
+          "sourceClass": "primary_issuer_annual_report",
+          "fact": "TSMC reports 534 customers and 12,682 products manufactured in 2025, providing context but not negating the disclosed top-customer concentration.",
+          "evidenceVsInference": "evidence"
+        }
+      ],
+      "contradictionStatus": "none; primary issuer disclosure directly supplies the missing concentration values",
+      "confidence": 99,
+      "gateImpact": "removes_blocker",
+      "recommendedChiefAction": "review",
+      "notes": "Overseas-fab economics and geopolitical timing remain non-gating unknowns per Chief queue and should not hold promotion."
+    },
+    {
+      "ticker": "SYM",
+      "company": "Symbotic Inc.",
+      "batchId": "t0-20260914T1500Z-b02",
+      "attempts": 3,
+      "exactGate": "Classify transaction-level substance of Form 4 accession 0001932967-26-000007 for governance/alignment/dilution/insider-behavior treatment",
+      "resolution": "resolved_for_chief_review",
+      "evidence": [
+        {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1837240/000193296726000007/",
+          "sourceClass": "primary_SEC_accession_target",
+          "fact": "Target accession is the identified Symbotic Form 4 for reporting owner David A. Ladensohn; direct SEC retrieval should remain canonical source for Chief corroboration.",
+          "evidenceVsInference": "evidence_origin"
+        },
+        {
+          "sourceUrl": "https://www.attn.today/en/filings",
+          "sourceClass": "secondary_SEC_index_interpretation",
+          "fact": "Contemporaneous filing index classifies accession 0001932967-26-000007 as zero-price internal distributions and reclassifications among Ladensohn-associated trusts involving Class V-1, Class V-3, Symbotic Holdings Units and corresponding Class A common stock, with no open-market purchase or sale.",
+          "evidenceVsInference": "secondary interpretation requiring Chief primary-XML corroboration"
+        }
+      ],
+      "classification": {
+        "insiderBehavior": "internal estate/trust ownership reorganization; not an open-market directional trade",
+        "dilution": "no evidence of issuer-level capital raising or incremental economic dilution from the reported transfers themselves",
+        "governanceAlignment": "ownership-form/reclassification event; should not be scored as insider buying or selling without contrary primary XML detail"
+      },
+      "contradictionStatus": "none identified; classification is coherent with a non-market trust redistribution, but Chief should corroborate exact transaction codes/footnotes from SEC XML before canonical use",
+      "confidence": 88,
+      "gateImpact": "removes_blocker_subject_to_primary_xml_corroboration",
+      "recommendedChiefAction": "corroborate",
+      "notes": "Do not infer bullish/bearish intent from the filing. If primary XML contradicts the zero-price internal-transfer characterization, quarantine this finding and preserve the blocker."
+    }
+  ],
+  "outside250Investigation": null,
+  "summary": "Backpressure correctly prevented optional research. TSM's attempt>=3 concentration gate is directly resolved by TSMC primary FY2025 disclosure. SYM's attempt>=3 Form 4 gate has a strong transaction-level classification but requires Chief to corroborate exact codes/footnotes against the target SEC XML before canonical promotion. No canonical state was edited."
+}

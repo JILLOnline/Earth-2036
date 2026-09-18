@@ -1,0 +1,88 @@
+{
+  "reportVersion": 1,
+  "laneId": "source-integrity",
+  "cycleKey": "20260914T0200Z",
+  "generatedAt": "2026-09-14T02:17:32Z",
+  "status": "blocked",
+  "summary": "Independent source/integrity review completed for machine cycle 20260914T0200Z. The persisted machine layer is coherent and fresh: 250/250 companies were observed, identity and tradability are 250/250, all four required machine sources report coverage 1.0, the evidence-review queue is empty, and Beast/sourceMesh integrity passes. Qualification is nevertheless blocked because same-cycle intelligent coverage is intentionally fail-closed at zero until Council review and, critically, the exact machine-cycle SHA 654896e75b61bdddfd09c01b6e1440a12ea5b26e has an Earth 2036 CI run with conclusion action_required and zero jobs, which is explicitly not acceptable machine execution proof under the integrity contract.",
+  "materialFindings": [
+    {
+      "finding": "The exact persisted machine boundary is commit 654896e75b61bdddfd09c01b6e1440a12ea5b26e, authored by earth2036-engine[bot] as 'Earth 2036 machine cycle 2026-09-14T02:00Z'.",
+      "sources": ["GitHub commit 654896e75b61bdddfd09c01b6e1440a12ea5b26e", "earth-2036/data/runtime/system-state.json"]
+    },
+    {
+      "finding": "Machine observation is internally complete at the infrastructure layer: companiesObserved=250, identityValidated=250, tradabilityValidated=250, machineSourceCoverageRatio=1, machineDiscoveryComplete=true, unresolvedEvidence=0. Only one company is currently publishable, so infrastructure completeness must not be confused with underwriting completeness.",
+      "sources": ["earth-2036/data/runtime/system-state.json", "earth-2036/data/runtime/source-health.json", "earth-2036/data/runtime/evidence-review-queue.json"]
+    },
+    {
+      "finding": "Beast integrity and sourceMesh pass for the current persisted state; all four required machine sources are healthy and fresh. The audit covers one score record and therefore does not imply that the other 249 companies have complete score evidence.",
+      "sources": ["earth-2036/data/runtime/intelligence-integrity.json"]
+    },
+    {
+      "finding": "The Earth 2036 CI run associated with exact machine SHA 654896e75b61bdddfd09c01b6e1440a12ea5b26e is run 34798080499 with conclusion action_required and zero jobs. The CI/artifact contract explicitly says an empty pull-request run with action_required is neither a pass nor a qualifying execution proof.",
+      "sources": ["GitHub Actions run 34798080499", "earth-2036/docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md"]
+    },
+    {
+      "finding": "Current source-health correctly refuses to carry prior-cycle supervisor coverage forward: supervisorCycleKey remains 20260913T1300Z, supervisorSameCycle=false, supervisorCoverageRatio=0, combinedCoverageRatio=0 and supervisorDiscoveryComplete=false.",
+      "sources": ["earth-2036/data/runtime/source-health.json", "earth-2036/docs/SUPERVISOR_COUNCIL.md"]
+    },
+    {
+      "finding": "Sensor-mesh sources remain non-gating by contract. Their reachability can surface research priorities but cannot independently clear discovery, move scores/ranks, or enter the active gating denominator.",
+      "sources": ["earth-2036/docs/SENSOR_MESH.md", "earth-2036/lib/discovery-sources.ts"]
+    }
+  ],
+  "proposedCanonicalChanges": [],
+  "contradictions": [
+    {
+      "issue": "The current machine/source surface is green while qualification remains blocked. This is not a data contradiction: machine integrity is healthy, but same-cycle intelligent coverage and exact-SHA CI proof are separate required layers and remain unsatisfied.",
+      "sources": ["earth-2036/data/runtime/intelligence-integrity.json", "earth-2036/data/runtime/source-health.json", "earth-2036/docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md"]
+    }
+  ],
+  "unknowns": [
+    {
+      "unknown": "A real exact-SHA Earth 2036 CI verification job for machine SHA 654896e75b61bdddfd09c01b6e1440a12ea5b26e has not been observed; the only associated run is action_required with zero jobs.",
+      "sources": ["GitHub Actions run 34798080499"]
+    },
+    {
+      "unknown": "Repo-versus-Sheet parity for cycle 20260914T0200Z has not yet been attested by Chief; spreadsheetMirror=chatgpt-supervisor is a responsibility marker, not parity evidence.",
+      "sources": ["earth-2036/data/runtime/system-state.json", "earth-2036/docs/SUPERVISOR_COUNCIL.md"]
+    }
+  ],
+  "peerRequests": [
+    {
+      "toLane": "company-underwriting",
+      "request": "Treat 250/250 source/identity/tradability coverage strictly as infrastructure. Do not infer missing rubric values or Data Confidence for the 249 unscored companies from machine health.",
+      "sources": ["earth-2036/data/runtime/system-state.json", "earth-2036/engine/methodology.ts"]
+    },
+    {
+      "toLane": "discovery-weak-signals",
+      "request": "Complete cadence-due gating discovery review independently; keep sensor-family observations visible but outside the gating denominator unless methodology explicitly changes.",
+      "sources": ["earth-2036/docs/SENSOR_MESH.md", "earth-2036/lib/discovery-sources.ts"]
+    }
+  ],
+  "accuracyDebates": [
+    {
+      "topic": "Can a green Beast/sourceMesh audit substitute for exact machine-cycle CI proof?",
+      "position": "No. Beast/sourceMesh validates persisted intelligence structure; the CI contract separately requires a real verification job for the exact deterministic machine SHA.",
+      "sources": ["earth-2036/data/runtime/intelligence-integrity.json", "earth-2036/docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md"]
+    }
+  ],
+  "blockingIssues": [
+    {
+      "issue": "Exact deterministic machine SHA 654896e75b61bdddfd09c01b6e1440a12ea5b26e lacks a qualifying Earth 2036 CI job; associated run 34798080499 is action_required with zero jobs.",
+      "sources": ["GitHub Actions run 34798080499", "earth-2036/docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md"]
+    }
+  ],
+  "directivesReviewed": [
+    {
+      "directiveId": "chief-20260913t1300z-exact-sha-ci",
+      "result": "Fresh machine boundary exists at 654896e75b61bdddfd09c01b6e1440a12ea5b26e, but its associated CI run is action_required with zero jobs. Closure criteria are not met; directive should remain open for Chief/infra resolution."
+    },
+    {
+      "directiveId": "chief-20260913t1300z-discovery-cadence",
+      "result": "Source-role semantics remain intact: sensor sources are non-gating and same-cycle supervisor discovery is still false pending intelligent review."
+    }
+  ],
+  "confidence": 99,
+  "acquisitionComplete": true
+}

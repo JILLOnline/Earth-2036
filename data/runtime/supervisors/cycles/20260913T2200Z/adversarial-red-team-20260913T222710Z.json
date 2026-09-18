@@ -1,0 +1,129 @@
+{
+  "reportVersion": 1,
+  "laneId": "adversarial-red-team",
+  "cycleKey": "20260913T2200Z",
+  "generatedAt": "2026-09-13T22:27:10Z",
+  "status": "complete",
+  "summary": "The only publishable company remains GEV, and the strongest falsifiers are not fraud-style findings but execution/valuation fragility: Wind is materially loss-making, warranty and unresolved tax-indemnification exposures are non-trivial, and premium valuation raises the cost of any miss. XTND remains unsuitable for admission or opportunity analysis until capitalization/runway reconciliation is complete. No thesis-break was found, but confidence should not ignore these asymmetries.",
+  "materialFindings": [
+    {
+      "findingId": "beta-red-2200-gev-wind-losses",
+      "claim": "GEV's Wind segment is a live counterexample to a simplistic all-segments-accelerating thesis: Q2 2026 Wind segment EBITDA was negative $275 million, six-month EBITDA was negative $657 million, Wind RPO fell 6% from year-end 2025 and 9% year over year, and management attributes deterioration to lower onshore deliveries, tariffs and higher offshore project/contract losses.",
+      "materiality": "high",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000148/gev-20260630.htm"
+      ],
+      "eventFingerprint": "gev-2026q2-wind-losses-rpo-decline"
+    },
+    {
+      "findingId": "beta-red-2200-gev-cash-quality",
+      "claim": "GEV's exceptional first-half cash generation is real, but a large portion was supported by working-capital movements tied to contract liabilities/down payments and slot reservations. This does not negate cash quality, but it means straight-line extrapolation of first-half free cash flow would be an aggressive assumption.",
+      "materiality": "high",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000148/gev2q2026form10-q.pdf",
+        "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000147/gevpressrelease2q26.htm"
+      ],
+      "eventFingerprint": "gev-2026h1-fcf-working-capital-contract-liabilities"
+    },
+    {
+      "findingId": "beta-red-2200-gev-warranty-tax",
+      "claim": "GEV reported $1.595 billion of product warranty liabilities at June 30, 2026 and disclosed a potentially material, not-reasonably-estimable tax indemnification exposure related to GE's IRS audit. These are not current solvency threats, but they are concrete downside channels that should remain visible in risk underwriting.",
+      "materiality": "medium_high",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000148/gev-20260630.htm"
+      ],
+      "eventFingerprint": "gev-2026q2-warranty-tax-indemnification"
+    },
+    {
+      "findingId": "beta-red-2200-gev-supply-chain-finance",
+      "claim": "GEV's supply-chain-finance payables rose to $2.079 billion at June 30, 2026 from $1.542 billion at year-end 2025. The filing describes these programs as voluntary supplier receivable sales rather than hidden borrowing, so this is not evidence of accounting abuse; it is a monitoring item for working-capital dependence and supplier-liquidity sensitivity.",
+      "materiality": "medium",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000148/gev-20260630.htm"
+      ],
+      "eventFingerprint": "gev-2026q2-supply-chain-finance-payables"
+    },
+    {
+      "findingId": "beta-red-2200-gev-valuation-fragility",
+      "claim": "GEV's market capitalization was approximately $255.68 billion on September 11, 2026 versus roughly $41.37 billion trailing revenue, with a forward P/E around the mid-40s. Strong operations can justify a premium, but this price embeds substantial continued execution and increases compression risk if Power/Electrification growth, backlog conversion or margins disappoint.",
+      "materiality": "high",
+      "sources": [
+        "https://stockanalysis.com/stocks/gev/market-cap/",
+        "https://stockanalysis.com/stocks/gev/statistics/",
+        "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000147/gevpressrelease2q26.htm"
+      ],
+      "eventFingerprint": "gev-market-expectations-2026-09-11"
+    },
+    {
+      "findingId": "beta-red-2200-xtnd-capitalization-block",
+      "claim": "XTND remains a red-team quarantine case rather than a candidate to score: the repo directive states that exact post-close common/pre-funded-warrant counts and normalized cash-flow runway are unresolved. Until that is reconciled, dilution-adjusted value, solvency risk and opportunity asymmetry cannot be measured defensibly.",
+      "materiality": "high",
+      "sources": [
+        "data/runtime/supervisors/directives.json",
+        "data/runtime/discovery-pool.json",
+        "https://www.sec.gov/Archives/edgar/data/2111860/"
+      ],
+      "eventFingerprint": "xtnd-capitalization-unresolved-2026-09"
+    }
+  ],
+  "proposedCanonicalChanges": [
+    {
+      "proposal": "No score or rank change proposed. Preserve Wind losses/RPO contraction, working-capital-supported cash generation, warranty/tax exposure and valuation compression as explicit falsifiers/monitoring conditions in GEV risk evidence when Chief next refreshes canonical underwriting.",
+      "classification": "IMPLEMENT",
+      "requiresChiefPromotion": true
+    },
+    {
+      "proposal": "Keep XTND admissionEligible=false until a reconciled fully diluted capitalization and runway view satisfies the existing Chief directive.",
+      "classification": "IMPLEMENT",
+      "requiresChiefPromotion": true
+    }
+  ],
+  "contradictions": [
+    {
+      "claim": "GEV's aggregate operating momentum is exceptional, while Wind simultaneously shows shrinking RPO and worsening losses. The broad thesis remains intact, but segment-level weakness contradicts any claim of uniform execution strength.",
+      "sources": [
+        "data/runtime/current-ranking.json",
+        "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000148/gev-20260630.htm"
+      ]
+    },
+    {
+      "claim": "First-half free cash flow is very strong, but contract-liability/down-payment inflows make that period unusually favorable; this contradicts any naive annualization of H1 cash flow without normalization.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1996810/000199681026000148/gev2q2026form10-q.pdf"
+      ]
+    }
+  ],
+  "unknowns": [
+    "Whether Wind losses bottom in 2026 or persist into 2027 is unknown until subsequent contract-cost and order disclosures.",
+    "Ultimate tax-indemnification exposure from the GE IRS audit is explicitly not reasonably estimable in the filing.",
+    "The durability of unusually favorable customer down payments and slot-reservation working-capital inflows is uncertain.",
+    "XTND fully diluted post-close capitalization, pre-funded warrant treatment and normalized runway remain unresolved.",
+    "No reliable evidence was found in this pass that GEV management is engaging in promotional deception or that reported backlog is materially fabricated."
+  ],
+  "peerRequests": [
+    {
+      "toLane": "company-underwriting",
+      "request": "On next GEV refresh, normalize H1 free cash flow for contract-liability/down-payment timing and explicitly reconcile Wind losses/RPO decline against the high financial-operating-momentum score."
+    },
+    {
+      "toLane": "source-integrity",
+      "request": "Preserve primary-filing distinction between voluntary supply-chain-finance supplier programs and debt; do not label the balance accounting abuse without contrary evidence."
+    },
+    {
+      "toLane": "expectations-execution",
+      "request": "Stress-test GEV premium valuation against a scenario where Wind losses persist and Power/Electrification growth normalizes rather than extrapolating current order momentum."
+    }
+  ],
+  "accuracyDebates": [
+    {
+      "topic": "Should GEV's high Earth Score be lowered immediately because valuation is extreme?",
+      "position": "No automatic red-team score change. Valuation is already an explicit Earth component and execution/expectations layer; the correct action is to preserve the compression falsifier and require reproducible scenario math, not contaminate structural quality with price fear."
+    }
+  ],
+  "blockingIssues": [],
+  "directivesReviewed": [
+    "chief-20260913t1300z-xtnd-capital-structure"
+  ],
+  "confidence": 94,
+  "acquisitionComplete": true
+}

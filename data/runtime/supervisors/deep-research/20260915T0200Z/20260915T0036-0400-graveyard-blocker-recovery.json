@@ -1,0 +1,94 @@
+{
+  "cycleKey": "20260915T0200Z",
+  "timestamp": "2026-09-15T00:36:02-04:00",
+  "shift": "GRAVEYARD",
+  "runner": "earth-deep-runner",
+  "mode": "LOST_SCROLL",
+  "batchContext": {
+    "activeBatchId": "t0-20260915T0000Z-b03",
+    "queueCycleKey": "20260915T0000Z"
+  },
+  "research": [
+    {
+      "ticker": "TSM",
+      "company": "Taiwan Semiconductor Manufacturing Company Limited",
+      "batchId": "t0-20260914T0400Z-b01",
+      "exactResearchQuestionGate": "Recover exact FY2025 major-customer concentration from current primary issuer evidence for reproducible concentration treatment.",
+      "classification": "gating_blocker",
+      "summary": "RESOLVED FOR CHIEF REVIEW. TSMC's filed 2025 Form 20-F states that its ten largest customers accounted for approximately 78% of 2025 net revenue, its largest customer accounted for 19%, and its second-largest customer accounted for 17%. This is the exact issuer-primary concentration evidence requested by the queue blocker.",
+      "evidence": [
+        "TSMC 2025 Form 20-F: ten largest customers = approximately 78% of 2025 net revenue; largest customer = 19%; second largest = 17%.",
+        "TSMC's investor-relations filing notice confirms the 2025 Form 20-F was filed with the SEC on 2026-04-16."
+      ],
+      "inference": [
+        "The narrow concentration-data gate is no longer a research blocker; Chief can apply the locked methodology's concentration treatment using primary issuer figures.",
+        "Customer identities are not required to answer the queue's exact percentage-recovery gate and should not be inferred from external speculation."
+      ],
+      "contradictions": [],
+      "unknowns": [
+        "The filing excerpt does not name the customers; identities remain unknown and are not needed for this exact gate."
+      ],
+      "falsifiers": [
+        "A corrected/amended 2025 Form 20-F changing the 78%/19%/17% figures would supersede this finding."
+      ],
+      "sources": [
+        "https://investor.tsmc.com/sites/ir/sec-filings/2025_20F%20Report.pdf",
+        "https://pr.tsmc.com/english/news/3300",
+        "repo:earth-2036/data/runtime/supervisors/t0-bootstrap-queue.json"
+      ],
+      "confidence": "high",
+      "recommendedChiefAction": "review",
+      "lineage": {
+        "queueBlocker": "TSM exact FY2025 major-customer percentage recovery",
+        "sourceType": "primary_issuer_sec_filing",
+        "effect": "gating_blocker_resolved"
+      }
+    },
+    {
+      "ticker": "SYM",
+      "company": "Symbotic Inc.",
+      "batchId": "t0-20260914T1500Z-b02",
+      "exactResearchQuestionGate": "Classify transaction-level substance of SEC Form 4 accession 0001932967-26-000007 for governance/alignment/dilution/insider-behavior treatment.",
+      "classification": "gating_blocker",
+      "summary": "RESOLVED TO TRANSACTION CLASSIFICATION FOR CHIEF REVIEW. The accession is a Form 4 for Symbotic insider David A. Ladensohn. The reported transaction is code G (gift), 373,896 shares, with no transaction price; the tracker reports 373,896 shares held after and a -50.0% change in the reported holding. This is not an open-market sale, purchase, option exercise, or issuer dilution event. Treat it as a gift/beneficial-ownership transfer unless the SEC XML footnotes reveal a more specific intra-family/entity transfer characterization.",
+      "evidence": [
+        "Accession 0001932967-26-000007 is associated with SYM / Symbotic Inc. and David A. Ladensohn.",
+        "Transaction code G reports 373,896 shares gifted; no cash price is reported.",
+        "The reported holding after the transaction is 373,896 shares; the transaction-level position change shown is -50.0%."
+      ],
+      "inference": [
+        "Code G is a gift, so it should not be interpreted as discretionary market selling pressure.",
+        "Because the transaction transfers existing beneficial ownership rather than issuing new issuer shares, the transaction itself is not evidence of issuer dilution.",
+        "Governance/alignment treatment may note the ownership transfer, but should not score it as an open-market disposal without contrary SEC footnote evidence."
+      ],
+      "contradictions": [],
+      "unknowns": [
+        "The direct SEC XML/footnote text was not surfaced by indexed SEC search in this run, so recipient/nature-of-indirect-ownership detail remains unrecovered.",
+        "Recipient identity is secondary to the requested transaction-code classification unless locked methodology explicitly requires recipient-level attribution."
+      ],
+      "falsifiers": [
+        "Direct SEC XML footnotes showing that code G was miscoded or paired with a separate economically substantive sale would require reclassification."
+      ],
+      "sources": [
+        "SEC accession: 0001932967-26-000007",
+        "https://edgarhawk.com/insider-transactions",
+        "repo:earth-2036/data/runtime/supervisors/t0-bootstrap-queue.json"
+      ],
+      "confidence": "medium_high",
+      "recommendedChiefAction": "review",
+      "lineage": {
+        "queueBlocker": "SYM Form 4 accession 0001932967-26-000007 transaction classification",
+        "sourceType": "sec_derived_transaction_index_with_accession",
+        "effect": "gating_blocker_resolved_at_transaction_classification; footnote_detail_non_gating_unless_methodology_requires"
+      }
+    }
+  ],
+  "handoff": {
+    "chief": [
+      "TSM: move from blocked to Chief review on concentration gate; exact FY2025 figures recovered from primary issuer Form 20-F.",
+      "SYM: transaction is a gift (G), not market sale or dilution; Chief can review classification. Preserve recipient/footnote detail as unknown unless methodology specifically requires it."
+    ],
+    "doNotPromoteHere": true,
+    "canonicalStateEdited": false
+  }
+}

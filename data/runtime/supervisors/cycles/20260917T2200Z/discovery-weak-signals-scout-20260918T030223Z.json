@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "role": "earth-scout",
+  "lane": "discovery-weak-signals",
+  "cycleKey": "20260917T2200Z",
+  "workId": "scout-20260917T2200Z-discovery-backpressure",
+  "generatedAt": "2026-09-18T03:02:23Z",
+  "status": "no_material_change",
+  "acquisitionComplete": true,
+  "backpressure": {
+    "state": "hard_ceiling",
+    "chiefReadyLegacyCount": 24,
+    "activeBootstrapCount": 12,
+    "queuedCount": 213,
+    "ordinaryExpansionPaused": true,
+    "reason": "Legacy ready-for-chief backlog exceeds Workgraph v2 hard-ceiling intent; opening ordinary outside challengers would increase downstream congestion before deterministic packet compilation/preflight catches up."
+  },
+  "triage": [],
+  "evidence": [
+    {
+      "entity": "EARTH-2036-WORKGRAPH",
+      "ticker": null,
+      "originFingerprint": "git:earth-2036/data/runtime/supervisors/t0-bootstrap-queue.json@5485be1e8a7a0821576d39c746014fb05edfa1c8",
+      "sourceLineage": ["earth-2036/docs/WORKGRAPH_V2.md", "earth-2036/data/runtime/supervisors/t0-bootstrap-queue.json", "earth-2036/data/runtime/system-state.json"],
+      "claim": "Ordinary discovery expansion is paused under backpressure; current value is in closing existing T0 packets and allowing deterministic packet compiler/preflight migration to drain legacy ready work.",
+      "affectedFactors": [],
+      "risks": ["downstream queue inflation", "duplicate research", "Chief forced into routine dossier assembly"],
+      "contradictions": [],
+      "unknowns": ["current deterministic packet-compiler throughput is not represented in the legacy queue snapshot"],
+      "gatingStatus": "non_gating_operational",
+      "confidence": 0.99,
+      "recommendedNextState": "hold_expansion",
+      "recommendedOwner": "machine-packet-compiler"
+    }
+  ],
+  "notes": [
+    "No outside challenger was opened this run because backpressure is above the Workgraph v2 hard-ceiling intent.",
+    "No methodology, score, rank, tick, membership, canonical evidence or Chief decision was mutated.",
+    "Optional future uncertainty and unavailable non-canonical live inputs were not mislabeled as methodology blockers."
+  ]
+}

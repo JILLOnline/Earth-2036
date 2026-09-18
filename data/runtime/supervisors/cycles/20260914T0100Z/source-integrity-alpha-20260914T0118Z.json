@@ -1,0 +1,47 @@
+{
+  "reportVersion": 1,
+  "laneId": "source-integrity",
+  "cycleKey": "20260914T0100Z",
+  "generatedAt": "2026-09-14T01:18:00Z",
+  "status": "blocked",
+  "summary": "Machine source health and Beast/source-mesh integrity are fresh and internally coherent for 0100Z, but exact-head CI proof is not valid: the current PR head 5102a4c601e40a311cdd74004da5b9e66067f6eb has Earth 2036 CI run 34794874463 completed as action_required. The existing Chief exact-SHA directive therefore remains unresolved. FINRA is healthy only for partition freshness; eventDataAvailable remains false and must not be counted as row-level OTC corporate-action acquisition.",
+  "materialFindings": [
+    {
+      "finding": "system-state records cycleKey 20260914T0100Z completed with 250 observed, 250 identity validated, 250 tradability validated, machineSourceCoverageRatio 1, but supervisor coverage/discovery remain fail-closed pending council review.",
+      "sources": ["data/runtime/system-state.json"]
+    },
+    {
+      "finding": "intelligence-integrity passed with sourceMesh passed; all four required machine sources are healthy and fresh for the cycle.",
+      "sources": ["data/runtime/intelligence-integrity.json", "data/runtime/automated-source-health.json"]
+    },
+    {
+      "finding": "FINRA OTC Daily List is observed via partition-freshness only; eventDataAvailable=false, recordCount=null, so freshness is not event-level capability.",
+      "sources": ["data/runtime/automated-source-health.json"]
+    },
+    {
+      "finding": "Exact current PR head CI is not qualifying: GitHub Actions Earth 2036 CI run 34794874463 for SHA 5102a4c601e40a311cdd74004da5b9e66067f6eb concluded action_required.",
+      "sources": ["GitHub Actions run 34794874463", "docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md", "data/runtime/supervisors/directives.json"]
+    }
+  ],
+  "proposedCanonicalChanges": [],
+  "contradictions": [
+    "Machine/runtime integrity is PASS while exact-head CI evidence is non-qualifying; these are distinct gates and must not be conflated."
+  ],
+  "unknowns": [
+    "No qualifying exact-SHA Earth CI job is presently established for the current reviewed boundary.",
+    "FINRA row-level current OTC event content remains unavailable without the required Query API capability/corroboration path."
+  ],
+  "peerRequests": [
+    {
+      "laneId": "discovery-weak-signals",
+      "request": "Keep FINRA event-level limitation explicit and corroborate material OTC events independently before declaring discovery complete."
+    }
+  ],
+  "accuracyDebates": [],
+  "blockingIssues": [
+    "chief-20260913t1300z-exact-sha-ci remains unresolved: current exact-head Earth CI is action_required rather than a passing real job."
+  ],
+  "directivesReviewed": ["chief-20260913t1300z-exact-sha-ci", "chief-20260913t1300z-discovery-cadence"],
+  "confidence": 97,
+  "acquisitionComplete": true
+}

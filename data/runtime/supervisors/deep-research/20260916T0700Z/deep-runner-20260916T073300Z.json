@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "role": "earth-deep-runner",
+  "cycleKey": "20260916T0700Z",
+  "generatedAt": "2026-09-16T07:33:00Z",
+  "mode": "graveyard_lost_scroll",
+  "batchId": "t0-20260915T0000Z-b03",
+  "backpressure": {"readyForChief": 24, "policy": "blocker-clearing-only"},
+  "inputs": [
+    "data/runtime/system-state.json",
+    "data/runtime/supervisors/t0-bootstrap-queue.json",
+    "data/runtime/supervisors/cycles/20260916T0700Z/company-underwriting-alpha-20260916T071800Z.json"
+  ],
+  "findings": [
+    {
+      "ticker": "ROK",
+      "company": "Rockwell Automation, Inc.",
+      "batchId": "t0-20260915T0000Z-b03",
+      "gate": "customer/distributor concentration",
+      "resolution": "resolved_for_chief_review",
+      "evidence": "Rockwell's FY2025 Form 10-K states sales to its two largest distributors in 2025, 2024 and 2023 were approximately 20% of total sales, attributable to all three segments. This is the current primary-source concentration fact required by the queue blocker.",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1024478/000102447825000116/rok-20250930.htm",
+      "sourceAccession": "0001024478-25-000116",
+      "evidenceVsInference": "evidence",
+      "contradictionStatus": "none_found",
+      "confidence": 99,
+      "gateImpact": "removes_blocker",
+      "recommendedChiefAction": "review"
+    },
+    {
+      "ticker": "TER",
+      "company": "Teradyne, Inc.",
+      "batchId": "t0-20260915T0000Z-b03",
+      "gate": "governance/dilution normalization plus debt/convertible assembly",
+      "resolution": "resolved_for_chief_review",
+      "evidence": "Current SEC filings materially close the queue gate. Teradyne's Q2 2026 Form 10-Q reports 156.540 million common shares at March 29, 2026, no outstanding balance under the $750 million senior secured revolver at March 29, covenant compliance, and sufficient cash/securities/revolver capacity for at least twelve months; the June 28 filing again states covenant compliance and reports only 0.2 million shares repurchased for $74.2 million in the first six months. The 2026 proxy confirms 156,559,428 shares outstanding on the record date and current governance/compensation framework. The predecessor convertible notes identified in older filings were due December 15, 2023; no current convertible-note obligation is surfaced in the 2026 quarterly debt discussion. Treat future equity awards as normal dilution monitoring rather than an unresolved current convertible-debt gate.",
+      "sourceUrls": [
+        "https://www.sec.gov/Archives/edgar/data/97210/000119312526201058/ter-20260329.htm",
+        "https://www.sec.gov/Archives/edgar/data/97210/000119312526327715/ter-20260628.htm",
+        "https://www.sec.gov/Archives/edgar/data/97210/000119312526127504/ter-20260325.htm"
+      ],
+      "evidenceVsInference": "evidence_with_explicit_inference_on_absence_of_current_convertible",
+      "contradictionStatus": "none_found",
+      "confidence": 94,
+      "gateImpact": "removes_blocker_subject_to_chief_lineage_assembly",
+      "recommendedChiefAction": "review"
+    },
+    {
+      "ticker": "SYM",
+      "company": "Symbotic Inc.",
+      "batchId": "t0-20260914T1500Z-b02",
+      "gate": "freshness classification of Form 4 accession 0001932967-26-000007",
+      "resolution": "still_blocked",
+      "evidence": "Symbotic's investor-relations SEC filing index independently confirms the exact Sep. 14, 2026 Form 4 accession. Parsed public filing mirrors identify reporting person David A. Ladensohn and four zero-price Class V-1/V-3 ownership movements (200,000; 200,000; 231,896; 373,896 shares), strongly indicating non-market ownership transfers rather than an open-market purchase/sale. However the exact primary ownership XML/HTML transaction codes and footnotes were not retrievable in this run, so the locked binary requirement for transaction code, amount, price and post-transaction holdings is not fully satisfied.",
+      "sourceUrls": [
+        "https://ir.symbotic.com/financial-filings/sec-filings",
+        "https://www.sec.gov/Archives/edgar/data/1932967/000193296726000007/index.json"
+      ],
+      "evidenceVsInference": "primary_index_confirmation_plus_secondary_parsed_transaction_inference",
+      "contradictionStatus": "none_found",
+      "confidence": 84,
+      "gateImpact": "materially_narrows_blocker_but_does_not_remove_it",
+      "exactMissingEvidence": "Primary SEC ownership XML/HTML for accession 0001932967-26-000007 showing transaction code(s), acquired/disposed direction, price, post-transaction holdings and footnotes.",
+      "nextBestSourcePath": "Direct EDGAR accession index.json/ownership XML under /Archives/edgar/data/1932967/000193296726000007/; if SEC fair-access blocks, use the issuer-hosted filing HTML/XLS only as transport for the SEC-filed payload and preserve accession lineage.",
+      "recommendedChiefAction": "corroborate"
+    }
+  ],
+  "summary": {
+    "targetsWorked": 3,
+    "resolvedForChiefReview": 2,
+    "stillBlocked": 1,
+    "nonGatingUnknown": 0,
+    "blockersRemoved": ["ROK", "TER"],
+    "blockersNarrowed": ["SYM"],
+    "optionalResearchDebtCreated": false
+  },
+  "chiefHandoff": "ROK and TER have primary-source promotion-enabling evidence and should be reviewed before opening new queued names. SYM should remain quarantined until the exact primary Form 4 transaction payload is read; do not infer a market sale from the zero-price movements."
+}

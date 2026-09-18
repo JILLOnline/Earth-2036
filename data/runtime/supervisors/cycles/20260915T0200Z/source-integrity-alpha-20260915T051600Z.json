@@ -1,0 +1,37 @@
+{
+  "reportVersion": 1,
+  "laneId": "source-integrity",
+  "cycleKey": "20260915T0200Z",
+  "generatedAt": "2026-09-15T05:16:00Z",
+  "status": "needs_research",
+  "summary": "GRAVEYARD provenance pass completed across Chief batch b03. Machine identity/tradability is 250/250 and machine source coverage is 1, but supervisor discovery remains globally fail-closed. Primary SEC evidence was recovered for TER, AUR, POWL, SERV, MBLY and SMR; the remaining batch names retain machine identity/tradability but require issuer-primary dossier acquisition before individual promotion.",
+  "materialFindings": [
+    {"scope":"global","finding":"Machine cycle 20260915T0200Z completed with 250 observed, 250 identity-validated, 250 tradability-validated, machine source coverage 1; supervisor source coverage remains 0 and discoveryScanCompleted=false.","source":"data/runtime/system-state.json"},
+    {"ticker":"TER","ready_for_chief":true,"finding":"Current SEC 2025 10-K recovered; geographic revenue provenance is explicit, including Taiwan $1.155bn, China $451m, Korea $446m and US $361m.","source":"https://www.sec.gov/Archives/edgar/data/97210/000119312526059002/ter-20251231.htm"},
+    {"ticker":"MBLY","ready_for_chief":true,"finding":"Current SEC-filed FY2025 results recovered: revenue $1.894bn, operating cash flow $602m and year-end cash $1.8bn before announced Mentee outlay.","source":"https://www.sec.gov/Archives/edgar/data/1910139/000110465926005578/tm263599d1_ex99-1.htm"},
+    {"ticker":"SERV","ready_for_chief":false,"finding":"Primary SEC evidence confirms material historical Uber concentration (71% of 2023 revenue) and prior financing dependence; current FY2025/FY2026 issuer-primary operating dossier still required.","source":"https://www.sec.gov/Archives/edgar/data/1832483/000121390024050801/ea0207201-ars_serve.pdf"},
+    {"ticker":"AUR","ready_for_chief":true,"finding":"Current SEC-filed 2026 Q2 evidence recovered: $1.217bn cash+short-term investments at June 30, 2026, $3m six-month revenue and $493m six-month net loss; dilution remains observable through share count growth.","source":"https://www.sec.gov/Archives/edgar/data/1828108/000182810826000075/aurora26q2shareholderlet.htm"},
+    {"ticker":"POWL","ready_for_chief":true,"finding":"Current primary evidence recovered: FY2025 revenue $1.104bn, net income $181m, backlog $1.4bn; Q1 FY2026 backlog rose to $1.6bn and cash/short-term investments to $501m.","source":"https://www.sec.gov/Archives/edgar/data/80420/000008042025000152/powl-20250930.htm"},
+    {"ticker":"SMR","ready_for_chief":true,"finding":"Current SEC-filed FY2025 financial evidence recovered: revenue $31.5m, operating cash use $459.6m and $1.300bn net common-stock issuance proceeds, making dilution/financing dependence explicit rather than unknown.","source":"https://www.sec.gov/Archives/edgar/data/1822966/000182296626000016/a20260226-earningscallpr.htm"}
+  ],
+  "proposedCanonicalChanges": [],
+  "contradictions": [],
+  "unknowns": [
+    "Global cadence-due discovery completion remains false; this is a system gate, not evidence that every batch company is individually unready.",
+    "ROK, ETN, PWR, CEG, VST and BE require current issuer-primary dossier acquisition in this lane before source-integrity can independently mark them ready.",
+    "SERV requires current issuer-primary customer-concentration and liquidity evidence; historical Uber concentration is not assumed current."
+  ],
+  "peerRequests": [
+    "Beta discovery lane: complete cadence-due active gating discovery families for cycle 20260915T0200Z.",
+    "Company-underwriting: prioritize current issuer filings for ROK, ETN, PWR, CEG, VST, BE and SERV."
+  ],
+  "accuracyDebates": [],
+  "blockingIssues": ["GLOBAL: discoveryScanCompleted=false and supervisorSourceCoverageRatio=0 for cycle 20260915T0200Z."],
+  "directivesReviewed": ["chief-20260913t1300z-discovery-cadence","chief-20260913t1300z-av-certification-constraint"],
+  "confidence": 86,
+  "acquisitionComplete": true,
+  "batchCoverage": {
+    "TER":"ready_for_chief","ROK":"needs_primary_refresh","MBLY":"ready_for_chief","SERV":"gating_current_primary_gap","AUR":"ready_for_chief","ETN":"needs_primary_refresh","PWR":"needs_primary_refresh","POWL":"ready_for_chief","CEG":"needs_primary_refresh","VST":"needs_primary_refresh","BE":"needs_primary_refresh","SMR":"ready_for_chief"
+  },
+  "sources": ["data/runtime/system-state.json","data/runtime/supervisors/t0-bootstrap-queue.json","data/runtime/supervisors/directives.json","docs/SUPERVISOR_COUNCIL.md","https://www.sec.gov/Archives/edgar/data/97210/000119312526059002/ter-20251231.htm","https://www.sec.gov/Archives/edgar/data/1910139/000110465926005578/tm263599d1_ex99-1.htm","https://www.sec.gov/Archives/edgar/data/1832483/000121390024050801/ea0207201-ars_serve.pdf","https://www.sec.gov/Archives/edgar/data/1828108/000182810826000075/aurora26q2shareholderlet.htm","https://www.sec.gov/Archives/edgar/data/80420/000008042025000152/powl-20250930.htm","https://www.sec.gov/Archives/edgar/data/1822966/000182296626000016/a20260226-earningscallpr.htm"]
+}

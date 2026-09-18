@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "role": "deep-resolver",
+  "generatedAt": "2026-09-16T23:33:22Z",
+  "lineage": {
+    "branch": "earth-2036/official-baseline-t0",
+    "sourceQueueCycleKey": "20260915T2000Z",
+    "activeBatchId": "t0-20260915T0000Z-b03",
+    "company": "SMR",
+    "workId": "t0-20260915T0000Z-b03:SMR",
+    "queueSource": "data/runtime/supervisors/t0-bootstrap-queue.json"
+  },
+  "directive": {
+    "companyWorkId": "t0-20260915T0000Z-b03:SMR",
+    "gatingQuestion": "What is NuScale Power's exact current at-the-market equity capacity after the 2026 ATM activity, and is the prior $1.0 billion program still available?",
+    "whyItMatters": "The T0 queue explicitly identifies exact ATM capacity as a gating underwriting input for dilution and financing dependence. Treating a completed program as remaining capacity, or omitting a newly opened program, would materially misstate dilution headroom.",
+    "preferredPrimarySource": "NuScale Power Form 10-Q for quarter ended June 30, 2026 and the August 2026 SEC prospectus supplement establishing the subsequent ATM program.",
+    "lawfulFallbacks": [
+      "NuScale SEC-filed 8-K/prospectus filings",
+      "NuScale investor-relations filing mirrors only if SEC access is unavailable"
+    ],
+    "successCondition": "Primary SEC filings establish whether the February 2026 $1.0 billion ATM was completed and quantify any subsequent currently authorized ATM offering capacity without double counting.",
+    "attemptCount": 1
+  },
+  "status": "resolved",
+  "evidence": [
+    {
+      "type": "primary",
+      "source": "https://www.sec.gov/Archives/edgar/data/1822966/000182296626000085/smr-20260630.htm",
+      "claim": "NuScale's June 30, 2026 Form 10-Q states that the February 26, 2026 ATM authorized up to $1.0 billion; 89,727,165 Class A shares were sold during the six months ended June 30 for exactly $1.0 billion gross and $984.475 million net, and the company completed that ATM program in June 2026.",
+      "evidenceVsInference": "evidence",
+      "confidence": 1.0
+    },
+    {
+      "type": "primary",
+      "source": "https://www.sec.gov/Archives/edgar/data/1822966/000110465926094065/tm2622138-1_424b5.htm",
+      "claim": "An August 2026 NuScale SEC prospectus supplement establishes a new at-the-market offering of Class A common stock with aggregate offering price up to $750 million. The filing illustrates 81,699,346 shares only as an assumed-price example at $9.18, not as a fixed share authorization.",
+      "evidenceVsInference": "evidence",
+      "confidence": 1.0
+    }
+  ],
+  "findings": {
+    "prior2026AtmRemainingCapacity": 0,
+    "prior2026AtmStatus": "completed_in_June_2026",
+    "subsequentAtmAggregateOfferingCapacityUsd": 750000000,
+    "shareCountForSubsequentAtm": "variable; the prospectus example is not a fixed share count",
+    "doubleCountWarning": "Do not add any unused amount from the February 2026 $1.0 billion ATM; primary evidence says that program was fully completed before the later $750 million program was established."
+  },
+  "contradictionStatus": "resolved",
+  "confidence": 1.0,
+  "gateImpact": {
+    "gate": "SMR exact ATM capacity",
+    "result": "resolved",
+    "recommendedNextState": "Close only the exact-ATM-capacity sub-gate. Preserve SMR as researching/active for its separately listed cash-burn/liquidity and binding-vs-nonbinding revenue-classification gates until those are independently satisfied; this artifact does not authorize chief_ready, score, rank, membership or canonical promotion."
+  }
+}

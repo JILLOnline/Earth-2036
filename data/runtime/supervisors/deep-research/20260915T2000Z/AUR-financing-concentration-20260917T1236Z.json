@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "role": "deep-resolver",
+  "company": "AUR",
+  "workId": "t0-20260915T0000Z-b03:AUR",
+  "cycleKey": "20260915T2000Z",
+  "generatedAt": "2026-09-17T12:36:54Z",
+  "attemptCount": 3,
+  "status": "resolved",
+  "gatingQuestion": "Can Aurora Innovation's commercial/customer concentration and financing-runway/dilution capacity be bounded from current primary filings well enough to complete the T0 underwriting packet without inventing customer percentages?",
+  "whyItMatters": "The active T0 work item names financing runway/dilution capacity and commercial/customer concentration as exact gating gaps. Aurora is pre-scale and loss-making, so financing dependence and partner concentration materially affect Risk and Data Confidence; unsupported customer-percentage estimates would contaminate the packet.",
+  "preferredPrimarySource": "Aurora Innovation Form 10-Q for the quarter ended June 30, 2026 and 2025 Form 10-K filed with the SEC.",
+  "lawfulFallbacks": [
+    "Aurora investor-relations copies of filed reports",
+    "SEC XBRL facts for reconciliation only"
+  ],
+  "successCondition": "Primary filings establish current liquidity, operating cash burn, actual ATM issuance, live equity capacity/award overhang, and the disclosed commercial/partner concentration boundary; any unavailable customer-percentage concentration remains explicitly unknown rather than fabricated.",
+  "evidence": [
+    {
+      "type": "primary",
+      "source": "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000077/aur-20260630.htm",
+      "claim": "At June 30, 2026 Aurora reported $136 million cash and cash equivalents plus $1.081 billion short-term investments, excluding $18 million restricted cash. Management states total liquidity is sufficient for at least twelve months, while also stating it expects continuing operating losses and opportunistic future capital raises. Six-month operating cash use was $384 million.",
+      "evidenceVsInference": "evidence"
+    },
+    {
+      "type": "primary",
+      "source": "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000077/aur-20260630.htm",
+      "claim": "Aurora sold approximately 33 million Class A shares through its ATM during the first six months of 2026 for $229 million net proceeds, including approximately 30 million shares in Q2 for $215 million net. The ATM had been expanded to $1.421 billion aggregate capacity with $1.0 billion remaining as of July 30, 2025; the current filing demonstrates active use of equity financing rather than merely theoretical capacity.",
+      "evidenceVsInference": "evidence"
+    },
+    {
+      "type": "primary",
+      "source": "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000077/aur-20260630.htm",
+      "claim": "At June 30, 2026 Aurora had about 1.702 billion Class A and 296 million Class B shares outstanding. Its equity plans had 309 million shares available for grant; 118 million RSUs were unvested, with $552 million unrecognized RSU compensation over a weighted-average 3.0 years. This is a material live dilution/compensation overhang and must remain separate from ATM financing capacity.",
+      "evidenceVsInference": "evidence"
+    },
+    {
+      "type": "primary",
+      "source": "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000016/aur-20251231.htm",
+      "claim": "Aurora identifies PACCAR and Volvo as OEM partners, Uber as a strategic/rides and freight-network partner, and AUMOVIO as the exclusive supplier for the future-generation Aurora Driver hardware system. The filing says commercial success requires definitive long-term partner contracts and separately warns that Aurora relies on single/limited-source suppliers. It does not provide a defensible percentage customer-revenue concentration table for the nascent commercial revenue base.",
+      "evidenceVsInference": "evidence"
+    },
+    {
+      "type": "inference",
+      "source": "derived from the cited 2026 10-Q and 2025 10-K",
+      "claim": "The correct concentration treatment at T0 is qualitative strategic-partner/supplier dependence, not a fabricated customer revenue percentage. Current financing risk is bounded as at-least-12-month liquidity with continuing external-capital dependence beyond that horizon, evidenced by active ATM issuance and substantial remaining equity/award capacity.",
+      "evidenceVsInference": "inference"
+    }
+  ],
+  "contradictions": [
+    {
+      "issue": "At-least-twelve-month liquidity sufficiency can appear inconsistent with financing dependence.",
+      "status": "resolved",
+      "disposition": "They address different horizons. Management states near-term liquidity sufficiency while explicitly expecting continued losses and opportunistic additional capital raises for longer-term scale. Preserve both facts."
+    }
+  ],
+  "unknowns": [
+    {
+      "item": "Exact percentage of 2026 revenue attributable to each freight customer or strategic partner",
+      "gateImpact": "non-blocking after primary-source review; no percentage is disclosed in the located current filings, and the revenue base is only beginning to scale",
+      "treatment": "unknown; do not estimate"
+    }
+  ],
+  "contradictionStatus": "resolved",
+  "resolution": "The exact T0 gate is resolved to the level supported by primary filings. Aurora has a quantified near-term liquidity runway, quantified operating cash burn, demonstrated ATM dependence/capacity, and quantified live equity-compensation overhang. Commercial concentration is defensibly represented as material dependence on a small strategic ecosystem (including PACCAR, Volvo, Uber and exclusive future-generation hardware supplier AUMOVIO); no unsupported customer-revenue percentage is permitted.",
+  "confidence": 0.96,
+  "gateImpact": "Close the AUR financing-runway/dilution and commercial-concentration research blocker. Packet compiler/Alpha should carry the quantified financing/dilution facts and qualitative partner/supplier concentration into Risk/Data Confidence, preserving exact customer percentage as unknown. No further Deep Resolver loop is warranted unless a later primary filing discloses a material new financing instrument, customer concentration table, or partner termination.",
+  "recommendedNextState": "evidence_complete",
+  "canonicalMutation": false
+}

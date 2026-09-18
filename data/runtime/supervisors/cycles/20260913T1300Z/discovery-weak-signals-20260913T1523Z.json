@@ -1,0 +1,95 @@
+{
+  "reportVersion": 1,
+  "laneId": "discovery-weak-signals",
+  "cycleKey": "20260913T1300Z",
+  "generatedAt": "2026-09-13T15:23:02Z",
+  "status": "needs_research",
+  "summary": "Independent discovery pass reviewed the persisted 13:00Z machine state, active discovery registry, Chief cadence directive, discovery pool, evidence queue and current causal state, then sampled cadence-relevant official sensors. One material regime signal was found in automated-vehicle regulation, but it is not promoted: NHTSA opened a Sept. 4, 2026 Audit Query into Tesla Cybercab self-certification after commercial driverless deployment, while July policy simultaneously accelerated AV exemptions/standards. This convergence says AV regulatory-operational interaction is becoming a live constraint/validation layer. The active discovery pool still contains only XTND and the baseline external discovery scan remains incomplete, so acquisitionComplete is false and no no-change claim is made.",
+  "materialFindings": [
+    {
+      "finding": "NHTSA opened an Audit Query on Sept. 4, 2026 into Tesla Cybercab self-certification following commercial driverless deployment in Austin. Combined with NHTSA's July 30, 2026 action to accelerate AV performance standards and permit Zoox commercial deployment under a temporary exemption, this is a two-sided weak-signal regime shift: deployment access is broadening while post-deployment compliance scrutiny is becoming more concrete.",
+      "sources": [
+        "https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification",
+        "https://www.nhtsa.gov/press-releases/cutting-red-tape-safely-fast-track-automated-vehicle",
+        "lib/discovery-sources.ts"
+      ],
+      "canonicalInfluence": "none_pending_entity_normalization_and_cross-company_exposure_review"
+    },
+    {
+      "finding": "XTND remains the only persisted outside challenger and is explicitly not admission-eligible pending full methodology review. Its Sept. 4 S-8 registers 43,567,442 shares across rollover awards, the 2026 equity plan and ESPP; this is a material discovery-quality flag requiring capitalization normalization before any opportunity/admission comparison.",
+      "sources": [
+        "data/runtime/discovery-pool.json",
+        "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm"
+      ],
+      "canonicalInfluence": "none_pending_capital_structure_reconciliation"
+    },
+    {
+      "finding": "The current causal graph is concentrated on GEV/electricity/grid/gas/data-center relationships. The unknown-unknown audit identifies automated-system regulatory-operational interaction as an important 2036 dependency with a registered sensor but no current graph node or explicit metric. This is a blind spot, not a proposed edge.",
+      "sources": [
+        "data/runtime/causal-graph.json",
+        "lib/discovery-sources.ts",
+        "https://www.nhtsa.gov/press-releases/investigation-tesla-cybercab-self-certification"
+      ],
+      "canonicalInfluence": "none_until_structural_lane_tests_scope_and_materiality"
+    }
+  ],
+  "proposedCanonicalChanges": [],
+  "contradictions": [
+    {
+      "issue": "Persisted machine state says machineDiscoveryComplete=true while discoveryScanCompleted=false. These are not interchangeable; the baseline publication gate remains incomplete.",
+      "sources": ["data/runtime/system-state.json", "docs/OFFICIAL_T0_BASELINE.md"]
+    },
+    {
+      "issue": "FINRA partition freshness/capability must not be represented as row-level event acquisition; the Chief directive explicitly requires this distinction.",
+      "sources": ["data/runtime/supervisors/directives.json", "lib/discovery-sources.ts"]
+    }
+  ],
+  "unknowns": [
+    "A complete same-cycle review of every cadence-due active gating discovery family was not independently reproduced in this runner; baseline discoveryScanCompleted remains false.",
+    "Federal Register, BIS, OFAC, CISA, FAA, EPA ECHO, NIH, NSF, DOJ/FTC and BEA sensor families were not all exhaustively acquired in this pass. Sensor gaps are non-gating but remain visible unknowns.",
+    "Whether the AV regulatory signal changes any specific active-universe company's long-horizon economics has not been independently verified.",
+    "XTND post-merger basic and fully diluted share counts, cash runway and financing dependence remain unreconciled."
+  ],
+  "peerRequests": [
+    {
+      "lane": "source-integrity",
+      "request": "Confirm cadence-due gating-family acquisition semantics for cycle 20260913T1300Z and preserve capability/freshness versus row-event distinctions, especially FINRA."
+    },
+    {
+      "lane": "structural-causal",
+      "request": "Test whether AV regulatory-operational interaction deserves a reusable graph node/metric and identify exposed active-universe companies before any canonical edge proposal."
+    },
+    {
+      "lane": "company-underwriting",
+      "request": "Complete XTND capitalization/runway normalization before discovery admission comparison."
+    }
+  ],
+  "accuracyDebates": [
+    {
+      "classification": "IMPLEMENT",
+      "proposal": "Track AV deployment-access and compliance-enforcement signals as separate dimensions; combining them into one bullish/bearish regulation score would lose causal information."
+    },
+    {
+      "classification": "DEFER",
+      "proposal": "Do not add the NHTSA Cybercab event directly to any company score or rank until entity exposure and materiality are independently verified."
+    }
+  ],
+  "blockingIssues": [
+    "Baseline external discovery scan is still persisted as incomplete.",
+    "Chief discovery-cadence directive closure criteria are not yet fully satisfied by this independent pass."
+  ],
+  "directivesReviewed": [
+    {
+      "directiveId": "chief-20260913t1300z-discovery-cadence",
+      "status": "in_progress",
+      "progress": "Reviewed registry/cadence semantics and official sensor evidence; preserved sensor non-gating treatment and FINRA capability/event distinction. Full cadence-due active gating-family review remains outstanding."
+    },
+    {
+      "directiveId": "chief-20260913t1300z-xtnd-capital-structure",
+      "status": "peer_observation",
+      "progress": "Primary S-8 confirms 43,567,442 registered plan/rollover shares; denominator/runway reconciliation remains with underwriting."
+    }
+  ],
+  "confidence": 78,
+  "acquisitionComplete": false
+}

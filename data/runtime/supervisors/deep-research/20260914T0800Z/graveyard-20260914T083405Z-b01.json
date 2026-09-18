@@ -1,0 +1,277 @@
+{
+  "artifactVersion": 1,
+  "runner": "earth-deep-runner",
+  "cycleKey": "20260914T0800Z",
+  "timestamp": "2026-09-14T08:34:05Z",
+  "shift": "GRAVEYARD",
+  "mode": "LOST_SCROLL",
+  "batchId": "t0-20260914T0400Z-b01",
+  "scope": {
+    "activeBatch": ["RKLB", "CRDO", "ALAB", "NVDA", "AMD", "AVGO", "TSM", "ASML", "ARM", "MU", "ANET", "VRT"],
+    "priorityTargets": ["CRDO", "ALAB", "AVGO", "VRT"],
+    "sourceQueuePath": "data/runtime/supervisors/t0-bootstrap-queue.json",
+    "laneContextPath": "data/runtime/supervisors/cycles/20260914T0800Z/company-underwriting-alpha-20260914T081348Z.json",
+    "directivesPath": "data/runtime/supervisors/directives.json"
+  },
+  "research": [
+    {
+      "ticker": "CRDO",
+      "company": "Credo Technology Group Holding Ltd",
+      "batchId": "t0-20260914T0400Z-b01",
+      "exactGate": "SBC/dilution normalization and concentrated-customer durability",
+      "researchQuestion": "Can current primary filings normalize Credo's dilution burden and quantify how much concentration remains after the latest quarter?",
+      "summary": "Primary Q1 FY2027 evidence materially narrows the dilution blocker and confirms concentration remains a major resilience risk. The filing gives current shares, diluted-share bridge, SBC expense, acquisition-related equity awards and direct-customer concentration. This is enough for Chief to replace a generic dilution unknown with sourced quantitative inputs, but not enough to declare concentration durable because end-customer identities and future insourcing behavior remain unknown.",
+      "evidence": [
+        {
+          "fact": "187,951,918 ordinary shares were outstanding as of 2026-08-25; quarter-end ordinary shares were 187.768M.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026060111/crdo-20260801.htm",
+          "sourceType": "SEC 10-Q",
+          "confidence": 99
+        },
+        {
+          "fact": "Q1 FY2027 basic weighted-average shares were 186.007M and diluted weighted-average shares were 194.378M; the 8.371M incremental diluted shares came from share-based compensation awards. Another 1.406M awards were excluded as anti-dilutive.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026060111/crdo-20260801.htm",
+          "sourceType": "SEC 10-Q",
+          "confidence": 99
+        },
+        {
+          "fact": "Quarter SBC expense was $87.979M versus $35.455M a year earlier, with R&D SBC $44.999M and SG&A SBC $37.265M. SBC was approximately 18.4% of $479.003M quarterly revenue and approximately 68.0% of $129.425M net income.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026060111/crdo-20260801.htm",
+          "sourceType": "SEC 10-Q",
+          "confidence": 99
+        },
+        {
+          "fact": "DustPhotonics replacement awards added 254k RSUs; Hyperlume-related retention/replacement equity included 87k RSUs plus two 132k restricted-share awards. The filing says these awards are post-acquisition compensation recognized over vesting periods up to four years.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026060111/crdo-20260801.htm",
+          "sourceType": "SEC 10-Q",
+          "confidence": 98
+        },
+        {
+          "fact": "Direct-customer revenue concentration was 43% for Customer A and 28% for Customer B in the quarter; accounts receivable concentration was 57% and 28%, respectively.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026060111/crdo-20260801.htm",
+          "sourceType": "SEC 10-Q",
+          "confidence": 99
+        }
+      ],
+      "inference": [
+        "Dilution is quantitatively material but now measurable: diluted weighted-average shares exceeded basic by about 4.5%, while quarter-end/share-date counts show continued equity issuance. This should be modeled explicitly rather than left as a generic penalty.",
+        "SBC intensity is high enough that operating quality should be assessed both before and after SBC; excluding it entirely would overstate owner economics.",
+        "The top two direct customers represented 71% of quarterly revenue, so concentration remains a first-order common-mode risk even though customer labels may be manufacturing/intermediary relationships rather than final end customers."
+      ],
+      "contradictions": [
+        "Exceptional revenue and net-income growth coexist with SBC that rose much faster than revenue and with extreme direct-customer concentration."
+      ],
+      "unknowns": [
+        "True end-customer identities behind Customer A/B and whether concentration is diversified at the end-demand layer.",
+        "Forward equity issuance from future grants beyond already disclosed awards.",
+        "Customer insourcing/design-loss probability and contract durability."
+      ],
+      "falsifiers": [
+        "Material reduction in top-two concentration without margin deterioration would weaken the concentration-risk thesis.",
+        "SBC as a percentage of revenue and diluted-share growth falling sustainably while growth remains strong would weaken the dilution concern."
+      ],
+      "recommendedChiefAction": "review",
+      "chiefHandoff": "Promote the sourced share-count/SBC bridge into the CRDO dossier; keep end-customer durability open. Do not mark ready_for_chief solely from this artifact.",
+      "confidence": 96
+    },
+    {
+      "ticker": "ALAB",
+      "company": "Astera Labs, Inc.",
+      "batchId": "t0-20260914T0400Z-b01",
+      "exactGate": "Fully diluted share-count roll-forward and customer/governance concentration",
+      "researchQuestion": "Can Astera's latest 10-Q close the diluted-share roll-forward and quantify dilution/customer concentration without guessing end-customer identity?",
+      "summary": "The June 2026 10-Q materially closes the fully diluted share-count blocker. It provides current common shares, weighted-average dilution, option/RSU/PSU overhang, a large performance-contingent customer warrant, and direct-customer concentration. Governance control remains only partially closed because the 10-Q does not reproduce the full beneficial-ownership table; the 2025 10-K remains necessary for control concentration context.",
+      "evidence": [
+        {
+          "fact": "173,485,104 common shares were outstanding as of 2026-07-31.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1736297/000173629726000035/alab-20260630.htm",
+          "sourceType": "SEC 10-Q",
+          "confidence": 99
+        },
+        {
+          "fact": "For Q2 2026, basic weighted-average shares were 172.378M and diluted weighted-average shares were 183.340M, an incremental 10.962M potentially dilutive equivalent shares, approximately 6.4% over basic.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1736297/000173629726000035/alab-20260630.htm",
+          "sourceType": "SEC 10-Q",
+          "confidence": 99
+        },
+        {
+          "fact": "At 2026-06-30 Astera had 1.693M options outstanding, 9.180M RSUs outstanding, and 0.375M PSUs outstanding. Unrecognized compensation was $640.1M for RSUs and $40.3M for PSUs.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1736297/000173629726000035/alab-20260630.htm",
+          "sourceType": "SEC 10-Q",
+          "confidence": 99
+        },
+        {
+          "fact": "A February 2026 customer warrant permits up to 3,262,299 shares at $142.82, vesting in purchase-performance tranches. Across all warrants, 1,663,042 underlying shares were vested/exercisable and 24,722 were probable of vesting at 2026-06-30; none had been exercised by the holder. Warrant contra-revenue was $10.2M in Q2 and $12.3M for the first half.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1736297/000173629726000035/alab-20260630.htm",
+          "sourceType": "SEC 10-Q",
+          "confidence": 99
+        },
+        {
+          "fact": "Direct-customer revenue concentration for Q2 2026 was 29%, 25%, 15%, and 13% for Customers A-D. The filing explicitly warns that some named customers are manufacturing partners purchasing on behalf of end customers, so direct-customer percentages may not represent underlying end-customer demand.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1736297/000173629726000035/alab-20260630.htm",
+          "sourceType": "SEC 10-Q",
+          "confidence": 99
+        },
+        {
+          "fact": "The 2025 Form 10-K states executive officers, directors and greater-than-5% holders collectively beneficially owned about 37.9% of outstanding common stock as of the stated ownership date.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1736297/000114036126016366/ny20065212x3_ars.pdf",
+          "sourceType": "SEC 10-K",
+          "confidence": 96
+        }
+      ],
+      "inference": [
+        "The diluted-share blocker can be converted from unknown to a sourced roll-forward: current common shares plus material option/RSU/PSU and customer-warrant overhang are now quantified.",
+        "The customer warrant is economically linked to purchases, so part of dilution is paired with commercial volume rather than being pure financing dilution; Chief should preserve that distinction.",
+        "Direct-customer concentration is very high, but the filing itself cautions that manufacturing-partner labels can obscure the true end-customer map."
+      ],
+      "contradictions": [
+        "Strong profitability and growth coexist with a meaningful equity-compensation/warrant overhang and concentrated commercial channels."
+      ],
+      "unknowns": [
+        "Exact mapping from direct Customers A-D to ultimate hyperscale/end customers.",
+        "Current beneficial-ownership/control percentages after 2026 share issuance and vesting; the 37.9% figure is useful context but not a current-quarter ownership roll-forward.",
+        "Probability and timing of future customer-warrant tranche vesting."
+      ],
+      "falsifiers": [
+        "A later proxy/13D/13G ownership set showing materially dispersed control would weaken the governance-concentration concern.",
+        "A reconciled end-customer map showing broad diversification beneath manufacturing partners would weaken the concentration concern."
+      ],
+      "recommendedChiefAction": "review",
+      "chiefHandoff": "Treat the fully diluted share-count gate as materially closed for baseline construction, subject to Chief reconciliation. Keep true end-customer mapping and refreshed governance/control ownership as narrow remaining gaps.",
+      "confidence": 95
+    },
+    {
+      "ticker": "AVGO",
+      "company": "Broadcom Inc.",
+      "batchId": "t0-20260914T0400Z-b01",
+      "exactGate": "VMware debt/deleveraging footnotes",
+      "researchQuestion": "Does the newest Broadcom 10-Q show a defensible post-VMware deleveraging path and remaining balance-sheet constraint?",
+      "summary": "The newest available Q3 FY2026 10-Q materially closes the debt-normalization blocker. Debt principal fell by about $6.0B from fiscal-year-end 2025 to August 2, 2026, and carrying debt fell by about $5.7B. The company still carries roughly $61.1B aggregate indebtedness and explicitly identifies that leverage as a strategic constraint. VMware-related tax indemnity risk remains separate from ordinary debt service and should not be collapsed into the debt metric.",
+      "evidence": [
+        {
+          "fact": "Total debt principal outstanding was $61.079B at 2026-08-02 versus $67.120B at 2025-11-02, a $6.041B reduction. Carrying total debt was $59.419B versus $65.136B, a $5.717B reduction.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/avgo-20260802.htm",
+          "sourceType": "SEC 10-Q",
+          "confidence": 99
+        },
+        {
+          "fact": "At 2026-08-02, short-term debt was $2.252B and long-term debt was $57.167B.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/avgo-20260802.htm",
+          "sourceType": "SEC 10-Q",
+          "confidence": 99
+        },
+        {
+          "fact": "The filing explicitly states aggregate indebtedness of $61.079B remains substantial and can limit strategic flexibility, increase vulnerability and constrain future borrowing.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/avgo-20260802.htm",
+          "sourceType": "SEC 10-Q",
+          "confidence": 99
+        },
+        {
+          "fact": "The filing separately preserves potential VMware-related tax indemnity exposure tied to the 2021 Dell spin-off and tax-free qualification; this risk is not the same as scheduled funded debt.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/avgo-20260802.htm",
+          "sourceType": "SEC 10-Q",
+          "confidence": 98
+        }
+      ],
+      "inference": [
+        "The direction of deleveraging is clear and material: principal debt declined about 9.0% from fiscal-year-end to Q3 FY2026.",
+        "Leverage is no longer an unquantified VMware-integration unknown, but it remains a material risk factor because absolute debt is still very large.",
+        "Chief should keep VMware tax-indemnity tail risk separate from ordinary debt normalization to avoid double counting."
+      ],
+      "contradictions": [
+        "Broadcom is demonstrably deleveraging while simultaneously retaining an absolute debt load large enough for the company itself to flag strategic consequences."
+      ],
+      "unknowns": [
+        "Exact debt attributed economically to VMware versus other Broadcom financing once fungible cash flows/refinancings are considered.",
+        "Future refinancing cost under different rate regimes.",
+        "Magnitude/probability of VMware spin-off tax indemnity exposure."
+      ],
+      "falsifiers": [
+        "A reversal to rising net debt without a corresponding high-return investment case would falsify the improving-deleveraging inference.",
+        "A definitive tax ruling eliminating VMware indemnity exposure would remove that tail risk."
+      ],
+      "recommendedChiefAction": "review",
+      "chiefHandoff": "Promote the Q3 FY2026 debt bridge into AVGO underwriting and downgrade the debt blocker from unresolved to quantified/monitor. Keep AI customer concentration as the principal remaining active gate.",
+      "confidence": 97
+    },
+    {
+      "ticker": "VRT",
+      "company": "Vertiv Holdings Co",
+      "batchId": "t0-20260914T0400Z-b01",
+      "exactGate": "Backlog aging/cancellation quality and customer concentration",
+      "researchQuestion": "Can primary filings distinguish firm backlog quality from headline backlog and show whether cancellation risk is actually low?",
+      "summary": "Primary filings strengthen backlog quality but do not fully close the gate. Vertiv's 2025 10-K says the majority of $15.0B year-end backlog was considered firm and expected to ship within 12-18 months, while also stating orders can be cancelled or rescheduled. The Q2 2026 10-Q continues to flag unpredictable order placement/cancellation, failure to realize backlog, and large-customer contract leverage as material risks. This supports a 'high-quality but not irrevocable' backlog classification rather than treating the full backlog as guaranteed revenue.",
+      "evidence": [
+        {
+          "fact": "At 2025-12-31 Vertiv reported $15.0B estimated backlog versus $7.2B a year earlier; the majority was considered firm and expected to ship within 12-18 months, but orders may be cancelled or rescheduled by customers.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1674101/000167410126000008/vrt-20251231.htm",
+          "sourceType": "SEC 10-K",
+          "confidence": 99
+        },
+        {
+          "fact": "The Q2 2026 10-Q continues to list unpredictable placement/cancellation of customer orders, failure to realize expected sales from backlog, shifts in customer technology spending, and reduced leverage with large customers as explicit risks.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1674101/000162828026050609/vrt-20260630.htm",
+          "sourceType": "SEC 10-Q",
+          "confidence": 98
+        },
+        {
+          "fact": "Q2 2026 net sales were $3.274B, up 24.1% year over year, while the company disclosed minor timing shifts from supply-chain congestion and multi-phased project execution as deployments scale in size and complexity.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1674101/000162828026050323/q22026exhibit991vrt07292026.htm",
+          "sourceType": "SEC earnings exhibit",
+          "confidence": 98
+        },
+        {
+          "fact": "At 2026-06-30 Vertiv had $2.811B cash, $0.300B short-term investments and $2.484B revolver availability; it had repaid its prior term loan in full in March 2026 and released the associated guarantees/liens.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1674101/000162828026050609/vrt-20260630.htm",
+          "sourceType": "SEC 10-Q",
+          "confidence": 99
+        }
+      ],
+      "inference": [
+        "The backlog should not be haircut as if it were merely soft pipeline: management classifies the majority as firm and near-to-medium-term. However, it also should not be valued as an unconditional receivable because cancellation/rescheduling and project-timing risks are explicit.",
+        "Balance-sheet strengthening reduces the risk that backlog execution is constrained by financing capacity; the remaining gate is commercial concentration/conversion quality rather than liquidity.",
+        "Project complexity and phased deployments can move revenue timing without necessarily indicating demand destruction, so future misses should be decomposed into cancellation versus timing/slippage."
+      ],
+      "contradictions": [
+        "Management describes most backlog as firm while simultaneously preserving explicit cancellation/rescheduling and technology-spending risks; both facts must remain visible."
+      ],
+      "unknowns": [
+        "Current quarter-end backlog amount and age buckets were not found in the primary sources reviewed in this pass.",
+        "Cancellation rate history and concentration by top customer are not quantified in the cited filings.",
+        "Share of backlog tied to hyperscalers versus broader colocation/enterprise demand remains unresolved."
+      ],
+      "falsifiers": [
+        "A disclosed material rise in cancellations, aging beyond expected shipment windows, or backlog-to-revenue conversion deterioration would weaken the backlog-quality inference.",
+        "A customer-level disclosure showing extreme hyperscaler concentration would strengthen concentration risk."
+      ],
+      "recommendedChiefAction": "corroborate",
+      "chiefHandoff": "Retain backlog as a positive operating signal but classify it as firm-yet-cancellable. Seek current backlog amount, cancellation history and customer concentration before marking VRT ready_for_chief.",
+      "confidence": 89
+    }
+  ],
+  "batchImpact": {
+    "gatesMateriallyClosedOrNarrowed": [
+      "CRDO SBC/dilution is now quantitatively normalized; concentration durability remains open.",
+      "ALAB fully diluted share-count roll-forward is materially closed; end-customer mapping and refreshed ownership/control remain open.",
+      "AVGO VMware-era debt/deleveraging is quantitatively normalized; AI customer concentration remains open.",
+      "VRT backlog quality is better characterized as majority-firm but cancellable; current aging/cancellation/customer-concentration metrics remain open."
+    ],
+    "readyForChiefRecommendation": ["ALAB", "AVGO"],
+    "notReadyYet": ["CRDO", "VRT"],
+    "reasoning": "ALAB and AVGO each had one named quantitative blocker materially closed by fresh primary evidence, leaving narrower independent gates. CRDO still has extreme concentration durability unresolved; VRT still lacks current backlog aging/cancellation/customer concentration."
+  },
+  "lineage": {
+    "branch": "earth-2036/official-baseline-t0",
+    "sourceMachineCycle": "20260914T0800Z",
+    "sourceQueueCycle": "20260914T0500Z",
+    "repoHeadObserved": "1dd2f7aa262b4cefdfe64bf4812908e086dcefb7",
+    "sourceArtifacts": [
+      "data/runtime/system-state.json",
+      "data/runtime/supervisors/t0-bootstrap-queue.json",
+      "data/runtime/supervisors/directives.json",
+      "data/runtime/supervisors/cycles/20260914T0800Z/company-underwriting-alpha-20260914T081348Z.json"
+    ]
+  },
+  "recommendedChiefAction": "review",
+  "confidence": 94
+}

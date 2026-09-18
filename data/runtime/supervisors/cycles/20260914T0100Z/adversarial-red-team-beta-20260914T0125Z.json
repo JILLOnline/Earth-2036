@@ -1,0 +1,50 @@
+{
+  "reportVersion": 1,
+  "laneId": "adversarial-red-team",
+  "cycleKey": "20260914T0100Z",
+  "generatedAt": "2026-09-14T01:25:05Z",
+  "status": "complete",
+  "summary": "Independent red-team pass found no evidence requiring a new canonical downgrade to GEV, but confirmed that valuation already embeds substantial execution and that XTND remains structurally unsuitable for admission/opportunity scoring until capitalization and dilution are normalized. The strongest falsifier pressure is execution-at-premium-valuation for GEV and financing/dilution ambiguity for XTND.",
+  "materialFindings": [
+    {
+      "finding": "GEV is operationally strong but vulnerable to expectation compression: canonical score state already assigns only 56 to marketValuationOpportunity while Earth Score is 81.8 and notes roughly $246B market capitalization discounts substantial future execution.",
+      "falsifier": "Slower order conversion, margin expansion, gas-turbine capacity execution or data-center demand could produce outsized downside because valuation tolerance is low.",
+      "sources": ["data/runtime/score-state.json"]
+    },
+    {
+      "finding": "XTND's S-8 registers 43,567,442 shares across rollover awards, the 2026 equity plan and ESPP, while third-party market data currently reports about 249.13M shares outstanding and a roughly $1.2B market cap on September 10, 2026.",
+      "falsifier": "If fully diluted/post-close capitalization materially exceeds the current basic-share view, apparent valuation and runway can be understated; admission before reconciliation would create false precision.",
+      "sources": ["https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm", "https://stockanalysis.com/stocks/xtnd/statistics/", "data/runtime/discovery-pool.json"]
+    },
+    {
+      "finding": "XTND market data shows a very wide 52-week range and no established analyst target/earnings date in the current third-party snapshot, increasing the risk that narrative and thin post-merger price discovery dominate apparent opportunity signals.",
+      "falsifier": "Stable audited post-merger reporting, reconciled cash/runway and repeatable contracted demand would reduce this concern; they are not yet sufficient in canonical state.",
+      "sources": ["https://stockanalysis.com/stocks/xtnd/", "data/runtime/discovery-pool.json"]
+    }
+  ],
+  "proposedCanonicalChanges": [],
+  "contradictions": [
+    "No contradiction found between GEV's high long-horizon quality and its weaker valuation-opportunity component; the tension is intentional and should remain visible rather than averaged away.",
+    "XTND's compelling physical-AI/defense narrative is not equivalent to evidence of attractive investment opportunity because capitalization and financing dependence remain unresolved."
+  ],
+  "unknowns": [
+    "GEV crowding, consensus dispersion and terminal valuation assumptions remain insufficiently sourced for a precise red-team probability of multiple compression.",
+    "XTND exact post-close common shares, pre-funded warrants, rollover overlap, cash-flow runway and financing dependence remain unresolved in canonical state.",
+    "No evidence in this pass establishes fraud, solvency danger or management deception at either GEV or XTND."
+  ],
+  "peerRequests": [
+    {
+      "lane": "company-underwriting",
+      "request": "Finish XTND reconciled capitalization/runway and quantify plan/award dilution without double counting."
+    },
+    {
+      "lane": "expectations-execution",
+      "request": "Keep GEV premium-valuation sensitivity explicit and do not infer crowding/consensus precision without sourced market data."
+    }
+  ],
+  "accuracyDebates": [],
+  "blockingIssues": [],
+  "directivesReviewed": ["chief-20260913t1300z-xtnd-capital-structure", "chief-20260913t1300z-av-certification-constraint"],
+  "confidence": 88,
+  "acquisitionComplete": true
+}

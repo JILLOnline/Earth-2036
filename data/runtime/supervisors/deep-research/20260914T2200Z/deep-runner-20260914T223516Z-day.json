@@ -1,0 +1,222 @@
+{
+  "reportVersion": 1,
+  "runnerId": "earth-deep-runner",
+  "cycleKey": "20260914T2200Z",
+  "timestamp": "2026-09-14T22:35:16Z",
+  "shift": "DAY",
+  "batchContext": {
+    "queueCycleKey": "20260914T1500Z",
+    "activeBatchId": "t0-20260914T1500Z-b02",
+    "activeBatch": ["NBIS", "PL", "OKLO", "BTDR", "IONQ", "SYM", "MRVL", "COHR", "LITE", "MPWR", "CLS", "APH"],
+    "blocked": ["AMD", "TSM", "ASML"],
+    "currentCycleUnderwritingStatus": "needs_research",
+    "currentCycleUnderwritingSummary": "Eleven active-batch companies are ready_for_chief in company-underwriting; SYM has one narrow same-cycle Form 4 interpretation gap. The three attempt>=3 blocked companies were re-tested under anti-stall discipline."
+  },
+  "summary": "DAY gap-closure attacked the single current active-batch underwriting blocker (SYM) plus all three attempt>=3 blocked names (AMD, TSM, ASML). ASML's queue blocker is sufficiently resolved from the issuer's current 20-F. TSM's queue blocker is sufficiently resolved for methodology factor assembly using current primary customer-concentration, capex and overseas-fab funding disclosures; exact Arizona utilization/standalone overseas-fab ROI is a non-gating unknown. AMD's queue blocker is sufficiently resolved for methodology factor assembly using current issuer customer-concentration disclosure plus primary accelerator deployment/economics evidence; exact accelerator end-customer concentration below issuer disclosure thresholds and future MI share persistence are non-gating unknowns. SYM remains narrowly blocked because the same-cycle Form 4 transaction substance could not yet be independently reconstructed from the newly published XML; no adverse inference is made from form type or reporting-person identity alone.",
+  "investigations": [
+    {
+      "ticker": "SYM",
+      "company": "Symbotic Inc.",
+      "batchId": "t0-20260914T1500Z-b02",
+      "exactResearchQuestion": "Interpret SEC Form 4 accession 0001932967-26-000007 and determine whether it changes governance/alignment, dilution or insider-behavior treatment before SYM promotion.",
+      "gating": true,
+      "effectOnGate": "gating_blocker",
+      "summary": "The filing is real, same-cycle and still pending in the canonical evidence-review queue. The reporting-person CIK maps to David A. Ladensohn, a Symbotic 10% owner, but the transaction-level XML has not yet propagated into independently retrievable indexed sources. Because form type and reporting-person status alone do not establish purchase, sale, gift, option exercise or other transaction substance, the gap cannot be responsibly closed this run.",
+      "evidence": [
+        "Canonical queue item: SYM:0001932967-26-000007; form 4; filingDate 2026-09-14; reportDate 2026-09-10; status pending.",
+        "Current company-underwriting lane isolates this filing as SYM's only unresolved active-batch gating gap.",
+        "Prior issuer evidence already establishes extreme customer concentration: one customer represented 90.5% of Q3 revenue, 87.0% of nine-month revenue and 82.8% of accounts receivable."
+      ],
+      "inference": [
+        "The correct treatment is fail-closed only on transaction interpretation, not on the filing type itself.",
+        "If the Form 4 is routine/immaterial under the locked governance/alignment rubric, SYM should move to Chief review without opening new optional research debt."
+      ],
+      "findings": [
+        "No evidence supports treating this filing as adverse merely because it is a Form 4.",
+        "The next-best source path is the canonical SEC XML itself, followed only if needed by issuer ownership/compensation context to classify the transaction code and security type."
+      ],
+      "contradictions": [
+        "A fresh insider filing is governance-relevant, but fresh does not mean adverse; transaction substance controls treatment."
+      ],
+      "unknowns": [
+        "Exact transaction code, quantity, price, derivative/non-derivative security treatment and resulting beneficial ownership in accession 0001932967-26-000007 remain unresolved in this run."
+      ],
+      "falsifiers": [
+        "If direct SEC XML shows a routine tax withholding, scheduled vesting, gift, administrative transfer or otherwise immaterial transaction, the blocker is falsified and should close.",
+        "If direct SEC XML shows a material discretionary disposition/acquisition, option exercise, derivative conversion or ownership change, governance/alignment treatment should be updated before promotion."
+      ],
+      "sources": [
+        "data/runtime/evidence-review-queue.json",
+        "data/runtime/supervisors/cycles/20260914T2200Z/company-underwriting-alpha-20260914T222100Z.json",
+        "https://www.sec.gov/Archives/edgar/data/1837240/000193296726000007/xslF345X06/wk-form4_1789421430.xml"
+      ],
+      "confidence": 72,
+      "recommendedChiefAction": "corroborate",
+      "lineage": [
+        "system-state cycle 20260914T2200Z",
+        "t0-bootstrap queue company SYM batch t0-20260914T1500Z-b02",
+        "company-underwriting-alpha-20260914T222100Z",
+        "evidence queue SYM:0001932967-26-000007"
+      ]
+    },
+    {
+      "ticker": "AMD",
+      "company": "Advanced Micro Devices, Inc.",
+      "batchId": "t0-20260914T0400Z-b01",
+      "exactResearchQuestion": "After attempt>=3, is AMD still genuinely blocked by missing accelerator end-customer concentration and switching/share economics, or is the queue demanding detail beyond the locked methodology gate?",
+      "gating": true,
+      "effectOnGate": "resolve_gating_blocker_for_chief_review",
+      "summary": "Current primary issuer evidence is sufficient to score the locked methodology dimensions without inventing exact MI accelerator customer concentration. AMD's 2025 10-K states no customer represented at least 10% of consolidated net revenue in 2025 or 2024, while warning that a small number of customers can still represent substantial revenue/receivables. Current Q2 2026 primary materials show Data Center revenue of about $6.7B, up 107% year over year, with primary customer/deployment evidence including Anthropic up to 2GW of MI450/Helios capacity and Microsoft Azure deployment plans. This supports reproducible customer-diversification/concentration risk, product-market-fit, switching/capture-path and pricing/economic treatment at the level AMD actually discloses.",
+      "evidence": [
+        "AMD FY2025 Form 10-K: no customer accounted for at least 10% of consolidated net revenue in fiscal 2025 or 2024; one Client/Gaming customer accounted for 18% in 2023.",
+        "AMD FY2025 Form 10-K: 2025 Data Center revenue approximately $16.6B, up 32%, driven by EPYC and Instinct MI350 demand.",
+        "AMD Q2 2026 primary earnings materials: Data Center revenue approximately $6.7B, up 107%, with operating income about $2.1B and 31% segment operating margin.",
+        "AMD Q2 2026 primary materials describe Anthropic agreement for up to 2GW of MI450/Helios capacity and Microsoft expansion to deploy Helios and 6th Gen EPYC across Azure."
+      ],
+      "inference": [
+        "The locked rubric requires enough sourced evidence to score customer diversification/concentration, PMF, moat/switching, capture path and pricing power; it does not require issuer-undisclosed accelerator-specific customer percentages as a standalone field.",
+        "Exact MI accelerator end-customer concentration below issuer disclosure thresholds should remain unknown rather than hold AMD indefinitely."
+      ],
+      "findings": [
+        "The prior blocker is over-specified relative to methodology 1.0 and can be retired for Chief factor-assembly review.",
+        "AMD still deserves explicit concentration/platform-dependency risk treatment because consolidated <10% customer disclosure does not prove accelerator diversification."
+      ],
+      "contradictions": [
+        "Consolidated customer concentration is below the 10% disclosure threshold, yet the accelerator business can still be concentrated in a smaller set of hyperscaler/platform customers; both statements can be true."
+      ],
+      "unknowns": [
+        "non_gating_unknown: exact MI accelerator end-customer revenue percentages below issuer disclosure thresholds.",
+        "non_gating_unknown: future MI share persistence versus NVIDIA/custom silicon."
+      ],
+      "falsifiers": [
+        "A primary filing showing an undisclosed material accelerator customer concentration, adverse contract economics, or loss of a major accelerator deployment would require renewed treatment.",
+        "Evidence that current named deployments are merely non-binding/no-revenue frameworks would weaken PMF/capture-path treatment."
+      ],
+      "sources": [
+        "engine/methodology.ts",
+        "engine/rubric.ts",
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/amd-20251227.htm",
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248826000121/q22026991.htm",
+        "data/runtime/supervisors/t0-bootstrap-queue.json"
+      ],
+      "confidence": 91,
+      "recommendedChiefAction": "review",
+      "lineage": [
+        "t0-bootstrap queue AMD attempts=3 blocked",
+        "locked methodology 1.0 rubric",
+        "current issuer FY2025 10-K and Q2 2026 primary earnings evidence"
+      ]
+    },
+    {
+      "ticker": "TSM",
+      "company": "Taiwan Semiconductor Manufacturing Company Limited",
+      "batchId": "t0-20260914T0400Z-b01",
+      "exactResearchQuestion": "After attempt>=3, do current primary disclosures support reproducible customer-concentration and overseas-fab/capex treatment without requiring undisclosed Arizona utilization or standalone overseas-fab ROI?",
+      "gating": true,
+      "effectOnGate": "resolve_gating_blocker_for_chief_review",
+      "summary": "TSMC's current 2025 Form 20-F provides enough primary evidence for the locked customer-concentration, balance-sheet/capital-efficiency, geographic diversification and execution-risk factors. The top ten customers represented 78% of 2025 revenue; the two largest were 19% and 17%. TSMC expects 2026 capex of US$52-56B funded with operating cash and corporate bonds. Arizona Fab 21's first facility entered high-volume production at the end of 2024, the second is under construction, the third began construction in 2025, and U.S. CHIPS direct funding is up to US$6.6B. Exact Arizona utilization and standalone overseas-fab margins/ROI are not disclosed and are not standalone methodology requirements.",
+      "evidence": [
+        "TSMC FY2025 Form 20-F: top ten customers represented 78% of 2025 net revenue; largest customer 19%, second largest 17%.",
+        "TSMC FY2025 Form 20-F: 2026 capital budget expected at US$52-56B, funded by operating cash flow and corporate bonds, focused on advanced process, packaging and specialty capacity.",
+        "TSMC FY2025 Form 20-F: Arizona Fab 21 first facility entered high-volume production at end-2024; second facility under construction; third began construction in 2025.",
+        "TSMC FY2025 Form 20-F: U.S. CHIPS direct funding agreement provides up to US$6.6B."
+      ],
+      "inference": [
+        "These disclosures permit reproducible scoring of customer concentration, capital intensity/execution, geographic diversification and resilience without fabricating plant-level utilization economics.",
+        "Plant-specific utilization/ROI would improve precision but is not required to establish methodology-comparable risk/factor treatment."
+      ],
+      "findings": [
+        "The attempt>=3 blocker can be retired for Chief review with explicit conservative treatment of customer concentration and overseas expansion capital intensity.",
+        "Do not infer Arizona economics from subsidy size or production status alone."
+      ],
+      "contradictions": [
+        "U.S. expansion improves geographic resilience while also increasing near-term capital intensity and execution complexity."
+      ],
+      "unknowns": [
+        "non_gating_unknown: exact Arizona facility utilization and standalone gross margin/ROI.",
+        "non_gating_unknown: timing and severity of future cross-strait geopolitical outcomes."
+      ],
+      "falsifiers": [
+        "Primary evidence showing materially worse overseas-fab economics, schedule slippage or customer concentration than current disclosures would require factor reassessment.",
+        "A future major-customer loss or materially adverse subsidy/funding change would reopen the relevant risk treatment."
+      ],
+      "sources": [
+        "engine/methodology.ts",
+        "engine/rubric.ts",
+        "https://www.sec.gov/Archives/edgar/data/1046179/000162828026025362/tsm-20251231.htm",
+        "data/runtime/supervisors/t0-bootstrap-queue.json"
+      ],
+      "confidence": 95,
+      "recommendedChiefAction": "review",
+      "lineage": [
+        "t0-bootstrap queue TSM attempts=3 blocked",
+        "locked methodology 1.0 rubric",
+        "current issuer FY2025 Form 20-F"
+      ]
+    },
+    {
+      "ticker": "ASML",
+      "company": "ASML Holding N.V.",
+      "batchId": "t0-20260914T0400Z-b01",
+      "exactResearchQuestion": "After attempt>=3, can current China/export exposure and critical-supplier dependence be encoded reproducibly from issuer primary evidence?",
+      "gating": true,
+      "effectOnGate": "resolve_gating_blocker_for_chief_review",
+      "summary": "Yes. ASML's 2025 Form 20-F directly quantifies geographic sales exposure and critical supplier dependence. China represented 29.1% of 2025 total net sales, Taiwan 25.5% and South Korea 25.0%. The filing details export-license restrictions affecting EUV and specific DUV products and states that ASML relies on roughly 900 product-related suppliers, often single/limited-source for critical parts. Carl Zeiss SMT is explicitly the sole supplier of critical lenses, mirrors, illuminators and collectors, and ASML states lithography-system output is limited by Zeiss production capacity. This is sufficient for reproducible regulatory, geographic, bottleneck and supply-chain factor/risk treatment.",
+      "evidence": [
+        "ASML FY2025 Form 20-F: China customers represented 29.1% of 2025 total net sales versus 36.1% in 2024; Taiwan 25.5%; South Korea 25.0%.",
+        "ASML FY2025 Form 20-F: export-license restrictions apply to EUV and specific DUV immersion/other products and can restrict China sales/service.",
+        "ASML FY2025 Form 20-F: approximately 900 product-related suppliers; many strategically important components are single- or limited-source.",
+        "ASML FY2025 Form 20-F: Carl Zeiss SMT is sole supplier of critical optical components, and ASML system output is limited by Zeiss production capacity."
+      ],
+      "inference": [
+        "The exact queue blocker is fully answerable from issuer primary evidence and should not consume a fourth generic research attempt.",
+        "Supplier dependence simultaneously supports bottleneck control/scarcity relevance and raises supply-chain concentration risk; both should be encoded rather than netted away."
+      ],
+      "findings": [
+        "ASML is sufficiently resolved for Chief review/factor assembly under the locked methodology.",
+        "Future export-policy changes should remain uncertainty, not be invented into current exposure."
+      ],
+      "contradictions": [
+        "Sole-source Zeiss optics reinforce ASML's differentiated lithography moat while also creating a material supplier bottleneck and capacity dependency."
+      ],
+      "unknowns": [
+        "non_gating_unknown: future scope/timing of additional export restrictions.",
+        "non_gating_unknown: exact future China order mix beyond disclosed current sales/order context."
+      ],
+      "falsifiers": [
+        "A newer primary filing materially changing geographic mix, license treatment or supplier structure would require the factor record to be refreshed.",
+        "Evidence of practical near-term multi-sourcing for Zeiss-critical optics would reduce the supplier-concentration risk and alter bottleneck interpretation."
+      ],
+      "sources": [
+        "engine/methodology.ts",
+        "engine/rubric.ts",
+        "https://www.sec.gov/Archives/edgar/data/937966/000162828026011378/asml-20251231.htm",
+        "data/runtime/supervisors/t0-bootstrap-queue.json"
+      ],
+      "confidence": 98,
+      "recommendedChiefAction": "review",
+      "lineage": [
+        "t0-bootstrap queue ASML attempts=3 blocked",
+        "locked methodology 1.0 rubric",
+        "current issuer FY2025 Form 20-F"
+      ]
+    }
+  ],
+  "nonGatingUnknowns": [
+    "AMD exact MI accelerator end-customer percentages below issuer disclosure thresholds and future MI share persistence.",
+    "TSM exact Arizona utilization/standalone overseas-fab economics and future geopolitical timing.",
+    "ASML future export-policy changes and future China mix.",
+    "SYM broader diversification timing beyond the narrow same-cycle Form 4 transaction interpretation."
+  ],
+  "recommendedBatchActions": [
+    "AMD: Chief review; retire the attempt>=3 blocker as sufficiently resolved for methodology factor assembly, while preserving accelerator-specific concentration as non_gating_unknown.",
+    "TSM: Chief review; retire the attempt>=3 blocker as sufficiently resolved for methodology factor assembly, while preserving Arizona utilization/standalone ROI as non_gating_unknown.",
+    "ASML: Chief review; retire the attempt>=3 blocker as resolved from current issuer primary evidence.",
+    "SYM: keep only the narrow Form 4 interpretation blocker; direct-fetch accession 0001932967-26-000007, classify the transaction, then either close immediately as routine/immaterial or update governance/alignment treatment. Do not expand the blocker set."
+  ],
+  "integrityNotes": [
+    "No canonical score, rank, tick, methodology, universe membership, causal graph, baseline evidence, supervisor-state, decision bucket, evidence queue or Chief attestation was edited.",
+    "Queue coordination state lags the current machine cycle; current same-cycle company-underwriting evidence was used to avoid duplicating already-complete active-batch work.",
+    "Evidence and inference are separated. Unknown stays unknown. No market/consensus/crowding precision was fabricated."
+  ]
+}

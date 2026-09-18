@@ -1,0 +1,97 @@
+{
+  "reportVersion": 1,
+  "laneId": "source-integrity",
+  "cycleKey": "20260913T1900Z",
+  "generatedAt": "2026-09-13T19:14:10Z",
+  "status": "complete",
+  "summary": "The 1900Z machine boundary is coherent and materially stronger than the prior 1300Z boundary: 250/250 identities and tradability records are validated, all four required machine sources report full coverage, the evidence-review queue is empty, Beast integrity/sourceMesh pass, and exact-SHA Earth CI run 34776786286 successfully verified machine commit e00fad734d9e6d031d6a79c84cbce90fb5c1c618 through dependency audit, typecheck, invariants, production build, dry run and unresolved-entity reporting. The simultaneous pull_request run 34776788574 is action_required with zero useful verification and is explicitly not treated as the execution proof. Automated discovery health remains capability-limited at FINRA: partition freshness is healthy but eventDataAvailable=false, so row-level OTC corporate-action acquisition is still an intelligent-review obligation and cannot be inferred from green health. Supervisor coverage correctly reset to zero because the prior reviewed supervisor cycle is 1300Z, not 1900Z.",
+  "materialFindings": [
+    {
+      "claim": "The persisted machine state is cycle 20260913T1900Z, completed at 2026-09-13T19:08:02.813Z, with 250/250 observed, identity validated and tradability validated; supervisor coverage is intentionally zero pending same-cycle review.",
+      "sources": [
+        "data/runtime/system-state.json",
+        "data/runtime/source-health.json"
+      ],
+      "confidence": 100
+    },
+    {
+      "claim": "Exact machine commit e00fad734d9e6d031d6a79c84cbce90fb5c1c618 has a real workflow_dispatch Earth CI pass: run 34776786286, verify job 103776247179, with npm ci, dependency security audit, typecheck, engine invariants, production build, autonomous engine dry run and unresolved-entity reporting all successful.",
+      "sources": [
+        "https://github.com/JILLOnline/Side-Projects/actions/runs/34776786286",
+        "docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md"
+      ],
+      "confidence": 100
+    },
+    {
+      "claim": "The pull_request-triggered CI run for the same SHA concluded action_required and is not the qualifying proof; this is consistent with the integrity contract's rule that an action_required/zero-job PR run is neither pass nor failure when a real exact-SHA verification run exists.",
+      "sources": [
+        "https://github.com/JILLOnline/Side-Projects/actions/runs/34776788574",
+        "docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md"
+      ],
+      "confidence": 100
+    },
+    {
+      "claim": "Beast integrity and sourceMesh both pass on the 1900Z machine state; GEV is the only score record currently audited/passed, with zero unresolved evidence.",
+      "sources": [
+        "data/runtime/intelligence-integrity.json",
+        "data/runtime/evidence-review-queue.json",
+        "data/runtime/score-state.json"
+      ],
+      "confidence": 100
+    },
+    {
+      "claim": "FINRA OTC Daily List health is only partition-freshness capability: latestCalendarDay is 2026-09-11, eventDataAvailable=false, and the runtime explicitly says row-level current corporate-action retrieval requires a bearer token or intelligent corroboration. Therefore a healthy source status cannot be represented as current event ingestion.",
+      "sources": [
+        "data/runtime/automated-source-health.json",
+        "lib/discovery-sources.ts",
+        "docs/SENSOR_MESH.md"
+      ],
+      "confidence": 100
+    }
+  ],
+  "proposedCanonicalChanges": [
+    {
+      "classification": "IMPLEMENT",
+      "proposal": "Close directive chief-20260913t1300z-exact-sha-ci against the new 1900Z machine boundary because exact-SHA workflow_dispatch run 34776786286 provides the required real verification proof for e00fad734d9e6d031d6a79c84cbce90fb5c1c618. Preserve the old 1300Z failure history rather than rewriting it.",
+      "sources": [
+        "data/runtime/supervisors/directives.json",
+        "https://github.com/JILLOnline/Side-Projects/actions/runs/34776786286"
+      ]
+    }
+  ],
+  "contradictions": [],
+  "unknowns": [
+    "Repo-versus-Sheet parity for cycle 1900Z is not established by this lane; Chief owns and must verify the human mirror before attestation.",
+    "FINRA row-level current OTC corporate-action acquisition remains unavailable from the automated probe despite healthy partition freshness.",
+    "Cadence-due discovery-family completion is not established by machine health alone and remains a separate Discovery/Weak-Signals responsibility."
+  ],
+  "peerRequests": [
+    {
+      "targetLane": "discovery-weak-signals",
+      "request": "For cycle 1900Z, explicitly distinguish FINRA partition freshness from actual event acquisition and complete/corroborate cadence-due gating discovery families before claiming discoveryScanCompleted.",
+      "priority": "high"
+    }
+  ],
+  "accuracyDebates": [],
+  "blockingIssues": [],
+  "directivesReviewed": [
+    {
+      "directiveId": "chief-20260913t1300z-exact-sha-ci",
+      "status": "resolved_by_new_boundary",
+      "evidence": [
+        "https://github.com/JILLOnline/Side-Projects/actions/runs/34776786286",
+        "data/runtime/system-state.json"
+      ]
+    },
+    {
+      "directiveId": "chief-20260913t1300z-discovery-cadence",
+      "status": "supporting_integrity_check_only",
+      "evidence": [
+        "data/runtime/automated-source-health.json",
+        "lib/discovery-sources.ts"
+      ]
+    }
+  ],
+  "confidence": 99,
+  "acquisitionComplete": true
+}

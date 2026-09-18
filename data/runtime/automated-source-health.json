@@ -1,0 +1,413 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-18T20:03:35.023Z",
+  "coverageRatio": 1,
+  "healthyRequiredSources": 4,
+  "requiredSources": 4,
+  "deferredSources": [
+    {
+      "id": "sam-gov",
+      "reason": "Deferred by owner; no SAM.gov API key configured yet."
+    }
+  ],
+  "corroborativeNonGatingSources": [
+    {
+      "id": "otc-markets-directory",
+      "reason": "Official-secondary corroboration; FINRA OTC Daily List is the primary automated OTC corporate-action source."
+    }
+  ],
+  "sources": [
+    {
+      "id": "finra-otc-daily-list",
+      "name": "FINRA OTC Daily List",
+      "requiredForCoverage": true,
+      "status": "healthy",
+      "observedAt": "2026-09-18T20:03:35.023Z",
+      "lastSuccess": "2026-09-18T20:03:35.023Z",
+      "lastFailure": null,
+      "latencyMs": 972,
+      "sourceUrl": "https://api.finra.org/data/group/otcMarket/name/OTCDAILYLIST",
+      "partitionsUrl": "https://api.finra.org/partitions/group/otcMarket/name/otcDailyList",
+      "latestCalendarDay": "2026-09-18",
+      "partitionCount": 1952,
+      "recordCount": null,
+      "observationMode": "partition-freshness",
+      "eventDataAvailable": false,
+      "note": "Freshness validated from FINRA's calendarDay partitions. Row-level current corporate-action retrieval requires a FINRA public Query API bearer token; until configured, the intelligent supervisor must corroborate material OTC events through FINRA OTCE before discovery can be considered complete.",
+      "sample": []
+    },
+    {
+      "id": "usaspending",
+      "name": "USAspending.gov",
+      "requiredForCoverage": true,
+      "status": "healthy",
+      "observedAt": "2026-09-18T20:03:35.023Z",
+      "lastSuccess": "2026-09-18T20:03:35.023Z",
+      "lastFailure": null,
+      "latencyMs": 127,
+      "sourceUrl": "https://api.usaspending.gov/api/v2/awards/last_updated/",
+      "datasetLastUpdated": "09/17/2026",
+      "recordCount": null,
+      "note": "Authoritative dataset freshness check passed. Candidate-level award lookups remain an on-demand supervisor research task so the hourly health probe stays lightweight and reliable."
+    },
+    {
+      "id": "clinicaltrials",
+      "name": "ClinicalTrials.gov",
+      "requiredForCoverage": true,
+      "status": "healthy",
+      "observedAt": "2026-09-18T20:03:35.023Z",
+      "lastSuccess": "2026-09-18T20:03:35.023Z",
+      "lastFailure": null,
+      "latencyMs": 147,
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?format=json&pageSize=100&fields=NCTId,LeadSponsorName,LastUpdatePostDate,OverallStatus,Phase&sort=LastUpdatePostDate:desc",
+      "apiVersion": "2.0.5",
+      "datasetTimestamp": "2026-09-18T09:00:04",
+      "recordCount": 100,
+      "sample": [
+        {
+          "nctId": "NCT07661953",
+          "sponsor": "Poznan University of Physical Education",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "COMPLETED",
+          "phases": []
+        },
+        {
+          "nctId": "NCT07827573",
+          "sponsor": "Hoffmann-La Roche",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "NOT_YET_RECRUITING",
+          "phases": [
+            "PHASE3"
+          ]
+        },
+        {
+          "nctId": "NCT07748429",
+          "sponsor": "Poznan University of Physical Education",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "NOT_YET_RECRUITING",
+          "phases": [
+            "NA"
+          ]
+        },
+        {
+          "nctId": "NCT07540273",
+          "sponsor": "SEZGIN",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "RECRUITING",
+          "phases": [
+            "NA"
+          ]
+        },
+        {
+          "nctId": "NCT06189456",
+          "sponsor": "Fidia Farmaceutici s.p.a.",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "COMPLETED",
+          "phases": [
+            "NA"
+          ]
+        },
+        {
+          "nctId": "NCT06274749",
+          "sponsor": "National Institute on Aging (NIA)",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "RECRUITING",
+          "phases": [
+            "NA"
+          ]
+        },
+        {
+          "nctId": "NCT07224152",
+          "sponsor": "M.D. Anderson Cancer Center",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "RECRUITING",
+          "phases": [
+            "PHASE1",
+            "PHASE2"
+          ]
+        },
+        {
+          "nctId": "NCT07576452",
+          "sponsor": "University Hospital, Clermont-Ferrand",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "NOT_YET_RECRUITING",
+          "phases": [
+            "PHASE4"
+          ]
+        },
+        {
+          "nctId": "NCT07827040",
+          "sponsor": "The Hong Kong Polytechnic University",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "RECRUITING",
+          "phases": [
+            "NA"
+          ]
+        },
+        {
+          "nctId": "NCT07828210",
+          "sponsor": "EVD Pharmacy and Medical Company Limited",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "RECRUITING",
+          "phases": [
+            "PHASE4"
+          ]
+        },
+        {
+          "nctId": "NCT07195591",
+          "sponsor": "GT Medical Technologies, Inc.",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "RECRUITING",
+          "phases": [
+            "PHASE3"
+          ]
+        },
+        {
+          "nctId": "NCT05714618",
+          "sponsor": "Luciano A. Sposato",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "RECRUITING",
+          "phases": []
+        },
+        {
+          "nctId": "NCT05853406",
+          "sponsor": "Pole Sante Grace de Dieu",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "COMPLETED",
+          "phases": []
+        },
+        {
+          "nctId": "NCT06126276",
+          "sponsor": "National Cancer Institute (NCI)",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "RECRUITING",
+          "phases": [
+            "PHASE2"
+          ]
+        },
+        {
+          "nctId": "NCT07828093",
+          "sponsor": "National Polytechnic Institute, Mexico",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "ENROLLING_BY_INVITATION",
+          "phases": [
+            "NA"
+          ]
+        },
+        {
+          "nctId": "NCT07829133",
+          "sponsor": "University of North Carolina, Chapel Hill",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "NOT_YET_RECRUITING",
+          "phases": [
+            "NA"
+          ]
+        },
+        {
+          "nctId": "NCT06639594",
+          "sponsor": "M.D. Anderson Cancer Center",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "RECRUITING",
+          "phases": [
+            "PHASE1"
+          ]
+        },
+        {
+          "nctId": "NCT07520383",
+          "sponsor": "The University of Texas Medical Branch, Galveston",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "NOT_YET_RECRUITING",
+          "phases": [
+            "PHASE1"
+          ]
+        },
+        {
+          "nctId": "NCT05139290",
+          "sponsor": "Emory University",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "WITHDRAWN",
+          "phases": [
+            "NA"
+          ]
+        },
+        {
+          "nctId": "NCT06236880",
+          "sponsor": "Gilgamesh Pharmaceuticals",
+          "lastUpdatePostDate": "2026-09-18",
+          "status": "COMPLETED",
+          "phases": [
+            "PHASE2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fda",
+      "name": "U.S. Food and Drug Administration",
+      "requiredForCoverage": true,
+      "status": "healthy",
+      "observedAt": "2026-09-18T20:03:35.023Z",
+      "lastSuccess": "2026-09-18T20:03:35.023Z",
+      "lastFailure": null,
+      "latencyMs": 256,
+      "sourceUrl": "https://api.fda.gov/drug/drugsfda.json?limit=50",
+      "datasetLastUpdated": "2026-09-16",
+      "totalRecords": 29335,
+      "recordCount": 50,
+      "sample": [
+        {
+          "applicationNumber": "ANDA078245",
+          "sponsor": "LUPIN LTD",
+          "products": [
+            "LOSARTAN POTASSIUM AND HYDROCHLOROTHIAZIDE",
+            "LOSARTAN POTASSIUM AND HYDROCHLOROTHIAZIDE",
+            "LOSARTAN POTASSIUM AND HYDROCHLOROTHIAZIDE"
+          ]
+        },
+        {
+          "applicationNumber": "ANDA078541",
+          "sponsor": "GLENMARK PHARMS",
+          "products": [
+            "MOMETASONE FUROATE"
+          ]
+        },
+        {
+          "applicationNumber": "NDA017385",
+          "sponsor": "BAXTER HLTHCARE",
+          "products": [
+            "PLASMA-LYTE 56 AND DEXTROSE 5% IN PLASTIC CONTAINER"
+          ]
+        },
+        {
+          "applicationNumber": "ANDA076481",
+          "sponsor": "ENCUBE",
+          "products": [
+            "MOMETASONE FUROATE"
+          ]
+        },
+        {
+          "applicationNumber": "ANDA076762",
+          "sponsor": "RISING",
+          "products": [
+            "LOXAPINE SUCCINATE",
+            "LOXAPINE SUCCINATE",
+            "LOXAPINE SUCCINATE"
+          ]
+        },
+        {
+          "applicationNumber": "ANDA077053",
+          "sponsor": "HERITAGE PHARMA AVET",
+          "products": [
+            "RIBAVIRIN"
+          ]
+        },
+        {
+          "applicationNumber": "ANDA077345",
+          "sponsor": "HERITAGE PHARMA AVET",
+          "products": [
+            "SERTRALINE HYDROCHLORIDE",
+            "SERTRALINE HYDROCHLORIDE",
+            "SERTRALINE HYDROCHLORIDE"
+          ]
+        },
+        {
+          "applicationNumber": "ANDA077652",
+          "sponsor": "ZYDUS LIFESCIENCES",
+          "products": [
+            "LEVOFLOXACIN",
+            "LEVOFLOXACIN",
+            "LEVOFLOXACIN"
+          ]
+        },
+        {
+          "applicationNumber": "ANDA077941",
+          "sponsor": "APOTEX",
+          "products": [
+            "FUROSEMIDE"
+          ]
+        },
+        {
+          "applicationNumber": "ANDA085911",
+          "sponsor": "BRISTOL MYERS SQUIBB",
+          "products": [
+            "OXYCODONE 5/APAP 500"
+          ]
+        },
+        {
+          "applicationNumber": "ANDA086417",
+          "sponsor": "DR REDDYS",
+          "products": [
+            "TESTOSTERONE"
+          ]
+        },
+        {
+          "applicationNumber": "ANDA087081",
+          "sponsor": "WENDT",
+          "products": [
+            "NITROFURAZONE"
+          ]
+        },
+        {
+          "applicationNumber": "ANDA078845",
+          "sponsor": "RISING",
+          "products": [
+            "LINEZOLID"
+          ]
+        },
+        {
+          "applicationNumber": "ANDA079159",
+          "sponsor": "ALEMBIC LTD",
+          "products": [
+            "LITHIUM CARBONATE",
+            "LITHIUM CARBONATE",
+            "LITHIUM CARBONATE"
+          ]
+        },
+        {
+          "applicationNumber": "ANDA080439",
+          "sponsor": "CHARTWELL RX",
+          "products": [
+            "CHLORPROMAZINE HYDROCHLORIDE",
+            "CHLORPROMAZINE HYDROCHLORIDE",
+            "CHLORPROMAZINE HYDROCHLORIDE"
+          ]
+        },
+        {
+          "applicationNumber": "ANDA084026",
+          "sponsor": "WATSON LABS",
+          "products": [
+            "CHLOROTHIAZIDE"
+          ]
+        },
+        {
+          "applicationNumber": "ANDA081008",
+          "sponsor": "FERNDALE LABS",
+          "products": [
+            "STRIFON FORTE DSC"
+          ]
+        },
+        {
+          "applicationNumber": "ANDA083386",
+          "sponsor": "UPSHER SMITH LABS",
+          "products": [
+            "CHLORPROMAZINE HYDROCHLORIDE"
+          ]
+        },
+        {
+          "applicationNumber": "ANDA084553",
+          "sponsor": "ALRA",
+          "products": [
+            "COMPOUND 65"
+          ]
+        },
+        {
+          "applicationNumber": "ANDA085034",
+          "sponsor": "SANDOZ",
+          "products": [
+            "ALPHAZINE"
+          ]
+        }
+      ]
+    }
+  ]
+}

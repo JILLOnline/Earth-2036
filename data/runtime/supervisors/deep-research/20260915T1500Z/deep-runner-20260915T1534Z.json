@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "role": "earth-deep-runner",
+  "cycleKey": "20260915T1500Z",
+  "generatedAt": "2026-09-15T15:34:00Z",
+  "mode": "DAY",
+  "backpressure": {
+    "readyForChief": 22,
+    "policyTriggered": true,
+    "action": "blocker-clearing only"
+  },
+  "targets": [
+    {
+      "ticker": "TSM",
+      "company": "Taiwan Semiconductor Manufacturing Company Limited",
+      "batchId": "t0-20260914T0400Z-b01",
+      "attemptsAtQueue": 3,
+      "exactGate": "Recover exact FY2025 major-customer concentration from current primary issuer evidence for reproducible concentration treatment.",
+      "resolution": "resolved_for_chief_review",
+      "evidence": [
+        {
+          "sourceUrl": "https://investor.tsmc.com/sites/ir/financial-report/2025/TSMC%202025Q4%20Consolidated%20Financial%20Statements_E.pdf",
+          "sourceType": "primary_issuer_audited_financial_statement",
+          "fact": "Major customers representing at least 10% of 2025 net revenue: Customer A NT$726,974,278 million-equivalent table units / 19%; Customer B NT$645,178,671 / 17%."
+        },
+        {
+          "sourceUrl": "https://investor.tsmc.com/sites/ir/sec-filings/2025_20F%20Report.pdf",
+          "sourceType": "primary_issuer_sec_20f",
+          "fact": "TSMC states its ten largest customers represented approximately 78% of 2025 net revenue; largest customer 19%; second largest 17%."
+        }
+      ],
+      "evidenceVsInference": "Evidence directly states the percentages; no customer identity is inferred.",
+      "contradictionStatus": "none; Q4 consolidated financial statements and 2025 Form 20-F agree on 19% and 17% for the two largest customers.",
+      "confidence": "high",
+      "gateImpact": "removes_blocker",
+      "recommendedChiefAction": "review",
+      "notes": "Use anonymous Customer A/B labels exactly as filed. Do not infer Apple/NVIDIA or any other customer identity for canonical treatment. The previously cited overseas-ramp/fab economics and geopolitical timing remain non-gating future uncertainty."
+    },
+    {
+      "ticker": "SYM",
+      "company": "Symbotic Inc.",
+      "batchId": "t0-20260914T1500Z-b02",
+      "attemptsAtQueue": 3,
+      "exactGate": "Classify transaction-level substance of SEC Form 4 accession 0001932967-26-000007 for governance/alignment/dilution/insider-behavior treatment.",
+      "resolution": "resolved_for_chief_review",
+      "evidence": [
+        {
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1837240/000193296726000007/0001932967-26-000007-index.html",
+          "sourceType": "primary_sec_accession_locator",
+          "fact": "Accession identifies reporting owner David A. Ladensohn / Symbotic Inc.; exact XML should remain the canonical transaction-table source when ingested."
+        },
+        {
+          "sourceUrl": "https://www.attn.today/en/filings",
+          "sourceType": "secondary_filing_parser_used_only_for_transaction_classification",
+          "fact": "The accession is summarized as zero-price internal distributions and reclassifications among Ladensohn-associated trusts involving Class V-1, V-3, Symbotic Holdings Units and corresponding Class A common stock, with no open-market purchase or sale."
+        }
+      ],
+      "evidenceVsInference": "Transaction classification is corroborative secondary parsing pending direct XML ingestion; it supports internal estate/ownership restructuring, not an economic open-market trade. Do not infer bullish/bearish insider intent.",
+      "contradictionStatus": "none found",
+      "confidence": "medium_high",
+      "gateImpact": "removes_blocker_for_behavior_classification; direct XML remains preferred provenance but should not hold promotion if methodology only requires economic transaction classification",
+      "recommendedChiefAction": "corroborate",
+      "notes": "Classify as non-market/internal transfer-reclassification with no demonstrated new dilution and no open-market buy/sell signal. Chief/source-integrity should attach the authenticated SEC XML transaction table if available before canonical promotion; absence of that direct XML is a provenance-quality item rather than a reason to fabricate insider sentiment."
+    }
+  ],
+  "runSummary": {
+    "targeted": 2,
+    "resolvedForChiefReview": 2,
+    "stillBlocked": 0,
+    "nonGatingUnknown": 0,
+    "optionalResearchCreated": 0,
+    "canonicalStateEdited": false,
+    "chiefHandoff": "TSM blocker is directly resolved by issuer primary evidence. SYM economic transaction substance is resolved as internal zero-price reclassification/no open-market trade; Chief should corroborate exact XML provenance before canonical use if readily available."
+  }
+}

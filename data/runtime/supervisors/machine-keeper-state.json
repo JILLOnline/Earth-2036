@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "keeperId": "earth-machine-keeper",
+  "checkedAt": "2026-09-16T05:00:22Z",
+  "mode": "GRAVEYARD",
+  "branch": "earth-2036/official-baseline-t0",
+  "machine": {
+    "cycleKey": "20260916T0400Z",
+    "lastCycleAt": "2026-09-16T04:43:22.180Z",
+    "cycleStatus": "completed",
+    "freshForCurrentUtcHour": false,
+    "companiesObserved": 250,
+    "identityValidated": 250,
+    "tradabilityValidated": 250,
+    "machineSourceCoverageRatio": 1,
+    "machineDiscoveryComplete": true,
+    "recoveryRunId": 35042661680,
+    "recoveryJobId": 104671745671,
+    "recoveryStatus": "in_progress"
+  },
+  "integrity": {
+    "passed": true,
+    "sourceMeshPassed": true,
+    "unhealthyMachineSources": [],
+    "unresolvedEvidence": 180,
+    "latestObservedCiRunId": 35056749322,
+    "latestObservedCiConclusion": "action_required",
+    "latestObservedCiHeadSha": "05620ffc1619a94c4e3c076f7f464efeca20cc60"
+  },
+  "workforce": {
+    "inspectionAvailable": true,
+    "expectedActive": 5,
+    "enabledExpected": 5,
+    "rosterHealthy": true,
+    "schedulesHealthy": true,
+    "unexpectedDisabled": [],
+    "pipelineObservation": "All five expected workers are enabled on the locked :00/:15/:25/:35/:45 cadence."
+  },
+  "queue": {
+    "cycleKey": "20260915T2000Z",
+    "promoted": 1,
+    "ready_for_chief": 24,
+    "active": 11,
+    "blocked": 1,
+    "queued": 213,
+    "total": 250,
+    "readyOldestLastUpdatedAt": "2026-09-14T20:58:26-04:00"
+  },
+  "warnings": [
+    {
+      "code": "READY_QUEUE_BACKPRESSURE",
+      "severity": "throughput",
+      "condition": "ready_for_chief > 15",
+      "observed": 24,
+      "message": "Chief review queue remains above the productivity-watchdog threshold. This is a throughput warning only; Machine Keeper made no intelligent queue disposition."
+    },
+    {
+      "code": "QUEUE_CYCLE_LAG",
+      "severity": "integrity",
+      "condition": "Chief-owned queue cycleKey lags current machine cycleKey",
+      "observed": "queue=20260915T2000Z machine=20260916T0400Z",
+      "message": "Chief must reconcile queue state against the newest complete six-lane cycle; Machine Keeper did not reclassify any company."
+    },
+    {
+      "code": "READY_QUEUE_AGE",
+      "severity": "throughput",
+      "condition": "ready_for_chief remains undisposed for more than two DAY Chief cycles",
+      "observed": "oldest ready lastUpdatedAt=2026-09-14T20:58:26-04:00",
+      "message": "Multiple ready dossiers require explicit Chief disposition under the productivity watchdog."
+    },
+    {
+      "code": "CURRENT_HOUR_MACHINE_STALE",
+      "severity": "infrastructure",
+      "condition": "persisted machine cycle predates current UTC hour during GRAVEYARD",
+      "observed": "machine=20260916T0400Z current=20260916T0500Z",
+      "message": "No current-hour Scheduler run was queued or in progress, so Machine Keeper reran the most recent usable Scheduler cycle job; recovery is in progress."
+    },
+    {
+      "code": "LATEST_PR_CI_ACTION_REQUIRED",
+      "severity": "integrity",
+      "condition": "latest observed Earth 2036 CI run on current machine commit did not execute successfully",
+      "observed": "run=35056749322 head=05620ffc1619a94c4e3c076f7f464efeca20cc60 conclusion=action_required",
+      "message": "Runtime Beast/sourceMesh integrity currently passes, but exact-head CI proof is not green on the latest observed machine commit. Chief must not treat this action_required run as successful CI proof."
+    }
+  ],
+  "actions": [
+    "Verified all five expected Earth automations are enabled on the locked :00/:15/:25/:35/:45 cadence; no roster mutation required.",
+    "Verified persisted 0400Z machine cycle completed with 250/250 observed, identity validated and tradability validated; all four required machine sources are healthy and sourceMesh passes.",
+    "Detected no current-hour Scheduler run queued or in progress and reran the most recent usable Earth 2036 Scheduler cycle job; recovery job 104671745671 is in progress.",
+    "Verified queue counts sum exactly to 250 and preserved Chief-owned promoted/ready/active/blocked/queued dispositions.",
+    "Persisted ready-queue backpressure, aged-ready, queue-cycle lag, current-hour machine staleness and latest-CI action_required visibility for Chief.",
+    "No methodology, scoring, evidence interpretation, ranking, causal conclusion, membership or canonical evidence was changed."
+  ],
+  "nextAction": "Recovery Scheduler job 104671745671 should advance the machine to the 0500Z boundary and persist coherently. Chief should continue draining ready_for_chief and must not accept CI run 35056749322 as green exact-head proof."
+}

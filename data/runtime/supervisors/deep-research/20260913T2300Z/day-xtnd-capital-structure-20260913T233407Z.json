@@ -1,0 +1,74 @@
+{
+  "artifactVersion": 1,
+  "cycleKey": "20260913T2300Z",
+  "generatedAt": "2026-09-13T23:34:07Z",
+  "shift": "day",
+  "researchTarget": "XTND post-merger capitalization and liquidity evidence",
+  "researchQuestion": "Can independent post-close evidence resolve XTND common-share and pre-funded-warrant counts and narrow the remaining dilution/liquidity unknowns without double counting securities?",
+  "summary": "Independent review resolves the largest point-in-time capitalization unknown from the required underwriting lane. A post-close Schedule 13G states, using issuer-provided information, that 284,842,854 XTND common shares were outstanding as of September 4, 2026. The closing 8-K separately states that 27,544,248 pre-funded warrants were issued in the redomestication. The resulting common-plus-pre-funded common-equivalent layer is 312,387,102 before unexercised legacy/rollover awards, new-plan reserves and contingent earnouts. This differs from the 277,442,600 pro-forma weighted-average denominator and confirms that denominator is not a current outstanding-share count. Liquidity remains only bounded rather than fully resolved: pro-forma unrestricted cash plus PIPE was $99.779M before transaction-cost uses; corroborating H1 2026 evidence reports $34.33M of operating cash use over six months and an undrawn $25M bank facility as of June 30. Historical-burn sensitivity is about 17.4 months on gross pro-forma cash, or about 14.7 months after a conservative subtraction of the $15.52M accrued transaction-cost liability. These are sensitivities, not forecasts.",
+  "lineage": {
+    "company": "XTND",
+    "directiveIds": ["chief-20260913t1300z-xtnd-capital-structure"],
+    "relatedArtifacts": [
+      "data/runtime/supervisors/cycles/20260913T2300Z/company-underwriting-20260913T232100Z.json",
+      "data/runtime/discovery-pool.json",
+      "engine/methodology.ts"
+    ]
+  },
+  "evidence": [
+    {
+      "type": "primary",
+      "fact": "284,842,854 common shares outstanding as of September 4, 2026, based on issuer information reported in a September 10 Schedule 13G.",
+      "source": "https://www.sec.gov/Archives/edgar/data/2111860/000117891326004489/xslSCHEDULE_13G_X02/primary_doc.xml"
+    },
+    {
+      "type": "primary",
+      "fact": "27,544,248 pre-funded warrants to purchase common stock were issued in the redomestication.",
+      "source": "SEC Form 8-K filed September 3, 2026; full-text mirror: https://www.streetinsider.com/SEC%2BFilings/Form%2B8-K12B%2BXtend%2BAI%2BRobotics%2C%2BInc.%2BFor%3A%2BSep%2B03/27024800.html"
+    },
+    {
+      "type": "primary",
+      "fact": "Pro-forma weighted-average basic/diluted denominator was 277,442,600; cash and cash equivalents were $39.779M plus a $60M PIPE adjustment; accrued transaction-cost liabilities included about $15.520M.",
+      "source": "https://www.sec.gov/Archives/edgar/data/2111860/000119312526381857/d230933dex995.htm"
+    },
+    {
+      "type": "primary",
+      "fact": "September 4 S-8 registered 9,936,483 rollover-award shares, 18,630,959 shares under the 2026 Equity Incentive Plan and 15,000,000 shares under the 2026 ESPP.",
+      "source": "https://www.sec.gov/Archives/edgar/data/2111860/000119312526383774/d268618ds8.htm"
+    },
+    {
+      "type": "corroborating-secondary",
+      "fact": "H1 2026 operating cash use was about $34.33M; June 30 cash was about $34.81M; an amended bank facility provided up to $25M and was undrawn at June 30.",
+      "source": "https://www.minichart.com.sg/2026/09/04/xtend-completes-reverse-merger-former-shareholders-hold-87-4-voting-control/",
+      "note": "Corroboration only until the underlying primary cash-flow/facility disclosure is attached directly."
+    }
+  ],
+  "findings": [
+    "Current issued common is bounded at 284,842,854 as of September 4, 2026.",
+    "Current common plus pre-funded common-equivalent securities total 312,387,102 based on separate post-close disclosures.",
+    "The 277,442,600 pro-forma weighted-average denominator is not the correct point-in-time outstanding-share count.",
+    "New-plan reserved capacity under the 2026 Equity Incentive Plan plus ESPP totals 33,630,959 shares; these are reserves, not current issued shares.",
+    "Two possible 10M-share earnout tranches remain contingent and should be modeled separately from current outstanding securities.",
+    "Historical H1 burn sensitivity against $99.779M gross pro-forma cash is about 17.4 months; subtracting the $15.52M transaction-cost liability as a conservative sensitivity gives about 14.7 months."
+  ],
+  "contradictions": [
+    "Pre-close S-4 materials estimated up to 24,873,730 pre-funded warrants, while the closing 8-K reports 27,544,248 actually issued; closing evidence should govern post-close counts.",
+    "The 277.4M pro-forma denominator is below issuer-provided post-close common outstanding of 284.8M, proving they are different accounting constructs."
+  ],
+  "unknowns": [
+    "Exact legacy/rollover option count that is incremental to the 312,387,102 common-plus-pre-funded layer.",
+    "Whether any pre-funded warrants were exercised after September 4, 2026.",
+    "Post-close operating cash burn, capex, working-capital demand and transaction-cost cash payments.",
+    "Exact post-merger draw status and covenant headroom of the bank facility.",
+    "Probability of the two revenue-linked earnout tranches."
+  ],
+  "falsifiers": [
+    "A later issuer filing that restates the September 4 common-share count.",
+    "Closing evidence showing the 27,544,248 pre-funded-warrant underlying shares were already included in the 284,842,854 common outstanding.",
+    "Primary post-close cash-flow evidence materially different from H1 2026 burn, invalidating the runway sensitivity.",
+    "Evidence that the cited transaction-cost liability had already been paid before the pro-forma cash reference date."
+  ],
+  "recommendedChiefAction": "review",
+  "chiefActionDetail": "Treat the point-in-time common-share and pre-funded-warrant unknowns as substantially resolved. Keep the broader directive open for legacy/rollover award reconciliation and primary post-close liquidity/runway evidence. Preserve the distinction between issued shares, common-equivalent warrants, reserved plan capacity and contingent earnouts.",
+  "confidence": 92
+}

@@ -1,0 +1,92 @@
+{
+  "reportVersion": 1,
+  "laneId": "source-integrity",
+  "cycleKey": "20260914T2100Z",
+  "generatedAt": "2026-09-14T21:19:00Z",
+  "status": "complete",
+  "summary": "DAY same-cycle source-integrity review completed for all 12 companies in Chief's active T0 batch. Machine boundary 6c991226ec412f3c4865a3d8cb9368e63ced008c has exact-SHA Earth 2036 CI workflow_dispatch run 34897047360 completed/success; 250/250 companies are observed, identity validated and tradability validated; machine source coverage is 1.0; Beast integrity and sourceMesh pass. Cumulative primary-source lineage from the 20:00Z Alpha pass remains valid and no current 21:00Z evidence-review item was found for an active-batch ticker, so all 12 are lane-ready for Chief. Global T0 remains fail-closed independently: supervisor discovery is not same-cycle complete and the current machine cycle introduced a malformed outside-universe discovery ticker, `FILE CREATION TIME: 0914202617:01`, from the terminal metadata row of the Other Listed directory. That parser/dedup defect must be corrected or quarantined before discovery state is trusted for promotion; it does not invalidate the 12 companies' identity/tradability or primary filing provenance.",
+  "materialFindings": [
+    {
+      "system": {
+        "machineCycleSha": "6c991226ec412f3c4865a3d8cb9368e63ced008c",
+        "exactShaCiRun": 34897047360,
+        "exactShaCiConclusion": "success",
+        "companiesObserved": 250,
+        "identityValidated": 250,
+        "tradabilityValidated": 250,
+        "machineSourceCoverageRatio": 1,
+        "beastIntegrityPassed": true,
+        "sourceMeshPassed": true,
+        "globalUnresolvedEvidence": 66,
+        "supervisorDiscoveryComplete": false,
+        "discoveryParserDefect": "Other Listed terminal File Creation Time row was emitted as a discovery ticker"
+      }
+    },
+    {
+      "companies": [
+        {"ticker":"NBIS","ready_for_chief":true,"evidenceAcquired":["21:00Z SEC identity/tradability observation","Cumulative SEC-hosted Q2 2026 and Meta committed-capacity lineage from prior Alpha cycles"],"unresolvedGaps":[],"documentedUnknowns":["Long-run utilization and customer diversification are underwriting uncertainties, not provenance failures"],"confidence":96},
+        {"ticker":"PL","ready_for_chief":true,"evidenceAcquired":["21:00Z SEC identity/tradability observation","Current 2026 10-Q lineage for revenue, liquidity, backlog and customer concentration"],"unresolvedGaps":[],"documentedUnknowns":["Future government/commercial mix"],"confidence":97},
+        {"ticker":"OKLO","ready_for_chief":true,"evidenceAcquired":["21:00Z SEC identity/tradability observation","2026 10-Q, NRC/issuer lineage, and prior Form 144 primary filing lineage retained"],"unresolvedGaps":[],"documentedUnknowns":["Form 144 governance materiality remains a Chief/underwriting interpretation question; the source itself is authenticated","Future licensing timing remains non-gating"],"confidence":94},
+        {"ticker":"BTDR","ready_for_chief":true,"evidenceAcquired":["21:00Z SEC identity/tradability observation","Current issuer results and SEC financing/capital-structure lineage"],"unresolvedGaps":[],"documentedUnknowns":["Future AI infrastructure pipeline conversion"],"confidence":96},
+        {"ticker":"IONQ","ready_for_chief":true,"evidenceAcquired":["21:00Z SEC identity/tradability observation","2026 10-Q and official SkyWater acquisition lineage"],"unresolvedGaps":[],"documentedUnknowns":["Post-close purchase-accounting estimates remain incomplete by issuer disclosure"],"confidence":97},
+        {"ticker":"SYM","ready_for_chief":true,"evidenceAcquired":["21:00Z SEC identity/tradability observation","2026 Q3 10-Q lineage with principal-customer concentration and RPO"],"unresolvedGaps":[],"documentedUnknowns":["Future diversification away from principal customer"],"confidence":98},
+        {"ticker":"MRVL","ready_for_chief":true,"evidenceAcquired":["21:00Z SEC identity/tradability observation","FY2026 10-K and current FY2027 operating-results lineage"],"unresolvedGaps":[],"documentedUnknowns":["Future customer/design-win mix"],"confidence":98},
+        {"ticker":"COHR","ready_for_chief":true,"evidenceAcquired":["21:00Z SEC identity/tradability observation","FY2026 10-K and FY2026 results lineage"],"unresolvedGaps":[],"documentedUnknowns":["Future AI optical-cycle duration"],"confidence":97},
+        {"ticker":"LITE","ready_for_chief":true,"evidenceAcquired":["21:00Z SEC identity/tradability observation","FY2026 10-K plus prior Form 144 primary filing lineage retained"],"unresolvedGaps":[],"documentedUnknowns":["Form 144 governance materiality remains a Chief/underwriting interpretation question; the source itself is authenticated","Future hyperscaler/customer mix"],"confidence":94},
+        {"ticker":"MPWR","ready_for_chief":true,"evidenceAcquired":["21:00Z SEC identity/tradability observation","2026 Q2 10-Q plus manufacturing-capacity partnership lineage"],"unresolvedGaps":[],"documentedUnknowns":["Future geographic demand mix and supplier qualification ramp"],"confidence":98},
+        {"ticker":"CLS","ready_for_chief":true,"evidenceAcquired":["21:00Z SEC identity/tradability observation","2026 Q2 filing lineage with customer concentration, debt and operating cash flow"],"unresolvedGaps":[],"documentedUnknowns":["Future hyperscaler/customer concentration trajectory"],"confidence":97},
+        {"ticker":"APH","ready_for_chief":true,"evidenceAcquired":["21:00Z SEC identity/tradability observation","2026 Q2 10-Q and FY2025 annual-report lineage covering acquisition funding, liquidity and customer diversification"],"unresolvedGaps":[],"documentedUnknowns":["Future integration performance of large acquisitions"],"confidence":98}
+      ]
+    }
+  ],
+  "proposedCanonicalChanges": [
+    {
+      "classification": "IMPLEMENT",
+      "proposal": "Repair/quarantine Other Listed parsing so terminal `File Creation Time:` metadata can never become a discovery symbol; remove the malformed discovery item only through Chief-controlled canonical correction followed by recompute.",
+      "evidence": ["earth-2036/data/runtime/discovery-pool.json", "earth-2036/scripts/earth2036-engine.mjs", "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt"]
+    }
+  ],
+  "contradictions": [
+    "The automatic pull_request CI on the exact machine SHA is action_required with no useful jobs, while exact-SHA workflow_dispatch run 34897047360 completed successfully; under CI_ARTIFACT_INTEGRITY_CONTRACT the workflow_dispatch run is the qualifying execution proof.",
+    "machineDiscoveryComplete=true and automated source coverage=1 do not imply supervisor discoveryScanCompleted=true.",
+    "The discovery pool contains `FILE CREATION TIME: 0914202617:01` as a purported ticker even though it is exchange-directory metadata, proving a raw-vs-derived inconsistency in discovery parsing.",
+    "The global evidence queue rose to 66 unresolved items, but none found in the current queue belongs to the 12-name active batch; global queue load must remain separate from individual batch provenance readiness."
+  ],
+  "unknowns": [
+    "Same-cycle Beta discovery acquisition and Chief reconciliation are not yet complete for 20260914T2100Z.",
+    "FINRA event-level corporate-action capability remains distinct from partition freshness and must not be inferred from endpoint health."
+  ],
+  "peerRequests": [
+    "Chief: treat the malformed File Creation Time discovery item as a global discovery-integrity blocker and route a parser/quarantine fix; do not downgrade unrelated active-batch companies solely because of this global defect.",
+    "Beta discovery-weak-signals: complete cadence-due active gating discovery families for 20260914T2100Z and explicitly ignore/quarantine the malformed directory metadata item.",
+    "Company-underwriting: preserve authenticated OKLO/LITE Form 144 lineage as documented governance context without treating form type alone as adverse evidence."
+  ],
+  "accuracyDebates": [],
+  "blockingIssues": [
+    "GLOBAL ONLY: discovery-pool parser admitted Other Listed terminal `File Creation Time:` metadata as a fake ticker; canonical discovery state requires correction/recompute before approval.",
+    "GLOBAL ONLY: supervisorDiscoveryComplete=false for 20260914T2100Z.",
+    "GLOBAL ONLY: evidence-review queue has 66 unresolved items system-wide."
+  ],
+  "directivesReviewed": [
+    "chief-20260913t1300z-exact-sha-ci",
+    "chief-20260913t1300z-discovery-cadence",
+    "t0-bootstrap-queue:t0-20260914T1500Z-b02"
+  ],
+  "confidence": 96,
+  "acquisitionComplete": true,
+  "sources": [
+    "earth-2036/data/runtime/system-state.json",
+    "earth-2036/data/runtime/source-health.json",
+    "earth-2036/data/runtime/intelligence-integrity.json",
+    "earth-2036/data/runtime/evidence-review-queue.json",
+    "earth-2036/data/runtime/discovery-pool.json",
+    "earth-2036/data/runtime/supervisors/t0-bootstrap-queue.json",
+    "earth-2036/data/runtime/supervisors/directives.json",
+    "earth-2036/data/runtime/supervisors/cycles/20260914T2000Z/source-integrity-alpha-20260914T201758Z.json",
+    "earth-2036/docs/SUPERVISOR_COUNCIL.md",
+    "earth-2036/docs/CI_ARTIFACT_INTEGRITY_CONTRACT.md",
+    "earth-2036/docs/SENSOR_MESH.md",
+    "https://github.com/JILLOnline/Side-Projects/actions/runs/34897047360",
+    "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt"
+  ]
+}

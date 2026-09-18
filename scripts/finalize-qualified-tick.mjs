@@ -1,7 +1,6 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { qualifiesT0Publication, qualifiesTick, REQUIRED_SUPERVISOR_LANES } from "./lib/runtime-gates.mjs";
-import { gitBlobSha, normalizeLaneReportPath, validateCouncilAttestationShape, validateLaneReportShape } from "./lib/supervisor-council.mjs";
+import { qualifiesT0Publication, qualifiesTick } from "./lib/runtime-gates.mjs";
 
 const ROOT = process.cwd();
 const RUNTIME = path.join(ROOT, "data", "runtime");
@@ -29,63 +28,14 @@ async function appendJsonLine(file, value) {
   await writeFile(file, `${prior}${JSON.stringify(value)}\n`, "utf8");
 }
 
-function safeSupervisorPath(relativePath) {
-  const normalized = normalizeLaneReportPath(relativePath);
-  if (!normalized.startsWith("data/runtime/supervisors/cycles/")) return null;
-  const resolved = path.resolve(ROOT, normalized);
-  const allowed = path.resolve(RUNTIME, "supervisors", "cycles");
-  return resolved.startsWith(`${allowed}${path.sep}`) ? resolved : null;
-}
-
 function isAtOrAfter(value, floor) {
   const a = Date.parse(value || "");
   const b = Date.parse(floor || "");
   return Number.isFinite(a) && Number.isFinite(b) && a >= b;
 }
 
-function isAtOrBefore(value, ceiling) {
-  const a = Date.parse(value || "");
-  const b = Date.parse(ceiling || "");
-  return Number.isFinite(a) && Number.isFinite(b) && a <= b;
-}
-
-async function validateCouncilFiles(council, cycleKey, cycleStartedAt) {
-  const shape = validateCouncilAttestationShape(council, cycleKey);
-  const reasons = [...shape.reasons];
-  if (!shape.attestation) return { passed: false, reasons, attestation: null };
-  if (!isAtOrAfter(shape.attestation.approvedAt, cycleStartedAt)) reasons.push("attestation_predates_cycle");
-
-  for (const laneId of REQUIRED_SUPERVISOR_LANES) {
-    const lane = shape.attestation.lanes?.[laneId];
-    if (!lane) continue;
-    const file = safeSupervisorPath(lane.path);
-    if (!file) {
-      reasons.push(`unsafe_lane_path:${laneId}`);
-      continue;
-    }
-    const raw = await readText(file, "");
-    if (!raw) {
-      reasons.push(`lane_file_missing:${laneId}`);
-      continue;
-    }
-    if (gitBlobSha(raw) !== lane.blobSha) reasons.push(`lane_blob_mismatch:${laneId}`);
-    let report = null;
-    try { report = JSON.parse(raw); } catch { reasons.push(`lane_json_invalid:${laneId}`); }
-    if (!report) continue;
-    const reportShape = validateLaneReportShape(report, laneId, cycleKey);
-    reasons.push(...reportShape.reasons.map((reason) => `${reason}:${laneId}`));
-    if (!isAtOrAfter(report.generatedAt, cycleStartedAt)) reasons.push(`lane_report_predates_cycle:${laneId}`);
-    if (!isAtOrBefore(report.generatedAt, shape.attestation.approvedAt)) reasons.push(`lane_report_postdates_attestation:${laneId}`);
-    if (report.status !== lane.status) reasons.push(`lane_status_mismatch:${laneId}`);
-    if (Array.isArray(report.blockingIssues) && report.blockingIssues.length) reasons.push(`lane_report_blocked:${laneId}`);
-  }
-
-  return { passed: reasons.length === 0, reasons: [...new Set(reasons)], attestation: shape.attestation };
-}
-
-const [state, council, supervisorState, integrity, manifest, ranking, observations, entities, workgraph] = await Promise.all([
+const [state, supervisorState, integrity, manifest, ranking, observations, entities, workgraph] = await Promise.all([
   readJson(path.join(RUNTIME, "system-state.json"), null),
-  readJson(path.join(RUNTIME, "supervisor-council.json"), null),
   readJson(path.join(RUNTIME, "supervisor-state.json"), null),
   readJson(path.join(RUNTIME, "intelligence-integrity.json"), null),
   readJson(MANIFEST, null),
@@ -100,7 +50,12 @@ if (!state?.cycleKey) {
   process.exit(0);
 }
 
-const councilValidation = await validateCouncilFiles(council, state.cycleKey, state.lastCycleAt);
+if (workgraph?.version !== 2) {
+  console.error(JSON.stringify({ councilFinalizer: "BLOCKED", reason: "workgraph_v2_required" }));
+  process.exitCode = 1;
+  process.exit();
+}
+
 const workgraphRows = Object.values(workgraph?.companies || {});
 const expectedCompanies = Number(state.companiesExpected || 250);
 const workgraphCanonical = workgraphRows.filter((row) => row?.state === "canonical").length;
@@ -124,8 +79,8 @@ const workgraphAttestation = workgraphApprovalPassed ? {
     },
   },
 } : null;
-const effectiveCouncilPassed = workgraph?.version === 2 ? workgraphApprovalPassed : councilValidation.passed;
-const effectiveAttestation = workgraph?.version === 2 ? workgraphAttestation : councilValidation.attestation;
+const effectiveCouncilPassed = workgraphApprovalPassed;
+const effectiveAttestation = workgraphAttestation;
 const supervisorSameCycle = supervisorState?.cycleKey === state.cycleKey;
 const supervisorFreshForCycle = isAtOrAfter(supervisorState?.updatedAt, state.lastCycleAt);
 const supervisorCoverage = Number(state.supervisorSourceCoverageRatio ?? supervisorState?.sourceCoverageRatio ?? 0);
@@ -157,11 +112,10 @@ const fullUniverseInput = {
 const finalizationDiagnostics = {
   cycleKey: state.cycleKey,
   councilPassed: effectiveCouncilPassed,
-  legacyCouncilPassed: councilValidation.passed,
-  councilReasons: workgraph?.version === 2 && !workgraphApprovalPassed
+  councilReasons: !workgraphApprovalPassed
     ? [`workgraph_v2_not_fully_canonical:${workgraphCanonical}/${expectedCompanies}`, ...(workgraphBlocked ? [`workgraph_blocked:${workgraphBlocked}`] : [])]
-    : councilValidation.reasons,
-  workgraphVersion: workgraph?.version ?? null,
+    : [],
+  workgraphVersion: workgraph.version,
   workgraphCanonical,
   workgraphBlocked,
   supervisorSameCycle,
@@ -307,7 +261,7 @@ await writeJson(tickPath, {
   companiesObserved: state.companiesObserved,
   intelligenceIntegrityPassed,
   councilAttestation: {
-    architectureVersion: workgraph?.version === 2 ? "workgraph-v2" : (council?.architectureVersion ?? "council-1.0"),
+    architectureVersion: "workgraph-v2",
     attestationId: effectiveAttestation?.attestationId ?? null,
     managerId: effectiveAttestation?.managerId ?? null,
     approvedAt: effectiveAttestation?.approvedAt ?? null,
@@ -333,7 +287,7 @@ await appendJsonLine(path.join(RUNTIME, "tick-finalizations.jsonl"), {
   tickNumber: nextTick,
   finalizedAt,
   attestationId: effectiveAttestation?.attestationId ?? null,
-  councilLaneCount: REQUIRED_SUPERVISOR_LANES.length,
+  councilLaneCount: Object.keys(effectiveAttestation?.lanes ?? {}).length,
   sourceCoverageRatio: sourceCoverage,
   intelligenceIntegrityPassed,
 });

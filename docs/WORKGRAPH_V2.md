@@ -197,3 +197,27 @@ If the machine is delayed, workers do not guess, mix cycles or use stale data as
 ## Migration principle
 
 Migrate incrementally. Preserve all existing immutable evidence/reports/history. Existing queue labels may be translated into v2 states, but historical records are not rewritten. The v2 coordination layer becomes authoritative only after validators confirm state invariants and current T0 work can be represented without loss.
+
+
+## GitHub-native v2 control plane
+
+The dedicated repository `JILLOnline/Earth-2036@main` is the sole live authority.
+
+- Git runtime is canonical truth.
+- GitHub Actions is the deterministic execution plane.
+- GitHub Pages is a browser projection only and always publishes an explicit canonical SHA.
+- Netlify, Vercel, spreadsheet mirrors and the legacy Supervisor Council attestation are not live authorities or fallbacks.
+- Full CI validates code changes. It is not duplicated on every hourly observation cycle.
+- The hourly Scheduler runs targeted runtime invariants, persists one coherent machine cycle and may publish that exact persisted SHA even when newer minion commits are already descendants on `main`.
+- Evidence arrival triggers burst-safe Workgraph reconciliation. Pages is dispatched immediately only when canonical projection state changes.
+- The Watchdog evaluates machine freshness, Workgraph health, latest relevant Scheduler/Reconcile/CI outcomes and Pages freshness.
+
+## Worker liveness receipts
+
+Each non-Chief intelligent worker writes one immutable role-run receipt for every scheduled run under:
+
+`data/runtime/workgraph/role-runs/<role>-<UTC>.json`
+
+Receipts use actual UTC ISO timestamps ending in `Z`. Materially future-dated timestamps are rejected by Workgraph telemetry. Liveness uses the freshest valid evidence timestamp or valid role-run receipt, preventing an older marker from making an active worker appear stale.
+
+Historical malformed timestamps remain immutable evidence and are counted as telemetry debt; they never override current valid activity.

@@ -87,3 +87,12 @@ test("runtime declares the dedicated GitHub-native control plane", async () => {
   assert.equal(text.includes("spreadsheetMirror:"), false);
   assert.equal(text.includes("deploymentSync:"), false);
 });
+
+
+test("tick finalization requires Workgraph v2 and has no legacy council fallback", async () => {
+  const text = await source("scripts/finalize-qualified-tick.mjs");
+  assert.ok(text.includes('reason: "workgraph_v2_required"'));
+  assert.equal(text.includes("supervisor-council.json"), false);
+  assert.equal(text.includes("validateCouncilAttestationShape"), false);
+  assert.equal(text.includes("legacyCouncilPassed"), false);
+});

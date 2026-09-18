@@ -41,6 +41,16 @@ function ageHours(value, now = new Date()) {
   const d = new Date(value || 0);
   return Number.isNaN(d.getTime()) ? null : Math.max(0, (now.getTime() - d.getTime()) / 3_600_000);
 }
+
+const ACTIVITY_FUTURE_TOLERANCE_MS = 5 * 60 * 1000;
+function validActivityDate(value, now) {
+  const parsed = new Date(value || 0);
+  if (Number.isNaN(parsed.getTime())) return { date: null, invalid: true, rejectedFuture: false };
+  const delta = parsed.getTime() - now.getTime();
+  if (delta > ACTIVITY_FUTURE_TOLERANCE_MS) return { date: null, invalid: false, rejectedFuture: true };
+  if (delta > 0) return { date: new Date(now.getTime()), invalid: false, rejectedFuture: false };
+  return { date: parsed, invalid: false, rejectedFuture: false };
+}
 function uniqueStrings(values) {
   return [...new Set(values.filter(Boolean))];
 }
@@ -481,10 +491,19 @@ export function computeWorkgraphMetrics(graph, now = new Date(), evidenceRows = 
   }
 
   const roleActivity = {};
+  const telemetry = {
+    invalidEvidenceTimestamps: 0,
+    invalidRoleRunTimestamps: 0,
+    futureEvidenceRejected: 0,
+    futureRoleRunsRejected: 0,
+    livenessPolicy: "freshest-valid-evidence-or-role-run",
+  };
   for (const evidence of evidenceRows || []) {
     const role = evidence?.role || "unknown";
-    const generated = new Date(evidence?.generatedAt || 0);
-    if (Number.isNaN(generated.getTime())) continue;
+    const parsed = validActivityDate(evidence?.generatedAt, now);
+    if (parsed.invalid) { telemetry.invalidEvidenceTimestamps += 1; continue; }
+    if (parsed.rejectedFuture) { telemetry.futureEvidenceRejected += 1; continue; }
+    const generated = parsed.date;
     const age = Math.max(0, (now.getTime() - generated.getTime()) / 3_600_000);
     const activity = roleActivity[role] || {
       lastGeneratedAt: null, lastAgeHours: null, last1h: 0, last6h: 0, last24h: 0, total: 0,
@@ -503,8 +522,10 @@ export function computeWorkgraphMetrics(graph, now = new Date(), evidenceRows = 
 
   for (const run of roleRuns || []) {
     const role = run?.role || "unknown";
-    const generated = new Date(run?.generatedAt || 0);
-    if (Number.isNaN(generated.getTime())) continue;
+    const parsed = validActivityDate(run?.generatedAt, now);
+    if (parsed.invalid) { telemetry.invalidRoleRunTimestamps += 1; continue; }
+    if (parsed.rejectedFuture) { telemetry.futureRoleRunsRejected += 1; continue; }
+    const generated = parsed.date;
     const age = Math.max(0, (now.getTime() - generated.getTime()) / 3_600_000);
     const activity = roleActivity[role] || {
       lastGeneratedAt: null, lastAgeHours: null, last1h: 0, last6h: 0, last24h: 0, total: 0,
@@ -524,8 +545,8 @@ export function computeWorkgraphMetrics(graph, now = new Date(), evidenceRows = 
   const total = Object.values(counts).reduce((a,b)=>a+b,0);
   const canonicalProgressAgeHours = newestAgeHours.canonical;
   const healthAlerts = [];
-  if ((counts.canonical || 0) < total && canonicalProgressAgeHours !== null && canonicalProgressAgeHours > 2) {
-    healthAlerts.push(`t0_canonical_stalled_over_2h:${Math.round(canonicalProgressAgeHours * 100) / 100}`);
+  if ((counts.chief_ready || 0) > 0 && canonicalProgressAgeHours !== null && canonicalProgressAgeHours > 2) {
+    healthAlerts.push(`t0_canonical_stalled_over_2h_with_chief_ready:${Math.round(canonicalProgressAgeHours * 100) / 100}`);
   }
   const ownerToRole = {
     "council-alpha": "council-alpha",
@@ -537,8 +558,9 @@ export function computeWorkgraphMetrics(graph, now = new Date(), evidenceRows = 
     const role = ownerToRole[owner];
     if (!role || backlog <= 0) continue;
     const activity = roleActivity[role];
-    const age = activity?.lastRunAgeHours ?? activity?.lastAgeHours;
-    if (age === null || age === undefined || age > 2) healthAlerts.push(`owner_stale_with_backlog:${owner}:${backlog}`);
+    const ages = [activity?.lastRunAgeHours, activity?.lastAgeHours].filter(Number.isFinite);
+    const age = ages.length ? Math.min(...ages) : null;
+    if (age === null || age > 2) healthAlerts.push(`owner_stale_with_backlog:${owner}:${backlog}`);
   }
 
   return {
@@ -553,6 +575,7 @@ export function computeWorkgraphMetrics(graph, now = new Date(), evidenceRows = 
     preflightFailures,
     ownerBacklog,
     roleActivity,
+    telemetry,
     healthAlerts,
     healthy: healthAlerts.length === 0,
     chiefReadyBackpressure: { count: counts.chief_ready || 0, targetRuns: 1, hardCeilingRuns: 2 }

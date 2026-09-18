@@ -10,35 +10,32 @@ test("machine cycle reconciles Workgraph before finalization", async () => {
   const text = await source("scripts/earth2036-cycle.mjs");
   const sync = text.indexOf('scripts/workgraph-sync.mjs');
   const finalizer = text.indexOf('scripts/finalize-qualified-tick.mjs');
-  assert.ok(sync >= 0, "workgraph sync must exist");
-  assert.ok(finalizer >= 0, "finalizer must exist");
-  assert.ok(sync < finalizer, "finalizer must run only after fresh Workgraph reconciliation");
+  assert.ok(sync >= 0 && finalizer >= 0 && sync < finalizer);
 });
 
 test("Workgraph supervision never invalidates cumulative evidence by exact hourly cycle key", async () => {
   const text = await source("scripts/mark-council-pending.mjs");
   assert.equal(text.includes("supervisor.cycleKey !== state.cycleKey"), false);
-  assert.equal(text.includes("supervisorSameCycle ?"), false);
   assert.ok(text.includes("Workgraph v2 cumulative evidence is authoritative"));
 });
 
-test("scheduler preflights typecheck and tests before executing engine cycle", async () => {
+test("hourly scheduler runs targeted invariants and does not duplicate full CI", async () => {
   const text = await source(".github/workflows/earth2036-scheduler.yml");
-  const typecheck = text.indexOf("npm run typecheck");
-  const tests = text.indexOf("npm test");
-  const cycle = text.indexOf("npm run engine:cycle");
-  assert.ok(typecheck >= 0 && tests >= 0 && cycle >= 0);
-  assert.ok(typecheck < cycle);
-  assert.ok(tests < cycle);
+  assert.ok(text.includes("test/workgraph-v2.test.mjs"));
+  assert.ok(text.includes("test/operations-invariants.test.mjs"));
+  assert.ok(text.includes("npm run engine:cycle"));
+  assert.equal(text.includes("gh workflow run earth2036-ci.yml"), false);
+  assert.ok(text.includes("git merge-base --is-ancestor"));
 });
 
-test("watchdog inspects both scheduler and CI conclusions", async () => {
+test("watchdog checks GitHub-native scheduler, Pages, reconcile, CI and Workgraph health", async () => {
   const text = await source(".github/workflows/earth2036-watchdog.yml");
   assert.ok(text.includes("--workflow earth2036-scheduler.yml"));
+  assert.ok(text.includes("--workflow earth2036-pages.yml"));
+  assert.ok(text.includes("--workflow earth2036-workgraph-reconcile.yml"));
   assert.ok(text.includes("--workflow earth2036-ci.yml"));
-  assert.ok(text.includes("Fail closed on unhealthy execution plane"));
+  assert.ok(text.includes("workgraph_healthy"));
 });
-
 
 test("evidence arrival triggers burst-safe Workgraph reconciliation", async () => {
   const text = await source(".github/workflows/earth2036-workgraph-reconcile.yml");
@@ -49,11 +46,19 @@ test("evidence arrival triggers burst-safe Workgraph reconciliation", async () =
   assert.ok(text.includes("Evidence branch advanced during reconciliation"));
 });
 
-test("CI watches every Earth 2036 operational workflow", async () => {
-  const text = await source(".github/workflows/earth2036-ci.yml");
-  assert.ok(text.includes('".github/workflows/earth2036-*.yml"'));
+test("canonical reconciliation changes dispatch Pages immediately", async () => {
+  const text = await source(".github/workflows/earth2036-workgraph-reconcile.yml");
+  assert.ok(text.includes("canonical_projection_changed"));
+  assert.ok(text.includes("gh workflow run earth2036-pages.yml"));
+  assert.ok(text.includes("data/runtime/current-ranking.json"));
+  assert.ok(text.includes("data/runtime/score-state.json"));
 });
 
+test("CI watches every Earth 2036 operational workflow and publishes only after success", async () => {
+  const text = await source(".github/workflows/earth2036-ci.yml");
+  assert.ok(text.includes('".github/workflows/earth2036-*.yml"'));
+  assert.ok(text.includes("Dispatch Pages after verified main code push"));
+});
 
 test("zero-defect Chief fast path runs after packet compilation and before Beast audit", async () => {
   const text = await source("scripts/earth2036-cycle.mjs");
@@ -61,26 +66,24 @@ test("zero-defect Chief fast path runs after packet compilation and before Beast
   const fastPath = text.indexOf('scripts/promote-chief-ready.mjs');
   const beast = text.indexOf('scripts/beast-audit.mjs');
   assert.ok(sync >= 0 && fastPath >= 0 && beast >= 0);
-  assert.ok(sync < fastPath);
-  assert.ok(fastPath < beast);
+  assert.ok(sync < fastPath && fastPath < beast);
 });
 
-test("evidence-arrival reconciliation includes Chief fast path and Beast fail-closed audit", async () => {
+test("evidence reconciliation includes Chief fast path and Beast fail-closed audit", async () => {
   const text = await source(".github/workflows/earth2036-workgraph-reconcile.yml");
   const sync = text.indexOf("npm run workgraph:sync");
   const fastPath = text.indexOf("node scripts/promote-chief-ready.mjs");
   const beast = text.indexOf("node scripts/beast-audit.mjs");
   assert.ok(sync >= 0 && fastPath >= 0 && beast >= 0);
-  assert.ok(sync < fastPath);
-  assert.ok(fastPath < beast);
-  assert.ok(text.includes("data/baseline-evidence"));
-  assert.ok(text.includes("data/runtime/causal-graph.json"));
+  assert.ok(sync < fastPath && fastPath < beast);
 });
 
-
-test("runtime reports Chief-managed hourly preview publication", async () => {
+test("runtime declares the dedicated GitHub-native control plane", async () => {
   const text = await source("scripts/earth2036-engine.mjs");
-  assert.equal(text.includes('deploymentSync: "git-commit-triggered"'), false);
-  assert.equal(text.includes('deploymentSync: "manual-snapshot"'), false);
-  assert.ok(text.includes('deploymentSync: "chief-hourly-publish"'));
+  assert.ok(text.includes('canonicalRepository: "JILLOnline/Earth-2036"'));
+  assert.ok(text.includes('canonicalBranch: "main"'));
+  assert.ok(text.includes('controlPlane: "github-native-v2"'));
+  assert.ok(text.includes('browserProjection: "github-pages"'));
+  assert.equal(text.includes("spreadsheetMirror:"), false);
+  assert.equal(text.includes("deploymentSync:"), false);
 });

@@ -537,8 +537,10 @@ async function main() {
     qualifiedTick: qualified,
     qualifiedTrialTicks,
     lastQualifiedCycleKey,
-    spreadsheetMirror: "chatgpt-supervisor",
-    deploymentSync: "chief-hourly-publish",
+    canonicalRepository: "JILLOnline/Earth-2036",
+    canonicalBranch: "main",
+    controlPlane: "github-native-v2",
+    browserProjection: "github-pages",
   };
   await writeJson(path.join(RUNTIME_DIR, "system-state.json"), state);
 

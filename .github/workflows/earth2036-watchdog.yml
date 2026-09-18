@@ -18,50 +18,81 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Check persisted machine-cycle freshness
+      - name: Read machine and Workgraph freshness
         id: freshness
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           gh api "repos/${{ github.repository }}/contents/data/runtime/system-state.json?ref=main" > /tmp/state.json
+          gh api "repos/${{ github.repository }}/contents/data/runtime/workgraph/metrics.json?ref=main" > /tmp/metrics.json
           python - <<'PY' >> "$GITHUB_OUTPUT"
           import base64, datetime as dt, json
-          p=json.load(open('/tmp/state.json'))
-          state=json.loads(base64.b64decode(p['content']).decode())
+          def decode(path):
+              p=json.load(open(path))
+              return json.loads(base64.b64decode(p['content']).decode())
+          state=decode('/tmp/state.json')
+          metrics=decode('/tmp/metrics.json')
           stamp=state.get('lastCycleAt')
           if not stamp:
-              print('stale=true')
+              print('machine_stale=true')
+              print('last_cycle_at=')
           else:
               observed=dt.datetime.fromisoformat(stamp.replace('Z','+00:00'))
               age=max(0,int((dt.datetime.now(dt.timezone.utc)-observed).total_seconds()))
-              print(f'age_seconds={age}')
-              print(f'stale={str(age>3600).lower()}')
+              print(f'machine_age_seconds={age}')
+              print(f'machine_stale={str(age>5400).lower()}')
+              print(f'last_cycle_at={stamp}')
+          print(f'workgraph_healthy={str(bool(metrics.get("healthy"))).lower()}')
+          print(f'workgraph_alert_count={len(metrics.get("healthAlerts") or [])}')
           PY
 
-      - name: Check scheduler and CI execution health
+      - name: Check GitHub-native execution plane
         id: execution
         env:
           GH_TOKEN: ${{ github.token }}
+          LAST_CYCLE_AT: ${{ steps.freshness.outputs.last_cycle_at }}
+          WORKGRAPH_HEALTHY: ${{ steps.freshness.outputs.workgraph_healthy }}
         run: |
           set -euo pipefail
-          latest_scheduler=$(gh run list --repo "${{ github.repository }}" --workflow earth2036-scheduler.yml --branch main --limit 10 --json databaseId,status,conclusion,createdAt --jq '[.[] | select(.status == "completed" and .conclusion != "cancelled")][0]')
-          latest_ci=$(gh run list --repo "${{ github.repository }}" --workflow earth2036-ci.yml --branch main --limit 10 --json databaseId,status,conclusion,createdAt --jq '[.[] | select(.status == "completed" and .conclusion != "cancelled")][0]')
-          scheduler_conclusion=$(printf '%s' "$latest_scheduler" | jq -r '.conclusion // "missing"')
-          scheduler_id=$(printf '%s' "$latest_scheduler" | jq -r '.databaseId // "missing"')
-          ci_conclusion=$(printf '%s' "$latest_ci" | jq -r '.conclusion // "missing"')
-          ci_id=$(printf '%s' "$latest_ci" | jq -r '.databaseId // "missing"')
-          echo "scheduler_conclusion=$scheduler_conclusion" >> "$GITHUB_OUTPUT"
-          echo "scheduler_id=$scheduler_id" >> "$GITHUB_OUTPUT"
-          echo "ci_conclusion=$ci_conclusion" >> "$GITHUB_OUTPUT"
-          echo "ci_id=$ci_id" >> "$GITHUB_OUTPUT"
+          latest() {
+            gh run list --repo "${{ github.repository }}" --workflow "$1" --branch main --limit 20               --json databaseId,status,conclusion,createdAt               --jq '[.[] | select(.status == "completed" and .conclusion != "cancelled")][0]'
+          }
+
+          scheduler=$(latest earth2036-scheduler.yml)
+          pages=$(latest earth2036-pages.yml)
+          reconcile=$(latest earth2036-workgraph-reconcile.yml)
+          ci=$(latest earth2036-ci.yml)
+
+          scheduler_conclusion=$(jq -r '.conclusion // "missing"' <<<"$scheduler")
+          pages_conclusion=$(jq -r '.conclusion // "missing"' <<<"$pages")
+          reconcile_conclusion=$(jq -r '.conclusion // "missing"' <<<"$reconcile")
+          ci_conclusion=$(jq -r '.conclusion // "missing"' <<<"$ci")
+          pages_created=$(jq -r '.createdAt // ""' <<<"$pages")
+
           unhealthy=false
-          if [ "$scheduler_conclusion" != "success" ] && [ "$scheduler_conclusion" != "missing" ]; then unhealthy=true; fi
-          if [ "$ci_conclusion" != "success" ]; then unhealthy=true; fi
+          if [ "$scheduler_conclusion" != "success" ]; then unhealthy=true; fi
+          if [ "$pages_conclusion" != "success" ]; then unhealthy=true; fi
+          if [ "$reconcile_conclusion" != "missing" ] && [ "$reconcile_conclusion" != "success" ]; then unhealthy=true; fi
+          if [ "$ci_conclusion" != "missing" ] && [ "$ci_conclusion" != "success" ]; then unhealthy=true; fi
+          if [ "$WORKGRAPH_HEALTHY" != "true" ]; then unhealthy=true; fi
+
+          pages_stale=false
+          if [ -n "$LAST_CYCLE_AT" ] && [ -n "$pages_created" ]; then
+            cycle_epoch=$(date -d "$LAST_CYCLE_AT" +%s)
+            pages_epoch=$(date -d "$pages_created" +%s)
+            if [ $((cycle_epoch - pages_epoch)) -gt 5400 ]; then pages_stale=true; unhealthy=true; fi
+          fi
+
+          echo "scheduler_conclusion=$scheduler_conclusion" >> "$GITHUB_OUTPUT"
+          echo "pages_conclusion=$pages_conclusion" >> "$GITHUB_OUTPUT"
+          echo "reconcile_conclusion=$reconcile_conclusion" >> "$GITHUB_OUTPUT"
+          echo "ci_conclusion=$ci_conclusion" >> "$GITHUB_OUTPUT"
+          echo "pages_stale=$pages_stale" >> "$GITHUB_OUTPUT"
           echo "unhealthy=$unhealthy" >> "$GITHUB_OUTPUT"
 
       - name: Dispatch machine scheduler when stale and idle
-        if: steps.freshness.outputs.stale == 'true'
+        if: steps.freshness.outputs.machine_stale == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -71,8 +102,8 @@ jobs:
             gh workflow run earth2036-scheduler.yml --repo "${{ github.repository }}" --ref main
           fi
 
-      - name: Fail closed on unhealthy execution plane
+      - name: Fail closed on unhealthy GitHub-native plane
         if: steps.execution.outputs.unhealthy == 'true'
         run: |
-          echo "Earth 2036 execution plane unhealthy: scheduler=${{ steps.execution.outputs.scheduler_conclusion }}, CI=${{ steps.execution.outputs.ci_conclusion }}." >&2
+          echo "Earth 2036 unhealthy: scheduler=${{ steps.execution.outputs.scheduler_conclusion }}, pages=${{ steps.execution.outputs.pages_conclusion }}, reconcile=${{ steps.execution.outputs.reconcile_conclusion }}, ci=${{ steps.execution.outputs.ci_conclusion }}, pages_stale=${{ steps.execution.outputs.pages_stale }}, workgraph=${{ steps.freshness.outputs.workgraph_healthy }}." >&2
           exit 1

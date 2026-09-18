@@ -313,3 +313,57 @@ test("Deep Resolver can explicitly close stale gating categories while history r
   assert.equal(packet.preflight.failures.includes("unresolved_gating_unknown"), false);
   assert.deepEqual(packet.evidenceResolution.resolvedGateKinds, ["gating_issue","gating_unknown"]);
 });
+
+
+test("fresh evidence outranks a stale role-run marker for liveness", () => {
+  const graph = {
+    version: 2,
+    companies: {
+      AAA: {
+        ticker: "AAA",
+        state: "researching",
+        attempts: 1,
+        lastTransitionAt: "2026-09-18T05:00:00Z",
+        preflight: {
+          failures: ["missing_numeric_score_record"],
+          routing: [{ failure: "missing_numeric_score_record", owner: "council-alpha" }],
+        },
+      },
+    },
+  };
+  const metrics = computeWorkgraphMetrics(
+    graph,
+    new Date("2026-09-18T10:00:00Z"),
+    [{ role: "council-alpha", generatedAt: "2026-09-18T09:40:00Z" }],
+    [{ role: "council-alpha", generatedAt: "2026-09-18T06:00:00Z" }],
+  );
+  assert.equal(metrics.healthAlerts.some((x) => x.startsWith("owner_stale_with_backlog:council-alpha")), false);
+  assert.equal(metrics.telemetry.livenessPolicy, "freshest-valid-evidence-or-role-run");
+});
+
+test("future-dated telemetry is rejected instead of appearing freshly alive", () => {
+  const graph = {
+    version: 2,
+    companies: {
+      AAA: {
+        ticker: "AAA",
+        state: "researching",
+        attempts: 1,
+        lastTransitionAt: "2026-09-18T05:00:00Z",
+        preflight: {
+          failures: ["missing_causal_mapping"],
+          routing: [{ failure: "missing_causal_mapping", owner: "council-beta" }],
+        },
+      },
+    },
+  };
+  const metrics = computeWorkgraphMetrics(
+    graph,
+    new Date("2026-09-18T10:00:00Z"),
+    [{ role: "council-beta", generatedAt: "2026-09-18T13:00:00Z" }],
+    [{ role: "council-beta", generatedAt: "2026-09-18T13:00:00Z" }],
+  );
+  assert.equal(metrics.telemetry.futureEvidenceRejected, 1);
+  assert.equal(metrics.telemetry.futureRoleRunsRejected, 1);
+  assert.equal(metrics.healthAlerts.some((x) => x.startsWith("owner_stale_with_backlog:council-beta")), true);
+});

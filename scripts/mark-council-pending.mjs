@@ -13,11 +13,12 @@ async function writeJson(file, value) {
   await writeFile(file, `${JSON.stringify(value, null, 2)}\n`, "utf8");
 }
 
-const [state, health, manifest, workgraph] = await Promise.all([
+const [state, health, manifest, workgraph, priorSupervisor] = await Promise.all([
   readJson(path.join(RUNTIME, "system-state.json"), null),
   readJson(path.join(RUNTIME, "source-health.json"), null),
   readJson(MANIFEST, null),
   readJson(path.join(RUNTIME, "workgraph", "state.json"), null),
+  readJson(path.join(RUNTIME, "supervisor-state.json"), {}),
 ]);
 
 if (!state?.cycleKey || workgraph?.version !== 2) {
@@ -79,6 +80,20 @@ const nextState = {
   workgraphBlockedCompanies: blocked,
 };
 await writeJson(path.join(RUNTIME, "system-state.json"), nextState);
+
+await writeJson(path.join(RUNTIME, "supervisor-state.json"), {
+  ...priorSupervisor,
+  version: 1,
+  cycleKey: state.cycleKey,
+  updatedAt: new Date().toISOString(),
+  sourceCoverageRatio: Math.round(supervisorCoverage * 10000) / 10000,
+  discoveryScanCompleted,
+  notes: [
+    "Workgraph v2 cumulative evidence is authoritative.",
+    "JILLOnline/Earth-2036@main is the sole Git authority; GitHub Pages is a projection only.",
+    `Current Workgraph: ${canonical}/${expected} canonical, ${blocked} blocked, source coverage ${Math.round(supervisorCoverage * 10000) / 100}%.`,
+  ],
+});
 
 if (health) {
   await writeJson(path.join(RUNTIME, "source-health.json"), {

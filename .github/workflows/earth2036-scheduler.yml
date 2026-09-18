@@ -36,6 +36,12 @@ jobs:
           cache: npm
           cache-dependency-path: package-lock.json
 
+      - name: Install dependencies and run runtime invariants
+        run: |
+          set -euo pipefail
+          npm ci
+          node --test test/workgraph-v2.test.mjs test/operations-invariants.test.mjs
+
       - name: Run and persist coherent machine cycle
         id: persist
         env:
@@ -50,9 +56,6 @@ jobs:
             git reset --hard origin/main
             git clean -fd data
 
-            npm ci
-            npm run typecheck
-            npm test
             npm run engine:cycle
 
             base_head=$(git rev-parse HEAD)
@@ -82,15 +85,14 @@ jobs:
           echo "Unable to persist a coherent Earth 2036 machine cycle after 3 attempts." >&2
           exit 1
 
-      - name: Verify persisted branch state
+      - name: Verify persisted state and publish exact machine snapshot
         env:
           GH_TOKEN: ${{ github.token }}
           PERSISTED_HEAD: ${{ steps.persist.outputs.persisted_head }}
         run: |
           set -euo pipefail
-          remote_head=$(gh api "repos/${{ github.repository }}/git/ref/heads/main" --jq '.object.sha')
           test -n "$PERSISTED_HEAD"
-          test "$remote_head" = "$PERSISTED_HEAD"
-          gh workflow run earth2036-ci.yml --repo "${{ github.repository }}" --ref main
+          git fetch --no-tags --depth=50 origin main
+          git merge-base --is-ancestor "$PERSISTED_HEAD" origin/main
           gh workflow run earth2036-pages.yml --repo "${{ github.repository }}" --ref main -f source_sha="$PERSISTED_HEAD"
-          echo "Dispatched Earth 2036 CI and Pages for exact persisted main head $PERSISTED_HEAD."
+          echo "Published machine snapshot request for $PERSISTED_HEAD; newer minion commits may remain on main."

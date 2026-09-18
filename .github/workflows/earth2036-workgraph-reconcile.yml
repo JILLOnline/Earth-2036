@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: earth2036-workgraph-reconcile
@@ -31,6 +32,8 @@ jobs:
           cache-dependency-path: package-lock.json
 
       - name: Reconcile Workgraph from newest evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           git config user.name "earth2036-workgraph[bot]"
@@ -57,14 +60,25 @@ jobs:
               continue
             fi
 
-            if git diff --quiet -- data/runtime/workgraph data/runtime/system-state.json data/runtime/source-health.json data/runtime/score-state.json data/runtime/current-ranking.json data/runtime/causal-graph.json data/runtime/intelligence-integrity.json data/baseline-evidence data/baselines/earth2036-official-t0-2026-09-12/manifest.json; then
+            canonical_projection_changed=false
+            if ! git diff --quiet --               data/runtime/current-ranking.json               data/runtime/score-state.json               data/runtime/causal-graph.json               data/baseline-evidence               data/baselines/earth2036-official-t0-2026-09-12/manifest.json; then
+              canonical_projection_changed=true
+            fi
+
+            if git diff --quiet -- data/runtime/workgraph data/runtime/system-state.json data/runtime/supervisor-state.json data/runtime/source-health.json data/runtime/score-state.json data/runtime/current-ranking.json data/runtime/causal-graph.json data/runtime/intelligence-integrity.json data/baseline-evidence data/baselines/earth2036-official-t0-2026-09-12/manifest.json; then
               exit 0
             fi
 
-            git add data/runtime/workgraph data/runtime/system-state.json data/runtime/source-health.json data/runtime/score-state.json data/runtime/current-ranking.json data/runtime/causal-graph.json data/runtime/intelligence-integrity.json data/baseline-evidence data/baselines/earth2036-official-t0-2026-09-12/manifest.json
+            git add data/runtime/workgraph data/runtime/system-state.json data/runtime/supervisor-state.json data/runtime/source-health.json data/runtime/score-state.json data/runtime/current-ranking.json data/runtime/causal-graph.json data/runtime/intelligence-integrity.json data/baseline-evidence data/baselines/earth2036-official-t0-2026-09-12/manifest.json
             git commit -m "Earth 2036 workgraph reconcile from evidence"
+            reconcile_head=$(git rev-parse HEAD)
 
             if git push origin HEAD:main; then
+              echo "canonical_projection_changed=$canonical_projection_changed"
+              if [ "$canonical_projection_changed" = "true" ]; then
+                gh workflow run earth2036-pages.yml --repo "${{ github.repository }}" --ref main -f source_sha="$reconcile_head"
+                echo "Dispatched Pages immediately for canonical projection $reconcile_head."
+              fi
               exit 0
             fi
           done

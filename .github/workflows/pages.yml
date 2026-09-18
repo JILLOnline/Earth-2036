@@ -1,0 +1,97 @@
+name: Earth 2036 GitHub Pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_sha:
+        description: "Exact canonical commit to publish"
+        required: false
+        type: string
+  push:
+    branches: [main]
+    paths:
+      - "app/**"
+      - "lib/**"
+      - "next.config.mjs"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/pages.yml"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: earth2036-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      source_sha: ${{ steps.source.outputs.sha }}
+    steps:
+      - name: Resolve exact source SHA
+        id: source
+        env:
+          REQUESTED_SHA: ${{ inputs.source_sha }}
+          EVENT_SHA: ${{ github.sha }}
+        run: echo "sha=${REQUESTED_SHA:-$EVENT_SHA}" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.source.outputs.sha }}
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Verify and build static site
+        env:
+          STATIC_EXPORT: "true"
+          EARTH2036_BASE_PATH: "/Earth-2036"
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run typecheck
+          npm test
+          npm run build
+
+      - name: Write deployment provenance
+        env:
+          SOURCE_SHA: ${{ steps.source.outputs.sha }}
+        run: |
+          cat > out/earth2036-deploy.json <<JSON
+          {
+            "sourceBranch": "main",
+            "sourceSha": "${SOURCE_SHA}",
+            "builtAt": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')",
+            "authority": "JILLOnline/Earth-2036@main",
+            "host": "github-pages"
+          }
+          JSON
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

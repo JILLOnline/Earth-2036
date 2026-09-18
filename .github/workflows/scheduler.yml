@@ -1,0 +1,99 @@
+name: Earth 2036 Scheduler
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/scheduler.yml"
+      - "scripts/**"
+      - "package.json"
+      - "package-lock.json"
+
+permissions:
+  actions: write
+  contents: write
+
+concurrency:
+  group: earth2036-machine-engine
+  cancel-in-progress: false
+
+jobs:
+  cycle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout canonical main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Run and persist coherent machine cycle
+        id: persist
+        env:
+          TARGET_REF: main
+          SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
+        run: |
+          set -euo pipefail
+          git config user.name "earth2036-engine[bot]"
+          git config user.email "earth2036-engine@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            git fetch --no-tags --depth=1 origin main
+            git reset --hard origin/main
+            git clean -fd data
+
+            npm ci
+            npm run typecheck
+            npm test
+            npm run engine:cycle
+
+            base_head=$(git rev-parse HEAD)
+            git fetch --no-tags --depth=1 origin main
+            remote_head=$(git rev-parse origin/main)
+
+            if [ "$base_head" != "$remote_head" ]; then
+              echo "main advanced during machine computation; recomputing from newer truth."
+              continue
+            fi
+
+            if git diff --quiet -- data; then
+              echo "persisted_head=$base_head" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            git add data
+            git commit -m "Earth 2036 machine cycle $(date -u +'%Y-%m-%dT%H:00Z')"
+            persisted_head=$(git rev-parse HEAD)
+
+            if git push origin HEAD:main; then
+              echo "persisted_head=$persisted_head" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          done
+
+          echo "Unable to persist a coherent Earth 2036 machine cycle after 3 attempts." >&2
+          exit 1
+
+      - name: Verify and dispatch projections
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PERSISTED_HEAD: ${{ steps.persist.outputs.persisted_head }}
+        run: |
+          set -euo pipefail
+          remote_head=$(gh api "repos/${{ github.repository }}/git/ref/heads/main" --jq '.object.sha')
+          test -n "$PERSISTED_HEAD"
+          test "$remote_head" = "$PERSISTED_HEAD"
+          gh workflow run ci.yml --repo "${{ github.repository }}" --ref main
+          gh workflow run pages.yml --repo "${{ github.repository }}" --ref main -f source_sha="$PERSISTED_HEAD"
+          echo "Dispatched CI and GitHub Pages for exact canonical head $PERSISTED_HEAD."

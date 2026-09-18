@@ -1,0 +1,68 @@
+name: Earth 2036 Workgraph Reconcile
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/runtime/workgraph/evidence/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: earth2036-workgraph-reconcile
+  cancel-in-progress: true
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - name: Reconcile Workgraph from newest evidence
+        run: |
+          set -euo pipefail
+          git config user.name "earth2036-workgraph[bot]"
+          git config user.email "earth2036-workgraph@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            git fetch --no-tags --depth=1 origin main
+            git reset --hard origin/main
+
+            npm ci
+            npm run typecheck
+            node --test test/workgraph-v2.test.mjs test/operations-invariants.test.mjs
+            npm run workgraph:sync
+            node scripts/promote-chief-ready.mjs
+            node scripts/mark-council-pending.mjs
+            node scripts/beast-audit.mjs
+
+            base_head=$(git rev-parse HEAD)
+            git fetch --no-tags --depth=1 origin main
+            remote_head=$(git rev-parse origin/main)
+            if [ "$base_head" != "$remote_head" ]; then
+              continue
+            fi
+
+            if git diff --quiet -- data/runtime/workgraph data/runtime/system-state.json data/runtime/source-health.json data/runtime/score-state.json data/runtime/current-ranking.json data/runtime/causal-graph.json data/runtime/intelligence-integrity.json data/baseline-evidence data/baselines/earth2036-official-t0-2026-09-12/manifest.json; then
+              exit 0
+            fi
+
+            git add data/runtime/workgraph data/runtime/system-state.json data/runtime/source-health.json data/runtime/score-state.json data/runtime/current-ranking.json data/runtime/causal-graph.json data/runtime/intelligence-integrity.json data/baseline-evidence data/baselines/earth2036-official-t0-2026-09-12/manifest.json
+            git commit -m "Earth 2036 workgraph reconcile from evidence"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+          done
+
+          echo "Unable to persist Workgraph reconciliation after 3 attempts." >&2
+          exit 1

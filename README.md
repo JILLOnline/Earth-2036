@@ -1,6 +1,6 @@
 # Earth 2036
 
-Private, auditable research system for finding U.S.-tradable companies positioned to matter through 2036.
+Auditable research system for finding U.S.-tradable companies positioned to matter through 2036.
 
 ## System v1.0
 
@@ -112,4 +112,4 @@ Forecasts are issued only from sourced data. Every forecast is timestamped and r
 
 The preserved 10-company v0.1 snapshots are prototype history only and do not count toward the 1,000-tick trial.
 
-Private research laboratory. Not investment advice and not a public investment product.
+Public source repository for the Earth 2036 research laboratory. Not investment advice and not an investment product.

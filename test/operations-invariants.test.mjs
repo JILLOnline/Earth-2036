@@ -57,7 +57,7 @@ test("canonical reconciliation changes dispatch Pages immediately", async () => 
 test("CI watches every Earth 2036 operational workflow and publishes only after success", async () => {
   const text = await source(".github/workflows/earth2036-ci.yml");
   assert.ok(text.includes('".github/workflows/earth2036-*.yml"'));
-  assert.ok(text.includes("Dispatch Pages after verified main code push"));
+  assert.ok(text.includes("Dispatch Pages after verified browser code push"));
 });
 
 test("zero-defect Chief fast path runs after packet compilation and before Beast audit", async () => {

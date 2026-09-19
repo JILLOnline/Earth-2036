@@ -211,7 +211,26 @@ function normalizeEvidenceObject(obj, filePath) {
   const claimFactors = claims.flatMap((claim) => Array.isArray(claim?.affectedFactors) ? claim.affectedFactors : []);
   const explicitCausalEdges = Array.isArray(obj?.causalEdges) ? obj.causalEdges : [];
   const claimCausalEdges = claims.flatMap((claim) => Array.isArray(claim?.causalEdges) ? claim.causalEdges : []);
-  const rawConfidence = Number.isFinite(obj?.confidence) ? obj.confidence : null;
+  const resolverEvidenceSources = Array.isArray(obj?.resolution?.evidence)
+    ? obj.resolution.evidence
+        .filter((item) => item?.source)
+        .map((item) => ({
+          url: item.source,
+          primary: item.primary === true,
+          originFingerprint: item.originFingerprint || null,
+          sourceId: item.sourceId || item.originFingerprint || item.source,
+        }))
+    : [];
+  const resolverItems = Array.isArray(obj?.items)
+    ? obj.items
+    : obj?.role === "deep-resolver" && obj?.result && obj?.gateKind
+      ? [{ itemId: `${obj?.workId || obj?.ticker || "resolver"}:${obj.gateKind}`, status: obj.result }]
+      : [];
+  const rawConfidence = Number.isFinite(obj?.confidence)
+    ? obj.confidence
+    : Number.isFinite(obj?.resolution?.confidence)
+      ? obj.resolution.confidence
+      : null;
   const confidence = rawConfidence !== null && rawConfidence >= 0 && rawConfidence <= 1 ? rawConfidence * 100 : rawConfidence;
   return {
     path: filePath,
@@ -229,16 +248,16 @@ function normalizeEvidenceObject(obj, filePath) {
     scoreRecord: obj?.scoreRecord ?? null,
     riskEvidence: obj?.riskEvidence ?? null,
     dataConfidenceEvidence: obj?.dataConfidenceEvidence ?? null,
-    sources: (Array.isArray(obj?.sources) ? obj.sources : []).map(normalizeSource),
+    sources: [...(Array.isArray(obj?.sources) ? obj.sources : []), ...resolverEvidenceSources].map(normalizeSource),
     risks: Array.isArray(obj?.risks) ? obj.risks : [],
     causalEdges: [...explicitCausalEdges, ...claimCausalEdges],
     contradictions: Array.isArray(obj?.contradictions) ? obj.contradictions : [],
     unknowns: Array.isArray(obj?.unknowns) ? obj.unknowns : [],
     gatingIssues: Array.isArray(obj?.gatingIssues) ? obj.gatingIssues : [],
-    items: Array.isArray(obj?.items) ? obj.items : [],
+    items: resolverItems,
     lineage: obj?.lineage && typeof obj.lineage === "object" ? obj.lineage : null,
     overallStatus: obj?.overallStatus || null,
-    recommendedNextState: obj?.recommendedNextState || null,
+    recommendedNextState: obj?.recommendedNextState || obj?.resolution?.recommendedNextState || null,
     confidence,
   };
 }

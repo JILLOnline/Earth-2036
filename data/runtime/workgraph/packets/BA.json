@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "BA",
   "workId": "t0:BA",
-  "generatedAt": "2026-09-19T08:41:13.796Z",
+  "generatedAt": "2026-09-19T09:06:59.370Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T08:40:30.044Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-07-20T00:00:00.000Z",
+    "end": "2026-09-19T09:05:50.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T09:05:50.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,57 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/BA-20260919T090550Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "thesisQuality",
+      "catalystScore",
+      "alignment2036",
+      "bottleneckControl",
+      "financialOperatingMomentum",
+      "scenarioRobustness",
+      "supplyChainResilience"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "thesisQuality",
+        "catalystScore",
+        "alignment2036",
+        "bottleneckControl"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "supplyChainResilience"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +120,38 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "thesisQuality",
+    "catalystScore",
+    "alignment2036",
+    "bottleneckControl",
+    "financialOperatingMomentum",
+    "scenarioRobustness",
+    "supplyChainResilience"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Order strength does not establish delivery timing, certification timing for the 737-10, production-rate execution, margins or free-cash-flow conversion.",
+        "gating": false
+      },
+      {
+        "risk": "Boeing's central execution test remains safe, timely production and delivery; this evidence cannot resolve that test.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Order strength does not establish delivery timing, certification timing for the 737-10, production-rate execution, margins or free-cash-flow conversion.",
+      "gating": false
+    },
+    {
+      "risk": "Boeing's central execution test remains safe, timely production and delivery; this evidence cannot resolve that test.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +159,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +168,59 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 2,
+    "uniqueSourceCount": 1,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "issuer:BA:order:SMBC:100MAX:20260720"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "issuer:BA:SMBC:20260720",
+      "url": "https://investors.boeing.com/investors/news/press-release-details/2026/SMBC-Aviation-Capital-Orders-100-Boeing-737-MAX-Jets/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-20",
+      "originFingerprint": "issuer:BA:order:SMBC:100MAX:20260720"
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Current 737-10 certification schedule and conversion of orderbook demand into delivered aircraft were not established by this source.",
+      "gating": false
+    },
+    {
+      "unknown": "Latest delivery cadence, production stability, certification progress and free-cash-flow trajectory require separate primary operating evidence.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 78,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +234,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +244,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

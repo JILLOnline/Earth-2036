@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "EXC",
   "workId": "t0:EXC",
-  "generatedAt": "2026-09-19T17:28:56.787Z",
+  "generatedAt": "2026-09-19T18:04:13.685Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T16:22:21.575Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-05-06T00:00:00.000Z",
+    "end": "2026-09-19T18:02:12.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T18:02:12.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,51 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/EXC-20260919T180212Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "bottleneckControl",
+      "scenarioRobustness",
+      "executionCapability"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "executionCapability"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "executionCapability",
+        "scenarioRobustness"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +114,34 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "bottleneckControl",
+    "scenarioRobustness",
+    "executionCapability"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Large-load interconnection demand can remain speculative until collateral, siting, transmission and generation constraints are resolved.",
+        "gating": false
+      },
+      {
+        "risk": "Regulatory affordability constraints and generation/transmission scarcity can delay conversion of committed load into rate-base growth.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Large-load interconnection demand can remain speculative until collateral, siting, transmission and generation constraints are resolved.",
+      "gating": false
+    },
+    {
+      "risk": "Regulatory affordability constraints and generation/transmission scarcity can delay conversion of committed load into rate-base growth.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -115,53 +158,69 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "reuters:exelon:q1-2026:data-center-capex",
+      "marketbeat:exelon:q2-2026:call"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "reuters:exc:2026-05-06",
+      "url": "https://www.reuters.com/business/energy/utility-exelon-tops-quarterly-estimates-higher-rates-power-demand-2026-05-06/",
+      "kind": "independent",
+      "primary": false,
+      "publishedAt": "2026-05-06",
+      "originFingerprint": "reuters:exelon:q1-2026:data-center-capex"
+    },
+    {
+      "sourceId": "marketbeat:exc:q2-2026-call",
+      "url": "https://www.marketbeat.com/instant-alerts/exelon-q2-earnings-call-highlights-2026-07-30/",
+      "kind": "independent-transcript-summary",
+      "primary": false,
+      "publishedAt": "2026-07-30",
+      "originFingerprint": "marketbeat:exelon:q2-2026:call"
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "A current issuer-primary Q2 source was not obtained in this Scout pass; Alpha should source-address any numeric underwriting from filings or issuer materials.",
+      "gating": false
+    },
+    {
+      "unknown": "Timing and realized returns for individual large-load projects remain uncertain.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 80,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,16 +234,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
       },
       {
         "failure": "missing_primary_source",
@@ -197,10 +248,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

@@ -37,9 +37,10 @@ test("watchdog checks GitHub-native scheduler, Pages, reconcile, CI and Workgrap
   assert.ok(text.includes("workgraph_healthy"));
 });
 
-test("evidence arrival triggers burst-safe Workgraph reconciliation", async () => {
+test("evidence and worker receipts trigger burst-safe Workgraph reconciliation", async () => {
   const text = await source(".github/workflows/earth2036-workgraph-reconcile.yml");
   assert.ok(text.includes('data/runtime/workgraph/evidence/**'));
+  assert.ok(text.includes('data/runtime/workgraph/role-runs/**'));
   assert.ok(text.includes("cancel-in-progress: true"));
   assert.ok(text.includes("npm run workgraph:sync"));
   assert.ok(text.includes("scripts/mark-council-pending.mjs"));
@@ -97,4 +98,14 @@ test("tick finalization requires Workgraph v2 and has no legacy council fallback
   assert.equal(text.includes("supervisor-council.json"), false);
   assert.equal(text.includes("validateCouncilAttestationShape"), false);
   assert.equal(text.includes("legacyCouncilPassed"), false);
+});
+
+
+test("Workgraph refreshes shared operational learning signals every reconcile", async () => {
+  const text = await source("scripts/workgraph-sync.mjs");
+  assert.ok(text.includes("learning-state.json"));
+  assert.ok(text.includes("zeroClosureWithBacklog"));
+  assert.ok(text.includes("dependentResolverSymptoms"));
+  assert.ok(text.includes("repeatedFailureRequiresChangedStrategy"));
+  assert.ok(text.includes("hardTruthGatesMayNotBeWeakened"));
 });

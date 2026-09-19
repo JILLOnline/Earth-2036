@@ -16,6 +16,13 @@ function latestAttempt(roleRuns, requestId, inputSignature) {
   return attempts.sort((a,b) => Date.parse(b.generatedAt || 0) - Date.parse(a.generatedAt || 0))[0] || null;
 }
 
+function statePriority(state) {
+  return state === "chief_ready" ? 120 :
+    state === "packet_ready" ? 110 :
+    state === "evidence_complete" ? 95 :
+    state === "researching" ? 70 : 40;
+}
+
 function requestFor(packet, row, helperRole, capability, rootOwner, failures, nowIso) {
   const requestId = `assist:${packet.ticker}:${rootOwner}:${helperRole}:${capability}`;
   const inputSignature = hash({
@@ -51,6 +58,9 @@ function requestFor(packet, row, helperRole, capability, rootOwner, failures, no
       "Helper preserves exact source lineage and does not invent facts.",
       "An unchanged failed input becomes dormant instead of being retried indefinitely."
     ],
+    priority: statePriority(row?.state || packet.sourceState) +
+      Math.min(12, Number(packet?.specialistCoverage?.present?.length || 0) * 2) +
+      Math.min(8, Number(row?.attempts || 0) * 2),
     generatedAt: nowIso,
   };
 }
@@ -63,32 +73,54 @@ export function buildAssistRequests(graph, packets, roleRuns = [], nowIso = new 
     const failures = packet?.preflight?.failures || [];
     const isFrontier = ["packet_ready","chief_ready"].includes(row.state);
     const attempts = Number(row.attempts || 0);
+    const perspectiveCount = Number(packet?.specialistCoverage?.present?.length || 0);
+    const nearClosureResearch = row.state === "researching" && attempts >= 3 && perspectiveCount >= 4;
 
     const alphaSourceFailures = failures.filter((failure) => [
       "missing_primary_source","missing_source_lineage","missing_factor_evidence",
       "missing_numeric_score_record","missing_score_risk_evidence","missing_data_confidence_evidence"
     ].includes(failure));
-    if (alphaSourceFailures.length && (isFrontier || attempts >= 2)) {
+    if (alphaSourceFailures.length && (isFrontier || nearClosureResearch)) {
       requests.push(requestFor(packet, row, "earth-scout", "source-acquisition", "council-alpha", alphaSourceFailures, nowIso));
     }
 
     const betaSourceFailures = failures.filter((failure) => failure === "missing_causal_mapping");
-    if (betaSourceFailures.length && (isFrontier || attempts >= 2)) {
+    if (betaSourceFailures.length && (isFrontier || nearClosureResearch)) {
       requests.push(requestFor(packet, row, "earth-scout", "causal-source-support", "council-beta", betaSourceFailures, nowIso));
     }
   }
 
-  const enriched = requests.map((request) => {
-    const prior = latestAttempt(roleRuns, request.requestId, request.inputSignature);
-    const unchangedFailure = prior && ["unavailable","blocked","no_new_evidence"].includes(prior.outcome);
-    return {
-      ...request,
-      status: unchangedFailure ? "dormant_until_input_changes" : "active",
-      priorAttempt: prior || null,
-    };
+  const capacityByHelper = {
+    "earth-scout": 8,
+    "council-alpha": 4,
+    "council-beta": 4,
+    "deep-resolver": 3,
+  };
+  const enriched = requests
+    .map((request) => {
+      const prior = latestAttempt(roleRuns, request.requestId, request.inputSignature);
+      const unchangedFailure = prior && ["unavailable","blocked","no_new_evidence"].includes(prior.outcome);
+      return {
+        ...request,
+        status: unchangedFailure ? "dormant_until_input_changes" : "candidate",
+        priorAttempt: prior || null,
+      };
+    })
+    .sort((a,b) => b.priority - a.priority || a.ticker.localeCompare(b.ticker));
+
+  const activeCountByHelper = {};
+  const scheduled = enriched.map((request) => {
+    if (request.status === "dormant_until_input_changes") return request;
+    const used = activeCountByHelper[request.helperRole] || 0;
+    const cap = capacityByHelper[request.helperRole] || 0;
+    if (used >= cap) return { ...request, status: "queued_capacity" };
+    activeCountByHelper[request.helperRole] = used + 1;
+    return { ...request, status: "active" };
   });
 
-  const active = enriched.filter((request) => request.status === "active");
+  const active = scheduled.filter((request) => request.status === "active");
+  const dormant = scheduled.filter((request) => request.status === "dormant_until_input_changes");
+  const queued = scheduled.filter((request) => request.status === "queued_capacity");
   return {
     version: 1,
     contract: "earth2036-assist-bus-v1",
@@ -97,17 +129,20 @@ export function buildAssistRequests(graph, packets, roleRuns = [], nowIso = new 
       rootOwnerRetainsAuthority: true,
       oneHelperPerRequest: true,
       unchangedFailedInputSleeps: true,
+      helperCapacityBounded: true,
       canonicalAuthorityUnchanged: true,
     },
-    total: enriched.length,
+    capacityByHelper,
+    total: scheduled.length,
     active: active.length,
-    dormant: enriched.length - active.length,
+    dormant: dormant.length,
+    queued: queued.length,
     byHelper: Object.fromEntries(
       ["earth-scout","council-alpha","council-beta","deep-resolver"].map((role) => [
         role,
         active.filter((request) => request.helperRole === role).length,
       ])
     ),
-    requests: enriched,
+    requests: scheduled,
   };
 }

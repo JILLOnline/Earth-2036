@@ -19,6 +19,7 @@ type WorkgraphMetrics = {
   counts: Record<string, number>;
   canonicalProgressAgeHours?: number | null;
   ownerBacklog?: Record<string, number>;
+  effectiveOwnerBacklog?: Record<string, number>;
   roleActivity?: Record<string, { lastGeneratedAt?: string | null; lastAgeHours?: number | null; last1h?: number; last6h?: number; last24h?: number; total?: number }>;
   healthAlerts?: string[];
   healthy?: boolean;
@@ -132,7 +133,7 @@ export default function SystemPage() {
         </div>
 
         <div className="systemRows">
-          {Object.entries(workgraph.ownerBacklog ?? {}).map(([owner, backlog]) => {
+          {Object.entries(workgraph.effectiveOwnerBacklog ?? workgraph.ownerBacklog ?? {}).map(([owner, backlog]) => {
             const activity = workgraph.roleActivity?.[owner];
             return (
               <div key={owner} className="systemRow">

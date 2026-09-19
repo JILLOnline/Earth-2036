@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "APH",
   "workId": "t0:APH",
-  "generatedAt": "2026-09-19T14:26:04.086Z",
+  "generatedAt": "2026-09-19T15:09:52.821Z",
   "sourceState": "packet_ready",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-09T00:00:00.000Z",
-    "end": "2026-09-19T12:35:34.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T12:35:34.000Z"
+    "end": "2026-09-19T15:07:19.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T15:07:19.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -54,13 +54,14 @@
     "data/runtime/workgraph/evidence/APH-20260919T052753Z-council-beta.json",
     "data/runtime/workgraph/evidence/APH-20260919T111707Z-council-alpha.json",
     "data/runtime/workgraph/evidence/APH-20260919T113242Z-deep-resolver.json",
-    "data/runtime/workgraph/evidence/APH-20260919T123534Z-deep-resolver.json"
+    "data/runtime/workgraph/evidence/APH-20260919T123534Z-deep-resolver.json",
+    "data/runtime/workgraph/evidence/APH-20260919T150719Z-earth-scout.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 8,
-    "historicalEvidenceCount": 8
+    "activeEvidenceCount": 10,
+    "historicalEvidenceCount": 10
   },
   "factorEvidence": {
     "names": [
@@ -80,7 +81,8 @@
       "pricingPower",
       "dataConfidence",
       "marketValuationOpportunity",
-      "governancePower"
+      "governancePower",
+      "thesisQuality"
     ],
     "byPerspective": {
       "source-integrity": [
@@ -130,7 +132,11 @@
           "name": "Demand quality",
           "direction": "positive",
           "basis": "A 1.23:1 book-to-bill and 30% organic growth provide evidence that current demand is not explained only by acquired revenue."
-        }
+        },
+        "financialOperatingMomentum",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "supplyChainResilience"
       ],
       "adversarial-red-team": [
         {
@@ -169,7 +175,10 @@
           "name": "Security-level valuation attractiveness",
           "direction": "unknown",
           "basis": "No canonical live valuation/entry input is part of this Scout work item; no price-based recommendation is promoted."
-        }
+        },
+        "financialOperatingMomentum",
+        "thesisQuality",
+        "scenarioRobustness"
       ]
     }
   },
@@ -227,7 +236,8 @@
     "pricingPower",
     "dataConfidence",
     "marketValuationOpportunity",
-    "governancePower"
+    "governancePower",
+    "thesisQuality"
   ],
   "riskEvidence": {
     "present": true,
@@ -274,6 +284,14 @@
       },
       {
         "risk": "CCS integration/leverage, AI-datacom concentration and non-recurring tariff recoveries can distort normalized economics.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition financing and integration remain material despite raised accretion expectations; Q2 adjusted operating results also included an $80M net tariff-recovery benefit.",
+        "gating": false
+      },
+      {
+        "risk": "Raised acquisition expectations can reverse if integration costs, customer attrition, leverage or demand normalization emerge.",
         "gating": false
       }
     ]
@@ -322,6 +340,14 @@
     {
       "risk": "CCS integration/leverage, AI-datacom concentration and non-recurring tariff recoveries can distort normalized economics.",
       "gating": false
+    },
+    {
+      "risk": "Acquisition financing and integration remain material despite raised accretion expectations; Q2 adjusted operating results also included an $80M net tariff-recovery benefit.",
+      "gating": false
+    },
+    {
+      "risk": "Raised acquisition expectations can reverse if integration costs, customer attrition, leverage or demand normalization emerge.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -334,7 +360,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 4
+    "count": 6
   },
   "causalMapping": {
     "present": true,
@@ -428,16 +454,18 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 12,
-    "uniqueSourceCount": 5,
-    "duplicatesCollapsed": 7,
+    "rawSourceCount": 16,
+    "uniqueSourceCount": 7,
+    "duplicatesCollapsed": 9,
     "missingLineage": 0,
     "uniqueOrigins": [
       "amphenol-ir:2026-07-29:q2-2026-results",
       "amphenol-ir:2026-01-12:commscope-ccs-close",
       "sec:aph:2026-01-09:ccs-pro-forma",
       "amphenol-ir:2026-08-06:stock-split-dividend",
-      "workgraph:APH:packet:20260919T111215Z"
+      "workgraph:APH:packet:20260919T111215Z",
+      "amphenol:2026-07-29:q2-results",
+      "sec:aph:2026q2-10q"
     ]
   },
   "sources": [
@@ -479,6 +507,20 @@
       "kind": "derived",
       "primary": false,
       "originFingerprint": "workgraph:APH:packet:20260919T111215Z"
+    },
+    {
+      "sourceId": "amphenol:2026-07-29:q2-results",
+      "url": "https://investors.amphenol.com/news-and-events/news-details/2026/Amphenol-Reports-Record-Second-Quarter-2026-Results/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "amphenol:2026-07-29:q2-results"
+    },
+    {
+      "sourceId": "sec:aph:2026q2-10q",
+      "url": "https://www.sec.gov/Archives/edgar/data/820313/000110465926089194/aph-20260630x10q.htm",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "sec:aph:2026q2-10q"
     }
   ],
   "contradictions": [
@@ -556,11 +598,19 @@
     {
       "unknown": "Current Alpha lineage is insufficient to assign all remaining required numeric components without manufacturing values.",
       "gating": true
+    },
+    {
+      "unknown": "Sources do not isolate normalized CCS integration margin or prove durable product-level pricing power.",
+      "gating": false
+    },
+    {
+      "unknown": "No distinct authorized live valuation observation was acquired in this assist; valuation remains Alpha-owned.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 2,
-    "nonGatingCount": 6
+    "nonGatingCount": 8
   },
   "gatingIssues": [
     {

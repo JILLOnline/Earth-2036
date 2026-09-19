@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "EDIT",
   "workId": "t0:EDIT",
-  "generatedAt": "2026-09-19T14:26:04.093Z",
+  "generatedAt": "2026-09-19T15:09:52.830Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T14:09:52.074Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-09-19T15:07:19.000Z",
+    "end": "2026-09-19T15:07:19.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T15:07:19.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,50 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/EDIT-20260919T150719Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "catalystScore",
+      "alignment2036",
+      "thesisQuality"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "catalystScore",
+        "alignment2036"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "thesisQuality",
+        "catalystScore"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +113,34 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "catalystScore",
+    "alignment2036",
+    "thesisQuality"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Clinical-stage value remains milestone-dependent and vulnerable to regulatory, safety, efficacy, financing and timing failures.",
+        "gating": false
+      },
+      {
+        "risk": "Treating 2025 milestone plans as current 2026 execution would manufacture certainty; current disclosures must replace them.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Clinical-stage value remains milestone-dependent and vulnerable to regulatory, safety, efficacy, financing and timing failures.",
+      "gating": false
+    },
+    {
+      "risk": "Treating 2025 milestone plans as current 2026 execution would manufacture certainty; current disclosures must replace them.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +148,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +157,71 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 2,
+    "uniqueSourceCount": 1,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "editas:2026:ir-index"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "editas:2026:ir-index",
+      "url": "https://ir.editasmedicine.com/press-releases",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "editas:2026:ir-index"
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "The indexed Q2 2026 release was identified but not retrieved with sufficient detail in this run; no financial or clinical numeric inference is made from older evidence.",
+      "gating": true
+    },
+    {
+      "unknown": "Current cash runway, IND/CTA status and human proof-of-concept timing require direct Q2 2026 evidence.",
+      "gating": true
+    }
+  ],
   "unknownDisposition": {
-    "gatingCount": 0,
+    "gatingCount": 2,
     "nonGatingCount": 0
   },
-  "gatingIssues": [],
-  "confidence": null,
+  "gatingIssues": [
+    {
+      "gate": "missing_current_primary_detail",
+      "question": "Retrieve the August 5, 2026 Q2 results and current EDIT-401 regulatory/clinical status before underwriting.",
+      "nextLawfulSourcePath": "Editas Q2 2026 earnings release / SEC 10-Q and current clinical/regulatory disclosures."
+    },
+    {
+      "gate": "current_execution_unverified",
+      "question": "Did EDIT-401 meet the planned mid-2026 regulatory milestone and what is the current runway?",
+      "nextLawfulSourcePath": "August 5, 2026 earnings release and associated 10-Q."
+    }
+  ],
+  "confidence": 70,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_causal_mapping",
+      "unresolved_gating_issue",
+      "unresolved_gating_unknown"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +235,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +245,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",
@@ -213,6 +257,14 @@
       {
         "failure": "missing_causal_mapping",
         "owner": "council-beta"
+      },
+      {
+        "failure": "unresolved_gating_issue",
+        "owner": "deep-resolver"
+      },
+      {
+        "failure": "unresolved_gating_unknown",
+        "owner": "deep-resolver"
       }
     ]
   }

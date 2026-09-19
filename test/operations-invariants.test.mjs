@@ -227,3 +227,19 @@ test("GitHub workflows use Node-24-compatible checkout/setup actions", async () 
     if (text.includes("actions/setup-node@")) assert.ok(text.includes("actions/setup-node@v5"));
   }
 });
+
+
+test("Workgraph exposes effective adaptive backlog separately from raw preflight ownership", async () => {
+  const sync = await source("scripts/workgraph-sync.mjs");
+  const system = await source("app/system/page.tsx");
+  assert.ok(sync.includes("metrics.effectiveOwnerBacklog"));
+  assert.ok(sync.includes("metrics.routingQueueCounts"));
+  assert.ok(system.includes("effectiveOwnerBacklog ?? workgraph.ownerBacklog"));
+});
+
+test("canonical causal promotion refreshes graph-level freshness metadata", async () => {
+  const promote = await source("scripts/promote-chief-ready.mjs");
+  const refresh = promote.indexOf("prospectiveGraph.updatedAt = new Date().toISOString()");
+  const write = promote.indexOf('writeJson(path.join(RUNTIME, "causal-graph.json"), prospectiveGraph)');
+  assert.ok(refresh >= 0 && write >= 0 && refresh < write);
+});

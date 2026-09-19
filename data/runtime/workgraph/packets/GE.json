@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "GE",
   "workId": "t0:GE",
-  "generatedAt": "2026-09-19T19:35:44.609Z",
+  "generatedAt": "2026-09-19T20:09:16.873Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T19:14:07.647Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-09-19T20:07:11.000Z",
+    "end": "2026-09-19T20:07:11.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T20:07:11.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,55 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/GE-20260919T200711Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "financialOperatingMomentum",
+      "executionCapability",
+      "capacityExpansion",
+      "scenarioRobustness",
+      "thesisQuality"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "financialOperatingMomentum",
+        "executionCapability",
+        "capacityExpansion",
+        "scenarioRobustness"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "executionCapability",
+        "scenarioRobustness",
+        "thesisQuality"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +118,44 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "financialOperatingMomentum",
+    "executionCapability",
+    "capacityExpansion",
+    "scenarioRobustness",
+    "thesisQuality"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "The $11.75B CPP transaction adds integration and capital-allocation risk even as it targets a known casting bottleneck.",
+        "gating": false
+      },
+      {
+        "risk": "Q2 operating margin contracted despite strong growth, reflecting mix, investment and inflation pressure.",
+        "gating": false
+      },
+      {
+        "risk": "Capacity acquisition is an execution response, not proof that supply-chain constraints are already resolved.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "The $11.75B CPP transaction adds integration and capital-allocation risk even as it targets a known casting bottleneck.",
+      "gating": false
+    },
+    {
+      "risk": "Q2 operating margin contracted despite strong growth, reflecting mix, investment and inflation pressure.",
+      "gating": false
+    },
+    {
+      "risk": "Capacity acquisition is an execution response, not proof that supply-chain constraints are already resolved.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +163,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +172,66 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "ge:ir:2026-07-16:q2-results",
+      "ge:ir:2026-09-08:cpp-acquisition"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "ge:q2-2026-results",
+      "url": "https://www.geaerospace.com/news/press-releases/ge-aerospace-announces-second-quarter-2026-results",
+      "kind": "primary-issuer",
+      "primary": true,
+      "originFingerprint": "ge:ir:2026-07-16:q2-results"
+    },
+    {
+      "sourceId": "ge:cpp-acquisition",
+      "url": "https://www.geaerospace.com/news/press-releases/ge-aerospace-acquire-consolidated-precision-products-cpp-expanding-mission-critical",
+      "kind": "primary-issuer",
+      "primary": true,
+      "originFingerprint": "ge:ir:2026-09-08:cpp-acquisition"
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Transaction closing conditions and realized post-close capacity economics remain forward-looking.",
+      "gating": false
+    },
+    {
+      "unknown": "Scout did not independently quantify CPP integration synergies or acquisition-return thresholds.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 95,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +245,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +255,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

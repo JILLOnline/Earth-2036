@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "GFS",
   "workId": "t0:GFS",
-  "generatedAt": "2026-09-19T19:35:44.605Z",
+  "generatedAt": "2026-09-19T20:09:16.867Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T19:14:07.647Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-09-19T20:07:11.000Z",
+    "end": "2026-09-19T20:07:11.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T20:07:11.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,57 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/GFS-20260919T200711Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "strategicPositioning",
+      "executionCapability",
+      "capacityExpansion",
+      "innovationOptionality",
+      "scenarioRobustness",
+      "thesisQuality"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "strategicPositioning",
+        "executionCapability",
+        "capacityExpansion",
+        "innovationOptionality",
+        "scenarioRobustness"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "executionCapability",
+        "scenarioRobustness",
+        "thesisQuality"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +120,37 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "strategicPositioning",
+    "executionCapability",
+    "capacityExpansion",
+    "innovationOptionality",
+    "scenarioRobustness",
+    "thesisQuality"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Several growth vectors depend on future qualification, capacity ramp, customer adoption and public-program execution; announcements are not realized economics.",
+        "gating": false
+      },
+      {
+        "risk": "Strategic breadth can consume capital and management attention before volume economics are proven.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Several growth vectors depend on future qualification, capacity ramp, customer adoption and public-program execution; announcements are not realized economics.",
+      "gating": false
+    },
+    {
+      "risk": "Strategic breadth can consume capital and management attention before volume economics are proven.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +158,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 4
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +167,82 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "gfs:ir:2026-09-17:marvell-sige",
+      "gfs:ir:2026-09-08:qts-award",
+      "gfs:ir:2026-09-09:mps-manufacturing",
+      "gfs:ir:2026-q2-results"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "gfs:marvell-sige-2026",
+      "url": "https://investors.gf.com/news-releases/news-release-details/globalfoundries-and-marvell-expand-collaboration-next-generation",
+      "kind": "primary-issuer",
+      "primary": true,
+      "originFingerprint": "gfs:ir:2026-09-17:marvell-sige"
+    },
+    {
+      "sourceId": "gfs:commerce-quantum-award",
+      "url": "https://investors.gf.com/news-releases/news-release-details/globalfoundries-and-us-department-commerce-finalize-375m-rd",
+      "kind": "primary-issuer",
+      "primary": true,
+      "originFingerprint": "gfs:ir:2026-09-08:qts-award"
+    },
+    {
+      "sourceId": "gfs:mps-manufacturing",
+      "url": "https://investors.gf.com/news-releases/news-release-details/globalfoundries-and-monolithic-power-systems-form-manufacturing",
+      "kind": "primary-issuer",
+      "primary": true,
+      "originFingerprint": "gfs:ir:2026-09-09:mps-manufacturing"
+    },
+    {
+      "sourceId": "gfs:q2-2026-results",
+      "url": "https://investors.gf.com/news-releases/news-release-details/globalfoundries-reports-second-quarter-2026-financial-results",
+      "kind": "primary-issuer",
+      "primary": true,
+      "originFingerprint": "gfs:ir:2026-q2-results"
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Incremental revenue, margins and capital intensity attributable to the Marvell, MPS and quantum programs are not established by these announcements.",
+      "gating": false
+    },
+    {
+      "unknown": "No Scout inference is made about numeric returns or probability-weighted commercialization outcomes.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 94,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +256,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +266,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

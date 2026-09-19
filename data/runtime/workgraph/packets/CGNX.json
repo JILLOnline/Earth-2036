@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CGNX",
   "workId": "t0:CGNX",
-  "generatedAt": "2026-09-19T20:16:29.491Z",
+  "generatedAt": "2026-09-19T20:23:40.613Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-19T19:14:07.647Z"
   },
   "evidenceWindow": {
-    "start": "2026-04-06T00:00:00.000Z",
-    "end": "2026-09-19T11:03:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T11:03:00.000Z"
+    "start": "2026-02-12T00:00:00.000Z",
+    "end": "2026-09-19T20:22:26.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T20:22:26.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/CGNX-20260919T110300Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/CGNX-20260919T110300Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/CGNX-20260919T202226Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -69,7 +72,14 @@
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "crossDivisionLeverage"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
@@ -77,7 +87,13 @@
         "bottleneckControl",
         "substitutionResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "governancePower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -142,6 +158,22 @@
       {
         "risk": "Timely completion of a small divestiture is execution-positive but not sufficient evidence of core growth execution.",
         "gating": false
+      },
+      {
+        "risk": "Competing vision vendors, internal engineering and open-source AI make the technology layer substitutable; durable value capture requires product/integration advantages that remain observable in customer adoption and economics.",
+        "gating": false
+      },
+      {
+        "risk": "Four large end markets represented about 85% of 2025 revenue, creating scenario sensitivity to industrial and electronics/logistics capital cycles even with a broad customer base.",
+        "gating": false
+      },
+      {
+        "risk": "Confidence inflation risk if early OneVision customer counts or product performance claims are extrapolated into durable economic moat without attach-rate, renewal, margin or share evidence.",
+        "gating": false
+      },
+      {
+        "risk": "End-market concentration can amplify industrial-capex cyclicality despite more than 30,000 customers globally.",
+        "gating": false
       }
     ]
   },
@@ -153,6 +185,22 @@
     {
       "risk": "Timely completion of a small divestiture is execution-positive but not sufficient evidence of core growth execution.",
       "gating": false
+    },
+    {
+      "risk": "Competing vision vendors, internal engineering and open-source AI make the technology layer substitutable; durable value capture requires product/integration advantages that remain observable in customer adoption and economics.",
+      "gating": false
+    },
+    {
+      "risk": "Four large end markets represented about 85% of 2025 revenue, creating scenario sensitivity to industrial and electronics/logistics capital cycles even with a broad customer base.",
+      "gating": false
+    },
+    {
+      "risk": "Confidence inflation risk if early OneVision customer counts or product performance claims are extrapolated into durable economic moat without attach-rate, renewal, margin or share evidence.",
+      "gating": false
+    },
+    {
+      "risk": "End-market concentration can amplify industrial-capex cyclicality despite more than 30,000 customers globally.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -163,22 +211,76 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 3
+    "count": 5
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "Cognex embedded AI vision",
+        "to": "automated inspection/identification",
+        "mechanism": "edge sensing and inference convert visual production data into real-time decisions"
+      },
+      {
+        "from": "automated inspection/identification",
+        "to": "manufacturing and logistics throughput/quality",
+        "mechanism": "faster defect detection, traceability and process decisions can reduce manual inspection and quality losses"
+      },
+      {
+        "from": "deployment simplicity/performance",
+        "to": "scaled adoption",
+        "mechanism": "lower specialist burden and line-compatible inference can broaden feasible applications"
+      },
+      {
+        "from": "competitive/open-source substitution",
+        "to": "pricing and share durability",
+        "mechanism": "credible alternatives constrain lock-in and can shift value toward integrators/customers"
+      },
+      {
+        "from": "end-market concentration",
+        "to": "revenue cyclicality",
+        "mechanism": "capex slowdowns across dominant verticals can synchronize demand weakness"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "Cognex embedded AI vision",
+      "to": "automated inspection/identification",
+      "mechanism": "edge sensing and inference convert visual production data into real-time decisions"
+    },
+    {
+      "from": "automated inspection/identification",
+      "to": "manufacturing and logistics throughput/quality",
+      "mechanism": "faster defect detection, traceability and process decisions can reduce manual inspection and quality losses"
+    },
+    {
+      "from": "deployment simplicity/performance",
+      "to": "scaled adoption",
+      "mechanism": "lower specialist burden and line-compatible inference can broaden feasible applications"
+    },
+    {
+      "from": "competitive/open-source substitution",
+      "to": "pricing and share durability",
+      "mechanism": "credible alternatives constrain lock-in and can shift value toward integrators/customers"
+    },
+    {
+      "from": "end-market concentration",
+      "to": "revenue cyclicality",
+      "mechanism": "capex slowdowns across dominant verticals can synchronize demand weakness"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 9,
+    "uniqueSourceCount": 5,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:CGNX:product:insight3900:20260505",
       "issuer:CGNX:product:onevision-ga:20260513",
-      "issuer:CGNX:divestiture:japan-trading:20260406"
+      "issuer:CGNX:divestiture:japan-trading:20260406",
+      "sec:CGNX:2025-10k:competition-endmarkets",
+      "sec:CGNX:2026q1:operations-endmarkets"
     ]
   },
   "sources": [
@@ -205,6 +307,22 @@
       "primary": true,
       "publishedAt": "2026-04-06",
       "originFingerprint": "issuer:CGNX:divestiture:japan-trading:20260406"
+    },
+    {
+      "sourceId": "sec:CGNX:10k:2025",
+      "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120526000012/cgnx-20251231.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-12",
+      "originFingerprint": "sec:CGNX:2025-10k:competition-endmarkets"
+    },
+    {
+      "sourceId": "sec:CGNX:10q:q1-2026",
+      "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120526000040/cgnx-20260405.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-07",
+      "originFingerprint": "sec:CGNX:2026q1:operations-endmarkets"
     }
   ],
   "contradictions": [],
@@ -220,11 +338,19 @@
     {
       "unknown": "Current-quarter organic growth, margin progression and order trends require financial-result evidence from the underwriting lane.",
       "gating": false
+    },
+    {
+      "unknown": "Current evidence does not quantify switching costs, OneVision attach/renewal economics, or the share of customer workflows where Cognex has uniquely defensible control rather than replaceable component status.",
+      "gating": false
+    },
+    {
+      "unknown": "No current packet evidence establishes material dilution/financing stress, customer-level concentration, or a present governance defect; absence of such evidence is retained as uncertainty rather than a fabricated negative finding.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 82,
@@ -233,13 +359,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -249,14 +372,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -273,10 +388,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

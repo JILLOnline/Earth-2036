@@ -438,3 +438,53 @@ test("loader expands composite perspectives and normalizes Beta evidence convent
     await rm(root, { recursive: true, force: true });
   }
 });
+
+
+test("loader normalizes top-level Deep Resolver gate resolution into compiler items", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "earth2036-workgraph-resolver-root-"));
+  try {
+    const dir = path.join(root, "data", "runtime", "workgraph", "evidence");
+    await mkdir(dir, { recursive: true });
+    await writeFile(path.join(dir, "AAA-resolver-root.json"), JSON.stringify({
+      version: 1,
+      role: "deep-resolver",
+      generatedAt: "2026-09-19T04:35:56Z",
+      sourceCycleKey: "20260919T0433Z",
+      ticker: "AAA",
+      workId: "t0:AAA",
+      gateKind: "unresolved_material_contradiction",
+      result: "resolved",
+      resolution: {
+        confidence: 97,
+        recommendedNextState: "researching",
+        evidence: [{
+          statement: "primary resolver fact",
+          source: "https://issuer.example/filing",
+          primary: true,
+          originFingerprint: "issuer:AAA:resolver",
+        }],
+      },
+    }), "utf8");
+
+    const loaded = await loadStructuredEvidence(root);
+    assert.equal(loaded.length, 1);
+    assert.equal(loaded[0].items[0].status, "resolved");
+    assert.ok(loaded[0].items[0].itemId.includes("unresolved_material_contradiction"));
+    assert.equal(loaded[0].confidence, 97);
+    assert.equal(loaded[0].sources[0].primary, true);
+
+    const base = completeEvidence();
+    const beta = base.find((row) => row.perspective === "adversarial-red-team");
+    beta.contradictions = [{ issue: "material tension", material: true }];
+    const packet = compilePromotionPacket(
+      "AAA",
+      [...base, ...loaded],
+      { ticker:"AAA", state:"researching", workId:"t0:AAA" },
+      { registryEntry, methodologyVersion:"1.0.0" },
+    );
+    assert.equal(packet.preflight.failures.includes("unresolved_material_contradiction"), false);
+    assert.ok(packet.evidenceResolution.resolvedGateKinds.includes("material_contradiction"));
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});

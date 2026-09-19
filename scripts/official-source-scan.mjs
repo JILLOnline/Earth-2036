@@ -13,25 +13,47 @@ async function readJson(file, fallback) {
   try { return JSON.parse(await readFile(file, "utf8")); } catch { return fallback; }
 }
 
-async function fetchJson(url, options = {}, timeoutMs = 15000) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), timeoutMs);
-  const started = Date.now();
-  try {
-    const response = await fetch(url, {
-      ...options,
-      signal: controller.signal,
-      headers: {
-        "user-agent": USER_AGENT,
-        accept: "application/json",
-        ...(options.headers || {}),
-      },
-    });
-    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-    return { json: await response.json(), latencyMs: Date.now() - started };
-  } finally {
-    clearTimeout(timer);
+async function fetchJson(url, options = {}, timeoutMs = 15000, maxAttempts = 3) {
+  let lastError = null;
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    const started = Date.now();
+
+    try {
+      const response = await fetch(url, {
+        ...options,
+        signal: controller.signal,
+        headers: {
+          "user-agent": USER_AGENT,
+          accept: "application/json",
+          ...(options.headers || {}),
+        },
+      });
+
+      if (!response.ok) {
+        const error = new Error(`${response.status} ${response.statusText}`);
+        error.status = response.status;
+        throw error;
+      }
+
+      return { json: await response.json(), latencyMs: Date.now() - started };
+    } catch (error) {
+      lastError = error;
+      const status = Number(error?.status || 0);
+      const retryable = status === 0 || status === 429 || status >= 500;
+
+      if (!retryable || attempt === maxAttempts) throw error;
+
+      const backoffMs = 500 * (2 ** (attempt - 1));
+      await new Promise((resolve) => setTimeout(resolve, backoffMs));
+    } finally {
+      clearTimeout(timer);
+    }
   }
+
+  throw lastError || new Error("Source fetch failed without an error.");
 }
 
 async function scanFinra() {

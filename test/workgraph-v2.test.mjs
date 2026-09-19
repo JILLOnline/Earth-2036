@@ -598,8 +598,12 @@ test("calibration contract accepts complete source-addressed canonical records a
   assert.equal(audit.passed, true);
   assert.equal(audit.components.length, 12);
   assert.equal(calibrationBand(20).label, "critical weakness");
+  assert.equal(calibrationBand(20.5).label, "weak");
   assert.equal(calibrationBand(21).label, "weak");
+  assert.equal(calibrationBand(40.5).label, "mixed / unproven");
   assert.equal(calibrationBand(60).label, "mixed / unproven");
+  assert.equal(calibrationBand(60.5).label, "strong");
+  assert.equal(calibrationBand(80.5).label, "exceptional");
   assert.equal(calibrationBand(81).label, "exceptional");
   assert.equal(calibrationBand(101), null);
 });
@@ -724,4 +728,28 @@ test("dependency graph detects circular role assistance and reports dormant dead
   }, "2026-09-19T14:30:00Z");
   assert.equal(shadow.deadlocks.length, 1);
   assert.equal(shadow.canonicalWriteAuthority, false);
+});
+
+
+test("assist bus caps helper capacity instead of flooding one minion", () => {
+  const companies = {};
+  const packets = [];
+  for (let i=0;i<12;i++) {
+    const ticker = `X${i}`;
+    companies[ticker] = { ticker, state:"packet_ready", workId:`t0:${ticker}`, attempts:2 };
+    packets.push({
+      ticker,
+      workId:`t0:${ticker}`,
+      sourceState:"packet_ready",
+      evidencePaths:[`evidence/${ticker}.json`],
+      specialistCoverage:{present:["a","b","c","d","e","f"]},
+      gatingIssues:[],
+      unknowns:[],
+      preflight:{failures:["missing_numeric_score_record"]},
+    });
+  }
+  const bus = buildAssistRequests({companies}, packets, [], "2026-09-19T14:00:00Z");
+  assert.equal(bus.active, 8);
+  assert.equal(bus.queued, 4);
+  assert.equal(bus.byHelper["earth-scout"], 8);
 });

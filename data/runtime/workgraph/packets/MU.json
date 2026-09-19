@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MU",
   "workId": "t0:MU",
-  "generatedAt": "2026-09-19T10:07:26.778Z",
+  "generatedAt": "2026-09-19T10:25:57.885Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-26T00:00:00.000Z",
-    "end": "2026-09-18T01:07:03.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-18T01:07:03.000Z"
+    "end": "2026-09-19T10:24:20.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T10:24:20.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/MU-20260917T2200Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/MU-20260917T2200Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/MU-20260919T102420Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -64,12 +67,40 @@
       "Execution versus narrative",
       "Expectation conversion risk",
       "Capital intensity",
-      "Near-term event risk"
+      "Near-term event risk",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "capitalIntensity",
+      "competitiveResponse",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "HBM4 production and advanced-memory density directly address AI memory bandwidth/capacity constraints."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "AI growth supports demand, but large capacity commitments increase sensitivity to utilization and pricing if demand normalizes."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Memory remains required for compute, but architecture changes and competing HBM/DRAM suppliers can shift economics and share."
+        },
+        {
+          "name": "supplyChainResilience",
+          "direction": "positive",
+          "basis": "Geographic fab expansion and planned long-term wafer supply reduce single-node/input dependence if executed."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "AI memory bottleneck exposure",
@@ -92,7 +123,23 @@
           "basis": "Long-term raw-wafer supply planning and strategic ecosystem financing reduce a critical upstream material dependency if definitive agreements and ramps execute."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "capitalIntensity",
+          "direction": "negative",
+          "basis": "Large multi-year fab and ecosystem commitments increase fixed-cost and cycle-timing exposure."
+        },
+        {
+          "name": "competitiveResponse",
+          "direction": "mixed",
+          "basis": "HBM leadership can shift across generations as competing memory suppliers add capacity and improve products."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "mixed",
+          "basis": "Production milestones are real, but extrapolating them into durable share/margin leadership would outrun disclosed evidence."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "Execution versus narrative",
@@ -162,7 +209,14 @@
     "Execution versus narrative",
     "Expectation conversion risk",
     "Capital intensity",
-    "Near-term event risk"
+    "Near-term event risk",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "capitalIntensity",
+    "competitiveResponse",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -190,6 +244,22 @@
       {
         "risk": "Long-dated capacity projects expose Micron to construction inflation, schedule, yield, policy, geographic and cycle-timing risks.",
         "gating": false
+      },
+      {
+        "risk": "Successor bottlenecks can move from wafer availability to packaging/yield/customer qualification and later to utilization/pricing.",
+        "gating": false
+      },
+      {
+        "risk": "Memory cyclicality and industry supply response can compress pricing/margins before long-dated capacity earns target returns.",
+        "gating": false
+      },
+      {
+        "risk": "Customer/platform concentration in disclosed HBM evidence could make demand transitions more abrupt than aggregate AI growth suggests.",
+        "gating": false
+      },
+      {
+        "risk": "Construction, yield and qualification slippage can convert strategic capacity into underutilized capital.",
+        "gating": false
       }
     ]
   },
@@ -216,6 +286,22 @@
     },
     {
       "risk": "Long-dated capacity projects expose Micron to construction inflation, schedule, yield, policy, geographic and cycle-timing risks.",
+      "gating": false
+    },
+    {
+      "risk": "Successor bottlenecks can move from wafer availability to packaging/yield/customer qualification and later to utilization/pricing.",
+      "gating": false
+    },
+    {
+      "risk": "Memory cyclicality and industry supply response can compress pricing/margins before long-dated capacity earns target returns.",
+      "gating": false
+    },
+    {
+      "risk": "Customer/platform concentration in disclosed HBM evidence could make demand transitions more abrupt than aggregate AI growth suggests.",
+      "gating": false
+    },
+    {
+      "risk": "Construction, yield and qualification slippage can convert strategic capacity into underutilized capital.",
       "gating": false
     }
   ],
@@ -261,6 +347,30 @@
         "to": "future earnings power",
         "mechanism": "successful ramps can capture structurally higher AI-memory demand and domestic supply preference",
         "falsifier": "demand growth slows before ramps, utilization falls, or added industry supply compresses memory pricing/margins"
+      },
+      {
+        "from": "AI accelerator scaling",
+        "to": "HBM/advanced DRAM demand",
+        "mechanism": "larger models and accelerator clusters require more bandwidth and memory capacity",
+        "falsifier": "architectures materially reduce external advanced-memory intensity or competing memory approaches displace HBM/DRAM economics"
+      },
+      {
+        "from": "Micron HBM4 production and capacity expansion",
+        "to": "AI memory supply",
+        "mechanism": "qualified HBM production plus added wafer/packaging capacity can convert bottleneck demand into shipments",
+        "falsifier": "yield, qualification, schedule or utilization failures prevent economic volume"
+      },
+      {
+        "from": "geographic fab and wafer-supply diversification",
+        "to": "supply resilience",
+        "mechanism": "distributed production and longer-duration input planning reduce concentration",
+        "falsifier": "projects slip materially, supply agreements fail, or new capacity is structurally uneconomic"
+      },
+      {
+        "from": "industry capacity response",
+        "to": "memory pricing and returns",
+        "mechanism": "supply growth can outrun demand and reduce utilization/pricing",
+        "falsifier": "sustained demand and disciplined supply keep utilization and margins structurally high through new ramps"
       }
     ]
   },
@@ -294,12 +404,36 @@
       "to": "future earnings power",
       "mechanism": "successful ramps can capture structurally higher AI-memory demand and domestic supply preference",
       "falsifier": "demand growth slows before ramps, utilization falls, or added industry supply compresses memory pricing/margins"
+    },
+    {
+      "from": "AI accelerator scaling",
+      "to": "HBM/advanced DRAM demand",
+      "mechanism": "larger models and accelerator clusters require more bandwidth and memory capacity",
+      "falsifier": "architectures materially reduce external advanced-memory intensity or competing memory approaches displace HBM/DRAM economics"
+    },
+    {
+      "from": "Micron HBM4 production and capacity expansion",
+      "to": "AI memory supply",
+      "mechanism": "qualified HBM production plus added wafer/packaging capacity can convert bottleneck demand into shipments",
+      "falsifier": "yield, qualification, schedule or utilization failures prevent economic volume"
+    },
+    {
+      "from": "geographic fab and wafer-supply diversification",
+      "to": "supply resilience",
+      "mechanism": "distributed production and longer-duration input planning reduce concentration",
+      "falsifier": "projects slip materially, supply agreements fail, or new capacity is structurally uneconomic"
+    },
+    {
+      "from": "industry capacity response",
+      "to": "memory pricing and returns",
+      "mechanism": "supply growth can outrun demand and reduce utilization/pricing",
+      "falsifier": "sustained demand and disciplined supply keep utilization and margins structurally high through new ramps"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 11,
+    "rawSourceCount": 16,
     "uniqueSourceCount": 9,
-    "duplicatesCollapsed": 2,
+    "duplicatesCollapsed": 7,
     "missingLineage": 0,
     "uniqueOrigins": [
       "micron-ir:2026-09-15:512gb-ddr5",
@@ -393,6 +527,12 @@
       "resolution": "Both remain true: production and construction milestones support execution credibility, while the scale and long duration of planned investment leave substantial cycle and capital-allocation risk unresolved.",
       "resolved": true,
       "gating": false
+    },
+    {
+      "claim": "Strong present product execution versus large future-cycle exposure",
+      "resolution": "Both can coexist; present production validates capability while future return durability remains contingent on demand, pricing and utilization.",
+      "resolved": true,
+      "gating": false
     }
   ],
   "contradictionDispositions": {
@@ -401,6 +541,12 @@
       {
         "claim": "Strong current execution evidence versus large forward capacity risk",
         "resolution": "Both remain true: production and construction milestones support execution credibility, while the scale and long duration of planned investment leave substantial cycle and capital-allocation risk unresolved.",
+        "resolved": true,
+        "gating": false
+      },
+      {
+        "claim": "Strong present product execution versus large future-cycle exposure",
+        "resolution": "Both can coexist; present production validates capability while future return durability remains contingent on demand, pricing and utilization.",
         "resolved": true,
         "gating": false
       }
@@ -422,21 +568,27 @@
     {
       "unknown": "September 30 reported results and updated forward guidance are not yet available and must not be inferred in advance.",
       "gating": false
+    },
+    {
+      "unknown": "Long-run HBM4 customer mix, share and economics are not established by the reused evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Current evidence does not quantify customer concentration, contracted HBM economics or return on incremental long-dated capacity.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": 95,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -450,14 +602,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",

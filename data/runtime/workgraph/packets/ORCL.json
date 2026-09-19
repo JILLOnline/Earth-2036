@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ORCL",
   "workId": "t0:ORCL",
-  "generatedAt": "2026-09-19T10:07:26.781Z",
+  "generatedAt": "2026-09-19T10:25:57.888Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-10T00:00:00.000Z",
-    "end": "2026-09-18T07:04:43.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-18T07:04:43.000Z"
+    "end": "2026-09-19T10:24:20.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T10:24:20.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,64 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/ORCL-20260918T0700Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ORCL-20260918T0700Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ORCL-20260919T102420Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "AI/cloud infrastructure exposure",
-      "capacity execution"
+      "capacity execution",
+      "crossDivisionLeverage",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "capitalIntensity",
+      "concentrationRisk",
+      "competitiveResponse",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "crossDivisionLeverage",
+          "direction": "positive",
+          "basis": "Oracle can combine cloud infrastructure with database/application relationships to capture workloads across its stack."
+        },
+        {
+          "name": "bottleneckControl",
+          "direction": "mixed",
+          "basis": "OCI capacity is scaling rapidly but remains dependent on upstream power, chips, networking and datacenter delivery."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Large contracted demand improves visibility while capital intensity and long-duration conversion create downside sensitivity."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "AI/cloud infrastructure exposure",
@@ -71,7 +97,28 @@
           "basis": "triple-digit IaaS growth and very large RPO indicate accelerating infrastructure demand"
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "capitalIntensity",
+          "direction": "negative",
+          "basis": "Rapid datacenter expansion can depress returns if capacity is delivered ahead of economic demand conversion."
+        },
+        {
+          "name": "concentrationRisk",
+          "direction": "mixed",
+          "basis": "The source establishes large RPO but does not disclose concentration within new AI commitments."
+        },
+        {
+          "name": "competitiveResponse",
+          "direction": "mixed",
+          "basis": "OCI competes against larger hyperscale ecosystems and customer self-build options."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "mixed",
+          "basis": "Backlog/RPO should not be treated as cash realization without conversion evidence."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "capacity execution",
@@ -120,7 +167,14 @@
   },
   "factors": [
     "AI/cloud infrastructure exposure",
-    "capacity execution"
+    "capacity execution",
+    "crossDivisionLeverage",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "capitalIntensity",
+    "concentrationRisk",
+    "competitiveResponse",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -132,6 +186,18 @@
       {
         "risk": "Rapid capacity expansion can pressure capital intensity and returns if demand conversion disappoints.",
         "gating": false
+      },
+      {
+        "risk": "Power, chips, construction and financing can become binding successor bottlenecks as OCI expands.",
+        "gating": false
+      },
+      {
+        "risk": "Large RPO can create misleading certainty if contract conversion, customer concentration or capital returns disappoint.",
+        "gating": false
+      },
+      {
+        "risk": "Capacity expansion can pressure cash returns if power/chip costs rise or competitive pricing intensifies.",
+        "gating": false
       }
     ]
   },
@@ -142,6 +208,18 @@
     },
     {
       "risk": "Rapid capacity expansion can pressure capital intensity and returns if demand conversion disappoints.",
+      "gating": false
+    },
+    {
+      "risk": "Power, chips, construction and financing can become binding successor bottlenecks as OCI expands.",
+      "gating": false
+    },
+    {
+      "risk": "Large RPO can create misleading certainty if contract conversion, customer concentration or capital returns disappoint.",
+      "gating": false
+    },
+    {
+      "risk": "Capacity expansion can pressure cash returns if power/chip costs rise or competitive pricing intensifies.",
       "gating": false
     }
   ],
@@ -169,6 +247,24 @@
         "to": "OCI revenue conversion",
         "mechanism": "new MW enable contracted cloud workloads to enter service",
         "falsifier": "capacity grows without corresponding cloud revenue/cash return"
+      },
+      {
+        "from": "AI/cloud demand",
+        "to": "OCI contracted demand/RPO",
+        "mechanism": "customers reserve cloud capacity for compute workloads",
+        "falsifier": "RPO growth or IaaS demand slows materially"
+      },
+      {
+        "from": "datacenter MW additions",
+        "to": "OCI revenue conversion",
+        "mechanism": "new capacity allows contracted workloads to enter service",
+        "falsifier": "capacity additions fail to produce corresponding cloud revenue and cash returns"
+      },
+      {
+        "from": "capacity expansion without economic conversion",
+        "to": "return compression",
+        "mechanism": "capital and operating costs rise faster than realized cloud cash flows",
+        "falsifier": "sustained IaaS growth and cash generation scale with new MW"
       }
     ]
   },
@@ -184,12 +280,30 @@
       "to": "OCI revenue conversion",
       "mechanism": "new MW enable contracted cloud workloads to enter service",
       "falsifier": "capacity grows without corresponding cloud revenue/cash return"
+    },
+    {
+      "from": "AI/cloud demand",
+      "to": "OCI contracted demand/RPO",
+      "mechanism": "customers reserve cloud capacity for compute workloads",
+      "falsifier": "RPO growth or IaaS demand slows materially"
+    },
+    {
+      "from": "datacenter MW additions",
+      "to": "OCI revenue conversion",
+      "mechanism": "new capacity allows contracted workloads to enter service",
+      "falsifier": "capacity additions fail to produce corresponding cloud revenue and cash returns"
+    },
+    {
+      "from": "capacity expansion without economic conversion",
+      "to": "return compression",
+      "mechanism": "capital and operating costs rise faster than realized cloud cash flows",
+      "falsifier": "sustained IaaS growth and cash generation scale with new MW"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "oracle-ir:q1-fy2027:2026-09-10"
@@ -205,10 +319,24 @@
       "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Strong growth and capacity delivery versus uncertain incremental returns",
+      "resolution": "Current execution is validated, while return durability and concentration remain legitimate non-gating unknowns.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Strong growth and capacity delivery versus uncertain incremental returns",
+        "resolution": "Current execution is validated, while return durability and concentration remain legitimate non-gating unknowns.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
   "unknowns": [
     {
@@ -218,21 +346,27 @@
     {
       "unknown": "No canonical valuation or return-on-incremental-capital conclusion is asserted.",
       "gating": false
+    },
+    {
+      "unknown": "Customer concentration, contract economics and return on incremental datacenter capital are not established by the reused source.",
+      "gating": false
+    },
+    {
+      "unknown": "Current evidence does not quantify customer concentration, cancellation terms or return on incremental OCI capital.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 95,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -246,14 +380,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",

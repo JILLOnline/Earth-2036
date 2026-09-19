@@ -1,0 +1,43 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-deep-resolver-evidence",
+  "ticker": "AA",
+  "entityId": "AA",
+  "workId": "t0:AA",
+  "sourceCycleKey": "20260919T0400Z",
+  "role": "deep-resolver",
+  "generatedAt": "2026-09-19T05:32:29Z",
+  "directive": {
+    "companyWorkId": "t0:AA",
+    "gatingQuestion": "Are Alcoa's record Q2 financial results and reduced 2026 alumina production guidance mutually inconsistent, or can both be reconciled by the issuer's disclosed price, shipment and Pinjarra operating drivers?",
+    "whyItMatters": "The packet routes this material contradiction to deep-resolver; unresolved contradiction blocks promotion.",
+    "preferredPrimarySource": "Alcoa Q2 2026 results release",
+    "lawfulFallbacks": ["Alcoa SEC-filed Q2 materials", "Alcoa earnings presentation/transcript"],
+    "successCondition": "Establish whether the record financial result and reduced alumina guidance can simultaneously be true, with the operational weakness preserved as risk if resolved.",
+    "attemptCount": 1
+  },
+  "items": [
+    {
+      "question": "Record financial results coexist with reduced alumina production guidance from operational instability.",
+      "result": "resolved",
+      "evidence": [
+        "Alcoa reported record quarterly revenue of about $4.0B, $407M attributable net income, $562M adjusted net income, $901M adjusted EBITDA excluding special items, $608M operating cash flow and $422M free cash flow in Q2 2026.",
+        "The same release says alumina production fell 6% sequentially to 2.2Mt, primarily from lower Pinjarra production after instability beginning in late March was worsened by cyclone-related gas disruption.",
+        "Alcoa reduced 2026 alumina production guidance to 9.5-9.6Mt and shipments to 11.5-11.6Mt for that reason, while keeping Aluminum production/shipment guidance unchanged.",
+        "The issuer attributed the strong quarter primarily to higher aluminum prices and shipments, partly offset by higher Alumina production costs, and expected Q3 Alumina EBITDA to benefit from recovered Pinjarra stability and lower energy prices."
+      ],
+      "evidenceVsInference": {"evidence":"Issuer-reported financial results, production changes, guidance revisions, causal explanation and Q3 operating expectation.","inference":"Record financial results can coexist with a localized alumina production problem because favorable aluminum pricing/shipments and other operations outweighed the Pinjarra drag. The Pinjarra issue remains execution/supply risk, not a factual contradiction."},
+      "confidence": 99,
+      "gateImpact": "close_contradiction_gate_preserve_operational_risk"
+    }
+  ],
+  "sources": [
+    {"sourceId":"issuer:AA:2026Q2","url":"https://investors.alcoa.com/press-releases/press-release-details/2026/Alcoa-Corporation-Reports-Second-Quarter-2026-Results/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-07-16","originFingerprint":"issuer:AA:2026Q2"}
+  ],
+  "contradictionStatus": "resolved",
+  "confidence": 99,
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "recommendedDisposition": "Close unresolved_material_contradiction for AA on deterministic reconcile. Preserve Pinjarra instability, reduced alumina guidance, commodity sensitivity and acquisition financing as underwriting/risk evidence; other Alpha/Beta gates remain independent.",
+  "lineage": {"inputPacket":"data/runtime/workgraph/packets/AA.json","inputEvidence":["data/runtime/workgraph/evidence/AA-20260919T050657Z-earth-scout.json"],"beganFromGitHead":"f6da2d9f56e5b2b73b834332455b560850b49f1e"}
+}

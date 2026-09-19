@@ -1,6 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { REQUIRED_PERSPECTIVES, applyPacketState, buildRoutingQueues, compilePromotionPacket, computeWorkgraphMetrics, loadStructuredEvidence, migrateLegacyQueue, validateWorkgraph } from "../scripts/lib/workgraph-v2.mjs";
+import { auditCalibrationRecord, calibrationBand } from "../scripts/lib/calibration-engine.mjs";
+import { buildAssistRequests } from "../scripts/lib/assist-bus.mjs";
 import { mkdtemp, mkdir, writeFile, rm } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -584,4 +586,78 @@ test("metrics flag stalled frontier and fresh zero-closure work as unhealthy", (
   assert.equal(metrics.healthy, false);
   assert.ok(metrics.healthAlerts.some((x) => x.startsWith("t0_frontier_stalled_over_2h_without_chief_ready")));
   assert.ok(metrics.healthAlerts.some((x) => x.startsWith("owner_recent_run_zero_closure:council-alpha")));
+});
+
+
+test("calibration contract accepts complete source-addressed canonical records and exposes bounded bands", () => {
+  const record = completeEvidence().find((row) => row.perspective === "company-underwriting").scoreRecord;
+  const audit = auditCalibrationRecord(record);
+  assert.equal(audit.passed, true);
+  assert.equal(audit.components.length, 12);
+  assert.equal(calibrationBand(20).label, "critical weakness");
+  assert.equal(calibrationBand(21).label, "weak");
+  assert.equal(calibrationBand(60).label, "mixed / unproven");
+  assert.equal(calibrationBand(81).label, "exceptional");
+  assert.equal(calibrationBand(101), null);
+});
+
+test("assist bus creates bounded Scout help for stalled Alpha source gaps without transferring ownership", () => {
+  const graph = {
+    companies: {
+      AAA: { ticker: "AAA", state: "packet_ready", workId: "t0:AAA", attempts: 2 },
+    },
+  };
+  const packets = [{
+    ticker: "AAA",
+    workId: "t0:AAA",
+    sourceState: "packet_ready",
+    evidencePaths: ["evidence/a.json"],
+    gatingIssues: [],
+    unknowns: [],
+    preflight: {
+      failures: ["missing_factor_evidence", "missing_numeric_score_record"],
+    },
+  }];
+  const bus = buildAssistRequests(graph, packets, [], "2026-09-19T14:00:00Z");
+  assert.equal(bus.active, 1);
+  assert.equal(bus.requests[0].rootOwner, "council-alpha");
+  assert.equal(bus.requests[0].helperRole, "earth-scout");
+  assert.equal(bus.requests[0].capability, "source-acquisition");
+  assert.equal(bus.policy.rootOwnerRetainsAuthority, true);
+});
+
+test("assist bus sleeps an unchanged failed request and reactivates when packet inputs change", () => {
+  const graph = {
+    companies: {
+      AAA: { ticker: "AAA", state: "packet_ready", workId: "t0:AAA", attempts: 3 },
+    },
+  };
+  const packet = {
+    ticker: "AAA",
+    workId: "t0:AAA",
+    sourceState: "packet_ready",
+    evidencePaths: ["evidence/a.json"],
+    gatingIssues: [],
+    unknowns: [],
+    preflight: { failures: ["missing_numeric_score_record"] },
+  };
+  const first = buildAssistRequests(graph, [packet], [], "2026-09-19T14:00:00Z");
+  const request = first.requests[0];
+  const roleRuns = [{
+    role: "earth-scout",
+    generatedAt: "2026-09-19T14:05:00Z",
+    assistAttempts: [{
+      requestId: request.requestId,
+      inputSignature: request.inputSignature,
+      outcome: "no_new_evidence",
+    }],
+  }];
+  const dormant = buildAssistRequests(graph, [packet], roleRuns, "2026-09-19T14:10:00Z");
+  assert.equal(dormant.active, 0);
+  assert.equal(dormant.dormant, 1);
+
+  const changedPacket = { ...packet, evidencePaths: ["evidence/a.json", "evidence/new.json"] };
+  const reactivated = buildAssistRequests(graph, [changedPacket], roleRuns, "2026-09-19T14:20:00Z");
+  assert.equal(reactivated.active, 1);
+  assert.notEqual(reactivated.requests[0].inputSignature, request.inputSignature);
 });

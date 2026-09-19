@@ -1,0 +1,30 @@
+{
+  "version":1,
+  "role":"earth-scout",
+  "generatedAt":"2026-09-19T21:02:25Z",
+  "startingGitHead":"00083530842c2992769858b1197c5ebfaa371fb6",
+  "companiesInspected":["GLW","GNRC","GOOGL","HEI","HII","HON"],
+  "evidencePairsCompleted":5,
+  "artifacts":[
+    "data/runtime/workgraph/evidence/GLW-20260919T210225Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/GNRC-20260919T210225Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/GOOGL-20260919T210225Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/HII-20260919T210225Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/HON-20260919T210225Z-earth-scout.json"
+  ],
+  "assistAttempts":[
+    {
+      "requestId":"assist:MU:council-alpha:earth-scout:source-acquisition",
+      "inputSignature":"a432b0751f9ccfcf0ea3",
+      "outcome":"not_retried_unchanged_failed_input; request remained active but prior attempt with identical signature already failed to add evidence, so learning-loop policy prevented duplicate search",
+      "newEvidencePaths":[],
+      "sourcePathsAttempted":["reused assist-bus priorAttempt record; no repeated search"]
+    }
+  ],
+  "blockers":[
+    {"ticker":"HEI","result":"not_completed","blocker":"Primary HEICO source retrieval did not return a sufficiently current, source-addressed evidence set during this bounded run; no artifact manufactured. Continue next run with materially different HEICO IR/SEC source paths."}
+  ],
+  "result":"Five ranked owned Scout packets received discovery-weak-signals plus expectations-execution evidence. MU assist was intentionally not retried because its unchanged input signature had already failed. HEI remained exact-blocked rather than filled with weak evidence.",
+  "repeatedBlocker":false,
+  "changedStrategy":"Prioritized current issuer-primary milestone evidence and source-addressed execution signals; avoided repeating the dormant-equivalent MU acquisition path."
+}

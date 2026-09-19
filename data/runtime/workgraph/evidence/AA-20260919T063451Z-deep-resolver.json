@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-deep-resolver-evidence",
+  "ticker": "AA",
+  "entityId": "AA",
+  "workId": "t0:AA",
+  "role": "deep-resolver",
+  "generatedAt": "2026-09-19T06:34:51Z",
+  "directive": {
+    "companyWorkId": "t0:AA",
+    "gatingQuestion": "Does Alcoa's currently routed record-results-versus-reduced-alumina-guidance contradiction remain unresolved after the active resolver evidence reconciled the disclosed drivers?",
+    "whyItMatters": "The routing artifact still assigns unresolved_material_contradiction to deep-resolver despite active primary-source-backed disposition, preventing closure.",
+    "preferredPrimarySource": "Alcoa Q2 2026 results release already referenced by the packet",
+    "lawfulFallbacks": ["Alcoa SEC-filed Q2 materials", "active prior deep-resolver evidence"],
+    "successCondition": "Confirm whether the two reported conditions can simultaneously be true and isolate any remaining routing defect.",
+    "attemptCount": 2
+  },
+  "result": "resolved",
+  "finding": "The conditions are compatible: favorable aluminum pricing and shipments supported record financial results while Pinjarra instability reduced alumina production and guidance. The operational weakness remains a risk, not a factual contradiction. Current deep-resolver routing is stale relative to active resolver evidence.",
+  "evidenceVsInference": {
+    "evidence": "Active evidence AA-20260919T053229Z-deep-resolver.json uses Alcoa's Q2 release to document record financial metrics, lower Pinjarra production, reduced alumina guidance, and the offsetting aluminum price/shipment drivers.",
+    "inference": "The contradiction gate should close while Pinjarra instability and commodity sensitivity remain underwriting risks."
+  },
+  "sources": [
+    {"sourceId":"issuer:AA:2026Q2","url":"https://investors.alcoa.com/press-releases/press-release-details/2026/Alcoa-Corporation-Reports-Second-Quarter-2026-Results/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-07-16"},
+    {"sourceId":"resolver:AA:active","path":"data/runtime/workgraph/evidence/AA-20260919T053229Z-deep-resolver.json","kind":"structured_evidence","primary":false}
+  ],
+  "contradictionStatus": "resolved",
+  "confidence": 99,
+  "gateImpact": "close_unresolved_material_contradiction_on_reconcile",
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "recommendedDisposition": "Remove deep-resolver ownership for AA on deterministic reconcile; preserve Pinjarra instability, reduced alumina guidance and commodity sensitivity as risk evidence.",
+  "lineage": {
+    "inputPacket": "data/runtime/workgraph/packets/AA.json",
+    "inputEvidence": ["data/runtime/workgraph/evidence/AA-20260919T053229Z-deep-resolver.json"],
+    "beganFromGitHead": "ede93b6d8cea2a05b84459928e1318d358dc7b81"
+  }
+}

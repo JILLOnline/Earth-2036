@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "role": "earth-scout",
+  "generatedAt": "2026-09-19T04:02:26Z",
+  "sourceCycleKey": "20260919T0300Z",
+  "beganFromGitHead": "16729da6ed6c446fbeff10390ff3962ad8c12b0a",
+  "companiesInspected": ["ADI"],
+  "evidencePairsCompleted": 0,
+  "artifacts": [],
+  "result": "closure_frontier_not_safely_resolved_within_run_capacity",
+  "blockers": [
+    {
+      "kind": "routing_frontier_resolution_incomplete",
+      "detail": "Current workgraph metrics show earth-scout backlog 193, 46 companies researching, 2 packet_ready, 0 chief_ready and 12 canonical. Closure-first routing requires the stable highest-priority partially-complete Scout frontier. The aggregate metrics expose counts but not the exact ordered ticker/work-id frontier, while state.json is a 723602-byte coordination surface that could not be defensibly reduced to an exact ordered Scout batch through the available repository read surface in this run. ADI was inspected as a known partially-complete item; its current Scout pair already exists with explicit supersession lineage, so no duplicate replacement was written. No fresh ordinary companies were opened and no evidence was fabricated.",
+      "gateImpact": "No new Scout perspective pairs completed; existing T0 frontier remains unchanged.",
+      "recommendedNextState": "Preserve workgraph routing and select the exact stable Scout-owned closure frontier once the ordered routing surface is directly readable; do not scatter into fresh ordinary companies meanwhile."
+    },
+    {
+      "kind": "cross_role_staleness_observed",
+      "detail": "Current workgraph health reports council-alpha backlog 237 and owner_stale_with_backlog:council-alpha:237. This is outside Scout authority but reinforces closure-first behavior rather than broad expansion.",
+      "gateImpact": "Downstream convergence is constrained by Alpha throughput, so Scout should avoid creating unnecessary new ordinary work.",
+      "recommendedNextState": "Council Alpha should resume its routed closure frontier independently; Scout should continue prioritizing partially-complete eligible work."
+    }
+  ]
+}

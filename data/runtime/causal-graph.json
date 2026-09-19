@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-19T16:23:09.173Z",
+  "updatedAt": "2026-09-19T17:14:38.063Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -266,6 +266,18 @@
       "type": "market",
       "label": "high-speed copper/fiber interconnect demand",
       "description": "larger accelerator systems require more high-bandwidth physical links"
+    },
+    {
+      "id": "company:ASTS",
+      "type": "company",
+      "label": "AST SpaceMobile, Inc.",
+      "description": "AST SpaceMobile's structural thesis links ordinary mobile-device connectivity demand to orbital direct-to-device infrastructure: greater BlueBird constellation density can increase coverage/capacity available through partner networks."
+    },
+    {
+      "id": "market:ASTS-direct-to-device-coverage-and-capacity",
+      "type": "market",
+      "label": "direct-to-device coverage and capacity",
+      "description": "additional functioning satellites increase orbital service availability to partner networks"
     }
   ],
   "edges": [
@@ -669,6 +681,21 @@
       "sourceIds": [
         "amphenol-ir:2026-07-29:q2-2026-results",
         "amphenol-ir:2026-01-12:commscope-ccs-close"
+      ],
+      "observedAt": "2026-09-19T05:27:53Z"
+    },
+    {
+      "id": "edge:ASTS-structural-exposure",
+      "from": "company:ASTS",
+      "to": "market:ASTS-direct-to-device-coverage-and-capacity",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 67,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "asts:journey:observed-2026-09-18",
+        "asts:ir-quarterly-results:observed-2026-09-18"
       ],
       "observedAt": "2026-09-19T05:27:53Z"
     }
@@ -1134,6 +1161,25 @@
       "observedAt": "2026-09-19T05:27:53Z",
       "thesis": "Amphenol maps structurally to the physical interconnect bottleneck created by rising AI cluster bandwidth and density: larger systems require more high-speed copper/fiber links, while CCS expands fiber-optic content capture.",
       "falsifier": "architectures materially reduce physical interconnect intensity or competitors displace Amphenol at scale"
+    },
+    {
+      "id": "signal:ASTS-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:ASTS-direct-to-device-coverage-and-capacity",
+      "affectedNodeIds": [
+        "company:ASTS"
+      ],
+      "direction": 1,
+      "magnitude": 67,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "asts:journey:observed-2026-09-18",
+        "asts:ir-quarterly-results:observed-2026-09-18"
+      ],
+      "observedAt": "2026-09-19T05:27:53Z",
+      "thesis": "AST SpaceMobile's structural thesis links ordinary mobile-device connectivity demand to orbital direct-to-device infrastructure: greater BlueBird constellation density can increase coverage/capacity available through partner networks.",
+      "falsifier": "launched satellites fail commissioning or coverage/capacity does not scale with deployment"
     }
   ],
   "roadmapMilestones": [

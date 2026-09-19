@@ -1,5 +1,6 @@
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { MIN_PUBLISHABLE_DATA_CONFIDENCE, REQUIRED_SCORE_COMPONENTS } from "./runtime-gates.mjs";
 
 export const WORKGRAPH_VERSION = 2;
 export const WORKGRAPH_STATES = ["observed","triaged","researching","evidence_complete","packet_ready","chief_ready","canonical","blocked"];
@@ -373,7 +374,7 @@ export function compilePromotionPacket(ticker, evidenceRows, graphRow, options =
   const underwritingRows = relevant.filter((r) => r.perspective === "company-underwriting");
   const scoreCandidates = underwritingRows.filter((r) => r.scoreRecord).sort((a,b) => Date.parse(b.generatedAt || 0) - Date.parse(a.generatedAt || 0));
   const rawScoreRecord = scoreCandidates[0]?.scoreRecord || null;
-  const requiredScoreComponents = ["thesisQuality","financialOperatingMomentum","marketValuationOpportunity","catalystScore","governancePower","alignment2036","crossDivisionLeverage","bottleneckControl","scenarioRobustness","substitutionResilience","supplyChainResilience","pricingPower"];
+  const requiredScoreComponents = REQUIRED_SCORE_COMPONENTS;
   const normalizedComponents = rawScoreRecord
     ? Object.fromEntries(requiredScoreComponents.map((key) => [key, rawScoreRecord.components?.[key] ?? rawScoreRecord[key]]))
     : null;
@@ -391,7 +392,7 @@ export function compilePromotionPacket(ticker, evidenceRows, graphRow, options =
     Number.isFinite(scoreRecord.earthScore) &&
     Number.isFinite(scoreRecord.risk) &&
     Number.isFinite(scoreRecord.dataConfidence) &&
-    scoreRecord.dataConfidence >= (options.minConfidence ?? 60) &&
+    scoreRecord.dataConfidence >= (options.minConfidence ?? MIN_PUBLISHABLE_DATA_CONFIDENCE) &&
     requiredScoreComponents.every((key) => Number.isFinite(scoreRecord.components?.[key])) &&
     factorEvidenceCoverageResult.complete &&
     scoreRiskEvidenceComplete &&

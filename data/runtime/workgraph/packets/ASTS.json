@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ASTS",
   "workId": "t0:ASTS",
-  "generatedAt": "2026-09-19T11:12:15.025Z",
+  "generatedAt": "2026-09-19T11:18:34.326Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-18T13:06:54.000Z",
-    "end": "2026-09-19T05:27:53.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T05:27:53.000Z"
+    "end": "2026-09-19T11:17:07.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T11:17:07.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -34,29 +34,31 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
-    ],
-    "missing": [
+      "adversarial-red-team",
       "source-integrity",
       "company-underwriting"
     ],
-    "complete": false
+    "missing": [],
+    "complete": true
   },
   "perspectives": [
     "discovery-weak-signals",
     "expectations-execution",
     "structural-causal",
-    "adversarial-red-team"
+    "adversarial-red-team",
+    "source-integrity",
+    "company-underwriting"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/ASTS-20260918T1200Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/ASTS-20260919T052753Z-council-beta.json"
+    "data/runtime/workgraph/evidence/ASTS-20260919T052753Z-council-beta.json",
+    "data/runtime/workgraph/evidence/ASTS-20260919T111707Z-council-alpha.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -66,11 +68,24 @@
       "bottleneckControl",
       "scenarioRobustness",
       "financialOperatingMomentum",
-      "substitutionResilience"
+      "substitutionResilience",
+      "dataConfidence",
+      "marketValuationOpportunity",
+      "governancePower",
+      "supplyChainResilience",
+      "pricingPower"
     ],
     "byPerspective": {
-      "source-integrity": [],
-      "company-underwriting": [],
+      "source-integrity": [
+        "dataConfidence"
+      ],
+      "company-underwriting": [
+        "financialOperatingMomentum",
+        "marketValuationOpportunity",
+        "governancePower",
+        "supplyChainResilience",
+        "pricingPower"
+      ],
       "structural-causal": [
         {
           "name": "alignment2036",
@@ -165,7 +180,12 @@
     "bottleneckControl",
     "scenarioRobustness",
     "financialOperatingMomentum",
-    "substitutionResilience"
+    "substitutionResilience",
+    "dataConfidence",
+    "marketValuationOpportunity",
+    "governancePower",
+    "supplyChainResilience",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -192,6 +212,10 @@
       },
       {
         "risk": "Regulatory/spectrum and partner-commercialization dependencies can delay revenue after technical deployment.",
+        "gating": false
+      },
+      {
+        "risk": "Capital intensity, commissioning, spectrum/regulatory access and partner monetization can lag launch progress.",
         "gating": false
       }
     ]
@@ -220,13 +244,19 @@
     {
       "risk": "Regulatory/spectrum and partner-commercialization dependencies can delay revenue after technical deployment.",
       "gating": false
+    },
+    {
+      "risk": "Capital intensity, commissioning, spectrum/regulatory access and partner monetization can lag launch progress.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
-    "available": false,
+    "available": true,
     "factors": [],
-    "confidenceFloor": null,
-    "evidencePaths": []
+    "confidenceFloor": 94,
+    "evidencePaths": [
+      "data/runtime/workgraph/evidence/ASTS-20260919T111707Z-council-alpha.json"
+    ]
   },
   "primarySourcePresence": {
     "present": true,
@@ -300,9 +330,9 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 8,
+    "rawSourceCount": 11,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 6,
+    "duplicatesCollapsed": 9,
     "missingLineage": 0,
     "uniqueOrigins": [
       "asts:journey:observed-2026-09-18",
@@ -348,33 +378,35 @@
     {
       "unknown": "Liquidity runway, dilution requirements, service-level KPIs, competitive economics and current commercial conversion require Alpha underwriting or additional primary evidence.",
       "gating": false
+    },
+    {
+      "unknown": "Liquidity runway, dilution requirements, service-level KPIs, commercial conversion and current valuation are not source-addressed sufficiently for numeric scoring.",
+      "gating": true
     }
   ],
   "unknownDisposition": {
-    "gatingCount": 0,
+    "gatingCount": 1,
     "nonGatingCount": 4
   },
-  "gatingIssues": [],
+  "gatingIssues": [
+    {
+      "gate": "missing_numeric_score_record",
+      "question": "Required 12-component scoreRecord cannot be emitted without source-addressed liquidity/dilution, commercial economics, valuation, governance and supply-chain evidence.",
+      "nextLawfulSourcePath": "Latest 10-Q/earnings materials and balance-sheet/cash-flow disclosures; latest proxy/governance filing; authorized current market/valuation observation; issuer disclosures on satellite procurement, launch commitments and carrier commercialization."
+    }
+  ],
   "confidence": 87,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_specialist_perspective:source-integrity",
-      "missing_specialist_perspective:company-underwriting",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence"
+      "missing_data_confidence_evidence",
+      "unresolved_gating_issue",
+      "unresolved_gating_unknown"
     ],
     "routing": [
-      {
-        "failure": "missing_specialist_perspective:source-integrity",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:company-underwriting",
-        "owner": "council-alpha"
-      },
       {
         "failure": "missing_factor_evidence",
         "owner": "council-alpha"
@@ -390,6 +422,14 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
+      },
+      {
+        "failure": "unresolved_gating_issue",
+        "owner": "deep-resolver"
+      },
+      {
+        "failure": "unresolved_gating_unknown",
+        "owner": "deep-resolver"
       }
     ]
   }

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "APH",
   "workId": "t0:APH",
-  "generatedAt": "2026-09-19T11:12:15.024Z",
+  "generatedAt": "2026-09-19T11:18:34.325Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-09T00:00:00.000Z",
-    "end": "2026-09-19T05:27:53.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T05:27:53.000Z"
+    "end": "2026-09-19T11:17:07.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T11:17:07.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -34,29 +34,31 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
-    ],
-    "missing": [
+      "adversarial-red-team",
       "source-integrity",
       "company-underwriting"
     ],
-    "complete": false
+    "missing": [],
+    "complete": true
   },
   "perspectives": [
     "discovery-weak-signals",
     "expectations-execution",
     "structural-causal",
-    "adversarial-red-team"
+    "adversarial-red-team",
+    "source-integrity",
+    "company-underwriting"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/APH-20260917T2200Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/APH-20260919T052753Z-council-beta.json"
+    "data/runtime/workgraph/evidence/APH-20260919T052753Z-council-beta.json",
+    "data/runtime/workgraph/evidence/APH-20260919T111707Z-council-alpha.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -73,11 +75,22 @@
       "scenarioRobustness",
       "financialOperatingMomentum",
       "supplyChainResilience",
-      "pricingPower"
+      "pricingPower",
+      "dataConfidence",
+      "marketValuationOpportunity",
+      "governancePower"
     ],
     "byPerspective": {
-      "source-integrity": [],
-      "company-underwriting": [],
+      "source-integrity": [
+        "dataConfidence"
+      ],
+      "company-underwriting": [
+        "financialOperatingMomentum",
+        "marketValuationOpportunity",
+        "governancePower",
+        "supplyChainResilience",
+        "pricingPower"
+      ],
       "structural-causal": [
         {
           "name": "bottleneckControl",
@@ -209,7 +222,10 @@
     "scenarioRobustness",
     "financialOperatingMomentum",
     "supplyChainResilience",
-    "pricingPower"
+    "pricingPower",
+    "dataConfidence",
+    "marketValuationOpportunity",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -252,6 +268,10 @@
       },
       {
         "risk": "Q2 profitability included an $80M net tariff-recovery benefit that is not necessarily recurring.",
+        "gating": false
+      },
+      {
+        "risk": "CCS integration/leverage, AI-datacom concentration and non-recurring tariff recoveries can distort normalized economics.",
         "gating": false
       }
     ]
@@ -296,13 +316,19 @@
     {
       "risk": "Q2 profitability included an $80M net tariff-recovery benefit that is not necessarily recurring.",
       "gating": false
+    },
+    {
+      "risk": "CCS integration/leverage, AI-datacom concentration and non-recurring tariff recoveries can distort normalized economics.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
-    "available": false,
+    "available": true,
     "factors": [],
-    "confidenceFloor": null,
-    "evidencePaths": []
+    "confidenceFloor": 93,
+    "evidencePaths": [
+      "data/runtime/workgraph/evidence/APH-20260919T111707Z-council-alpha.json"
+    ]
   },
   "primarySourcePresence": {
     "present": true,
@@ -400,15 +426,16 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 10,
-    "uniqueSourceCount": 4,
-    "duplicatesCollapsed": 6,
+    "rawSourceCount": 12,
+    "uniqueSourceCount": 5,
+    "duplicatesCollapsed": 7,
     "missingLineage": 0,
     "uniqueOrigins": [
       "amphenol-ir:2026-07-29:q2-2026-results",
       "amphenol-ir:2026-01-12:commscope-ccs-close",
       "sec:aph:2026-01-09:ccs-pro-forma",
-      "amphenol-ir:2026-08-06:stock-split-dividend"
+      "amphenol-ir:2026-08-06:stock-split-dividend",
+      "workgraph:APH:packet:20260919T111215Z"
     ]
   },
   "sources": [
@@ -443,6 +470,13 @@
       "publishedAt": "2026-08-06",
       "originFingerprint": "amphenol-ir:2026-08-06:stock-split-dividend",
       "sourceId": null
+    },
+    {
+      "sourceId": "packet:APH:20260919T111215Z",
+      "url": "https://github.com/JILLOnline/Earth-2036/blob/main/data/runtime/workgraph/packets/APH.json",
+      "kind": "derived",
+      "primary": false,
+      "originFingerprint": "workgraph:APH:packet:20260919T111215Z"
     }
   ],
   "contradictions": [
@@ -512,33 +546,39 @@
     {
       "unknown": "Long-run CCS synergy realization, integration costs and customer-level concentration remain future evidence.",
       "gating": false
+    },
+    {
+      "unknown": "No source-addressed security-level valuation input is present for marketValuationOpportunity.",
+      "gating": true
+    },
+    {
+      "unknown": "Current Alpha lineage is insufficient to assign all remaining required numeric components without manufacturing values.",
+      "gating": true
     }
   ],
   "unknownDisposition": {
-    "gatingCount": 0,
+    "gatingCount": 2,
     "nonGatingCount": 6
   },
-  "gatingIssues": [],
-  "confidence": 94,
+  "gatingIssues": [
+    {
+      "gate": "missing_numeric_score_record",
+      "question": "Required 12-component scoreRecord cannot be emitted until valuation, governance and remaining source-addressed numeric factor evidence is acquired.",
+      "nextLawfulSourcePath": "Latest authorized market/valuation observation plus latest proxy/10-Q/10-K and issuer transaction/integration disclosures."
+    }
+  ],
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_specialist_perspective:source-integrity",
-      "missing_specialist_perspective:company-underwriting",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence"
+      "missing_data_confidence_evidence",
+      "unresolved_gating_issue",
+      "unresolved_gating_unknown"
     ],
     "routing": [
-      {
-        "failure": "missing_specialist_perspective:source-integrity",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:company-underwriting",
-        "owner": "council-alpha"
-      },
       {
         "failure": "missing_factor_evidence",
         "owner": "council-alpha"
@@ -554,6 +594,14 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
+      },
+      {
+        "failure": "unresolved_gating_issue",
+        "owner": "deep-resolver"
+      },
+      {
+        "failure": "unresolved_gating_unknown",
+        "owner": "deep-resolver"
       }
     ]
   }

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-19T20:16:33.598Z",
+  "updatedAt": "2026-09-19T22:10:15.724Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -302,6 +302,18 @@
       "type": "market",
       "label": "automation adoption",
       "description": "robotics and orchestration raise throughput and reduce manual handling dependence"
+    },
+    {
+      "id": "company:AME",
+      "type": "company",
+      "label": "AMETEK, Inc.",
+      "description": "AMETEK's structural role is diversified mission-critical measurement, inspection, precision-manufacturing and MRO technology embedded in industrial, scientific, medical, aerospace, defense, semiconductor and research workflows; the causal path is human need for reliable/safe/high-precision operation -> infrastructure and production systems -> sensing/measurement/inspection/MRO bottlenecks -> AMETEK instruments, software, components and services."
+    },
+    {
+      "id": "market:AME-infrastructure-industrial-scientific-aerospace-medical-production",
+      "type": "market",
+      "label": "infrastructure:industrial-scientific-aerospace-medical-production",
+      "description": "AMETEK's structural role is diversified mission-critical measurement, inspection, precision-manufacturing and MRO technology embedded in industrial, scientific, medical, aerospace, defense, semiconductor and research workflows; the causal path is human need for reliable/safe/high-precision operation -> infrastructure and production systems -> sensing/measurement/inspection/MRO bottlenecks -> AMETEK instruments, software, components and services."
     }
   ],
   "edges": [
@@ -751,6 +763,23 @@
         "sym:2026q3:10q:2026-08-05"
       ],
       "observedAt": "2026-09-19T11:24:50Z"
+    },
+    {
+      "id": "edge:AME-structural-exposure",
+      "from": "company:AME",
+      "to": "market:AME-infrastructure-industrial-scientific-aerospace-medical-production",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 72,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:AME:indicor-close",
+        "issuer:AME:faro-close",
+        "issuer:AME:virtek",
+        "issuer:AME:kern"
+      ],
+      "observedAt": "2026-09-19T13:22:18Z"
     }
   ],
   "structuralSignals": [
@@ -1270,6 +1299,27 @@
       "observedAt": "2026-09-19T11:24:50Z",
       "thesis": "Symbotic targets the warehouse throughput/labor bottleneck with tightly integrated robotics plus orchestration software; ARMS extends the causal chain from machine automation toward whole-site operational optimization.",
       "falsifier": "customers achieve comparable economics with simpler/cheaper automation or deployments fail to deliver expected productivity"
+    },
+    {
+      "id": "signal:AME-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:AME-infrastructure-industrial-scientific-aerospace-medical-production",
+      "affectedNodeIds": [
+        "company:AME"
+      ],
+      "direction": 1,
+      "magnitude": 72,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:AME:indicor-close",
+        "issuer:AME:faro-close",
+        "issuer:AME:virtek",
+        "issuer:AME:kern"
+      ],
+      "observedAt": "2026-09-19T13:22:18Z",
+      "thesis": "AMETEK's structural role is diversified mission-critical measurement, inspection, precision-manufacturing and MRO technology embedded in industrial, scientific, medical, aerospace, defense, semiconductor and research workflows; the causal path is human need for reliable/safe/high-precision operation -> infrastructure and production systems -> sensing/measurement/inspection/MRO bottlenecks -> AMETEK instruments, software, components and services.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],
   "roadmapMilestones": [

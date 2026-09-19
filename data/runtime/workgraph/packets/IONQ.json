@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "IONQ",
   "workId": "t0:IONQ",
-  "generatedAt": "2026-09-19T08:08:16.705Z",
+  "generatedAt": "2026-09-19T08:24:09.749Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-05T00:00:00.000Z",
-    "end": "2026-09-18T11:06:25.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-18T11:06:25.000Z"
+    "end": "2026-09-19T08:22:12.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T08:22:12.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,62 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/IONQ-20260918T1100Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/IONQ-20260918T1100Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/IONQ-20260919T082212Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "quantum manufacturing scale signal",
-      "commercial execution"
+      "commercial execution",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "thesisQuality",
+      "financialOperatingMomentum"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "mixed",
+          "basis": "Vertical fabrication can reduce a manufacturability bottleneck, but fault tolerance and economic utility remain unresolved bottlenecks."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Platform breadth and manufacturing integration provide optionality, while useful quantum advantage remains technology- and workload-dependent."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "unknown",
+          "basis": "Competing quantum modalities and classical/accelerated computing remain credible substitutes until workload-level advantage is established."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "quantum manufacturing scale signal",
@@ -71,7 +95,18 @@
           "basis": "integrated chip fabrication and prototype operation move the roadmap toward repeatable semiconductor manufacturing"
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "thesisQuality",
+          "direction": "mixed",
+          "basis": "Commercial and manufacturing milestones strengthen the thesis while the hardest technical/economic gates remain unproven."
+        },
+        {
+          "name": "financialOperatingMomentum",
+          "direction": "mixed",
+          "basis": "Revenue/RPO growth is strong but acquisition contribution complicates interpretation of organic execution."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "commercial execution",
@@ -120,7 +155,12 @@
   },
   "factors": [
     "quantum manufacturing scale signal",
-    "commercial execution"
+    "commercial execution",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "thesisQuality",
+    "financialOperatingMomentum"
   ],
   "riskEvidence": {
     "present": true,
@@ -132,6 +172,22 @@
       {
         "risk": "High growth includes acquisition effects and commercialization remains early relative to the long-term fault-tolerant roadmap.",
         "gating": false
+      },
+      {
+        "risk": "Manufacturing scale can improve while fault-tolerant performance or economic utility still fails to materialize.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition-driven growth can inflate headline growth without equivalent organic platform traction.",
+        "gating": false
+      },
+      {
+        "risk": "Competing modalities and classical accelerators can delay or reduce the addressable workloads that produce economic quantum advantage.",
+        "gating": false
+      },
+      {
+        "risk": "Roadmap and product-launch language can create confidence inflation if prototype milestones are treated as equivalent to fault-tolerant commercial performance.",
+        "gating": false
       }
     ]
   },
@@ -142,6 +198,22 @@
     },
     {
       "risk": "High growth includes acquisition effects and commercialization remains early relative to the long-term fault-tolerant roadmap.",
+      "gating": false
+    },
+    {
+      "risk": "Manufacturing scale can improve while fault-tolerant performance or economic utility still fails to materialize.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition-driven growth can inflate headline growth without equivalent organic platform traction.",
+      "gating": false
+    },
+    {
+      "risk": "Competing modalities and classical accelerators can delay or reduce the addressable workloads that produce economic quantum advantage.",
+      "gating": false
+    },
+    {
+      "risk": "Roadmap and product-launch language can create confidence inflation if prototype milestones are treated as equivalent to fault-tolerant commercial performance.",
       "gating": false
     }
   ],
@@ -169,6 +241,30 @@
         "to": "revenue/RPO growth",
         "mechanism": "broader quantum platform adoption expands recognized and contracted revenue",
         "falsifier": "RPO conversion or organic growth slows materially"
+      },
+      {
+        "from": "integrated semiconductor fabrication",
+        "to": "repeatable trapped-ion chip production",
+        "mechanism": "fabrication integration can shorten iteration cycles and increase manufacturing throughput",
+        "falsifier": "yield, reliability or performance fails to scale"
+      },
+      {
+        "from": "repeatable quantum-system production",
+        "to": "deployments and contracted demand",
+        "mechanism": "manufacturable systems can support more customer installations",
+        "falsifier": "deliveries or RPO conversion stall despite production milestones"
+      },
+      {
+        "from": "deployed systems",
+        "to": "durable quantum economic utility",
+        "mechanism": "customers retain and expand use only if systems solve valuable workloads competitively",
+        "falsifier": "classical or rival quantum approaches remain superior on target workloads"
+      },
+      {
+        "from": "technical roadmap slippage or weak independent validation",
+        "to": "commercial conversion",
+        "mechanism": "customers may defer deployments if promised performance/yield is not demonstrated",
+        "falsifier": "independent performance and delivery evidence validates roadmap on schedule"
       }
     ]
   },
@@ -184,12 +280,36 @@
       "to": "revenue/RPO growth",
       "mechanism": "broader quantum platform adoption expands recognized and contracted revenue",
       "falsifier": "RPO conversion or organic growth slows materially"
+    },
+    {
+      "from": "integrated semiconductor fabrication",
+      "to": "repeatable trapped-ion chip production",
+      "mechanism": "fabrication integration can shorten iteration cycles and increase manufacturing throughput",
+      "falsifier": "yield, reliability or performance fails to scale"
+    },
+    {
+      "from": "repeatable quantum-system production",
+      "to": "deployments and contracted demand",
+      "mechanism": "manufacturable systems can support more customer installations",
+      "falsifier": "deliveries or RPO conversion stall despite production milestones"
+    },
+    {
+      "from": "deployed systems",
+      "to": "durable quantum economic utility",
+      "mechanism": "customers retain and expand use only if systems solve valuable workloads competitively",
+      "falsifier": "classical or rival quantum approaches remain superior on target workloads"
+    },
+    {
+      "from": "technical roadmap slippage or weak independent validation",
+      "to": "commercial conversion",
+      "mechanism": "customers may defer deployments if promised performance/yield is not demonstrated",
+      "falsifier": "independent performance and delivery evidence validates roadmap on schedule"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 6,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 0,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "ionq:superion-256:2026-09-08",
@@ -214,10 +334,22 @@
       "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claimA": "Revenue and RPO are growing rapidly.",
+      "claimB": "Commercialization remains early relative to the fault-tolerant roadmap and growth includes acquisition effects.",
+      "disposition": "growth is real but quality/organic attribution and long-run economics remain unresolved; not a present blocker."
+    }
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 1,
+    "items": [
+      {
+        "claimA": "Revenue and RPO are growing rapidly.",
+        "claimB": "Commercialization remains early relative to the fault-tolerant roadmap and growth includes acquisition effects.",
+        "disposition": "growth is real but quality/organic attribution and long-run economics remain unresolved; not a present blocker."
+      }
+    ]
   },
   "unknowns": [
     {
@@ -227,25 +359,40 @@
     {
       "unknown": "No canonical valuation conclusion is asserted.",
       "gating": false
+    },
+    {
+      "unknown": "Independent Superion 256 performance validation and production yields are not established in reviewed evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Fault-tolerant workload economics remain unproven by the reviewed milestones.",
+      "gating": false
+    },
+    {
+      "unknown": "Independent benchmark validation, production yield and useful fault-tolerant economics remain unestablished.",
+      "gating": false
+    },
+    {
+      "unknown": "No source-addressed current dilution/governance assessment is established in reviewed Beta inputs.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 84,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence"
+      "missing_data_confidence_evidence",
+      "unresolved_material_contradiction"
     ],
     "routing": [
       {
@@ -255,14 +402,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -279,6 +418,10 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

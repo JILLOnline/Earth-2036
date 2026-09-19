@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "COHR",
   "workId": "t0:COHR",
-  "generatedAt": "2026-09-19T08:08:16.705Z",
+  "generatedAt": "2026-09-19T08:24:09.749Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-12T00:00:00.000Z",
-    "end": "2026-09-18T06:05:22.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-18T06:05:22.000Z"
+    "end": "2026-09-19T08:22:12.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T08:22:12.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,62 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/COHR-20260918T0500Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/COHR-20260918T0500Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/COHR-20260919T082212Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "Optical bottleneck exposure",
-      "Execution quality"
+      "Execution quality",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "thesisQuality",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "Photonics exposure addresses a scaling bottleneck as AI clusters require higher-bandwidth interconnects."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Optical intensity can rise under several AI scaling paths, but copper persistence, architecture changes or share loss weaken company capture."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Optics has structural bandwidth advantages at scale, while alternate optical suppliers and architecture choices remain substitutes."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "Optical bottleneck exposure",
@@ -71,7 +95,18 @@
           "basis": "AI datacenter optical transition and expanding production capacity align with Coherent's photonics portfolio."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "thesisQuality",
+          "direction": "mixed",
+          "basis": "Structural optical demand is plausible and operating execution is strong, but share/content and concentration are not quantified."
+        },
+        {
+          "name": "pricingPower",
+          "direction": "unknown",
+          "basis": "Margin expansion alone does not prove durable component-level pricing power."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "Execution quality",
@@ -120,7 +155,12 @@
   },
   "factors": [
     "Optical bottleneck exposure",
-    "Execution quality"
+    "Execution quality",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "thesisQuality",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -132,6 +172,22 @@
       {
         "risk": "Exceptional demand language raises the comparison and execution bar for fiscal 2027.",
         "gating": false
+      },
+      {
+        "risk": "Capacity can become a successor bottleneck if ramps lag demand, or stranded capital if optical demand/share disappoints.",
+        "gating": false
+      },
+      {
+        "risk": "Capacity expansion ahead of realized demand can depress returns and margins.",
+        "gating": false
+      },
+      {
+        "risk": "Competing optical suppliers or customer redesigns can capture industry growth without Coherent retaining proportional economics.",
+        "gating": false
+      },
+      {
+        "risk": "Exceptional demand creates elevated comparison and execution expectations for fiscal 2027.",
+        "gating": false
       }
     ]
   },
@@ -142,6 +198,22 @@
     },
     {
       "risk": "Exceptional demand language raises the comparison and execution bar for fiscal 2027.",
+      "gating": false
+    },
+    {
+      "risk": "Capacity can become a successor bottleneck if ramps lag demand, or stranded capital if optical demand/share disappoints.",
+      "gating": false
+    },
+    {
+      "risk": "Capacity expansion ahead of realized demand can depress returns and margins.",
+      "gating": false
+    },
+    {
+      "risk": "Competing optical suppliers or customer redesigns can capture industry growth without Coherent retaining proportional economics.",
+      "gating": false
+    },
+    {
+      "risk": "Exceptional demand creates elevated comparison and execution expectations for fiscal 2027.",
       "gating": false
     }
   ],
@@ -169,6 +241,30 @@
         "to": "earnings leverage",
         "mechanism": "capacity utilization and richer mix can expand gross margin",
         "falsifier": "pricing pressure or ramp costs reverse margin gains"
+      },
+      {
+        "from": "AI cluster scale",
+        "to": "bandwidth and power pressure",
+        "mechanism": "larger clusters increase interconnect throughput and energy constraints",
+        "falsifier": "cluster scaling no longer increases optical requirements"
+      },
+      {
+        "from": "bandwidth and power pressure",
+        "to": "optical interconnect adoption",
+        "mechanism": "optical links can move bandwidth efficiently over required distances",
+        "falsifier": "copper or alternate architectures remain economically dominant"
+      },
+      {
+        "from": "optical adoption",
+        "to": "Coherent photonics volume and mix",
+        "mechanism": "customer adoption converts to component demand if Coherent retains qualified content",
+        "falsifier": "Coherent loses sockets/share despite industry optical growth"
+      },
+      {
+        "from": "competitive pricing or share loss",
+        "to": "photonics margin and returns",
+        "mechanism": "industry optical growth can coexist with weaker company economics",
+        "falsifier": "Coherent sustains share and margins through competitive capacity additions"
       }
     ]
   },
@@ -184,12 +280,36 @@
       "to": "earnings leverage",
       "mechanism": "capacity utilization and richer mix can expand gross margin",
       "falsifier": "pricing pressure or ramp costs reverse margin gains"
+    },
+    {
+      "from": "AI cluster scale",
+      "to": "bandwidth and power pressure",
+      "mechanism": "larger clusters increase interconnect throughput and energy constraints",
+      "falsifier": "cluster scaling no longer increases optical requirements"
+    },
+    {
+      "from": "bandwidth and power pressure",
+      "to": "optical interconnect adoption",
+      "mechanism": "optical links can move bandwidth efficiently over required distances",
+      "falsifier": "copper or alternate architectures remain economically dominant"
+    },
+    {
+      "from": "optical adoption",
+      "to": "Coherent photonics volume and mix",
+      "mechanism": "customer adoption converts to component demand if Coherent retains qualified content",
+      "falsifier": "Coherent loses sockets/share despite industry optical growth"
+    },
+    {
+      "from": "competitive pricing or share loss",
+      "to": "photonics margin and returns",
+      "mechanism": "industry optical growth can coexist with weaker company economics",
+      "falsifier": "Coherent sustains share and margins through competitive capacity additions"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "coherent:2026-08-12:fy26-q4"
@@ -218,21 +338,31 @@
     {
       "unknown": "No canonical security-level valuation input is asserted.",
       "gating": false
+    },
+    {
+      "unknown": "Exact customer concentration and optical content per AI system remain unquantified.",
+      "gating": false
+    },
+    {
+      "unknown": "Customer concentration and contractual duration are not quantified in reviewed evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "No source-addressed current dilution, leverage or governance challenge is established in reviewed Beta inputs.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
-  "confidence": 93,
+  "confidence": 87,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -246,14 +376,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",

@@ -1,0 +1,43 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-deep-resolver-evidence",
+  "ticker": "AAOI",
+  "entityId": "AAOI",
+  "workId": "t0:AAOI",
+  "sourceCycleKey": "20260919T0400Z",
+  "role": "deep-resolver",
+  "generatedAt": "2026-09-19T05:32:29Z",
+  "directive": {
+    "companyWorkId": "t0:AAOI",
+    "gatingQuestion": "Can AAOI's record Q2 revenue and positive non-GAAP net income be reconciled with its larger GAAP net loss and lower GAAP gross margin using the issuer's explicit GAAP-to-non-GAAP reconciliation?",
+    "whyItMatters": "The packet treats coexistence of these metrics as a material contradiction; unresolved contradiction blocks promotion.",
+    "preferredPrimarySource": "AAOI Q2 2026 SEC-furnished earnings exhibit with GAAP/non-GAAP reconciliation",
+    "lawfulFallbacks": ["AAOI Q2 Form 10-Q", "issuer earnings release"],
+    "successCondition": "Explain the GAAP/non-GAAP bridge from primary-source adjustments and determine whether the metrics conflict or instead measure different accounting bases.",
+    "attemptCount": 1
+  },
+  "items": [
+    {
+      "question": "Record revenue and non-GAAP profitability coexist with a larger GAAP net loss and lower GAAP gross margin.",
+      "result": "resolved",
+      "evidence": [
+        "AAOI reported Q2 2026 revenue of $191.9M, GAAP gross margin 27.7%, GAAP net loss $22.781M, non-GAAP gross margin 29.8%, and non-GAAP net income $5.475M.",
+        "The issuer's reconciliation bridges GAAP gross profit of $53.207M to non-GAAP gross profit of $57.253M by excluding $0.170M share-based compensation, $0.282M non-recurring expense and $3.594M discontinued-product expense.",
+        "The net-income bridge adds back $4.863M share-based compensation, $3.594M discontinued-product expense, $1.102M non-cash discontinued-product expense, $0.123M intangible amortization, $4.744M non-recurring expense, adjusts $0.432M unrealized FX gain, and includes a $14.262M tax-related adjustment, producing $5.475M non-GAAP net income.",
+        "AAOI explicitly states non-GAAP measures are supplemental and should not be considered alternatives to GAAP measures."
+      ],
+      "evidenceVsInference": {"evidence":"Issuer-furnished GAAP and non-GAAP metrics plus the itemized reconciliation table.","inference":"The metrics are not mutually contradictory because they use different accounting definitions. The widening GAAP loss and margin compression remain material quality-of-earnings/execution risks and must not be erased by non-GAAP profitability."},
+      "confidence": 100,
+      "gateImpact": "close_contradiction_gate_preserve_gaap_profitability_risk"
+    }
+  ],
+  "sources": [
+    {"sourceId":"issuer:AAOI:2026Q2:8K-EX99.1","url":"https://investors.ao-inc.com/node/17511/html","kind":"primary","primary":true,"publishedAt":"2026-08-06","originFingerprint":"issuer:AAOI:2026Q2:8K-EX99.1"}
+  ],
+  "contradictionStatus": "resolved",
+  "confidence": 100,
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "recommendedDisposition": "Close unresolved_material_contradiction for AAOI on deterministic reconcile. Preserve the $22.8M GAAP loss, 27.7% GAAP gross margin, adjustment-heavy non-GAAP bridge, capacity-ramp execution and customer/demand concentration unknowns as underwriting/risk evidence; other Alpha/Beta gates remain independent.",
+  "lineage": {"inputPacket":"data/runtime/workgraph/packets/AAOI.json","inputEvidence":["data/runtime/workgraph/evidence/AAOI-20260919T050657Z-earth-scout.json"],"beganFromGitHead":"f6da2d9f56e5b2b73b834332455b560850b49f1e"}
+}

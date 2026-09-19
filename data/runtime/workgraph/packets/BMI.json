@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "BMI",
   "workId": "t0:BMI",
-  "generatedAt": "2026-09-19T19:16:09.768Z",
+  "generatedAt": "2026-09-19T19:34:08.785Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-28T00:00:00.000Z",
-    "end": "2026-09-19T09:05:50.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T09:05:50.000Z"
+    "end": "2026-09-19T19:26:41.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T19:26:41.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/BMI-20260919T090550Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/BMI-20260919T090550Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/BMI-20260919T192641Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -70,7 +73,14 @@
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "substitutionResilience",
+        "scenarioRobustness"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
@@ -78,7 +88,13 @@
         "bottleneckControl",
         "substitutionResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "governancePower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -145,6 +161,22 @@
       {
         "risk": "Management explicitly expected project-pacing effects to pressure base revenue growth through the first half of 2026; project timing can create quarter-to-quarter unevenness.",
         "gating": false
+      },
+      {
+        "risk": "Sensing can identify conditions without guaranteeing remediation; downstream utility capital and operating capacity remain successor bottlenecks.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition-led growth can obscure weaker organic contribution if acquired products do not cross-sell or retain as expected.",
+        "gating": false
+      },
+      {
+        "risk": "Project timing can make reported growth uneven and complicate short-window execution interpretation.",
+        "gating": false
+      },
+      {
+        "risk": "Alternative metering/monitoring platforms can substitute at the device or software layer if interoperability and lifecycle economics are superior.",
+        "gating": false
       }
     ]
   },
@@ -155,6 +187,22 @@
     },
     {
       "risk": "Management explicitly expected project-pacing effects to pressure base revenue growth through the first half of 2026; project timing can create quarter-to-quarter unevenness.",
+      "gating": false
+    },
+    {
+      "risk": "Sensing can identify conditions without guaranteeing remediation; downstream utility capital and operating capacity remain successor bottlenecks.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition-led growth can obscure weaker organic contribution if acquired products do not cross-sell or retain as expected.",
+      "gating": false
+    },
+    {
+      "risk": "Project timing can make reported growth uneven and complicate short-window execution interpretation.",
+      "gating": false
+    },
+    {
+      "risk": "Alternative metering/monitoring platforms can substitute at the device or software layer if interoperability and lifecycle economics are superior.",
       "gating": false
     }
   ],
@@ -169,14 +217,24 @@
     "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "water/sewer physical state -> sensing/metering -> network data -> utility decision -> maintenance/resource allocation -> water-service resilience",
+      "UDlive/SmartCover monitoring -> broader BlueEdge observability -> potential recurring software/data value",
+      "utility procurement/integration capacity -> realized monitoring deployment -> realized human-need benefit",
+      "acquisition integration quality -> cross-sell/retention -> recurring economics -> thesis durability"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "water/sewer physical state -> sensing/metering -> network data -> utility decision -> maintenance/resource allocation -> water-service resilience",
+    "UDlive/SmartCover monitoring -> broader BlueEdge observability -> potential recurring software/data value",
+    "utility procurement/integration capacity -> realized monitoring deployment -> realized human-need benefit",
+    "acquisition integration quality -> cross-sell/retention -> recurring economics -> thesis durability"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 0,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:BMI:acquisition:UDlive:20260501",
@@ -223,26 +281,31 @@
     {
       "unknown": "Current 2026 year-to-date organic growth and margin performance need the latest quarterly release for direct comparison with the five-year ambition.",
       "gating": false
+    },
+    {
+      "unknown": "Realized cross-sell, retention and measurable customer outcome contribution from UDlive are not quantified in the cited evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Current 2026 organic growth, acquisition contribution and UDlive retention/cross-sell are not separated in cited evidence.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 90,
+  "confidence": 84,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -252,14 +315,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -276,10 +331,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

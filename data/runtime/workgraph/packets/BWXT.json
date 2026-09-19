@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "BWXT",
   "workId": "t0:BWXT",
-  "generatedAt": "2026-09-19T19:16:09.766Z",
+  "generatedAt": "2026-09-19T19:34:08.784Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-03T00:00:00.000Z",
-    "end": "2026-09-19T10:05:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T10:05:00.000Z"
+    "end": "2026-09-19T19:26:41.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T19:26:41.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/BWXT-20260919T100500Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/BWXT-20260919T100500Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/BWXT-20260919T192641Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -64,12 +67,21 @@
       "bottleneckControl",
       "financialOperatingMomentum",
       "scenarioRobustness",
-      "supplyChainResilience"
+      "supplyChainResilience",
+      "substitutionResilience"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "catalystScore",
@@ -77,7 +89,13 @@
         "crossDivisionLeverage",
         "bottleneckControl"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "catalystScore",
+        "scenarioRobustness",
+        "bottleneckControl",
+        "supplyChainResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -131,7 +149,8 @@
     "bottleneckControl",
     "financialOperatingMomentum",
     "scenarioRobustness",
-    "supplyChainResilience"
+    "supplyChainResilience",
+    "substitutionResilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -143,6 +162,22 @@
       {
         "risk": "Government Operations operating income declined 3% year over year in Q2 and execution remains exposed to contract mix and program timing.",
         "gating": false
+      },
+      {
+        "risk": "Long-cycle government and nuclear programs shift the bottleneck from technical capability to authorization, funding, qualification and execution.",
+        "gating": false
+      },
+      {
+        "risk": "Government/customer concentration and appropriations expose timing and economics to policy and procurement decisions.",
+        "gating": false
+      },
+      {
+        "risk": "Specialized nuclear execution carries schedule, quality and regulatory consequences.",
+        "gating": false
+      },
+      {
+        "risk": "Program announcements can overstate near-term economics when contract value or production scope is undisclosed.",
+        "gating": false
       }
     ]
   },
@@ -153,6 +188,22 @@
     },
     {
       "risk": "Government Operations operating income declined 3% year over year in Q2 and execution remains exposed to contract mix and program timing.",
+      "gating": false
+    },
+    {
+      "risk": "Long-cycle government and nuclear programs shift the bottleneck from technical capability to authorization, funding, qualification and execution.",
+      "gating": false
+    },
+    {
+      "risk": "Government/customer concentration and appropriations expose timing and economics to policy and procurement decisions.",
+      "gating": false
+    },
+    {
+      "risk": "Specialized nuclear execution carries schedule, quality and regulatory consequences.",
+      "gating": false
+    },
+    {
+      "risk": "Program announcements can overstate near-term economics when contract value or production scope is undisclosed.",
       "gating": false
     }
   ],
@@ -167,14 +218,22 @@
     "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "nuclear engineering/manufacturing capability -> qualified systems -> defense/energy/isotope infrastructure -> strategic energy/security needs",
+      "program selection -> design work -> follow-on production decision -> economic realization",
+      "contract mix/program timing -> segment margin -> cash conversion -> execution credibility"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "nuclear engineering/manufacturing capability -> qualified systems -> defense/energy/isotope infrastructure -> strategic energy/security needs",
+    "program selection -> design work -> follow-on production decision -> economic realization",
+    "contract mix/program timing -> segment margin -> cash conversion -> execution credibility"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 0,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:BWXT:NNSA-lithium:20260903",
@@ -221,11 +280,19 @@
     {
       "unknown": "Valuation attractiveness is not established by this operating evidence.",
       "gating": false
+    },
+    {
+      "unknown": "NNSA conceptual-design contract value and downstream production scope remain undisclosed.",
+      "gating": false
+    },
+    {
+      "unknown": "Current evidence does not quantify concentration by individual government program or economics of newest selections.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 86,
@@ -234,13 +301,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -250,14 +314,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -274,10 +330,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

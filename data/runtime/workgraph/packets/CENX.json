@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CENX",
   "workId": "t0:CENX",
-  "generatedAt": "2026-09-19T19:16:09.767Z",
+  "generatedAt": "2026-09-19T19:34:08.784Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-26T00:00:00.000Z",
-    "end": "2026-09-19T10:05:04.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T10:05:04.000Z"
+    "end": "2026-09-19T19:26:41.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T19:26:41.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/CENX-20260919T100504Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/CENX-20260919T100504Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/CENX-20260919T192641Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -63,12 +66,20 @@
       "bottleneckControl",
       "supplyChainResilience",
       "financialOperatingMomentum",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "substitutionResilience"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "catalystScore",
@@ -76,7 +87,13 @@
         "bottleneckControl",
         "supplyChainResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "bottleneckControl",
+        "substitutionResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -129,7 +146,8 @@
     "bottleneckControl",
     "supplyChainResilience",
     "financialOperatingMomentum",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "substitutionResilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -141,6 +159,22 @@
       {
         "risk": "Results remain materially commodity- and power-price-sensitive; Q2 included exceptional items tied to Iceland equipment failures.",
         "gating": false
+      },
+      {
+        "risk": "Domestic capacity can strengthen supply resilience while shifting the critical constraint to large, reliable and competitively priced power supply.",
+        "gating": false
+      },
+      {
+        "risk": "Commodity-price and regional premium exposure can reverse favorable earnings quickly.",
+        "gating": false
+      },
+      {
+        "risk": "Power cost/availability is both a strategic enabler and a concentration risk for smelting economics.",
+        "gating": false
+      },
+      {
+        "risk": "Large-project financing and construction can create dilution, leverage or schedule risk depending on final structure.",
+        "gating": false
       }
     ]
   },
@@ -151,6 +185,22 @@
     },
     {
       "risk": "Results remain materially commodity- and power-price-sensitive; Q2 included exceptional items tied to Iceland equipment failures.",
+      "gating": false
+    },
+    {
+      "risk": "Domestic capacity can strengthen supply resilience while shifting the critical constraint to large, reliable and competitively priced power supply.",
+      "gating": false
+    },
+    {
+      "risk": "Commodity-price and regional premium exposure can reverse favorable earnings quickly.",
+      "gating": false
+    },
+    {
+      "risk": "Power cost/availability is both a strategic enabler and a concentration risk for smelting economics.",
+      "gating": false
+    },
+    {
+      "risk": "Large-project financing and construction can create dilution, leverage or schedule risk depending on final structure.",
       "gating": false
     }
   ],
@@ -165,14 +215,24 @@
     "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "electricity + alumina -> smelting capacity -> primary aluminum -> industrial/infrastructure supply resilience",
+      "new domestic smelter -> reduced import dependence -> resilience, conditional on competitive operating economics",
+      "power reliability/cost -> smelter utilization/margin -> durable domestic capacity",
+      "commodity premium + power cost + reliability -> EBITDA/cash flow -> funding capacity -> expansion execution"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "electricity + alumina -> smelting capacity -> primary aluminum -> industrial/infrastructure supply resilience",
+    "new domestic smelter -> reduced import dependence -> resilience, conditional on competitive operating economics",
+    "power reliability/cost -> smelter utilization/margin -> durable domestic capacity",
+    "commodity premium + power cost + reliability -> EBITDA/cash flow -> funding capacity -> expansion execution"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 8,
     "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 0,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:CENX:MtHolly-expansion:20260416",
@@ -219,26 +279,31 @@
     {
       "unknown": "How much current profitability persists under normalized aluminum premiums and power costs is unresolved.",
       "gating": false
+    },
+    {
+      "unknown": "Final Oklahoma capital structure, schedule, power arrangement and Century funding burden are not established in cited evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Normalized profitability and final Oklahoma financing/dilution exposure remain unquantified.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 92,
+  "confidence": 89,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -248,14 +313,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -272,10 +329,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

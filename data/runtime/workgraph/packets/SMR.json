@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SMR",
   "workId": "t0:SMR",
-  "generatedAt": "2026-09-19T11:18:34.326Z",
+  "generatedAt": "2026-09-19T11:26:58.991Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-06-17T00:00:00.000Z",
-    "end": "2026-09-18T12:07:46.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-18T12:07:46.000Z"
+    "end": "2026-09-19T11:24:50.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T11:24:50.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,62 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/SMR-20260918T1100Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/SMR-20260918T1100Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/SMR-20260919T112450Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "SMR commercialization progress",
-      "execution evidence quality"
+      "execution evidence quality",
+      "alignment2036",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "financing/dilution",
+      "execution risk"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "alignment2036",
+          "direction": "positive",
+          "basis": "firm low-carbon generation can serve rising electricity demand where grid capacity and reliability are constraints"
+        },
+        {
+          "name": "bottleneckControl",
+          "direction": "mixed",
+          "basis": "approved design/IP matters, but financing, construction, licensing and supply chain remain successor bottlenecks"
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "SMRs can fit constrained grids and industrial loads, but compete with conventional nuclear, gas plus carbon constraints, renewables/storage and grid expansion"
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "SMR commercialization progress",
@@ -71,7 +95,18 @@
           "basis": "supplier design completion and component production are tangible movement beyond conceptual development"
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "financing/dilution",
+          "direction": "negative",
+          "basis": "2026 ATM issuance materially expanded equity while funding commercialization"
+        },
+        {
+          "name": "execution risk",
+          "direction": "mixed",
+          "basis": "technical milestones coexist with continuing operating losses and unproven deployment economics"
+        }
+      ],
       "expectations-execution": [
         {
           "name": "execution evidence quality",
@@ -120,7 +155,12 @@
   },
   "factors": [
     "SMR commercialization progress",
-    "execution evidence quality"
+    "execution evidence quality",
+    "alignment2036",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "financing/dilution",
+    "execution risk"
   ],
   "riskEvidence": {
     "present": true,
@@ -131,6 +171,18 @@
       },
       {
         "risk": "Pre-revenue/project-finance and dilution risk must be evaluated independently from technical progress.",
+        "gating": false
+      },
+      {
+        "risk": "Successor bottlenecks are financing, customer commitment, licensing/site construction and cost competitiveness rather than module design alone.",
+        "gating": false
+      },
+      {
+        "risk": "Future capital needs can transfer commercialization risk to shareholders through dilution even if technical milestones continue.",
+        "gating": false
+      },
+      {
+        "risk": "Substitute generation/storage solutions may reach customers faster or at lower delivered cost.",
         "gating": false
       }
     ]
@@ -143,6 +195,18 @@
     {
       "risk": "Pre-revenue/project-finance and dilution risk must be evaluated independently from technical progress.",
       "gating": false
+    },
+    {
+      "risk": "Successor bottlenecks are financing, customer commitment, licensing/site construction and cost competitiveness rather than module design alone.",
+      "gating": false
+    },
+    {
+      "risk": "Future capital needs can transfer commercialization risk to shareholders through dilution even if technical milestones continue.",
+      "gating": false
+    },
+    {
+      "risk": "Substitute generation/storage solutions may reach customers faster or at lower delivered cost.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -153,7 +217,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 2
   },
   "causalMapping": {
     "present": true,
@@ -169,6 +233,24 @@
         "to": "deployment readiness",
         "mechanism": "completed detailed protection-system design reduces one implementation dependency",
         "falsifier": "downstream project financing, licensing or construction fails despite component progress"
+      },
+      {
+        "from": "firm-power scarcity",
+        "to": "SMR demand",
+        "mechanism": "customers with reliability/decarbonization needs may value modular nuclear capacity",
+        "falsifier": "customers consistently choose cheaper/faster substitutes and binding NuScale deployments fail to materialize"
+      },
+      {
+        "from": "approved design and component production",
+        "to": "commercial plant deployment",
+        "mechanism": "engineering maturity enables fabrication but must pass financing, licensing and construction gates",
+        "falsifier": "projects remain unfunded/unbuilt despite component progress"
+      },
+      {
+        "from": "pre-commercial cash burn",
+        "to": "equity financing dependence",
+        "mechanism": "continued development and commercialization spending requires capital before recurring project cash generation",
+        "falsifier": "binding deployments generate sufficient cash and project funding to materially reduce corporate equity dependence"
       }
     ]
   },
@@ -184,15 +266,34 @@
       "to": "deployment readiness",
       "mechanism": "completed detailed protection-system design reduces one implementation dependency",
       "falsifier": "downstream project financing, licensing or construction fails despite component progress"
+    },
+    {
+      "from": "firm-power scarcity",
+      "to": "SMR demand",
+      "mechanism": "customers with reliability/decarbonization needs may value modular nuclear capacity",
+      "falsifier": "customers consistently choose cheaper/faster substitutes and binding NuScale deployments fail to materialize"
+    },
+    {
+      "from": "approved design and component production",
+      "to": "commercial plant deployment",
+      "mechanism": "engineering maturity enables fabrication but must pass financing, licensing and construction gates",
+      "falsifier": "projects remain unfunded/unbuilt despite component progress"
+    },
+    {
+      "from": "pre-commercial cash burn",
+      "to": "equity financing dependence",
+      "mechanism": "continued development and commercialization spending requires capital before recurring project cash generation",
+      "falsifier": "binding deployments generate sufficient cash and project funding to materially reduce corporate equity dependence"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 5,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "smr:paragon-hips:2026-06-17"
+      "smr:paragon-hips:2026-06-17",
+      "smr:2026q2:10q:2026-08-07"
     ]
   },
   "sources": [
@@ -203,12 +304,34 @@
       "publishedAt": "2026-06-17",
       "originFingerprint": "smr:paragon-hips:2026-06-17",
       "sourceId": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1822966/000182296626000085/smr-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-07",
+      "originFingerprint": "smr:2026q2:10q:2026-08-07",
+      "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Physical component production indicates progress, but it does not resolve the financial contradiction of heavy equity issuance and negative operating cash flow.",
+      "material": true,
+      "resolved": true,
+      "resolution": "Treat technical progress as positive execution evidence while retaining dilution/commercialization risk as non-gating present risk."
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Physical component production indicates progress, but it does not resolve the financial contradiction of heavy equity issuance and negative operating cash flow.",
+        "material": true,
+        "resolved": true,
+        "resolution": "Treat technical progress as positive execution evidence while retaining dilution/commercialization risk as non-gating present risk."
+      }
+    ]
   },
   "unknowns": [
     {
@@ -218,21 +341,27 @@
     {
       "unknown": "Exact ATM capacity, current cash burn, binding customer commitments and deployment economics require Alpha underwriting and are not inferred here.",
       "gating": false
+    },
+    {
+      "unknown": "Binding project-level customer economics and realized construction cost remain unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Ultimate overnight cost, customer financing structure and recurring economics of first commercial plants remain unknown.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 91,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -246,14 +375,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",

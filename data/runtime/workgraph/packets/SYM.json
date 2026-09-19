@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SYM",
   "workId": "t0:SYM",
-  "generatedAt": "2026-09-19T11:18:34.324Z",
+  "generatedAt": "2026-09-19T11:26:58.990Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-19T11:11:30.688Z"
   },
   "evidenceWindow": {
-    "start": "2026-07-02T00:00:00.000Z",
-    "end": "2026-09-18T11:06:25.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-18T11:06:25.000Z"
+    "start": "2026-05-06T00:00:00.000Z",
+    "end": "2026-09-19T11:24:50.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T11:24:50.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,62 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/SYM-20260918T1100Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/SYM-20260918T1100Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/SYM-20260919T112450Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "physical AI platform expansion",
-      "operating execution"
+      "operating execution",
+      "bottleneckControl",
+      "crossDivisionLeverage",
+      "scenarioRobustness",
+      "concentration risk",
+      "accounting/control quality"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "integrated automation and software directly address warehouse throughput, labor and space-utilization constraints"
+        },
+        {
+          "name": "crossDivisionLeverage",
+          "direction": "positive",
+          "basis": "ARMS can add optimization software across installed automated systems and human workflows"
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "automation demand is broad but current revenue economics are dominated by one customer"
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "physical AI platform expansion",
@@ -71,7 +95,18 @@
           "basis": "software-layer expansion increases the addressable value beyond robotic automation hardware"
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "concentration risk",
+          "direction": "negative",
+          "basis": "one customer dominates revenue and receivables"
+        },
+        {
+          "name": "accounting/control quality",
+          "direction": "negative",
+          "basis": "material weakness raises misstatement/control risk until remediated"
+        }
+      ],
       "expectations-execution": [
         {
           "name": "operating execution",
@@ -120,7 +155,12 @@
   },
   "factors": [
     "physical AI platform expansion",
-    "operating execution"
+    "operating execution",
+    "bottleneckControl",
+    "crossDivisionLeverage",
+    "scenarioRobustness",
+    "concentration risk",
+    "accounting/control quality"
   ],
   "riskEvidence": {
     "present": true,
@@ -131,6 +171,22 @@
       },
       {
         "risk": "Large-system deployment timing and customer concentration can make quarterly revenue and margins uneven.",
+        "gating": false
+      },
+      {
+        "risk": "Customer concentration can overwhelm otherwise attractive structural automation demand if the dominant customer slows deployments.",
+        "gating": false
+      },
+      {
+        "risk": "A deployment pause, repricing or strategic change by the dominant customer could materially impair revenue, receivables and operating leverage.",
+        "gating": false
+      },
+      {
+        "risk": "Internal-control remediation remains necessary; future undetected misstatement risk cannot be dismissed.",
+        "gating": false
+      },
+      {
+        "risk": "Competing warehouse automation stacks can pressure pricing and customer diversification.",
         "gating": false
       }
     ]
@@ -143,6 +199,22 @@
     {
       "risk": "Large-system deployment timing and customer concentration can make quarterly revenue and margins uneven.",
       "gating": false
+    },
+    {
+      "risk": "Customer concentration can overwhelm otherwise attractive structural automation demand if the dominant customer slows deployments.",
+      "gating": false
+    },
+    {
+      "risk": "A deployment pause, repricing or strategic change by the dominant customer could materially impair revenue, receivables and operating leverage.",
+      "gating": false
+    },
+    {
+      "risk": "Internal-control remediation remains necessary; future undetected misstatement risk cannot be dismissed.",
+      "gating": false
+    },
+    {
+      "risk": "Competing warehouse automation stacks can pressure pricing and customer diversification.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -153,7 +225,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 4
   },
   "causalMapping": {
     "present": true,
@@ -169,6 +241,24 @@
         "to": "operating leverage",
         "mechanism": "higher deployed volume and software/service contribution spread fixed engineering costs",
         "falsifier": "margins reverse despite sustained deployment growth"
+      },
+      {
+        "from": "warehouse labor/throughput constraints",
+        "to": "automation adoption",
+        "mechanism": "robotics and orchestration raise throughput and reduce manual handling dependence",
+        "falsifier": "customers achieve comparable economics with simpler/cheaper automation or deployments fail to deliver expected productivity"
+      },
+      {
+        "from": "installed automation footprint",
+        "to": "software optimization value",
+        "mechanism": "site data and control points allow cross-machine/human optimization",
+        "falsifier": "ARMS fails to gain paid adoption or measurable site-level improvement"
+      },
+      {
+        "from": "dominant-customer deployment cadence",
+        "to": "reported revenue and operating leverage",
+        "mechanism": "current revenue base is overwhelmingly tied to one customer",
+        "falsifier": "revenue diversifies materially while growth and margins remain strong"
       }
     ]
   },
@@ -184,16 +274,36 @@
       "to": "operating leverage",
       "mechanism": "higher deployed volume and software/service contribution spread fixed engineering costs",
       "falsifier": "margins reverse despite sustained deployment growth"
+    },
+    {
+      "from": "warehouse labor/throughput constraints",
+      "to": "automation adoption",
+      "mechanism": "robotics and orchestration raise throughput and reduce manual handling dependence",
+      "falsifier": "customers achieve comparable economics with simpler/cheaper automation or deployments fail to deliver expected productivity"
+    },
+    {
+      "from": "installed automation footprint",
+      "to": "software optimization value",
+      "mechanism": "site data and control points allow cross-machine/human optimization",
+      "falsifier": "ARMS fails to gain paid adoption or measurable site-level improvement"
+    },
+    {
+      "from": "dominant-customer deployment cadence",
+      "to": "reported revenue and operating leverage",
+      "mechanism": "current revenue base is overwhelmingly tied to one customer",
+      "falsifier": "revenue diversifies materially while growth and margins remain strong"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
     "uniqueOrigins": [
       "symbotic:arms-acquisition:2026-07-02",
-      "symbotic:fq3-2026:2026-08-05"
+      "symbotic:fq3-2026:2026-08-05",
+      "sym:2026q3:10q:2026-08-05",
+      "sym:2026q2:10q:2026-05-06"
     ]
   },
   "sources": [
@@ -212,12 +322,42 @@
       "publishedAt": "2026-08-05",
       "originFingerprint": "symbotic:fq3-2026:2026-08-05",
       "sourceId": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1837240/000183724026000043/sym-20260627.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-05",
+      "originFingerprint": "sym:2026q3:10q:2026-08-05",
+      "sourceId": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1837240/000183724026000024/sym-20260328.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-06",
+      "originFingerprint": "sym:2026q2:10q:2026-05-06",
+      "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Strong recent profitability does not remove concentration or control-quality risk.",
+      "material": true,
+      "resolved": true,
+      "resolution": "Keep execution improvement as valid evidence while explicitly discounting robustness until customer diversification and control remediation improve."
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Strong recent profitability does not remove concentration or control-quality risk.",
+        "material": true,
+        "resolved": true,
+        "resolution": "Keep execution improvement as valid evidence while explicitly discounting robustness until customer diversification and control remediation improve."
+      }
+    ]
   },
   "unknowns": [
     {
@@ -227,11 +367,19 @@
     {
       "unknown": "No canonical valuation conclusion is asserted.",
       "gating": false
+    },
+    {
+      "unknown": "ARMS incremental revenue, margins and customer adoption are not yet quantified.",
+      "gating": false
+    },
+    {
+      "unknown": "Current remediation status after the disclosed material weakness is not established in this artifact.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 91,
@@ -240,8 +388,6 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -255,14 +401,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",

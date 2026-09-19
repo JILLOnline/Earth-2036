@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ABNB",
   "workId": "t0:ABNB",
-  "generatedAt": "2026-09-19T12:28:10.438Z",
+  "generatedAt": "2026-09-19T12:29:00.254Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-06T00:00:00.000Z",
-    "end": "2026-09-19T06:06:41.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T06:06:41.000Z"
+    "end": "2026-09-19T12:27:02.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T12:27:02.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/ABNB-20260919T060641Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ABNB-20260919T060641Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ABNB-20260919T122702Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,19 +65,34 @@
       "crossDivisionLeverage",
       "bottleneckControl",
       "financialOperatingMomentum",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "substitutionResilience",
+      "pricingPower",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
         "crossDivisionLeverage",
         "bottleneckControl"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower",
+        "governancePower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness"
@@ -124,7 +142,10 @@
     "crossDivisionLeverage",
     "bottleneckControl",
     "financialOperatingMomentum",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "substitutionResilience",
+    "pricingPower",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -135,6 +156,22 @@
       },
       {
         "risk": "Detailed execution assessment requires the linked shareholder letter and comparable operating metrics.",
+        "gating": false
+      },
+      {
+        "risk": "Hotels, online travel agencies, direct host channels and local alternatives remain substitutes; network scale is not an exclusive physical bottleneck.",
+        "gating": false
+      },
+      {
+        "risk": "Sales and marketing expense increased to $875M from $691M YoY, faster than nights/seats growth, making acquisition efficiency a live watch item.",
+        "gating": false
+      },
+      {
+        "risk": "Local short-term-rental regulation can constrain supply or increase compliance costs market by market.",
+        "gating": false
+      },
+      {
+        "risk": "Multi-class voting structure limits outside shareholder governance influence.",
         "gating": false
       }
     ]
@@ -147,6 +184,22 @@
     {
       "risk": "Detailed execution assessment requires the linked shareholder letter and comparable operating metrics.",
       "gating": false
+    },
+    {
+      "risk": "Hotels, online travel agencies, direct host channels and local alternatives remain substitutes; network scale is not an exclusive physical bottleneck.",
+      "gating": false
+    },
+    {
+      "risk": "Sales and marketing expense increased to $875M from $691M YoY, faster than nights/seats growth, making acquisition efficiency a live watch item.",
+      "gating": false
+    },
+    {
+      "risk": "Local short-term-rental regulation can constrain supply or increase compliance costs market by market.",
+      "gating": false
+    },
+    {
+      "risk": "Multi-class voting structure limits outside shareholder governance influence.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -157,20 +210,48 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "distributed host supply and traveler demand",
+        "to": "marketplace liquidity and bookings",
+        "mechanism": "greater geographic and category density improves matching and supports more transactions",
+        "falsifier": "nights growth persistently trails travel demand while active supply expands"
+      },
+      {
+        "from": "trust, payments and marketplace infrastructure",
+        "to": "conversion and monetization",
+        "mechanism": "platform services reduce transaction friction across fragmented supply",
+        "falsifier": "direct booking or competing platforms materially disintermediate hosts and guests"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "distributed host supply and traveler demand",
+      "to": "marketplace liquidity and bookings",
+      "mechanism": "greater geographic and category density improves matching and supports more transactions",
+      "falsifier": "nights growth persistently trails travel demand while active supply expands"
+    },
+    {
+      "from": "trust, payments and marketplace infrastructure",
+      "to": "conversion and monetization",
+      "mechanism": "platform services reduce transaction friction across fragmented supply",
+      "falsifier": "direct booking or competing platforms materially disintermediate hosts and guests"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 5,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:ABNB:2026Q2:20260806"
+      "issuer:ABNB:2026Q2:20260806",
+      "sec:ABNB:2026Q2-10Q",
+      "sec:ABNB:2026Q2-letter"
     ]
   },
   "sources": [
@@ -181,12 +262,36 @@
       "primary": true,
       "publishedAt": "2026-08-06",
       "originFingerprint": "issuer:ABNB:2026Q2:20260806"
+    },
+    {
+      "sourceId": "sec:ABNB:2026Q2-10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1559720/000155972026000027/abnb-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "sec:ABNB:2026Q2-10Q"
+    },
+    {
+      "sourceId": "sec:ABNB:2026Q2-letter",
+      "url": "https://www.sec.gov/Archives/edgar/data/1559720/000119312526337928/d70413dex991.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "sec:ABNB:2026Q2-letter"
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "contradiction": "Strong network scale and profitability coexist with marketing growth that outpaced nights/seats growth in Q2."
+    }
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 1,
+    "items": [
+      {
+        "contradiction": "Strong network scale and profitability coexist with marketing growth that outpaced nights/seats growth in Q2."
+      }
+    ]
   },
   "unknowns": [
     {
@@ -196,11 +301,19 @@
     {
       "unknown": "Q2 growth, margin, free-cash-flow and booking trends were not present in the retrieved issuer release text.",
       "gating": false
+    },
+    {
+      "unknown": "Incremental returns from newer Services and Experiences versus core stays are not yet established here.",
+      "gating": false
+    },
+    {
+      "unknown": "Long-run economics of expansion into Services and Experiences remain unproven.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 70,
@@ -209,13 +322,11 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "unresolved_material_contradiction"
     ],
     "routing": [
       {
@@ -225,14 +336,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -251,8 +354,8 @@
         "owner": "council-alpha"
       },
       {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

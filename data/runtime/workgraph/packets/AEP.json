@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "AEP",
   "workId": "t0:AEP",
-  "generatedAt": "2026-09-19T12:28:10.436Z",
+  "generatedAt": "2026-09-19T12:29:00.251Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-30T00:00:00.000Z",
-    "end": "2026-09-19T06:06:41.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T06:06:41.000Z"
+    "end": "2026-09-19T12:27:02.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T12:27:02.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/AEP-20260919T060641Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/AEP-20260919T060641Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/AEP-20260919T122702Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -63,19 +66,34 @@
       "supplyChainResilience",
       "financialOperatingMomentum",
       "scenarioRobustness",
-      "pricingPower"
+      "pricingPower",
+      "substitutionResilience",
+      "thesisQuality"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "pricingPower"
+      ],
       "discovery-weak-signals": [
         "catalystScore",
         "alignment2036",
         "bottleneckControl",
         "supplyChainResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower",
+        "supplyChainResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -128,7 +146,9 @@
     "supplyChainResilience",
     "financialOperatingMomentum",
     "scenarioRobustness",
-    "pricingPower"
+    "pricingPower",
+    "substitutionResilience",
+    "thesisQuality"
   ],
   "riskEvidence": {
     "present": true,
@@ -139,6 +159,22 @@
       },
       {
         "risk": "Massive load/capex opportunity can pressure affordability and financing if demand timing or regulatory recovery lags investment.",
+        "gating": false
+      },
+      {
+        "risk": "Generation availability, turbine supply, permitting and regulatory approvals can become successor bottlenecks after transmission demand is identified.",
+        "gating": false
+      },
+      {
+        "risk": "Capital intensity requires substantial debt/equity financing; higher funding costs or weaker credit metrics can erode shareholder economics.",
+        "gating": false
+      },
+      {
+        "risk": "Large-load contracts still require generation, transmission, permits and regulatory cost recovery; signed demand is not equivalent to realized energized load.",
+        "gating": false
+      },
+      {
+        "risk": "Affordability pressure can constrain rate recovery even when infrastructure need is genuine.",
         "gating": false
       }
     ]
@@ -151,6 +187,22 @@
     {
       "risk": "Massive load/capex opportunity can pressure affordability and financing if demand timing or regulatory recovery lags investment.",
       "gating": false
+    },
+    {
+      "risk": "Generation availability, turbine supply, permitting and regulatory approvals can become successor bottlenecks after transmission demand is identified.",
+      "gating": false
+    },
+    {
+      "risk": "Capital intensity requires substantial debt/equity financing; higher funding costs or weaker credit metrics can erode shareholder economics.",
+      "gating": false
+    },
+    {
+      "risk": "Large-load contracts still require generation, transmission, permits and regulatory cost recovery; signed demand is not equivalent to realized energized load.",
+      "gating": false
+    },
+    {
+      "risk": "Affordability pressure can constrain rate recovery even when infrastructure need is genuine.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -161,20 +213,47 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "hyperscaler/data-center and industrial load growth",
+        "to": "transmission/generation/distribution investment",
+        "mechanism": "signed large-load commitments require grid interconnection and capacity additions",
+        "falsifier": "contracted load cancellations or interconnection delays materially reduce realized load"
+      },
+      {
+        "from": "regulated grid investment",
+        "to": "earnings growth",
+        "mechanism": "approved capital enters rate base and earns regulated returns",
+        "falsifier": "regulators disallow material costs or affordability constraints prevent timely recovery"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "hyperscaler/data-center and industrial load growth",
+      "to": "transmission/generation/distribution investment",
+      "mechanism": "signed large-load commitments require grid interconnection and capacity additions",
+      "falsifier": "contracted load cancellations or interconnection delays materially reduce realized load"
+    },
+    {
+      "from": "regulated grid investment",
+      "to": "earnings growth",
+      "mechanism": "approved capital enters rate base and earns regulated returns",
+      "falsifier": "regulators disallow material costs or affordability constraints prevent timely recovery"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:AEP:2026Q2:20260730"
+      "issuer:AEP:2026Q2:20260730",
+      "sec:AEP:2026Q2-10Q"
     ]
   },
   "sources": [
@@ -185,20 +264,34 @@
       "primary": true,
       "publishedAt": "2026-07-30",
       "originFingerprint": "issuer:AEP:2026Q2:20260730"
+    },
+    {
+      "sourceId": "sec:AEP:2026Q2-10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/4904/000000490426000059/aep-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-30",
+      "originFingerprint": "sec:AEP:2026Q2-10Q"
     }
   ],
   "contradictions": [
     {
       "contradiction": "Full-year guidance increased despite modest year-over-year Q2 operating-earnings decline.",
       "material": false
+    },
+    {
+      "contradiction": "AEP raised full-year guidance despite Q2 operating EPS declining YoY, so growth expectations depend materially on future capital deployment and load conversion rather than current-quarter momentum alone."
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
+    "unresolvedMaterialCount": 1,
     "items": [
       {
         "contradiction": "Full-year guidance increased despite modest year-over-year Q2 operating-earnings decline.",
         "material": false
+      },
+      {
+        "contradiction": "AEP raised full-year guidance despite Q2 operating EPS declining YoY, so growth expectations depend materially on future capital deployment and load conversion rather than current-quarter momentum alone."
       }
     ]
   },
@@ -210,26 +303,32 @@
     {
       "unknown": "Incremental returns and financing mix for the infrastructure required to serve prospective load remain uncertain.",
       "gating": false
+    },
+    {
+      "unknown": "Timing and utilization profile of the full 69 GW contracted load portfolio remains uncertain.",
+      "gating": false
+    },
+    {
+      "unknown": "Customer-by-customer concentration and cancellation protections across the 69 GW portfolio are not fully disclosed in current evidence.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 95,
+  "confidence": 94,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "unresolved_material_contradiction"
     ],
     "routing": [
       {
@@ -239,14 +338,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -265,8 +356,8 @@
         "owner": "council-alpha"
       },
       {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

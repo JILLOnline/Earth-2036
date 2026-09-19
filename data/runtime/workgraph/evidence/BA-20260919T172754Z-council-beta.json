@@ -1,0 +1,79 @@
+[
+  {
+    "version": 2,
+    "contract": "workgraph-v2-specialist-evidence",
+    "ticker": "BA",
+    "entityId": "BA",
+    "workId": "t0:BA",
+    "cycleKey": "20260919T1700Z",
+    "role": "council-beta",
+    "perspective": "structural-causal",
+    "generatedAt": "2026-09-19T17:27:54Z",
+    "claims": [
+      {"claim":"Boeing sits on a structurally important commercial-aircraft bottleneck: airline fleet renewal and capacity growth depend on a very small set of large-aircraft OEMs, while Boeing's 6,200-plus commercial-airplane backlog and rising 737 output demonstrate durable demand but make production-system throughput, certification and supplier stability the binding conversion mechanisms.","status":"supported"},
+      {"claim":"The causal path is demand for safe, fuel-efficient air transport -> certified aircraft platforms -> constrained aerospace manufacturing/supplier capacity -> deliveries -> airline capacity and Boeing cash conversion; the July SMBC order strengthens the demand node, while Q2 operating evidence strengthens but does not eliminate the production-conversion constraint.","status":"supported"},
+      {"claim":"Scenario robustness improved in Q2 2026: commercial deliveries rose to 171, the 737 program began transitioning toward 47 per month, 737-7/-10 certification flight testing was completed, and Boeing continued to expect certification in 2026 and first deliveries in 2027. The thesis remains falsifiable by renewed safety/quality disruption, certification slippage, supplier instability or inability to turn backlog into profitable deliveries.","status":"supported"}
+    ],
+    "sources": [
+      {"sourceId":"issuer:BA:2Q26-results:20260729","url":"https://investors.boeing.com/investors/news/press-release-details/2026/Boeing-Reports-Second-Quarter-Results/","kind":"primary","primary":true,"publishedAt":"2026-07-29","originFingerprint":"issuer:BA:2Q26:results:deliveries-production-certification-backlog"},
+      {"sourceId":"issuer:BA:SMBC:20260720","url":"https://investors.boeing.com/investors/news/press-release-details/2026/SMBC-Aviation-Capital-Orders-100-Boeing-737-MAX-Jets/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-07-20","originFingerprint":"issuer:BA:order:SMBC:100MAX:20260720"}
+    ],
+    "affectedMethodologyFactors":["thesisQuality","alignment2036","bottleneckControl","scenarioRobustness","substitutionResilience","supplyChainResilience"],
+    "causalEdges":[
+      {"from":"human need: safe, efficient mobility","to":"airline fleet renewal/capacity","relation":"drives demand"},
+      {"from":"airline fleet renewal/capacity","to":"certified Boeing aircraft","relation":"creates platform demand"},
+      {"from":"certification + aerospace supplier/manufacturing throughput","to":"Boeing deliveries","relation":"constrains conversion of backlog"},
+      {"from":"Boeing deliveries","to":"revenue/cash conversion and airline capacity","relation":"enables realized value"}
+    ],
+    "risks":[
+      {"risk":"Production-rate transitions increase dependence on stable quality systems and supplier throughput; backlog is not self-executing.","gating":false},
+      {"risk":"Airbus and future aircraft architectures are credible substitutes, so Boeing's bottleneck position is important but not exclusive.","gating":false}
+    ],
+    "contradictions":[],
+    "unknowns":[{"unknown":"Long-run margin and cash conversion at higher production rates remain unproven by the available Q2 evidence.","gating":false}],
+    "gatingIssues":[],
+    "confidence":88,
+    "recommendedNextState":"researching",
+    "recommendedOwner":"council-alpha",
+    "lineage":{"supersedes":null,"inputEvidence":["data/runtime/workgraph/evidence/BA-20260919T090550Z-earth-scout.json"],"methodology":"engine/methodology.ts@1.0.0"}
+  },
+  {
+    "version": 2,
+    "contract": "workgraph-v2-specialist-evidence",
+    "ticker": "BA",
+    "entityId": "BA",
+    "workId": "t0:BA",
+    "cycleKey": "20260919T1700Z",
+    "role": "council-beta",
+    "perspective": "adversarial-red-team",
+    "generatedAt": "2026-09-19T17:27:54Z",
+    "claims": [
+      {"claim":"The strongest present challenge is conversion quality rather than demand: Q2 2026 commercial-airplane operating margin remained negative at 2.7% despite 171 deliveries and $11.8 billion of segment revenue, so higher throughput has not yet established normalized profitability.","status":"supported"},
+      {"claim":"Financing fragility has improved but remains material: consolidated debt declined to $45.9 billion and Boeing retained $20.0 billion of cash and marketable securities plus $10.0 billion of undrawn credit, while first-half free cash flow remained negative $823 million. This is a resilience improvement, not evidence that leverage/cash-conversion risk is closed.","status":"supported"},
+      {"claim":"Backlog should not be treated as equivalent to realized economics. Commercial backlog reached about $597 billion and total backlog $715 billion, but certification, production, contract execution and program charges remain intervening risks; Q2 Defense results included $280 million of VC-25B losses, illustrating that large contracted programs can carry adverse economics.","status":"supported"}
+    ],
+    "sources": [
+      {"sourceId":"issuer:BA:2Q26-results:20260729","url":"https://investors.boeing.com/investors/news/press-release-details/2026/Boeing-Reports-Second-Quarter-Results/","kind":"primary","primary":true,"publishedAt":"2026-07-29","originFingerprint":"issuer:BA:2Q26:results:cash-debt-margin-backlog-program-losses"},
+      {"sourceId":"issuer:BA:SMBC:20260720","url":"https://investors.boeing.com/investors/news/press-release-details/2026/SMBC-Aviation-Capital-Orders-100-Boeing-737-MAX-Jets/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-07-20","originFingerprint":"issuer:BA:order:SMBC:100MAX:20260720"}
+    ],
+    "affectedMethodologyFactors":["financialOperatingMomentum","governancePower","bottleneckControl","scenarioRobustness","substitutionResilience","supplyChainResilience","pricingPower"],
+    "causalEdges":[
+      {"from":"backlog/orders","to":"deliveries","relation":"requires certification, production and supplier execution"},
+      {"from":"deliveries","to":"cash/profitability","relation":"conversion moderated by mix, program cost and execution quality"},
+      {"from":"debt and cash requirements","to":"strategic resilience","relation":"constrains downside tolerance"}
+    ],
+    "risks":[
+      {"risk":"Commercial-airplane margins remain negative despite higher deliveries, leaving profitability normalization unproven.","gating":false},
+      {"risk":"First-half free cash flow remains negative and debt remains large even after repayment progress.","gating":false},
+      {"risk":"Program-specific losses show that backlog/revenue can coexist with weak economics; backlog must not be used as a proxy for margin or cash quality.","gating":false},
+      {"risk":"Certification and production-rate execution remain exposed to safety, quality, regulatory and supplier constraints.","gating":false}
+    ],
+    "contradictions":[{"contradiction":"Strong order/backlog evidence supports demand while negative Commercial Airplanes margin and negative first-half free cash flow show incomplete economic conversion.","material":true,"resolved":true,"resolution":"Treat demand strength and execution economics as separate nodes; demand is supported, while profitable conversion remains an explicit non-gating risk requiring continued operating evidence."}],
+    "unknowns":[{"unknown":"Normalized margins and free-cash-flow generation after the 737 rate transition and certification milestones are not yet observable.","gating":false}],
+    "gatingIssues":[],
+    "confidence":90,
+    "recommendedNextState":"researching",
+    "recommendedOwner":"council-alpha",
+    "lineage":{"supersedes":null,"inputEvidence":["data/runtime/workgraph/evidence/BA-20260919T090550Z-earth-scout.json"],"methodology":"engine/methodology.ts@1.0.0"}
+  }
+]

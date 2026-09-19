@@ -194,6 +194,30 @@
       "type": "market",
       "label": "ASML structural demand",
       "description": "ASML remains a structural bottleneck for leading-edge lithography: AI-driven advanced Logic and Memory capacity requires higher lithography intensity, while ASML is expanding low-NA EUV and DUV immersion capacity by about 30% for 2027 and investigating another roughly 30% increase for 2028."
+    },
+    {
+      "id": "company:APLD",
+      "type": "company",
+      "label": "Applied Digital Corporation",
+      "description": "Applied Digital's defensible structural role is not generic AI demand but access to grid-connected, power-dense campus capacity that can be converted into long-duration hyperscaler leases; this is a real bottleneck while interconnection and powered-shell supply remain constrained."
+    },
+    {
+      "id": "market:APLD-demand-for-grid-connected-high-density-campuses",
+      "type": "market",
+      "label": "demand for grid-connected high-density campuses",
+      "description": "large accelerator clusters require scarce power, interconnection and purpose-built cooling/electrical infrastructure"
+    },
+    {
+      "id": "company:KLAC",
+      "type": "company",
+      "label": "KLA Corporation",
+      "description": "KLA occupies a structural semiconductor yield-control bottleneck: as leading-edge logic, memory and advanced packaging become more complex, inspection/metrology/process-control requirements rise because defects and process variation become more economically costly."
+    },
+    {
+      "id": "market:KLAC-inspection-metrology-intensity",
+      "type": "market",
+      "label": "inspection/metrology intensity",
+      "description": "KLA occupies a structural semiconductor yield-control bottleneck: as leading-edge logic, memory and advanced packaging become more complex, inspection/metrology/process-control requirements rise because defects and process variation become more economically costly."
     }
   ],
   "edges": [
@@ -509,6 +533,35 @@
         "asml-intel-highna-2026"
       ],
       "observedAt": "2026-09-19T00:26:55Z"
+    },
+    {
+      "id": "edge:APLD-structural-exposure",
+      "from": "company:APLD",
+      "to": "market:APLD-demand-for-grid-connected-high-density-campuses",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 83,
+      "confidence": 87,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:APLD:PF3",
+        "issuer:APLD:FY2026"
+      ],
+      "observedAt": "2026-09-19T01:22:58Z"
+    },
+    {
+      "id": "edge:KLAC-structural-exposure",
+      "from": "company:KLAC",
+      "to": "market:KLAC-inspection-metrology-intensity",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 96,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:KLAC:FY2026"
+      ],
+      "observedAt": "2026-09-18T11:22:32Z"
     }
   ],
   "structuralSignals": [
@@ -857,6 +910,43 @@
       ],
       "observedAt": "2026-09-19T00:26:55Z",
       "thesis": "ASML remains a structural bottleneck for leading-edge lithography: AI-driven advanced Logic and Memory capacity requires higher lithography intensity, while ASML is expanding low-NA EUV and DUV immersion capacity by about 30% for 2027 and investigating another roughly 30% increase for 2028.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:APLD-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:APLD-demand-for-grid-connected-high-density-campuses",
+      "affectedNodeIds": [
+        "company:APLD"
+      ],
+      "direction": 1,
+      "magnitude": 83,
+      "confidence": 87,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:APLD:PF3",
+        "issuer:APLD:FY2026"
+      ],
+      "observedAt": "2026-09-19T01:22:58Z",
+      "thesis": "Applied Digital's defensible structural role is not generic AI demand but access to grid-connected, power-dense campus capacity that can be converted into long-duration hyperscaler leases; this is a real bottleneck while interconnection and powered-shell supply remain constrained.",
+      "falsifier": "regional powered capacity expands faster than demand or compute efficiency materially reduces required site power"
+    },
+    {
+      "id": "signal:KLAC-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:KLAC-inspection-metrology-intensity",
+      "affectedNodeIds": [
+        "company:KLAC"
+      ],
+      "direction": 1,
+      "magnitude": 96,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:KLAC:FY2026"
+      ],
+      "observedAt": "2026-09-18T11:22:32Z",
+      "thesis": "KLA occupies a structural semiconductor yield-control bottleneck: as leading-edge logic, memory and advanced packaging become more complex, inspection/metrology/process-control requirements rise because defects and process variation become more economically costly.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

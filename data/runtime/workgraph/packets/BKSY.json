@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "BKSY",
   "workId": "t0:BKSY",
-  "generatedAt": "2026-09-19T07:07:43.278Z",
+  "generatedAt": "2026-09-19T07:27:25.684Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-06T00:00:00.000Z",
-    "end": "2026-09-18T08:02:11.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-18T08:02:11.000Z"
+    "end": "2026-09-19T07:25:25.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T07:25:25.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,49 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/BKSY-20260918T0700Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/BKSY-20260918T0700Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/BKSY-20260919T072525Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "real-time geospatial intelligence adoption",
-      "execution and operating leverage"
+      "execution and operating leverage",
+      "bottleneck control and scenario robustness",
+      "financing dilution and execution fragility"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneck control and scenario robustness",
+          "direction": "positive",
+          "basis": "owned constellation plus analytics reduces dependence on a single external imagery layer and supports rapid-revisit workflows, while demand can span defense, security and international monitoring use cases"
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "real-time geospatial intelligence adoption",
@@ -71,7 +82,13 @@
           "basis": "pilot-to-subscription conversion and record intelligence-services revenue support operational demand for low-latency Gen-3 imagery and analytics"
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "financing dilution and execution fragility",
+          "direction": "negative",
+          "basis": "ATM financing supports constellation growth but shifts part of execution risk to shareholders; procurement timing and deployment performance remain important"
+        }
+      ],
       "expectations-execution": [
         {
           "name": "execution and operating leverage",
@@ -120,7 +137,9 @@
   },
   "factors": [
     "real-time geospatial intelligence adoption",
-    "execution and operating leverage"
+    "execution and operating leverage",
+    "bottleneck control and scenario robustness",
+    "financing dilution and execution fragility"
   ],
   "riskEvidence": {
     "present": true,
@@ -132,6 +151,18 @@
       {
         "risk": "The stronger cash balance partly reflects $150M of ATM equity issuance, creating dilution that must be separated from operating cash generation.",
         "gating": false
+      },
+      {
+        "risk": "Constellation deployment/replenishment remains capital intensive and operationally fragile; launch or satellite failures can weaken the integrated advantage.",
+        "gating": false
+      },
+      {
+        "risk": "Government/customer concentration, procurement timing, launch dependence and equity financing can amplify downside if subscription growth stalls.",
+        "gating": false
+      },
+      {
+        "risk": "Rapidly improving competing constellations or analytics could compress differentiation if revisit/latency advantages narrow.",
+        "gating": false
       }
     ]
   },
@@ -142,6 +173,18 @@
     },
     {
       "risk": "The stronger cash balance partly reflects $150M of ATM equity issuance, creating dilution that must be separated from operating cash generation.",
+      "gating": false
+    },
+    {
+      "risk": "Constellation deployment/replenishment remains capital intensive and operationally fragile; launch or satellite failures can weaken the integrated advantage.",
+      "gating": false
+    },
+    {
+      "risk": "Government/customer concentration, procurement timing, launch dependence and equity financing can amplify downside if subscription growth stalls.",
+      "gating": false
+    },
+    {
+      "risk": "Rapidly improving competing constellations or analytics could compress differentiation if revisit/latency advantages narrow.",
       "gating": false
     }
   ],
@@ -169,6 +212,24 @@
         "to": "adjusted EBITDA improvement",
         "mechanism": "subscription/service mix adds contribution while cash operating expenses remain comparatively controlled",
         "falsifier": "service revenue grows without sustained EBITDA or cash-flow improvement"
+      },
+      {
+        "from": "time-sensitive defense and security monitoring need",
+        "to": "rapid-revisit imagery and analytics demand",
+        "mechanism": "customers require frequent collection and low-latency interpretation rather than static imagery alone",
+        "falsifier": "Gen-3 pilots fail to convert or subscription utilization/renewals weaken materially"
+      },
+      {
+        "from": "owned Gen-3 constellation plus analytics",
+        "to": "subscription intelligence revenue",
+        "mechanism": "integrated collection and software shorten tasking-to-insight cycle",
+        "falsifier": "third-party imagery/analytics substitutes deliver comparable latency and economics without BlackSky infrastructure"
+      },
+      {
+        "from": "capital-intensive constellation expansion",
+        "to": "shareholder dilution risk",
+        "mechanism": "external equity can fund deployment before self-funded cash generation is established",
+        "falsifier": "sustained positive free cash flow funds constellation needs without material new equity issuance"
       }
     ]
   },
@@ -184,12 +245,30 @@
       "to": "adjusted EBITDA improvement",
       "mechanism": "subscription/service mix adds contribution while cash operating expenses remain comparatively controlled",
       "falsifier": "service revenue grows without sustained EBITDA or cash-flow improvement"
+    },
+    {
+      "from": "time-sensitive defense and security monitoring need",
+      "to": "rapid-revisit imagery and analytics demand",
+      "mechanism": "customers require frequent collection and low-latency interpretation rather than static imagery alone",
+      "falsifier": "Gen-3 pilots fail to convert or subscription utilization/renewals weaken materially"
+    },
+    {
+      "from": "owned Gen-3 constellation plus analytics",
+      "to": "subscription intelligence revenue",
+      "mechanism": "integrated collection and software shorten tasking-to-insight cycle",
+      "falsifier": "third-party imagery/analytics substitutes deliver comparable latency and economics without BlackSky infrastructure"
+    },
+    {
+      "from": "capital-intensive constellation expansion",
+      "to": "shareholder dilution risk",
+      "mechanism": "external equity can fund deployment before self-funded cash generation is established",
+      "falsifier": "sustained positive free cash flow funds constellation needs without material new equity issuance"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 6,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "bksy-ir:intl-subscription:2026-08-11",
@@ -214,10 +293,24 @@
       "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Cash resources appear substantially stronger, but a material portion came from ATM equity issuance rather than operating cash generation.",
+      "material": true,
+      "resolved": true,
+      "resolution": "Treat liquidity as real but financing-derived; do not infer equivalent improvement in self-funded economics."
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Cash resources appear substantially stronger, but a material portion came from ATM equity issuance rather than operating cash generation.",
+        "material": true,
+        "resolved": true,
+        "resolution": "Treat liquidity as real but financing-derived; do not infer equivalent improvement in self-funded economics."
+      }
+    ]
   },
   "unknowns": [
     {
@@ -227,21 +320,27 @@
     {
       "unknown": "No valuation conclusion is asserted; dilution-adjusted per-share economics remain to be underwritten.",
       "gating": false
+    },
+    {
+      "unknown": "Long-run unit economics and renewal rates by major program are not disclosed in the reused evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Dilution-adjusted per-share return economics and customer concentration remain unquantified.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 95,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -255,14 +354,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",

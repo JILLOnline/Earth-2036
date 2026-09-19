@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CEG",
   "workId": "t0:CEG",
-  "generatedAt": "2026-09-19T07:07:43.277Z",
+  "generatedAt": "2026-09-19T07:27:25.683Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-07T00:00:00.000Z",
-    "end": "2026-09-18T12:07:46.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-18T12:07:46.000Z"
+    "end": "2026-09-19T07:25:25.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T07:25:25.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,49 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/CEG-20260918T1100Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/CEG-20260918T1100Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/CEG-20260919T072525Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "power-platform scale",
-      "integration execution"
+      "integration execution",
+      "reliable power bottleneck control",
+      "integration leverage and regulatory-remedy risk"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "reliable power bottleneck control",
+          "direction": "positive",
+          "basis": "a diversified 55 GW platform can serve round-the-clock load with nuclear and dispatchable gas/geothermal resources, reducing dependence on a single generation technology"
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "power-platform scale",
@@ -71,7 +82,13 @@
           "basis": "larger diversified generation fleet expands ability to serve data-center and industrial load growth"
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "integration leverage and regulatory-remedy risk",
+          "direction": "negative",
+          "basis": "acquisition complexity and mandatory asset sales can dilute expected scale/synergy benefits"
+        }
+      ],
       "expectations-execution": [
         {
           "name": "integration execution",
@@ -120,7 +137,9 @@
   },
   "factors": [
     "power-platform scale",
-    "integration execution"
+    "integration execution",
+    "reliable power bottleneck control",
+    "integration leverage and regulatory-remedy risk"
   ],
   "riskEvidence": {
     "present": true,
@@ -132,6 +151,18 @@
       {
         "risk": "Remaining integration and divestiture obligations can alter expected Calpine economics.",
         "gating": false
+      },
+      {
+        "risk": "Transmission/interconnection constraints can become the successor bottleneck even when generation capacity is available.",
+        "gating": false
+      },
+      {
+        "risk": "Regulatory remedies and further portfolio actions can change the economics originally associated with the transaction.",
+        "gating": false
+      },
+      {
+        "risk": "Gas generation adds fuel-price, emissions-policy and carbon exposure that partially offsets nuclear-led clean-power positioning.",
+        "gating": false
       }
     ]
   },
@@ -142,6 +173,18 @@
     },
     {
       "risk": "Remaining integration and divestiture obligations can alter expected Calpine economics.",
+      "gating": false
+    },
+    {
+      "risk": "Transmission/interconnection constraints can become the successor bottleneck even when generation capacity is available.",
+      "gating": false
+    },
+    {
+      "risk": "Regulatory remedies and further portfolio actions can change the economics originally associated with the transaction.",
+      "gating": false
+    },
+    {
+      "risk": "Gas generation adds fuel-price, emissions-policy and carbon exposure that partially offsets nuclear-led clean-power positioning.",
       "gating": false
     }
   ],
@@ -169,6 +212,24 @@
         "to": "Calpine integration certainty",
         "mechanism": "asset sales satisfy merger conditions",
         "falsifier": "required divestitures are delayed or economics deteriorate materially"
+      },
+      {
+        "from": "AI/data-center and electrification load growth",
+        "to": "demand for firm generation",
+        "mechanism": "large continuous loads require reliable capacity and energy, favoring nuclear and dispatchable generation",
+        "falsifier": "load growth or long-term contracting economics weaken materially"
+      },
+      {
+        "from": "diversified nuclear/gas/geothermal fleet",
+        "to": "scenario robustness",
+        "mechanism": "technology and regional diversification reduces reliance on one generation profile",
+        "falsifier": "integration complexity or regulatory remedies erase diversification benefits"
+      },
+      {
+        "from": "Calpine acquisition scale",
+        "to": "integration and balance-sheet exposure",
+        "mechanism": "larger asset base increases operational coordination and acquired leverage while remedies require portfolio reshaping",
+        "falsifier": "post-close results demonstrate durable synergy capture and deleveraging without material operational deterioration"
       }
     ]
   },
@@ -184,12 +245,30 @@
       "to": "Calpine integration certainty",
       "mechanism": "asset sales satisfy merger conditions",
       "falsifier": "required divestitures are delayed or economics deteriorate materially"
+    },
+    {
+      "from": "AI/data-center and electrification load growth",
+      "to": "demand for firm generation",
+      "mechanism": "large continuous loads require reliable capacity and energy, favoring nuclear and dispatchable generation",
+      "falsifier": "load growth or long-term contracting economics weaken materially"
+    },
+    {
+      "from": "diversified nuclear/gas/geothermal fleet",
+      "to": "scenario robustness",
+      "mechanism": "technology and regional diversification reduces reliance on one generation profile",
+      "falsifier": "integration complexity or regulatory remedies erase diversification benefits"
+    },
+    {
+      "from": "Calpine acquisition scale",
+      "to": "integration and balance-sheet exposure",
+      "mechanism": "larger asset base increases operational coordination and acquired leverage while remedies require portfolio reshaping",
+      "falsifier": "post-close results demonstrate durable synergy capture and deleveraging without material operational deterioration"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 6,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 0,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "ceg:calpine-close:2026-01-07",
@@ -214,10 +293,24 @@
       "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Calpine increases platform scale while the required 4.4 GW PJM sale removes a meaningful portion of generation assets.",
+      "material": true,
+      "resolved": true,
+      "resolution": "Evaluate retained post-remedy fleet and proceeds, not gross acquisition capacity alone."
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Calpine increases platform scale while the required 4.4 GW PJM sale removes a meaningful portion of generation assets.",
+        "material": true,
+        "resolved": true,
+        "resolution": "Evaluate retained post-remedy fleet and proceeds, not gross acquisition capacity alone."
+      }
+    ]
   },
   "unknowns": [
     {
@@ -227,21 +320,27 @@
     {
       "unknown": "Final after-adjustment proceeds and full integration synergies remain uncertain.",
       "gating": false
+    },
+    {
+      "unknown": "Realized incremental returns and synergy capture from Calpine are not established by transaction announcements.",
+      "gating": false
+    },
+    {
+      "unknown": "Final after-adjustment divestiture proceeds and full integration synergies remain uncertain.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -255,14 +354,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",

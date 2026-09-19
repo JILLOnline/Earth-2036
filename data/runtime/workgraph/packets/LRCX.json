@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "LRCX",
   "workId": "t0:LRCX",
-  "generatedAt": "2026-09-19T09:08:23.578Z",
+  "generatedAt": "2026-09-19T09:27:58.075Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-29T00:00:00.000Z",
-    "end": "2026-09-18T07:04:43.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-18T07:04:43.000Z"
+    "end": "2026-09-19T09:24:55.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T09:24:55.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,73 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/LRCX-20260918T0700Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/LRCX-20260918T0700Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/LRCX-20260919T092455Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "semiconductor manufacturing complexity",
-      "operating execution"
+      "operating execution",
+      "bottleneckControl",
+      "alignment2036",
+      "scenarioRobustness",
+      "supplyChainResilience",
+      "substitutionResilience",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "Deposition/etch process capability is required as device structures and process flows become more complex."
+        },
+        {
+          "name": "alignment2036",
+          "direction": "positive",
+          "basis": "AI compute expansion drives leading-edge semiconductor manufacturing intensity."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed-positive",
+          "basis": "Foundry and memory exposure diversify technology pathways, but WFE remains cyclical."
+        },
+        {
+          "name": "supplyChainResilience",
+          "direction": "mixed",
+          "basis": "Global footprint and installed-base support are offsets to export-control/geopolitical exposure."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed-positive",
+          "basis": "Process steps remain necessary, though competitors can win individual deposition/etch sockets."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "semiconductor manufacturing complexity",
@@ -71,7 +106,23 @@
           "basis": "record revenue and expanded R&D capacity align with AI-driven process complexity"
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "supplyChainResilience",
+          "direction": "mixed",
+          "basis": "Geographic/customer concentration and trade controls create real fragility."
+        },
+        {
+          "name": "pricingPower",
+          "direction": "mixed-positive",
+          "basis": "High margins support economic value capture, but do not prove immunity to cycle or customer bargaining."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "AI complexity supports demand while export controls and capex cycles remain independent downside paths."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "operating execution",
@@ -120,7 +171,13 @@
   },
   "factors": [
     "semiconductor manufacturing complexity",
-    "operating execution"
+    "operating execution",
+    "bottleneckControl",
+    "alignment2036",
+    "scenarioRobustness",
+    "supplyChainResilience",
+    "substitutionResilience",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -131,6 +188,26 @@
       },
       {
         "risk": "Current margins may be sensitive to mix, cycle conditions and trade restrictions.",
+        "gating": false
+      },
+      {
+        "risk": "China was 34% of FY2026 revenue, creating material geopolitical/export-control sensitivity.",
+        "gating": false
+      },
+      {
+        "risk": "WFE customer capex cycles can overwhelm secular process-intensity gains over shorter periods.",
+        "gating": false
+      },
+      {
+        "risk": "Four >=10% customers collectively represent a majority of FY2026 revenue, increasing bargaining and timing risk.",
+        "gating": false
+      },
+      {
+        "risk": "China exposure is material and subject to changing U.S. export controls.",
+        "gating": false
+      },
+      {
+        "risk": "High current margins can normalize downward with product mix, WFE cycle or trade restrictions.",
         "gating": false
       }
     ]
@@ -143,6 +220,26 @@
     {
       "risk": "Current margins may be sensitive to mix, cycle conditions and trade restrictions.",
       "gating": false
+    },
+    {
+      "risk": "China was 34% of FY2026 revenue, creating material geopolitical/export-control sensitivity.",
+      "gating": false
+    },
+    {
+      "risk": "WFE customer capex cycles can overwhelm secular process-intensity gains over shorter periods.",
+      "gating": false
+    },
+    {
+      "risk": "Four >=10% customers collectively represent a majority of FY2026 revenue, increasing bargaining and timing risk.",
+      "gating": false
+    },
+    {
+      "risk": "China exposure is material and subject to changing U.S. export controls.",
+      "gating": false
+    },
+    {
+      "risk": "High current margins can normalize downward with product mix, WFE cycle or trade restrictions.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -153,7 +250,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
     "present": true,
@@ -169,6 +266,30 @@
         "to": "operating leverage",
         "mechanism": "incremental revenue spreads operating costs and supports margin expansion",
         "falsifier": "margins contract materially while revenue remains elevated"
+      },
+      {
+        "from": "AI device complexity",
+        "to": "deposition and etch intensity",
+        "mechanism": "advanced structures require more precise and repeated material deposition/removal steps",
+        "falsifier": "process architectures reduce Lam-addressable step intensity or Lam loses material share"
+      },
+      {
+        "from": "process complexity",
+        "to": "customer co-development and lab demand",
+        "mechanism": "new process modules require experimentation and qualification before high-volume manufacturing",
+        "falsifier": "customers shift development to competing tool ecosystems"
+      },
+      {
+        "from": "export controls on China",
+        "to": "addressable Lam revenue",
+        "mechanism": "restrictions can bar shipment/service to affected fabs despite underlying semiconductor demand",
+        "falsifier": "China exposure falls materially or permitted demand offsets restricted categories"
+      },
+      {
+        "from": "customer concentration",
+        "to": "revenue volatility",
+        "mechanism": "large customers can change capex, timing, qualification or supplier allocation",
+        "falsifier": "revenue mix becomes materially less concentrated without margin erosion"
       }
     ]
   },
@@ -184,16 +305,41 @@
       "to": "operating leverage",
       "mechanism": "incremental revenue spreads operating costs and supports margin expansion",
       "falsifier": "margins contract materially while revenue remains elevated"
+    },
+    {
+      "from": "AI device complexity",
+      "to": "deposition and etch intensity",
+      "mechanism": "advanced structures require more precise and repeated material deposition/removal steps",
+      "falsifier": "process architectures reduce Lam-addressable step intensity or Lam loses material share"
+    },
+    {
+      "from": "process complexity",
+      "to": "customer co-development and lab demand",
+      "mechanism": "new process modules require experimentation and qualification before high-volume manufacturing",
+      "falsifier": "customers shift development to competing tool ecosystems"
+    },
+    {
+      "from": "export controls on China",
+      "to": "addressable Lam revenue",
+      "mechanism": "restrictions can bar shipment/service to affected fabs despite underlying semiconductor demand",
+      "falsifier": "China exposure falls materially or permitted demand offsets restricted categories"
+    },
+    {
+      "from": "customer concentration",
+      "to": "revenue volatility",
+      "mechanism": "large customers can change capex, timing, qualification or supplier allocation",
+      "falsifier": "revenue mix becomes materially less concentrated without margin erosion"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "lam-ir:june-q-2026:2026-07-29",
-      "lam-ir:rd-network:2026-08-13"
+      "lam-ir:rd-network:2026-08-13",
+      "sec:lrcx:2026-10k:000070754926000037"
     ]
   },
   "sources": [
@@ -212,6 +358,14 @@
       "publishedAt": "2026-08-13",
       "originFingerprint": "lam-ir:rd-network:2026-08-13",
       "sourceId": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/lrcx-20260628.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-07",
+      "originFingerprint": "sec:lrcx:2026-10k:000070754926000037",
+      "sourceId": null
     }
   ],
   "contradictions": [],
@@ -227,21 +381,27 @@
     {
       "unknown": "No canonical valuation conclusion is asserted.",
       "gating": false
+    },
+    {
+      "unknown": "Future Lam share at each next-generation process step is not guaranteed by industry complexity alone.",
+      "gating": false
+    },
+    {
+      "unknown": "Customer identities behind the four >=10% revenue shares are not asserted here.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 95,
+  "confidence": 94,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -255,14 +415,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "AMT",
   "workId": "t0:AMT",
-  "generatedAt": "2026-09-19T14:10:31.792Z",
+  "generatedAt": "2026-09-19T14:26:04.090Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-28T00:00:00.000Z",
-    "end": "2026-09-19T08:06:13.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T08:06:13.000Z"
+    "end": "2026-09-19T14:24:43.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T14:24:43.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/AMT-20260919T080613Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/AMT-20260919T080613Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/AMT-20260919T142443Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -64,19 +67,35 @@
       "financialOperatingMomentum",
       "catalystScore",
       "scenarioRobustness",
-      "pricingPower"
+      "pricingPower",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
         "crossDivisionLeverage",
         "bottleneckControl"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "substitutionResilience",
+        "pricingPower",
+        "financialOperatingMomentum",
+        "governancePower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -130,7 +149,10 @@
     "financialOperatingMomentum",
     "catalystScore",
     "scenarioRobustness",
-    "pricingPower"
+    "pricingPower",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -141,6 +163,26 @@
       },
       {
         "risk": "Reported net-income growth is heavily distorted by foreign-currency comparison effects; AFFO growth is the cleaner execution signal.",
+        "gating": false
+      },
+      {
+        "risk": "Architectural substitution can decouple traffic growth from macro-tower tenancy growth.",
+        "gating": false
+      },
+      {
+        "risk": "Power/interconnection scarcity can shift value toward data-center ecosystems where AMT faces a different competitive set.",
+        "gating": false
+      },
+      {
+        "risk": "Capital intensity and lease/debt obligations create refinancing and rate sensitivity.",
+        "gating": false
+      },
+      {
+        "risk": "Carrier consolidation, churn or network rationalization can weaken tenancy growth despite rising traffic.",
+        "gating": false
+      },
+      {
+        "risk": "Using headline net income without normalizing currency effects can inflate confidence in execution quality.",
         "gating": false
       }
     ]
@@ -153,6 +195,26 @@
     {
       "risk": "Reported net-income growth is heavily distorted by foreign-currency comparison effects; AFFO growth is the cleaner execution signal.",
       "gating": false
+    },
+    {
+      "risk": "Architectural substitution can decouple traffic growth from macro-tower tenancy growth.",
+      "gating": false
+    },
+    {
+      "risk": "Power/interconnection scarcity can shift value toward data-center ecosystems where AMT faces a different competitive set.",
+      "gating": false
+    },
+    {
+      "risk": "Capital intensity and lease/debt obligations create refinancing and rate sensitivity.",
+      "gating": false
+    },
+    {
+      "risk": "Carrier consolidation, churn or network rationalization can weaken tenancy growth despite rising traffic.",
+      "gating": false
+    },
+    {
+      "risk": "Using headline net income without normalizing currency effects can inflate confidence in execution quality.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -163,20 +225,113 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "mobile-and-data-demand",
+        "to": "carrier-and-data-center-capacity",
+        "relation": "increases_need_for"
+      },
+      {
+        "from": "carrier-and-data-center-capacity",
+        "to": "tower-site-and-interconnection-demand",
+        "relation": "supports"
+      },
+      {
+        "from": "tower-site-and-interconnection-demand",
+        "to": "AMT-property-revenue-and-AFFO",
+        "relation": "supports"
+      },
+      {
+        "from": "site-rights-power-backhaul-permitting",
+        "to": "infrastructure-replication",
+        "relation": "constrains"
+      },
+      {
+        "from": "network-sharing-small-cells-alternative-sites-efficient-radio",
+        "to": "incremental-macro-tower-tenancy",
+        "relation": "can_reduce"
+      },
+      {
+        "from": "higher-financing-cost",
+        "to": "AMT-free-cash-flow-flexibility",
+        "relation": "pressures"
+      },
+      {
+        "from": "interest-and-borrowing-cost",
+        "to": "AMT-financing-burden",
+        "relation": "increases"
+      },
+      {
+        "from": "carrier-churn-or-consolidation",
+        "to": "tower-organic-growth",
+        "relation": "can_reduce"
+      },
+      {
+        "from": "currency-movements",
+        "to": "reported-net-income-comparability",
+        "relation": "distorts"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "mobile-and-data-demand",
+      "to": "carrier-and-data-center-capacity",
+      "relation": "increases_need_for"
+    },
+    {
+      "from": "carrier-and-data-center-capacity",
+      "to": "tower-site-and-interconnection-demand",
+      "relation": "supports"
+    },
+    {
+      "from": "tower-site-and-interconnection-demand",
+      "to": "AMT-property-revenue-and-AFFO",
+      "relation": "supports"
+    },
+    {
+      "from": "site-rights-power-backhaul-permitting",
+      "to": "infrastructure-replication",
+      "relation": "constrains"
+    },
+    {
+      "from": "network-sharing-small-cells-alternative-sites-efficient-radio",
+      "to": "incremental-macro-tower-tenancy",
+      "relation": "can_reduce"
+    },
+    {
+      "from": "higher-financing-cost",
+      "to": "AMT-free-cash-flow-flexibility",
+      "relation": "pressures"
+    },
+    {
+      "from": "interest-and-borrowing-cost",
+      "to": "AMT-financing-burden",
+      "relation": "increases"
+    },
+    {
+      "from": "carrier-churn-or-consolidation",
+      "to": "tower-organic-growth",
+      "relation": "can_reduce"
+    },
+    {
+      "from": "currency-movements",
+      "to": "reported-net-income-comparability",
+      "relation": "distorts"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "sec:1053507:2026Q2:000105350726000131:ex99.1"
+      "sec:1053507:2026Q2:000105350726000131:ex99.1",
+      "sec:1053507:2026Q2:000105350726000133:10q"
     ]
   },
   "sources": [
@@ -187,6 +342,14 @@
       "primary": true,
       "publishedAt": "2026-07-28",
       "originFingerprint": "sec:1053507:2026Q2:000105350726000131:ex99.1"
+    },
+    {
+      "sourceId": "sec:AMT:2026Q2:10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1053507/000105350726000133/amt-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-28",
+      "originFingerprint": "sec:1053507:2026Q2:000105350726000133:10q"
     }
   ],
   "contradictions": [],
@@ -202,26 +365,39 @@
     {
       "unknown": "Forward leasing conversion and financing-cost trajectory require subsequent-quarter validation.",
       "gating": false
+    },
+    {
+      "unknown": "How much future traffic growth converts into incremental AMT tenancy versus network efficiency or alternative infrastructure remains uncertain.",
+      "gating": false
+    },
+    {
+      "unknown": "Durability of record CoreSite leasing beyond the reported quarter remains unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Current top-customer concentration and renewal economics were not independently quantified in this Beta pass.",
+      "gating": false
+    },
+    {
+      "unknown": "Forward financing-cost trajectory and CoreSite leasing conversion require subsequent-quarter validation.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": 88,
+  "confidence": 84,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -231,14 +407,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -255,10 +423,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

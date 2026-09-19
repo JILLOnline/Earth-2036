@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CIFR",
   "workId": "t0:CIFR",
-  "generatedAt": "2026-09-19T22:15:48.933Z",
+  "generatedAt": "2026-09-19T22:28:18.545Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-04T00:00:00.000Z",
-    "end": "2026-09-19T12:08:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T12:08:00.000Z"
+    "end": "2026-09-19T22:26:15.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T22:26:15.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/CIFR-20260919T120800Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/CIFR-20260919T120800Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/CIFR-20260919T222615Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -63,19 +66,34 @@
       "supplyChainResilience",
       "financialOperatingMomentum",
       "catalystScore",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "substitutionResilience",
+      "thesisQuality",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "alignment2036",
         "crossDivisionLeverage",
         "bottleneckControl",
         "supplyChainResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "governancePower",
+        "supplyChainResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -127,7 +145,10 @@
     "supplyChainResilience",
     "financialOperatingMomentum",
     "catalystScore",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "substitutionResilience",
+    "thesisQuality",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -138,6 +159,18 @@
       },
       {
         "risk": "Q2 revenue was $25 million and adjusted EBITDA was negative $30 million, so execution progress has not yet translated into positive operating economics.",
+        "gating": false
+      },
+      {
+        "risk": "Interconnection and construction are successor bottlenecks after site/power acquisition.",
+        "gating": false
+      },
+      {
+        "risk": "Approximately $6.0B of indebtedness materially raises execution sensitivity during the HPC buildout.",
+        "gating": false
+      },
+      {
+        "risk": "Lease remedies and rent credits can reduce economics if delivery milestones are missed.",
         "gating": false
       }
     ]
@@ -150,6 +183,18 @@
     {
       "risk": "Q2 revenue was $25 million and adjusted EBITDA was negative $30 million, so execution progress has not yet translated into positive operating economics.",
       "gating": false
+    },
+    {
+      "risk": "Interconnection and construction are successor bottlenecks after site/power acquisition.",
+      "gating": false
+    },
+    {
+      "risk": "Approximately $6.0B of indebtedness materially raises execution sensitivity during the HPC buildout.",
+      "gating": false
+    },
+    {
+      "risk": "Lease remedies and rent credits can reduce economics if delivery milestones are missed.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -160,20 +205,37 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "AI compute demand -> demand for energized data-center capacity",
+      "grid/interconnection access -> deliverable HPC capacity",
+      "construction completion -> lease commencement -> recurring rent",
+      "delivery delay -> rent delay/credits/remedies",
+      "project debt -> fixed financing burden",
+      "construction delay -> delayed rent -> weaker debt coverage",
+      "bitcoin exposure during transition -> earnings volatility"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "AI compute demand -> demand for energized data-center capacity",
+    "grid/interconnection access -> deliverable HPC capacity",
+    "construction completion -> lease commencement -> recurring rent",
+    "delivery delay -> rent delay/credits/remedies",
+    "project debt -> fixed financing burden",
+    "construction delay -> delayed rent -> weaker debt coverage",
+    "bitcoin exposure during transition -> earnings volatility"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:CIFR:2026Q2:20260804"
+      "issuer:CIFR:2026Q2:20260804",
+      "sec:CIFR:2026Q2:10Q:20260630"
     ]
   },
   "sources": [
@@ -184,6 +246,14 @@
       "primary": true,
       "publishedAt": "2026-08-04",
       "originFingerprint": "issuer:CIFR:2026Q2:20260804"
+    },
+    {
+      "sourceId": "sec:CIFR:2026Q2:10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000041/cifr-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-04",
+      "originFingerprint": "sec:CIFR:2026Q2:10Q:20260630"
     }
   ],
   "contradictions": [],
@@ -199,11 +269,19 @@
     {
       "unknown": "Full delivery timing and stabilized margins for contracted HPC campuses remain future execution items.",
       "gating": false
+    },
+    {
+      "unknown": "Stabilized tenant-level returns after full campus delivery remain unobserved.",
+      "gating": false
+    },
+    {
+      "unknown": "Post-delivery cash yields and debt-service coverage for the new HPC campuses are not yet observable.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 88,
@@ -212,13 +290,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -228,14 +303,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -252,10 +319,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

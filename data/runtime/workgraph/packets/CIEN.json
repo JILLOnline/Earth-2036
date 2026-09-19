@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CIEN",
   "workId": "t0:CIEN",
-  "generatedAt": "2026-09-19T22:15:48.932Z",
+  "generatedAt": "2026-09-19T22:28:18.544Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-03-10T00:00:00.000Z",
-    "end": "2026-09-19T11:03:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T11:03:00.000Z"
+    "end": "2026-09-19T22:26:14.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T22:26:14.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/CIEN-20260919T110300Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/CIEN-20260919T110300Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/CIEN-20260919T222614Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -65,12 +68,21 @@
       "financialOperatingMomentum",
       "pricingPower",
       "scenarioRobustness",
-      "catalystScore"
+      "catalystScore",
+      "supplyChainResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
@@ -78,7 +90,13 @@
         "bottleneckControl",
         "substitutionResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "pricingPower",
+        "governancePower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "pricingPower",
@@ -133,7 +151,9 @@
     "financialOperatingMomentum",
     "pricingPower",
     "scenarioRobustness",
-    "catalystScore"
+    "catalystScore",
+    "supplyChainResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -144,6 +164,18 @@
       },
       {
         "risk": "The 2029 targets embed aggressive multi-year growth and margin expansion that remain forward-looking and execution-sensitive.",
+        "gating": false
+      },
+      {
+        "risk": "Cloud-provider concentration means AI networking demand can be structurally strong while revenue remains sensitive to a small number of capex programs.",
+        "gating": false
+      },
+      {
+        "risk": "Customer concentration can amplify a single hyperscaler's architecture or capex change.",
+        "gating": false
+      },
+      {
+        "risk": "Aggressive multi-year targets can inflate confidence if treated as realized economics.",
         "gating": false
       }
     ]
@@ -156,6 +188,18 @@
     {
       "risk": "The 2029 targets embed aggressive multi-year growth and margin expansion that remain forward-looking and execution-sensitive.",
       "gating": false
+    },
+    {
+      "risk": "Cloud-provider concentration means AI networking demand can be structurally strong while revenue remains sensitive to a small number of capex programs.",
+      "gating": false
+    },
+    {
+      "risk": "Customer concentration can amplify a single hyperscaler's architecture or capex change.",
+      "gating": false
+    },
+    {
+      "risk": "Aggressive multi-year targets can inflate confidence if treated as realized economics.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -166,23 +210,38 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 4
+    "count": 5
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "AI/cloud compute growth -> network traffic growth",
+      "network traffic growth -> optical capacity and interconnect demand",
+      "optical capacity demand -> Ciena networking systems demand",
+      "customer concentration/component constraints -> execution fragility",
+      "cloud capex concentration -> revenue concentration risk",
+      "supply constraints -> backlog/delivery timing -> margin/cash conversion risk"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "AI/cloud compute growth -> network traffic growth",
+    "network traffic growth -> optical capacity and interconnect demand",
+    "optical capacity demand -> Ciena networking systems demand",
+    "customer concentration/component constraints -> execution fragility",
+    "cloud capex concentration -> revenue concentration risk",
+    "supply constraints -> backlog/delivery timing -> margin/cash conversion risk"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
-    "uniqueSourceCount": 4,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 5,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:CIEN:strategy:ciena-ventures:20260914",
       "issuer:CIEN:product:ai-networking:20260310",
       "issuer:CIEN:earnings:2026Q3:20260903",
-      "issuer:CIEN:targets:FY2029:20260916"
+      "issuer:CIEN:targets:FY2029:20260916",
+      "sec:CIEN:2026Q3:10Q:20260801"
     ]
   },
   "sources": [
@@ -217,6 +276,14 @@
       "primary": true,
       "publishedAt": "2026-09-16",
       "originFingerprint": "issuer:CIEN:targets:FY2029:20260916"
+    },
+    {
+      "sourceId": "sec:CIEN:2026Q3:10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/936395/000162828026060361/cien-20260801.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-04",
+      "originFingerprint": "sec:CIEN:2026Q3:10Q:20260801"
     }
   ],
   "contradictions": [],
@@ -232,26 +299,31 @@
     {
       "unknown": "Durability of AI-driven demand, supply-capacity execution and customer concentration through the target horizon require continued monitoring.",
       "gating": false
+    },
+    {
+      "unknown": "Long-run share capture versus Nokia, Cisco and other optical/interconnect substitutes is not established by current evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Current evidence does not quantify how much 2026 backlog reflects durable end demand versus supply-constrained timing effects.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 92,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -261,14 +333,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -285,10 +349,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CMI",
   "workId": "t0:CMI",
-  "generatedAt": "2026-09-19T22:15:48.936Z",
+  "generatedAt": "2026-09-19T22:28:18.550Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-19T22:14:36.596Z"
   },
   "evidenceWindow": {
-    "start": "2026-08-06T00:00:00.000Z",
-    "end": "2026-09-19T11:08:30.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T11:08:30.000Z"
+    "start": "2025-02-11T00:00:00.000Z",
+    "end": "2026-09-19T22:26:17.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T22:26:17.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/CMI-20260919T110830Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/CMI-20260919T110830Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/CMI-20260919T222617Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -64,19 +67,36 @@
       "financialOperatingMomentum",
       "catalystScore",
       "scenarioRobustness",
-      "pricingPower"
+      "pricingPower",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
         "crossDivisionLeverage",
         "bottleneckControl"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower",
+        "governancePower",
+        "supplyChainResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -130,7 +150,10 @@
     "financialOperatingMomentum",
     "catalystScore",
     "scenarioRobustness",
-    "pricingPower"
+    "pricingPower",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -141,6 +164,18 @@
       },
       {
         "risk": "Q2 EBITDA margin of 17.5% remained below the prior-year quarter's 18.4%, so revenue acceleration has not translated into year-over-year margin expansion in this quarter.",
+        "gating": false
+      },
+      {
+        "risk": "Data-center power growth can be strong while truck/off-highway cycles weaken other Cummins segments.",
+        "gating": false
+      },
+      {
+        "risk": "Open-order cancellability makes some demand less durable than headline backlog language may imply.",
+        "gating": false
+      },
+      {
+        "risk": "Zero-emissions investments remain loss-making and require disciplined pacing.",
         "gating": false
       }
     ]
@@ -153,6 +188,18 @@
     {
       "risk": "Q2 EBITDA margin of 17.5% remained below the prior-year quarter's 18.4%, so revenue acceleration has not translated into year-over-year margin expansion in this quarter.",
       "gating": false
+    },
+    {
+      "risk": "Data-center power growth can be strong while truck/off-highway cycles weaken other Cummins segments.",
+      "gating": false
+    },
+    {
+      "risk": "Open-order cancellability makes some demand less durable than headline backlog language may imply.",
+      "gating": false
+    },
+    {
+      "risk": "Zero-emissions investments remain loss-making and require disciplined pacing.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -163,20 +210,38 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "AI/data-center buildout -> critical power demand",
+      "critical power demand -> generator/system demand",
+      "multi-technology portfolio -> transition optionality",
+      "grid/permitting/supply constraints -> deployment bottlenecks",
+      "data-center demand -> Power Systems growth",
+      "open purchase orders -> cancellation risk",
+      "Accelera investment -> near-term EBITDA drag -> transition optionality"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "AI/data-center buildout -> critical power demand",
+    "critical power demand -> generator/system demand",
+    "multi-technology portfolio -> transition optionality",
+    "grid/permitting/supply constraints -> deployment bottlenecks",
+    "data-center demand -> Power Systems growth",
+    "open purchase orders -> cancellation risk",
+    "Accelera investment -> near-term EBITDA drag -> transition optionality"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:CMI:2026Q2:20260806"
+      "issuer:CMI:2026Q2:20260806",
+      "sec:CMI:2026Q2:earnings:20260806",
+      "sec:CMI:2024:10K:20241231"
     ]
   },
   "sources": [
@@ -187,11 +252,31 @@
       "primary": true,
       "publishedAt": "2026-08-06",
       "originFingerprint": "issuer:CMI:2026Q2:20260806"
+    },
+    {
+      "sourceId": "sec:CMI:2026Q2:8K-ex99",
+      "url": "https://www.sec.gov/Archives/edgar/data/26172/000002617226000026/cmi2026q28-kex99.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "sec:CMI:2026Q2:earnings:20260806"
+    },
+    {
+      "sourceId": "sec:CMI:2025:10K",
+      "url": "https://www.sec.gov/Archives/edgar/data/26172/000002617225000007/cmi-20241231.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2025-02-11",
+      "originFingerprint": "sec:CMI:2024:10K:20241231"
     }
   ],
   "contradictions": [
     {
       "contradiction": "Record revenue and raised outlook coexist with lower year-over-year Q2 EBITDA margin.",
+      "material": false
+    },
+    {
+      "contradiction": "Record/strong revenue growth coexists with lower consolidated year-over-year EBITDA margin and continued Accelera losses.",
       "material": false
     }
   ],
@@ -200,6 +285,10 @@
     "items": [
       {
         "contradiction": "Record revenue and raised outlook coexist with lower year-over-year Q2 EBITDA margin.",
+        "material": false
+      },
+      {
+        "contradiction": "Record/strong revenue growth coexists with lower consolidated year-over-year EBITDA margin and continued Accelera losses.",
         "material": false
       }
     ]
@@ -212,11 +301,19 @@
     {
       "unknown": "Durability of data-center demand and second-half truck recovery beyond current guidance remains unverified.",
       "gating": false
+    },
+    {
+      "unknown": "Current disclosures do not isolate data-center backlog economics or customer concentration.",
+      "gating": false
+    },
+    {
+      "unknown": "Incremental margins and concentration of data-center power-generation demand are not separately disclosed.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 88,
@@ -225,13 +322,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -241,14 +335,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -265,10 +351,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

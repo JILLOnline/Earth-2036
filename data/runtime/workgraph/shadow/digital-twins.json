@@ -1,9 +1,9 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-19T22:15:48.937Z",
+  "generatedAt": "2026-09-19T22:28:18.551Z",
   "canonicalWriteAuthority": false,
-  "total": 227,
+  "total": 226,
   "twins": [
     {
       "version": 1,
@@ -11276,7 +11276,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "CIEN",
       "workId": "t0:CIEN",
-      "inputSignature": "a8b8819417306979489cc9af",
+      "inputSignature": "c06738967d3ede5f8fde6083",
       "sourceState": "researching",
       "identity": {
         "ticker": "CIEN",
@@ -11299,31 +11299,32 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 4,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 5,
         "sourceLineage": {
-          "rawSourceCount": 4,
-          "uniqueSourceCount": 4,
-          "duplicatesCollapsed": 0,
+          "rawSourceCount": 8,
+          "uniqueSourceCount": 5,
+          "duplicatesCollapsed": 3,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:CIEN:strategy:ciena-ventures:20260914",
             "issuer:CIEN:product:ai-networking:20260310",
             "issuer:CIEN:earnings:2026Q3:20260903",
-            "issuer:CIEN:targets:FY2029:20260916"
+            "issuer:CIEN:targets:FY2029:20260916",
+            "sec:CIEN:2026Q3:10Q:20260801"
           ]
         },
         "evidenceWindow": {
           "start": "2026-03-10T00:00:00.000Z",
-          "end": "2026-09-19T11:03:00.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T11:03:00.000Z"
+          "end": "2026-09-19T22:26:14.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-19T22:26:14.000Z"
         },
         "preflightPassed": false
       },
@@ -11336,34 +11337,45 @@
         "financialOperatingMomentum",
         "pricingPower",
         "scenarioRobustness",
-        "catalystScore"
+        "catalystScore",
+        "supplyChainResilience",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
           "Corporate venture investing can improve technology visibility but may dilute capital discipline if strategic fit and returns are weak.",
-          "The 2029 targets embed aggressive multi-year growth and margin expansion that remain forward-looking and execution-sensitive."
+          "The 2029 targets embed aggressive multi-year growth and margin expansion that remain forward-looking and execution-sensitive.",
+          "Cloud-provider concentration means AI networking demand can be structurally strong while revenue remains sensitive to a small number of capex programs.",
+          "Customer concentration can amplify a single hyperscaler's architecture or capex change.",
+          "Aggressive multi-year targets can inflate confidence if treated as realized economics."
         ],
         "unknowns": [
           "No portfolio investments or realized strategic/financial returns from Ciena Ventures exist yet in the retrieved evidence.",
-          "Durability of AI-driven demand, supply-capacity execution and customer concentration through the target horizon require continued monitoring."
+          "Durability of AI-driven demand, supply-capacity execution and customer concentration through the target horizon require continued monitoring.",
+          "Long-run share capture versus Nokia, Cisco and other optical/interconnect substitutes is not established by current evidence.",
+          "Current evidence does not quantify how much 2026 backlog reflects durable end demand versus supply-constrained timing effects."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "AI/cloud compute growth -> network traffic growth",
+          "network traffic growth -> optical capacity and interconnect demand",
+          "optical capacity demand -> Ciena networking systems demand",
+          "customer concentration/component constraints -> execution fragility",
+          "cloud capex concentration -> revenue concentration risk",
+          "supply constraints -> backlog/delivery timing -> margin/cash conversion risk"
+        ]
       },
       "improvementWindows": [
         {
@@ -11374,16 +11386,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -11405,11 +11407,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -11422,13 +11419,20 @@
           "financialOperatingMomentum",
           "pricingPower",
           "scenarioRobustness",
-          "catalystScore"
+          "catalystScore",
+          "supplyChainResilience",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "No portfolio investments or realized strategic/financial returns from Ciena Ventures exist yet in the retrieved evidence.",
           "Durability of AI-driven demand, supply-capacity execution and customer concentration through the target horizon require continued monitoring.",
+          "Long-run share capture versus Nokia, Cisco and other optical/interconnect substitutes is not established by current evidence.",
+          "Current evidence does not quantify how much 2026 backlog reflects durable end demand versus supply-constrained timing effects.",
           "Corporate venture investing can improve technology visibility but may dilute capital discipline if strategic fit and returns are weak.",
-          "The 2029 targets embed aggressive multi-year growth and margin expansion that remain forward-looking and execution-sensitive."
+          "The 2029 targets embed aggressive multi-year growth and margin expansion that remain forward-looking and execution-sensitive.",
+          "Cloud-provider concentration means AI networking demand can be structurally strong while revenue remains sensitive to a small number of capex programs.",
+          "Customer concentration can amplify a single hyperscaler's architecture or capex change.",
+          "Aggressive multi-year targets can inflate confidence if treated as realized economics."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -13070,196 +13074,6 @@
       "version": 1,
       "contract": "earth2036-company-digital-twin-shadow-v1",
       "canonicalWriteAuthority": false,
-      "ticker": "AMT",
-      "workId": "t0:AMT",
-      "inputSignature": "ce958f412e2fd95325361dee",
-      "sourceState": "chief_ready",
-      "identity": {
-        "ticker": "AMT",
-        "company": "American Tower",
-        "cik": "0001053507",
-        "exchange": "NYSE",
-        "exchangeName": "American Tower Corporation (REIT) Common Stock",
-        "identityStatus": "validated",
-        "tradabilityStatus": "validated",
-        "validatedAt": "2026-09-19T22:14:36.596Z"
-      },
-      "representationQuality": {
-        "requiredPerspectives": [
-          "source-integrity",
-          "company-underwriting",
-          "structural-causal",
-          "discovery-weak-signals",
-          "adversarial-red-team",
-          "expectations-execution"
-        ],
-        "presentPerspectives": [
-          "discovery-weak-signals",
-          "expectations-execution",
-          "structural-causal",
-          "adversarial-red-team",
-          "source-integrity",
-          "company-underwriting"
-        ],
-        "missingPerspectives": [],
-        "primarySourceCount": 3,
-        "sourceLineage": {
-          "rawSourceCount": 12,
-          "uniqueSourceCount": 3,
-          "duplicatesCollapsed": 9,
-          "missingLineage": 0,
-          "uniqueOrigins": [
-            "sec:1053507:2026Q2:000105350726000131:ex99.1",
-            "sec:1053507:2026Q2:000105350726000133:10q",
-            "sec:1053507:20260914:000119312526390605:8k"
-          ]
-        },
-        "evidenceWindow": {
-          "start": "2026-07-28T00:00:00.000Z",
-          "end": "2026-09-19T22:14:10.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T22:14:10.000Z"
-        },
-        "preflightPassed": true
-      },
-      "capabilitySignals": [
-        "thesisQuality",
-        "alignment2036",
-        "crossDivisionLeverage",
-        "bottleneckControl",
-        "financialOperatingMomentum",
-        "catalystScore",
-        "scenarioRobustness",
-        "pricingPower",
-        "substitutionResilience",
-        "supplyChainResilience",
-        "governancePower",
-        "marketValuationOpportunity"
-      ],
-      "constraintSignals": {
-        "risks": [
-          "Tower organic growth remains exposed to carrier churn and interest-rate-sensitive REIT financing.",
-          "Reported net-income growth is heavily distorted by foreign-currency comparison effects; AFFO growth is the cleaner execution signal.",
-          "Architectural substitution can decouple traffic growth from macro-tower tenancy growth.",
-          "Power/interconnection scarcity can shift value toward data-center ecosystems where AMT faces a different competitive set.",
-          "Capital intensity and lease/debt obligations create refinancing and rate sensitivity.",
-          "Carrier consolidation, churn or network rationalization can weaken tenancy growth despite rising traffic.",
-          "Using headline net income without normalizing currency effects can inflate confidence in execution quality.",
-          "Primary-source concentration limits independent corroboration; this reduces confidence rather than being treated favorably.",
-          "Capital intensity and higher refinancing coupons pressure free-cash-flow flexibility.",
-          "Carrier churn/consolidation and network-efficiency substitutes can decouple traffic growth from macro-tower tenancy growth."
-        ],
-        "unknowns": [
-          "Durability of record CoreSite leasing beyond the reported quarter remains unproven.",
-          "Forward leasing conversion and financing-cost trajectory require subsequent-quarter validation.",
-          "How much future traffic growth converts into incremental AMT tenancy versus network efficiency or alternative infrastructure remains uncertain.",
-          "Current top-customer concentration and renewal economics were not independently quantified in this Beta pass.",
-          "Forward financing-cost trajectory and CoreSite leasing conversion require subsequent-quarter validation.",
-          "No independent current valuation source with a reproducible as-of price/market-cap observation was added in this pass; valuation is therefore scored conservatively in the mixed/unproven band.",
-          "Current valuation was not independently reconstructed from a reproducible market-price source in this pass.",
-          "Current top-customer concentration and renewal economics remain incompletely quantified."
-        ],
-        "contradictions": [],
-        "gatingIssues": [],
-        "preflightFailures": []
-      },
-      "causalContext": {
-        "mapped": true,
-        "edges": [
-          {
-            "from": "mobile-and-data-demand",
-            "to": "carrier-and-data-center-capacity",
-            "relation": "increases_need_for"
-          },
-          {
-            "from": "carrier-and-data-center-capacity",
-            "to": "tower-site-and-interconnection-demand",
-            "relation": "supports"
-          },
-          {
-            "from": "tower-site-and-interconnection-demand",
-            "to": "AMT-property-revenue-and-AFFO",
-            "relation": "supports"
-          },
-          {
-            "from": "site-rights-power-backhaul-permitting",
-            "to": "infrastructure-replication",
-            "relation": "constrains"
-          },
-          {
-            "from": "network-sharing-small-cells-alternative-sites-efficient-radio",
-            "to": "incremental-macro-tower-tenancy",
-            "relation": "can_reduce"
-          },
-          {
-            "from": "higher-financing-cost",
-            "to": "AMT-free-cash-flow-flexibility",
-            "relation": "pressures"
-          },
-          {
-            "from": "interest-and-borrowing-cost",
-            "to": "AMT-financing-burden",
-            "relation": "increases"
-          },
-          {
-            "from": "carrier-churn-or-consolidation",
-            "to": "tower-organic-growth",
-            "relation": "can_reduce"
-          },
-          {
-            "from": "currency-movements",
-            "to": "reported-net-income-comparability",
-            "relation": "distorts"
-          }
-        ]
-      },
-      "improvementWindows": [],
-      "bridgeInputs": {
-        "capabilityCandidates": [
-          "thesisQuality",
-          "alignment2036",
-          "crossDivisionLeverage",
-          "bottleneckControl",
-          "financialOperatingMomentum",
-          "catalystScore",
-          "scenarioRobustness",
-          "pricingPower",
-          "substitutionResilience",
-          "supplyChainResilience",
-          "governancePower",
-          "marketValuationOpportunity"
-        ],
-        "needOrConstraintCandidates": [
-          "Durability of record CoreSite leasing beyond the reported quarter remains unproven.",
-          "Forward leasing conversion and financing-cost trajectory require subsequent-quarter validation.",
-          "How much future traffic growth converts into incremental AMT tenancy versus network efficiency or alternative infrastructure remains uncertain.",
-          "Current top-customer concentration and renewal economics were not independently quantified in this Beta pass.",
-          "Forward financing-cost trajectory and CoreSite leasing conversion require subsequent-quarter validation.",
-          "No independent current valuation source with a reproducible as-of price/market-cap observation was added in this pass; valuation is therefore scored conservatively in the mixed/unproven band.",
-          "Current valuation was not independently reconstructed from a reproducible market-price source in this pass.",
-          "Current top-customer concentration and renewal economics remain incompletely quantified.",
-          "Tower organic growth remains exposed to carrier churn and interest-rate-sensitive REIT financing.",
-          "Reported net-income growth is heavily distorted by foreign-currency comparison effects; AFFO growth is the cleaner execution signal.",
-          "Architectural substitution can decouple traffic growth from macro-tower tenancy growth.",
-          "Power/interconnection scarcity can shift value toward data-center ecosystems where AMT faces a different competitive set.",
-          "Capital intensity and lease/debt obligations create refinancing and rate sensitivity.",
-          "Carrier consolidation, churn or network rationalization can weaken tenancy growth despite rising traffic.",
-          "Using headline net income without normalizing currency effects can inflate confidence in execution quality.",
-          "Primary-source concentration limits independent corroboration; this reduces confidence rather than being treated favorably.",
-          "Capital intensity and higher refinancing coupons pressure free-cash-flow flexibility.",
-          "Carrier churn/consolidation and network-efficiency substitutes can decouple traffic growth from macro-tower tenancy growth."
-        ],
-        "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
-      },
-      "doctrine": {
-        "recommendationStyle": "facts + interpretation + options; never coercion",
-        "representationIsNotRanking": true,
-        "uncertaintyVisible": true
-      }
-    },
-    {
-      "version": 1,
-      "contract": "earth2036-company-digital-twin-shadow-v1",
-      "canonicalWriteAuthority": false,
       "ticker": "CCI",
       "workId": "t0:CCI",
       "inputSignature": "0c854cacd022f744241c93b1",
@@ -13599,7 +13413,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "CIFR",
       "workId": "t0:CIFR",
-      "inputSignature": "413f88152db4ff7e23ed00f2",
+      "inputSignature": "eb0dc4e52d0b587339950901",
       "sourceState": "researching",
       "identity": {
         "ticker": "CIFR",
@@ -13622,28 +13436,29 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 1,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 2,
         "sourceLineage": {
-          "rawSourceCount": 2,
-          "uniqueSourceCount": 1,
-          "duplicatesCollapsed": 1,
+          "rawSourceCount": 4,
+          "uniqueSourceCount": 2,
+          "duplicatesCollapsed": 2,
           "missingLineage": 0,
           "uniqueOrigins": [
-            "issuer:CIFR:2026Q2:20260804"
+            "issuer:CIFR:2026Q2:20260804",
+            "sec:CIFR:2026Q2:10Q:20260630"
           ]
         },
         "evidenceWindow": {
           "start": "2026-08-04T00:00:00.000Z",
-          "end": "2026-09-19T12:08:00.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T12:08:00.000Z"
+          "end": "2026-09-19T22:26:15.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-19T22:26:15.000Z"
         },
         "preflightPassed": false
       },
@@ -13654,34 +13469,47 @@
         "supplyChainResilience",
         "financialOperatingMomentum",
         "catalystScore",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "substitutionResilience",
+        "thesisQuality",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
           "Apollo remains an option and grid/interconnection progression is not equivalent to delivered capacity.",
-          "Q2 revenue was $25 million and adjusted EBITDA was negative $30 million, so execution progress has not yet translated into positive operating economics."
+          "Q2 revenue was $25 million and adjusted EBITDA was negative $30 million, so execution progress has not yet translated into positive operating economics.",
+          "Interconnection and construction are successor bottlenecks after site/power acquisition.",
+          "Approximately $6.0B of indebtedness materially raises execution sensitivity during the HPC buildout.",
+          "Lease remedies and rent credits can reduce economics if delivery milestones are missed."
         ],
         "unknowns": [
           "Tenant economics and realized returns on the new pipeline remain unproven in the retrieved release.",
-          "Full delivery timing and stabilized margins for contracted HPC campuses remain future execution items."
+          "Full delivery timing and stabilized margins for contracted HPC campuses remain future execution items.",
+          "Stabilized tenant-level returns after full campus delivery remain unobserved.",
+          "Post-delivery cash yields and debt-service coverage for the new HPC campuses are not yet observable."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "AI compute demand -> demand for energized data-center capacity",
+          "grid/interconnection access -> deliverable HPC capacity",
+          "construction completion -> lease commencement -> recurring rent",
+          "delivery delay -> rent delay/credits/remedies",
+          "project debt -> fixed financing burden",
+          "construction delay -> delayed rent -> weaker debt coverage",
+          "bitcoin exposure during transition -> earnings volatility"
+        ]
       },
       "improvementWindows": [
         {
@@ -13692,16 +13520,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -13723,11 +13541,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -13738,13 +13551,21 @@
           "supplyChainResilience",
           "financialOperatingMomentum",
           "catalystScore",
-          "scenarioRobustness"
+          "scenarioRobustness",
+          "substitutionResilience",
+          "thesisQuality",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "Tenant economics and realized returns on the new pipeline remain unproven in the retrieved release.",
           "Full delivery timing and stabilized margins for contracted HPC campuses remain future execution items.",
+          "Stabilized tenant-level returns after full campus delivery remain unobserved.",
+          "Post-delivery cash yields and debt-service coverage for the new HPC campuses are not yet observable.",
           "Apollo remains an option and grid/interconnection progression is not equivalent to delivered capacity.",
-          "Q2 revenue was $25 million and adjusted EBITDA was negative $30 million, so execution progress has not yet translated into positive operating economics."
+          "Q2 revenue was $25 million and adjusted EBITDA was negative $30 million, so execution progress has not yet translated into positive operating economics.",
+          "Interconnection and construction are successor bottlenecks after site/power acquisition.",
+          "Approximately $6.0B of indebtedness materially raises execution sensitivity during the HPC buildout.",
+          "Lease remedies and rent credits can reduce economics if delivery milestones are missed."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -20448,7 +20269,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "CLF",
       "workId": "t0:CLF",
-      "inputSignature": "b5b6fed4b08b83224c0667b1",
+      "inputSignature": "eca542c5d1ffc1168b8b9a59",
       "sourceState": "researching",
       "identity": {
         "ticker": "CLF",
@@ -20471,29 +20292,31 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 2,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 4,
         "sourceLineage": {
-          "rawSourceCount": 2,
-          "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 0,
+          "rawSourceCount": 6,
+          "uniqueSourceCount": 4,
+          "duplicatesCollapsed": 2,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:CLF:IR-news-index:20260821",
-            "issuer:CLF:IR-profile:202602"
+            "issuer:CLF:IR-profile:202602",
+            "sec:CLF:2025:10K:20251231",
+            "sec:CLF:2026Q2:earnings:20260723"
           ]
         },
         "evidenceWindow": {
           "start": "2026-02-01T00:00:00.000Z",
-          "end": "2026-09-19T12:08:01.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T12:08:01.000Z"
+          "end": "2026-09-19T22:26:16.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-19T22:26:16.000Z"
         },
         "preflightPassed": false
       },
@@ -20504,34 +20327,48 @@
         "catalystScore",
         "scenarioRobustness",
         "crossDivisionLeverage",
-        "thesisQuality"
+        "thesisQuality",
+        "substitutionResilience",
+        "financialOperatingMomentum",
+        "pricingPower",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
           "Large industrial projects carry construction, commissioning, demand and policy-execution risk.",
-          "Scale and vertical integration do not eliminate steel-cycle, automotive-demand or commodity-input sensitivity."
+          "Scale and vertical integration do not eliminate steel-cycle, automotive-demand or commodity-input sensitivity.",
+          "Vertical integration cannot insulate cash flow from automotive and steel-price cycles.",
+          "Automotive concentration remains material at 29% of Q2 steelmaking revenue.",
+          "Debt and capital-project execution can limit flexibility through a cyclical downturn."
         ],
         "unknowns": [
           "Retrieved index does not expose the project's detailed return thresholds or commissioning schedule.",
-          "A current quarter margin/cash-flow execution comparison requires the detailed Q2 filing/release."
+          "A current quarter margin/cash-flow execution comparison requires the detailed Q2 filing/release.",
+          "Durability of current domestic pricing/volume support under future trade-policy regimes remains uncertain.",
+          "Whether Q3 guidance converts into sustained free cash flow and meaningful debt reduction remains future execution."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "domestic manufacturing/auto demand -> steel demand",
+          "iron ore/DRI integration -> input security -> steel production",
+          "tariff/import conditions -> domestic utilization/pricing",
+          "auto concentration -> cyclical volume sensitivity",
+          "auto demand decline -> lower steel volumes",
+          "import/trade-policy reversal -> utilization/pricing pressure",
+          "positive FCF -> debt reduction -> improved resilience"
+        ]
       },
       "improvementWindows": [
         {
@@ -20542,16 +20379,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -20573,11 +20400,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -20588,13 +20410,22 @@
           "catalystScore",
           "scenarioRobustness",
           "crossDivisionLeverage",
-          "thesisQuality"
+          "thesisQuality",
+          "substitutionResilience",
+          "financialOperatingMomentum",
+          "pricingPower",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "Retrieved index does not expose the project's detailed return thresholds or commissioning schedule.",
           "A current quarter margin/cash-flow execution comparison requires the detailed Q2 filing/release.",
+          "Durability of current domestic pricing/volume support under future trade-policy regimes remains uncertain.",
+          "Whether Q3 guidance converts into sustained free cash flow and meaningful debt reduction remains future execution.",
           "Large industrial projects carry construction, commissioning, demand and policy-execution risk.",
-          "Scale and vertical integration do not eliminate steel-cycle, automotive-demand or commodity-input sensitivity."
+          "Scale and vertical integration do not eliminate steel-cycle, automotive-demand or commodity-input sensitivity.",
+          "Vertical integration cannot insulate cash flow from automotive and steel-price cycles.",
+          "Automotive concentration remains material at 29% of Q2 steelmaking revenue.",
+          "Debt and capital-project execution can limit flexibility through a cyclical downturn."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -34060,7 +33891,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "CMI",
       "workId": "t0:CMI",
-      "inputSignature": "b2c09dbc348061e296a11f85",
+      "inputSignature": "a2958838ffbc1df76ccbe1ee",
       "sourceState": "researching",
       "identity": {
         "ticker": "CMI",
@@ -34083,28 +33914,30 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 1,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 3,
         "sourceLineage": {
-          "rawSourceCount": 2,
-          "uniqueSourceCount": 1,
-          "duplicatesCollapsed": 1,
+          "rawSourceCount": 6,
+          "uniqueSourceCount": 3,
+          "duplicatesCollapsed": 3,
           "missingLineage": 0,
           "uniqueOrigins": [
-            "issuer:CMI:2026Q2:20260806"
+            "issuer:CMI:2026Q2:20260806",
+            "sec:CMI:2026Q2:earnings:20260806",
+            "sec:CMI:2024:10K:20241231"
           ]
         },
         "evidenceWindow": {
-          "start": "2026-08-06T00:00:00.000Z",
-          "end": "2026-09-19T11:08:30.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T11:08:30.000Z"
+          "start": "2025-02-11T00:00:00.000Z",
+          "end": "2026-09-19T22:26:17.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-19T22:26:17.000Z"
         },
         "preflightPassed": false
       },
@@ -34116,36 +33949,50 @@
         "financialOperatingMomentum",
         "catalystScore",
         "scenarioRobustness",
-        "pricingPower"
+        "pricingPower",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
           "Data-center power strength coexists with cyclical on-highway exposure and does not establish valuation attractiveness by itself.",
-          "Q2 EBITDA margin of 17.5% remained below the prior-year quarter's 18.4%, so revenue acceleration has not translated into year-over-year margin expansion in this quarter."
+          "Q2 EBITDA margin of 17.5% remained below the prior-year quarter's 18.4%, so revenue acceleration has not translated into year-over-year margin expansion in this quarter.",
+          "Data-center power growth can be strong while truck/off-highway cycles weaken other Cummins segments.",
+          "Open-order cancellability makes some demand less durable than headline backlog language may imply.",
+          "Zero-emissions investments remain loss-making and require disciplined pacing."
         ],
         "unknowns": [
           "Issuer release does not isolate data-center revenue, backlog, customer concentration or incremental margin contribution.",
-          "Durability of data-center demand and second-half truck recovery beyond current guidance remains unverified."
+          "Durability of data-center demand and second-half truck recovery beyond current guidance remains unverified.",
+          "Current disclosures do not isolate data-center backlog economics or customer concentration.",
+          "Incremental margins and concentration of data-center power-generation demand are not separately disclosed."
         ],
         "contradictions": [
-          "Record revenue and raised outlook coexist with lower year-over-year Q2 EBITDA margin."
+          "Record revenue and raised outlook coexist with lower year-over-year Q2 EBITDA margin.",
+          "Record/strong revenue growth coexists with lower consolidated year-over-year EBITDA margin and continued Accelera losses."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "AI/data-center buildout -> critical power demand",
+          "critical power demand -> generator/system demand",
+          "multi-technology portfolio -> transition optionality",
+          "grid/permitting/supply constraints -> deployment bottlenecks",
+          "data-center demand -> Power Systems growth",
+          "open purchase orders -> cancellation risk",
+          "Accelera investment -> near-term EBITDA drag -> transition optionality"
+        ]
       },
       "improvementWindows": [
         {
@@ -34156,16 +34003,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -34187,11 +34024,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -34203,13 +34035,21 @@
           "financialOperatingMomentum",
           "catalystScore",
           "scenarioRobustness",
-          "pricingPower"
+          "pricingPower",
+          "substitutionResilience",
+          "supplyChainResilience",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "Issuer release does not isolate data-center revenue, backlog, customer concentration or incremental margin contribution.",
           "Durability of data-center demand and second-half truck recovery beyond current guidance remains unverified.",
+          "Current disclosures do not isolate data-center backlog economics or customer concentration.",
+          "Incremental margins and concentration of data-center power-generation demand are not separately disclosed.",
           "Data-center power strength coexists with cyclical on-highway exposure and does not establish valuation attractiveness by itself.",
-          "Q2 EBITDA margin of 17.5% remained below the prior-year quarter's 18.4%, so revenue acceleration has not translated into year-over-year margin expansion in this quarter."
+          "Q2 EBITDA margin of 17.5% remained below the prior-year quarter's 18.4%, so revenue acceleration has not translated into year-over-year margin expansion in this quarter.",
+          "Data-center power growth can be strong while truck/off-highway cycles weaken other Cummins segments.",
+          "Open-order cancellability makes some demand less durable than headline backlog language may imply.",
+          "Zero-emissions investments remain loss-making and require disciplined pacing."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

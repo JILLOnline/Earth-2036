@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CLF",
   "workId": "t0:CLF",
-  "generatedAt": "2026-09-19T22:15:48.934Z",
+  "generatedAt": "2026-09-19T22:28:18.546Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-01T00:00:00.000Z",
-    "end": "2026-09-19T12:08:01.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T12:08:01.000Z"
+    "end": "2026-09-19T22:26:16.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T22:26:16.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/CLF-20260919T120801Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/CLF-20260919T120801Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/CLF-20260919T222616Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -63,19 +66,36 @@
       "catalystScore",
       "scenarioRobustness",
       "crossDivisionLeverage",
-      "thesisQuality"
+      "thesisQuality",
+      "substitutionResilience",
+      "financialOperatingMomentum",
+      "pricingPower",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "alignment2036",
         "bottleneckControl",
         "supplyChainResilience",
         "catalystScore"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower",
+        "governancePower"
+      ],
       "expectations-execution": [
         "scenarioRobustness",
         "crossDivisionLeverage",
@@ -127,7 +147,11 @@
     "catalystScore",
     "scenarioRobustness",
     "crossDivisionLeverage",
-    "thesisQuality"
+    "thesisQuality",
+    "substitutionResilience",
+    "financialOperatingMomentum",
+    "pricingPower",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -138,6 +162,18 @@
       },
       {
         "risk": "Scale and vertical integration do not eliminate steel-cycle, automotive-demand or commodity-input sensitivity.",
+        "gating": false
+      },
+      {
+        "risk": "Vertical integration cannot insulate cash flow from automotive and steel-price cycles.",
+        "gating": false
+      },
+      {
+        "risk": "Automotive concentration remains material at 29% of Q2 steelmaking revenue.",
+        "gating": false
+      },
+      {
+        "risk": "Debt and capital-project execution can limit flexibility through a cyclical downturn.",
         "gating": false
       }
     ]
@@ -150,6 +186,18 @@
     {
       "risk": "Scale and vertical integration do not eliminate steel-cycle, automotive-demand or commodity-input sensitivity.",
       "gating": false
+    },
+    {
+      "risk": "Vertical integration cannot insulate cash flow from automotive and steel-price cycles.",
+      "gating": false
+    },
+    {
+      "risk": "Automotive concentration remains material at 29% of Q2 steelmaking revenue.",
+      "gating": false
+    },
+    {
+      "risk": "Debt and capital-project execution can limit flexibility through a cyclical downturn.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -160,21 +208,39 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 4
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "domestic manufacturing/auto demand -> steel demand",
+      "iron ore/DRI integration -> input security -> steel production",
+      "tariff/import conditions -> domestic utilization/pricing",
+      "auto concentration -> cyclical volume sensitivity",
+      "auto demand decline -> lower steel volumes",
+      "import/trade-policy reversal -> utilization/pricing pressure",
+      "positive FCF -> debt reduction -> improved resilience"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "domestic manufacturing/auto demand -> steel demand",
+    "iron ore/DRI integration -> input security -> steel production",
+    "tariff/import conditions -> domestic utilization/pricing",
+    "auto concentration -> cyclical volume sensitivity",
+    "auto demand decline -> lower steel volumes",
+    "import/trade-policy reversal -> utilization/pricing pressure",
+    "positive FCF -> debt reduction -> improved resilience"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:CLF:IR-news-index:20260821",
-      "issuer:CLF:IR-profile:202602"
+      "issuer:CLF:IR-profile:202602",
+      "sec:CLF:2025:10K:20251231",
+      "sec:CLF:2026Q2:earnings:20260723"
     ]
   },
   "sources": [
@@ -193,6 +259,22 @@
       "primary": true,
       "publishedAt": "2026-02-01",
       "originFingerprint": "issuer:CLF:IR-profile:202602"
+    },
+    {
+      "sourceId": "sec:CLF:2025:10K",
+      "url": "https://www.sec.gov/Archives/edgar/data/764065/000076406526000025/clf-20251231.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-12",
+      "originFingerprint": "sec:CLF:2025:10K:20251231"
+    },
+    {
+      "sourceId": "sec:CLF:2026Q2:8K-ex991",
+      "url": "https://www.sec.gov/Archives/edgar/data/764065/000076406526000097/clf-202606308xkex991.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-23",
+      "originFingerprint": "sec:CLF:2026Q2:earnings:20260723"
     }
   ],
   "contradictions": [],
@@ -208,11 +290,19 @@
     {
       "unknown": "A current quarter margin/cash-flow execution comparison requires the detailed Q2 filing/release.",
       "gating": false
+    },
+    {
+      "unknown": "Durability of current domestic pricing/volume support under future trade-policy regimes remains uncertain.",
+      "gating": false
+    },
+    {
+      "unknown": "Whether Q3 guidance converts into sustained free cash flow and meaningful debt reduction remains future execution.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 78,
@@ -221,13 +311,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -237,14 +324,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -261,10 +340,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

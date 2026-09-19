@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-19T21:19:20.875Z",
+  "generatedAt": "2026-09-19T21:24:28.190Z",
   "canonicalWriteAuthority": false,
   "total": 228,
   "twins": [
@@ -28719,7 +28719,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "CHKP",
       "workId": "t0:CHKP",
-      "inputSignature": "d0254e883ba5cbe2cedd5c85",
+      "inputSignature": "53aa299f09dcc510947bb7b6",
       "sourceState": "researching",
       "identity": {
         "ticker": "CHKP",
@@ -28742,19 +28742,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 2,
         "sourceLineage": {
-          "rawSourceCount": 3,
+          "rawSourceCount": 6,
           "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 1,
+          "duplicatesCollapsed": 4,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:CHKP:earnings:2026Q2:20260730",
@@ -28763,8 +28763,8 @@
         },
         "evidenceWindow": {
           "start": "2026-05-11T00:00:00.000Z",
-          "end": "2026-09-19T11:03:00.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T11:03:00.000Z"
+          "end": "2026-09-19T21:23:16.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-19T21:23:16.000Z"
         },
         "preflightPassed": false
       },
@@ -28782,31 +28782,55 @@
       "constraintSignals": {
         "risks": [
           "AI-security positioning is strategically relevant but the release does not isolate revenue contribution or win rates for the new AI products.",
-          "Total revenue growth remains modest despite stronger subscription growth, so execution must prove that expanded sales capacity converts into durable acceleration."
+          "Total revenue growth remains modest despite stronger subscription growth, so execution must prove that expanded sales capacity converts into durable acceleration.",
+          "Security-platform substitution limits any claim that Check Point uniquely controls the AI-security bottleneck.",
+          "Expanded sales capacity may increase cost before producing durable top-line acceleration.",
+          "AI-security narrative may overstate current economic contribution because product-level revenue and win rates are not disclosed in the retrieved evidence."
         ],
         "unknowns": [
           "Adoption, pricing and competitive displacement attributable to AI Network Firewall and AI Defense are not quantified in the retrieved primary source.",
-          "Return on incremental sales-capacity investment and contribution from newer AI-security products remain unquantified."
+          "Return on incremental sales-capacity investment and contribution from newer AI-security products remain unquantified.",
+          "Product-level adoption, displacement win rates and revenue contribution for AI Network Firewall and AI Defense remain unquantified in the retrieved lineage.",
+          "Incremental return on sales-capacity investment and AI-product contribution remain unquantified."
         ],
         "contradictions": [
-          "Security subscription revenue grew 12% while total revenue grew only 1%, showing mix strength without broad top-line acceleration."
+          "Security subscription revenue grew 12% while total revenue grew only 1%, showing mix strength without broad top-line acceleration.",
+          "Security subscription revenue grew 12% while total revenue grew 1%, indicating strong mix performance but weak broad acceleration."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "enterprise AI adoption",
+            "to": "AI-enabled attack surface",
+            "relation": "expands"
+          },
+          {
+            "from": "AI-enabled attack surface",
+            "to": "need for security policy and enforcement",
+            "relation": "increases"
+          },
+          {
+            "from": "Check Point AI security portfolio",
+            "to": "enterprise security control",
+            "relation": "addresses"
+          },
+          {
+            "from": "competing integrated security platforms",
+            "to": "Check Point bottleneck control",
+            "relation": "constrains"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -28817,16 +28841,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -28848,11 +28862,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -28870,8 +28879,13 @@
         "needOrConstraintCandidates": [
           "Adoption, pricing and competitive displacement attributable to AI Network Firewall and AI Defense are not quantified in the retrieved primary source.",
           "Return on incremental sales-capacity investment and contribution from newer AI-security products remain unquantified.",
+          "Product-level adoption, displacement win rates and revenue contribution for AI Network Firewall and AI Defense remain unquantified in the retrieved lineage.",
+          "Incremental return on sales-capacity investment and AI-product contribution remain unquantified.",
           "AI-security positioning is strategically relevant but the release does not isolate revenue contribution or win rates for the new AI products.",
-          "Total revenue growth remains modest despite stronger subscription growth, so execution must prove that expanded sales capacity converts into durable acceleration."
+          "Total revenue growth remains modest despite stronger subscription growth, so execution must prove that expanded sales capacity converts into durable acceleration.",
+          "Security-platform substitution limits any claim that Check Point uniquely controls the AI-security bottleneck.",
+          "Expanded sales capacity may increase cost before producing durable top-line acceleration.",
+          "AI-security narrative may overstate current economic contribution because product-level revenue and win rates are not disclosed in the retrieved evidence."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

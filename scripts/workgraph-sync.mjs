@@ -3,6 +3,8 @@ import path from "node:path";
 import { applyPacketState, buildRoutingQueues, compilePromotionPacket, computeWorkgraphMetrics, loadRoleRuns, loadStructuredEvidence, migrateLegacyQueue, validateWorkgraph, writeWorkgraphArtifacts } from "./lib/workgraph-v2.mjs";
 import { auditCalibrationRecord, buildPacketCalibrationGuidance, CALIBRATION_REGISTRY } from "./lib/calibration-engine.mjs";
 import { buildAssistRequests } from "./lib/assist-bus.mjs";
+import { buildDigitalTwinShadow } from "./lib/digital-twin-engine.mjs";
+import { buildValueAllocationShadow } from "./lib/value-allocator.mjs";
 import { MIN_PUBLISHABLE_DATA_CONFIDENCE } from "./lib/runtime-gates.mjs";
 
 const ROOT = process.cwd();
@@ -200,10 +202,24 @@ await writeFile(
   "utf8"
 );
 
+const digitalTwinShadow = buildDigitalTwinShadow(graph, packets, now.toISOString());
+await writeFile(
+  path.join(shadowDir, "digital-twins.json"),
+  `${JSON.stringify(digitalTwinShadow, null, 2)}\n`,
+  "utf8"
+);
+
+const valueAllocationShadow = buildValueAllocationShadow(graph, packets, assistBus, metrics, now.toISOString());
+await writeFile(
+  path.join(shadowDir, "value-allocation.json"),
+  `${JSON.stringify(valueAllocationShadow, null, 2)}\n`,
+  "utf8"
+);
+
 const priorLearningState = await readJsonOr(LEARNING_PATH, null);
 const learningState = deriveLearningState(priorLearningState, metrics, packets, routingQueues, roleRuns, now);
 await import("node:fs/promises").then(({ writeFile }) =>
   writeFile(LEARNING_PATH, `${JSON.stringify(learningState, null, 2)}\n`, "utf8")
 );
 
-console.log(`Workgraph v2: ${metrics.total} companies; ${metrics.counts.chief_ready} chief_ready; ${metrics.counts.packet_ready} packet_ready; ${metrics.counts.blocked} blocked; assists ${assistBus.active} active/${assistBus.dormant} dormant; calibration shadow refreshed.`);
+console.log(`Workgraph v2: ${metrics.total} companies; ${metrics.counts.chief_ready} chief_ready; ${metrics.counts.packet_ready} packet_ready; ${metrics.counts.blocked} blocked; assists ${assistBus.active} active/${assistBus.dormant} dormant; calibration, Digital Twin and value-allocation shadows refreshed.`);

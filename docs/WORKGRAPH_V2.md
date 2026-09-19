@@ -244,3 +244,18 @@ A single-path Contents API limitation is therefore never a lawful reason to disc
 ## Reconcile fail-closed projection rule
 
 Evidence reconciliation always persists truthful non-canonical Workgraph state, routing queues, liveness/health telemetry, and Beast integrity output even when the source mesh is red. A failed Beast/source-mesh audit remains a hard barrier to Chief fast-path promotion, canonical score/rank mutation, tick qualification, and publication. Projection may advance; truth gates may not.
+
+
+## Operational learning and virtual work lanes
+
+Earth 2036 treats the five intelligent automations as permanent supervisory roles, not one-job workers. Companies, evidence defects and exceptions are virtual work lanes inside deterministic Git-backed routing queues. The fixed automation count therefore limits concurrent intelligent supervisors, not the number of logical work items the system can coordinate.
+
+The shared operational memory is `data/runtime/workgraph/learning-state.json`. Workgraph reconciliation refreshes its current signals from source-layer evidence, role-run receipts, routing failures and frontier state. Workers read it before their queue so known failure patterns influence the next attempt instead of being rediscovered.
+
+Learning is allowed to change search strategy, source class, queue ownership, retry behavior, batch mode and escalation. It is never allowed to change methodology 1.0, provenance requirements, causal proof, Beast/source-mesh integrity, immutable history, or canonical publication gates.
+
+Progress is measured by closure and state conversion rather than liveness alone. A recent role-run receipt with owned backlog and zero closures is an unhealthy signal. A packet-ready frontier with no chief-ready conversion and stale canonical progress is also unhealthy. The next attempt must use a materially different lawful resolution path or escalate a precise methodology/external-evidence decision.
+
+Deep Resolver is an adjudication lane. Downstream gating symptoms are deferred when another worker still owns the concrete root-cause evidence failure. Material contradictions remain Resolver-owned and independently actionable.
+
+Evidence commits and role-run receipts both trigger burst-safe Workgraph reconciliation. This lets the control plane react to failed/no-closure work immediately instead of waiting for an unrelated evidence commit or the next hourly machine cycle.

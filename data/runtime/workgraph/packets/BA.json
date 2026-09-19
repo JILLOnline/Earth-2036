@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "BA",
   "workId": "t0:BA",
-  "generatedAt": "2026-09-19T17:14:33.491Z",
+  "generatedAt": "2026-09-19T17:28:56.790Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-20T00:00:00.000Z",
-    "end": "2026-09-19T09:05:50.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T09:05:50.000Z"
+    "end": "2026-09-19T17:27:54.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T17:27:54.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/BA-20260919T090550Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/BA-20260919T090550Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/BA-20260919T172754Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -63,19 +66,37 @@
       "bottleneckControl",
       "financialOperatingMomentum",
       "scenarioRobustness",
-      "supplyChainResilience"
+      "supplyChainResilience",
+      "substitutionResilience",
+      "governancePower",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "catalystScore",
         "alignment2036",
         "bottleneckControl"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "governancePower",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -127,7 +148,10 @@
     "bottleneckControl",
     "financialOperatingMomentum",
     "scenarioRobustness",
-    "supplyChainResilience"
+    "supplyChainResilience",
+    "substitutionResilience",
+    "governancePower",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -138,6 +162,30 @@
       },
       {
         "risk": "Boeing's central execution test remains safe, timely production and delivery; this evidence cannot resolve that test.",
+        "gating": false
+      },
+      {
+        "risk": "Production-rate transitions increase dependence on stable quality systems and supplier throughput; backlog is not self-executing.",
+        "gating": false
+      },
+      {
+        "risk": "Airbus and future aircraft architectures are credible substitutes, so Boeing's bottleneck position is important but not exclusive.",
+        "gating": false
+      },
+      {
+        "risk": "Commercial-airplane margins remain negative despite higher deliveries, leaving profitability normalization unproven.",
+        "gating": false
+      },
+      {
+        "risk": "First-half free cash flow remains negative and debt remains large even after repayment progress.",
+        "gating": false
+      },
+      {
+        "risk": "Program-specific losses show that backlog/revenue can coexist with weak economics; backlog must not be used as a proxy for margin or cash quality.",
+        "gating": false
+      },
+      {
+        "risk": "Certification and production-rate execution remain exposed to safety, quality, regulatory and supplier constraints.",
         "gating": false
       }
     ]
@@ -150,6 +198,30 @@
     {
       "risk": "Boeing's central execution test remains safe, timely production and delivery; this evidence cannot resolve that test.",
       "gating": false
+    },
+    {
+      "risk": "Production-rate transitions increase dependence on stable quality systems and supplier throughput; backlog is not self-executing.",
+      "gating": false
+    },
+    {
+      "risk": "Airbus and future aircraft architectures are credible substitutes, so Boeing's bottleneck position is important but not exclusive.",
+      "gating": false
+    },
+    {
+      "risk": "Commercial-airplane margins remain negative despite higher deliveries, leaving profitability normalization unproven.",
+      "gating": false
+    },
+    {
+      "risk": "First-half free cash flow remains negative and debt remains large even after repayment progress.",
+      "gating": false
+    },
+    {
+      "risk": "Program-specific losses show that backlog/revenue can coexist with weak economics; backlog must not be used as a proxy for margin or cash quality.",
+      "gating": false
+    },
+    {
+      "risk": "Certification and production-rate execution remain exposed to safety, quality, regulatory and supplier constraints.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -160,20 +232,94 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "human need: safe, efficient mobility",
+        "to": "airline fleet renewal/capacity",
+        "relation": "drives demand"
+      },
+      {
+        "from": "airline fleet renewal/capacity",
+        "to": "certified Boeing aircraft",
+        "relation": "creates platform demand"
+      },
+      {
+        "from": "certification + aerospace supplier/manufacturing throughput",
+        "to": "Boeing deliveries",
+        "relation": "constrains conversion of backlog"
+      },
+      {
+        "from": "Boeing deliveries",
+        "to": "revenue/cash conversion and airline capacity",
+        "relation": "enables realized value"
+      },
+      {
+        "from": "backlog/orders",
+        "to": "deliveries",
+        "relation": "requires certification, production and supplier execution"
+      },
+      {
+        "from": "deliveries",
+        "to": "cash/profitability",
+        "relation": "conversion moderated by mix, program cost and execution quality"
+      },
+      {
+        "from": "debt and cash requirements",
+        "to": "strategic resilience",
+        "relation": "constrains downside tolerance"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "human need: safe, efficient mobility",
+      "to": "airline fleet renewal/capacity",
+      "relation": "drives demand"
+    },
+    {
+      "from": "airline fleet renewal/capacity",
+      "to": "certified Boeing aircraft",
+      "relation": "creates platform demand"
+    },
+    {
+      "from": "certification + aerospace supplier/manufacturing throughput",
+      "to": "Boeing deliveries",
+      "relation": "constrains conversion of backlog"
+    },
+    {
+      "from": "Boeing deliveries",
+      "to": "revenue/cash conversion and airline capacity",
+      "relation": "enables realized value"
+    },
+    {
+      "from": "backlog/orders",
+      "to": "deliveries",
+      "relation": "requires certification, production and supplier execution"
+    },
+    {
+      "from": "deliveries",
+      "to": "cash/profitability",
+      "relation": "conversion moderated by mix, program cost and execution quality"
+    },
+    {
+      "from": "debt and cash requirements",
+      "to": "strategic resilience",
+      "relation": "constrains downside tolerance"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:BA:order:SMBC:100MAX:20260720"
+      "issuer:BA:order:SMBC:100MAX:20260720",
+      "issuer:BA:2Q26:results:deliveries-production-certification-backlog",
+      "issuer:BA:2Q26:results:cash-debt-margin-backlog-program-losses"
     ]
   },
   "sources": [
@@ -184,12 +330,42 @@
       "primary": true,
       "publishedAt": "2026-07-20",
       "originFingerprint": "issuer:BA:order:SMBC:100MAX:20260720"
+    },
+    {
+      "sourceId": "issuer:BA:2Q26-results:20260729",
+      "url": "https://investors.boeing.com/investors/news/press-release-details/2026/Boeing-Reports-Second-Quarter-Results/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-29",
+      "originFingerprint": "issuer:BA:2Q26:results:deliveries-production-certification-backlog"
+    },
+    {
+      "sourceId": "issuer:BA:2Q26-results:20260729",
+      "url": "https://investors.boeing.com/investors/news/press-release-details/2026/Boeing-Reports-Second-Quarter-Results/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-29",
+      "originFingerprint": "issuer:BA:2Q26:results:cash-debt-margin-backlog-program-losses"
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "contradiction": "Strong order/backlog evidence supports demand while negative Commercial Airplanes margin and negative first-half free cash flow show incomplete economic conversion.",
+      "material": true,
+      "resolved": true,
+      "resolution": "Treat demand strength and execution economics as separate nodes; demand is supported, while profitable conversion remains an explicit non-gating risk requiring continued operating evidence."
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "contradiction": "Strong order/backlog evidence supports demand while negative Commercial Airplanes margin and negative first-half free cash flow show incomplete economic conversion.",
+        "material": true,
+        "resolved": true,
+        "resolution": "Treat demand strength and execution economics as separate nodes; demand is supported, while profitable conversion remains an explicit non-gating risk requiring continued operating evidence."
+      }
+    ]
   },
   "unknowns": [
     {
@@ -199,11 +375,19 @@
     {
       "unknown": "Latest delivery cadence, production stability, certification progress and free-cash-flow trajectory require separate primary operating evidence.",
       "gating": false
+    },
+    {
+      "unknown": "Long-run margin and cash conversion at higher production rates remain unproven by the available Q2 evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Normalized margins and free-cash-flow generation after the 737 rate transition and certification milestones are not yet observable.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 78,
@@ -212,13 +396,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -228,14 +409,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -252,10 +425,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

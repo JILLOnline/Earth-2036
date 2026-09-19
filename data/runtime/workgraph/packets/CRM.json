@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CRM",
   "workId": "t0:CRM",
-  "generatedAt": "2026-09-19T23:18:14.756Z",
+  "generatedAt": "2026-09-19T23:29:37.380Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-26T00:00:00.000Z",
-    "end": "2026-09-19T11:08:33.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T11:08:33.000Z"
+    "end": "2026-09-19T23:27:41.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T23:27:41.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/CRM-20260919T110833Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/CRM-20260919T110833Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/CRM-20260919T232741Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -65,12 +68,20 @@
       "financialOperatingMomentum",
       "catalystScore",
       "scenarioRobustness",
-      "pricingPower"
+      "pricingPower",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "substitutionResilience",
+        "scenarioRobustness",
+        "pricingPower"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
@@ -78,7 +89,12 @@
         "bottleneckControl",
         "substitutionResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower",
+        "governancePower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -133,7 +149,8 @@
     "financialOperatingMomentum",
     "catalystScore",
     "scenarioRobustness",
-    "pricingPower"
+    "pricingPower",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -145,6 +162,18 @@
       {
         "risk": "Reported growth includes Informatica contribution and updated guidance includes pending acquisitions, complicating organic-growth interpretation.",
         "gating": false
+      },
+      {
+        "risk": "Agent value may accrue to model/orchestration layers outside Salesforce if CRM context becomes portable.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition-heavy expansion can obscure organic growth quality and adds integration/capital-allocation risk.",
+        "gating": false
+      },
+      {
+        "risk": "AI ARR growth is not equivalent to proven incremental margin or retention.",
+        "gating": false
       }
     ]
   },
@@ -155,6 +184,18 @@
     },
     {
       "risk": "Reported growth includes Informatica contribution and updated guidance includes pending acquisitions, complicating organic-growth interpretation.",
+      "gating": false
+    },
+    {
+      "risk": "Agent value may accrue to model/orchestration layers outside Salesforce if CRM context becomes portable.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition-heavy expansion can obscure organic growth quality and adds integration/capital-allocation risk.",
+      "gating": false
+    },
+    {
+      "risk": "AI ARR growth is not equivalent to proven incremental margin or retention.",
       "gating": false
     }
   ],
@@ -169,14 +210,22 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "enterprise customer data + workflow context -> agent relevance -> automation adoption",
+      "embedded CRM permissions/workflows -> switching friction -> platform resilience",
+      "AI model commoditization -> easier external orchestration -> pressure on platform differentiation"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "enterprise customer data + workflow context -> agent relevance -> automation adoption",
+    "embedded CRM permissions/workflows -> switching friction -> platform resilience",
+    "AI model commoditization -> easier external orchestration -> pressure on platform differentiation"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:CRM:FY27Q2:20260826",
@@ -205,6 +254,10 @@
     {
       "contradiction": "Headline 11%-12% FY27 growth guidance includes acquisition contribution; management separately described only $100M of the guidance raise as organic growth.",
       "material": false
+    },
+    {
+      "contradiction": "Headline 11%-12% FY27 growth guidance includes acquisition contribution while management separately described only $100M of the guidance raise as organic growth.",
+      "material": false
     }
   ],
   "contradictionDispositions": {
@@ -212,6 +265,10 @@
     "items": [
       {
         "contradiction": "Headline 11%-12% FY27 growth guidance includes acquisition contribution; management separately described only $100M of the guidance raise as organic growth.",
+        "material": false
+      },
+      {
+        "contradiction": "Headline 11%-12% FY27 growth guidance includes acquisition contribution while management separately described only $100M of the guidance raise as organic growth.",
         "material": false
       }
     ]
@@ -224,26 +281,31 @@
     {
       "unknown": "Post-acquisition integration economics for Informatica, Fin and Contentful remain unproven.",
       "gating": false
+    },
+    {
+      "unknown": "Incremental retention, margin and productivity attributable specifically to Agentforce are not isolated in current evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Organic Agentforce economics after excluding acquisitions remain insufficiently isolated for underwriting.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 92,
+  "confidence": 85,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -253,14 +315,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -277,10 +331,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

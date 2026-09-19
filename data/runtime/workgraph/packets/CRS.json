@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CRS",
   "workId": "t0:CRS",
-  "generatedAt": "2026-09-19T23:18:14.759Z",
+  "generatedAt": "2026-09-19T23:29:37.383Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-30T00:00:00.000Z",
-    "end": "2026-09-19T12:08:02.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T12:08:02.000Z"
+    "end": "2026-09-19T23:27:41.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T23:27:41.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/CRS-20260919T120802Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/CRS-20260919T120802Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/CRS-20260919T232741Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,19 +65,33 @@
       "pricingPower",
       "thesisQuality",
       "financialOperatingMomentum",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "substitutionResilience",
+      "supplyChainResilience"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "pricingPower",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "alignment2036",
         "bottleneckControl",
         "pricingPower",
         "thesisQuality"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "pricingPower",
@@ -125,7 +142,9 @@
     "pricingPower",
     "thesisQuality",
     "financialOperatingMomentum",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "substitutionResilience",
+    "supplyChainResilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -137,6 +156,18 @@
       {
         "risk": "Higher capex and working-capital needs reduced Q4 adjusted free cash flow versus the prior-year quarter despite higher earnings.",
         "gating": false
+      },
+      {
+        "risk": "Concentrated aerospace/defense exposure makes the bottleneck valuable but cyclical and program-sensitive.",
+        "gating": false
+      },
+      {
+        "risk": "Capital intensity and working-capital absorption can delay conversion of strong margins into free cash flow.",
+        "gating": false
+      },
+      {
+        "risk": "Aerospace/defense concentration raises sensitivity to program timing and end-market normalization.",
+        "gating": false
       }
     ]
   },
@@ -147,6 +178,18 @@
     },
     {
       "risk": "Higher capex and working-capital needs reduced Q4 adjusted free cash flow versus the prior-year quarter despite higher earnings.",
+      "gating": false
+    },
+    {
+      "risk": "Concentrated aerospace/defense exposure makes the bottleneck valuable but cyclical and program-sensitive.",
+      "gating": false
+    },
+    {
+      "risk": "Capital intensity and working-capital absorption can delay conversion of strong margins into free cash flow.",
+      "gating": false
+    },
+    {
+      "risk": "Aerospace/defense concentration raises sensitivity to program timing and end-market normalization.",
       "gating": false
     }
   ],
@@ -161,14 +204,22 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "aerospace/defense demand -> qualified specialty-alloy demand -> Carpenter capacity utilization/pricing",
+      "qualification complexity + metallurgical know-how -> supplier switching friction -> bottleneck control",
+      "capacity expansion + working capital -> available qualified output -> cash conversion"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "aerospace/defense demand -> qualified specialty-alloy demand -> Carpenter capacity utilization/pricing",
+    "qualification complexity + metallurgical know-how -> supplier switching friction -> bottleneck control",
+    "capacity expansion + working capital -> available qualified output -> cash conversion"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:CRS:FY2026:20260730"
@@ -197,26 +248,31 @@
     {
       "unknown": "FY2027 guidance conversion into realized volume, mix and margin remains future execution.",
       "gating": false
+    },
+    {
+      "unknown": "Capacity utilization and customer concentration by critical alloy family are not quantified in current evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Independent customer concentration and program-level demand sensitivity are not established by the current packet.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 91,
+  "confidence": 84,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -226,14 +282,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -250,10 +298,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

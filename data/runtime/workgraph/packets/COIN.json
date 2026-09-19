@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "COIN",
   "workId": "t0:COIN",
-  "generatedAt": "2026-09-19T23:18:14.763Z",
+  "generatedAt": "2026-09-19T23:29:37.386Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2025-08-14T00:00:00.000Z",
-    "end": "2026-09-19T11:08:31.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T11:08:31.000Z"
+    "end": "2026-09-19T23:27:41.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T23:27:41.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/COIN-20260919T110831Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/COIN-20260919T110831Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/COIN-20260919T232741Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -64,12 +67,20 @@
       "substitutionResilience",
       "financialOperatingMomentum",
       "catalystScore",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "substitutionResilience",
+        "scenarioRobustness"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
@@ -77,7 +88,12 @@
         "bottleneckControl",
         "substitutionResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "substitutionResilience",
+        "governancePower",
+        "financialOperatingMomentum"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -130,7 +146,8 @@
     "substitutionResilience",
     "financialOperatingMomentum",
     "catalystScore",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -142,6 +159,18 @@
       {
         "risk": "Trading activity and transaction economics remain exposed to crypto-market conditions despite diversification.",
         "gating": false
+      },
+      {
+        "risk": "Liquidity fragmentation or regulatory product separation could weaken cross-product network effects.",
+        "gating": false
+      },
+      {
+        "risk": "Transaction economics remain cyclically exposed even as product diversification broadens revenue sources.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition and integration complexity can increase operating and regulatory execution risk.",
+        "gating": false
       }
     ]
   },
@@ -152,6 +181,18 @@
     },
     {
       "risk": "Trading activity and transaction economics remain exposed to crypto-market conditions despite diversification.",
+      "gating": false
+    },
+    {
+      "risk": "Liquidity fragmentation or regulatory product separation could weaken cross-product network effects.",
+      "gating": false
+    },
+    {
+      "risk": "Transaction economics remain cyclically exposed even as product diversification broadens revenue sources.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition and integration complexity can increase operating and regulatory execution risk.",
       "gating": false
     }
   ],
@@ -166,14 +207,22 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "crypto adoption -> demand for trusted trading/custody infrastructure -> Coinbase platform usage",
+      "institutional derivatives demand -> Deribit options liquidity -> Coinbase cross-product network effects",
+      "regulatory durability + liquidity concentration -> platform breadth economics -> resilience of Everything Exchange thesis"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "crypto adoption -> demand for trusted trading/custody infrastructure -> Coinbase platform usage",
+    "institutional derivatives demand -> Deribit options liquidity -> Coinbase cross-product network effects",
+    "regulatory durability + liquidity concentration -> platform breadth economics -> resilience of Everything Exchange thesis"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:COIN:2026Q2:20260730",
@@ -211,26 +260,31 @@
     {
       "unknown": "Current valuation and normalized-cycle earnings power require separate underwriting before score promotion.",
       "gating": false
+    },
+    {
+      "unknown": "Long-run regulatory durability and normalized economics across the expanded product stack remain unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Independent evidence separating organic diversification economics from acquisition-driven breadth is not present in the current packet.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 88,
+  "confidence": 82,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -240,14 +294,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -264,10 +310,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CRSP",
   "workId": "t0:CRSP",
-  "generatedAt": "2026-09-19T23:18:14.762Z",
+  "generatedAt": "2026-09-19T23:29:37.386Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-03T00:00:00.000Z",
-    "end": "2026-09-19T12:08:03.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T12:08:03.000Z"
+    "end": "2026-09-19T23:27:41.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T23:27:41.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/CRSP-20260919T120803Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/CRSP-20260919T120803Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/CRSP-20260919T232741Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,19 +65,31 @@
       "catalystScore",
       "scenarioRobustness",
       "financialOperatingMomentum",
-      "crossDivisionLeverage"
+      "crossDivisionLeverage",
+      "substitutionResilience"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "crossDivisionLeverage"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
         "catalystScore",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "financialOperatingMomentum",
+        "catalystScore",
+        "substitutionResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -125,7 +140,8 @@
     "catalystScore",
     "scenarioRobustness",
     "financialOperatingMomentum",
-    "crossDivisionLeverage"
+    "crossDivisionLeverage",
+    "substitutionResilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -137,6 +153,18 @@
       {
         "risk": "Broad clinical pipeline increases trial, regulatory and capital-allocation execution burden.",
         "gating": false
+      },
+      {
+        "risk": "Early clinical signals may not persist in larger or longer studies, shifting the causal chain before commercialization.",
+        "gating": false
+      },
+      {
+        "risk": "Small early-stage cohorts can overstate durable efficacy or underrepresent safety events.",
+        "gating": false
+      },
+      {
+        "risk": "Broad pipeline breadth can increase cash-burn and capital-allocation complexity before multiple assets are de-risked.",
+        "gating": false
       }
     ]
   },
@@ -147,6 +175,18 @@
     },
     {
       "risk": "Broad clinical pipeline increases trial, regulatory and capital-allocation execution burden.",
+      "gating": false
+    },
+    {
+      "risk": "Early clinical signals may not persist in larger or longer studies, shifting the causal chain before commercialization.",
+      "gating": false
+    },
+    {
+      "risk": "Small early-stage cohorts can overstate durable efficacy or underrepresent safety events.",
+      "gating": false
+    },
+    {
+      "risk": "Broad pipeline breadth can increase cash-burn and capital-allocation complexity before multiple assets are de-risked.",
       "gating": false
     }
   ],
@@ -161,14 +201,22 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "gene-editing precision + delivery -> biological effect -> durable patient benefit",
+      "clinical safety/efficacy -> regulatory acceptance -> commercial access",
+      "successful editing -> successor bottlenecks in manufacturing/reimbursement/access -> realized population impact"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "gene-editing precision + delivery -> biological effect -> durable patient benefit",
+    "clinical safety/efficacy -> regulatory acceptance -> commercial access",
+    "successful editing -> successor bottlenecks in manufacturing/reimbursement/access -> realized population impact"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 6,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 0,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:CRSP:CTX310-ESC:20260828",
@@ -206,26 +254,31 @@
     {
       "unknown": "Commercial CASGEVY economics and pipeline cash-burn durability require full financial underwriting.",
       "gating": false
+    },
+    {
+      "unknown": "Phase 1b durability, safety and regulatory path remain unresolved.",
+      "gating": false
+    },
+    {
+      "unknown": "Commercial CASGEVY economics and pipeline cash-burn durability require Alpha financial underwriting.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 88,
+  "confidence": 83,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -235,14 +288,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -259,10 +304,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

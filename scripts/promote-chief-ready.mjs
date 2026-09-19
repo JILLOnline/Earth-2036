@@ -229,6 +229,7 @@ for (const packet of packets.filter((p) => p?.preflight?.passed === true && work
 
 if (promoted.length) {
   scoreState.updatedAt = new Date().toISOString();
+  prospectiveGraph.updatedAt = new Date().toISOString();
   await writeJson(path.join(RUNTIME, "causal-graph.json"), prospectiveGraph);
   await writeJson(path.join(RUNTIME, "score-state.json"), scoreState);
 

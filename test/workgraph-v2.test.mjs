@@ -5,6 +5,7 @@ import { auditCalibrationRecord, calibrationBand } from "../scripts/lib/calibrat
 import { buildAssistRequests } from "../scripts/lib/assist-bus.mjs";
 import { buildCompanyDigitalTwin } from "../scripts/lib/digital-twin-engine.mjs";
 import { attentionPriority, deriveCapacityPlan } from "../scripts/lib/value-allocator.mjs";
+import { buildDependencyShadow, detectRoleCycles } from "../scripts/lib/dependency-graph.mjs";
 import { mkdtemp, mkdir, writeFile, rm } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -699,4 +700,28 @@ test("Attention priority is operational and favors near-closure work without bec
   const priority = attentionPriority({ ticker:"AAA", state:"packet_ready", attempts:2 }, packet, { requests: [] });
   assert.ok(priority.priority > 70);
   assert.ok(priority.principle.includes("never a company-quality"));
+});
+
+
+test("dependency graph detects circular role assistance and reports dormant deadlocks", () => {
+  const cycleRequests = [
+    { status:"active", rootOwner:"council-alpha", helperRole:"earth-scout" },
+    { status:"active", rootOwner:"earth-scout", helperRole:"council-alpha" },
+  ];
+  const cycles = detectRoleCycles(cycleRequests);
+  assert.ok(cycles.length >= 1);
+
+  const shadow = buildDependencyShadow({
+    requests: [{
+      requestId:"assist:AAA",
+      ticker:"AAA",
+      rootOwner:"council-alpha",
+      helperRole:"earth-scout",
+      capability:"source-acquisition",
+      inputSignature:"abc",
+      status:"dormant_until_input_changes",
+    }],
+  }, "2026-09-19T14:30:00Z");
+  assert.equal(shadow.deadlocks.length, 1);
+  assert.equal(shadow.canonicalWriteAuthority, false);
 });

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ERIC",
   "workId": "t0:ERIC",
-  "generatedAt": "2026-09-19T16:24:12.791Z",
+  "generatedAt": "2026-09-19T17:06:20.089Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T16:22:21.575Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-09-19T17:03:20.000Z",
+    "end": "2026-09-19T17:03:20.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T17:03:20.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,55 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/ERIC-20260919T170320Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "financialOperatingMomentum",
+      "innovationCapability",
+      "executionCapability",
+      "costStructure",
+      "scenarioRobustness"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "financialOperatingMomentum",
+        "innovationCapability",
+        "executionCapability",
+        "costStructure"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "executionCapability",
+        "scenarioRobustness",
+        "innovationCapability"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +118,36 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "financialOperatingMomentum",
+    "innovationCapability",
+    "executionCapability",
+    "costStructure",
+    "scenarioRobustness"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Currency headwinds and restructuring costs can obscure or offset underlying network-demand improvement; product announcements do not establish scaled customer adoption.",
+        "gating": false
+      },
+      {
+        "risk": "AI-native radio positioning is an execution signal, not evidence of durable incremental economics until customer deployment and margin contribution are demonstrated.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Currency headwinds and restructuring costs can obscure or offset underlying network-demand improvement; product announcements do not establish scaled customer adoption.",
+      "gating": false
+    },
+    {
+      "risk": "AI-native radio positioning is an execution signal, not evidence of durable incremental economics until customer deployment and margin contribution are demonstrated.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +155,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +164,66 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "sec:eric:2026-04-17:6k",
+      "sec:eric:2026-07-14:6k"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "sec:eric:2026q1-6k",
+      "url": "https://www.sec.gov/Archives/edgar/data/717826/000119312526161693/d119138d6k.htm",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "sec:eric:2026-04-17:6k"
+    },
+    {
+      "sourceId": "sec:eric:2026q2-6k",
+      "url": "https://www.sec.gov/Archives/edgar/data/717826/000162828026048088/a2607146-kq226.htm",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "sec:eric:2026-07-14:6k"
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "This source pass did not retrieve the full Q2 exhibit details needed to quantify whether Q1 organic momentum persisted into Q2.",
+      "gating": false
+    },
+    {
+      "unknown": "Full Q2 operating metrics remain to be source-addressed from the exhibit attached to the July 2026 6-K.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 89,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +237,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +247,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

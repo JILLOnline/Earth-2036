@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ASTS",
   "workId": "t0:ASTS",
-  "generatedAt": "2026-09-19T16:24:12.785Z",
+  "generatedAt": "2026-09-19T17:06:20.082Z",
   "sourceState": "packet_ready",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-18T13:06:54.000Z",
-    "end": "2026-09-19T16:07:49.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T16:07:49.000Z"
+    "end": "2026-09-19T17:03:20.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T17:03:20.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -53,13 +53,14 @@
     "data/runtime/workgraph/evidence/ASTS-20260918T1200Z-earth-scout.json",
     "data/runtime/workgraph/evidence/ASTS-20260919T052753Z-council-beta.json",
     "data/runtime/workgraph/evidence/ASTS-20260919T111707Z-council-alpha.json",
-    "data/runtime/workgraph/evidence/ASTS-20260919T160749Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ASTS-20260919T160749Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ASTS-20260919T170320Z-earth-scout.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 8,
-    "historicalEvidenceCount": 8
+    "activeEvidenceCount": 10,
+    "historicalEvidenceCount": 10
   },
   "factorEvidence": {
     "names": [
@@ -76,7 +77,8 @@
       "supplyChainResilience",
       "pricingPower",
       "executionCapability",
-      "thesisQuality"
+      "thesisQuality",
+      "regulatoryDurability"
     ],
     "byPerspective": {
       "source-integrity": [
@@ -115,7 +117,10 @@
         "executionCapability",
         "financialOperatingMomentum",
         "scenarioRobustness",
-        "thesisQuality"
+        "thesisQuality",
+        "regulatoryDurability",
+        "executionCapability",
+        "scenarioRobustness"
       ],
       "adversarial-red-team": [
         {
@@ -142,7 +147,9 @@
         },
         "executionCapability",
         "scenarioRobustness",
-        "thesisQuality"
+        "thesisQuality",
+        "executionCapability",
+        "regulatoryDurability"
       ]
     }
   },
@@ -197,7 +204,8 @@
     "supplyChainResilience",
     "pricingPower",
     "executionCapability",
-    "thesisQuality"
+    "thesisQuality",
+    "regulatoryDurability"
   ],
   "riskEvidence": {
     "present": true,
@@ -236,6 +244,14 @@
       },
       {
         "risk": "Constellation economics remain sensitive to launch cadence, deployment success, spectrum access and conversion of contracted amounts into recognized revenue.",
+        "gating": false
+      },
+      {
+        "risk": "Authorization is band-, geography- and condition-specific; international direct-to-device operations still require applicable authority and interference compliance.",
+        "gating": false
+      },
+      {
+        "risk": "Regulatory progress can still be offset by launch, spectrum-coordination, handset/network integration or foreign-authorization delays.",
         "gating": false
       }
     ]
@@ -276,6 +292,14 @@
     {
       "risk": "Constellation economics remain sensitive to launch cadence, deployment success, spectrum access and conversion of contracted amounts into recognized revenue.",
       "gating": false
+    },
+    {
+      "risk": "Authorization is band-, geography- and condition-specific; international direct-to-device operations still require applicable authority and interference compliance.",
+      "gating": false
+    },
+    {
+      "risk": "Regulatory progress can still be offset by launch, spectrum-coordination, handset/network integration or foreign-authorization delays.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -288,7 +312,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 4
+    "count": 5
   },
   "causalMapping": {
     "present": true,
@@ -358,15 +382,16 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 15,
-    "uniqueSourceCount": 4,
-    "duplicatesCollapsed": 11,
+    "rawSourceCount": 17,
+    "uniqueSourceCount": 5,
+    "duplicatesCollapsed": 12,
     "missingLineage": 0,
     "uniqueOrigins": [
       "asts:journey:observed-2026-09-18",
       "asts:ir-quarterly-results:observed-2026-09-18",
       "sec:asts:2026q2-10q:000119312526342550",
-      "sec:asts:2026-08-10:8k-ex99-1"
+      "sec:asts:2026-08-10:8k-ex99-1",
+      "fcc:space-bureau:DA-26-391"
     ]
   },
   "sources": [
@@ -399,6 +424,13 @@
       "kind": "primary",
       "primary": true,
       "originFingerprint": "sec:asts:2026-08-10:8k-ex99-1"
+    },
+    {
+      "sourceId": "fcc:asts:DA-26-391",
+      "url": "https://docs.fcc.gov/public/attachments/DA-26-391A1.pdf",
+      "kind": "primary-regulator",
+      "primary": true,
+      "originFingerprint": "fcc:space-bureau:DA-26-391"
     }
   ],
   "contradictions": [],
@@ -434,11 +466,19 @@
     {
       "unknown": "This assist does not create Alpha-owned numeric underwriting or valuation conclusions.",
       "gating": false
+    },
+    {
+      "unknown": "This regulatory grant does not establish commercial adoption, unit economics, or timing of service monetization.",
+      "gating": false
+    },
+    {
+      "unknown": "No Alpha-owned numeric underwriting conclusion is made by this assist.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 1,
-    "nonGatingCount": 6
+    "nonGatingCount": 8
   },
   "gatingIssues": [
     {

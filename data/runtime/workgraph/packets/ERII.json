@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ERII",
   "workId": "t0:ERII",
-  "generatedAt": "2026-09-19T16:24:12.790Z",
+  "generatedAt": "2026-09-19T17:06:20.088Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T16:22:21.575Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-09-19T17:03:20.000Z",
+    "end": "2026-09-19T17:03:20.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T17:03:20.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,55 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/ERII-20260919T170320Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "financialOperatingMomentum",
+      "executionCapability",
+      "marketConcentration",
+      "scenarioRobustness",
+      "thesisQuality"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "financialOperatingMomentum",
+        "executionCapability",
+        "marketConcentration",
+        "scenarioRobustness"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "executionCapability",
+        "scenarioRobustness",
+        "thesisQuality"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +118,36 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "financialOperatingMomentum",
+    "executionCapability",
+    "marketConcentration",
+    "scenarioRobustness",
+    "thesisQuality"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Large desalination-project delivery timing creates pronounced quarter-to-quarter revenue volatility, and the CO2 business wind-down demonstrates technology-adjacency execution risk.",
+        "gating": false
+      },
+      {
+        "risk": "High gross margin can coexist with weak shipment timing and does not by itself prove durable growth.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Large desalination-project delivery timing creates pronounced quarter-to-quarter revenue volatility, and the CO2 business wind-down demonstrates technology-adjacency execution risk.",
+      "gating": false
+    },
+    {
+      "risk": "High gross margin can coexist with weak shipment timing and does not by itself prove durable growth.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +155,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +164,66 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "sec:erii:2026-08-05:8k-ex99-1",
+      "sec:erii:2026q2-10q:000142151726000083"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "sec:erii:2026q2-ex99-1",
+      "url": "https://www.sec.gov/Archives/edgar/data/1421517/000142151726000082/ex991earningsrelease2026-q2.htm",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "sec:erii:2026-08-05:8k-ex99-1"
+    },
+    {
+      "sourceId": "sec:erii:2026q2-10q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1421517/000142151726000083/erii-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "sec:erii:2026q2-10q:000142151726000083"
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Current evidence does not establish whether the Q2 megaproject shipment decline is primarily timing-driven or reflects weaker forward demand.",
+      "gating": false
+    },
+    {
+      "unknown": "Future megaproject delivery schedule and wastewater scale-up need additional source-addressed evidence.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 96,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +237,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +247,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

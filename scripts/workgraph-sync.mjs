@@ -1,6 +1,9 @@
-import { readFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { applyPacketState, buildRoutingQueues, compilePromotionPacket, computeWorkgraphMetrics, loadRoleRuns, loadStructuredEvidence, migrateLegacyQueue, validateWorkgraph, writeWorkgraphArtifacts } from "./lib/workgraph-v2.mjs";
+import { auditCalibrationRecord, buildPacketCalibrationGuidance, CALIBRATION_REGISTRY } from "./lib/calibration-engine.mjs";
+import { buildAssistRequests } from "./lib/assist-bus.mjs";
+import { MIN_PUBLISHABLE_DATA_CONFIDENCE } from "./lib/runtime-gates.mjs";
 
 const ROOT = process.cwd();
 const LEGACY_PATH = path.join(ROOT, "data", "runtime", "supervisors", "t0-bootstrap-queue.json");
@@ -145,7 +148,7 @@ const packets = [];
 for (const [ticker, row] of Object.entries(graph.companies)) {
   if (["canonical", "blocked"].includes(row.state)) continue;
   const packet = compilePromotionPacket(ticker, evidence, row, {
-    minConfidence: 60,
+    minConfidence: MIN_PUBLISHABLE_DATA_CONFIDENCE,
     methodologyVersion,
     registryEntry: registryByTicker[ticker] || null,
   });
@@ -165,10 +168,42 @@ const metrics = computeWorkgraphMetrics(graph, now, evidence, roleRuns);
 metrics.routingQueueCounts = Object.fromEntries(Object.entries(routingQueues).map(([role, queue]) => [role, queue.total]));
 await writeWorkgraphArtifacts(ROOT, graph, packets, metrics, routingQueues);
 
+const assistBus = buildAssistRequests(graph, packets, roleRuns, now.toISOString());
+const shadowDir = path.join(ROOT, "data", "runtime", "workgraph", "shadow");
+await mkdir(shadowDir, { recursive: true });
+await writeFile(
+  path.join(ROOT, "data", "runtime", "workgraph", "assist-bus.json"),
+  `${JSON.stringify(assistBus, null, 2)}\n`,
+  "utf8"
+);
+
+const canonicalCalibrationAudits = Object.entries(scoreState?.candidates || {})
+  .map(([ticker, record]) => auditCalibrationRecord({ ticker, ...record }));
+const frontierCalibrationGuidance = packets
+  .filter((packet) => ["packet_ready", "chief_ready"].includes(graph.companies?.[packet.ticker]?.state))
+  .map(buildPacketCalibrationGuidance);
+const calibrationShadow = {
+  version: 1,
+  contract: "earth2036-calibration-shadow-v1",
+  generatedAt: now.toISOString(),
+  methodologyVersion: CALIBRATION_REGISTRY.version,
+  calibrationVersion: CALIBRATION_REGISTRY.calibrationVersion,
+  canonicalWriteAuthority: false,
+  canonicalRecordsAudited: canonicalCalibrationAudits.length,
+  canonicalRecordsPassingContract: canonicalCalibrationAudits.filter((row) => row.passed).length,
+  canonicalAudits: canonicalCalibrationAudits,
+  frontierGuidance: frontierCalibrationGuidance,
+};
+await writeFile(
+  path.join(shadowDir, "calibration.json"),
+  `${JSON.stringify(calibrationShadow, null, 2)}\n`,
+  "utf8"
+);
+
 const priorLearningState = await readJsonOr(LEARNING_PATH, null);
 const learningState = deriveLearningState(priorLearningState, metrics, packets, routingQueues, roleRuns, now);
 await import("node:fs/promises").then(({ writeFile }) =>
   writeFile(LEARNING_PATH, `${JSON.stringify(learningState, null, 2)}\n`, "utf8")
 );
 
-console.log(`Workgraph v2: ${metrics.total} companies; ${metrics.counts.chief_ready} chief_ready; ${metrics.counts.packet_ready} packet_ready; ${metrics.counts.blocked} blocked; learning signals refreshed.`);
+console.log(`Workgraph v2: ${metrics.total} companies; ${metrics.counts.chief_ready} chief_ready; ${metrics.counts.packet_ready} packet_ready; ${metrics.counts.blocked} blocked; assists ${assistBus.active} active/${assistBus.dormant} dormant; calibration shadow refreshed.`);

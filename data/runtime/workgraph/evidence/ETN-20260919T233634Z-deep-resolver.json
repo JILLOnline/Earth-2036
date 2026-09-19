@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "role": "deep-resolver",
+  "generatedAt": "2026-09-19T23:36:34Z",
+  "ticker": "ETN",
+  "workId": "t0:ETN",
+  "operatingMode": "root-cause-exception-adjudication",
+  "directive": {
+    "exactQuestion": "Does the coexistence of strong sales/order growth and lower year-over-year reported segment margin constitute an unresolved material contradiction that should independently block ETN, or is it a disclosed execution/mix risk that can be carried non-gating while Council Alpha completes source-addressed underwriting?",
+    "whyItMatters": "The workgraph currently routes unresolved_material_contradiction to Deep Resolver even though the packet's own disposition says the margin issue is a material caution but not a blocker. Leaving that semantic mismatch unresolved creates repeated resolver work without changing the factual record.",
+    "preferredEvidencePath": "Existing primary Eaton Q2 2026 results already in packet lineage, plus the structured Scout/Beta evidence that distinguishes demand/backlog strength from margin/integration execution risk.",
+    "lawfulFallbacks": [
+      "issuer SEC filing for the same reporting period if a factual conflict in the release is identified",
+      "independent current reporting only if primary materials disagree or omit the relevant margin fact"
+    ],
+    "successCondition": "Classify the contradiction as resolved/non-gating or still_conflicted based on whether the two claims are mutually inconsistent rather than merely simultaneous positive and negative operating facts.",
+    "attemptCount": 6
+  },
+  "observed": {
+    "claimA": "Strong sales/order growth suggests operating leverage potential.",
+    "claimB": "Reported segment margin was lower year over year.",
+    "existingDisposition": "material caution but not a blocker; monitor mix and integration as backlog converts.",
+    "gatingIssues": [],
+    "gatingUnknownCount": 0,
+    "otherRootOwnerFailuresRemain": [
+      "missing_specialist_perspective:source-integrity",
+      "missing_specialist_perspective:company-underwriting",
+      "missing_factor_evidence",
+      "missing_numeric_score_record",
+      "missing_score_risk_evidence",
+      "missing_data_confidence_evidence"
+    ]
+  },
+  "adjudication": {
+    "result": "resolved",
+    "reason": "The two claims are not mutually exclusive. Strong sales/order growth can coexist with lower segment margin because mix, acquisition integration, capacity ramp, project timing or cost absorption can offset operating leverage. The packet already treats this as a material caution and supplies explicit falsifiers. On the current evidence this is a risk/tradeoff, not an unresolved factual contradiction.",
+    "evidenceVsInference": {
+      "evidence": "Primary-source-backed growth/order/backlog strength and lower year-over-year segment margin are both preserved as observed facts in packet lineage.",
+      "inference": "Their coexistence does not itself prove either durable operating leverage or structural margin deterioration; future margin/backlog conversion remains the falsifier."
+    },
+    "contradictionStatus": "resolved_non_gating",
+    "confidence": 94,
+    "gateImpact": "Remove only unresolved_material_contradiction when deterministic reconciliation accepts this resolver disposition. Do not promote ETN while Council Alpha-owned underwriting/provenance failures remain.",
+    "recommendedNextState": "researching"
+  },
+  "antiRepeat": {
+    "repeatedBlocker": "ETN was repeatedly routed to Resolver despite prior structured dispositions already describing the same growth-versus-margin issue as non-blocking.",
+    "failedStrategy": "Repeated re-inspection of cumulative lineage without explicitly adjudicating whether the two claims are logically contradictory.",
+    "changedStrategy": "Apply a bounded semantic contradiction test: preserve both facts, distinguish coexistence from incompatibility, classify the issue as non-gating risk, and return remaining source-addressed underwriting work to its existing Council Alpha owner without duplicating it."
+  },
+  "dependencyDisposition": {
+    "deferredDependentItems": [
+      "Council Alpha source-integrity/company-underwriting/factor/score/risk/confidence work remains root-owner work and was not duplicated."
+    ],
+    "roleCyclePresent": false,
+    "assistRequestHandled": false
+  },
+  "sourceLineage": [
+    "data/runtime/workgraph/packets/ETN.json",
+    "data/runtime/workgraph/evidence/ETN-20260918T1200Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ETN-20260919T082212Z-council-beta.json",
+    "https://www.eaton.com/us/en-us/company/news-insights/news-releases/2026/eaton-reports-record-second-quarter-2026-results.html"
+  ],
+  "canonicalWriteAuthority": false
+}

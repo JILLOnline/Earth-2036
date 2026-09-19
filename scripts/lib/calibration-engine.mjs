@@ -28,7 +28,12 @@ function evidenceLeaves(node, leaves = []) {
 export function calibrationBand(value) {
   const numeric = Number(value);
   if (!Number.isFinite(numeric) || numeric < 0 || numeric > 100) return null;
-  return CALIBRATION_REGISTRY.calibrationPolicy.bands.find((band) => numeric >= band.min && numeric <= band.max) || null;
+  const bands = CALIBRATION_REGISTRY.calibrationPolicy.bands;
+  if (numeric <= 20) return bands[0] || null;
+  if (numeric <= 40) return bands[1] || null;
+  if (numeric <= 60) return bands[2] || null;
+  if (numeric <= 80) return bands[3] || null;
+  return bands[4] || null;
 }
 
 export function componentCalibrationGuidance(component) {

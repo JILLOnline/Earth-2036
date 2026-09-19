@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ITW",
   "workId": "t0:ITW",
-  "generatedAt": "2026-09-19T22:39:27.649Z",
+  "generatedAt": "2026-09-19T23:07:24.033Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T22:14:36.596Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-04-30T00:00:00.000Z",
+    "end": "2026-09-19T23:05:33.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T23:05:33.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,67 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/ITW-20260919T230533Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "capex-cycle exposure",
+      "operating model leverage",
+      "guidance conversion",
+      "cash conversion checkpoint"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "capex-cycle exposure",
+          "direction": "positive",
+          "basis": "Q2 disclosed accelerating demand in Welding and Test & Measurement and Electronics."
+        },
+        {
+          "name": "operating model leverage",
+          "direction": "positive",
+          "basis": "Q2 operating margin reached 26.7% while enterprise initiatives contributed 120 bps."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "guidance conversion",
+          "direction": "positive",
+          "basis": "Two successive guidance increases and accelerating Q2 organic growth support execution credibility."
+        },
+        {
+          "name": "cash conversion checkpoint",
+          "direction": "mixed",
+          "basis": "Q2 FCF improved strongly, but management still expects full-year FCF above 100% of net income, leaving a second-half conversion test."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +130,43 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "capex-cycle exposure",
+    "operating model leverage",
+    "guidance conversion",
+    "cash conversion checkpoint"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Demand acceleration is uneven across end markets and remains exposed to industrial/capex cyclicality.",
+        "gating": false
+      },
+      {
+        "risk": "Pricing offset raw-material inflation in Q2, but timing lags modestly diluted margins and could recur.",
+        "gating": false
+      },
+      {
+        "risk": "Raised expectations increase disappointment sensitivity if organic growth or margin expansion fades.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Demand acceleration is uneven across end markets and remains exposed to industrial/capex cyclicality.",
+      "gating": false
+    },
+    {
+      "risk": "Pricing offset raw-material inflation in Q2, but timing lags modestly diluted margins and could recur.",
+      "gating": false
+    },
+    {
+      "risk": "Raised expectations increase disappointment sensitivity if organic growth or margin expansion fades.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +174,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +183,68 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "itw-ir:2026-04-30:q1-results",
+      "itw-ir:2026-07-28:q2-results-guidance"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://investor.itw.com/news-and-events/news/news-details/2026/ITW-Reports-First-Quarter-2026-Results/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-04-30",
+      "originFingerprint": "itw-ir:2026-04-30:q1-results",
+      "sourceId": null
+    },
+    {
+      "url": "https://investor.itw.com/news-and-events/news/news-details/2026/ITW-Reports-Second-Quarter-2026-Results-and-Raises-Full-Year-2026-Guidance/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-28",
+      "originFingerprint": "itw-ir:2026-07-28:q2-results-guidance",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Durability of Q2 capex acceleration into 2027 is not established by current evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "No Scout valuation/entry conclusion is asserted; canonical valuation remains Alpha-owned.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 93,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +258,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +268,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

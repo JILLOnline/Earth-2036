@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "JBL",
   "workId": "t0:JBL",
-  "generatedAt": "2026-09-19T22:39:27.643Z",
+  "generatedAt": "2026-09-19T23:07:24.029Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T22:14:36.596Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2025-11-04T00:00:00.000Z",
+    "end": "2026-09-19T23:05:33.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T23:05:33.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,67 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/JBL-20260919T230533Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "AI infrastructure bottleneck exposure",
+      "geographic manufacturing optionality",
+      "expectation conversion",
+      "near-term verification event"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "AI infrastructure bottleneck exposure",
+          "direction": "positive",
+          "basis": "Power management, thermal solutions, networking and rack manufacturing sit directly in physical AI data-center buildout constraints."
+        },
+        {
+          "name": "geographic manufacturing optionality",
+          "direction": "positive",
+          "basis": "The proposed Adani alliance would add a vertically integrated India manufacturing platform tied to hyperscale infrastructure."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "expectation conversion",
+          "direction": "positive",
+          "basis": "Q3 results exceeded internal expectations and drove a raised outlook."
+        },
+        {
+          "name": "near-term verification event",
+          "direction": "mixed",
+          "basis": "September 30 results will test whether AI strength and recovery in previously pressured businesses persisted into year end."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +130,43 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "AI infrastructure bottleneck exposure",
+    "geographic manufacturing optionality",
+    "expectation conversion",
+    "near-term verification event"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "AI infrastructure demand can be concentrated among large customers and sensitive to hyperscaler capex cycles.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisitions and proposed alliances add integration, execution and capital-allocation risk.",
+        "gating": false
+      },
+      {
+        "risk": "High AI expectations create downside sensitivity if customer capex, mix or margins decelerate.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "AI infrastructure demand can be concentrated among large customers and sensitive to hyperscaler capex cycles.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisitions and proposed alliances add integration, execution and capital-allocation risk.",
+      "gating": false
+    },
+    {
+      "risk": "High AI expectations create downside sensitivity if customer capex, mix or margins decelerate.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +174,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 4
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +183,86 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 5,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "jabil-ir:2025-11-04:hanley-agreement",
+      "jabil-ir:2026-06-15:adani-ai-infrastructure",
+      "jabil-ir:2026-06-17:q3-results",
+      "jabil-ir:2026-09-09:q4-event"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://investors.jabil.com/news/news-details/2025/Jabil-Announces-Definitive-Agreement-to-Acquire-Hanley-Energy-Group/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2025-11-04",
+      "originFingerprint": "jabil-ir:2025-11-04:hanley-agreement",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.jabil.com/news/news-details/2026/Adani-Enterprises-and-Jabil-Target-a-Strategic-Alliance-to-Build-AI-Data-Center-Infrastructure-Platform-in-India/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-06-15",
+      "originFingerprint": "jabil-ir:2026-06-15:adani-ai-infrastructure",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.jabil.com/news/news-details/2026/Jabil-Posts-Third-Quarter-Results/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-06-17",
+      "originFingerprint": "jabil-ir:2026-06-17:q3-results",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.jabil.com/news/news-details/2026/Jabil-Announces-Date-for-Fourth-Quarter-and-Fiscal-Year-2026-Earnings-Release-and-Investor-Briefing/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-09",
+      "originFingerprint": "jabil-ir:2026-09-09:q4-event",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "The Adani announcement described intent to form an alliance; final structure, economics and realized volumes are not established here.",
+      "gating": false
+    },
+    {
+      "unknown": "Fiscal Q4/FY2026 results are not yet available and must not be inferred before September 30.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +276,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +286,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

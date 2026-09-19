@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "HEI",
   "workId": "t0:HEI",
-  "generatedAt": "2026-09-19T21:39:24.686Z",
+  "generatedAt": "2026-09-19T22:07:37.283Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T19:14:07.647Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-07-16T00:00:00.000Z",
+    "end": "2026-09-19T22:05:31.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T22:05:31.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,61 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/HEI-20260919T220531Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "aerospace-electronics demand and execution",
+      "operating conversion",
+      "capital structure"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "aerospace-electronics demand and execution",
+          "direction": "positive",
+          "basis": "Double-digit organic growth alongside faster operating-income growth is direct operating evidence of demand and execution strength."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "operating conversion",
+          "direction": "positive",
+          "basis": "Operating income grew faster than sales in the reported quarter."
+        },
+        {
+          "name": "capital structure",
+          "direction": "mixed",
+          "basis": "Long-dated financing can support investment/acquisitions but increases fixed financing obligations."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +124,34 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "aerospace-electronics demand and execution",
+    "operating conversion",
+    "capital structure"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Growth includes acquisition effects; the 14% disclosed organic sales growth is the cleaner demand signal and should not be conflated with total growth.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition-led expansion and additional debt can magnify integration and capital-allocation risk even while current operations are strong.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Growth includes acquisition effects; the 14% disclosed organic sales growth is the cleaner demand signal and should not be conflated with total growth.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition-led expansion and additional debt can magnify integration and capital-allocation risk even while current operations are strong.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +159,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +168,68 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "heico:2026-08-25:fq3-results",
+      "heico:2026-07-16:senior-notes"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://heico.com/2026/08/25/heico-corporation-reports-record-net-income-up-33-on-record-operating-income-up-34-and-record-net-sales-up-23-for-the-third-quarter-of-fiscal-2026/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-25",
+      "originFingerprint": "heico:2026-08-25:fq3-results",
+      "sourceId": null
+    },
+    {
+      "url": "https://heico.com/2026/07/16/heico-corporation-closes-1-2-billion-senior-notes-offering/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-16",
+      "originFingerprint": "heico:2026-07-16:senior-notes",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Scout does not infer durability of current organic growth beyond reported evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "No valuation or entry conclusion is asserted by Scout.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +243,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +253,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

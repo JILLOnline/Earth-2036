@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "IR",
   "workId": "t0:IR",
-  "generatedAt": "2026-09-19T21:39:24.688Z",
+  "generatedAt": "2026-09-19T22:07:37.285Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T19:14:07.647Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-02-12T00:00:00.000Z",
+    "end": "2026-09-19T22:05:31.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T22:05:31.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,55 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/IR-20260919T220531Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "water-infrastructure exposure",
+      "execution resilience"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "water-infrastructure exposure",
+          "direction": "positive",
+          "basis": "The acquisition adds equipment and service exposure to water and wastewater treatment, a durable infrastructure need."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "execution resilience",
+          "direction": "mixed",
+          "basis": "Order/revenue growth and liquidity support execution capacity, while EBITDA growth lagged revenue in Q1 and organic growth assumptions remained modest."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +118,33 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "water-infrastructure exposure",
+    "execution resilience"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Bolt-on acquisition economics depend on integration and realization of expected synergies; disclosed revenue alone does not establish value creation.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition contribution can mask weaker organic demand; guidance assumptions should be tested against later reported periods by Alpha.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Bolt-on acquisition economics depend on integration and realization of expected synergies; disclosed revenue alone does not establish value creation.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition contribution can mask weaker organic demand; guidance assumptions should be tested against later reported periods by Alpha.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +152,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 3
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +161,77 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 3,
     "duplicatesCollapsed": 0,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "irco:2026-08-03:lone-star-acquisition",
+      "irco:2026-04-28:q1-results",
+      "irco:2026-02-12:fy25-results-guidance"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://investors.irco.com/news/news-details/2026/Ingersoll-Rand-Expands-Key-Blower-Technologies-Rental-Capabilities-and-Services-with-Acquisition-of-Lone-Star-Blower-Inc-/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-03",
+      "originFingerprint": "irco:2026-08-03:lone-star-acquisition",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.irco.com/news/news-details/2026/Ingersoll-Rand-Reports-First-Quarter-2026-Results/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-04-28",
+      "originFingerprint": "irco:2026-04-28:q1-results",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.irco.com/news/news-details/2026/Ingersoll-Rand-Reports-Fourth-Quarter-and-Full-Year-2025-Results/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-12",
+      "originFingerprint": "irco:2026-02-12:fy25-results-guidance",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Post-acquisition organic growth and realized synergies are not yet established.",
+      "gating": false
+    },
+    {
+      "unknown": "Scout did not establish the latest post-Q1 full-year guidance revision in this bounded run.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 87,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +245,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +255,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

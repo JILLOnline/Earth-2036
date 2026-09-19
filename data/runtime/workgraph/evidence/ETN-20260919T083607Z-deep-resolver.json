@@ -1,0 +1,47 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-deep-resolver-evidence",
+  "ticker": "ETN",
+  "entityId": "ETN",
+  "workId": "t0:ETN",
+  "role": "deep-resolver",
+  "generatedAt": "2026-09-19T08:36:07Z",
+  "directive": {
+    "companyWorkId": "t0:ETN",
+    "gatingQuestion": "Does Eaton's lower year-over-year Q2 2026 segment margin contradict the routed evidence of strong sales/order growth and operating leverage potential?",
+    "whyItMatters": "The ranked resolver queue assigns unresolved_material_contradiction to deep-resolver; closure is required before this defect can leave resolver ownership.",
+    "preferredPrimarySource": "Eaton Q2 2026 earnings release dated 2026-07-31",
+    "lawfulFallbacks": ["Eaton Q2 2026 earnings materials", "SEC-filed Q2 earnings exhibit"],
+    "successCondition": "Determine whether the growth/margin observations are mutually inconsistent or instead compatible with a non-gating mix/integration margin risk.",
+    "attemptCount": 1
+  },
+  "result": "resolved",
+  "finding": "The observations are compatible, not contradictory. Eaton reported Q2 sales up 21% with 14% organic growth, strong order/backlog growth, and 23.1% segment margin. That margin was down 80 basis points year over year but above guidance; Electrical Americas margin improved 190 basis points sequentially. The evidence supports strong demand and operating leverage potential while preserving year-over-year margin/mix pressure as a risk rather than an unresolved contradiction.",
+  "evidenceVsInference": {
+    "evidence": "Issuer-reported Q2 2026 sales were $8.5B, up 21%; organic sales grew 14%; total segment margin was 23.1%, down 80 bps YoY but above guidance; Electrical Americas margin was 27.5%, up 190 bps sequentially; electrical orders/backlogs remained strongly positive.",
+    "inference": "A YoY consolidated margin decline does not negate demand strength or operating-leverage potential because sequential segment improvement and above-guidance consolidated margin can coexist with acquisition/mix dilution. Margin pressure should remain explicit risk evidence."
+  },
+  "sources": [
+    {
+      "sourceId": "eaton:q2-2026:2026-07-31",
+      "url": "https://www.eaton.com/us/en-us/company/news-insights/news-releases/2026/eaton-reports-record-second-quarter-2026-results.html",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-31"
+    }
+  ],
+  "contradictionStatus": "resolved",
+  "confidence": 98,
+  "gateImpact": "close_unresolved_material_contradiction_on_reconcile",
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "recommendedDisposition": "Remove deep-resolver ownership for this contradiction on reconcile; preserve acquisition/mix and margin-conversion risk for underwriting.",
+  "lineage": {
+    "inputPacket": "data/runtime/workgraph/packets/ETN.json",
+    "inputEvidence": [
+      "data/runtime/workgraph/evidence/ETN-20260918T1200Z-earth-scout.json",
+      "data/runtime/workgraph/evidence/ETN-20260919T082212Z-council-beta.json"
+    ],
+    "beganFromGitHead": "1c766b6aecc1c900f5a6d076f0d59f90142583d0"
+  }
+}

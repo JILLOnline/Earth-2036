@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CGNX",
   "workId": "t0:CGNX",
-  "generatedAt": "2026-09-19T10:42:19.839Z",
+  "generatedAt": "2026-09-19T11:05:51.906Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T08:40:30.044Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-04-06T00:00:00.000Z",
+    "end": "2026-09-19T11:03:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T11:03:00.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,59 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/CGNX-20260919T110300Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "thesisQuality",
+      "alignment2036",
+      "crossDivisionLeverage",
+      "bottleneckControl",
+      "substitutionResilience",
+      "financialOperatingMomentum",
+      "scenarioRobustness",
+      "governancePower"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "thesisQuality",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "substitutionResilience"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "governancePower"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +122,39 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "thesisQuality",
+    "alignment2036",
+    "crossDivisionLeverage",
+    "bottleneckControl",
+    "substitutionResilience",
+    "financialOperatingMomentum",
+    "scenarioRobustness",
+    "governancePower"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Product claims and early customer counts do not establish durable share gains, pricing power or broad production-scale adoption.",
+        "gating": false
+      },
+      {
+        "risk": "Timely completion of a small divestiture is execution-positive but not sufficient evidence of core growth execution.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Product claims and early customer counts do not establish durable share gains, pricing power or broad production-scale adoption.",
+      "gating": false
+    },
+    {
+      "risk": "Timely completion of a small divestiture is execution-positive but not sufficient evidence of core growth execution.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +162,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 3
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +171,77 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 3,
     "duplicatesCollapsed": 0,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "issuer:CGNX:product:insight3900:20260505",
+      "issuer:CGNX:product:onevision-ga:20260513",
+      "issuer:CGNX:divestiture:japan-trading:20260406"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "issuer:CGNX:insight3900:20260505",
+      "url": "https://investor.cognex.com/news/news-details/2026/Cognex-Launches-Highest-Performance-Embedded-AI-Vision-System-Powered-by-Qualcomm/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-05",
+      "originFingerprint": "issuer:CGNX:product:insight3900:20260505"
+    },
+    {
+      "sourceId": "issuer:CGNX:onevision:20260513",
+      "url": "https://investor.cognex.com/news/news-details/2026/Cognex-OneVision-Adoption-Ramps-as-Manufacturers-Scale-AI-Vision-Globally/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-13",
+      "originFingerprint": "issuer:CGNX:product:onevision-ga:20260513"
+    },
+    {
+      "sourceId": "issuer:CGNX:japan-divestiture:20260406",
+      "url": "https://investor.cognex.com/news/news-details/2026/Cognex-Completes-Divestiture-of-JapanFocused-Trading-Business/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-04-06",
+      "originFingerprint": "issuer:CGNX:divestiture:japan-trading:20260406"
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Incremental revenue, attach rate and renewal economics attributable specifically to OneVision and the In-Sight 3900 are not disclosed in these releases.",
+      "gating": false
+    },
+    {
+      "unknown": "Current-quarter organic growth, margin progression and order trends require financial-result evidence from the underwriting lane.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 82,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +255,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +265,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

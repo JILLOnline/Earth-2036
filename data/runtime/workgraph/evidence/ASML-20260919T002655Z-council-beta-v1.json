@@ -1,0 +1,51 @@
+{
+  "version": 2,
+  "role": "council-beta",
+  "generatedAt": "2026-09-19T00:26:55Z",
+  "sourceCycleKey": "20260918T2300Z",
+  "workId": "t0:ASML",
+  "entity": {"ticker": "ASML", "name": "ASML Holding N.V."},
+  "lineage": {"gitHeadAtStart": "d9d512d8a826ada8979d81cc259fe270383c7ca2", "supersedes": null, "cumulativeEvidence": true},
+  "perspectives": [
+    {
+      "perspective": "structural-causal",
+      "claims": [
+        {"claim": "ASML remains a structural bottleneck for leading-edge lithography: AI-driven advanced Logic and Memory capacity requires higher lithography intensity, while ASML is expanding low-NA EUV and DUV immersion capacity by about 30% for 2027 and investigating another roughly 30% increase for 2028.", "sourceIds": ["asml-q2-2026"], "affectedFactors": ["technology-criticality", "bottleneck-control", "execution"], "causalEdges": ["AI compute demand -> advanced Logic/Memory capacity -> lithography intensity -> ASML EUV/DUV demand"]},
+        {"claim": "High-NA EUV has crossed an important manufacturing-readiness threshold: Intel reports use in high-volume manufacturing on select Panther Lake layers, while TSMC intends High-NA use in high-volume advanced-node manufacturing starting in 2030.", "sourceIds": ["asml-intel-highna-2026", "asml-tsmc-mask-2026"], "affectedFactors": ["technology-readiness", "adoption"], "causalEdges": ["node complexity -> higher-resolution patterning need -> High-NA adoption -> ASML platform demand"]},
+        {"claim": "A successor bottleneck is emerging around High-NA ecosystem productivity, including photomasks: ASML and TSMC target a 12-inch mask pilot line by 2031 and advanced-node production readiness by 2033.", "sourceIds": ["asml-tsmc-mask-2026"], "affectedFactors": ["ecosystem-dependency", "infrastructure"], "causalEdges": ["High-NA scaling -> mask/stitching constraints -> larger-mask ecosystem investment"]}
+      ],
+      "falsifiers": ["Leading-edge customers materially reduce EUV layer intensity or defer node transitions despite sustained compute demand.", "High-NA fails to achieve customer economics/availability sufficient for broad production adoption and multi-pattern low-NA remains structurally preferable.", "A substitute patterning architecture erodes ASML's lithography bottleneck faster than its roadmap can respond."],
+      "risks": ["Customer fab timing can shift system demand across periods.", "High-NA adoption depends on a broader mask, resist, metrology and customer-process ecosystem."],
+      "contradictions": [],
+      "unknowns": ["Exact long-run split of High-NA versus low-NA EUV layers by customer remains uncertain and is non-gating."],
+      "gatingStatus": {"blocked": false, "defect": null},
+      "confidence": 0.91,
+      "recommendedNextState": "evidence_complete",
+      "recommendedOwner": "machine-packet-compiler"
+    },
+    {
+      "perspective": "adversarial-red-team",
+      "claims": [
+        {"claim": "Current operating evidence does not support a present execution-break thesis: Q2 2026 sales were EUR 9.326B, gross margin 54.0%, net income EUR 2.918B, and full-year 2026 guidance was raised to EUR 43B-EUR 45B sales with 54%-56% gross margin.", "sourceIds": ["asml-q2-2026"], "affectedFactors": ["execution", "financial-quality"]},
+        {"claim": "Backlog/order strength is not equivalent to guaranteed revenue. ASML explicitly identifies cancellation, delay/push-out, shipment restrictions and export controls as risks to converting orders/backlog into sales.", "sourceIds": ["asml-q2-2026"], "affectedFactors": ["backlog-quality", "geopolitical-risk", "revenue-conversion"]},
+        {"claim": "Export-control exposure is material rather than hypothetical: Q1 2026 guidance explicitly said its range accommodated potential outcomes of ongoing export-control discussions.", "sourceIds": ["asml-q1-2026"], "affectedFactors": ["regulatory-risk", "geographic-concentration"]},
+        {"claim": "Technology concentration is simultaneously moat and fragility: the thesis relies on ASML maintaining roadmap leadership and on customer acceptance of increasingly complex EUV/High-NA systems; the company itself identifies system performance, new-product acceptance, supply-chain capacity and critical components as substantial uncertainties.", "sourceIds": ["asml-q2-2026"], "affectedFactors": ["technology-risk", "supply-chain-risk", "concentration"]}
+      ],
+      "risks": ["Export controls can strand otherwise valid demand.", "Bookings/backlog can overstate realized revenue if customers delay or cancel.", "Extreme technical and supplier concentration creates high consequence from execution or component bottlenecks.", "Customer capex remains cyclical even when long-run lithography intensity rises."],
+      "contradictions": [{"issue": "2025 management could not confirm 2026 growth amid macro/geopolitical uncertainty; by Q2 2026 management raised full-year guidance sharply.", "disposition": "resolved-by-newer-evidence", "sourceIds": ["asml-q2-2025", "asml-q2-2026"], "material": false}],
+      "unknowns": ["No canonical live crowding/valuation input was used; per methodology this remains non-gating for Beta.", "Future export-control scope is unknown and treated as risk, not a present blocker."],
+      "gatingStatus": {"blocked": false, "defect": null},
+      "confidence": 0.89,
+      "recommendedNextState": "evidence_complete",
+      "recommendedOwner": "machine-packet-compiler"
+    }
+  ],
+  "sources": [
+    {"id": "asml-q2-2026", "url": "https://www.asml.com/en/news/press-releases/2026/q2-2026-financial-results", "sourceType": "company-primary", "originFingerprint": "asml.com|press-release|2026-07-15|q2-2026-financial-results"},
+    {"id": "asml-q1-2026", "url": "https://www.asml.com/en/news/press-releases/2026/q1-2026-financial-results", "sourceType": "company-primary", "originFingerprint": "asml.com|press-release|2026-04-15|q1-2026-financial-results"},
+    {"id": "asml-q2-2025", "url": "https://www.asml.com/en/news/press-releases/2025/q2-2025-financial-results", "sourceType": "company-primary", "originFingerprint": "asml.com|press-release|2025-07-16|q2-2025-financial-results"},
+    {"id": "asml-tsmc-mask-2026", "url": "https://www.asml.com/en/news/press-releases/2026/tsmc-and-asml-announce-industry-transition-to-large-format-photomasks-for-high-na-euv", "sourceType": "joint-primary", "originFingerprint": "asml.com|joint-press-release|2026-09-08|tsmc-highna-12in-mask"},
+    {"id": "asml-intel-highna-2026", "url": "https://www.asml.com/en/news/press-releases/2026/intel-foundry-and-asml-collaborate-to-accelerate-industry-readiness-for-high-na-euv", "sourceType": "joint-primary", "originFingerprint": "asml.com|joint-press-release|2026-09-08|intel-highna-readiness"}
+  ],
+  "summary": "Independent Beta challenge closes ASML's two routed perspectives without a present locked-methodology blocker. Structural evidence supports lithography bottleneck persistence while identifying mask/ecosystem successor constraints; red-team evidence preserves export-control, backlog-conversion, cyclicality and technical/supply-chain fragility as explicit risks rather than manufacturing a bearish gate."
+}

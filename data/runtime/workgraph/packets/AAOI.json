@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "AAOI",
   "workId": "t0:AAOI",
-  "generatedAt": "2026-09-19T04:38:39.247Z",
+  "generatedAt": "2026-09-19T05:10:53.425Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T04:38:02.977Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-08-06T00:00:00.000Z",
+    "end": "2026-09-19T05:06:57.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T05:06:57.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,59 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/AAOI-20260919T050657Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "financialOperatingMomentum",
+      "alignment2036",
+      "bottleneckControl",
+      "pricingPower",
+      "catalystScore",
+      "scenarioRobustness",
+      "supplyChainResilience"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "financialOperatingMomentum",
+        "alignment2036",
+        "bottleneckControl",
+        "pricingPower",
+        "catalystScore"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "financialOperatingMomentum",
+        "catalystScore",
+        "scenarioRobustness",
+        "supplyChainResilience"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +122,38 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "financialOperatingMomentum",
+    "alignment2036",
+    "bottleneckControl",
+    "pricingPower",
+    "catalystScore",
+    "scenarioRobustness",
+    "supplyChainResilience"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Rapid capacity expansion can create utilization, yield and customer-concentration risk if demand timing changes.",
+        "gating": false
+      },
+      {
+        "risk": "GAAP net loss widened to $22.8M and GAAP gross margin fell to 27.7%, so revenue scale has not yet translated into GAAP profitability.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Rapid capacity expansion can create utilization, yield and customer-concentration risk if demand timing changes.",
+      "gating": false
+    },
+    {
+      "risk": "GAAP net loss widened to $22.8M and GAAP gross margin fell to 27.7%, so revenue scale has not yet translated into GAAP profitability.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +161,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +170,70 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 2,
+    "uniqueSourceCount": 1,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "issuer:AAOI:2026Q2:8K-EX99.1"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "sourceId": "issuer:AAOI:2026Q2",
+      "url": "https://investors.ao-inc.com/node/17511/html",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "issuer:AAOI:2026Q2:8K-EX99.1"
+    }
+  ],
+  "contradictions": [
+    {
+      "contradiction": "Record revenue and non-GAAP profitability coexist with a larger GAAP net loss and lower GAAP gross margin.",
+      "material": true
+    }
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 1,
+    "items": [
+      {
+        "contradiction": "Record revenue and non-GAAP profitability coexist with a larger GAAP net loss and lower GAAP gross margin.",
+        "material": true
+      }
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Customer-level concentration and committed versus forecast demand through mid-2027 are not quantified in this source.",
+      "gating": false
+    },
+    {
+      "unknown": "Actual September production rate and progress toward the year-end 650,000-unit target are not established here.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 96,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_causal_mapping",
+      "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +247,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +257,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",
@@ -213,6 +269,10 @@
       {
         "failure": "missing_causal_mapping",
         "owner": "council-beta"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

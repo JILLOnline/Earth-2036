@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SERV",
   "workId": "t0:SERV",
-  "generatedAt": "2026-09-19T04:38:39.245Z",
+  "generatedAt": "2026-09-19T05:10:53.424Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T04:38:02.977Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-08-06T00:00:00.000Z",
+    "end": "2026-09-19T05:06:57.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T05:06:57.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,58 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/SERV-20260919T050657Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "financialOperatingMomentum",
+      "catalystScore",
+      "alignment2036",
+      "crossDivisionLeverage",
+      "scenarioRobustness",
+      "marketValuationOpportunity"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "financialOperatingMomentum",
+        "catalystScore",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "scenarioRobustness"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "financialOperatingMomentum",
+        "catalystScore",
+        "scenarioRobustness",
+        "marketValuationOpportunity"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +121,37 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "financialOperatingMomentum",
+    "catalystScore",
+    "alignment2036",
+    "crossDivisionLeverage",
+    "scenarioRobustness",
+    "marketValuationOpportunity"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Absolute revenue remains small despite high growth rates.",
+        "gating": false
+      },
+      {
+        "risk": "A major demand partner underperformed expectations, demonstrating utilization and customer-demand risk despite fleet scale.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Absolute revenue remains small despite high growth rates.",
+      "gating": false
+    },
+    {
+      "risk": "A major demand partner underperformed expectations, demonstrating utilization and customer-demand risk despite fleet scale.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +159,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +168,87 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "issuer:SERV:2026Q2",
+      "issuer:SERV:Grubhub:20260817"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "sourceId": "issuer:SERV:2026Q2",
+      "url": "https://ir.serverobotics.com/news-releases/news-release-details/serve-robotics-announces-second-quarter-2026-results",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "issuer:SERV:2026Q2"
+    },
+    {
+      "sourceId": "issuer:SERV:Grubhub20260817",
+      "url": "https://ir.serverobotics.com/news-releases/news-release-details/serve-launches-robot-delivery-wonder-adding-grubhub-its-growing",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-17",
+      "originFingerprint": "issuer:SERV:Grubhub:20260817"
+    }
+  ],
+  "contradictions": [
+    {
+      "contradiction": "Rapid platform expansion contrasts with lower-than-expected Uber Eats delivery volume that caused a full-year guidance cut.",
+      "material": true
+    },
+    {
+      "contradiction": "Operational footprint and partner count expanded while 2026 revenue expectations materially declined.",
+      "material": true
+    }
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 2,
+    "items": [
+      {
+        "contradiction": "Rapid platform expansion contrasts with lower-than-expected Uber Eats delivery volume that caused a full-year guidance cut.",
+        "material": true
+      },
+      {
+        "contradiction": "Operational footprint and partner count expanded while 2026 revenue expectations materially declined.",
+        "material": true
+      }
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Economics by delivery platform and advertising versus delivery revenue are not fully disclosed.",
+      "gating": false
+    },
+    {
+      "unknown": "Whether Grubhub, DoorDash, healthcare and advertising growth can offset the removed Uber Eats demand within the next reporting periods is unknown.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 95,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_causal_mapping",
+      "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +262,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +272,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",
@@ -213,6 +284,10 @@
       {
         "failure": "missing_causal_mapping",
         "owner": "council-beta"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "AAPL",
   "workId": "t0:AAPL",
-  "generatedAt": "2026-09-19T04:38:39.246Z",
+  "generatedAt": "2026-09-19T05:10:53.424Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T04:38:02.977Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-07-30T00:00:00.000Z",
+    "end": "2026-09-19T05:06:57.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T05:06:57.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,58 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/AAPL-20260919T050657Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "financialOperatingMomentum",
+      "alignment2036",
+      "crossDivisionLeverage",
+      "scenarioRobustness",
+      "pricingPower",
+      "catalystScore"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "financialOperatingMomentum",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "pricingPower"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "financialOperatingMomentum",
+        "pricingPower",
+        "scenarioRobustness",
+        "catalystScore"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +121,37 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "financialOperatingMomentum",
+    "alignment2036",
+    "crossDivisionLeverage",
+    "scenarioRobustness",
+    "pricingPower",
+    "catalystScore"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Quarterly margin and EPS benefited materially from tariff refunds, so headline profitability includes a non-operating tailwind.",
+        "gating": false
+      },
+      {
+        "risk": "Separating recurring operating margin strength from tariff-refund benefit is necessary for forward expectations.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Quarterly margin and EPS benefited materially from tariff refunds, so headline profitability includes a non-operating tailwind.",
+      "gating": false
+    },
+    {
+      "risk": "Separating recurring operating margin strength from tariff-refund benefit is necessary for forward expectations.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +159,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +168,70 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 2,
+    "uniqueSourceCount": 1,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "issuer:AAPL:FY26Q3:Newsroom"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "sourceId": "issuer:AAPL:FY26Q3",
+      "url": "https://www.apple.com/newsroom/2026/07/apple-reports-third-quarter-results/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-30",
+      "originFingerprint": "issuer:AAPL:FY26Q3:Newsroom"
+    }
+  ],
+  "contradictions": [
+    {
+      "contradiction": "Record EPS and margin include a meaningful temporary tariff-refund benefit.",
+      "material": true
+    }
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 1,
+    "items": [
+      {
+        "contradiction": "Record EPS and margin include a meaningful temporary tariff-refund benefit.",
+        "material": true
+      }
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Revenue contribution and user adoption attributable specifically to the new Siri AI capabilities are not quantified.",
+      "gating": false
+    },
+    {
+      "unknown": "Durable monetization and competitive impact of the newly announced Siri AI stack remain unproven in this financial release.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 97,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_causal_mapping",
+      "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +245,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +255,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",
@@ -213,6 +267,10 @@
       {
         "failure": "missing_causal_mapping",
         "owner": "council-beta"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

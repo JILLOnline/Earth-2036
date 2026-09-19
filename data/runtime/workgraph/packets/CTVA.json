@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CTVA",
   "workId": "t0:CTVA",
-  "generatedAt": "2026-09-19T13:04:08.834Z",
+  "generatedAt": "2026-09-19T13:09:44.327Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T13:03:30.140Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-09-09T00:00:00.000Z",
+    "end": "2026-09-19T13:07:45.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T13:07:45.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,56 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/CTVA-20260919T130745Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "catalystScore",
+      "alignment2036",
+      "crossDivisionLeverage",
+      "thesisQuality",
+      "governancePower",
+      "scenarioRobustness"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "catalystScore",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "thesisQuality"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "catalystScore",
+        "governancePower",
+        "scenarioRobustness"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +119,37 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "catalystScore",
+    "alignment2036",
+    "crossDivisionLeverage",
+    "thesisQuality",
+    "governancePower",
+    "scenarioRobustness"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "The separation creates execution, stranded-cost and post-spin valuation uncertainty for both businesses.",
+        "gating": false
+      },
+      {
+        "risk": "PFAS litigation/settlement obligations and attempts to impede the separation could alter timing, cash requirements or transaction economics.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "The separation creates execution, stranded-cost and post-spin valuation uncertainty for both businesses.",
+      "gating": false
+    },
+    {
+      "risk": "PFAS litigation/settlement obligations and attempts to impede the separation could alter timing, cash requirements or transaction economics.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +157,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 3
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +166,77 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "sec:CIK30554:8K:20260914:VylorDistribution",
+      "issuer:CTVA:GlobachemJV:20260909",
+      "sec:CIK30554:8K:20260910:NC-PFAS-settlement"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "sec:CTVA:8K:20260914:Vylor",
+      "url": "https://www.sec.gov/Archives/edgar/data/30554/000119312526391369/d71834d8k.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-14",
+      "originFingerprint": "sec:CIK30554:8K:20260914:VylorDistribution"
+    },
+    {
+      "sourceId": "issuer:CTVA:GlobachemJV:20260909",
+      "url": "https://www.corteva.com/resources/media-center/corteva-globachem-enter-definitive-agreement-to-form-jv.html",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-09",
+      "originFingerprint": "issuer:CTVA:GlobachemJV:20260909"
+    },
+    {
+      "sourceId": "sec:CTVA:8K:20260910:NCsettlement",
+      "url": "https://www.sec.gov/Archives/edgar/data/30554/000119312526387254/d121501d8k.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-10",
+      "originFingerprint": "sec:CIK30554:8K:20260910:NC-PFAS-settlement"
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Post-separation capital structures and market valuations require dedicated underwriting after regular-way trading begins.",
+      "gating": false
+    },
+    {
+      "unknown": "Ultimate aggregate PFAS liability and whether legal challenges alter the October 1 separation timetable remain unknown.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 93,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +250,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +260,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

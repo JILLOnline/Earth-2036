@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { REQUIRED_PERSPECTIVES, applyPacketState, compilePromotionPacket, computeWorkgraphMetrics, loadStructuredEvidence, migrateLegacyQueue, validateWorkgraph } from "../scripts/lib/workgraph-v2.mjs";
+import { REQUIRED_PERSPECTIVES, applyPacketState, buildRoutingQueues, compilePromotionPacket, computeWorkgraphMetrics, loadStructuredEvidence, migrateLegacyQueue, validateWorkgraph } from "../scripts/lib/workgraph-v2.mjs";
 import { mkdtemp, mkdir, writeFile, rm } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -487,4 +487,101 @@ test("loader normalizes top-level Deep Resolver gate resolution into compiler it
   } finally {
     await rm(root, { recursive: true, force: true });
   }
+});
+
+
+test("Deep Resolver defers dependent score-gate symptoms while Alpha owns the root cause", () => {
+  const graph = {
+    companies: {
+      AAA: { ticker: "AAA", state: "packet_ready", workId: "t0:AAA" },
+    },
+  };
+  const packets = [{
+    ticker: "AAA",
+    workId: "t0:AAA",
+    preflight: {
+      failures: ["missing_numeric_score_record", "unresolved_gating_issue", "unresolved_gating_unknown"],
+      routing: [
+        { failure: "missing_numeric_score_record", owner: "council-alpha" },
+        { failure: "unresolved_gating_issue", owner: "deep-resolver" },
+        { failure: "unresolved_gating_unknown", owner: "deep-resolver" },
+      ],
+    },
+    evidencePaths: ["evidence/AAA-alpha.json"],
+    specialistCoverage: { complete: true },
+    evidenceResolution: {},
+    gatingIssues: [{ gate: "missing_numeric_score_record" }],
+    unknowns: [{ unknown: "valuation input missing", gating: true }],
+    contradictions: [],
+  }];
+  const queues = buildRoutingQueues(graph, packets, "2026-09-19T12:00:00Z");
+  assert.equal(queues["council-alpha"].total, 1);
+  assert.equal(queues["deep-resolver"].total, 0);
+});
+
+test("Deep Resolver still receives material contradictions even when another owner has work", () => {
+  const graph = {
+    companies: {
+      AAA: { ticker: "AAA", state: "packet_ready", workId: "t0:AAA" },
+    },
+  };
+  const packets = [{
+    ticker: "AAA",
+    workId: "t0:AAA",
+    preflight: {
+      failures: ["missing_numeric_score_record", "unresolved_material_contradiction"],
+      routing: [
+        { failure: "missing_numeric_score_record", owner: "council-alpha" },
+        { failure: "unresolved_material_contradiction", owner: "deep-resolver" },
+      ],
+    },
+    evidencePaths: ["evidence/AAA-alpha.json"],
+    specialistCoverage: { complete: true },
+    evidenceResolution: {},
+    gatingIssues: [],
+    unknowns: [],
+    contradictions: [{ contradiction: "material tension", material: true }],
+  }];
+  const queues = buildRoutingQueues(graph, packets, "2026-09-19T12:00:00Z");
+  assert.equal(queues["deep-resolver"].total, 1);
+});
+
+test("metrics flag stalled frontier and fresh zero-closure work as unhealthy", () => {
+  const graph = {
+    version: 2,
+    companies: {
+      AAA: {
+        ticker: "AAA",
+        state: "packet_ready",
+        attempts: 1,
+        lastTransitionAt: "2026-09-19T08:00:00Z",
+        preflight: {
+          failures: ["missing_numeric_score_record"],
+          routing: [{ failure: "missing_numeric_score_record", owner: "council-alpha" }],
+        },
+      },
+      BBB: {
+        ticker: "BBB",
+        state: "canonical",
+        attempts: 1,
+        evidencePath: "data/baseline-evidence/BBB.json",
+        lastTransitionAt: "2026-09-19T04:00:00Z",
+        preflight: { failures: [], routing: [] },
+      },
+    },
+  };
+  const metrics = computeWorkgraphMetrics(
+    graph,
+    new Date("2026-09-19T12:00:00Z"),
+    [],
+    [{
+      role: "council-alpha",
+      generatedAt: "2026-09-19T11:15:00Z",
+      scoreRecordsCompleted: 0,
+      alphaPairsCompleted: 0,
+    }],
+  );
+  assert.equal(metrics.healthy, false);
+  assert.ok(metrics.healthAlerts.some((x) => x.startsWith("t0_frontier_stalled_over_2h_without_chief_ready")));
+  assert.ok(metrics.healthAlerts.some((x) => x.startsWith("owner_recent_run_zero_closure:council-alpha")));
 });

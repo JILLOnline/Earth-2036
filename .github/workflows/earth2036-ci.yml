@@ -53,20 +53,8 @@ jobs:
         env:
           SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
         run: npm run engine:cycle
-      - name: Detect browser-projection code changes
-        id: projection
+      - name: Dispatch Pages after verified main push
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        shell: bash
-        run: |
-          set -euo pipefail
-          changed=false
-          if git diff --name-only HEAD^ HEAD | grep -Eq '^(app/|lib/|public/|scripts/prepare-live-public\.mjs$|next\.config\.mjs$)'; then
-            changed=true
-          fi
-          echo "changed=$changed" >> "$GITHUB_OUTPUT"
-
-      - name: Dispatch Pages after verified browser code push
-        if: steps.projection.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run earth2036-pages.yml --repo "${{ github.repository }}" --ref main -f source_sha="${GITHUB_SHA}"

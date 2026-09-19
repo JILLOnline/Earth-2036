@@ -7,8 +7,119 @@ const LEGACY_PATH = path.join(ROOT, "data", "runtime", "supervisors", "t0-bootst
 const REGISTRY_PATH = path.join(ROOT, "data", "runtime", "entity-registry.json");
 const SCORE_STATE_PATH = path.join(ROOT, "data", "runtime", "score-state.json");
 const STATE_PATH = path.join(ROOT, "data", "runtime", "workgraph", "state.json");
+const LEARNING_PATH = path.join(ROOT, "data", "runtime", "workgraph", "learning-state.json");
 
 async function readJson(file) { return JSON.parse(await readFile(file, "utf8")); }
+async function readJsonOr(file, fallback) {
+  try { return await readJson(file); } catch { return fallback; }
+}
+
+function closureCountForRun(role, run) {
+  if (!run || typeof run !== "object") return null;
+  if (role === "earth-scout" && Number.isFinite(run.evidencePairsCompleted)) return run.evidencePairsCompleted;
+  if (role === "council-alpha" && Number.isFinite(run.scoreRecordsCompleted)) return run.scoreRecordsCompleted;
+  if (role === "council-beta" && Number.isFinite(run.betaPairsCompleted)) return run.betaPairsCompleted;
+  if (role === "deep-resolver" && Array.isArray(run.resolved)) return run.resolved.length;
+  return null;
+}
+
+function latestRunByRole(roleRuns) {
+  const latest = {};
+  for (const run of roleRuns || []) {
+    const role = run?.role;
+    const date = new Date(run?.generatedAt || 0);
+    if (!role || Number.isNaN(date.getTime())) continue;
+    if (!latest[role] || date > latest[role].date) latest[role] = { run, date };
+  }
+  return latest;
+}
+
+function deriveLearningState(existing, metrics, packets, routingQueues, roleRuns, now) {
+  const state = existing && typeof existing === "object" ? existing : {
+    version: 1,
+    contract: "earth2036-operational-learning-v1",
+    agendaGuardrails: [],
+    activeLessons: [],
+  };
+  const latest = latestRunByRole(roleRuns);
+  const zeroClosure = [];
+  for (const [owner, backlog] of Object.entries(metrics.ownerBacklog || {})) {
+    if (!backlog) continue;
+    const role = owner;
+    const item = latest[role];
+    if (!item) continue;
+    const ageHours = Math.max(0, (now.getTime() - item.date.getTime()) / 3_600_000);
+    const closures = closureCountForRun(role, item.run);
+    if (ageHours <= 2 && closures === 0) {
+      zeroClosure.push({
+        role,
+        backlog,
+        runAt: item.date.toISOString(),
+        result: item.run?.result || null,
+        repeatedBlocker: item.run?.repeatedBlocker || null,
+        failedStrategy: item.run?.failedStrategy || null,
+        changedStrategy: item.run?.changedStrategy || null,
+      });
+    }
+  }
+
+  const dependentResolverSymptoms = [];
+  for (const packet of packets || []) {
+    const routes = packet?.preflight?.routing || [];
+    const resolverFailures = routes.filter((r) => r?.owner === "deep-resolver").map((r) => r.failure);
+    const otherOwners = [...new Set(routes.map((r) => r?.owner).filter((o) => o && o !== "deep-resolver"))];
+    const hasMaterialContradiction = resolverFailures.includes("unresolved_material_contradiction");
+    const onlyDependent = resolverFailures.length > 0 &&
+      !hasMaterialContradiction &&
+      resolverFailures.every((f) => ["unresolved_gating_issue", "unresolved_gating_unknown"].includes(f)) &&
+      otherOwners.length > 0;
+    if (onlyDependent) {
+      dependentResolverSymptoms.push({
+        ticker: packet.ticker,
+        resolverFailures,
+        rootOwners: otherOwners,
+        allFailures: packet?.preflight?.failures || [],
+      });
+    }
+  }
+
+  const topFailures = Object.entries(metrics.preflightFailures || {})
+    .sort((a,b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, 12)
+    .map(([failure, count]) => ({ failure, count }));
+
+  return {
+    ...state,
+    updatedAt: now.toISOString(),
+    currentSignals: {
+      frontier: {
+        packetReady: metrics.counts?.packet_ready || 0,
+        chiefReady: metrics.counts?.chief_ready || 0,
+        canonical: metrics.counts?.canonical || 0,
+        canonicalProgressAgeHours: metrics.canonicalProgressAgeHours,
+        stalled: (metrics.counts?.packet_ready || 0) > 0 &&
+          (metrics.counts?.chief_ready || 0) === 0 &&
+          Number.isFinite(metrics.canonicalProgressAgeHours) &&
+          metrics.canonicalProgressAgeHours > 2,
+      },
+      healthy: metrics.healthy,
+      healthAlerts: metrics.healthAlerts || [],
+      zeroClosureWithBacklog: zeroClosure,
+      dependentResolverSymptoms,
+      topFailures,
+      routingQueueCounts: Object.fromEntries(
+        Object.entries(routingQueues || {}).map(([role, queue]) => [role, queue?.total || 0])
+      ),
+    },
+    controlPolicy: {
+      activityIsNotProgress: true,
+      frontierClosureBeforeExpansion: true,
+      repeatedFailureRequiresChangedStrategy: true,
+      dependentSymptomsDeferToRootOwner: true,
+      hardTruthGatesMayNotBeWeakened: true,
+    },
+  };
+}
 
 const registry = await readJson(REGISTRY_PATH);
 const scoreState = await readJson(SCORE_STATE_PATH);
@@ -53,4 +164,11 @@ const routingQueues = buildRoutingQueues(graph, packets, now.toISOString());
 const metrics = computeWorkgraphMetrics(graph, now, evidence, roleRuns);
 metrics.routingQueueCounts = Object.fromEntries(Object.entries(routingQueues).map(([role, queue]) => [role, queue.total]));
 await writeWorkgraphArtifacts(ROOT, graph, packets, metrics, routingQueues);
-console.log(`Workgraph v2: ${metrics.total} companies; ${metrics.counts.chief_ready} chief_ready; ${metrics.counts.packet_ready} packet_ready; ${metrics.counts.blocked} blocked.`);
+
+const priorLearningState = await readJsonOr(LEARNING_PATH, null);
+const learningState = deriveLearningState(priorLearningState, metrics, packets, routingQueues, roleRuns, now);
+await import("node:fs/promises").then(({ writeFile }) =>
+  writeFile(LEARNING_PATH, `${JSON.stringify(learningState, null, 2)}\n`, "utf8")
+);
+
+console.log(`Workgraph v2: ${metrics.total} companies; ${metrics.counts.chief_ready} chief_ready; ${metrics.counts.packet_ready} packet_ready; ${metrics.counts.blocked} blocked; learning signals refreshed.`);

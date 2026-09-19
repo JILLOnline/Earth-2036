@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ARRY",
   "workId": "t0:ARRY",
-  "generatedAt": "2026-09-19T15:19:02.279Z",
+  "generatedAt": "2026-09-19T15:25:43.710Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-05T00:00:00.000Z",
-    "end": "2026-09-19T08:06:13.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T08:06:13.000Z"
+    "end": "2026-09-19T15:22:52.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T15:22:52.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/ARRY-20260919T080613Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ARRY-20260919T080613Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ARRY-20260919T152252Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -63,19 +66,35 @@
       "catalystScore",
       "financialOperatingMomentum",
       "scenarioRobustness",
-      "pricingPower"
+      "pricingPower",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
         "bottleneckControl",
         "catalystScore"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "pricingPower",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "governancePower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -128,7 +147,10 @@
     "catalystScore",
     "financialOperatingMomentum",
     "scenarioRobustness",
-    "pricingPower"
+    "pricingPower",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -139,6 +161,18 @@
       },
       {
         "risk": "Utility-scale solar execution remains sensitive to project timing, trade policy, financing costs and customer concentration.",
+        "gating": false
+      },
+      {
+        "risk": "Orderbook is not equivalent to realized revenue or margin; project timing, trade policy, financing and cancellations can weaken conversion.",
+        "gating": false
+      },
+      {
+        "risk": "Utility-scale solar is exposed to financing rates, trade restrictions and project timing; these can create orderbook-to-revenue slippage.",
+        "gating": false
+      },
+      {
+        "risk": "Competitors or fixed-tilt designs can compress pricing if ARRAY's engineering advantages fail to produce measurable project-level economics.",
         "gating": false
       }
     ]
@@ -151,6 +185,18 @@
     {
       "risk": "Utility-scale solar execution remains sensitive to project timing, trade policy, financing costs and customer concentration.",
       "gating": false
+    },
+    {
+      "risk": "Orderbook is not equivalent to realized revenue or margin; project timing, trade policy, financing and cancellations can weaken conversion.",
+      "gating": false
+    },
+    {
+      "risk": "Utility-scale solar is exposed to financing rates, trade restrictions and project timing; these can create orderbook-to-revenue slippage.",
+      "gating": false
+    },
+    {
+      "risk": "Competitors or fixed-tilt designs can compress pricing if ARRAY's engineering advantages fail to produce measurable project-level economics.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -161,20 +207,29 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "utility-scale solar buildout -> demand for energy-yield optimization -> tracker/control systems -> ARRAY revenue opportunity",
+      "terrain/installation constraints -> tracker engineering adaptability -> project economics",
+      "tracker competition or fixed-tilt economics -> substitution pressure -> ARRAY pricing/order conversion"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "utility-scale solar buildout -> demand for energy-yield optimization -> tracker/control systems -> ARRAY revenue opportunity",
+    "terrain/installation constraints -> tracker engineering adaptability -> project economics",
+    "tracker competition or fixed-tilt economics -> substitution pressure -> ARRAY pricing/order conversion"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:ARRY:2026Q2:20260805"
+      "issuer:ARRY:2026Q2:20260805",
+      "sec:ARRY:2026Q2:10Q:000162828026053517"
     ]
   },
   "sources": [
@@ -185,6 +240,14 @@
       "primary": true,
       "publishedAt": "2026-08-05",
       "originFingerprint": "issuer:ARRY:2026Q2:20260805"
+    },
+    {
+      "sourceId": "sec:ARRY:2026Q2:10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1820721/000162828026053517/arry-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-05",
+      "originFingerprint": "sec:ARRY:2026Q2:10Q:000162828026053517"
     }
   ],
   "contradictions": [],
@@ -200,26 +263,31 @@
     {
       "unknown": "Full-year guidance performance versus realized H2 shipments requires subsequent-quarter confirmation.",
       "gating": false
+    },
+    {
+      "unknown": "Independent comparative evidence on lifecycle reliability and delivered-cost advantage versus leading tracker substitutes remains limited in current lineage.",
+      "gating": false
+    },
+    {
+      "unknown": "Customer/geographic cancellation exposure and competitor-adjusted win rates are not fully resolved by current sources.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 90,
+  "confidence": 84,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -229,14 +297,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -253,10 +313,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

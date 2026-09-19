@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ATI",
   "workId": "t0:ATI",
-  "generatedAt": "2026-09-19T15:19:02.277Z",
+  "generatedAt": "2026-09-19T15:25:43.709Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-06T00:00:00.000Z",
-    "end": "2026-09-19T08:06:13.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T08:06:13.000Z"
+    "end": "2026-09-19T15:22:52.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T15:22:52.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/ATI-20260919T080613Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ATI-20260919T080613Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ATI-20260919T152252Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -63,12 +66,23 @@
       "pricingPower",
       "catalystScore",
       "financialOperatingMomentum",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "pricingPower"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
@@ -76,7 +90,13 @@
         "pricingPower",
         "catalystScore"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "pricingPower",
+        "supplyChainResilience",
+        "governancePower",
+        "financialOperatingMomentum"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -129,7 +149,10 @@
     "pricingPower",
     "catalystScore",
     "financialOperatingMomentum",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -140,6 +163,18 @@
       },
       {
         "risk": "Q2 included special-item charges and a $9.9M facility-sale gain; new-facility qualification requirements also raised manufacturing costs.",
+        "gating": false
+      },
+      {
+        "risk": "Capacity is valuable only after qualification; ramp delays or cost overruns can postpone conversion of scarcity into cash flow.",
+        "gating": false
+      },
+      {
+        "risk": "End-market concentration raises sensitivity to aerospace build rates, defense programs and customer qualification schedules.",
+        "gating": false
+      },
+      {
+        "risk": "Expansion economics can disappoint if new furnaces/facilities qualify slowly or carry structurally higher manufacturing costs.",
         "gating": false
       }
     ]
@@ -152,6 +187,18 @@
     {
       "risk": "Q2 included special-item charges and a $9.9M facility-sale gain; new-facility qualification requirements also raised manufacturing costs.",
       "gating": false
+    },
+    {
+      "risk": "Capacity is valuable only after qualification; ramp delays or cost overruns can postpone conversion of scarcity into cash flow.",
+      "gating": false
+    },
+    {
+      "risk": "End-market concentration raises sensitivity to aerospace build rates, defense programs and customer qualification schedules.",
+      "gating": false
+    },
+    {
+      "risk": "Expansion economics can disappoint if new furnaces/facilities qualify slowly or carry structurally higher manufacturing costs.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -162,20 +209,29 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "aerospace/defense production -> demand for high-performance qualified materials -> ATI melting/forging/alloy capacity",
+      "materials science + qualification barriers -> constrained qualified supply -> pricing/contract leverage",
+      "capacity expansion -> customer qualification -> usable supply growth -> backlog conversion"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "aerospace/defense production -> demand for high-performance qualified materials -> ATI melting/forging/alloy capacity",
+    "materials science + qualification barriers -> constrained qualified supply -> pricing/contract leverage",
+    "capacity expansion -> customer qualification -> usable supply growth -> backlog conversion"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:ATI:2026Q2:20260806"
+      "issuer:ATI:2026Q2:20260806",
+      "sec:ATI:2026Q2:10Q:000162828026054233"
     ]
   },
   "sources": [
@@ -186,6 +242,14 @@
       "primary": true,
       "publishedAt": "2026-08-06",
       "originFingerprint": "issuer:ATI:2026Q2:20260806"
+    },
+    {
+      "sourceId": "sec:ATI:2026Q2:10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1018963/000162828026054233/ati-20260628.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "sec:ATI:2026Q2:10Q:000162828026054233"
     }
   ],
   "contradictions": [],
@@ -201,26 +265,31 @@
     {
       "unknown": "Timing and economics of capacity qualification at the Mexico facility and titanium electron-beam furnace require monitoring.",
       "gating": false
+    },
+    {
+      "unknown": "Long-run substitution rates from alternative materials or manufacturing routes are not quantified in current evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Customer-level concentration and contract repricing protections require deeper source-addressed underwriting.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -230,14 +299,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -254,10 +315,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

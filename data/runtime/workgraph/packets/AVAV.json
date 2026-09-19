@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "AVAV",
   "workId": "t0:AVAV",
-  "generatedAt": "2026-09-19T15:19:02.273Z",
+  "generatedAt": "2026-09-19T15:25:43.706Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-09T00:00:00.000Z",
-    "end": "2026-09-18T20:03:18.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-18T20:03:18.000Z"
+    "end": "2026-09-19T15:22:52.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T15:22:52.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/AVAV-20260918T2000Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/AVAV-20260918T2000Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/AVAV-20260919T152252Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,19 +65,35 @@
       "catalystScore",
       "crossDivisionLeverage",
       "scenarioRobustness",
-      "governancePower"
+      "governancePower",
+      "thesisQuality",
+      "bottleneckControl",
+      "supplyChainResilience"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "alignment2036",
         "financialOperatingMomentum",
         "catalystScore",
         "crossDivisionLeverage"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "governancePower",
+        "financialOperatingMomentum",
+        "crossDivisionLeverage",
+        "supplyChainResilience"
+      ],
       "expectations-execution": [
         "catalystScore",
         "scenarioRobustness",
@@ -125,7 +144,10 @@
     "catalystScore",
     "crossDivisionLeverage",
     "scenarioRobustness",
-    "governancePower"
+    "governancePower",
+    "thesisQuality",
+    "bottleneckControl",
+    "supplyChainResilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -136,6 +158,22 @@
       },
       {
         "risk": "Capacity expansion and acquisition integration can pressure margins if program ramps slip.",
+        "gating": false
+      },
+      {
+        "risk": "Portfolio breadth can become coordination cost rather than leverage if integration and production systems do not scale with awards.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition debt and integration complexity can reduce resilience if expected synergies or program ramps slip.",
+        "gating": false
+      },
+      {
+        "risk": "Defense awards are timing- and appropriation-dependent; announced ceilings do not equal near-term revenue or margin.",
+        "gating": false
+      },
+      {
+        "risk": "Broad technology portfolios face rapid competitive response and substitution across counter-UAS, autonomy and directed-energy architectures.",
         "gating": false
       }
     ]
@@ -148,6 +186,22 @@
     {
       "risk": "Capacity expansion and acquisition integration can pressure margins if program ramps slip.",
       "gating": false
+    },
+    {
+      "risk": "Portfolio breadth can become coordination cost rather than leverage if integration and production systems do not scale with awards.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition debt and integration complexity can reduce resilience if expected synergies or program ramps slip.",
+      "gating": false
+    },
+    {
+      "risk": "Defense awards are timing- and appropriation-dependent; announced ceilings do not equal near-term revenue or margin.",
+      "gating": false
+    },
+    {
+      "risk": "Broad technology portfolios face rapid competitive response and substitution across counter-UAS, autonomy and directed-energy architectures.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -158,20 +212,29 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "distributed-threat environment -> demand for autonomous/counter-UAS systems -> AVAV portfolio demand",
+      "BlueHalo capability breadth + AVAV platforms -> integrated mission solutions -> larger addressable programs",
+      "contract awards -> capacity/integration execution -> deliveries -> mission adoption/revenue"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "distributed-threat environment -> demand for autonomous/counter-UAS systems -> AVAV portfolio demand",
+    "BlueHalo capability breadth + AVAV platforms -> integrated mission solutions -> larger addressable programs",
+    "contract awards -> capacity/integration execution -> deliveries -> mission adoption/revenue"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:AVAV:2026-09:press-index"
+      "issuer:AVAV:2026-09:press-index",
+      "sec:AVAV:FY2027Q1:10Q:000110465926106423"
     ]
   },
   "sources": [
@@ -182,6 +245,14 @@
       "primary": true,
       "publishedAt": "2026-09-09",
       "originFingerprint": "issuer:AVAV:2026-09:press-index"
+    },
+    {
+      "sourceId": "sec:AVAV:FY2027Q1:10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1368622/000110465926106423/avav-20260801x10q.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-09",
+      "originFingerprint": "sec:AVAV:FY2027Q1:10Q:000110465926106423"
     }
   ],
   "contradictions": [],
@@ -197,26 +268,31 @@
     {
       "unknown": "Program-level margin and delivery cadence are not established here.",
       "gating": false
+    },
+    {
+      "unknown": "Program-level cross-selling and realized integration synergies are not yet separately demonstrated in current evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Post-acquisition organic growth, segment cash conversion and leverage-reduction cadence need Alpha source-addressed underwriting.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 89,
+  "confidence": 88,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -226,14 +302,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -250,10 +318,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

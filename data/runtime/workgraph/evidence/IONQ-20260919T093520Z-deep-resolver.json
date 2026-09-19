@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-deep-resolver-evidence",
+  "ticker": "IONQ",
+  "entityId": "IONQ",
+  "workId": "t0:IONQ",
+  "role": "deep-resolver",
+  "generatedAt": "2026-09-19T09:35:20Z",
+  "directive": {
+    "companyWorkId": "t0:IONQ",
+    "gatingQuestion": "Does IonQ's rapid Q2 2026 revenue/RPO growth materially conflict with early commercialization and acquisition effects, or can acquisition attribution be separated from still-unproven fault-tolerant economics?",
+    "whyItMatters": "The ranked queue assigns unresolved_material_contradiction to deep-resolver; commercial growth and long-horizon technical economics must not be conflated.",
+    "preferredPrimarySource": "IonQ Q2 2026 earnings release dated 2026-08-05",
+    "lawfulFallbacks": ["IonQ quarterly-results materials", "IonQ SkyWater guidance release", "SEC-filed Q2 earnings exhibit"],
+    "successCondition": "Establish whether Q2 growth itself contains SkyWater acquisition contribution and separate that from non-gating uncertainty about fault-tolerant workload economics.",
+    "attemptCount": 2
+  },
+  "result": "resolved",
+  "finding": "Fresh primary-source verification separates the claims. IonQ reported Q2 revenue of $80.1M, +287% YoY, and explicitly described strong organic growth driven by quantum-computer deployments. SkyWater closed July 31, after the June 30 quarter, and the August $280M-$290M full-year outlook explicitly excluded SkyWater. The September $450M-$460M outlook explicitly includes SkyWater from July 31 onward. Acquisition contribution therefore affects later consolidated guidance, not the reported Q2 revenue. Fault-tolerant performance, yields and durable workload economics remain non-gating unknowns rather than a factual contradiction with current commercial traction.",
+  "evidenceVsInference": {
+    "evidence": "IonQ reported $80.1M Q2 revenue (+287% YoY), stated strong organic revenue growth, and said its August FY2026 outlook excluded SkyWater; SkyWater closed July 31. IonQ's September outlook explicitly includes SkyWater beginning July 31.",
+    "inference": "Current commercial traction and unproven fault-tolerant economics can coexist; acquisition-adjusted comparability remains a risk without sustaining the contradiction gate."
+  },
+  "sources": [
+    {"sourceId":"ionq:q2-2026-results","url":"https://investors.ionq.com/news/news-details/2026/IonQ-Announces-Record-Second-Quarter-2026-Revenues-Growing-287-YoY/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-08-05"},
+    {"sourceId":"ionq:skywater-guidance:2026-09-08","url":"https://investors.ionq.com/news/news-details/2026/IonQ-Announces-Increased-Full-Year-2026-Financial-Outlook-Following-SkyWater-Acquisition/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-09-08"}
+  ],
+  "contradictionStatus": "resolved",
+  "confidence": 99,
+  "gateImpact": "close_unresolved_material_contradiction_on_reconcile",
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "recommendedDisposition": "Remove deep-resolver ownership for this contradiction on reconcile; retain fault-tolerant economics, independent validation, yield and acquisition-adjusted comparability as underwriting unknowns/risks.",
+  "lineage": {"inputPacket":"data/runtime/workgraph/packets/IONQ.json","inputEvidence":["data/runtime/workgraph/evidence/IONQ-20260919T083607Z-deep-resolver.json"],"beganFromGitHead":"28857383e7ca4045c2c2524e3e12ea77dbe4f117"}
+}

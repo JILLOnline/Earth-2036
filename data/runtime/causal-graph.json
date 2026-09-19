@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-19T18:16:03.032Z",
+  "updatedAt": "2026-09-19T20:16:33.598Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -290,6 +290,18 @@
       "type": "market",
       "label": "Intel Products and advanced-node wafer demand",
       "description": "higher-performance workloads pull premium CPUs and leading-edge process capacity"
+    },
+    {
+      "id": "company:SYM",
+      "type": "company",
+      "label": "Symbotic",
+      "description": "Symbotic targets the warehouse throughput/labor bottleneck with tightly integrated robotics plus orchestration software; ARMS extends the causal chain from machine automation toward whole-site operational optimization."
+    },
+    {
+      "id": "market:SYM-automation-adoption",
+      "type": "market",
+      "label": "automation adoption",
+      "description": "robotics and orchestration raise throughput and reduce manual handling dependence"
     }
   ],
   "edges": [
@@ -724,6 +736,21 @@
         "sec:INTC:2026Q2-10Q"
       ],
       "observedAt": "2026-09-19T12:27:02Z"
+    },
+    {
+      "id": "edge:SYM-structural-exposure",
+      "from": "company:SYM",
+      "to": "market:SYM-automation-adoption",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 68,
+      "confidence": 92,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "symbotic:arms-acquisition:2026-07-02",
+        "sym:2026q3:10q:2026-08-05"
+      ],
+      "observedAt": "2026-09-19T11:24:50Z"
     }
   ],
   "structuralSignals": [
@@ -1224,6 +1251,25 @@
       "observedAt": "2026-09-19T12:27:02Z",
       "thesis": "Intel's structural thesis couples x86/AI compute demand to domestic leading-edge logic manufacturing and advanced packaging; 18A/18A-P and 14A are intended to turn process capability into both internal product advantage and external foundry capacity.",
       "falsifier": "product share or premium mix reverses despite market growth"
+    },
+    {
+      "id": "signal:SYM-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:SYM-automation-adoption",
+      "affectedNodeIds": [
+        "company:SYM"
+      ],
+      "direction": 1,
+      "magnitude": 68,
+      "confidence": 92,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "symbotic:arms-acquisition:2026-07-02",
+        "sym:2026q3:10q:2026-08-05"
+      ],
+      "observedAt": "2026-09-19T11:24:50Z",
+      "thesis": "Symbotic targets the warehouse throughput/labor bottleneck with tightly integrated robotics plus orchestration software; ARMS extends the causal chain from machine automation toward whole-site operational optimization.",
+      "falsifier": "customers achieve comparable economics with simpler/cheaper automation or deployments fail to deliver expected productivity"
     }
   ],
   "roadmapMilestones": [

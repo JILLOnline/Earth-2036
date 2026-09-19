@@ -54,6 +54,11 @@ jobs:
             npm run workgraph:sync
             node scripts/mark-council-pending.mjs
 
+            # Audit before promotion, but do not let a global source-mesh failure
+            # suppress truthful non-canonical routing state.
+            beast_status=0
+            node scripts/beast-audit.mjs || beast_status=$?
+
             base_head=$(git rev-parse HEAD)
             git fetch --no-tags --depth=1 origin main
             remote_head=$(git rev-parse origin/main)
@@ -83,54 +88,59 @@ jobs:
             exit 1
           fi
 
-          # Phase 2: canonical promotion is still fail-closed. A failed Beast/source
-          # mesh audit leaves the freshly reconciled Workgraph in Git, but no score,
-          # rank, baseline, causal, or canonical promotion is persisted.
-          git fetch --no-tags --depth=1 origin main
-          git reset --hard origin/main
+          # Phase 2: canonical promotion is still fail-closed.
+          if [ "$beast_status" -eq 0 ]; then
+            git fetch --no-tags --depth=1 origin main
+            git reset --hard origin/main
 
-          node scripts/promote-chief-ready.mjs
-          node scripts/mark-council-pending.mjs
+            node scripts/promote-chief-ready.mjs
+            node scripts/mark-council-pending.mjs
 
-          if ! node scripts/beast-audit.mjs; then
-            echo "Beast/source-mesh gate remains closed. Non-canonical Workgraph reconciliation was persisted; canonical promotion was discarded."
-            exit 0
-          fi
-
-          canonical_projection_changed=false
-          if ! git diff --quiet -- \
-              data/runtime/current-ranking.json \
-              data/runtime/score-state.json \
-              data/runtime/causal-graph.json \
-              data/baseline-evidence \
-              data/baselines/earth2036-official-t0-2026-09-12/manifest.json; then
-            canonical_projection_changed=true
-          fi
-
-          if git diff --quiet -- data/runtime/workgraph data/runtime/system-state.json data/runtime/supervisor-state.json data/runtime/source-health.json data/runtime/score-state.json data/runtime/current-ranking.json data/runtime/causal-graph.json data/runtime/intelligence-integrity.json data/baseline-evidence data/baselines/earth2036-official-t0-2026-09-12/manifest.json; then
-            exit 0
-          fi
-
-          promotion_base=$(git rev-parse HEAD)
-          git fetch --no-tags --depth=1 origin main
-          promotion_remote=$(git rev-parse origin/main)
-          if [ "$promotion_base" != "$promotion_remote" ]; then
-            echo "Repository advanced before canonical promotion; leaving promotion for the next reconciliation/scheduler run."
-            exit 0
-          fi
-
-          git add data/runtime/workgraph data/runtime/system-state.json data/runtime/supervisor-state.json data/runtime/source-health.json data/runtime/score-state.json data/runtime/current-ranking.json data/runtime/causal-graph.json data/runtime/intelligence-integrity.json data/baseline-evidence data/baselines/earth2036-official-t0-2026-09-12/manifest.json
-          git commit -m "Earth 2036 gated canonical promotion from evidence"
-          promotion_head=$(git rev-parse HEAD)
-
-          if git push origin HEAD:main; then
-            echo "canonical_projection_changed=$canonical_projection_changed"
-            if [ "$canonical_projection_changed" = "true" ]; then
-              gh workflow run earth2036-pages.yml --repo "${{ github.repository }}" --ref main -f source_sha="$promotion_head"
-              echo "Dispatched Pages immediately for canonical projection $promotion_head."
+            # Re-audit the staged canonical result. Any failure discards promotion,
+            # while the already-pushed non-canonical routing remains available.
+            if ! node scripts/beast-audit.mjs; then
+              echo "Post-promotion Beast audit failed; persisting non-canonical Workgraph state and routing only."
+              exit 0
             fi
+
+            canonical_projection_changed=false
+            if ! git diff --quiet -- \
+                data/runtime/current-ranking.json \
+                data/runtime/score-state.json \
+                data/runtime/causal-graph.json \
+                data/baseline-evidence \
+                data/baselines/earth2036-official-t0-2026-09-12/manifest.json; then
+              canonical_projection_changed=true
+            fi
+
+            if git diff --quiet -- data/runtime/workgraph data/runtime/system-state.json data/runtime/supervisor-state.json data/runtime/source-health.json data/runtime/score-state.json data/runtime/current-ranking.json data/runtime/causal-graph.json data/runtime/intelligence-integrity.json data/baseline-evidence data/baselines/earth2036-official-t0-2026-09-12/manifest.json; then
+              exit 0
+            fi
+
+            promotion_base=$(git rev-parse HEAD)
+            git fetch --no-tags --depth=1 origin main
+            promotion_remote=$(git rev-parse origin/main)
+            if [ "$promotion_base" != "$promotion_remote" ]; then
+              echo "Repository advanced before canonical promotion; leaving promotion for the next reconciliation/scheduler run."
+              exit 0
+            fi
+
+            git add data/runtime/workgraph data/runtime/system-state.json data/runtime/supervisor-state.json data/runtime/source-health.json data/runtime/score-state.json data/runtime/current-ranking.json data/runtime/causal-graph.json data/runtime/intelligence-integrity.json data/baseline-evidence data/baselines/earth2036-official-t0-2026-09-12/manifest.json
+            git commit -m "Earth 2036 gated canonical promotion from evidence"
+            promotion_head=$(git rev-parse HEAD)
+
+            if git push origin HEAD:main; then
+              echo "canonical_projection_changed=$canonical_projection_changed"
+              if [ "$canonical_projection_changed" = "true" ]; then
+                gh workflow run earth2036-pages.yml --repo "${{ github.repository }}" --ref main -f source_sha="$promotion_head"
+                echo "Dispatched Pages immediately for canonical projection $promotion_head."
+              fi
+              exit 0
+            fi
+
+            echo "Canonical promotion push raced with another writer; leaving it for the next reconciliation/scheduler run."
             exit 0
           fi
 
-          echo "Canonical promotion push raced with another writer; leaving it for the next reconciliation/scheduler run."
+          echo "Beast/source-mesh gate remains closed; persisting non-canonical Workgraph state and routing only."
           exit 0

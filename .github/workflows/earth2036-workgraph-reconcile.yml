@@ -4,7 +4,6 @@ on:
   push:
     branches: [main]
     paths:
-      - "data/runtime/workgraph/evidence/**"
       - "data/runtime/workgraph/role-runs/**"
   workflow_dispatch:
 
@@ -21,12 +20,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: main
           fetch-depth: 1
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm

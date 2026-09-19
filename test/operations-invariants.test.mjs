@@ -37,9 +37,9 @@ test("watchdog checks GitHub-native scheduler, Pages, reconcile, CI and Workgrap
   assert.ok(text.includes("workgraph_healthy"));
 });
 
-test("evidence and worker receipts trigger burst-safe Workgraph reconciliation", async () => {
+test("completed worker receipts trigger one burst-safe Workgraph reconciliation", async () => {
   const text = await source(".github/workflows/earth2036-workgraph-reconcile.yml");
-  assert.ok(text.includes('data/runtime/workgraph/evidence/**'));
+  assert.equal(text.includes('data/runtime/workgraph/evidence/**'), false);
   assert.ok(text.includes('data/runtime/workgraph/role-runs/**'));
   assert.ok(text.includes("cancel-in-progress: true"));
   assert.ok(text.includes("npm run workgraph:sync"));
@@ -202,4 +202,26 @@ test("Trust Ledger exposes doctrine and shadow authority without turning operati
   assert.ok(ledger.includes("NO CANONICAL WRITES"));
   assert.ok(ledger.includes("VALUE ALLOCATION"));
   assert.ok(allocator.includes("never a company-quality or investment score"));
+});
+
+
+test("scheduler is hourly/manual only so code pushes cannot collide with minion evidence bursts", async () => {
+  const text = await source(".github/workflows/earth2036-scheduler.yml");
+  assert.ok(text.includes('cron: "0 * * * *"'));
+  assert.ok(text.includes("workflow_dispatch:"));
+  assert.equal(text.includes('scripts/**'), false);
+  assert.equal(/\n\s*push:\s*\n/.test(text), false);
+});
+
+test("GitHub workflows use Node-24-compatible checkout/setup actions", async () => {
+  for (const path of [
+    ".github/workflows/earth2036-scheduler.yml",
+    ".github/workflows/earth2036-workgraph-reconcile.yml",
+    ".github/workflows/earth2036-ci.yml",
+    ".github/workflows/earth2036-pages.yml",
+  ]) {
+    const text = await source(path);
+    if (text.includes("actions/checkout@")) assert.ok(text.includes("actions/checkout@v5"));
+    if (text.includes("actions/setup-node@")) assert.ok(text.includes("actions/setup-node@v5"));
+  }
 });

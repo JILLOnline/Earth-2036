@@ -55,10 +55,12 @@ test("canonical reconciliation changes dispatch Pages immediately", async () => 
   assert.ok(text.includes("data/runtime/score-state.json"));
 });
 
-test("CI watches every Earth 2036 operational workflow and publishes only after success", async () => {
+test("CI watches every Earth 2036 operational workflow and publishes every verified main snapshot", async () => {
   const text = await source(".github/workflows/earth2036-ci.yml");
   assert.ok(text.includes('".github/workflows/earth2036-*.yml"'));
-  assert.ok(text.includes("Dispatch Pages after verified browser code push"));
+  assert.ok(text.includes("Dispatch Pages after verified main push"));
+  assert.ok(text.includes('source_sha="${GITHUB_SHA}"'));
+  assert.equal(text.includes("Detect browser-projection code changes"), false);
 });
 
 test("zero-defect Chief fast path runs after packet compilation and before Beast audit", async () => {

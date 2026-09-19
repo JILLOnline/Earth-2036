@@ -556,6 +556,21 @@ export function buildRoutingQueues(graph, packets, generatedAt = new Date().toIS
         routing.filter((route) => route?.owner === role).map((route) => route.failure).filter(Boolean)
       )];
       if (!ownedFailures.length) continue;
+
+      // Deep Resolver is an adjudication lane, not a duplicate source-acquisition lane.
+      // If its only failures are downstream gating symptoms and another owner still has
+      // a concrete root-cause failure on the same packet, let that owner close first.
+      // Material contradictions remain independently actionable and are never deferred.
+      const resolverHasMaterialContradiction = ownedFailures.includes("unresolved_material_contradiction");
+      const resolverOnlyDependentGates =
+        role === "deep-resolver" &&
+        !resolverHasMaterialContradiction &&
+        ownedFailures.every((failure) =>
+          ["unresolved_gating_issue", "unresolved_gating_unknown"].includes(failure)
+        ) &&
+        owners.some((owner) => owner !== "deep-resolver");
+      if (resolverOnlyDependentGates) continue;
+
       queues[role].push({
         ticker: packet.ticker,
         workId: packet.workId || row.workId || `t0:${packet.ticker}`,
@@ -680,6 +695,16 @@ export function computeWorkgraphMetrics(graph, now = new Date(), evidenceRows = 
   if ((counts.chief_ready || 0) > 0 && canonicalProgressAgeHours !== null && canonicalProgressAgeHours > 2) {
     healthAlerts.push(`t0_canonical_stalled_over_2h_with_chief_ready:${Math.round(canonicalProgressAgeHours * 100) / 100}`);
   }
+  if (
+    (counts.packet_ready || 0) > 0 &&
+    (counts.chief_ready || 0) === 0 &&
+    canonicalProgressAgeHours !== null &&
+    canonicalProgressAgeHours > 2
+  ) {
+    healthAlerts.push(
+      `t0_frontier_stalled_over_2h_without_chief_ready:packet_ready=${counts.packet_ready}:canonical_age=${Math.round(canonicalProgressAgeHours * 100) / 100}`
+    );
+  }
   const ownerToRole = {
     "council-alpha": "council-alpha",
     "council-beta": "council-beta",
@@ -693,6 +718,38 @@ export function computeWorkgraphMetrics(graph, now = new Date(), evidenceRows = 
     const ages = [activity?.lastRunAgeHours, activity?.lastAgeHours].filter(Number.isFinite);
     const age = ages.length ? Math.min(...ages) : null;
     if (age === null || age > 2) healthAlerts.push(`owner_stale_with_backlog:${owner}:${backlog}`);
+  }
+
+  // A fresh receipt is not the same thing as useful work. Surface a recent run that
+  // closed nothing while its lane still owns backlog, so Chief can intervene before
+  // multiple hours are lost to a liveness-only loop.
+  const latestRunByRole = {};
+  for (const run of roleRuns || []) {
+    const parsed = validActivityDate(run?.generatedAt, now);
+    if (!parsed.date) continue;
+    const role = run?.role;
+    if (!role) continue;
+    const prior = latestRunByRole[role];
+    if (!prior || parsed.date > prior.date) latestRunByRole[role] = { run, date: parsed.date };
+  }
+  const closureCountForRun = (role, run) => {
+    if (!run || typeof run !== "object") return null;
+    if (role === "earth-scout" && Number.isFinite(run.evidencePairsCompleted)) return run.evidencePairsCompleted;
+    if (role === "council-alpha" && Number.isFinite(run.scoreRecordsCompleted)) return run.scoreRecordsCompleted;
+    if (role === "council-beta" && Number.isFinite(run.betaPairsCompleted)) return run.betaPairsCompleted;
+    if (role === "deep-resolver" && Array.isArray(run.resolved)) return run.resolved.length;
+    return null;
+  };
+  for (const [owner, backlog] of Object.entries(ownerBacklog)) {
+    const role = ownerToRole[owner];
+    if (!role || backlog <= 0) continue;
+    const latest = latestRunByRole[role];
+    if (!latest) continue;
+    const runAgeHours = Math.max(0, (now.getTime() - latest.date.getTime()) / 3_600_000);
+    const closures = closureCountForRun(role, latest.run);
+    if (runAgeHours <= 2 && closures === 0) {
+      healthAlerts.push(`owner_recent_run_zero_closure:${owner}:backlog=${backlog}`);
+    }
   }
 
   return {

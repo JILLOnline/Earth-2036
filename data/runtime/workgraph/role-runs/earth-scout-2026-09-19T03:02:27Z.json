@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "role": "earth-scout",
+  "generatedAt": "2026-09-19T03:02:27Z",
+  "sourceCycleKey": null,
+  "beganFromGitHead": "cb51c0c4370580500dfd0b1f0457b09fd6fd2b0d",
+  "companiesInspected": [],
+  "evidencePairsCompleted": 0,
+  "artifacts": [],
+  "result": "closure_frontier_not_safely_resolved_within_run_capacity",
+  "blockers": [
+    {
+      "kind": "routing_frontier_resolution_incomplete",
+      "detail": "Workgraph metrics show earth-scout backlog 193, 46 companies researching, 2 packet_ready, 0 chief_ready and 12 canonical. Closure-first policy requires selecting the stable highest-priority partially-complete frontier, but the current exposed aggregate metrics do not identify those ticker/work ids and the large state surface could not be defensibly resolved to an exact ordered Scout batch within this run's remaining tool/context capacity. No ordinary fresh companies were opened and no evidence was fabricated.",
+      "gateImpact": "No Scout perspective pairs completed this run; existing T0 frontier remains unchanged.",
+      "recommendedNextState": "Preserve current workgraph routing; next Scout run should resolve the exact stable Scout-owned closure frontier from state/evidence before opening fresh ordinary companies."
+    },
+    {
+      "kind": "cross_role_staleness_observed",
+      "detail": "Current metrics report council-alpha owner backlog 237 with a stale-owner health alert. This is not Scout authority to repair, but it materially favors closure-first behavior over expansion.",
+      "gateImpact": "Downstream specialist convergence remains constrained.",
+      "recommendedNextState": "Council Alpha should resume its routed closure frontier independently; Scout should continue avoiding scatter."
+    }
+  ]
+}

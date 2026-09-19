@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "INTC",
   "workId": "t0:INTC",
-  "generatedAt": "2026-09-19T04:36:49.513Z",
+  "generatedAt": "2026-09-19T04:38:39.247Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -14,7 +14,7 @@
     "exchangeName": "Intel Corporation - Common Stock",
     "identityStatus": "validated",
     "tradabilityStatus": "validated",
-    "validatedAt": "2026-09-19T04:26:45.828Z"
+    "validatedAt": "2026-09-19T04:38:02.977Z"
   },
   "evidenceWindow": {
     "start": "2026-07-23T00:00:00.000Z",
@@ -52,7 +52,9 @@
   ],
   "evidenceResolution": {
     "supersededPaths": [],
-    "resolvedGateKinds": [],
+    "resolvedGateKinds": [
+      "material_contradiction"
+    ],
     "activeEvidenceCount": 3,
     "historicalEvidenceCount": 3
   },
@@ -161,7 +163,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 4
   },
   "causalMapping": {
     "present": false,
@@ -169,13 +171,15 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 4,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:INTC:2026Q2",
-      "sec:INTC:2026Q2-10Q"
+      "sec:INTC:2026Q2-10Q",
+      "https://www.intc.com/news-events/press-releases/detail/1776/intel-reports-second-quarter-2026-financial-results",
+      "https://www.intc.com/filings-reports/all-sec-filings/content/0000050863-26-000157/intc-20260627.htm"
     ]
   },
   "sources": [
@@ -194,6 +198,18 @@
       "primary": true,
       "publishedAt": "2026-07-23",
       "originFingerprint": "sec:INTC:2026Q2-10Q"
+    },
+    {
+      "url": "https://www.intc.com/news-events/press-releases/detail/1776/intel-reports-second-quarter-2026-financial-results",
+      "primary": true,
+      "originFingerprint": null,
+      "sourceId": "https://www.intc.com/news-events/press-releases/detail/1776/intel-reports-second-quarter-2026-financial-results"
+    },
+    {
+      "url": "https://www.intc.com/filings-reports/all-sec-filings/content/0000050863-26-000157/intc-20260627.htm",
+      "primary": true,
+      "originFingerprint": null,
+      "sourceId": "https://www.intc.com/filings-reports/all-sec-filings/content/0000050863-26-000157/intc-20260627.htm"
     }
   ],
   "contradictions": [
@@ -205,7 +221,7 @@
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 0,
     "items": [
       {
         "contradiction": "Strong revenue growth coexists with a large GAAP net loss, requiring normalization of restructuring/one-time effects and foundry economics."
@@ -242,8 +258,7 @@
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
-      "unresolved_material_contradiction"
+      "missing_causal_mapping"
     ],
     "routing": [
       {
@@ -281,10 +296,6 @@
       {
         "failure": "missing_causal_mapping",
         "owner": "council-beta"
-      },
-      {
-        "failure": "unresolved_material_contradiction",
-        "owner": "deep-resolver"
       }
     ]
   }

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "DVN",
   "workId": "t0:DVN",
-  "generatedAt": "2026-09-19T14:06:58.287Z",
+  "generatedAt": "2026-09-19T14:08:21.193Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T13:59:51.177Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-07-01T00:00:00.000Z",
+    "end": "2026-09-19T14:13:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T14:13:00.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,55 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/DVN-20260919T141300Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "thesisQuality",
+      "catalystScore",
+      "crossDivisionLeverage",
+      "bottleneckControl",
+      "supplyChainResilience",
+      "scenarioRobustness"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "thesisQuality",
+        "catalystScore",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "supplyChainResilience"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "scenarioRobustness"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +118,37 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "thesisQuality",
+    "catalystScore",
+    "crossDivisionLeverage",
+    "bottleneckControl",
+    "supplyChainResilience",
+    "scenarioRobustness"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Large merger integration can create execution, synergy-realization and capital-allocation risk.",
+        "gating": false
+      },
+      {
+        "risk": "Milestone timing does not establish the quality of underlying Q2 operating performance.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Large merger integration can create execution, synergy-realization and capital-allocation risk.",
+      "gating": false
+    },
+    {
+      "risk": "Milestone timing does not establish the quality of underlying Q2 operating performance.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +156,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +165,68 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "issuer:DVN:press-index:20260919",
+      "issuer:DVN:2026Q2schedule:20260701"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "issuer:DVN:press-index:20260919",
+      "url": "https://investors.devonenergy.com/investors/press-releases/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-19",
+      "originFingerprint": "issuer:DVN:press-index:20260919"
+    },
+    {
+      "sourceId": "issuer:DVN:2026Q2schedule",
+      "url": "https://www.devonenergy.com/news/2026/Devon-Energy-Schedules-Second-Quarter-2026-Earnings-Release-and-Conference-Call",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-01",
+      "originFingerprint": "issuer:DVN:2026Q2schedule:20260701"
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "This artifact does not quantify realized merger synergies or Solitude project economics.",
+      "gating": false
+    },
+    {
+      "unknown": "Detailed Q2 post-merger production, cost and free-cash-flow metrics were not captured in this Scout pass.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 79,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +240,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +250,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

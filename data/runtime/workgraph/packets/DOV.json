@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "DOV",
   "workId": "t0:DOV",
-  "generatedAt": "2026-09-19T14:06:58.287Z",
+  "generatedAt": "2026-09-19T14:08:21.193Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T13:59:51.177Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-07-23T00:00:00.000Z",
+    "end": "2026-09-19T14:11:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T14:11:00.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,59 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/DOV-20260919T141100Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "thesisQuality",
+      "catalystScore",
+      "alignment2036",
+      "crossDivisionLeverage",
+      "bottleneckControl",
+      "financialOperatingMomentum",
+      "scenarioRobustness",
+      "pricingPower"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "thesisQuality",
+        "catalystScore",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +122,39 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "thesisQuality",
+    "catalystScore",
+    "alignment2036",
+    "crossDivisionLeverage",
+    "bottleneckControl",
+    "financialOperatingMomentum",
+    "scenarioRobustness",
+    "pricingPower"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Data-center cooling is one contributor inside a diversified segment; the filing does not isolate its revenue or margin contribution.",
+        "gating": false
+      },
+      {
+        "risk": "Segment mix and acquisition effects require normalization before translating reported growth into a score.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Data-center cooling is one contributor inside a diversified segment; the filing does not isolate its revenue or margin contribution.",
+      "gating": false
+    },
+    {
+      "risk": "Segment mix and acquisition effects require normalization before translating reported growth into a score.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +162,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +171,64 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
+    "rawSourceCount": 2,
+    "uniqueSourceCount": 2,
     "duplicatesCollapsed": 0,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "issuer:DOV:10Q:20260723:92847cda",
+      "issuer:DOV:8K:20260723:df0d9a27"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "issuer:DOV:2026Q2-10Q",
+      "url": "https://investors.dovercorporation.com/static-files/92847cda-da81-4bf5-88d1-2a37ba1ec8f2",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-23",
+      "originFingerprint": "issuer:DOV:10Q:20260723:92847cda"
+    },
+    {
+      "sourceId": "issuer:DOV:2026Q2-8K",
+      "url": "https://investors.dovercorporation.com/static-files/df0d9a27-97e0-4299-81fe-85126b4ac867",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-23",
+      "originFingerprint": "issuer:DOV:8K:20260723:df0d9a27"
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Exact data-center cooling backlog and customer concentration are not disclosed in the retrieved filing excerpt.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 1
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 88,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +242,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +252,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

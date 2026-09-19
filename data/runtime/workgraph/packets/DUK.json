@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "DUK",
   "workId": "t0:DUK",
-  "generatedAt": "2026-09-19T14:06:58.285Z",
+  "generatedAt": "2026-09-19T14:08:21.190Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T13:59:51.177Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-07-07T00:00:00.000Z",
+    "end": "2026-09-19T14:12:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T14:12:00.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,52 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/DUK-20260919T141200Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "thesisQuality",
+      "alignment2036",
+      "bottleneckControl",
+      "scenarioRobustness"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "scenarioRobustness"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +115,35 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "thesisQuality",
+    "alignment2036",
+    "bottleneckControl",
+    "scenarioRobustness"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Utility investment opportunity is constrained by regulatory recovery, financing costs and project execution timelines.",
+        "gating": false
+      },
+      {
+        "risk": "Reporting cadence alone does not establish financial outperformance.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Utility investment opportunity is constrained by regulatory recovery, financing costs and project execution timelines.",
+      "gating": false
+    },
+    {
+      "risk": "Reporting cadence alone does not establish financial outperformance.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +151,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +160,68 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "issuer:DUK:2026Q2:20260804",
+      "issuer:DUK:2026Q2schedule:20260707"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "issuer:DUK:2026Q2release",
+      "url": "https://news.duke-energy.com/releases/duke-energy-reports-second-quarter-2026-financial-results",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-04",
+      "originFingerprint": "issuer:DUK:2026Q2:20260804"
+    },
+    {
+      "sourceId": "issuer:DUK:2026Q2schedule",
+      "url": "https://news.duke-energy.com/releases/duke-energy-to-announce-second-quarter-2026-financial-results-on-aug-4",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-07",
+      "originFingerprint": "issuer:DUK:2026Q2schedule:20260707"
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "The retrieved issuer news-center release points to detailed financial materials but does not itself provide Q2 earnings/guidance figures.",
+      "gating": false
+    },
+    {
+      "unknown": "Detailed Q2 financial execution requires the linked investor release/presentation.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 76,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +235,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +245,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

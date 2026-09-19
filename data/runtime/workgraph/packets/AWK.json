@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "AWK",
   "workId": "t0:AWK",
-  "generatedAt": "2026-09-19T16:23:08.920Z",
+  "generatedAt": "2026-09-19T16:24:12.790Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-19T16:22:21.575Z"
   },
   "evidenceWindow": {
-    "start": "2026-02-18T00:00:00.000Z",
-    "end": "2026-09-19T08:06:13.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T08:06:13.000Z"
+    "start": "2025-10-27T00:00:00.000Z",
+    "end": "2026-09-19T16:28:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T16:28:00.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/AWK-20260919T080613Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/AWK-20260919T080613Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/AWK-20260919T162800Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -64,12 +67,23 @@
       "scenarioRobustness",
       "financialOperatingMomentum",
       "pricingPower",
-      "catalystScore"
+      "catalystScore",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
@@ -77,7 +91,14 @@
         "bottleneckControl",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "governancePower",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -131,7 +152,10 @@
     "scenarioRobustness",
     "financialOperatingMomentum",
     "pricingPower",
-    "catalystScore"
+    "catalystScore",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -142,6 +166,26 @@
       },
       {
         "risk": "Capital intensity is structurally high and rate-case timing can separate infrastructure spend from earnings realization.",
+        "gating": false
+      },
+      {
+        "risk": "Regulatory lag or disallowance can delay or reduce recovery on heavy capital deployment.",
+        "gating": false
+      },
+      {
+        "risk": "Merger scale introduces integration complexity and adds a gas utility exposure that is not identical to the core water/wastewater causal thesis.",
+        "gating": false
+      },
+      {
+        "risk": "Capital intensity and rising absolute debt create sensitivity to financing costs and regulatory lag even when customer demand is non-discretionary.",
+        "gating": false
+      },
+      {
+        "risk": "Merger accretion, synergy and diversification claims can be overstated before remaining approvals and integration are complete.",
+        "gating": false
+      },
+      {
+        "risk": "Rate affordability and political/regulatory response are structural constraints on pricing power; regulated utilities cannot treat essential-service demand as unconstrained monetization.",
         "gating": false
       }
     ]
@@ -154,6 +198,26 @@
     {
       "risk": "Capital intensity is structurally high and rate-case timing can separate infrastructure spend from earnings realization.",
       "gating": false
+    },
+    {
+      "risk": "Regulatory lag or disallowance can delay or reduce recovery on heavy capital deployment.",
+      "gating": false
+    },
+    {
+      "risk": "Merger scale introduces integration complexity and adds a gas utility exposure that is not identical to the core water/wastewater causal thesis.",
+      "gating": false
+    },
+    {
+      "risk": "Capital intensity and rising absolute debt create sensitivity to financing costs and regulatory lag even when customer demand is non-discretionary.",
+      "gating": false
+    },
+    {
+      "risk": "Merger accretion, synergy and diversification claims can be overstated before remaining approvals and integration are complete.",
+      "gating": false
+    },
+    {
+      "risk": "Rate affordability and political/regulatory response are structural constraints on pricing power; regulated utilities cannot treat essential-service demand as unconstrained monetization.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -164,21 +228,73 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 4
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "regulated capital investment",
+        "to": "water/wastewater infrastructure renewal and expansion",
+        "mechanism": "capital projects and acquisitions add/upgrade regulated assets",
+        "confidence": 94
+      },
+      {
+        "from": "infrastructure renewal and expansion",
+        "to": "rate-base growth",
+        "mechanism": "prudently incurred investment enters regulated rate base subject to commission treatment",
+        "confidence": 91
+      },
+      {
+        "from": "rate-base growth",
+        "to": "earnings capacity",
+        "mechanism": "authorized regulated returns and customer growth monetize invested capital with timing dependent on rate cases",
+        "confidence": 88
+      },
+      {
+        "from": "water/wastewater infrastructure",
+        "to": "essential human need",
+        "mechanism": "safe reliable drinking-water and wastewater service is non-discretionary physical infrastructure",
+        "confidence": 97
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "regulated capital investment",
+      "to": "water/wastewater infrastructure renewal and expansion",
+      "mechanism": "capital projects and acquisitions add/upgrade regulated assets",
+      "confidence": 94
+    },
+    {
+      "from": "infrastructure renewal and expansion",
+      "to": "rate-base growth",
+      "mechanism": "prudently incurred investment enters regulated rate base subject to commission treatment",
+      "confidence": 91
+    },
+    {
+      "from": "rate-base growth",
+      "to": "earnings capacity",
+      "mechanism": "authorized regulated returns and customer growth monetize invested capital with timing dependent on rate cases",
+      "confidence": 88
+    },
+    {
+      "from": "water/wastewater infrastructure",
+      "to": "essential human need",
+      "mechanism": "safe reliable drinking-water and wastewater service is non-discretionary physical infrastructure",
+      "confidence": 97
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:AWK:FY2025:20260218",
-      "issuer:AWK:dividend:20260429"
+      "issuer:AWK:dividend:20260429",
+      "issuer:AWK:2026Q2:20260729",
+      "issuer:AWK:merger:20251027"
     ]
   },
   "sources": [
@@ -197,6 +313,22 @@
       "primary": true,
       "publishedAt": "2026-04-29",
       "originFingerprint": "issuer:AWK:dividend:20260429"
+    },
+    {
+      "sourceId": "issuer:AWK:2026Q2",
+      "url": "https://ir.amwater.com/financials/quarterly-results/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-29",
+      "originFingerprint": "issuer:AWK:2026Q2:20260729"
+    },
+    {
+      "sourceId": "issuer:AWK:merger-2025",
+      "url": "https://ir.amwater.com/news-and-events/financial-releases/financial-release-details/2025/American-Water-and-Essential-Utilities-to-Merge-as-a-Leading-Regulated-U-S--Water-and-Wastewater-Utility/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2025-10-27",
+      "originFingerprint": "issuer:AWK:merger:20251027"
     }
   ],
   "contradictions": [],
@@ -212,11 +344,27 @@
     {
       "unknown": "2026 execution against affirmed EPS guidance and merger-related costs need current-quarter validation.",
       "gating": false
+    },
+    {
+      "unknown": "Remaining merger approvals and realized post-close operating synergies are not yet observable.",
+      "gating": false
+    },
+    {
+      "unknown": "Long-run affordability constraints could limit the pace at which infrastructure needs translate into authorized rates.",
+      "gating": false
+    },
+    {
+      "unknown": "Normalized post-merger leverage, integration costs and synergy realization are not yet observable.",
+      "gating": false
+    },
+    {
+      "unknown": "Future commission outcomes across the expanded jurisdiction set may differ materially from management assumptions.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
   "confidence": 91,
@@ -225,13 +373,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -241,14 +386,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -265,10 +402,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

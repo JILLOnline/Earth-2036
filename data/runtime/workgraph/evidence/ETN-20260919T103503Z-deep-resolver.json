@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-deep-resolver-evidence",
+  "ticker": "ETN",
+  "entityId": "ETN",
+  "workId": "t0:ETN",
+  "role": "deep-resolver",
+  "generatedAt": "2026-09-19T10:35:03Z",
+  "directive": {
+    "companyWorkId": "t0:ETN",
+    "gatingQuestion": "Does Eaton's lower year-over-year Q2 2026 segment margin contradict the routed evidence of strong sales/order growth and operating leverage potential?",
+    "whyItMatters": "The live ranked queue still assigns unresolved_material_contradiction to deep-resolver even though prior resolver evidence closed the factual conflict; repeated unchanged routing must not cause an infinite research loop.",
+    "preferredPrimarySource": "Eaton Q2 2026 earnings release dated 2026-07-31",
+    "lawfulFallbacks": ["Eaton Q2 2026 earnings materials", "SEC-filed Q2 earnings exhibit", "active immutable resolver evidence"],
+    "successCondition": "Identify materially new conflicting evidence or preserve the prior resolved disposition and stop repeated exception research.",
+    "attemptCount": 3
+  },
+  "result": "unavailable",
+  "finding": "Primary-source recheck remains unchanged: Q2 sales rose 21%, organic sales 14%, electrical orders/backlog accelerated, total segment margin was 23.1% (down 80 bps year over year but above guidance), and Electrical Americas margin improved 190 bps sequentially. The observations are compatible with acquisition/mix pressure and do not form a factual contradiction. Prior resolver evidence already resolved this exact route; no new contradictory evidence is available, so further resolver looping is unavailable as a productive closure path.",
+  "evidenceVsInference": {
+    "evidence": "Issuer-reported Q2 2026 sales were $8.5B (+21%), organic growth 14%, segment margin 23.1% (down 80 bps YoY, above guidance), Electrical Americas margin 27.5% (+190 bps sequentially), with strong electrical orders/backlog.",
+    "inference": "Strong demand and sequential margin expansion can coexist with year-over-year acquisition/mix dilution; the latter remains underwriting risk rather than a contradiction gate."
+  },
+  "sources": [
+    {"sourceId":"eaton:q2-2026:2026-07-31","url":"https://www.eaton.com/us/en-us/company/news-insights/news-releases/2026/eaton-reports-record-second-quarter-2026-results.html","kind":"primary","primary":true,"publishedAt":"2026-07-31"},
+    {"sourceId":"resolver:ETN:prior","path":"data/runtime/workgraph/evidence/ETN-20260919T093520Z-deep-resolver.json","kind":"structured_evidence","primary":false}
+  ],
+  "contradictionStatus": "resolved_research_unavailable_for_repeated_route",
+  "confidence": 99,
+  "gateImpact": "preserve_resolved_evidence_and_stop_deep_resolver_loop",
+  "recommendedNextState": "researching",
+  "recommendedOwner": "chief-earth",
+  "recommendedDisposition": "Do not route ETN back to deep-resolver for this unchanged contradiction. Reconcile the existing resolved disposition; retain acquisition/mix margin-conversion risk outside the contradiction gate.",
+  "lineage": {
+    "inputPacket": "data/runtime/workgraph/packets/ETN.json",
+    "inputEvidence": ["data/runtime/workgraph/evidence/ETN-20260919T093520Z-deep-resolver.json"],
+    "beganFromGitHead": "a17fbc853fe7f397e55f9b367e8a68c6819fdea9"
+  }
+}

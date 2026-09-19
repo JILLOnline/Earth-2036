@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-deep-resolver-evidence",
+  "ticker": "ETN",
+  "entityId": "ETN",
+  "workId": "t0:ETN",
+  "role": "deep-resolver",
+  "generatedAt": "2026-09-19T09:35:20Z",
+  "directive": {
+    "companyWorkId": "t0:ETN",
+    "gatingQuestion": "Does Eaton's lower year-over-year Q2 2026 segment margin contradict the routed evidence of strong sales/order growth and operating leverage potential?",
+    "whyItMatters": "The ranked resolver queue assigns unresolved_material_contradiction to deep-resolver; closure is required before this defect can leave resolver ownership.",
+    "preferredPrimarySource": "Eaton Q2 2026 earnings release dated 2026-07-31",
+    "lawfulFallbacks": ["Eaton Q2 2026 earnings materials", "SEC-filed Q2 earnings exhibit"],
+    "successCondition": "Determine whether the growth/margin observations are mutually inconsistent or compatible with a non-gating mix/integration margin risk.",
+    "attemptCount": 2
+  },
+  "result": "resolved",
+  "finding": "Fresh verification of Eaton's primary Q2 release confirms the observations are compatible, not contradictory. Sales rose 21%, organic sales 14%, electrical orders/backlog accelerated, and segment margin was 23.1%: down 80 bps year over year but above guidance, while Electrical Americas margin improved 190 bps sequentially. Preserve year-over-year mix/acquisition margin pressure as risk; it does not negate demand strength or operating-leverage potential.",
+  "evidenceVsInference": {
+    "evidence": "Issuer-reported Q2 2026 sales were $8.5B (+21%), organic growth 14%, total segment margin 23.1% (down 80 bps YoY, above guidance), Electrical Americas margin 27.5% (+190 bps sequentially), with strong electrical orders/backlog.",
+    "inference": "Sequential margin improvement and above-guidance consolidated margin can coexist with year-over-year acquisition/mix dilution, so the routed claims are not mutually exclusive."
+  },
+  "sources": [{"sourceId":"eaton:q2-2026:2026-07-31","url":"https://www.eaton.com/us/en-us/company/news-insights/news-releases/2026/eaton-reports-record-second-quarter-2026-results.html","kind":"primary","primary":true,"publishedAt":"2026-07-31"}],
+  "contradictionStatus": "resolved",
+  "confidence": 99,
+  "gateImpact": "close_unresolved_material_contradiction_on_reconcile",
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "recommendedDisposition": "Remove deep-resolver ownership for this contradiction on reconcile; retain acquisition/mix and margin-conversion risk for underwriting.",
+  "lineage": {"inputPacket":"data/runtime/workgraph/packets/ETN.json","inputEvidence":["data/runtime/workgraph/evidence/ETN-20260919T083607Z-deep-resolver.json"],"beganFromGitHead":"28857383e7ca4045c2c2524e3e12ea77dbe4f117"}
+}

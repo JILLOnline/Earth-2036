@@ -1,3 +1,4 @@
+import Link from "next/link";
 import sourceHealthJson from "../../data/runtime/source-health.json";
 import automatedHealthJson from "../../data/runtime/automated-source-health.json";
 import integrityJson from "../../data/runtime/intelligence-integrity.json";
@@ -9,7 +10,6 @@ import { runtimeTime } from "../../lib/dashboard-runtime";
 import CouncilOperations from "../components/CouncilOperations";
 import { Bubble, Deck, DeckHeader, Screen, ScreenHeader, Stat, StatRail } from "../components/Display";
 
-const LEDGER_URL = "https://docs.google.com/spreadsheets/d/1e4utNe3BPTIHDIaxupFYWEJjo61GB215fA_vpXDNmF4/edit";
 type MachineSource = { id?: string; name?: string; authority?: string; cadence?: string; status?: string; lastSuccess?: string | null; latencyMs?: number | null; coverage?: number; note?: string };
 type AutomatedSource = { id?: string; name?: string; status?: string; observedAt?: string; latencyMs?: number | null; observationMode?: string; eventDataAvailable?: boolean; latestCalendarDay?: string; datasetLastUpdated?: string; datasetTimestamp?: string; note?: string };
 type Integrity = { passed: boolean; checkedAt?: string | null; scoreRecordsAudited: number; scoreRecordsPassed: number; sourceMesh: { passed: boolean; requiredMachineSources: number; unhealthyMachineSources: string[]; automatedCoverageRatio?: number | null; unhealthyAutomatedSources: string[] } };
@@ -43,7 +43,8 @@ const pct = (value: number) => `${Math.round((Number(value) || 0) * 100)}%`;
 const healthy = (value?: string) => String(value).toLowerCase() === "healthy";
 
 export default function SystemPage() {
-  const systemPass = integrity.passed && integrity.sourceMesh.passed && workgraph.healthy === true;
+  const integrityPass = integrity.passed && integrity.sourceMesh.passed;
+  const engineState = !integrityPass ? "LOCKED" : workgraph.healthy === true ? "PASS" : "ATTENTION";
   const canonical = Number(workgraph.counts?.canonical ?? 0);
   const chiefReady = Number(workgraph.counts?.chief_ready ?? 0);
   const stateOrder = ["observed", "triaged", "researching", "evidence_complete", "packet_ready", "chief_ready", "canonical", "blocked"];
@@ -58,14 +59,14 @@ export default function SystemPage() {
     <Screen>
       <ScreenHeader
         eyebrow="SYSTEM"
-        title={<>{systemPass ? "PASS" : "LOCKED"} <em>ENGINE</em></>}
+        title={<>{engineState} <em>ENGINE</em></>}
         stamp={{ label: "LAST MACHINE CYCLE", value: runtimeTime(runtime.lastCycleAt) }}
       />
 
       <StatRail>
         <Stat label="CYCLE" value={<span className="compactStat">{runtime.cycleKey}</span>} detail={runtime.cycleStatus.toUpperCase()} />
         <Stat label="MACHINE" value={pct(sourceHealth.machineCoverageRatio)} detail="SOURCE COVERAGE" />
-        <Stat label="SUPERVISOR" value={pct(sourceHealth.supervisorCoverageRatio)} detail="SOURCE COVERAGE" />
+        <Stat label="SUPERVISOR" value={pct(sourceHealth.supervisorCoverageRatio)} detail="EVIDENCE COVERAGE" />
         <Stat label="SOURCE MESH" value={integrity.sourceMesh.passed ? "PASS" : "LOCKED"} detail={`${integrity.sourceMesh.requiredMachineSources} REQUIRED`} />
         <Stat label="WORKGRAPH" value={`${canonical}/${workgraph.total}`} detail={chiefReady ? `${chiefReady} CHIEF READY` : "0 CHIEF READY"} />
         <Stat label="EVIDENCE" value={queue.unresolved} detail={queue.unresolved === 0 ? "QUEUE CLEAR" : "UNRESOLVED"} />
@@ -181,7 +182,7 @@ export default function SystemPage() {
       </Deck>
 
       <Deck className={queue.items.length ? "" : "compactDeck"}>
-        <DeckHeader eyebrow={queue.unresolved} title="EVIDENCE QUEUE" action={<a href={LEDGER_URL} target="_blank" rel="noreferrer" className="textAction">OPEN LEDGER ↗</a>} />
+        <DeckHeader eyebrow={queue.unresolved} title="EVIDENCE QUEUE" action={<Link href="/ledger" className="textAction">OPEN LEDGER ↗</Link>} />
         {queue.items.length ? (
           <div className="queueMatrix">
             {queue.items.map((item, index) => (

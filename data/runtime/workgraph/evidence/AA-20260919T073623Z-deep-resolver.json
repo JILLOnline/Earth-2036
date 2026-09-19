@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-deep-resolver-evidence",
+  "ticker": "AA",
+  "entityId": "AA",
+  "workId": "t0:AA",
+  "role": "deep-resolver",
+  "generatedAt": "2026-09-19T07:36:23Z",
+  "directive": {
+    "companyWorkId": "t0:AA",
+    "gatingQuestion": "Does Alcoa's routed record-results-versus-reduced-alumina-guidance contradiction remain unresolved after the active primary-source disposition?",
+    "whyItMatters": "The ranked queue continues to assign the contradiction gate despite prior evidence showing the reported conditions are compatible.",
+    "preferredPrimarySource": "Alcoa Q2 2026 results release referenced by the current packet",
+    "lawfulFallbacks": ["Alcoa SEC-filed Q2 materials", "active deep-resolver evidence"],
+    "successCondition": "Determine whether the reported financial strength and reduced production guidance can coexist and isolate any remaining defect.",
+    "attemptCount": 3
+  },
+  "result": "resolved",
+  "finding": "The conditions are compatible: favorable aluminum pricing and shipments supported record financial results while Pinjarra instability reduced alumina production and guidance. The operational weakness remains material risk evidence, not a factual contradiction. Remaining deep-resolver ownership is stale reconciliation/routing.",
+  "evidenceVsInference": {
+    "evidence": "The current packet retains the contradiction while AA-20260919T063451Z-deep-resolver.json documents the Q2 issuer release and its offsetting drivers at 99 confidence.",
+    "inference": "The contradiction gate should close while Pinjarra instability, reduced alumina guidance and commodity sensitivity remain underwriting risks."
+  },
+  "sources": [
+    {"sourceId":"issuer:AA:2026Q2","url":"https://investors.alcoa.com/press-releases/press-release-details/2026/Alcoa-Corporation-Reports-Second-Quarter-2026-Results/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-07-16"},
+    {"sourceId":"resolver:AA:prior","path":"data/runtime/workgraph/evidence/AA-20260919T063451Z-deep-resolver.json","kind":"structured_evidence","primary":false}
+  ],
+  "contradictionStatus": "resolved",
+  "confidence": 99,
+  "gateImpact": "close_unresolved_material_contradiction_on_reconcile",
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "recommendedDisposition": "Remove deep-resolver ownership for AA on deterministic reconcile; preserve operational and commodity risks.",
+  "lineage": {
+    "inputPacket": "data/runtime/workgraph/packets/AA.json",
+    "inputEvidence": ["data/runtime/workgraph/evidence/AA-20260919T063451Z-deep-resolver.json"],
+    "beganFromGitHead": "b495c1ce2d78021b1ada2d4eebf815c7d5c503fe"
+  }
+}

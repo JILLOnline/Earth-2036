@@ -1,7 +1,7 @@
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { auditScoreRecord } from "../engine/beast-integrity.mjs";
-import { isPublishableScoreRecord, rankRecords } from "./lib/runtime-gates.mjs";
+import { isPublishableScoreRecord, rankRecords, METHODOLOGY_VERSION, MIN_PUBLISHABLE_DATA_CONFIDENCE } from "./lib/runtime-gates.mjs";
 import { computeWorkgraphMetrics, loadRoleRuns, loadStructuredEvidence, writeWorkgraphArtifacts } from "./lib/workgraph-v2.mjs";
 
 const ROOT = process.cwd();
@@ -10,8 +10,8 @@ const RUNTIME = path.join(DATA, "runtime");
 const WG = path.join(RUNTIME, "workgraph");
 const PACKETS = path.join(WG, "packets");
 const BASELINE = path.join(DATA, "baseline-evidence");
-const METHODOLOGY = "1.0.0";
-const MIN_CONFIDENCE = 60;
+const METHODOLOGY = METHODOLOGY_VERSION;
+const MIN_CONFIDENCE = MIN_PUBLISHABLE_DATA_CONFIDENCE;
 const MANIFEST = path.join(DATA, "baselines", "earth2036-official-t0-2026-09-12", "manifest.json");
 
 async function readJson(file, fallback = null) {

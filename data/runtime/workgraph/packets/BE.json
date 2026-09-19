@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "BE",
   "workId": "t0:BE",
-  "generatedAt": "2026-09-19T06:08:59.858Z",
+  "generatedAt": "2026-09-19T06:25:38.069Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-05T00:00:00.000Z",
-    "end": "2026-09-18T12:07:46.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-18T12:07:46.000Z"
+    "end": "2026-09-19T06:24:39.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T06:24:39.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,70 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/BE-20260918T1100Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/BE-20260918T1100Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/BE-20260919T062439Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "AI onsite-power demand",
-      "commercial execution"
+      "commercial execution",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "alignment2036",
+      "thesisQuality",
+      "financialOperatingMomentum",
+      "pricingPower",
+      "supplyChainResilience"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "onsite generation can bypass or bridge grid-interconnection constraints for power-dense data-center loads"
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "benefits from grid scarcity and AI power growth, but weakens if grid expansion or substitute onsite generation becomes faster/cheaper"
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "large contracted deployment validates demand, while multiple alternative power architectures remain credible"
+        },
+        {
+          "name": "alignment2036",
+          "direction": "positive",
+          "basis": "addresses electricity availability for compute infrastructure, a durable infrastructure/human-demand chain"
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "AI onsite-power demand",
@@ -71,7 +103,28 @@
           "basis": "multi-gigawatt hyperscale commitment is direct evidence of demand for rapidly deployable onsite generation"
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "thesisQuality",
+          "direction": "mixed",
+          "basis": "commercial validation is strong, but thesis quality depends on disciplined distinction between contracted deployment and agreement ceiling"
+        },
+        {
+          "name": "financialOperatingMomentum",
+          "direction": "positive",
+          "basis": "2025 revenue, gross-margin, backlog and operating-cash-flow progression support operating momentum"
+        },
+        {
+          "name": "pricingPower",
+          "direction": "unknown",
+          "basis": "routed evidence does not isolate pricing from mix/cost effects"
+        },
+        {
+          "name": "supplyChainResilience",
+          "direction": "unknown",
+          "basis": "routed evidence does not establish component/fuel/manufacturing concentration resilience"
+        }
+      ],
       "expectations-execution": [
         {
           "name": "commercial execution",
@@ -120,7 +173,15 @@
   },
   "factors": [
     "AI onsite-power demand",
-    "commercial execution"
+    "commercial execution",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "alignment2036",
+    "thesisQuality",
+    "financialOperatingMomentum",
+    "pricingPower",
+    "supplyChainResilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -132,6 +193,26 @@
       {
         "risk": "Backlog conversion and sustaining margins while scaling remain execution dependencies.",
         "gating": false
+      },
+      {
+        "risk": "Successor bottlenecks include natural-gas/fuel availability, equipment manufacturing, installation capacity and service reliability.",
+        "gating": false
+      },
+      {
+        "risk": "Substitute onsite generation or faster grid buildout can erode the time-to-power advantage.",
+        "gating": false
+      },
+      {
+        "risk": "Customer/program concentration and deployment timing can make headline backlog less predictive of realized economics.",
+        "gating": false
+      },
+      {
+        "risk": "Rapid capacity expansion can reintroduce financing/dilution pressure if operating cash generation fails to keep pace with working-capital and manufacturing needs.",
+        "gating": false
+      },
+      {
+        "risk": "Backlog/TAM confidence inflation is possible if agreement ceilings are conflated with contracted orders.",
+        "gating": false
       }
     ]
   },
@@ -142,6 +223,26 @@
     },
     {
       "risk": "Backlog conversion and sustaining margins while scaling remain execution dependencies.",
+      "gating": false
+    },
+    {
+      "risk": "Successor bottlenecks include natural-gas/fuel availability, equipment manufacturing, installation capacity and service reliability.",
+      "gating": false
+    },
+    {
+      "risk": "Substitute onsite generation or faster grid buildout can erode the time-to-power advantage.",
+      "gating": false
+    },
+    {
+      "risk": "Customer/program concentration and deployment timing can make headline backlog less predictive of realized economics.",
+      "gating": false
+    },
+    {
+      "risk": "Rapid capacity expansion can reintroduce financing/dilution pressure if operating cash generation fails to keep pace with working-capital and manufacturing needs.",
+      "gating": false
+    },
+    {
+      "risk": "Backlog/TAM confidence inflation is possible if agreement ceilings are conflated with contracted orders.",
       "gating": false
     }
   ],
@@ -169,6 +270,30 @@
         "to": "BE revenue and backlog",
         "mechanism": "onsite power orders convert into product deployments and service revenue",
         "falsifier": "backlog fails to convert or gross margins deteriorate materially"
+      },
+      {
+        "from": "grid/interconnection scarcity",
+        "to": "onsite fuel-cell demand",
+        "mechanism": "customers can deploy generation alongside data-center construction rather than wait solely for equivalent grid expansion",
+        "falsifier": "utility interconnection lead times compress materially or competing onsite architectures consistently beat Bloom on delivered time/cost/reliability"
+      },
+      {
+        "from": "AI/data-center electricity demand",
+        "to": "BE deployment/revenue opportunity",
+        "mechanism": "power-capacity demand produces contracted deployments that can convert to product and service revenue",
+        "falsifier": "contracted capacity fails to deploy/convert or economics deteriorate enough to destroy customer demand"
+      },
+      {
+        "from": "deployment scale",
+        "to": "manufacturing/service bottleneck",
+        "mechanism": "multi-GW commitments require manufacturing, installation, fuel availability and service execution",
+        "falsifier": "persistent deployment delays, reliability degradation or margin collapse under scale"
+      },
+      {
+        "from": "large hyperscaler commitments",
+        "to": "customer/program concentration risk",
+        "mechanism": "a small number of very large deployments can make timing, acceptance and expansion decisions disproportionately important",
+        "falsifier": "customer/program diversification rises while backlog converts without margin deterioration"
       }
     ]
   },
@@ -184,12 +309,36 @@
       "to": "BE revenue and backlog",
       "mechanism": "onsite power orders convert into product deployments and service revenue",
       "falsifier": "backlog fails to convert or gross margins deteriorate materially"
+    },
+    {
+      "from": "grid/interconnection scarcity",
+      "to": "onsite fuel-cell demand",
+      "mechanism": "customers can deploy generation alongside data-center construction rather than wait solely for equivalent grid expansion",
+      "falsifier": "utility interconnection lead times compress materially or competing onsite architectures consistently beat Bloom on delivered time/cost/reliability"
+    },
+    {
+      "from": "AI/data-center electricity demand",
+      "to": "BE deployment/revenue opportunity",
+      "mechanism": "power-capacity demand produces contracted deployments that can convert to product and service revenue",
+      "falsifier": "contracted capacity fails to deploy/convert or economics deteriorate enough to destroy customer demand"
+    },
+    {
+      "from": "deployment scale",
+      "to": "manufacturing/service bottleneck",
+      "mechanism": "multi-GW commitments require manufacturing, installation, fuel availability and service execution",
+      "falsifier": "persistent deployment delays, reliability degradation or margin collapse under scale"
+    },
+    {
+      "from": "large hyperscaler commitments",
+      "to": "customer/program concentration risk",
+      "mechanism": "a small number of very large deployments can make timing, acceptance and expansion decisions disproportionately important",
+      "falsifier": "customer/program diversification rises while backlog converts without margin deterioration"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 6,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 0,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "be:oracle-2.8gw:2026-04-13",
@@ -214,10 +363,22 @@
       "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "issue": "Headline 2.8 GW opportunity versus 1.2 GW explicitly contracted/deploying.",
+      "material": true,
+      "disposition": "resolved by constraining evidence claims to 1.2 GW contracted and treating the balance only as master-agreement capacity."
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "issue": "Headline 2.8 GW opportunity versus 1.2 GW explicitly contracted/deploying.",
+        "material": true,
+        "disposition": "resolved by constraining evidence claims to 1.2 GW contracted and treating the balance only as master-agreement capacity."
+      }
+    ]
   },
   "unknowns": [
     {
@@ -227,21 +388,27 @@
     {
       "unknown": "No valuation conclusion is asserted from operating results alone.",
       "gating": false
+    },
+    {
+      "unknown": "Comparative delivered cost, emissions constraints and deployment lead time versus substitute architectures are not established by the routed evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Current dilution capacity, customer concentration percentages, governance-specific risk and security-level valuation are not established by the routed Beta evidence.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 95,
+  "confidence": 86,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -255,14 +422,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",

@@ -5,6 +5,7 @@ import { auditCalibrationRecord, buildPacketCalibrationGuidance, CALIBRATION_REG
 import { buildAssistRequests } from "./lib/assist-bus.mjs";
 import { buildDigitalTwinShadow } from "./lib/digital-twin-engine.mjs";
 import { buildValueAllocationShadow } from "./lib/value-allocator.mjs";
+import { buildDependencyShadow } from "./lib/dependency-graph.mjs";
 import { MIN_PUBLISHABLE_DATA_CONFIDENCE } from "./lib/runtime-gates.mjs";
 
 const ROOT = process.cwd();
@@ -213,6 +214,13 @@ const valueAllocationShadow = buildValueAllocationShadow(graph, packets, assistB
 await writeFile(
   path.join(shadowDir, "value-allocation.json"),
   `${JSON.stringify(valueAllocationShadow, null, 2)}\n`,
+  "utf8"
+);
+
+const dependencyShadow = buildDependencyShadow(assistBus, now.toISOString());
+await writeFile(
+  path.join(shadowDir, "dependencies.json"),
+  `${JSON.stringify(dependencyShadow, null, 2)}\n`,
   "utf8"
 );
 

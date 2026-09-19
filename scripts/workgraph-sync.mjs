@@ -49,7 +49,7 @@ function deriveLearningState(existing, metrics, packets, routingQueues, roleRuns
   };
   const latest = latestRunByRole(roleRuns);
   const zeroClosure = [];
-  for (const [owner, backlog] of Object.entries(metrics.ownerBacklog || {})) {
+  for (const [owner, backlog] of Object.entries(metrics.effectiveOwnerBacklog || metrics.ownerBacklog || {})) {
     if (!backlog) continue;
     const role = owner;
     const item = latest[role];
@@ -169,6 +169,10 @@ const now = new Date();
 const routingQueues = buildRoutingQueues(graph, packets, now.toISOString());
 const metrics = computeWorkgraphMetrics(graph, now, evidence, roleRuns);
 metrics.routingQueueCounts = Object.fromEntries(Object.entries(routingQueues).map(([role, queue]) => [role, queue.total]));
+metrics.effectiveOwnerBacklog = {
+  ...metrics.ownerBacklog,
+  ...metrics.routingQueueCounts,
+};
 await writeWorkgraphArtifacts(ROOT, graph, packets, metrics, routingQueues);
 
 const assistBus = buildAssistRequests(graph, packets, roleRuns, now.toISOString());

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-19T14:26:07.435Z",
+  "updatedAt": "2026-09-19T15:19:05.264Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -242,6 +242,18 @@
       "type": "market",
       "label": "integrated mission awards and backlog",
       "description": "spacecraft, communications and ground-service breadth allows capture of larger mission scope"
+    },
+    {
+      "id": "company:ANET",
+      "type": "company",
+      "label": "Arista Networks, Inc.",
+      "description": "Arista sits on the AI-infrastructure interconnect bottleneck: larger accelerator clusters increase bandwidth, latency, power-density and cooling pressure, supporting demand for high-speed Ethernet fabrics, optics and network operating software."
+    },
+    {
+      "id": "market:ANET-high-speed-ethernet-fabric-demand",
+      "type": "market",
+      "label": "high-speed Ethernet fabric demand",
+      "description": "larger clusters require more high-throughput low-latency interconnect while power/cooling constraints reward efficient networking"
     }
   ],
   "edges": [
@@ -614,6 +626,22 @@
       "sourceIds": [
         "issuer:LUNR:2026Q2",
         "sec:LUNR:2026Q2-10Q"
+      ],
+      "observedAt": "2026-09-19T05:27:53Z"
+    },
+    {
+      "id": "edge:ANET-structural-exposure",
+      "from": "company:ANET",
+      "to": "market:ANET-high-speed-ethernet-fabric-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 78,
+      "confidence": 92,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "arista-ir:2026-06-09:1.6t-ai-fabrics",
+        "arista-ir:2026-03-12:xpo-msa",
+        "arista:2026-08-04:q2-results"
       ],
       "observedAt": "2026-09-19T05:27:53Z"
     }
@@ -1040,6 +1068,26 @@
       "observedAt": "2026-09-19T05:27:53Z",
       "thesis": "Intuitive Machines is evolving from lunar-delivery exposure toward a broader space-infrastructure platform spanning spacecraft, communications and ground services; current primary evidence shows this scale in both acquired backlog and new awards.",
       "falsifier": "award growth fails to convert into recognized revenue or acquired capabilities fail operational integration"
+    },
+    {
+      "id": "signal:ANET-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:ANET-high-speed-ethernet-fabric-demand",
+      "affectedNodeIds": [
+        "company:ANET"
+      ],
+      "direction": 1,
+      "magnitude": 78,
+      "confidence": 92,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "arista-ir:2026-06-09:1.6t-ai-fabrics",
+        "arista-ir:2026-03-12:xpo-msa",
+        "arista:2026-08-04:q2-results"
+      ],
+      "observedAt": "2026-09-19T05:27:53Z",
+      "thesis": "Arista sits on the AI-infrastructure interconnect bottleneck: larger accelerator clusters increase bandwidth, latency, power-density and cooling pressure, supporting demand for high-speed Ethernet fabrics, optics and network operating software.",
+      "falsifier": "AI architectures materially reduce merchant Ethernet demand or proprietary fabrics dominate incremental deployments"
     }
   ],
   "roadmapMilestones": [

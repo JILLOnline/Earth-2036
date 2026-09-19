@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 import { REQUIRED_PERSPECTIVES, applyPacketState, buildRoutingQueues, compilePromotionPacket, computeWorkgraphMetrics, loadStructuredEvidence, migrateLegacyQueue, validateWorkgraph } from "../scripts/lib/workgraph-v2.mjs";
 import { auditCalibrationRecord, calibrationBand } from "../scripts/lib/calibration-engine.mjs";
 import { buildAssistRequests } from "../scripts/lib/assist-bus.mjs";
+import { buildCompanyDigitalTwin } from "../scripts/lib/digital-twin-engine.mjs";
+import { attentionPriority, deriveCapacityPlan } from "../scripts/lib/value-allocator.mjs";
 import { mkdtemp, mkdir, writeFile, rm } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -660,4 +662,41 @@ test("assist bus sleeps an unchanged failed request and reactivates when packet 
   const reactivated = buildAssistRequests(graph, [changedPacket], roleRuns, "2026-09-19T14:20:00Z");
   assert.equal(reactivated.active, 1);
   assert.notEqual(reactivated.requests[0].inputSignature, request.inputSignature);
+});
+
+
+test("Digital Twin shadow separates representation from ranking and frames failures as improvement questions", () => {
+  const graphRow = { ticker: "AAA", state: "packet_ready", workId: "t0:AAA", attempts: 2 };
+  const packet = compilePromotionPacket("AAA", completeEvidence(), graphRow, { registryEntry, methodologyVersion:"1.0.0" });
+  packet.preflight.passed = false;
+  packet.preflight.failures = ["missing_numeric_score_record"];
+  const twin = buildCompanyDigitalTwin(packet, graphRow);
+  assert.equal(twin.canonicalWriteAuthority, false);
+  assert.equal(twin.doctrine.representationIsNotRanking, true);
+  assert.ok(twin.improvementWindows[0].question.includes("source-addressed"));
+  assert.equal(twin.ticker, "AAA");
+});
+
+test("Value allocator treats stalled frontier as higher closure capacity without eliminating exploration", () => {
+  const plan = deriveCapacityPlan({
+    counts: { packet_ready: 4, chief_ready: 0 },
+    canonicalProgressAgeHours: 8,
+  });
+  assert.equal(plan.mode, "frontier-stall");
+  assert.equal(plan.closure, 0.70);
+  assert.ok(plan.expansion > 0);
+  assert.ok(plan.futureLearning > 0);
+});
+
+test("Attention priority is operational and favors near-closure work without becoming an investment score", () => {
+  const packet = {
+    ticker: "AAA",
+    sourceState: "packet_ready",
+    preflight: { failures: ["missing_numeric_score_record"] },
+    sourceLineage: { uniqueSourceCount: 8 },
+    specialistCoverage: { required: [1,2,3,4,5,6], present: [1,2,3,4,5,6] },
+  };
+  const priority = attentionPriority({ ticker:"AAA", state:"packet_ready", attempts:2 }, packet, { requests: [] });
+  assert.ok(priority.priority > 70);
+  assert.ok(priority.principle.includes("never a company-quality"));
 });

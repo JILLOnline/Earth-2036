@@ -469,6 +469,76 @@ export function applyPacketState(graph, packet) {
   return graph;
 }
 
+
+const ROUTABLE_ROLES = ["earth-scout", "council-alpha", "council-beta", "deep-resolver"];
+const ROUTE_STATE_PRIORITY = {
+  packet_ready: 0,
+  evidence_complete: 1,
+  researching: 2,
+  triaged: 3,
+  observed: 4,
+  blocked: 5,
+  chief_ready: 90,
+  canonical: 99,
+};
+
+export function buildRoutingQueues(graph, packets, generatedAt = new Date().toISOString()) {
+  const queues = Object.fromEntries(ROUTABLE_ROLES.map((role) => [role, []]));
+  for (const packet of packets || []) {
+    const row = graph?.companies?.[packet?.ticker];
+    if (!row || ["canonical", "chief_ready", "blocked"].includes(row.state)) continue;
+    const routing = Array.isArray(packet?.preflight?.routing) ? packet.preflight.routing : [];
+    const owners = [...new Set(routing.map((route) => route?.owner).filter(Boolean))];
+    for (const role of ROUTABLE_ROLES) {
+      const ownedFailures = [...new Set(
+        routing.filter((route) => route?.owner === role).map((route) => route.failure).filter(Boolean)
+      )];
+      if (!ownedFailures.length) continue;
+      queues[role].push({
+        ticker: packet.ticker,
+        workId: packet.workId || row.workId || `t0:${packet.ticker}`,
+        state: row.state,
+        packetPath: `data/runtime/workgraph/packets/${packet.ticker}.json`,
+        ownedFailures,
+        allFailures: [...(packet?.preflight?.failures || [])],
+        otherOwners: owners.filter((owner) => owner !== role).sort(),
+        evidencePaths: [...(packet?.evidencePaths || [])],
+        specialistCoverage: packet?.specialistCoverage || null,
+        evidenceResolution: packet?.evidenceResolution || null,
+        unresolved: role === "deep-resolver" ? {
+          gatingIssues: packet?.gatingIssues || [],
+          gatingUnknowns: (packet?.unknowns || []).filter((item) => item?.gating === true),
+          materialContradictions: (packet?.contradictions || []).filter((item) => item?.resolved !== true && item?.gating !== false),
+        } : null,
+      });
+    }
+  }
+
+  for (const role of ROUTABLE_ROLES) {
+    queues[role].sort((a, b) => {
+      const stateDelta = (ROUTE_STATE_PRIORITY[a.state] ?? 50) - (ROUTE_STATE_PRIORITY[b.state] ?? 50);
+      if (stateDelta) return stateDelta;
+      const ownerDelta = a.otherOwners.length - b.otherOwners.length;
+      if (ownerDelta) return ownerDelta;
+      const failureDelta = a.allFailures.length - b.allFailures.length;
+      if (failureDelta) return failureDelta;
+      const evidenceDelta = b.evidencePaths.length - a.evidencePaths.length;
+      if (evidenceDelta) return evidenceDelta;
+      return a.ticker.localeCompare(b.ticker);
+    });
+    queues[role] = {
+      version: 1,
+      contract: "workgraph-v2-routing-queue",
+      role,
+      generatedAt,
+      selectionPolicy: "closure-first-deterministic",
+      total: queues[role].length,
+      items: queues[role].map((item, index) => ({ rank: index + 1, ...item })),
+    };
+  }
+  return queues;
+}
+
 export function computeWorkgraphMetrics(graph, now = new Date(), evidenceRows = [], roleRuns = []) {
   const counts = Object.fromEntries(WORKGRAPH_STATES.map((s) => [s, 0]));
   const oldestAgeHours = Object.fromEntries(WORKGRAPH_STATES.map((s) => [s, null]));
@@ -582,12 +652,18 @@ export function computeWorkgraphMetrics(graph, now = new Date(), evidenceRows = 
   };
 }
 
-export async function writeWorkgraphArtifacts(root, graph, packets, metrics) {
+export async function writeWorkgraphArtifacts(root, graph, packets, metrics, routingQueues = null) {
   const runtimeDir = path.join(root, "data", "runtime", "workgraph");
   const packetDir = path.join(runtimeDir, "packets");
+  const routingDir = path.join(runtimeDir, "routing");
   await mkdir(packetDir, { recursive: true });
+  await mkdir(routingDir, { recursive: true });
   graph.generatedAt = metrics.generatedAt;
   await writeFile(path.join(runtimeDir, "state.json"), `${JSON.stringify(graph, null, 2)}\n`, "utf8");
   await writeFile(path.join(runtimeDir, "metrics.json"), `${JSON.stringify(metrics, null, 2)}\n`, "utf8");
   for (const packet of packets) await writeFile(path.join(packetDir, `${packet.ticker}.json`), `${JSON.stringify(packet, null, 2)}\n`, "utf8");
+  const queues = routingQueues || buildRoutingQueues(graph, packets, metrics.generatedAt);
+  for (const [role, queue] of Object.entries(queues)) {
+    await writeFile(path.join(routingDir, `${role}.json`), `${JSON.stringify(queue, null, 2)}\n`, "utf8");
+  }
 }

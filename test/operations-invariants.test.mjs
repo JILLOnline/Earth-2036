@@ -69,13 +69,15 @@ test("zero-defect Chief fast path runs after packet compilation and before Beast
   assert.ok(sync < fastPath && fastPath < beast);
 });
 
-test("evidence reconciliation includes Chief fast path and Beast fail-closed audit", async () => {
+test("evidence reconciliation persists routing while Beast remains a hard promotion gate", async () => {
   const text = await source(".github/workflows/earth2036-workgraph-reconcile.yml");
   const sync = text.indexOf("npm run workgraph:sync");
-  const fastPath = text.indexOf("node scripts/promote-chief-ready.mjs");
   const beast = text.indexOf("node scripts/beast-audit.mjs");
-  assert.ok(sync >= 0 && fastPath >= 0 && beast >= 0);
-  assert.ok(sync < fastPath && fastPath < beast);
+  const guard = text.indexOf('if [ "$beast_status" -eq 0 ]');
+  const fastPath = text.indexOf("node scripts/promote-chief-ready.mjs");
+  assert.ok(sync >= 0 && beast >= 0 && guard >= 0 && fastPath >= 0);
+  assert.ok(sync < beast && beast < guard && guard < fastPath);
+  assert.ok(text.includes("persisting non-canonical Workgraph state and routing only"));
 });
 
 test("runtime declares the dedicated GitHub-native control plane", async () => {

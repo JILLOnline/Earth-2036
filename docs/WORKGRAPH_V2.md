@@ -221,3 +221,24 @@ Each non-Chief intelligent worker writes one immutable role-run receipt for ever
 Receipts use actual UTC ISO timestamps ending in `Z`. Materially future-dated timestamps are rejected by Workgraph telemetry. Liveness uses the freshest valid evidence timestamp or valid role-run receipt, preventing an older marker from making an active worker appear stale.
 
 Historical malformed timestamps remain immutable evidence and are counted as telemetry debt; they never override current valid activity.
+
+
+## Deterministic worker routing queues
+
+Workgraph v2 materializes each intelligent worker's current closure-first queue under:
+
+`data/runtime/workgraph/routing/<role>.json`
+
+These files are derived from the same packet preflight routing that drives owner backlog metrics; they are not a second scheduler or second authority. Every queue item names the company/work id, current state, immutable packet path, exact failures owned by that role, other owners still required, and current evidence paths. Deep Resolver queue items also carry the unresolved gating issues, gating unknowns, and material contradictions from the compiled packet.
+
+Workers must consume this queue before attempting ad-hoc target selection. Stable priority is: closest-to-closure state first, then fewer remaining owners, fewer total failures, more existing evidence, then ticker. This keeps Scout, Alpha and Beta converged on the same completion frontier.
+
+## Atomic intelligent-worker persistence
+
+When a worker produces evidence and its required role-run receipt in the same run, both must land in one Git commit. A single-path Contents API limitation is not a lawful blocker: workers with Git Data access must create blobs, create one tree based on current `main`, create one commit with the current `main` commit as parent, and fast-forward `main` to that commit. If `main` advances before the ref update, the worker refetches the new head/tree and retries without force.
+
+This preserves the atomic evidence+receipt contract without sacrificing throughput or history.
+
+## Reconcile fail-closed projection rule
+
+Evidence reconciliation always persists truthful non-canonical Workgraph state, routing queues, liveness/health telemetry, and Beast integrity output even when the source mesh is red. A failed Beast/source-mesh audit remains a hard barrier to Chief fast-path promotion, canonical score/rank mutation, tick qualification, and publication. Projection may advance; truth gates may not.

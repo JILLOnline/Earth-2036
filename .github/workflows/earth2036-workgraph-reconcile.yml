@@ -47,9 +47,22 @@ jobs:
             npm run typecheck
             node --test test/workgraph-v2.test.mjs test/operations-invariants.test.mjs
             npm run workgraph:sync
-            node scripts/promote-chief-ready.mjs
             node scripts/mark-council-pending.mjs
+
+            # Beast remains a hard gate for canonical promotion, but a red source mesh
+            # must not suppress truthful Workgraph routing/telemetry projection.
+            set +e
             node scripts/beast-audit.mjs
+            beast_status=$?
+            set -e
+
+            if [ "$beast_status" -eq 0 ]; then
+              node scripts/promote-chief-ready.mjs
+              node scripts/mark-council-pending.mjs
+              node scripts/beast-audit.mjs
+            else
+              echo "Beast/source mesh is fail-closed for promotion; persisting non-canonical Workgraph state and routing only."
+            fi
 
             base_head=$(git rev-parse HEAD)
             git fetch --no-tags --depth=1 origin main

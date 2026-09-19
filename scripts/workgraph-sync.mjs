@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { applyPacketState, compilePromotionPacket, computeWorkgraphMetrics, loadRoleRuns, loadStructuredEvidence, migrateLegacyQueue, validateWorkgraph, writeWorkgraphArtifacts } from "./lib/workgraph-v2.mjs";
+import { applyPacketState, buildRoutingQueues, compilePromotionPacket, computeWorkgraphMetrics, loadRoleRuns, loadStructuredEvidence, migrateLegacyQueue, validateWorkgraph, writeWorkgraphArtifacts } from "./lib/workgraph-v2.mjs";
 
 const ROOT = process.cwd();
 const LEGACY_PATH = path.join(ROOT, "data", "runtime", "supervisors", "t0-bootstrap-queue.json");
@@ -48,6 +48,9 @@ if (postErrors.length) {
   process.exit(1);
 }
 
-const metrics = computeWorkgraphMetrics(graph, new Date(), evidence, roleRuns);
-await writeWorkgraphArtifacts(ROOT, graph, packets, metrics);
+const now = new Date();
+const routingQueues = buildRoutingQueues(graph, packets, now.toISOString());
+const metrics = computeWorkgraphMetrics(graph, now, evidence, roleRuns);
+metrics.routingQueueCounts = Object.fromEntries(Object.entries(routingQueues).map(([role, queue]) => [role, queue.total]));
+await writeWorkgraphArtifacts(ROOT, graph, packets, metrics, routingQueues);
 console.log(`Workgraph v2: ${metrics.total} companies; ${metrics.counts.chief_ready} chief_ready; ${metrics.counts.packet_ready} packet_ready; ${metrics.counts.blocked} blocked.`);

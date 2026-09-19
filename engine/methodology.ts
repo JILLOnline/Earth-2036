@@ -1,34 +1,22 @@
-export const EARTH_METHODOLOGY_VERSION = "1.0.0" as const;
+import registry from "../config/methodology-1.0.json";
 
-export const EARTH_SCORE_WEIGHTS = Object.freeze({
-  thesisQuality: 0.12,
-  financialOperatingMomentum: 0.12,
-  marketValuationOpportunity: 0.08,
-  catalystScore: 0.06,
-  governancePower: 0.07,
-  alignment2036: 0.12,
-  crossDivisionLeverage: 0.08,
-  bottleneckControl: 0.10,
-  scenarioRobustness: 0.08,
-  substitutionResilience: 0.07,
-  supplyChainResilience: 0.05,
-  pricingPower: 0.05,
-});
+export const EARTH_METHODOLOGY_VERSION = registry.version as "1.0.0";
 
-export const EARTH_RISK_PENALTY_WEIGHT = 0.16;
-export const EARTH_CONFIDENCE_FLOOR_MULTIPLIER = 0.80;
-export const MIN_PUBLISHABLE_DATA_CONFIDENCE = 60;
-export const ACTIVE_UNIVERSE_SIZE = 250;
-export const CHAMPIONSHIP_SIZE = 10;
-export const MONTHLY_FINALIST_SIZE = 5;
-export const QUARTERLY_FINALIST_SIZE = 3;
-export const ANNUAL_CANDIDATE_SIZE = 12;
-export const TRIAL_TICKS_REQUIRED = 1000;
+export const EARTH_SCORE_WEIGHTS = Object.freeze(registry.scoreWeights);
+export const EARTH_RISK_PENALTY_WEIGHT = registry.riskPenaltyWeight;
+export const EARTH_CONFIDENCE_FLOOR_MULTIPLIER = registry.confidenceFloorMultiplier;
+export const MIN_PUBLISHABLE_DATA_CONFIDENCE = registry.minimumPublishableDataConfidence;
+export const ACTIVE_UNIVERSE_SIZE = registry.activeUniverseSize;
+export const CHAMPIONSHIP_SIZE = registry.championshipSize;
+export const MONTHLY_FINALIST_SIZE = registry.monthlyFinalistSize;
+export const QUARTERLY_FINALIST_SIZE = registry.quarterlyFinalistSize;
+export const ANNUAL_CANDIDATE_SIZE = registry.annualCandidateSize;
+export const TRIAL_TICKS_REQUIRED = registry.trialTicksRequired;
 
 export const FULL_UNIVERSE_TICK_RULES = Object.freeze({
   companiesExpected: ACTIVE_UNIVERSE_SIZE,
   companiesObserved: ACTIVE_UNIVERSE_SIZE,
-  minimumSourceCoverage: 0.95,
+  minimumSourceCoverage: registry.minimumSourceCoverage,
   discoveryScanRequired: true,
   methodologyVersion: EARTH_METHODOLOGY_VERSION,
 });

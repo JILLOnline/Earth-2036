@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-deep-resolver-evidence",
+  "ticker": "AAOI",
+  "entityId": "AAOI",
+  "workId": "t0:AAOI",
+  "role": "deep-resolver",
+  "generatedAt": "2026-09-19T07:36:23Z",
+  "directive": {
+    "companyWorkId": "t0:AAOI",
+    "gatingQuestion": "Does AAOI's routed GAAP-versus-non-GAAP profitability contradiction remain unresolved after the issuer's explicit accounting reconciliation and active resolver disposition?",
+    "whyItMatters": "The queue still assigns unresolved_material_contradiction even though the active evidence reconciles the accounting definitions, blocking closure.",
+    "preferredPrimarySource": "AAOI Q2 2026 SEC-furnished earnings exhibit with GAAP/non-GAAP reconciliation",
+    "lawfulFallbacks": ["AAOI Q2 Form 10-Q", "active deep-resolver evidence"],
+    "successCondition": "Determine whether the metrics conflict after applying the issuer's explicit reconciliation and isolate any remaining defect.",
+    "attemptCount": 3
+  },
+  "result": "resolved",
+  "finding": "GAAP and non-GAAP results are not mutually contradictory because they use different accounting definitions and the issuer supplies an itemized reconciliation. The larger GAAP loss and lower GAAP margin remain quality-of-earnings and execution risks. Remaining deep-resolver ownership is stale reconciliation/routing.",
+  "evidenceVsInference": {
+    "evidence": "The current packet retains the contradiction while AAOI-20260919T063451Z-deep-resolver.json records the issuer's GAAP/non-GAAP reconciliation at 100 confidence.",
+    "inference": "The contradiction gate should close without treating non-GAAP profitability as a substitute for GAAP performance."
+  },
+  "sources": [
+    {"sourceId":"issuer:AAOI:2026Q2:8K-EX99.1","url":"https://investors.ao-inc.com/node/17511/html","kind":"primary","primary":true,"publishedAt":"2026-08-06"},
+    {"sourceId":"resolver:AAOI:prior","path":"data/runtime/workgraph/evidence/AAOI-20260919T063451Z-deep-resolver.json","kind":"structured_evidence","primary":false}
+  ],
+  "contradictionStatus": "resolved",
+  "confidence": 100,
+  "gateImpact": "close_unresolved_material_contradiction_on_reconcile",
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "recommendedDisposition": "Remove deep-resolver ownership for AAOI on deterministic reconcile; preserve GAAP loss, margin compression and adjustment-heavy bridge as risk evidence.",
+  "lineage": {
+    "inputPacket": "data/runtime/workgraph/packets/AAOI.json",
+    "inputEvidence": ["data/runtime/workgraph/evidence/AAOI-20260919T063451Z-deep-resolver.json"],
+    "beganFromGitHead": "b495c1ce2d78021b1ada2d4eebf815c7d5c503fe"
+  }
+}

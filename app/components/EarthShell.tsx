@@ -15,6 +15,7 @@ const nav = [
   ["/contenders", "UNIVERSE"],
   ["/discovery", "DISCOVERY"],
   ["/system", "SYSTEM"],
+  ["/ledger", "LEDGER"],
 ] as const;
 
 function isActive(pathname: string, href: string) {

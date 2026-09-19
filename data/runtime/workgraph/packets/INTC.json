@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "INTC",
   "workId": "t0:INTC",
-  "generatedAt": "2026-09-19T12:10:18.607Z",
+  "generatedAt": "2026-09-19T12:28:10.435Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-23T00:00:00.000Z",
-    "end": "2026-09-18T22:35:31.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-18T22:35:31.000Z"
+    "end": "2026-09-19T12:27:02.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T12:27:02.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,31 +32,34 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/INTC-20260918T1600Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/INTC-20260918T223531Z-deep-resolver.json"
+    "data/runtime/workgraph/evidence/INTC-20260918T223531Z-deep-resolver.json",
+    "data/runtime/workgraph/evidence/INTC-20260919T122702Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [
       "material_contradiction"
     ],
-    "activeEvidenceCount": 3,
-    "historicalEvidenceCount": 3
+    "activeEvidenceCount": 5,
+    "historicalEvidenceCount": 5
   },
   "factorEvidence": {
     "names": [
@@ -65,12 +68,23 @@
       "bottleneckControl",
       "supplyChainResilience",
       "catalystScore",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "crossDivisionLeverage",
+      "substitutionResilience",
+      "thesisQuality",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "alignment2036",
@@ -78,7 +92,13 @@
         "supplyChainResilience",
         "catalystScore"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -130,7 +150,11 @@
     "bottleneckControl",
     "supplyChainResilience",
     "catalystScore",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "crossDivisionLeverage",
+    "substitutionResilience",
+    "thesisQuality",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -142,6 +166,22 @@
       {
         "risk": "Execution can regress if 18A yield/utilization or external foundry demand disappoints.",
         "gating": false
+      },
+      {
+        "risk": "TSMC and other foundries remain substitutes for external customers; internal-product demand currently dominates Intel Foundry utilization.",
+        "gating": false
+      },
+      {
+        "risk": "Foundry Q2 operating loss was $2.089B on $5.765B segment revenue; economics remain deeply negative despite improvement.",
+        "gating": false
+      },
+      {
+        "risk": "Only $293M of Q2 Foundry revenue was external and much of that reflected Altera's deconsolidation, limiting evidence of independent external foundry traction.",
+        "gating": false
+      },
+      {
+        "risk": "18A early-ramp wafers carry higher costs, and 14A expansion pace depends on committed demand.",
+        "gating": false
       }
     ]
   },
@@ -152,6 +192,22 @@
     },
     {
       "risk": "Execution can regress if 18A yield/utilization or external foundry demand disappoints.",
+      "gating": false
+    },
+    {
+      "risk": "TSMC and other foundries remain substitutes for external customers; internal-product demand currently dominates Intel Foundry utilization.",
+      "gating": false
+    },
+    {
+      "risk": "Foundry Q2 operating loss was $2.089B on $5.765B segment revenue; economics remain deeply negative despite improvement.",
+      "gating": false
+    },
+    {
+      "risk": "Only $293M of Q2 Foundry revenue was external and much of that reflected Altera's deconsolidation, limiting evidence of independent external foundry traction.",
+      "gating": false
+    },
+    {
+      "risk": "18A early-ramp wafers carry higher costs, and 14A expansion pace depends on committed demand.",
       "gating": false
     }
   ],
@@ -166,14 +222,40 @@
     "count": 4
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "AI/server and leading-edge compute demand",
+        "to": "Intel Products and advanced-node wafer demand",
+        "mechanism": "higher-performance workloads pull premium CPUs and leading-edge process capacity",
+        "falsifier": "product share or premium mix reverses despite market growth"
+      },
+      {
+        "from": "18A/14A process capability and US fabs",
+        "to": "foundry bottleneck control",
+        "mechanism": "domestic leading-edge logic capacity can serve internal products and external customers",
+        "falsifier": "yields fail to mature or committed external demand remains insufficient for economic utilization"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "AI/server and leading-edge compute demand",
+      "to": "Intel Products and advanced-node wafer demand",
+      "mechanism": "higher-performance workloads pull premium CPUs and leading-edge process capacity",
+      "falsifier": "product share or premium mix reverses despite market growth"
+    },
+    {
+      "from": "18A/14A process capability and US fabs",
+      "to": "foundry bottleneck control",
+      "mechanism": "domestic leading-edge logic capacity can serve internal products and external customers",
+      "falsifier": "yields fail to mature or committed external demand remains insufficient for economic utilization"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 7,
+    "rawSourceCount": 9,
     "uniqueSourceCount": 4,
-    "duplicatesCollapsed": 3,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:INTC:2026Q2",
@@ -218,6 +300,9 @@
     },
     {
       "contradiction": "Headline growth is stronger than bottom-line GAAP profitability, so turnaround evidence must remain two-sided."
+    },
+    {
+      "contradiction": "Leading-edge process milestones and revenue growth coexist with large foundry losses and limited true external revenue."
     }
   ],
   "contradictionDispositions": {
@@ -228,6 +313,9 @@
       },
       {
         "contradiction": "Headline growth is stronger than bottom-line GAAP profitability, so turnaround evidence must remain two-sided."
+      },
+      {
+        "contradiction": "Leading-edge process milestones and revenue growth coexist with large foundry losses and limited true external revenue."
       }
     ]
   },
@@ -239,11 +327,19 @@
     {
       "unknown": "Current market valuation and normalized foundry return profile remain for underwriting.",
       "gating": false
+    },
+    {
+      "unknown": "Committed external 14A demand sufficient to support economic fab utilization is not yet established.",
+      "gating": false
+    },
+    {
+      "unknown": "Normalized external foundry margins and durable utilization remain unproven.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 90,
@@ -252,13 +348,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -268,14 +361,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -292,10 +377,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

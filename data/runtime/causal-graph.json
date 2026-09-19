@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-19T15:19:05.264Z",
+  "updatedAt": "2026-09-19T16:23:09.173Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -254,6 +254,18 @@
       "type": "market",
       "label": "high-speed Ethernet fabric demand",
       "description": "larger clusters require more high-throughput low-latency interconnect while power/cooling constraints reward efficient networking"
+    },
+    {
+      "id": "company:APH",
+      "type": "company",
+      "label": "Amphenol Corporation",
+      "description": "Amphenol maps structurally to the physical interconnect bottleneck created by rising AI cluster bandwidth and density: larger systems require more high-speed copper/fiber links, while CCS expands fiber-optic content capture."
+    },
+    {
+      "id": "market:APH-high-speed-copper-fiber-interconnect-demand",
+      "type": "market",
+      "label": "high-speed copper/fiber interconnect demand",
+      "description": "larger accelerator systems require more high-bandwidth physical links"
     }
   ],
   "edges": [
@@ -642,6 +654,21 @@
         "arista-ir:2026-06-09:1.6t-ai-fabrics",
         "arista-ir:2026-03-12:xpo-msa",
         "arista:2026-08-04:q2-results"
+      ],
+      "observedAt": "2026-09-19T05:27:53Z"
+    },
+    {
+      "id": "edge:APH-structural-exposure",
+      "from": "company:APH",
+      "to": "market:APH-high-speed-copper-fiber-interconnect-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 78,
+      "confidence": 94,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "amphenol-ir:2026-07-29:q2-2026-results",
+        "amphenol-ir:2026-01-12:commscope-ccs-close"
       ],
       "observedAt": "2026-09-19T05:27:53Z"
     }
@@ -1088,6 +1115,25 @@
       "observedAt": "2026-09-19T05:27:53Z",
       "thesis": "Arista sits on the AI-infrastructure interconnect bottleneck: larger accelerator clusters increase bandwidth, latency, power-density and cooling pressure, supporting demand for high-speed Ethernet fabrics, optics and network operating software.",
       "falsifier": "AI architectures materially reduce merchant Ethernet demand or proprietary fabrics dominate incremental deployments"
+    },
+    {
+      "id": "signal:APH-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:APH-high-speed-copper-fiber-interconnect-demand",
+      "affectedNodeIds": [
+        "company:APH"
+      ],
+      "direction": 1,
+      "magnitude": 78,
+      "confidence": 94,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "amphenol-ir:2026-07-29:q2-2026-results",
+        "amphenol-ir:2026-01-12:commscope-ccs-close"
+      ],
+      "observedAt": "2026-09-19T05:27:53Z",
+      "thesis": "Amphenol maps structurally to the physical interconnect bottleneck created by rising AI cluster bandwidth and density: larger systems require more high-speed copper/fiber links, while CCS expands fiber-optic content capture.",
+      "falsifier": "architectures materially reduce physical interconnect intensity or competitors displace Amphenol at scale"
     }
   ],
   "roadmapMilestones": [

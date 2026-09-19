@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ASML",
   "workId": "t0:ASML",
-  "generatedAt": "2026-09-19T04:23:02.586Z",
+  "generatedAt": "2026-09-19T04:27:27.126Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -14,7 +14,7 @@
     "exchangeName": "ASML Holding N.V. - New York Registry Shares",
     "identityStatus": "validated",
     "tradabilityStatus": "validated",
-    "validatedAt": "2026-09-19T04:22:22.657Z"
+    "validatedAt": "2026-09-19T04:26:45.828Z"
   },
   "evidenceWindow": {
     "start": "2026-01-28T00:00:00.000Z",
@@ -34,19 +34,20 @@
       "source-integrity",
       "company-underwriting",
       "discovery-weak-signals",
-      "expectations-execution"
-    ],
-    "missing": [
+      "expectations-execution",
       "structural-causal",
       "adversarial-red-team"
     ],
-    "complete": false
+    "missing": [],
+    "complete": true
   },
   "perspectives": [
     "source-integrity",
     "company-underwriting",
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/ASML-20260917T1900Z-council-alpha-v1.json",
@@ -56,8 +57,8 @@
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 5,
-    "historicalEvidenceCount": 5
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -81,7 +82,23 @@
       "Execution versus narrative",
       "Expectation burden",
       "Capital allocation",
-      "Policy sensitivity"
+      "Policy sensitivity",
+      "technology-criticality",
+      "bottleneck-control",
+      "execution",
+      "technology-readiness",
+      "adoption",
+      "ecosystem-dependency",
+      "infrastructure",
+      "financial-quality",
+      "backlog-quality",
+      "geopolitical-risk",
+      "revenue-conversion",
+      "regulatory-risk",
+      "geographic-concentration",
+      "technology-risk",
+      "supply-chain-risk",
+      "concentration"
     ],
     "byPerspective": {
       "source-integrity": [
@@ -125,7 +142,15 @@
           "name": "pricingPower"
         }
       ],
-      "structural-causal": [],
+      "structural-causal": [
+        "technology-criticality",
+        "bottleneck-control",
+        "execution",
+        "technology-readiness",
+        "adoption",
+        "ecosystem-dependency",
+        "infrastructure"
+      ],
       "discovery-weak-signals": [
         {
           "name": "Technology bottleneck power",
@@ -148,7 +173,18 @@
           "basis": "Advanced lithography sits directly inside strategic technology controls and China self-reliance pressure, creating policy-dependent market-access risk."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "execution",
+        "financial-quality",
+        "backlog-quality",
+        "geopolitical-risk",
+        "revenue-conversion",
+        "regulatory-risk",
+        "geographic-concentration",
+        "technology-risk",
+        "supply-chain-risk",
+        "concentration"
+      ],
       "expectations-execution": [
         {
           "name": "Execution versus narrative",
@@ -384,7 +420,23 @@
     "Execution versus narrative",
     "Expectation burden",
     "Capital allocation",
-    "Policy sensitivity"
+    "Policy sensitivity",
+    "technology-criticality",
+    "bottleneck-control",
+    "execution",
+    "technology-readiness",
+    "adoption",
+    "ecosystem-dependency",
+    "infrastructure",
+    "financial-quality",
+    "backlog-quality",
+    "geopolitical-risk",
+    "revenue-conversion",
+    "regulatory-risk",
+    "geographic-concentration",
+    "technology-risk",
+    "supply-chain-risk",
+    "concentration"
   ],
   "riskEvidence": {
     "present": true,
@@ -424,7 +476,13 @@
       {
         "risk": "High-NA's approximately $400M system cost raises customer return-on-investment requirements and can affect adoption timing even when technical readiness is strong.",
         "gating": false
-      }
+      },
+      "Customer fab timing can shift system demand across periods.",
+      "High-NA adoption depends on a broader mask, resist, metrology and customer-process ecosystem.",
+      "Export controls can strand otherwise valid demand.",
+      "Bookings/backlog can overstate realized revenue if customers delay or cancel.",
+      "Extreme technical and supplier concentration creates high consequence from execution or component bottlenecks.",
+      "Customer capex remains cyclical even when long-run lithography intensity rises."
     ]
   },
   "risks": [
@@ -463,7 +521,13 @@
     {
       "risk": "High-NA's approximately $400M system cost raises customer return-on-investment requirements and can affect adoption timing even when technical readiness is strong.",
       "gating": false
-    }
+    },
+    "Customer fab timing can shift system demand across periods.",
+    "High-NA adoption depends on a broader mask, resist, metrology and customer-process ecosystem.",
+    "Export controls can strand otherwise valid demand.",
+    "Bookings/backlog can overstate realized revenue if customers delay or cancel.",
+    "Extreme technical and supplier concentration creates high consequence from execution or component bottlenecks.",
+    "Customer capex remains cyclical even when long-run lithography intensity rises."
   ],
   "dataConfidenceEvidence": {
     "available": true,
@@ -475,7 +539,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 5
+    "count": 10
   },
   "causalMapping": {
     "present": true,
@@ -503,7 +567,10 @@
         "to": "capacity expansion",
         "mechanism": "multi-year customer commitments justify supplier and assembly scaling",
         "falsifier": "cancellations, pushouts or utilization weakness emerge before expanded capacity is absorbed"
-      }
+      },
+      "AI compute demand -> advanced Logic/Memory capacity -> lithography intensity -> ASML EUV/DUV demand",
+      "node complexity -> higher-resolution patterning need -> High-NA adoption -> ASML platform demand",
+      "High-NA scaling -> mask/stitching constraints -> larger-mask ecosystem investment"
     ]
   },
   "causalEdges": [
@@ -530,12 +597,15 @@
       "to": "capacity expansion",
       "mechanism": "multi-year customer commitments justify supplier and assembly scaling",
       "falsifier": "cancellations, pushouts or utilization weakness emerge before expanded capacity is absorbed"
-    }
+    },
+    "AI compute demand -> advanced Logic/Memory capacity -> lithography intensity -> ASML EUV/DUV demand",
+    "node complexity -> higher-resolution patterning need -> High-NA adoption -> ASML platform demand",
+    "High-NA scaling -> mask/stitching constraints -> larger-mask ecosystem investment"
   ],
   "sourceLineage": {
-    "rawSourceCount": 21,
+    "rawSourceCount": 26,
     "uniqueSourceCount": 12,
-    "duplicatesCollapsed": 9,
+    "duplicatesCollapsed": 14,
     "missingLineage": 0,
     "uniqueOrigins": [
       "asml-ir:2026-q2-results",
@@ -590,51 +660,64 @@
       "kind": "secondary",
       "primary": false,
       "publishedAt": "2026-09-14",
-      "originFingerprint": "reuters:2026-09-14:asml-euv-capacity-jpmorgan"
+      "originFingerprint": "reuters:2026-09-14:asml-euv-capacity-jpmorgan",
+      "sourceId": null
     },
     {
       "url": "https://www.asml.com/en/careers/teams/manufacturing",
       "kind": "primary",
       "primary": true,
       "publishedAt": null,
-      "originFingerprint": "asml-careers:manufacturing-footprint:2026-09-17"
+      "originFingerprint": "asml-careers:manufacturing-footprint:2026-09-17",
+      "sourceId": null
     },
     {
       "url": "https://www.asml.com/en/news/share-buyback/2026/asml-reports-transactions-under-its-current-share-buyback-program-32",
       "kind": "primary",
       "primary": true,
       "publishedAt": "2026-09-07",
-      "originFingerprint": "asml-ir:2026-09-07:buyback-transactions"
+      "originFingerprint": "asml-ir:2026-09-07:buyback-transactions",
+      "sourceId": null
     },
     {
       "id": "asml-q2-2026",
       "url": "https://www.asml.com/en/news/press-releases/2026/q2-2026-financial-results",
       "sourceType": "company-primary",
-      "originFingerprint": "asml.com|press-release|2026-07-15|q2-2026-financial-results"
+      "originFingerprint": "asml.com|press-release|2026-07-15|q2-2026-financial-results",
+      "sourceId": "asml-q2-2026",
+      "primary": true
     },
     {
       "id": "asml-q1-2026",
       "url": "https://www.asml.com/en/news/press-releases/2026/q1-2026-financial-results",
       "sourceType": "company-primary",
-      "originFingerprint": "asml.com|press-release|2026-04-15|q1-2026-financial-results"
+      "originFingerprint": "asml.com|press-release|2026-04-15|q1-2026-financial-results",
+      "sourceId": "asml-q1-2026",
+      "primary": true
     },
     {
       "id": "asml-q2-2025",
       "url": "https://www.asml.com/en/news/press-releases/2025/q2-2025-financial-results",
       "sourceType": "company-primary",
-      "originFingerprint": "asml.com|press-release|2025-07-16|q2-2025-financial-results"
+      "originFingerprint": "asml.com|press-release|2025-07-16|q2-2025-financial-results",
+      "sourceId": "asml-q2-2025",
+      "primary": true
     },
     {
       "id": "asml-tsmc-mask-2026",
       "url": "https://www.asml.com/en/news/press-releases/2026/tsmc-and-asml-announce-industry-transition-to-large-format-photomasks-for-high-na-euv",
       "sourceType": "joint-primary",
-      "originFingerprint": "asml.com|joint-press-release|2026-09-08|tsmc-highna-12in-mask"
+      "originFingerprint": "asml.com|joint-press-release|2026-09-08|tsmc-highna-12in-mask",
+      "sourceId": "asml-tsmc-mask-2026",
+      "primary": true
     },
     {
       "id": "asml-intel-highna-2026",
       "url": "https://www.asml.com/en/news/press-releases/2026/intel-foundry-and-asml-collaborate-to-accelerate-industry-readiness-for-high-na-euv",
       "sourceType": "joint-primary",
-      "originFingerprint": "asml.com|joint-press-release|2026-09-08|intel-highna-readiness"
+      "originFingerprint": "asml.com|joint-press-release|2026-09-08|intel-highna-readiness",
+      "sourceId": "asml-intel-highna-2026",
+      "primary": true
     }
   ],
   "contradictions": [
@@ -649,6 +732,15 @@
       "resolution": "Execution quality and security-level attractiveness are analytically separate; this Scout object promotes no price-based recommendation.",
       "resolved": true,
       "gating": false
+    },
+    {
+      "issue": "2025 management could not confirm 2026 growth amid macro/geopolitical uncertainty; by Q2 2026 management raised full-year guidance sharply.",
+      "disposition": "resolved-by-newer-evidence",
+      "sourceIds": [
+        "asml-q2-2025",
+        "asml-q2-2026"
+      ],
+      "material": false
     }
   ],
   "contradictionDispositions": {
@@ -665,6 +757,15 @@
         "resolution": "Execution quality and security-level attractiveness are analytically separate; this Scout object promotes no price-based recommendation.",
         "resolved": true,
         "gating": false
+      },
+      {
+        "issue": "2025 management could not confirm 2026 growth amid macro/geopolitical uncertainty; by Q2 2026 management raised full-year guidance sharply.",
+        "disposition": "resolved-by-newer-evidence",
+        "sourceIds": [
+          "asml-q2-2025",
+          "asml-q2-2026"
+        ],
+        "material": false
       }
     ]
   },
@@ -696,29 +797,20 @@
     {
       "unknown": "The realized 2028 EUV output, High-NA mix and incremental margins remain future execution evidence.",
       "gating": false
-    }
+    },
+    "Exact long-run split of High-NA versus low-NA EUV layers by customer remains uncertain and is non-gating.",
+    "No canonical live crowding/valuation input was used; per methodology this remains non-gating for Beta.",
+    "Future export-control scope is unknown and treated as risk, not a present blocker."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 7
+    "nonGatingCount": 10
   },
   "gatingIssues": [],
-  "confidence": 93,
+  "confidence": 89,
   "preflight": {
-    "passed": false,
-    "failures": [
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team"
-    ],
-    "routing": [
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
-      }
-    ]
+    "passed": true,
+    "failures": [],
+    "routing": []
   }
 }

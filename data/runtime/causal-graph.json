@@ -182,6 +182,18 @@
       "type": "market",
       "label": "Arm-based chip deployments",
       "description": "Arm remains a foundational compute architecture/IP layer spanning mobile, edge and data center; FY2026 royalty revenue rose 21% and management attributes growth to higher-royalty Armv9 technology, while data-center royalty more than doubled year over year in Q4."
+    },
+    {
+      "id": "company:ASML",
+      "type": "company",
+      "label": "ASML Holding N.V.",
+      "description": "ASML remains a structural bottleneck for leading-edge lithography: AI-driven advanced Logic and Memory capacity requires higher lithography intensity, while ASML is expanding low-NA EUV and DUV immersion capacity by about 30% for 2027 and investigating another roughly 30% increase for 2028."
+    },
+    {
+      "id": "market:ASML-asml-structural-demand",
+      "type": "market",
+      "label": "ASML structural demand",
+      "description": "ASML remains a structural bottleneck for leading-edge lithography: AI-driven advanced Logic and Memory capacity requires higher lithography intensity, while ASML is expanding low-NA EUV and DUV immersion capacity by about 30% for 2027 and investigating another roughly 30% increase for 2028."
     }
   ],
   "edges": [
@@ -479,6 +491,24 @@
         "issuer:ARM:Q1FY2027-6K"
       ],
       "observedAt": "2026-09-18T17:25:56-04:00"
+    },
+    {
+      "id": "edge:ASML-structural-exposure",
+      "from": "company:ASML",
+      "to": "market:ASML-asml-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 100,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "asml-q2-2026",
+        "asml-q1-2026",
+        "asml-q2-2025",
+        "asml-tsmc-mask-2026",
+        "asml-intel-highna-2026"
+      ],
+      "observedAt": "2026-09-19T00:26:55Z"
     }
   ],
   "structuralSignals": [
@@ -805,6 +835,28 @@
       ],
       "observedAt": "2026-09-18T17:25:56-04:00",
       "thesis": "Arm remains a foundational compute architecture/IP layer spanning mobile, edge and data center; FY2026 royalty revenue rose 21% and management attributes growth to higher-royalty Armv9 technology, while data-center royalty more than doubled year over year in Q4.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:ASML-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:ASML-asml-structural-demand",
+      "affectedNodeIds": [
+        "company:ASML"
+      ],
+      "direction": 1,
+      "magnitude": 100,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "asml-q2-2026",
+        "asml-q1-2026",
+        "asml-q2-2025",
+        "asml-tsmc-mask-2026",
+        "asml-intel-highna-2026"
+      ],
+      "observedAt": "2026-09-19T00:26:55Z",
+      "thesis": "ASML remains a structural bottleneck for leading-edge lithography: AI-driven advanced Logic and Memory capacity requires higher lithography intensity, while ASML is expanding low-NA EUV and DUV immersion capacity by about 30% for 2027 and investigating another roughly 30% increase for 2028.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

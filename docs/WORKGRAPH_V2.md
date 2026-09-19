@@ -233,11 +233,13 @@ These files are derived from the same packet preflight routing that drives owner
 
 Workers must consume this queue before attempting ad-hoc target selection. Stable priority is: closest-to-closure state first, then fewer remaining owners, fewer total failures, more existing evidence, then ticker. This keeps Scout, Alpha and Beta converged on the same completion frontier.
 
-## Atomic intelligent-worker persistence
+## Safe intelligent-worker persistence
 
-When a worker produces evidence and its required role-run receipt in the same run, both must land in one Git commit. A single-path Contents API limitation is not a lawful blocker: workers with Git Data access must create blobs, create one tree based on current `main`, create one commit with the current `main` commit as parent, and fast-forward `main` to that commit. If `main` advances before the ref update, the worker refetches the new head/tree and retries without force.
+A single commit containing evidence plus its role-run receipt is preferred when a multi-path Git write is available. It is not a throughput dependency.
 
-This preserves the atomic evidence+receipt contract without sacrificing throughput or history.
+If only single-path writes are practical, use a conservative two-phase fallback: persist immutable evidence first, then persist the role-run receipt in a second commit referencing the evidence artifact paths and resulting Git head. Never write a success receipt before its evidence. If phase two fails, the repository contains real evidence with stale liveness rather than false liveness with missing evidence, so the failure remains fail-safe and auditable.
+
+A single-path Contents API limitation is therefore never a lawful reason to discard defensible evidence or pause a productive worker.
 
 ## Reconcile fail-closed projection rule
 

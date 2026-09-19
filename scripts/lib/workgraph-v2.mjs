@@ -189,32 +189,49 @@ export function validateWorkgraph(graph, expectedCount = 250) {
   return errors;
 }
 
+function normalizeSource(source) {
+  if (!source || typeof source !== "object") return source;
+  const sourceType = String(source.sourceType || "").toLowerCase();
+  return {
+    ...source,
+    sourceId: source.sourceId || source.id || null,
+    primary: source.primary === true || source.kind === "primary" || source.tier === "primary" || sourceType.includes("primary"),
+  };
+}
+
 function normalizeEvidenceObject(obj, filePath) {
+  const claims = Array.isArray(obj?.claims) ? obj.claims : [];
+  const explicitFactors = Array.isArray(obj?.factors)
+    ? obj.factors
+    : Array.isArray(obj?.affectedMethodologyFactors)
+      ? obj.affectedMethodologyFactors
+      : obj?.factorEvidence && typeof obj.factorEvidence === "object"
+        ? Object.keys(obj.factorEvidence).map((name) => ({ name }))
+        : [];
+  const claimFactors = claims.flatMap((claim) => Array.isArray(claim?.affectedFactors) ? claim.affectedFactors : []);
+  const explicitCausalEdges = Array.isArray(obj?.causalEdges) ? obj.causalEdges : [];
+  const claimCausalEdges = claims.flatMap((claim) => Array.isArray(claim?.causalEdges) ? claim.causalEdges : []);
+  const rawConfidence = Number.isFinite(obj?.confidence) ? obj.confidence : null;
+  const confidence = rawConfidence !== null && rawConfidence >= 0 && rawConfidence <= 1 ? rawConfidence * 100 : rawConfidence;
   return {
     path: filePath,
     version: obj?.version || null,
     contract: obj?.contract || null,
     role: obj?.role || null,
-    ticker: obj?.ticker || obj?.entityId || null,
+    ticker: obj?.ticker || obj?.entityId || obj?.entity?.ticker || null,
     workId: obj?.workId || null,
     perspective: obj?.perspective || obj?.laneId || null,
-    cycleKey: obj?.cycleKey || null,
+    cycleKey: obj?.cycleKey || obj?.sourceCycleKey || null,
     generatedAt: obj?.generatedAt || null,
-    claims: Array.isArray(obj?.claims) ? obj.claims : [],
-    factors: Array.isArray(obj?.factors)
-      ? obj.factors
-      : Array.isArray(obj?.affectedMethodologyFactors)
-        ? obj.affectedMethodologyFactors
-        : obj?.factorEvidence && typeof obj.factorEvidence === "object"
-          ? Object.keys(obj.factorEvidence).map((name) => ({ name }))
-          : [],
+    claims,
+    factors: [...explicitFactors, ...claimFactors],
     factorEvidence: obj?.factorEvidence ?? null,
     scoreRecord: obj?.scoreRecord ?? null,
     riskEvidence: obj?.riskEvidence ?? null,
     dataConfidenceEvidence: obj?.dataConfidenceEvidence ?? null,
-    sources: Array.isArray(obj?.sources) ? obj.sources : [],
+    sources: (Array.isArray(obj?.sources) ? obj.sources : []).map(normalizeSource),
     risks: Array.isArray(obj?.risks) ? obj.risks : [],
-    causalEdges: Array.isArray(obj?.causalEdges) ? obj.causalEdges : [],
+    causalEdges: [...explicitCausalEdges, ...claimCausalEdges],
     contradictions: Array.isArray(obj?.contradictions) ? obj.contradictions : [],
     unknowns: Array.isArray(obj?.unknowns) ? obj.unknowns : [],
     gatingIssues: Array.isArray(obj?.gatingIssues) ? obj.gatingIssues : [],
@@ -222,8 +239,28 @@ function normalizeEvidenceObject(obj, filePath) {
     lineage: obj?.lineage && typeof obj.lineage === "object" ? obj.lineage : null,
     overallStatus: obj?.overallStatus || null,
     recommendedNextState: obj?.recommendedNextState || null,
-    confidence: Number.isFinite(obj?.confidence) ? obj.confidence : null,
+    confidence,
   };
+}
+
+function expandEvidenceRows(row) {
+  if (!Array.isArray(row?.perspectives) || row.perspectives.length === 0) return [row];
+  return row.perspectives.map((perspective) => ({
+    ...row,
+    ...perspective,
+    ticker: perspective?.ticker || row?.ticker || row?.entityId || row?.entity?.ticker || null,
+    entityId: perspective?.entityId || row?.entityId || row?.entity?.ticker || null,
+    workId: perspective?.workId || row?.workId || null,
+    role: perspective?.role || row?.role || null,
+    generatedAt: perspective?.generatedAt || row?.generatedAt || null,
+    sourceCycleKey: perspective?.sourceCycleKey || row?.sourceCycleKey || null,
+    cycleKey: perspective?.cycleKey || row?.cycleKey || null,
+    lineage: perspective?.lineage || row?.lineage || null,
+    sources: [
+      ...(Array.isArray(row?.sources) ? row.sources : []),
+      ...(Array.isArray(perspective?.sources) ? perspective.sources : []),
+    ],
+  }));
 }
 
 export async function loadRoleRuns(root) {
@@ -254,7 +291,9 @@ export async function loadStructuredEvidence(root) {
     const full = path.join(dir, name);
     try {
       const raw = JSON.parse(await readFile(full, "utf8"));
-      for (const row of (Array.isArray(raw) ? raw : [raw])) out.push(normalizeEvidenceObject(row, path.relative(root, full)));
+      for (const row of (Array.isArray(raw) ? raw : [raw])) {
+        for (const expanded of expandEvidenceRows(row)) out.push(normalizeEvidenceObject(expanded, path.relative(root, full)));
+      }
     } catch (error) {
       console.warn(`Workgraph evidence load failed for ${name}: ${error?.message || error}`);
     }
@@ -300,7 +339,11 @@ export function compilePromotionPacket(ticker, evidenceRows, graphRow, options =
   const factorNames = uniqueStrings(factors.map((f) => typeof f === "string" ? f : f?.name));
   const unresolvedContradictions = resolvedGateKinds.has("material_contradiction")
     ? []
-    : contradictions.filter((c) => c?.resolved !== true && c?.gating !== false);
+    : contradictions.filter((c) => {
+      if (!c || typeof c !== "object") return true;
+      const disposition = String(c.disposition || c.resolutionStatus || "").toLowerCase();
+      return c.resolved !== true && c.gating !== false && c.material !== false && !disposition.startsWith("resolved");
+    });
   const gatingUnknowns = resolvedGateKinds.has("gating_unknown")
     ? []
     : unknowns.filter((u) => u?.gating === true);

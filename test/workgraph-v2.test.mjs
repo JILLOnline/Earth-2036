@@ -367,3 +367,74 @@ test("future-dated telemetry is rejected instead of appearing freshly alive", ()
   assert.equal(metrics.telemetry.futureRoleRunsRejected, 1);
   assert.equal(metrics.healthAlerts.some((x) => x.startsWith("owner_stale_with_backlog:council-beta")), true);
 });
+
+
+test("loader expands composite perspectives and normalizes Beta evidence conventions", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "earth2036-workgraph-composite-"));
+  try {
+    const dir = path.join(root, "data", "runtime", "workgraph", "evidence");
+    await mkdir(dir, { recursive: true });
+    const composite = {
+      version: 2,
+      role: "council-beta",
+      generatedAt: "2026-09-19T00:26:55Z",
+      sourceCycleKey: "20260918T2300Z",
+      workId: "t0:AAA",
+      entity: { ticker: "AAA", name: "AAA Corp" },
+      perspectives: [
+        {
+          perspective: "structural-causal",
+          claims: [{
+            claim: "structural proof",
+            affectedFactors: ["bottleneckControl"],
+            causalEdges: ["need -> AAA"],
+          }],
+          risks: [],
+          contradictions: [],
+          unknowns: [],
+          confidence: 0.91,
+        },
+        {
+          perspective: "adversarial-red-team",
+          claims: [{ claim: "red-team proof", affectedFactors: ["scenarioRobustness"] }],
+          risks: ["material risk"],
+          contradictions: [{
+            issue: "old tension",
+            disposition: "resolved-by-newer-evidence",
+            material: false,
+          }],
+          unknowns: [],
+          confidence: 0.89,
+        },
+      ],
+      sources: [{
+        id: "beta-primary",
+        url: "https://issuer.example/filing",
+        sourceType: "company-primary",
+        originFingerprint: "issuer:AAA:filing",
+      }],
+    };
+    await writeFile(path.join(dir, "AAA-beta.json"), JSON.stringify(composite), "utf8");
+    const loaded = await loadStructuredEvidence(root);
+    assert.equal(loaded.length, 2);
+    assert.deepEqual(loaded.map((row) => row.perspective).sort(), ["adversarial-red-team", "structural-causal"]);
+    assert.equal(loaded.find((row) => row.perspective === "structural-causal").confidence, 91);
+    assert.equal(loaded.find((row) => row.perspective === "adversarial-red-team").confidence, 89);
+    assert.equal(loaded[0].sources[0].primary, true);
+    assert.ok(loaded.find((row) => row.perspective === "structural-causal").causalEdges.includes("need -> AAA"));
+
+    const base = completeEvidence().filter((row) => !["structural-causal", "adversarial-red-team"].includes(row.perspective));
+    const packet = compilePromotionPacket(
+      "AAA",
+      [...base, ...loaded],
+      { ticker:"AAA", state:"researching", workId:"t0:AAA" },
+      { registryEntry, methodologyVersion:"1.0.0" },
+    );
+    assert.equal(packet.specialistCoverage.missing.includes("structural-causal"), false);
+    assert.equal(packet.specialistCoverage.missing.includes("adversarial-red-team"), false);
+    assert.equal(packet.causalMapping.present, true);
+    assert.equal(packet.preflight.failures.includes("unresolved_material_contradiction"), false);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});

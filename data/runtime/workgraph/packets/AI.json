@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "AI",
   "workId": "t0:AI",
-  "generatedAt": "2026-09-19T06:35:56.407Z",
+  "generatedAt": "2026-09-19T07:07:43.278Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T04:38:02.977Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-02-25T00:00:00.000Z",
+    "end": "2026-09-19T07:06:15.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T07:06:15.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,60 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/AI-20260919T070615Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "thesisQuality",
+      "catalystScore",
+      "alignment2036",
+      "crossDivisionLeverage",
+      "bottleneckControl",
+      "financialOperatingMomentum",
+      "scenarioRobustness",
+      "pricingPower"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "thesisQuality",
+        "catalystScore",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "financialOperatingMomentum",
+        "catalystScore",
+        "scenarioRobustness",
+        "pricingPower"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +123,47 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "thesisQuality",
+    "catalystScore",
+    "alignment2036",
+    "crossDivisionLeverage",
+    "bottleneckControl",
+    "financialOperatingMomentum",
+    "scenarioRobustness",
+    "pricingPower"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Bookings were lower than expected, so agreement counts may not translate into durable revenue growth or attractive unit economics.",
+        "gating": false
+      },
+      {
+        "risk": "Enterprise AI remains highly competitive and substitution resilience is not established by these disclosures.",
+        "gating": false
+      },
+      {
+        "risk": "Large operating losses and cash burn make successful restructuring and renewed bookings growth central to execution quality.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Bookings were lower than expected, so agreement counts may not translate into durable revenue growth or attractive unit economics.",
+      "gating": false
+    },
+    {
+      "risk": "Enterprise AI remains highly competitive and substitution resilience is not established by these disclosures.",
+      "gating": false
+    },
+    {
+      "risk": "Large operating losses and cash burn make successful restructuring and renewed bookings growth central to execution quality.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +171,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +180,91 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "issuer:AI:FY2026prelim:20260518",
+      "issuer:AI:2026Q3:20260225"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "sourceId": "issuer:AI:FY2026prelim",
+      "url": "https://ir.c3.ai/news-releases/news-release-details/c3-ai-announces-preliminary-fourth-quarter-and-full-fiscal-year",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-18",
+      "originFingerprint": "issuer:AI:FY2026prelim:20260518"
+    },
+    {
+      "sourceId": "issuer:AI:2026Q3",
+      "url": "https://ir.c3.ai/news-releases/news-release-details/c3-ai-announces-fiscal-third-quarter-2026-results",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-25",
+      "originFingerprint": "issuer:AI:2026Q3:20260225"
+    }
+  ],
+  "contradictions": [
+    {
+      "contradiction": "Management cites accelerating market opportunity while reporting bookings below expectations.",
+      "material": true,
+      "disposition": "Preserve both signals; require subsequent bookings/revenue evidence before promotion."
+    },
+    {
+      "contradiction": "Revenue landed within guidance, but bookings underperformed and operating losses remained substantial.",
+      "material": true,
+      "disposition": "Treat guidance delivery as partial execution evidence, not proof of profitable scaling."
+    }
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 2,
+    "items": [
+      {
+        "contradiction": "Management cites accelerating market opportunity while reporting bookings below expectations.",
+        "material": true,
+        "disposition": "Preserve both signals; require subsequent bookings/revenue evidence before promotion."
+      },
+      {
+        "contradiction": "Revenue landed within guidance, but bookings underperformed and operating losses remained substantial.",
+        "material": true,
+        "disposition": "Treat guidance delivery as partial execution evidence, not proof of profitable scaling."
+      }
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Durability, contract value and production expansion rate of the newly signed agreements are not established in the retrieved releases.",
+      "gating": false
+    },
+    {
+      "unknown": "Realized restructuring savings and post-FY2026 bookings trajectory require later-period primary evidence.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 82,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_causal_mapping",
+      "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +278,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +288,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",
@@ -213,6 +300,10 @@
       {
         "failure": "missing_causal_mapping",
         "owner": "council-beta"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

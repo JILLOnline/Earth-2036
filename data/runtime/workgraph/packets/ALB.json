@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ALB",
   "workId": "t0:ALB",
-  "generatedAt": "2026-09-19T06:35:56.408Z",
+  "generatedAt": "2026-09-19T07:07:43.280Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T04:38:02.977Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-02-11T00:00:00.000Z",
+    "end": "2026-09-19T07:06:15.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T07:06:15.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,58 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/ALB-20260919T070615Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "thesisQuality",
+      "alignment2036",
+      "bottleneckControl",
+      "supplyChainResilience",
+      "scenarioRobustness",
+      "financialOperatingMomentum"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "supplyChainResilience",
+        "scenarioRobustness"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "thesisQuality"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +121,45 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "thesisQuality",
+    "alignment2036",
+    "bottleneckControl",
+    "supplyChainResilience",
+    "scenarioRobustness",
+    "financialOperatingMomentum"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Lithium price volatility can overwhelm volume growth and impair conversion economics.",
+        "gating": false
+      },
+      {
+        "risk": "Idling Kemerton reduces Western conversion footprint and highlights cost disadvantages in part of the supply chain.",
+        "gating": false
+      },
+      {
+        "risk": "Cash flow remains sensitive to lithium pricing and prior-period operating cash flow included a one-time customer prepayment.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Lithium price volatility can overwhelm volume growth and impair conversion economics.",
+      "gating": false
+    },
+    {
+      "risk": "Idling Kemerton reduces Western conversion footprint and highlights cost disadvantages in part of the supply chain.",
+      "gating": false
+    },
+    {
+      "risk": "Cash flow remains sensitive to lithium pricing and prior-period operating cash flow included a one-time customer prepayment.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +167,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 3
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +176,100 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "issuer:ALB:FY2025:20260211",
+      "issuer:ALB:kemerton:20260211",
+      "issuer:ALB:2026Q1:20260506"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "sourceId": "issuer:ALB:FY2025",
+      "url": "https://investors.albemarle.com/news-and-events/news/news-details/2026/Albemarle-Reports-Fourth-Quarter-and-Full-Year-2025-Results/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-11",
+      "originFingerprint": "issuer:ALB:FY2025:20260211"
+    },
+    {
+      "sourceId": "issuer:ALB:kemerton-idle",
+      "url": "https://investors.albemarle.com/news-and-events/news/news-details/2026/Albemarle-Announces-Plans-to-Idle-its-Kemerton-Lithium-Hydroxide-Processing-Plant/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-11",
+      "originFingerprint": "issuer:ALB:kemerton:20260211"
+    },
+    {
+      "sourceId": "issuer:ALB:2026Q1",
+      "url": "https://investors.albemarle.com/news-and-events/news/news-details/2026/Albemarle-Reports-First-Quarter-2026-Results/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-06",
+      "originFingerprint": "issuer:ALB:2026Q1:20260506"
+    }
+  ],
+  "contradictions": [
+    {
+      "contradiction": "Lithium conditions improved, yet Kemerton economics remained insufficient to keep Train 1 operating.",
+      "material": true,
+      "disposition": "Preserve as evidence that commodity recovery alone does not guarantee downstream conversion profitability."
+    },
+    {
+      "contradiction": "Strong cost and balance-sheet execution coexists with ongoing asset rationalization caused by weak conversion economics.",
+      "material": false,
+      "disposition": "Treat as disciplined adaptation rather than resolve away."
+    }
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 1,
+    "items": [
+      {
+        "contradiction": "Lithium conditions improved, yet Kemerton economics remained insufficient to keep Train 1 operating.",
+        "material": true,
+        "disposition": "Preserve as evidence that commodity recovery alone does not guarantee downstream conversion profitability."
+      },
+      {
+        "contradiction": "Strong cost and balance-sheet execution coexists with ongoing asset rationalization caused by weak conversion economics.",
+        "material": false,
+        "disposition": "Treat as disciplined adaptation rather than resolve away."
+      }
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Long-run restart economics and timing for Kemerton remain uncertain.",
+      "gating": false
+    },
+    {
+      "unknown": "Full-year 2026 free cash flow depends on lithium price scenarios and is not a fixed outcome.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_causal_mapping",
+      "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +283,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +293,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",
@@ -213,6 +305,10 @@
       {
         "failure": "missing_causal_mapping",
         "owner": "council-beta"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

@@ -1,0 +1,54 @@
+[
+  {
+    "version":1,"ticker":"MU","entityId":"MU","workId":"t0:MU","cycleKey":"20260917T2200Z","role":"council-beta","perspective":"structural-causal","generatedAt":"2026-09-19T10:24:20Z",
+    "claims":[
+      {"claim":"Micron is positioned on a structural AI bottleneck because accelerator scaling raises demand for high-bandwidth/high-capacity memory, while disclosed HBM4 high-volume production and server-memory validation show present participation rather than roadmap-only exposure.","status":"supported"},
+      {"claim":"The causal chain remains cycle-sensitive: new U.S./Asia capacity and wafer-supply measures can improve resilience, but successor bottlenecks shift toward packaging yield, customer qualification, utilization and memory pricing as capacity arrives.","status":"supported"}
+    ],
+    "factors":[
+      {"name":"bottleneckControl","direction":"positive","basis":"HBM4 production and advanced-memory density directly address AI memory bandwidth/capacity constraints."},
+      {"name":"scenarioRobustness","direction":"mixed","basis":"AI growth supports demand, but large capacity commitments increase sensitivity to utilization and pricing if demand normalizes."},
+      {"name":"substitutionResilience","direction":"mixed","basis":"Memory remains required for compute, but architecture changes and competing HBM/DRAM suppliers can shift economics and share."},
+      {"name":"supplyChainResilience","direction":"positive","basis":"Geographic fab expansion and planned long-term wafer supply reduce single-node/input dependence if executed."}
+    ],
+    "sources":[
+      {"url":"https://investors.micron.com/news/press-release/2026/Micron-in-High-Volume-Production-of-HBM4-Designed-for-NVIDIA-Vera-Rubin-PCIe-Gen6-SSD-and-SOCAMM2-03-16-2026/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-03-16","originFingerprint":"micron-ir:2026-03-16:hbm4-hvp"},
+      {"url":"https://investors.micron.com/news/press-release/2026/Micron-Accelerates-U-S--Investments-Pours-First-Concrete-at-New-York-Fab/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-07-09","originFingerprint":"micron-ir:2026-07-09:us-investment-ny-concrete"},
+      {"url":"https://investors.micron.com/news/press-release/2026/Micron-Announces-Up-to-3-Billion-Strategic-Investment-to-Strengthen-U-S--Semiconductor-Ecosystem/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-07-09","originFingerprint":"micron-ir:2026-07-09:globalwafers-supply"}
+    ],
+    "risks":[{"risk":"Successor bottlenecks can move from wafer availability to packaging/yield/customer qualification and later to utilization/pricing.","gating":false}],
+    "causalEdges":[
+      {"from":"AI accelerator scaling","to":"HBM/advanced DRAM demand","mechanism":"larger models and accelerator clusters require more bandwidth and memory capacity","falsifier":"architectures materially reduce external advanced-memory intensity or competing memory approaches displace HBM/DRAM economics"},
+      {"from":"Micron HBM4 production and capacity expansion","to":"AI memory supply","mechanism":"qualified HBM production plus added wafer/packaging capacity can convert bottleneck demand into shipments","falsifier":"yield, qualification, schedule or utilization failures prevent economic volume"},
+      {"from":"geographic fab and wafer-supply diversification","to":"supply resilience","mechanism":"distributed production and longer-duration input planning reduce concentration","falsifier":"projects slip materially, supply agreements fail, or new capacity is structurally uneconomic"}
+    ],
+    "contradictions":[],
+    "unknowns":[{"unknown":"Long-run HBM4 customer mix, share and economics are not established by the reused evidence.","gating":false}],
+    "gatingIssues":[],"confidence":94,"recommendedNextState":"researching","recommendedOwner":"council-alpha","lineage":{"supersedes":null,"reuses":["data/runtime/workgraph/evidence/MU-20260917T2200Z-earth-scout.json"]}
+  },
+  {
+    "version":1,"ticker":"MU","entityId":"MU","workId":"t0:MU","cycleKey":"20260917T2200Z","role":"council-beta","perspective":"adversarial-red-team","generatedAt":"2026-09-19T10:24:20Z",
+    "claims":[
+      {"claim":"The strongest falsification pressure is not absence of execution but memory-cycle reflexivity: simultaneous industry capacity additions can erode pricing and returns even if AI bit demand continues growing.","status":"supported"},
+      {"claim":"Named HBM4 production supports execution credibility, but does not by itself prove durable pricing power, broad customer diversification or attractive returns on the exceptionally large multi-year capacity program.","status":"supported"}
+    ],
+    "factors":[
+      {"name":"capitalIntensity","direction":"negative","basis":"Large multi-year fab and ecosystem commitments increase fixed-cost and cycle-timing exposure."},
+      {"name":"competitiveResponse","direction":"mixed","basis":"HBM leadership can shift across generations as competing memory suppliers add capacity and improve products."},
+      {"name":"confidenceInflation","direction":"mixed","basis":"Production milestones are real, but extrapolating them into durable share/margin leadership would outrun disclosed evidence."}
+    ],
+    "sources":[
+      {"url":"https://investors.micron.com/news/press-release/2026/Micron-in-High-Volume-Production-of-HBM4-Designed-for-NVIDIA-Vera-Rubin-PCIe-Gen6-SSD-and-SOCAMM2-03-16-2026/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-03-16","originFingerprint":"micron-ir:2026-03-16:hbm4-hvp"},
+      {"url":"https://investors.micron.com/news/press-release/2026/Micron-Accelerates-U-S--Investments-Pours-First-Concrete-at-New-York-Fab/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-07-09","originFingerprint":"micron-ir:2026-07-09:us-investment-ny-concrete"}
+    ],
+    "risks":[
+      {"risk":"Memory cyclicality and industry supply response can compress pricing/margins before long-dated capacity earns target returns.","gating":false},
+      {"risk":"Customer/platform concentration in disclosed HBM evidence could make demand transitions more abrupt than aggregate AI growth suggests.","gating":false},
+      {"risk":"Construction, yield and qualification slippage can convert strategic capacity into underutilized capital.","gating":false}
+    ],
+    "causalEdges":[{"from":"industry capacity response","to":"memory pricing and returns","mechanism":"supply growth can outrun demand and reduce utilization/pricing","falsifier":"sustained demand and disciplined supply keep utilization and margins structurally high through new ramps"}],
+    "contradictions":[{"claim":"Strong present product execution versus large future-cycle exposure","resolution":"Both can coexist; present production validates capability while future return durability remains contingent on demand, pricing and utilization.","resolved":true,"gating":false}],
+    "unknowns":[{"unknown":"Current evidence does not quantify customer concentration, contracted HBM economics or return on incremental long-dated capacity.","gating":false}],
+    "gatingIssues":[],"confidence":92,"recommendedNextState":"researching","recommendedOwner":"council-alpha","lineage":{"supersedes":null,"reuses":["data/runtime/workgraph/evidence/MU-20260917T2200Z-earth-scout.json"]}
+  }
+]

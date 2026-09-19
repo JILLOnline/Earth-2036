@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CSCO",
   "workId": "t0:CSCO",
-  "generatedAt": "2026-09-19T11:33:56.247Z",
+  "generatedAt": "2026-09-19T12:10:18.607Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T11:11:30.688Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-08-25T00:00:00.000Z",
+    "end": "2026-09-19T12:08:05.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T12:08:05.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,58 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/CSCO-20260919T120805Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "alignment2036",
+      "crossDivisionLeverage",
+      "bottleneckControl",
+      "supplyChainResilience",
+      "catalystScore",
+      "scenarioRobustness",
+      "thesisQuality"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "supplyChainResilience"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "crossDivisionLeverage",
+        "catalystScore",
+        "scenarioRobustness",
+        "thesisQuality"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +121,38 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "alignment2036",
+    "crossDivisionLeverage",
+    "bottleneckControl",
+    "supplyChainResilience",
+    "catalystScore",
+    "scenarioRobustness",
+    "thesisQuality"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Integrated AI infrastructure competes in a fast-moving ecosystem where compute economics, power/cooling constraints and vendor concentration can shift quickly.",
+        "gating": false
+      },
+      {
+        "risk": "Product integration progress must be validated against realized cross-sell, recurring revenue growth and acquisition return economics.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Integrated AI infrastructure competes in a fast-moving ecosystem where compute economics, power/cooling constraints and vendor concentration can shift quickly.",
+      "gating": false
+    },
+    {
+      "risk": "Product integration progress must be validated against realized cross-sell, recurring revenue growth and acquisition return economics.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +160,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +169,68 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
+    "rawSourceCount": 2,
+    "uniqueSourceCount": 2,
     "duplicatesCollapsed": 0,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "issuer:CSCO:SecureAIFactory-NVIDIA-Supermicro:20260825",
+      "issuer:CSCO:SplunkAI:20260915"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "issuer:CSCO:SecureAIFactory:20260825",
+      "url": "https://investor.cisco.com/news/news-details/2026/Cisco-Expands-Secure-AI-Factory-with-NVIDIA-for-the-Rack-Scale-Era/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-25",
+      "originFingerprint": "issuer:CSCO:SecureAIFactory-NVIDIA-Supermicro:20260825"
+    },
+    {
+      "sourceId": "issuer:CSCO:SplunkAI:20260915",
+      "url": "https://investor.cisco.com/news/news-details/2026/Cisco-Delivers-Trusted-AI-at-Scale-Through-New-Splunk-Advancements/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-15",
+      "originFingerprint": "issuer:CSCO:SplunkAI:20260915"
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Incremental Secure AI Factory bookings and margin contribution are not quantified in the announcement.",
+      "gating": false
+    },
+    {
+      "unknown": "The release does not quantify Splunk-driven incremental bookings, retention or acquisition synergies realized to date.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 89,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +244,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +254,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

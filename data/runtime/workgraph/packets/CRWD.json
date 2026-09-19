@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CRWD",
   "workId": "t0:CRWD",
-  "generatedAt": "2026-09-19T11:33:56.250Z",
+  "generatedAt": "2026-09-19T12:10:18.611Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T11:11:30.688Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-09-01T00:00:00.000Z",
+    "end": "2026-09-19T12:08:04.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T12:08:04.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,56 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/CRWD-20260919T120804Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "alignment2036",
+      "crossDivisionLeverage",
+      "bottleneckControl",
+      "catalystScore",
+      "scenarioRobustness",
+      "thesisQuality"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "catalystScore"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "catalystScore",
+        "scenarioRobustness",
+        "thesisQuality"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +119,37 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "alignment2036",
+    "crossDivisionLeverage",
+    "bottleneckControl",
+    "catalystScore",
+    "scenarioRobustness",
+    "thesisQuality"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Partnership and product announcements do not establish incremental revenue, margins or durable AI-security share.",
+        "gating": false
+      },
+      {
+        "risk": "Rapid product breadth raises execution complexity and creates a need to verify customer conversion rather than announcement velocity.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Partnership and product announcements do not establish incremental revenue, margins or durable AI-security share.",
+      "gating": false
+    },
+    {
+      "risk": "Rapid product breadth raises execution complexity and creates a need to verify customer conversion rather than announcement velocity.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +157,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 4
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +166,86 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 4,
     "duplicatesCollapsed": 0,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "issuer:CRWD:OpenAI-FalconGuardian:20260902",
+      "issuer:CRWD:HCLTech-FalconGuardian:20260914",
+      "issuer:CRWD:FalconGuardian:20260901",
+      "issuer:CRWD:AgenticSOC:20260902"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "issuer:CRWD:OpenAI:20260902",
+      "url": "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-and-openai-expand-partnership-secure-agentic-era",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-02",
+      "originFingerprint": "issuer:CRWD:OpenAI-FalconGuardian:20260902"
+    },
+    {
+      "sourceId": "issuer:CRWD:HCLTech:20260914",
+      "url": "https://www.crowdstrike.com/en-us/press-releases/hcltech-crowdstrike-expand-strategic-partnership-advancing-ai-security-resilience/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-14",
+      "originFingerprint": "issuer:CRWD:HCLTech-FalconGuardian:20260914"
+    },
+    {
+      "sourceId": "issuer:CRWD:Guardian:20260901",
+      "url": "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-unveils-falcon-guardian-secure-ai-agents-where-they",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-01",
+      "originFingerprint": "issuer:CRWD:FalconGuardian:20260901"
+    },
+    {
+      "sourceId": "issuer:CRWD:AgenticSOC:20260902",
+      "url": "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-unveils-next-evolution-agentic-soc",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-02",
+      "originFingerprint": "issuer:CRWD:AgenticSOC:20260902"
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Falcon Guardian adoption, pricing and attach rates are not quantified in these releases.",
+      "gating": false
+    },
+    {
+      "unknown": "Current-quarter net retention, module adoption and free-cash-flow conversion are outside these product releases.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 87,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +259,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +269,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

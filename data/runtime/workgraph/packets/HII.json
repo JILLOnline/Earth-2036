@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "HII",
   "workId": "t0:HII",
-  "generatedAt": "2026-09-19T20:35:48.353Z",
+  "generatedAt": "2026-09-19T21:04:40.889Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T19:14:07.647Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-08-04T00:00:00.000Z",
+    "end": "2026-09-19T21:02:25.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T21:02:25.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,60 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/HII-20260919T210225Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "alignment2036",
+      "bottleneckControl",
+      "crossDivisionLeverage",
+      "catalystScore",
+      "supplyChainResilience",
+      "financialOperatingMomentum",
+      "scenarioRobustness",
+      "substitutionResilience"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "alignment2036",
+        "bottleneckControl",
+        "crossDivisionLeverage",
+        "catalystScore",
+        "supplyChainResilience"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "catalystScore",
+        "substitutionResilience"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +123,31 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "alignment2036",
+    "bottleneckControl",
+    "crossDivisionLeverage",
+    "catalystScore",
+    "supplyChainResilience",
+    "financialOperatingMomentum",
+    "scenarioRobustness",
+    "substitutionResilience"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "U.S. naval programs carry schedule, labor, supplier, appropriations and cost-overrun risk.",
+      "Automation investments may require substantial process redesign before promised throughput gains are realized.",
+      "Demand visibility does not eliminate execution risk; shipyard productivity and workforce constraints remain central to delivery economics.",
+      "Government program concentration and budget timing can shift cash-flow and margin realization."
+    ]
   },
-  "risks": [],
+  "risks": [
+    "U.S. naval programs carry schedule, labor, supplier, appropriations and cost-overrun risk.",
+    "Automation investments may require substantial process redesign before promised throughput gains are realized.",
+    "Demand visibility does not eliminate execution risk; shipyard productivity and workforce constraints remain central to delivery economics.",
+    "Government program concentration and budget timing can shift cash-flow and margin realization."
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +155,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 5
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +164,96 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 10,
+    "uniqueSourceCount": 5,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "hii.com|2026-09-11|cvn82-336m-lltm",
+      "hii.com|2026-08-06|robotics-up-to-900m",
+      "hii.com|2026-08-04|ingalls-welding-automation",
+      "hii.com|2026-09-15|army-airdrop-autonomy",
+      "hii.com|2026-09-04|shipbuilding-pace-strategy"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "origin": "hii.com",
+      "url": "https://www.hii.com/news/hii-is-awarded-long-lead-time-materials-contract-for-cvn-82",
+      "publishedAt": "2026-09-11",
+      "sourceType": "issuer-primary",
+      "originFingerprint": "hii.com|2026-09-11|cvn82-336m-lltm",
+      "sourceId": null,
+      "primary": true
+    },
+    {
+      "origin": "hii.com",
+      "url": "https://www.hii.com/news/hii-signs-performance-based-production-agreements-with-path-robotics-and-graymatter-robotics",
+      "publishedAt": "2026-08-06",
+      "sourceType": "issuer-primary",
+      "originFingerprint": "hii.com|2026-08-06|robotics-up-to-900m",
+      "sourceId": null,
+      "primary": true
+    },
+    {
+      "origin": "hii.com",
+      "url": "https://www.hii.com/news/hii-expands-welding-automation-at-ingalls-shipbuilding-through-partnership-with-hd-hhi",
+      "publishedAt": "2026-08-04",
+      "sourceType": "issuer-primary",
+      "originFingerprint": "hii.com|2026-08-04|ingalls-welding-automation",
+      "sourceId": null,
+      "primary": true
+    },
+    {
+      "origin": "hii.com",
+      "url": "https://www.hii.com/news/hii-to-advance-airdrop-technologies-for-us-army-soldier-sustainment",
+      "publishedAt": "2026-09-15",
+      "sourceType": "issuer-primary",
+      "originFingerprint": "hii.com|2026-09-15|army-airdrop-autonomy",
+      "sourceId": null,
+      "primary": true
+    },
+    {
+      "origin": "hii.com",
+      "url": "https://www.hii.com/news/hii-details-strategy-to-increase-shipbuilding-pace-for-us-navy",
+      "publishedAt": "2026-09-04",
+      "sourceType": "issuer-primary",
+      "originFingerprint": "hii.com|2026-09-04|shipbuilding-pace-strategy",
+      "sourceId": null,
+      "primary": true
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    "The $900M robotics agreement value is an up-to amount; actual deployment pace and economics are not established here.",
+    "CVN 82 full construction authorization, timing and ultimate contract economics remain future decisions.",
+    "Numeric margin uplift from automation is not disclosed.",
+    "Scout leaves numeric underwriting, valuation and final causal judgment to Alpha/Beta."
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 85,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +267,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +277,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

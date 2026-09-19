@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "HON",
   "workId": "t0:HON",
-  "generatedAt": "2026-09-19T20:35:48.353Z",
+  "generatedAt": "2026-09-19T21:04:40.888Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T19:14:07.647Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-06-09T00:00:00.000Z",
+    "end": "2026-09-19T21:02:25.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T21:02:25.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,60 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/HON-20260919T210225Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "alignment2036",
+      "crossDivisionLeverage",
+      "bottleneckControl",
+      "catalystScore",
+      "scenarioRobustness",
+      "financialOperatingMomentum",
+      "governancePower",
+      "pricingPower"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "catalystScore",
+        "scenarioRobustness"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "financialOperatingMomentum",
+        "governancePower",
+        "scenarioRobustness",
+        "pricingPower"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +123,31 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "alignment2036",
+    "crossDivisionLeverage",
+    "bottleneckControl",
+    "catalystScore",
+    "scenarioRobustness",
+    "financialOperatingMomentum",
+    "governancePower",
+    "pricingPower"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "Historical HON comparisons require recasting because the aerospace separation materially changed the entity represented by the ticker.",
+      "Autonomous industrial-control adoption carries safety, cybersecurity, validation and customer-change-management risk.",
+      "Targets are forward-looking management expectations and require independent quarterly verification.",
+      "Separation can expose stranded-cost, dis-synergy and recast-history interpretation risk."
+    ]
   },
-  "risks": [],
+  "risks": [
+    "Historical HON comparisons require recasting because the aerospace separation materially changed the entity represented by the ticker.",
+    "Autonomous industrial-control adoption carries safety, cybersecurity, validation and customer-change-management risk.",
+    "Targets are forward-looking management expectations and require independent quarterly verification.",
+    "Separation can expose stranded-cost, dis-synergy and recast-history interpretation risk."
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +155,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 3
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +164,76 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "honeywell.com|2026-06-29|hon-pureplay-spin-complete",
+      "honeywell.com|2026-06-09|experion-cognition-autonomy",
+      "investor.honeywell.com|2026-09-19|postspin-targets"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "origin": "honeywell.com",
+      "url": "https://www.honeywell.com/us/en/news/press-releases/2026/06/honeywell-technologies-launches-independent-pure-play-automation-company-following-honeywell-aerospace-spin-off",
+      "publishedAt": "2026-06-29",
+      "sourceType": "issuer-primary",
+      "originFingerprint": "honeywell.com|2026-06-29|hon-pureplay-spin-complete",
+      "sourceId": null,
+      "primary": true
+    },
+    {
+      "origin": "honeywell.com",
+      "url": "https://www.honeywell.com/us/en/news/press-releases/2026/06/honeywell-introduces-experion-cognition-to-deliver-autonomous-control-room-operations-for-borouge-international",
+      "publishedAt": "2026-06-09",
+      "sourceType": "issuer-primary",
+      "originFingerprint": "honeywell.com|2026-06-09|experion-cognition-autonomy",
+      "sourceId": null,
+      "primary": true
+    },
+    {
+      "origin": "investor.honeywell.com",
+      "url": "https://investor.honeywell.com/",
+      "publishedAt": "2026-09-19-accessed",
+      "sourceType": "issuer-primary",
+      "originFingerprint": "investor.honeywell.com|2026-09-19|postspin-targets",
+      "sourceId": null,
+      "primary": true
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    "Current post-spin segment results and adoption/revenue contribution from Experion Cognition are not established by these releases.",
+    "The packet identity should be checked to ensure no pre-spin Honeywell International assumptions contaminate post-spin HON underwriting.",
+    "No numeric Earth score is inferred.",
+    "Current valuation and whether post-spin results track the stated targets remain Alpha-owned."
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 86,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +247,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +257,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

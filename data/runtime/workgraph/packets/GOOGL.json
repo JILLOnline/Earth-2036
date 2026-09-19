@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "GOOGL",
   "workId": "t0:GOOGL",
-  "generatedAt": "2026-09-19T20:35:48.349Z",
+  "generatedAt": "2026-09-19T21:04:40.884Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T19:14:07.647Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2025-12-22T00:00:00.000Z",
+    "end": "2026-09-19T21:02:25.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T21:02:25.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,60 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/GOOGL-20260919T210225Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "alignment2036",
+      "bottleneckControl",
+      "crossDivisionLeverage",
+      "catalystScore",
+      "supplyChainResilience",
+      "financialOperatingMomentum",
+      "scenarioRobustness",
+      "pricingPower"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "alignment2036",
+        "bottleneckControl",
+        "crossDivisionLeverage",
+        "catalystScore",
+        "supplyChainResilience"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower",
+        "catalystScore"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +123,31 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "alignment2036",
+    "bottleneckControl",
+    "crossDivisionLeverage",
+    "catalystScore",
+    "supplyChainResilience",
+    "financialOperatingMomentum",
+    "scenarioRobustness",
+    "pricingPower"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "The scale of planned capex raises return-on-invested-capital and execution risk if AI monetization lags infrastructure deployment.",
+      "Energy and data-center development exposes Alphabet to permitting, grid interconnection, construction and power-market constraints.",
+      "Large capex commitments can compress free cash flow and magnify forecasting errors.",
+      "AI product competition and rapid model/hardware shifts can shorten the useful economic life of infrastructure assumptions."
+    ]
   },
-  "risks": [],
+  "risks": [
+    "The scale of planned capex raises return-on-invested-capital and execution risk if AI monetization lags infrastructure deployment.",
+    "Energy and data-center development exposes Alphabet to permitting, grid interconnection, construction and power-market constraints.",
+    "Large capex commitments can compress free cash flow and magnify forecasting errors.",
+    "AI product competition and rapid model/hardware shifts can shorten the useful economic life of infrastructure assumptions."
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +155,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +164,66 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "abc.xyz|2026-q4call|cloud48-backlog240-capex175-185",
+      "abc.xyz|2025-12-22|intersect-4.75b-multigw"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "origin": "abc.xyz",
+      "url": "https://abc.xyz/investor/events/event-details/2026/2025-Q4-Earnings-Call-2026-Dr_C033hS6/default.aspx",
+      "publishedAt": "2026-02",
+      "sourceType": "issuer-primary",
+      "originFingerprint": "abc.xyz|2026-q4call|cloud48-backlog240-capex175-185",
+      "sourceId": null,
+      "primary": true
+    },
+    {
+      "origin": "abc.xyz",
+      "url": "https://abc.xyz/investor/news/news-details/2025/Alphabet-Announces-Agreement-to-Acquire-Intersect-to-Advance-U-S--Energy-Innovation-2025-DVIuVDM9wW/default.aspx",
+      "publishedAt": "2025-12-22",
+      "sourceType": "issuer-primary",
+      "originFingerprint": "abc.xyz|2025-12-22|intersect-4.75b-multigw",
+      "sourceId": null,
+      "primary": true
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    "Current 2026 quarterly realization versus the initial $175B-$185B capex plan was not established by the retrieved primary sources.",
+    "Intersect transaction close status and post-close integration contribution require current verification.",
+    "Scout does not infer valuation or numeric factor scores.",
+    "Updated 2026 operating results are required for current execution calibration."
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 78,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +237,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +247,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

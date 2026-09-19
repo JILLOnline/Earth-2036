@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "EOSE",
   "workId": "t0:EOSE",
-  "generatedAt": "2026-09-19T15:25:43.710Z",
+  "generatedAt": "2026-09-19T16:10:16.427Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T14:09:52.074Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-09-19T16:07:49.000Z",
+    "end": "2026-09-19T16:07:49.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T16:07:49.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,54 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/EOSE-20260919T160749Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "executionCapability",
+      "financialOperatingMomentum",
+      "scenarioRobustness",
+      "supplyChainResilience"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "executionCapability",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "supplyChainResilience"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "executionCapability",
+        "financialOperatingMomentum",
+        "scenarioRobustness"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +117,43 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "executionCapability",
+    "financialOperatingMomentum",
+    "scenarioRobustness",
+    "supplyChainResilience"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Revenue/backlog concentration around FPUSA and deeply negative gross margin create material conversion and profitability risk despite rapid top-line growth.",
+        "gating": false
+      },
+      {
+        "risk": "Tightened guidance and contemplated manufacturing consolidation indicate timing/capacity-utilization execution remains unsettled.",
+        "gating": false
+      },
+      {
+        "risk": "Scale without margin improvement can increase cash consumption; concentrated project economics can make headline growth less durable than it appears.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Revenue/backlog concentration around FPUSA and deeply negative gross margin create material conversion and profitability risk despite rapid top-line growth.",
+      "gating": false
+    },
+    {
+      "risk": "Tightened guidance and contemplated manufacturing consolidation indicate timing/capacity-utilization execution remains unsettled.",
+      "gating": false
+    },
+    {
+      "risk": "Scale without margin improvement can increase cash consumption; concentrated project economics can make headline growth less durable than it appears.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +161,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +170,66 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "eos:2026-08-05:q2-results",
+      "eos:2026-06-16:line2-production"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "eos:2026-08-05:q2-results",
+      "url": "https://investors.eose.com/news-releases/news-release-details/eos-energy-enterprises-reports-second-quarter-2026-financial",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "eos:2026-08-05:q2-results"
+    },
+    {
+      "sourceId": "eos:2026-06-16:line2-production",
+      "url": "https://investors.eose.com/news-releases/news-release-details/eos-energy-enterprises-launches-commercial-production-second",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "eos:2026-06-16:line2-production"
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "The path and timing to positive gross margin and sustainable cash generation are not established by current operating evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "No evidence in this pass proves Line 2 speed gains translate into positive unit economics at sustained high utilization.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 96,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +243,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +253,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-19T17:14:38.063Z",
+  "updatedAt": "2026-09-19T18:16:03.032Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -278,6 +278,18 @@
       "type": "market",
       "label": "direct-to-device coverage and capacity",
       "description": "additional functioning satellites increase orbital service availability to partner networks"
+    },
+    {
+      "id": "company:INTC",
+      "type": "company",
+      "label": "Intel Corporation",
+      "description": "Intel's structural thesis couples x86/AI compute demand to domestic leading-edge logic manufacturing and advanced packaging; 18A/18A-P and 14A are intended to turn process capability into both internal product advantage and external foundry capacity."
+    },
+    {
+      "id": "market:INTC-intel-products-and-advanced-node-wafer-demand",
+      "type": "market",
+      "label": "Intel Products and advanced-node wafer demand",
+      "description": "higher-performance workloads pull premium CPUs and leading-edge process capacity"
     }
   ],
   "edges": [
@@ -698,6 +710,20 @@
         "asts:ir-quarterly-results:observed-2026-09-18"
       ],
       "observedAt": "2026-09-19T05:27:53Z"
+    },
+    {
+      "id": "edge:INTC-structural-exposure",
+      "from": "company:INTC",
+      "to": "market:INTC-intel-products-and-advanced-node-wafer-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 70,
+      "confidence": 93,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:INTC:2026Q2-10Q"
+      ],
+      "observedAt": "2026-09-19T12:27:02Z"
     }
   ],
   "structuralSignals": [
@@ -1180,6 +1206,24 @@
       "observedAt": "2026-09-19T05:27:53Z",
       "thesis": "AST SpaceMobile's structural thesis links ordinary mobile-device connectivity demand to orbital direct-to-device infrastructure: greater BlueBird constellation density can increase coverage/capacity available through partner networks.",
       "falsifier": "launched satellites fail commissioning or coverage/capacity does not scale with deployment"
+    },
+    {
+      "id": "signal:INTC-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:INTC-intel-products-and-advanced-node-wafer-demand",
+      "affectedNodeIds": [
+        "company:INTC"
+      ],
+      "direction": 1,
+      "magnitude": 70,
+      "confidence": 93,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:INTC:2026Q2-10Q"
+      ],
+      "observedAt": "2026-09-19T12:27:02Z",
+      "thesis": "Intel's structural thesis couples x86/AI compute demand to domestic leading-edge logic manufacturing and advanced packaging; 18A/18A-P and 14A are intended to turn process capability into both internal product advantage and external foundry capacity.",
+      "falsifier": "product share or premium mix reverses despite market growth"
     }
   ],
   "roadmapMilestones": [

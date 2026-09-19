@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "FLNC",
   "workId": "t0:FLNC",
-  "generatedAt": "2026-09-19T18:29:57.889Z",
+  "generatedAt": "2026-09-19T19:09:40.437Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T18:07:03.767Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-09-19T19:07:11.000Z",
+    "end": "2026-09-19T19:07:11.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T19:07:11.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,55 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/FLNC-20260919T190711Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "executionCapability",
+      "financialOperatingMomentum",
+      "scenarioRobustness",
+      "demandSignal",
+      "expectationCalibration"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "executionCapability",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "demandSignal"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "executionCapability",
+        "expectationCalibration",
+        "scenarioRobustness"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +118,36 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "executionCapability",
+    "financialOperatingMomentum",
+    "scenarioRobustness",
+    "demandSignal",
+    "expectationCalibration"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Manufacturing ramp delays are now large enough to materially impair current-year revenue and profitability despite strong backlog.",
+        "gating": false
+      },
+      {
+        "risk": "A large backlog can overstate near-term economic realization when production capacity is the binding constraint.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Manufacturing ramp delays are now large enough to materially impair current-year revenue and profitability despite strong backlog.",
+      "gating": false
+    },
+    {
+      "risk": "A large backlog can overstate near-term economic realization when production capacity is the binding constraint.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +155,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +164,76 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "fluence:guidance:2026-09-16",
+      "fluence:q3-results:2026-08-05"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "sourceId": "fluence:2026-09-16-guidance",
+      "url": "https://ir.fluenceenergy.com/news-releases/news-release-details/fluence-energy-announces-revised-guidance-fiscal-year-2026",
+      "kind": "primary-issuer",
+      "primary": true,
+      "originFingerprint": "fluence:guidance:2026-09-16"
+    },
+    {
+      "sourceId": "fluence:2026q3-results",
+      "url": "https://ir.fluenceenergy.com/news-releases/news-release-details/fluence-energy-inc-reports-third-fiscal-quarter-2026-results",
+      "kind": "primary-issuer",
+      "primary": true,
+      "originFingerprint": "fluence:q3-results:2026-08-05"
+    }
+  ],
+  "contradictions": [
+    {
+      "contradiction": "Record backlog/order intake indicates demand strength while repeated guidance reductions indicate execution bottlenecks are preventing timely conversion.",
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "contradiction": "Record backlog/order intake indicates demand strength while repeated guidance reductions indicate execution bottlenecks are preventing timely conversion.",
+        "gating": false
+      }
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Timing and cost required to stabilize U.S. contract manufacturing and recover deferred project economics remain uncertain.",
+      "gating": false
+    },
+    {
+      "unknown": "Whether delayed revenue shifts into FY2027 without further margin erosion is not yet demonstrated.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 99,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +247,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +257,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

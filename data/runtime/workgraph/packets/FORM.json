@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "FORM",
   "workId": "t0:FORM",
-  "generatedAt": "2026-09-19T18:29:57.886Z",
+  "generatedAt": "2026-09-19T19:09:40.435Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T18:07:03.767Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-09-19T19:07:11.000Z",
+    "end": "2026-09-19T19:07:11.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T19:07:11.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,55 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/FORM-20260919T190711Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "financialOperatingMomentum",
+      "executionCapability",
+      "aiInfrastructureExposure",
+      "technologyPosition",
+      "expectationCalibration"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "financialOperatingMomentum",
+        "executionCapability",
+        "aiInfrastructureExposure",
+        "technologyPosition"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "executionCapability",
+        "expectationCalibration",
+        "technologyPosition"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +118,36 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "financialOperatingMomentum",
+    "executionCapability",
+    "aiInfrastructureExposure",
+    "technologyPosition",
+    "expectationCalibration"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "HBM/CPO growth exposure remains tied to semiconductor capital and product-cycle timing; record quarterly results do not establish cycle durability.",
+        "gating": false
+      },
+      {
+        "risk": "Strong current demand may be cyclical rather than structural.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "HBM/CPO growth exposure remains tied to semiconductor capital and product-cycle timing; record quarterly results do not establish cycle durability.",
+      "gating": false
+    },
+    {
+      "risk": "Strong current demand may be cyclical rather than structural.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +155,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +164,58 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 2,
+    "uniqueSourceCount": 1,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "formfactor:q2-results:2026-07-29"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "formfactor:2026q2-results",
+      "url": "https://investors.formfactor.com/news-releases/news-release-details/formfactor-inc-reports-2026-second-quarter-results",
+      "kind": "primary-issuer",
+      "primary": true,
+      "originFingerprint": "formfactor:q2-results:2026-07-29"
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Customer concentration and incremental economics of the Keystone partnership are not established by this source.",
+      "gating": false
+    },
+    {
+      "unknown": "Forward order visibility and customer-level dependence require additional primary evidence.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 96,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +229,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +239,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

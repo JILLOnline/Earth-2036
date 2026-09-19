@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-19T22:15:52.246Z",
+  "updatedAt": "2026-09-19T23:18:17.446Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -326,6 +326,18 @@
       "type": "market",
       "label": "carrier-and-data-center-capacity",
       "description": "American Tower sits between mobile/data demand and scarce physical hosting infrastructure: tower sites enable carrier radio deployment while CoreSite interconnection/data-center assets expose the company to data-intensive workloads. Q2 2026 evidence of robust tower leasing plus record CoreSite leasing supports this dual-infrastructure bridge, but does not establish that either demand stream is permanently scarce."
+    },
+    {
+      "id": "company:ARRY",
+      "type": "company",
+      "label": "Array Technologies",
+      "description": "ARRAY sits between utility-scale solar module deployment and the physical tracking/control layer: tracker hardware and software improve energy capture, while its installed scale and $2.5B orderbook indicate customers continue to allocate capital to this layer."
+    },
+    {
+      "id": "market:ARRY-arry-structural-demand",
+      "type": "market",
+      "label": "ARRY structural demand",
+      "description": "ARRAY sits between utility-scale solar module deployment and the physical tracking/control layer: tracker hardware and software improve energy capture, while its installed scale and $2.5B orderbook indicate customers continue to allocate capital to this layer."
     }
   ],
   "edges": [
@@ -807,6 +819,21 @@
         "sec:AMT:2026Q2:10Q"
       ],
       "observedAt": "2026-09-19T14:24:43Z"
+    },
+    {
+      "id": "edge:ARRY-structural-exposure",
+      "from": "company:ARRY",
+      "to": "market:ARRY-arry-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 57,
+      "confidence": 86,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:ARRY:2026Q2",
+        "sec:ARRY:2026Q2:10Q"
+      ],
+      "observedAt": "2026-09-19T15:22:52Z"
     }
   ],
   "structuralSignals": [
@@ -1365,6 +1392,25 @@
       ],
       "observedAt": "2026-09-19T14:24:43Z",
       "thesis": "American Tower sits between mobile/data demand and scarce physical hosting infrastructure: tower sites enable carrier radio deployment while CoreSite interconnection/data-center assets expose the company to data-intensive workloads. Q2 2026 evidence of robust tower leasing plus record CoreSite leasing supports this dual-infrastructure bridge, but does not establish that either demand stream is permanently scarce.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:ARRY-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:ARRY-arry-structural-demand",
+      "affectedNodeIds": [
+        "company:ARRY"
+      ],
+      "direction": 1,
+      "magnitude": 57,
+      "confidence": 86,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:ARRY:2026Q2",
+        "sec:ARRY:2026Q2:10Q"
+      ],
+      "observedAt": "2026-09-19T15:22:52Z",
+      "thesis": "ARRAY sits between utility-scale solar module deployment and the physical tracking/control layer: tracker hardware and software improve energy capture, while its installed scale and $2.5B orderbook indicate customers continue to allocate capital to this layer.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

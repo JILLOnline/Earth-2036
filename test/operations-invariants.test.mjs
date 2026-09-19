@@ -146,3 +146,28 @@ test("Assist and calibration outputs are derived inside Workgraph rather than in
   assert.ok(sync.includes('"calibration.json"'));
   assert.ok(reconcile.includes("git add data/runtime/workgraph"));
 });
+
+
+test("engine registry keeps a single canonical authority and explicit Shadow/Lab firewalls", async () => {
+  const registry = JSON.parse(await source("config/engine-registry.json"));
+  assert.equal(registry.canonicalAuthority, "Earth Core");
+  assert.equal(registry.systems.core.canWriteCanonical, true);
+  assert.equal(registry.systems.shadow.canWriteCanonical, false);
+  assert.equal(registry.systems.lab.canWriteCanonical, false);
+  assert.ok(registry.engines.filter((engine) => engine.system !== "core").every((engine) => engine.canonicalAuthority === false));
+});
+
+test("workforce contract preserves ownership while allowing bounded assistance", async () => {
+  const workforce = JSON.parse(await source("config/workforce-contract.json"));
+  assert.ok(workforce.principle.includes("Help every other lane"));
+  assert.ok(workforce.handoffRules.includes("Every assist request retains a root owner."));
+  assert.ok(workforce.handoffRules.includes("No assist request can modify canonical state directly."));
+});
+
+test("Workgraph emits all shadow intelligence under non-canonical derived state", async () => {
+  const sync = await source("scripts/workgraph-sync.mjs");
+  assert.ok(sync.includes('"calibration.json"'));
+  assert.ok(sync.includes('"digital-twins.json"'));
+  assert.ok(sync.includes('"value-allocation.json"'));
+  assert.ok(sync.includes("canonicalWriteAuthority: false"));
+});

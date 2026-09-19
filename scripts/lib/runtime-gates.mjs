@@ -1,23 +1,18 @@
-export const REQUIRED_SCORE_COMPONENTS = [
-  "thesisQuality",
-  "financialOperatingMomentum",
-  "marketValuationOpportunity",
-  "catalystScore",
-  "governancePower",
-  "alignment2036",
-  "crossDivisionLeverage",
-  "bottleneckControl",
-  "scenarioRobustness",
-  "substitutionResilience",
-  "supplyChainResilience",
-  "pricingPower",
-];
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
+export const METHODOLOGY_REGISTRY = require("../../config/methodology-1.0.json");
+export const METHODOLOGY_VERSION = METHODOLOGY_REGISTRY.version;
+export const MIN_PUBLISHABLE_DATA_CONFIDENCE = METHODOLOGY_REGISTRY.minimumPublishableDataConfidence;
+export const ACTIVE_UNIVERSE_SIZE = METHODOLOGY_REGISTRY.activeUniverseSize;
+export const CHAMPIONSHIP_SIZE = METHODOLOGY_REGISTRY.championshipSize;
+export const REQUIRED_SCORE_COMPONENTS = Object.freeze([...METHODOLOGY_REGISTRY.requiredScoreComponents]);
 
 export function clamp01(value) {
   return Math.max(0, Math.min(1, Number(value) || 0));
 }
 
-export function isScoreRecordComplete(record, methodologyVersion = "1.0.0", confidenceFloor = 60) {
+export function isScoreRecordComplete(record, methodologyVersion = METHODOLOGY_VERSION, confidenceFloor = MIN_PUBLISHABLE_DATA_CONFIDENCE) {
   if (!record || record.methodologyVersion !== methodologyVersion) return false;
   if (!Number.isFinite(record.earthScore) || !Number.isFinite(record.risk) || !Number.isFinite(record.dataConfidence)) return false;
   if (record.dataConfidence < confidenceFloor) return false;
@@ -26,7 +21,7 @@ export function isScoreRecordComplete(record, methodologyVersion = "1.0.0", conf
   return true;
 }
 
-export function isPublishableScoreRecord(record, methodologyVersion = "1.0.0", confidenceFloor = 60) {
+export function isPublishableScoreRecord(record, methodologyVersion = METHODOLOGY_VERSION, confidenceFloor = MIN_PUBLISHABLE_DATA_CONFIDENCE) {
   return isScoreRecordComplete(record, methodologyVersion, confidenceFloor) && record.causalMapped === true;
 }
 
@@ -41,7 +36,7 @@ export function rankRecords(records) {
     .map((record, index) => ({
       ...record,
       rank: index + 1,
-      rankClass: index < 10 ? "championship" : "contender",
+      rankClass: index < CHAMPIONSHIP_SIZE ? "championship" : "contender",
     }));
 }
 
@@ -65,15 +60,15 @@ function commonFullUniverseGate({
   intelligenceIntegrityPassed,
 }) {
   return Boolean(
-    companiesExpected === 250 &&
-    companiesObserved === 250 &&
-    identityValidated === 250 &&
-    tradabilityValidated === 250 &&
-    clamp01(sourceCoverage) >= 0.95 &&
+    companiesExpected === ACTIVE_UNIVERSE_SIZE &&
+    companiesObserved === ACTIVE_UNIVERSE_SIZE &&
+    identityValidated === ACTIVE_UNIVERSE_SIZE &&
+    tradabilityValidated === ACTIVE_UNIVERSE_SIZE &&
+    clamp01(sourceCoverage) >= METHODOLOGY_REGISTRY.minimumSourceCoverage &&
     discoveryScanCompleted === true &&
-    methodologyVersion === "1.0.0" &&
+    methodologyVersion === METHODOLOGY_VERSION &&
     unresolvedEvidence === 0 &&
-    scoredCompanies === 250 &&
+    scoredCompanies === ACTIVE_UNIVERSE_SIZE &&
     councilApproved === true &&
     intelligenceIntegrityPassed === true
   );
@@ -96,12 +91,13 @@ export function baselineGate({
   discoveryScanCompleted,
   unresolvedEvidence,
 }) {
+  const expected = ACTIVE_UNIVERSE_SIZE;
   const checks = {
-    identity: identityValidated === 250,
-    tradability: tradabilityValidated === 250,
-    scored: scoredCompanies === 250,
-    publishable: publishableCompanies === 250,
-    sourceCoverage: clamp01(sourceCoverage) >= 0.95,
+    identity: identityValidated === expected,
+    tradability: tradabilityValidated === expected,
+    scored: scoredCompanies === expected,
+    publishable: publishableCompanies === expected,
+    sourceCoverage: clamp01(sourceCoverage) >= METHODOLOGY_REGISTRY.minimumSourceCoverage,
     discovery: discoveryScanCompleted === true,
     evidenceQueue: unresolvedEvidence === 0,
   };

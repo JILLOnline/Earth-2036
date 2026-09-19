@@ -171,3 +171,35 @@ test("Workgraph emits all shadow intelligence under non-canonical derived state"
   assert.ok(sync.includes('"value-allocation.json"'));
   assert.ok(sync.includes("canonicalWriteAuthority: false"));
 });
+
+
+test("production UI has no legacy external ledger or retired hosting authority", async () => {
+  const system = await source("app/system/page.tsx");
+  const shell = await source("app/components/EarthShell.tsx");
+  const ledger = await source("app/ledger/page.tsx");
+  const registry = JSON.parse(await source("data/runtime/supervisors/registry.json"));
+  const combined = [system, shell, ledger, JSON.stringify(registry)].join("\n").toLowerCase();
+
+  assert.equal(combined.includes("docs.google.com/spreadsheets"), false);
+  assert.equal(combined.includes("netlify"), false);
+  assert.equal(combined.includes("vercel"), false);
+  assert.equal(JSON.stringify(registry).includes("Sheet mirror"), false);
+  assert.ok(shell.includes('["/ledger", "LEDGER"]'));
+  assert.ok(system.includes('href="/ledger"'));
+});
+
+test("System UI distinguishes integrity lock from workflow attention", async () => {
+  const system = await source("app/system/page.tsx");
+  assert.ok(system.includes('const integrityPass = integrity.passed && integrity.sourceMesh.passed'));
+  assert.ok(system.includes('workgraph.healthy === true ? "PASS" : "ATTENTION"'));
+  assert.ok(system.includes('detail="EVIDENCE COVERAGE"'));
+});
+
+test("Trust Ledger exposes doctrine and shadow authority without turning operational priority into company rank", async () => {
+  const ledger = await source("app/ledger/page.tsx");
+  const allocator = await source("scripts/lib/value-allocator.mjs");
+  assert.ok(ledger.includes("TRUST LEDGER"));
+  assert.ok(ledger.includes("NO CANONICAL WRITES"));
+  assert.ok(ledger.includes("VALUE ALLOCATION"));
+  assert.ok(allocator.includes("never a company-quality or investment score"));
+});

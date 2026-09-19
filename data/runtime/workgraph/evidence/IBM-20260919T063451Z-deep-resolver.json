@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-deep-resolver-evidence",
+  "ticker": "IBM",
+  "entityId": "IBM",
+  "workId": "t0:IBM",
+  "role": "deep-resolver",
+  "generatedAt": "2026-09-19T06:34:51Z",
+  "directive": {
+    "companyWorkId": "t0:IBM",
+    "gatingQuestion": "Does the currently routed unresolved_material_contradiction remain unresolved after the active deep-resolver evidence already dispositioned both IBM contradictions?",
+    "whyItMatters": "The ranked routing artifact still assigns IBM to deep-resolver even though active structured resolver evidence resolves both contradiction premises; stale contradiction routing blocks closure.",
+    "preferredPrimarySource": "IBM Q2 2026 earnings release already referenced by the packet and active resolver evidence",
+    "lawfulFallbacks": ["IBM Q1 2026 earnings release", "SEC-filed Q2 earnings exhibit", "active prior deep-resolver evidence"],
+    "successCondition": "Confirm whether any factual contradiction remains; otherwise identify stale routing/reconciliation as the exact defect.",
+    "attemptCount": 3
+  },
+  "result": "resolved",
+  "finding": "No factual contradiction remains. Active resolver evidence establishes that portfolio divergence can coexist with modest consolidated growth, and that the premise that Q2 raised full-year revenue expectations is false. The current deep-resolver queue is stale relative to active structured evidence.",
+  "evidenceVsInference": {
+    "evidence": "The current packet still lists the two contradiction strings while active evidence IBM-20260919T053229Z-deep-resolver.json resolves both from issuer Q1/Q2 sources at 98 confidence.",
+    "inference": "The remaining defect is deterministic evidence reconciliation/routing, not an unresolved research question. Segment divergence and future execution follow-through remain underwriting risks."
+  },
+  "sources": [
+    {"sourceId":"issuer:IBM:2026Q2","url":"https://newsroom.ibm.com/2026-07-22-IBM-RELEASES-SECOND-QUARTER-RESULTS","kind":"primary","primary":true,"publishedAt":"2026-07-22"},
+    {"sourceId":"resolver:IBM:active","path":"data/runtime/workgraph/evidence/IBM-20260919T053229Z-deep-resolver.json","kind":"structured_evidence","primary":false}
+  ],
+  "contradictionStatus": "resolved",
+  "confidence": 99,
+  "gateImpact": "close_unresolved_material_contradiction_on_reconcile",
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "recommendedDisposition": "Remove deep-resolver ownership for IBM on deterministic reconcile; preserve non-contradiction execution and segment-divergence risks.",
+  "lineage": {
+    "inputPacket": "data/runtime/workgraph/packets/IBM.json",
+    "inputEvidence": ["data/runtime/workgraph/evidence/IBM-20260919T053229Z-deep-resolver.json"],
+    "beganFromGitHead": "ede93b6d8cea2a05b84459928e1318d358dc7b81"
+  }
+}

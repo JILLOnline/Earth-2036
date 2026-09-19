@@ -109,3 +109,40 @@ test("Workgraph refreshes shared operational learning signals every reconcile", 
   assert.ok(text.includes("repeatedFailureRequiresChangedStrategy"));
   assert.ok(text.includes("hardTruthGatesMayNotBeWeakened"));
 });
+
+
+test("Methodology 1.0 has one machine-readable authority and shadow systems cannot promote", async () => {
+  const methodology = JSON.parse(await source("config/methodology-1.0.json"));
+  const total = Object.values(methodology.scoreWeights).reduce((sum, value) => sum + value, 0);
+  assert.ok(Math.abs(total - 1) < 1e-9);
+  assert.equal(methodology.requiredScoreComponents.length, 12);
+
+  const ts = await source("engine/methodology.ts");
+  const gates = await source("scripts/lib/runtime-gates.mjs");
+  const promote = await source("scripts/promote-chief-ready.mjs");
+  const sync = await source("scripts/workgraph-sync.mjs");
+  assert.ok(ts.includes('config/methodology-1.0.json'));
+  assert.ok(gates.includes('config/methodology-1.0.json'));
+  assert.ok(promote.includes("METHODOLOGY_VERSION"));
+  assert.ok(sync.includes('canonicalWriteAuthority: false'));
+  assert.equal(promote.includes("assist-bus"), false);
+  assert.equal(promote.includes("calibration-engine"), false);
+});
+
+test("Earth doctrine protects agency, evidence, improvement and anti-pay-to-rank", async () => {
+  const doctrine = JSON.parse(await source("config/earth-doctrine.json"));
+  assert.equal(doctrine.status, "constitutional");
+  assert.ok(doctrine.principles.includes("Recommend; never coerce."));
+  assert.ok(doctrine.principles.some((line) => line.includes("weaknesses without humiliation")));
+  assert.ok(doctrine.representationContract.forbiddenBehaviors.includes("pay-to-rank"));
+  assert.ok(doctrine.representationContract.forbiddenBehaviors.includes("pay-to-suppress"));
+});
+
+test("Assist and calibration outputs are derived inside Workgraph rather than independent canonical writers", async () => {
+  const sync = await source("scripts/workgraph-sync.mjs");
+  const reconcile = await source(".github/workflows/earth2036-workgraph-reconcile.yml");
+  assert.ok(sync.includes("assist-bus.json"));
+  assert.ok(sync.includes('shadowDir'));
+  assert.ok(sync.includes('"calibration.json"'));
+  assert.ok(reconcile.includes("git add data/runtime/workgraph"));
+});

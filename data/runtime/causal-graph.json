@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-19T22:10:15.724Z",
+  "updatedAt": "2026-09-19T22:15:52.246Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -314,6 +314,18 @@
       "type": "market",
       "label": "infrastructure:industrial-scientific-aerospace-medical-production",
       "description": "AMETEK's structural role is diversified mission-critical measurement, inspection, precision-manufacturing and MRO technology embedded in industrial, scientific, medical, aerospace, defense, semiconductor and research workflows; the causal path is human need for reliable/safe/high-precision operation -> infrastructure and production systems -> sensing/measurement/inspection/MRO bottlenecks -> AMETEK instruments, software, components and services."
+    },
+    {
+      "id": "company:AMT",
+      "type": "company",
+      "label": "American Tower Corporation",
+      "description": "American Tower sits between mobile/data demand and scarce physical hosting infrastructure: tower sites enable carrier radio deployment while CoreSite interconnection/data-center assets expose the company to data-intensive workloads. Q2 2026 evidence of robust tower leasing plus record CoreSite leasing supports this dual-infrastructure bridge, but does not establish that either demand stream is permanently scarce."
+    },
+    {
+      "id": "market:AMT-carrier-and-data-center-capacity",
+      "type": "market",
+      "label": "carrier-and-data-center-capacity",
+      "description": "American Tower sits between mobile/data demand and scarce physical hosting infrastructure: tower sites enable carrier radio deployment while CoreSite interconnection/data-center assets expose the company to data-intensive workloads. Q2 2026 evidence of robust tower leasing plus record CoreSite leasing supports this dual-infrastructure bridge, but does not establish that either demand stream is permanently scarce."
     }
   ],
   "edges": [
@@ -780,6 +792,21 @@
         "issuer:AME:kern"
       ],
       "observedAt": "2026-09-19T13:22:18Z"
+    },
+    {
+      "id": "edge:AMT-structural-exposure",
+      "from": "company:AMT",
+      "to": "market:AMT-carrier-and-data-center-capacity",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 72,
+      "confidence": 84,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:AMT:2026Q2:ex991",
+        "sec:AMT:2026Q2:10Q"
+      ],
+      "observedAt": "2026-09-19T14:24:43Z"
     }
   ],
   "structuralSignals": [
@@ -1319,6 +1346,25 @@
       ],
       "observedAt": "2026-09-19T13:22:18Z",
       "thesis": "AMETEK's structural role is diversified mission-critical measurement, inspection, precision-manufacturing and MRO technology embedded in industrial, scientific, medical, aerospace, defense, semiconductor and research workflows; the causal path is human need for reliable/safe/high-precision operation -> infrastructure and production systems -> sensing/measurement/inspection/MRO bottlenecks -> AMETEK instruments, software, components and services.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:AMT-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:AMT-carrier-and-data-center-capacity",
+      "affectedNodeIds": [
+        "company:AMT"
+      ],
+      "direction": 1,
+      "magnitude": 72,
+      "confidence": 84,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:AMT:2026Q2:ex991",
+        "sec:AMT:2026Q2:10Q"
+      ],
+      "observedAt": "2026-09-19T14:24:43Z",
+      "thesis": "American Tower sits between mobile/data demand and scarce physical hosting infrastructure: tower sites enable carrier radio deployment while CoreSite interconnection/data-center assets expose the company to data-intensive workloads. Q2 2026 evidence of robust tower leasing plus record CoreSite leasing supports this dual-infrastructure bridge, but does not establish that either demand stream is permanently scarce.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

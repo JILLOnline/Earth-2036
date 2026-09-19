@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "BHP",
   "workId": "t0:BHP",
-  "generatedAt": "2026-09-19T18:15:59.725Z",
+  "generatedAt": "2026-09-19T18:29:57.889Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-19T18:07:03.767Z"
   },
   "evidenceWindow": {
-    "start": "2026-08-18T00:00:00.000Z",
-    "end": "2026-09-19T09:05:50.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T09:05:50.000Z"
+    "start": "2025-07-16T00:00:00.000Z",
+    "end": "2026-09-19T18:27:54.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T18:27:54.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/BHP-20260919T090550Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/BHP-20260919T090550Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/BHP-20260919T182754Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -63,12 +66,21 @@
       "bottleneckControl",
       "scenarioRobustness",
       "financialOperatingMomentum",
-      "supplyChainResilience"
+      "supplyChainResilience",
+      "substitutionResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
@@ -76,7 +88,12 @@
         "bottleneckControl",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "governancePower",
+        "financialOperatingMomentum",
+        "supplyChainResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -128,7 +145,9 @@
     "bottleneckControl",
     "scenarioRobustness",
     "financialOperatingMomentum",
-    "supplyChainResilience"
+    "supplyChainResilience",
+    "substitutionResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -139,6 +158,26 @@
       },
       {
         "risk": "A contractor fatality at BMA underscores persistent operational safety risk despite strong production execution.",
+        "gating": false
+      },
+      {
+        "risk": "Commodity substitution, recycling, demand destruction or new supply can reduce scarcity economics even when physical demand grows.",
+        "gating": false
+      },
+      {
+        "risk": "Permitting, construction, safety and cost overruns can shift resource advantage into capital impairment.",
+        "gating": false
+      },
+      {
+        "risk": "High copper concentration in growth spending raises exposure to price assumptions, permitting and simultaneous-project execution.",
+        "gating": false
+      },
+      {
+        "risk": "Safety failures can impose human harm, operational interruption, regulatory response and loss of social license.",
+        "gating": false
+      },
+      {
+        "risk": "Megaproject cost escalation can erode expected returns despite strategically attractive end markets.",
         "gating": false
       }
     ]
@@ -151,6 +190,26 @@
     {
       "risk": "A contractor fatality at BMA underscores persistent operational safety risk despite strong production execution.",
       "gating": false
+    },
+    {
+      "risk": "Commodity substitution, recycling, demand destruction or new supply can reduce scarcity economics even when physical demand grows.",
+      "gating": false
+    },
+    {
+      "risk": "Permitting, construction, safety and cost overruns can shift resource advantage into capital impairment.",
+      "gating": false
+    },
+    {
+      "risk": "High copper concentration in growth spending raises exposure to price assumptions, permitting and simultaneous-project execution.",
+      "gating": false
+    },
+    {
+      "risk": "Safety failures can impose human harm, operational interruption, regulatory response and loss of social license.",
+      "gating": false
+    },
+    {
+      "risk": "Megaproject cost escalation can erode expected returns despite strategically attractive end markets.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -161,20 +220,34 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "electrification+digitalization->copper-demand",
+      "urbanization->steel-demand->iron-ore-demand",
+      "food-security->fertilizer-demand->potash-demand",
+      "resource-base+project-execution+infrastructure->reliable-supply",
+      "portfolio-diversification->scenario-resilience"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "electrification+digitalization->copper-demand",
+    "urbanization->steel-demand->iron-ore-demand",
+    "food-security->fertilizer-demand->potash-demand",
+    "resource-base+project-execution+infrastructure->reliable-supply",
+    "portfolio-diversification->scenario-resilience"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:BHP:FY26results:20260818"
+      "issuer:BHP:FY26results:20260818",
+      "issuer:BHP:JansenStage2:202606",
+      "issuer:BHP:FY25OperationalReview:20250716"
     ]
   },
   "sources": [
@@ -185,6 +258,22 @@
       "primary": true,
       "publishedAt": "2026-08-18",
       "originFingerprint": "issuer:BHP:FY26results:20260818"
+    },
+    {
+      "sourceId": "issuer:BHP:Jansen2:202606",
+      "url": "https://www.bhp.com/es/news/media-centre/releases/2026/06/update---jansen-stage-2-potash-project",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-06-01",
+      "originFingerprint": "issuer:BHP:JansenStage2:202606"
+    },
+    {
+      "sourceId": "issuer:BHP:FY25opreview:20250716",
+      "url": "https://www.bhp.com/news/media-centre/releases/2025/07/bhp-operational-review-for-the-year-ended-30-june-2025",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2025-07-16",
+      "originFingerprint": "issuer:BHP:FY25OperationalReview:20250716"
     }
   ],
   "contradictions": [],
@@ -200,26 +289,31 @@
     {
       "unknown": "Whether record volumes translate into sustained superior returns depends on commodity prices, costs and capital allocation.",
       "gating": false
+    },
+    {
+      "unknown": "Realized Jansen ramp economics and returns from the copper growth pipeline remain future execution questions.",
+      "gating": false
+    },
+    {
+      "unknown": "Whether current cost discipline persists through the next heavy-capex phase and Jansen ramp is not yet demonstrated.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 93,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -229,14 +323,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -253,10 +339,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

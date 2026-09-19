@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "BEAM",
   "workId": "t0:BEAM",
-  "generatedAt": "2026-09-19T18:15:59.726Z",
+  "generatedAt": "2026-09-19T18:29:57.891Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-19T18:07:03.767Z"
   },
   "evidenceWindow": {
-    "start": "2026-09-01T00:00:00.000Z",
-    "end": "2026-09-19T09:05:50.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T09:05:50.000Z"
+    "start": "2026-08-05T00:00:00.000Z",
+    "end": "2026-09-19T18:27:54.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T18:27:54.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/BEAM-20260919T090550Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/BEAM-20260919T090550Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/BEAM-20260919T182754Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -63,19 +66,31 @@
       "bottleneckControl",
       "financialOperatingMomentum",
       "scenarioRobustness",
-      "governancePower"
+      "governancePower",
+      "substitutionResilience"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "catalystScore",
         "alignment2036",
         "bottleneckControl"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "governancePower",
+        "financialOperatingMomentum",
+        "substitutionResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -128,7 +143,8 @@
     "bottleneckControl",
     "financialOperatingMomentum",
     "scenarioRobustness",
-    "governancePower"
+    "governancePower",
+    "substitutionResilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -139,6 +155,22 @@
       },
       {
         "risk": "Commercial build-out ahead of approval raises fixed-cost and execution exposure if clinical or regulatory milestones slip.",
+        "gating": false
+      },
+      {
+        "risk": "Biomarker correction may not translate into durable clinical benefit or acceptable long-term safety.",
+        "gating": false
+      },
+      {
+        "risk": "Success shifts the bottleneck toward scalable manufacturing, regulatory validation, reimbursement and patient access.",
+        "gating": false
+      },
+      {
+        "risk": "Six-month 2026 operating cash use was $194.6M; additional financing may be required before durable product revenue, creating dilution, debt-cost or rights-concession risk.",
+        "gating": false
+      },
+      {
+        "risk": "Clinical-stage evidence remains vulnerable to efficacy, safety, regulatory and competing-modality failure paths.",
         "gating": false
       }
     ]
@@ -151,6 +183,22 @@
     {
       "risk": "Commercial build-out ahead of approval raises fixed-cost and execution exposure if clinical or regulatory milestones slip.",
       "gating": false
+    },
+    {
+      "risk": "Biomarker correction may not translate into durable clinical benefit or acceptable long-term safety.",
+      "gating": false
+    },
+    {
+      "risk": "Success shifts the bottleneck toward scalable manufacturing, regulatory validation, reimbursement and patient access.",
+      "gating": false
+    },
+    {
+      "risk": "Six-month 2026 operating cash use was $194.6M; additional financing may be required before durable product revenue, creating dilution, debt-cost or rights-concession risk.",
+      "gating": false
+    },
+    {
+      "risk": "Clinical-stage evidence remains vulnerable to efficacy, safety, regulatory and competing-modality failure paths.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -161,21 +209,32 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "base-editing-platform->in-vivo-single-dose-editing",
+      "in-vivo-single-dose-editing->functional-protein-correction",
+      "functional-protein-correction->potential-durable-AATD-benefit",
+      "pivotal-efficacy+safety+manufacturing+regulatory-acceptance->commercial-access"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "base-editing-platform->in-vivo-single-dose-editing",
+    "in-vivo-single-dose-editing->functional-protein-correction",
+    "functional-protein-correction->potential-durable-AATD-benefit",
+    "pivotal-efficacy+safety+manufacturing+regulatory-acceptance->commercial-access"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:BEAM:BEAM302:ERS:20260908",
-      "issuer:BEAM:management:CCO:20260901"
+      "issuer:BEAM:management:CCO:20260901",
+      "sec:BEAM:10Q:20260630"
     ]
   },
   "sources": [
@@ -194,6 +253,14 @@
       "primary": true,
       "publishedAt": "2026-09-01",
       "originFingerprint": "issuer:BEAM:management:CCO:20260901"
+    },
+    {
+      "sourceId": "sec:BEAM:2026Q2-10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1745999/000119312526331541/beam-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-05",
+      "originFingerprint": "sec:BEAM:10Q:20260630"
     }
   ],
   "contradictions": [],
@@ -209,26 +276,31 @@
     {
       "unknown": "Cash runway after current pivotal and launch-preparation spending and milestone timing were not established here.",
       "gating": false
+    },
+    {
+      "unknown": "Pivotal clinical-outcome magnitude, long-term off-target/safety profile and commercial economics remain unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Actual runway under pivotal, manufacturing and launch spending versus management's planning assumptions remains uncertain.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 88,
+  "confidence": 86,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -238,14 +310,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -262,10 +326,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

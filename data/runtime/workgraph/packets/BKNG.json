@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "BKNG",
   "workId": "t0:BKNG",
-  "generatedAt": "2026-09-19T18:15:59.727Z",
+  "generatedAt": "2026-09-19T18:29:57.892Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-19T09:05:50.000Z",
-    "end": "2026-09-19T09:05:50.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T09:05:50.000Z"
+    "end": "2026-09-19T18:27:54.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-19T18:27:54.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/BKNG-20260919T090550Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/BKNG-20260919T090550Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/BKNG-20260919T182754Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -69,7 +72,14 @@
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "pricingPower"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
@@ -77,7 +87,12 @@
         "bottleneckControl",
         "substitutionResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "substitutionResilience",
+        "pricingPower",
+        "financialOperatingMomentum"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -142,6 +157,22 @@
       {
         "risk": "The long-term growth ambition is a target, not guidance or a projection; travel demand remains macro-sensitive and competitive.",
         "gating": false
+      },
+      {
+        "risk": "Discovery-layer substitution can reduce the strategic value of current direct/app traffic advantages.",
+        "gating": false
+      },
+      {
+        "risk": "Travel remains discretionary and macro-sensitive despite platform scale.",
+        "gating": false
+      },
+      {
+        "risk": "AI/search-platform disintermediation could shift bargaining power upstream even while travel transaction volumes grow.",
+        "gating": false
+      },
+      {
+        "risk": "Regulation, supplier direct-booking strategies and macro travel weakness can pressure platform economics independently of product execution.",
+        "gating": false
       }
     ]
   },
@@ -152,6 +183,22 @@
     },
     {
       "risk": "The long-term growth ambition is a target, not guidance or a projection; travel demand remains macro-sensitive and competitive.",
+      "gating": false
+    },
+    {
+      "risk": "Discovery-layer substitution can reduce the strategic value of current direct/app traffic advantages.",
+      "gating": false
+    },
+    {
+      "risk": "Travel remains discretionary and macro-sensitive despite platform scale.",
+      "gating": false
+    },
+    {
+      "risk": "AI/search-platform disintermediation could shift bargaining power upstream even while travel transaction volumes grow.",
+      "gating": false
+    },
+    {
+      "risk": "Regulation, supplier direct-booking strategies and macro travel weakness can pressure platform economics independently of product execution.",
       "gating": false
     }
   ],
@@ -166,14 +213,24 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "fragmented-travel-supply+traveler-intent->search-coordination-friction",
+      "inventory+traffic+payments+loyalty->lower-friction-booking",
+      "connected-trip->cross-vertical-network-effects",
+      "external-AI-agents->possible-disintermediation-of-discovery"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "fragmented-travel-supply+traveler-intent->search-coordination-friction",
+    "inventory+traffic+payments+loyalty->lower-friction-booking",
+    "connected-trip->cross-vertical-network-effects",
+    "external-AI-agents->possible-disintermediation-of-discovery"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:BKNG:IRsnapshot:20260919"
@@ -202,11 +259,19 @@
     {
       "unknown": "Exact Q2 2026 growth and margin figures were not exposed in the retrieved IR landing-page text and should be reconciled from the earnings release.",
       "gating": false
+    },
+    {
+      "unknown": "Incremental retention, conversion and unit economics attributable specifically to agentic AI remain unquantified.",
+      "gating": false
+    },
+    {
+      "unknown": "Current-period evidence does not isolate AI-driven conversion/retention gains or quantify sensitivity to external-agent traffic shifts.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 82,
@@ -215,13 +280,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -231,14 +293,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -255,10 +309,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

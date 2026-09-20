@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-20T15:16:45.570Z",
+  "updatedAt": "2026-09-20T16:16:10.059Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -530,6 +530,18 @@
       "type": "market",
       "label": "uranium/fuel/reactor-service demand",
       "description": "operating and new reactors require secure fuel supply and long-lived technical services"
+    },
+    {
+      "id": "company:CEG",
+      "type": "company",
+      "label": "Constellation Energy Corporation",
+      "description": "Constellation's enlarged nuclear-and-gas generation platform sits directly on the reliable-power bottleneck created by AI/data-center and electrification load growth; Calpine broadens dispatchable capacity while nuclear provides high-capacity-factor clean generation, improving scenario robustness across power-market conditions."
+    },
+    {
+      "id": "market:CEG-demand-for-firm-generation",
+      "type": "market",
+      "label": "demand for firm generation",
+      "description": "large continuous loads require reliable capacity and energy, favoring nuclear and dispatchable generation"
     }
   ],
   "edges": [
@@ -1260,6 +1272,21 @@
       "sourceIds": [
         "ccj:q2-2026:2026-07-31",
         "ccj:cigar-lake-stake:2026-06-01"
+      ],
+      "observedAt": "2026-09-19T07:25:25Z"
+    },
+    {
+      "id": "edge:CEG-structural-exposure",
+      "from": "company:CEG",
+      "to": "market:CEG-demand-for-firm-generation",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 85,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "ceg:calpine-close:2026-01-07",
+        "ceg:pjm-divestiture:2026-03-18"
       ],
       "observedAt": "2026-09-19T07:25:25Z"
     }
@@ -2140,6 +2167,25 @@
       "observedAt": "2026-09-19T07:25:25Z",
       "thesis": "Cameco spans multiple nuclear bottlenecks—tier-one uranium production, fuel services and Westinghouse exposure—linking reactor build/life-extension demand to scarce fuel-cycle and reactor-service capacity; increased Cigar Lake ownership deepens control of a high-quality upstream node.",
       "falsifier": "long-term contracting/pricing weakens persistently despite reactor growth"
+    },
+    {
+      "id": "signal:CEG-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:CEG-demand-for-firm-generation",
+      "affectedNodeIds": [
+        "company:CEG"
+      ],
+      "direction": 1,
+      "magnitude": 85,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "ceg:calpine-close:2026-01-07",
+        "ceg:pjm-divestiture:2026-03-18"
+      ],
+      "observedAt": "2026-09-19T07:25:25Z",
+      "thesis": "Constellation's enlarged nuclear-and-gas generation platform sits directly on the reliable-power bottleneck created by AI/data-center and electrification load growth; Calpine broadens dispatchable capacity while nuclear provides high-capacity-factor clean generation, improving scenario robustness across power-market conditions.",
+      "falsifier": "load growth or long-term contracting economics weaken materially"
     }
   ],
   "roadmapMilestones": [

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "DE",
   "workId": "t0:DE",
-  "generatedAt": "2026-09-20T04:16:49.012Z",
+  "generatedAt": "2026-09-20T04:26:53.295Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-20T00:48:48.574Z"
   },
   "evidenceWindow": {
-    "start": "2026-08-20T00:00:00.000Z",
-    "end": "2026-09-19T13:07:45.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T13:07:45.000Z"
+    "start": "2025-11-28T00:00:00.000Z",
+    "end": "2026-09-20T04:24:36.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T04:24:36.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/DE-20260919T130745Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/DE-20260919T130745Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/DE-20260920T042436Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,19 +65,34 @@
       "alignment2036",
       "crossDivisionLeverage",
       "financialOperatingMomentum",
-      "pricingPower"
+      "pricingPower",
+      "bottleneckControl",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "thesisQuality"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "crossDivisionLeverage"
+      ],
       "discovery-weak-signals": [
         "catalystScore",
         "scenarioRobustness",
         "alignment2036",
         "crossDivisionLeverage"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "pricingPower",
+        "thesisQuality"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "pricingPower",
@@ -126,7 +144,11 @@
     "alignment2036",
     "crossDivisionLeverage",
     "financialOperatingMomentum",
-    "pricingPower"
+    "pricingPower",
+    "bottleneckControl",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "thesisQuality"
   ],
   "riskEvidence": {
     "present": true,
@@ -137,6 +159,18 @@
       },
       {
         "risk": "Large agriculture remains cyclically weak and higher material/production costs can pressure margins even as pricing helps.",
+        "gating": false
+      },
+      {
+        "risk": "Precision technology improves unit economics but does not remove agricultural cyclicality or farmer-capex sensitivity.",
+        "gating": false
+      },
+      {
+        "risk": "Financing exposure transmits weak farm/construction economics into credit losses and can amplify equipment-cycle weakness.",
+        "gating": false
+      },
+      {
+        "risk": "Pricing can offset some costs but higher production/material costs can still compress margins.",
         "gating": false
       }
     ]
@@ -149,6 +183,18 @@
     {
       "risk": "Large agriculture remains cyclically weak and higher material/production costs can pressure margins even as pricing helps.",
       "gating": false
+    },
+    {
+      "risk": "Precision technology improves unit economics but does not remove agricultural cyclicality or farmer-capex sensitivity.",
+      "gating": false
+    },
+    {
+      "risk": "Financing exposure transmits weak farm/construction economics into credit losses and can amplify equipment-cycle weakness.",
+      "gating": false
+    },
+    {
+      "risk": "Pricing can offset some costs but higher production/material costs can still compress margins.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -159,21 +205,61 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 4
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "AI/camera-guided precision application",
+        "to": "lower herbicide/input intensity",
+        "mechanism": "real-time weed identification and nozzle-level application",
+        "confidence": 88
+      },
+      {
+        "from": "lower input intensity and automation",
+        "to": "farmer economics/productivity",
+        "mechanism": "reduced chemical use and operator burden",
+        "confidence": 84
+      },
+      {
+        "from": "farm economics and replacement cycle",
+        "to": "Deere equipment demand",
+        "mechanism": "customer purchasing capacity and fleet replacement timing",
+        "confidence": 92
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "AI/camera-guided precision application",
+      "to": "lower herbicide/input intensity",
+      "mechanism": "real-time weed identification and nozzle-level application",
+      "confidence": 88
+    },
+    {
+      "from": "lower input intensity and automation",
+      "to": "farmer economics/productivity",
+      "mechanism": "reduced chemical use and operator burden",
+      "confidence": 84
+    },
+    {
+      "from": "farm economics and replacement cycle",
+      "to": "Deere equipment demand",
+      "mechanism": "customer purchasing capacity and fleet replacement timing",
+      "confidence": 92
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "sec:CIK315189:2026Q3:8K-EX99.1:20260820",
-      "sec:CIK315189:10Q:20260802"
+      "sec:CIK315189:10Q:20260802",
+      "issuer:DE:SeeSpray:20251128",
+      "sec:CIK27673:10Q:20260802"
     ]
   },
   "sources": [
@@ -192,6 +278,22 @@
       "primary": true,
       "publishedAt": "2026-08-27",
       "originFingerprint": "sec:CIK315189:10Q:20260802"
+    },
+    {
+      "sourceId": "deere:SeeSpray:2025usage",
+      "url": "https://edge.machinefinderpro.deere.com/ww/en-US/articles/advancing-weed-control-with-john-deeres-see--spray-technology-13794",
+      "kind": "issuer",
+      "primary": true,
+      "publishedAt": "2025-11-28",
+      "originFingerprint": "issuer:DE:SeeSpray:20251128"
+    },
+    {
+      "sourceId": "sec:JDCC:2026Q3:10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/27673/000110465926102214/jdcc-20260802x10q.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-27",
+      "originFingerprint": "sec:CIK27673:10Q:20260802"
     }
   ],
   "contradictions": [],
@@ -207,26 +309,31 @@
     {
       "unknown": "Whether improved orders convert into sustained 2027 production-agriculture revenue growth remains unknown.",
       "gating": false
+    },
+    {
+      "unknown": "Independent long-duration evidence on realized whole-farm ROI across crops/geographies remains limited in this run.",
+      "gating": false
+    },
+    {
+      "unknown": "Whether 2026 truly marks the agricultural-equipment trough remains forward-looking rather than established fact.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 91,
+  "confidence": 88,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -236,14 +343,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -260,10 +359,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

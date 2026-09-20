@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-20T04:16:49.016Z",
+  "generatedAt": "2026-09-20T04:26:53.297Z",
   "canonicalWriteAuthority": false,
   "total": 222,
   "twins": [
@@ -12598,7 +12598,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "DLR",
       "workId": "t0:DLR",
-      "inputSignature": "f4c9005609f69afcca7ebd90",
+      "inputSignature": "73848a5bad8eefb2237f57db",
       "sourceState": "researching",
       "identity": {
         "ticker": "DLR",
@@ -12621,28 +12621,29 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 1,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 2,
         "sourceLineage": {
-          "rawSourceCount": 2,
-          "uniqueSourceCount": 1,
-          "duplicatesCollapsed": 1,
+          "rawSourceCount": 5,
+          "uniqueSourceCount": 2,
+          "duplicatesCollapsed": 3,
           "missingLineage": 0,
           "uniqueOrigins": [
-            "issuer:DLR:2026Q2:20260723"
+            "issuer:DLR:2026Q2:20260723",
+            "issuer:DLR:NOVA:20260629"
           ]
         },
         "evidenceWindow": {
-          "start": "2026-07-23T00:00:00.000Z",
-          "end": "2026-09-19T14:09:00.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T14:09:00.000Z"
+          "start": "2026-06-29T00:00:00.000Z",
+          "end": "2026-09-20T04:24:36.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T04:24:36.000Z"
         },
         "preflightPassed": false
       },
@@ -12653,33 +12654,57 @@
         "bottleneckControl",
         "pricingPower",
         "financialOperatingMomentum",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "substitutionResilience",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
           "Signed backlog has a weighted-average commencement lag and therefore does not equal current-period realized revenue.",
-          "Q2 included promote income and an insurance settlement, so headline FFO requires normalization; issuer separately reports Core FFO excluding net promote."
+          "Q2 included promote income and an insurance settlement, so headline FFO requires normalization; issuer separately reports Core FFO excluding net promote.",
+          "Power availability and construction timing can delay conversion of signed backlog into revenue-bearing capacity.",
+          "Equity issuance and large development/acquisition commitments can dilute per-share participation if incremental returns disappoint.",
+          "Backlog conversion depends on power, construction and customer commencement rather than signature alone."
         ],
         "unknowns": [
-          "Incremental power-delivery constraints and customer concentration by new hyperscale lease are not resolved by this release."
+          "Incremental power-delivery constraints and customer concentration by new hyperscale lease are not resolved by this release.",
+          "Incremental utility interconnection schedules by campus are not disclosed at sufficient granularity here.",
+          "Customer concentration within the largest new hyperscale leases is not resolved by the available release."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "AI/cloud compute demand",
+            "to": "powered data-center capacity demand",
+            "mechanism": "higher compute density and deployment requirements",
+            "confidence": 92
+          },
+          {
+            "from": "utility power + land + construction",
+            "to": "deliverable IT capacity",
+            "mechanism": "physical infrastructure prerequisite",
+            "confidence": 95
+          },
+          {
+            "from": "deliverable capacity + interconnection",
+            "to": "customer digital infrastructure",
+            "mechanism": "leased compute hosting and network connectivity",
+            "confidence": 91
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -12690,16 +12715,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -12721,11 +12736,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -12736,12 +12746,20 @@
           "bottleneckControl",
           "pricingPower",
           "financialOperatingMomentum",
-          "scenarioRobustness"
+          "scenarioRobustness",
+          "supplyChainResilience",
+          "substitutionResilience",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "Incremental power-delivery constraints and customer concentration by new hyperscale lease are not resolved by this release.",
+          "Incremental utility interconnection schedules by campus are not disclosed at sufficient granularity here.",
+          "Customer concentration within the largest new hyperscale leases is not resolved by the available release.",
           "Signed backlog has a weighted-average commencement lag and therefore does not equal current-period realized revenue.",
-          "Q2 included promote income and an insurance settlement, so headline FFO requires normalization; issuer separately reports Core FFO excluding net promote."
+          "Q2 included promote income and an insurance settlement, so headline FFO requires normalization; issuer separately reports Core FFO excluding net promote.",
+          "Power availability and construction timing can delay conversion of signed backlog into revenue-bearing capacity.",
+          "Equity issuance and large development/acquisition commitments can dilute per-share participation if incremental returns disappoint.",
+          "Backlog conversion depends on power, construction and customer commencement rather than signature alone."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -16570,7 +16588,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "DNN",
       "workId": "t0:DNN",
-      "inputSignature": "7323798af209d417563a0abd",
+      "inputSignature": "db4e3ea63d288f3a2bd90196",
       "sourceState": "researching",
       "identity": {
         "ticker": "DNN",
@@ -16593,28 +16611,31 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 1,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 4,
         "sourceLineage": {
-          "rawSourceCount": 2,
-          "uniqueSourceCount": 1,
-          "duplicatesCollapsed": 1,
+          "rawSourceCount": 7,
+          "uniqueSourceCount": 4,
+          "duplicatesCollapsed": 3,
           "missingLineage": 0,
           "uniqueOrigins": [
-            "issuer:DNN:2026Q2:122850"
+            "issuer:DNN:2026Q2:122850",
+            "issuer:DNN:PhoenixConstruction:20260728",
+            "issuer:DNN:PhoenixLicence:20260219",
+            "issuer:DNN:PhoenixCapex:20260102"
           ]
         },
         "evidenceWindow": {
-          "start": "2026-08-01T00:00:00.000Z",
-          "end": "2026-09-19T14:10:00.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T14:10:00.000Z"
+          "start": "2026-01-02T00:00:00.000Z",
+          "end": "2026-09-20T04:24:36.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T04:24:36.000Z"
         },
         "preflightPassed": false
       },
@@ -16626,33 +16647,55 @@
         "supplyChainResilience",
         "financialOperatingMomentum",
         "scenarioRobustness",
-        "marketValuationOpportunity"
+        "marketValuationOpportunity",
+        "substitutionResilience"
       ],
       "constraintSignals": {
         "risks": [
           "Phoenix remains a construction-stage mining project; execution, permitting, ramp and uranium-price sensitivity remain material.",
-          "Monetizing physical uranium reduces retained commodity upside and is not equivalent to recurring mine operating cash flow."
+          "Monetizing physical uranium reduces retained commodity upside and is not equivalent to recurring mine operating cash flow.",
+          "Construction-stage execution and ISR scale-up remain the decisive bridge between resource quality and actual production.",
+          "Further cost escalation, schedule slippage or ISR performance below feasibility assumptions would weaken project economics.",
+          "Uranium inventory monetization reduces retained commodity upside while funding construction."
         ],
         "unknowns": [
-          "This Scout artifact does not independently validate Phoenix construction schedule/cost variance against the sanctioned baseline."
+          "This Scout artifact does not independently validate Phoenix construction schedule/cost variance against the sanctioned baseline.",
+          "Commercial-scale wellfield recovery performance cannot be established before operating evidence exists.",
+          "Final construction cost and realized operating recovery/cost profile remain unknowable until later execution and production evidence."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "Phoenix uranium resource",
+            "to": "ISR mine construction",
+            "mechanism": "licensed resource development and capital deployment",
+            "confidence": 94
+          },
+          {
+            "from": "ISR mine construction",
+            "to": "new uranium supply",
+            "mechanism": "wellfield/process infrastructure and commissioning",
+            "confidence": 82
+          },
+          {
+            "from": "uranium supply",
+            "to": "nuclear generation fuel availability",
+            "mechanism": "U3O8 enters nuclear fuel cycle",
+            "confidence": 93
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -16663,16 +16706,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -16694,11 +16727,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -16710,12 +16738,18 @@
           "supplyChainResilience",
           "financialOperatingMomentum",
           "scenarioRobustness",
-          "marketValuationOpportunity"
+          "marketValuationOpportunity",
+          "substitutionResilience"
         ],
         "needOrConstraintCandidates": [
           "This Scout artifact does not independently validate Phoenix construction schedule/cost variance against the sanctioned baseline.",
+          "Commercial-scale wellfield recovery performance cannot be established before operating evidence exists.",
+          "Final construction cost and realized operating recovery/cost profile remain unknowable until later execution and production evidence.",
           "Phoenix remains a construction-stage mining project; execution, permitting, ramp and uranium-price sensitivity remain material.",
-          "Monetizing physical uranium reduces retained commodity upside and is not equivalent to recurring mine operating cash flow."
+          "Monetizing physical uranium reduces retained commodity upside and is not equivalent to recurring mine operating cash flow.",
+          "Construction-stage execution and ISR scale-up remain the decisive bridge between resource quality and actual production.",
+          "Further cost escalation, schedule slippage or ISR performance below feasibility assumptions would weaken project economics.",
+          "Uranium inventory monetization reduces retained commodity upside while funding construction."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -23011,7 +23045,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "DE",
       "workId": "t0:DE",
-      "inputSignature": "844ec28b838e86666ea8a63b",
+      "inputSignature": "5bcb3e247f344e6ba252def7",
       "sourceState": "researching",
       "identity": {
         "ticker": "DE",
@@ -23034,29 +23068,31 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 2,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 4,
         "sourceLineage": {
-          "rawSourceCount": 4,
-          "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 2,
+          "rawSourceCount": 8,
+          "uniqueSourceCount": 4,
+          "duplicatesCollapsed": 4,
           "missingLineage": 0,
           "uniqueOrigins": [
             "sec:CIK315189:2026Q3:8K-EX99.1:20260820",
-            "sec:CIK315189:10Q:20260802"
+            "sec:CIK315189:10Q:20260802",
+            "issuer:DE:SeeSpray:20251128",
+            "sec:CIK27673:10Q:20260802"
           ]
         },
         "evidenceWindow": {
-          "start": "2026-08-20T00:00:00.000Z",
-          "end": "2026-09-19T13:07:45.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T13:07:45.000Z"
+          "start": "2025-11-28T00:00:00.000Z",
+          "end": "2026-09-20T04:24:36.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T04:24:36.000Z"
         },
         "preflightPassed": false
       },
@@ -23066,34 +23102,59 @@
         "alignment2036",
         "crossDivisionLeverage",
         "financialOperatingMomentum",
-        "pricingPower"
+        "pricingPower",
+        "bottleneckControl",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "thesisQuality"
       ],
       "constraintSignals": {
         "risks": [
           "The claimed agricultural-cycle bottom is management's forward assessment and remains exposed to farm economics, tariffs and equipment inventory normalization.",
-          "Large agriculture remains cyclically weak and higher material/production costs can pressure margins even as pricing helps."
+          "Large agriculture remains cyclically weak and higher material/production costs can pressure margins even as pricing helps.",
+          "Precision technology improves unit economics but does not remove agricultural cyclicality or farmer-capex sensitivity.",
+          "Financing exposure transmits weak farm/construction economics into credit losses and can amplify equipment-cycle weakness.",
+          "Pricing can offset some costs but higher production/material costs can still compress margins."
         ],
         "unknowns": [
           "The timing and magnitude of a large-ag demand recovery are not established by one quarter of order-book improvement.",
-          "Whether improved orders convert into sustained 2027 production-agriculture revenue growth remains unknown."
+          "Whether improved orders convert into sustained 2027 production-agriculture revenue growth remains unknown.",
+          "Independent long-duration evidence on realized whole-farm ROI across crops/geographies remains limited in this run.",
+          "Whether 2026 truly marks the agricultural-equipment trough remains forward-looking rather than established fact."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "AI/camera-guided precision application",
+            "to": "lower herbicide/input intensity",
+            "mechanism": "real-time weed identification and nozzle-level application",
+            "confidence": 88
+          },
+          {
+            "from": "lower input intensity and automation",
+            "to": "farmer economics/productivity",
+            "mechanism": "reduced chemical use and operator burden",
+            "confidence": 84
+          },
+          {
+            "from": "farm economics and replacement cycle",
+            "to": "Deere equipment demand",
+            "mechanism": "customer purchasing capacity and fleet replacement timing",
+            "confidence": 92
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -23104,16 +23165,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -23135,11 +23186,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -23149,13 +23195,22 @@
           "alignment2036",
           "crossDivisionLeverage",
           "financialOperatingMomentum",
-          "pricingPower"
+          "pricingPower",
+          "bottleneckControl",
+          "substitutionResilience",
+          "supplyChainResilience",
+          "thesisQuality"
         ],
         "needOrConstraintCandidates": [
           "The timing and magnitude of a large-ag demand recovery are not established by one quarter of order-book improvement.",
           "Whether improved orders convert into sustained 2027 production-agriculture revenue growth remains unknown.",
+          "Independent long-duration evidence on realized whole-farm ROI across crops/geographies remains limited in this run.",
+          "Whether 2026 truly marks the agricultural-equipment trough remains forward-looking rather than established fact.",
           "The claimed agricultural-cycle bottom is management's forward assessment and remains exposed to farm economics, tariffs and equipment inventory normalization.",
-          "Large agriculture remains cyclically weak and higher material/production costs can pressure margins even as pricing helps."
+          "Large agriculture remains cyclically weak and higher material/production costs can pressure margins even as pricing helps.",
+          "Precision technology improves unit economics but does not remove agricultural cyclicality or farmer-capex sensitivity.",
+          "Financing exposure transmits weak farm/construction economics into credit losses and can amplify equipment-cycle weakness.",
+          "Pricing can offset some costs but higher production/material costs can still compress margins."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -33690,7 +33745,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "DOV",
       "workId": "t0:DOV",
-      "inputSignature": "43c03eea1ba5d5f4fee020f9",
+      "inputSignature": "690f4ae800137dd38681ceae",
       "sourceState": "researching",
       "identity": {
         "ticker": "DOV",
@@ -33713,29 +33768,32 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 2,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 5,
         "sourceLineage": {
-          "rawSourceCount": 2,
-          "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 0,
+          "rawSourceCount": 6,
+          "uniqueSourceCount": 5,
+          "duplicatesCollapsed": 1,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:DOV:10Q:20260723:92847cda",
-            "issuer:DOV:8K:20260723:df0d9a27"
+            "issuer:DOV:8K:20260723:df0d9a27",
+            "issuer:DOV:CPC:EverisDC:20260722",
+            "issuer:DOV:SWEP:capacity:20260513",
+            "issuer:DOV:Q2results:20260723"
           ]
         },
         "evidenceWindow": {
-          "start": "2026-07-23T00:00:00.000Z",
-          "end": "2026-09-19T14:11:00.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T14:11:00.000Z"
+          "start": "2026-05-13T00:00:00.000Z",
+          "end": "2026-09-20T04:24:36.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T04:24:36.000Z"
         },
         "preflightPassed": false
       },
@@ -33747,33 +33805,56 @@
         "bottleneckControl",
         "financialOperatingMomentum",
         "scenarioRobustness",
-        "pricingPower"
+        "pricingPower",
+        "substitutionResilience",
+        "supplyChainResilience"
       ],
       "constraintSignals": {
         "risks": [
           "Data-center cooling is one contributor inside a diversified segment; the filing does not isolate its revenue or margin contribution.",
-          "Segment mix and acquisition effects require normalization before translating reported growth into a score."
+          "Segment mix and acquisition effects require normalization before translating reported growth into a score.",
+          "Dover captures only component-level economics and can face design substitution, OEM insourcing or pricing pressure.",
+          "AI-cooling contribution can be overstated because Dover does not separately disclose its revenue/margin contribution in the retrieved reporting.",
+          "Acquisition mix can obscure organic economics and creates integration/valuation risk."
         ],
         "unknowns": [
-          "Exact data-center cooling backlog and customer concentration are not disclosed in the retrieved filing excerpt."
+          "Exact data-center cooling backlog and customer concentration are not disclosed in the retrieved filing excerpt.",
+          "Exact AI/data-center revenue and backlog contribution remains undisclosed at the Dover consolidated level.",
+          "Customer concentration and share position for Dover's liquid-cooling products remain unquantified in current evidence."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "higher-density AI compute",
+            "to": "higher thermal load",
+            "mechanism": "increased chip/system power density",
+            "confidence": 96
+          },
+          {
+            "from": "higher thermal load",
+            "to": "liquid-cooling component demand",
+            "mechanism": "heat removal requires efficient fluid transfer and heat exchange",
+            "confidence": 92
+          },
+          {
+            "from": "Dover connectors/heat exchangers",
+            "to": "data-center cooling efficiency",
+            "mechanism": "lower-pressure-drop fluid connections and heat transfer",
+            "confidence": 87
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -33784,16 +33865,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -33815,11 +33886,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -33831,12 +33897,19 @@
           "bottleneckControl",
           "financialOperatingMomentum",
           "scenarioRobustness",
-          "pricingPower"
+          "pricingPower",
+          "substitutionResilience",
+          "supplyChainResilience"
         ],
         "needOrConstraintCandidates": [
           "Exact data-center cooling backlog and customer concentration are not disclosed in the retrieved filing excerpt.",
+          "Exact AI/data-center revenue and backlog contribution remains undisclosed at the Dover consolidated level.",
+          "Customer concentration and share position for Dover's liquid-cooling products remain unquantified in current evidence.",
           "Data-center cooling is one contributor inside a diversified segment; the filing does not isolate its revenue or margin contribution.",
-          "Segment mix and acquisition effects require normalization before translating reported growth into a score."
+          "Segment mix and acquisition effects require normalization before translating reported growth into a score.",
+          "Dover captures only component-level economics and can face design substitution, OEM insourcing or pricing pressure.",
+          "AI-cooling contribution can be overstated because Dover does not separately disclose its revenue/margin contribution in the retrieved reporting.",
+          "Acquisition mix can obscure organic economics and creates integration/valuation risk."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "DLR",
   "workId": "t0:DLR",
-  "generatedAt": "2026-09-20T04:16:49.010Z",
+  "generatedAt": "2026-09-20T04:26:53.294Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-20T00:48:48.574Z"
   },
   "evidenceWindow": {
-    "start": "2026-07-23T00:00:00.000Z",
-    "end": "2026-09-19T14:09:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T14:09:00.000Z"
+    "start": "2026-06-29T00:00:00.000Z",
+    "end": "2026-09-20T04:24:36.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T04:24:36.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/DLR-20260919T140900Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/DLR-20260919T140900Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/DLR-20260920T042436Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -63,12 +66,21 @@
       "bottleneckControl",
       "pricingPower",
       "financialOperatingMomentum",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "supplyChainResilience",
+      "substitutionResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "alignment2036",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "catalystScore",
@@ -76,7 +88,13 @@
         "bottleneckControl",
         "pricingPower"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower",
+        "thesisQuality",
+        "governancePower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -128,7 +146,10 @@
     "bottleneckControl",
     "pricingPower",
     "financialOperatingMomentum",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "supplyChainResilience",
+    "substitutionResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -139,6 +160,18 @@
       },
       {
         "risk": "Q2 included promote income and an insurance settlement, so headline FFO requires normalization; issuer separately reports Core FFO excluding net promote.",
+        "gating": false
+      },
+      {
+        "risk": "Power availability and construction timing can delay conversion of signed backlog into revenue-bearing capacity.",
+        "gating": false
+      },
+      {
+        "risk": "Equity issuance and large development/acquisition commitments can dilute per-share participation if incremental returns disappoint.",
+        "gating": false
+      },
+      {
+        "risk": "Backlog conversion depends on power, construction and customer commencement rather than signature alone.",
         "gating": false
       }
     ]
@@ -151,6 +184,18 @@
     {
       "risk": "Q2 included promote income and an insurance settlement, so headline FFO requires normalization; issuer separately reports Core FFO excluding net promote.",
       "gating": false
+    },
+    {
+      "risk": "Power availability and construction timing can delay conversion of signed backlog into revenue-bearing capacity.",
+      "gating": false
+    },
+    {
+      "risk": "Equity issuance and large development/acquisition commitments can dilute per-share participation if incremental returns disappoint.",
+      "gating": false
+    },
+    {
+      "risk": "Backlog conversion depends on power, construction and customer commencement rather than signature alone.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -161,20 +206,59 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "AI/cloud compute demand",
+        "to": "powered data-center capacity demand",
+        "mechanism": "higher compute density and deployment requirements",
+        "confidence": 92
+      },
+      {
+        "from": "utility power + land + construction",
+        "to": "deliverable IT capacity",
+        "mechanism": "physical infrastructure prerequisite",
+        "confidence": 95
+      },
+      {
+        "from": "deliverable capacity + interconnection",
+        "to": "customer digital infrastructure",
+        "mechanism": "leased compute hosting and network connectivity",
+        "confidence": 91
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "AI/cloud compute demand",
+      "to": "powered data-center capacity demand",
+      "mechanism": "higher compute density and deployment requirements",
+      "confidence": 92
+    },
+    {
+      "from": "utility power + land + construction",
+      "to": "deliverable IT capacity",
+      "mechanism": "physical infrastructure prerequisite",
+      "confidence": 95
+    },
+    {
+      "from": "deliverable capacity + interconnection",
+      "to": "customer digital infrastructure",
+      "mechanism": "leased compute hosting and network connectivity",
+      "confidence": 91
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 5,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:DLR:2026Q2:20260723"
+      "issuer:DLR:2026Q2:20260723",
+      "issuer:DLR:NOVA:20260629"
     ]
   },
   "sources": [
@@ -185,6 +269,14 @@
       "primary": true,
       "publishedAt": "2026-07-23",
       "originFingerprint": "issuer:DLR:2026Q2:20260723"
+    },
+    {
+      "sourceId": "issuer:DLR:NOVA:20260629",
+      "url": "https://investor.digitalrealty.com/news-releases/news-release-details/digital-realty-announces-purchase-blackstone-interest-three",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-06-29",
+      "originFingerprint": "issuer:DLR:NOVA:20260629"
     }
   ],
   "contradictions": [],
@@ -196,11 +288,19 @@
     {
       "unknown": "Incremental power-delivery constraints and customer concentration by new hyperscale lease are not resolved by this release.",
       "gating": false
+    },
+    {
+      "unknown": "Incremental utility interconnection schedules by campus are not disclosed at sufficient granularity here.",
+      "gating": false
+    },
+    {
+      "unknown": "Customer concentration within the largest new hyperscale leases is not resolved by the available release.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 1
+    "nonGatingCount": 3
   },
   "gatingIssues": [],
   "confidence": 91,
@@ -209,13 +309,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -225,14 +322,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -249,10 +338,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

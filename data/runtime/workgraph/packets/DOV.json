@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "DOV",
   "workId": "t0:DOV",
-  "generatedAt": "2026-09-20T04:16:49.014Z",
+  "generatedAt": "2026-09-20T04:26:53.297Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-20T00:48:48.574Z"
   },
   "evidenceWindow": {
-    "start": "2026-07-23T00:00:00.000Z",
-    "end": "2026-09-19T14:11:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T14:11:00.000Z"
+    "start": "2026-05-13T00:00:00.000Z",
+    "end": "2026-09-20T04:24:36.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T04:24:36.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/DOV-20260919T141100Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/DOV-20260919T141100Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/DOV-20260920T042436Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -64,12 +67,20 @@
       "bottleneckControl",
       "financialOperatingMomentum",
       "scenarioRobustness",
-      "pricingPower"
+      "pricingPower",
+      "substitutionResilience",
+      "supplyChainResilience"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "catalystScore",
@@ -77,7 +88,13 @@
         "crossDivisionLeverage",
         "bottleneckControl"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "scenarioRobustness",
+        "pricingPower",
+        "supplyChainResilience",
+        "crossDivisionLeverage"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -130,7 +147,9 @@
     "bottleneckControl",
     "financialOperatingMomentum",
     "scenarioRobustness",
-    "pricingPower"
+    "pricingPower",
+    "substitutionResilience",
+    "supplyChainResilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -141,6 +160,18 @@
       },
       {
         "risk": "Segment mix and acquisition effects require normalization before translating reported growth into a score.",
+        "gating": false
+      },
+      {
+        "risk": "Dover captures only component-level economics and can face design substitution, OEM insourcing or pricing pressure.",
+        "gating": false
+      },
+      {
+        "risk": "AI-cooling contribution can be overstated because Dover does not separately disclose its revenue/margin contribution in the retrieved reporting.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition mix can obscure organic economics and creates integration/valuation risk.",
         "gating": false
       }
     ]
@@ -153,6 +184,18 @@
     {
       "risk": "Segment mix and acquisition effects require normalization before translating reported growth into a score.",
       "gating": false
+    },
+    {
+      "risk": "Dover captures only component-level economics and can face design substitution, OEM insourcing or pricing pressure.",
+      "gating": false
+    },
+    {
+      "risk": "AI-cooling contribution can be overstated because Dover does not separately disclose its revenue/margin contribution in the retrieved reporting.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition mix can obscure organic economics and creates integration/valuation risk.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -163,21 +206,62 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 5
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "higher-density AI compute",
+        "to": "higher thermal load",
+        "mechanism": "increased chip/system power density",
+        "confidence": 96
+      },
+      {
+        "from": "higher thermal load",
+        "to": "liquid-cooling component demand",
+        "mechanism": "heat removal requires efficient fluid transfer and heat exchange",
+        "confidence": 92
+      },
+      {
+        "from": "Dover connectors/heat exchangers",
+        "to": "data-center cooling efficiency",
+        "mechanism": "lower-pressure-drop fluid connections and heat transfer",
+        "confidence": 87
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "higher-density AI compute",
+      "to": "higher thermal load",
+      "mechanism": "increased chip/system power density",
+      "confidence": 96
+    },
+    {
+      "from": "higher thermal load",
+      "to": "liquid-cooling component demand",
+      "mechanism": "heat removal requires efficient fluid transfer and heat exchange",
+      "confidence": 92
+    },
+    {
+      "from": "Dover connectors/heat exchangers",
+      "to": "data-center cooling efficiency",
+      "mechanism": "lower-pressure-drop fluid connections and heat transfer",
+      "confidence": 87
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 5,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:DOV:10Q:20260723:92847cda",
-      "issuer:DOV:8K:20260723:df0d9a27"
+      "issuer:DOV:8K:20260723:df0d9a27",
+      "issuer:DOV:CPC:EverisDC:20260722",
+      "issuer:DOV:SWEP:capacity:20260513",
+      "issuer:DOV:Q2results:20260723"
     ]
   },
   "sources": [
@@ -196,6 +280,30 @@
       "primary": true,
       "publishedAt": "2026-07-23",
       "originFingerprint": "issuer:DOV:8K:20260723:df0d9a27"
+    },
+    {
+      "sourceId": "issuer:DOV:CPC:EverisDC:20260722",
+      "url": "https://www.dovercorporation.com/china/in-the-news/post/2026/07/22/cpc-launches-everis-dc-full-flow-connectors-for-high-performance-ai-cooling",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-22",
+      "originFingerprint": "issuer:DOV:CPC:EverisDC:20260722"
+    },
+    {
+      "sourceId": "issuer:DOV:SWEP:capacity:20260513",
+      "url": "https://investors.dovercorporation.com/news-releases/news-release-details/swep-expands-production-capacity-serve-growing-global-ai-data",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-13",
+      "originFingerprint": "issuer:DOV:SWEP:capacity:20260513"
+    },
+    {
+      "sourceId": "issuer:DOV:Q2results:20260723",
+      "url": "https://www.dovercorporation.com/china/in-the-news/post/2026/07/23/dover-reports-second-quarter-2026-results",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-23",
+      "originFingerprint": "issuer:DOV:Q2results:20260723"
     }
   ],
   "contradictions": [],
@@ -207,11 +315,19 @@
     {
       "unknown": "Exact data-center cooling backlog and customer concentration are not disclosed in the retrieved filing excerpt.",
       "gating": false
+    },
+    {
+      "unknown": "Exact AI/data-center revenue and backlog contribution remains undisclosed at the Dover consolidated level.",
+      "gating": false
+    },
+    {
+      "unknown": "Customer concentration and share position for Dover's liquid-cooling products remain unquantified in current evidence.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 1
+    "nonGatingCount": 3
   },
   "gatingIssues": [],
   "confidence": 88,
@@ -220,13 +336,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -236,14 +349,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -260,10 +365,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

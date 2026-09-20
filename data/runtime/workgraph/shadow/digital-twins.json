@@ -1,9 +1,9 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-20T13:14:51.810Z",
+  "generatedAt": "2026-09-20T13:30:54.234Z",
   "canonicalWriteAuthority": false,
-  "total": 212,
+  "total": 211,
   "twins": [
     {
       "version": 1,
@@ -11585,7 +11585,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "FLEX",
       "workId": "t0:FLEX",
-      "inputSignature": "bd134777c213aba8b5a5380c",
+      "inputSignature": "ddd1cdb408fcfb463d406e45",
       "sourceState": "researching",
       "identity": {
         "ticker": "FLEX",
@@ -11608,29 +11608,31 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 2,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 4,
         "sourceLineage": {
-          "rawSourceCount": 4,
-          "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 2,
+          "rawSourceCount": 10,
+          "uniqueSourceCount": 4,
+          "duplicatesCollapsed": 6,
           "missingLineage": 0,
           "uniqueOrigins": [
             "flex:epc-power-acquisition:2026-09-03",
-            "flex:800v-power-rack:2026-03-16"
+            "flex:800v-power-rack:2026-03-16",
+            "flex:axiom-form10:2026-09-15",
+            "flex:pre14a:2026-09-16"
           ]
         },
         "evidenceWindow": {
           "start": "2026-03-16T00:00:00.000Z",
-          "end": "2026-09-19T18:02:12.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T18:02:12.000Z"
+          "end": "2026-09-20T13:26:36.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T13:26:36.000Z"
         },
         "preflightPassed": false
       },
@@ -11640,34 +11642,67 @@
         "alignment2036",
         "catalystScore",
         "executionCapability",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "substitutionResilience",
+        "governancePower",
+        "financialOperatingMomentum",
+        "thesisQuality",
+        "dataConfidence"
       ],
       "constraintSignals": {
         "risks": [
           "The $4.4 billion acquisition adds integration, financing and transaction-close risk before expected strategic benefits are realized.",
-          "A simultaneous large acquisition and business separation can create operational distraction and attribution uncertainty."
+          "A simultaneous large acquisition and business separation can create operational distraction and attribution uncertainty.",
+          "Power-conversion technology can be substituted by competing architectures/vendors; scale and integration, not exclusivity, are the defensible mechanism visible today.",
+          "Separation changes which public entity owns the CPI bottleneck exposure.",
+          "Up to $4.4 billion bridge financing and post-spin refinancing can increase leverage/financing sensitivity before acquisition synergies are realized.",
+          "Management attention, systems, controls, customer/supplier relationships and capital structures face simultaneous acquisition/separation complexity."
         ],
         "unknowns": [
           "EPC Power's standalone margins, customer concentration and purchase-price return thresholds require transaction/filing underwriting.",
-          "Closing conditions and post-close integration outcomes remain future events."
+          "Closing conditions and post-close integration outcomes remain future events.",
+          "EPC Power standalone customer concentration and realized post-close economics are not yet demonstrated.",
+          "Final permanent financing mix, post-spin credit profile and realized EPC Power margins remain unresolved future outcomes."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "human-need:compute-and-grid-reliability",
+            "to": "infrastructure:high-density-power-conversion",
+            "relationship": "requires",
+            "direction": 1
+          },
+          {
+            "from": "technology:800v-grid-forming-power",
+            "to": "company:FLEX",
+            "relationship": "capability-exposure",
+            "direction": 1
+          },
+          {
+            "from": "event:axiom-separation",
+            "to": "company:FLEX",
+            "relationship": "changes-entity-boundary-and-causal-exposure",
+            "direction": -1
+          },
+          {
+            "from": "risk:transaction-financing-and-separation",
+            "to": "company:FLEX",
+            "relationship": "raises-execution-and-capital-structure-risk",
+            "direction": -1
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -11678,16 +11713,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -11709,11 +11734,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -11723,13 +11743,24 @@
           "alignment2036",
           "catalystScore",
           "executionCapability",
-          "scenarioRobustness"
+          "scenarioRobustness",
+          "substitutionResilience",
+          "governancePower",
+          "financialOperatingMomentum",
+          "thesisQuality",
+          "dataConfidence"
         ],
         "needOrConstraintCandidates": [
           "EPC Power's standalone margins, customer concentration and purchase-price return thresholds require transaction/filing underwriting.",
           "Closing conditions and post-close integration outcomes remain future events.",
+          "EPC Power standalone customer concentration and realized post-close economics are not yet demonstrated.",
+          "Final permanent financing mix, post-spin credit profile and realized EPC Power margins remain unresolved future outcomes.",
           "The $4.4 billion acquisition adds integration, financing and transaction-close risk before expected strategic benefits are realized.",
-          "A simultaneous large acquisition and business separation can create operational distraction and attribution uncertainty."
+          "A simultaneous large acquisition and business separation can create operational distraction and attribution uncertainty.",
+          "Power-conversion technology can be substituted by competing architectures/vendors; scale and integration, not exclusivity, are the defensible mechanism visible today.",
+          "Separation changes which public entity owns the CPI bottleneck exposure.",
+          "Up to $4.4 billion bridge financing and post-spin refinancing can increase leverage/financing sensitivity before acquisition synergies are realized.",
+          "Management attention, systems, controls, customer/supplier relationships and capital structures face simultaneous acquisition/separation complexity."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -13752,7 +13783,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "FIX",
       "workId": "t0:FIX",
-      "inputSignature": "092ff113df55a13fa53a76a2",
+      "inputSignature": "889716e1212873c46c8ae697",
       "sourceState": "researching",
       "identity": {
         "ticker": "FIX",
@@ -13775,19 +13806,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 2,
         "sourceLineage": {
-          "rawSourceCount": 3,
+          "rawSourceCount": 7,
           "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 1,
+          "duplicatesCollapsed": 5,
           "missingLineage": 0,
           "uniqueOrigins": [
             "fix:q2-2026:results:2026-07-23",
@@ -13796,8 +13827,8 @@
         },
         "evidenceWindow": {
           "start": "2026-07-23T00:00:00.000Z",
-          "end": "2026-09-19T18:02:12.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T18:02:12.000Z"
+          "end": "2026-09-20T13:26:36.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T13:26:36.000Z"
         },
         "preflightPassed": false
       },
@@ -13806,34 +13837,66 @@
         "bottleneckControl",
         "executionCapability",
         "scenarioRobustness",
-        "thesisQuality"
+        "thesisQuality",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "alignment2036",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
           "Technology/data-center concentration can amplify cyclicality if hyperscale construction schedules slow.",
-          "Current growth rates may not persist as data-center project burn converts backlog to revenue."
+          "Current growth rates may not persist as data-center project burn converts backlog to revenue.",
+          "Technology/data-center concentration can turn a structural demand tailwind into cyclicality if hyperscale build schedules slow or customers defer projects.",
+          "Labor, supplier, subcontractor, bonding and project-control capacity can become successor bottlenecks as backlog scales.",
+          "Backlog may fail to convert at expected economics because of cancellation, schedule, fixed-price estimating, labor or supplier constraints.",
+          "Decentralized operations and cost-to-cost revenue recognition increase the importance of project-level controls as the business scales."
         ],
         "unknowns": [
           "Backlog is a near-term directional indicator, not a multi-quarter revenue guarantee; the company explicitly cautions on its predictive limits.",
-          "Customer-level concentration and forward project mix require deeper filing-level underwriting."
+          "Customer-level concentration and forward project mix require deeper filing-level underwriting.",
+          "Customer-level concentration and the durability of current technology-project share are not quantified in this Beta evidence set.",
+          "No customer-level concentration schedule was added in this run; Alpha/filing underwriting can quantify it if required for numeric scoring."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "human-need:reliable-digital-capacity",
+            "to": "infrastructure:data-center-power-cooling",
+            "relationship": "requires",
+            "direction": 1
+          },
+          {
+            "from": "infrastructure:data-center-power-cooling",
+            "to": "company:FIX",
+            "relationship": "requires-qualified-electrical-mechanical-modular-execution",
+            "direction": 1
+          },
+          {
+            "from": "resource:skilled-labor-project-capacity",
+            "to": "company:FIX",
+            "relationship": "constrains-throughput-and-conversion",
+            "direction": -1
+          },
+          {
+            "from": "risk:data-center-project-concentration",
+            "to": "company:FIX",
+            "relationship": "amplifies-cyclicality-and-schedule-risk",
+            "direction": -1
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -13844,16 +13907,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -13875,11 +13928,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -13888,13 +13936,23 @@
           "bottleneckControl",
           "executionCapability",
           "scenarioRobustness",
-          "thesisQuality"
+          "thesisQuality",
+          "substitutionResilience",
+          "supplyChainResilience",
+          "alignment2036",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "Backlog is a near-term directional indicator, not a multi-quarter revenue guarantee; the company explicitly cautions on its predictive limits.",
           "Customer-level concentration and forward project mix require deeper filing-level underwriting.",
+          "Customer-level concentration and the durability of current technology-project share are not quantified in this Beta evidence set.",
+          "No customer-level concentration schedule was added in this run; Alpha/filing underwriting can quantify it if required for numeric scoring.",
           "Technology/data-center concentration can amplify cyclicality if hyperscale construction schedules slow.",
-          "Current growth rates may not persist as data-center project burn converts backlog to revenue."
+          "Current growth rates may not persist as data-center project burn converts backlog to revenue.",
+          "Technology/data-center concentration can turn a structural demand tailwind into cyclicality if hyperscale build schedules slow or customers defer projects.",
+          "Labor, supplier, subcontractor, bonding and project-control capacity can become successor bottlenecks as backlog scales.",
+          "Backlog may fail to convert at expected economics because of cancellation, schedule, fixed-price estimating, labor or supplier constraints.",
+          "Decentralized operations and cost-to-cost revenue recognition increase the importance of project-level controls as the business scales."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -16289,149 +16347,6 @@
           "Construction-stage execution and ISR scale-up remain the decisive bridge between resource quality and actual production.",
           "Further cost escalation, schedule slippage or ISR performance below feasibility assumptions would weaken project economics.",
           "Uranium inventory monetization reduces retained commodity upside while funding construction."
-        ],
-        "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
-      },
-      "doctrine": {
-        "recommendationStyle": "facts + interpretation + options; never coercion",
-        "representationIsNotRanking": true,
-        "uncertaintyVisible": true
-      }
-    },
-    {
-      "version": 1,
-      "contract": "earth2036-company-digital-twin-shadow-v1",
-      "canonicalWriteAuthority": false,
-      "ticker": "BWXT",
-      "workId": "t0:BWXT",
-      "inputSignature": "5706e212e3dcd1e78b731043",
-      "sourceState": "chief_ready",
-      "identity": {
-        "ticker": "BWXT",
-        "company": "BWX Technologies",
-        "cik": "0001486957",
-        "exchange": "NYSE",
-        "exchangeName": "BWX Technologies, Inc. Common Stock",
-        "identityStatus": "validated",
-        "tradabilityStatus": "validated",
-        "validatedAt": "2026-09-20T12:29:11.302Z"
-      },
-      "representationQuality": {
-        "requiredPerspectives": [
-          "source-integrity",
-          "company-underwriting",
-          "structural-causal",
-          "discovery-weak-signals",
-          "adversarial-red-team",
-          "expectations-execution"
-        ],
-        "presentPerspectives": [
-          "discovery-weak-signals",
-          "expectations-execution",
-          "structural-causal",
-          "adversarial-red-team",
-          "source-integrity",
-          "company-underwriting"
-        ],
-        "missingPerspectives": [],
-        "primarySourceCount": 3,
-        "sourceLineage": {
-          "rawSourceCount": 14,
-          "uniqueSourceCount": 4,
-          "duplicatesCollapsed": 10,
-          "missingLineage": 0,
-          "uniqueOrigins": [
-            "issuer:BWXT:NNSA-lithium:20260903",
-            "issuer:BWXT:IR-index:20260919",
-            "issuer:BWXT:2026Q2:20260803",
-            "independent:companiesmarketcap:BWXT:marketcap:20260920"
-          ]
-        },
-        "evidenceWindow": {
-          "start": "2026-08-03T00:00:00.000Z",
-          "end": "2026-09-20T13:12:54.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-20T13:12:54.000Z"
-        },
-        "preflightPassed": true
-      },
-      "capabilitySignals": [
-        "thesisQuality",
-        "catalystScore",
-        "alignment2036",
-        "crossDivisionLeverage",
-        "bottleneckControl",
-        "financialOperatingMomentum",
-        "scenarioRobustness",
-        "supplyChainResilience",
-        "substitutionResilience",
-        "marketValuationOpportunity",
-        "governancePower",
-        "pricingPower"
-      ],
-      "constraintSignals": {
-        "risks": [
-          "Program selections and conceptual-design awards do not establish full production economics or timing.",
-          "Government Operations operating income declined 3% year over year in Q2 and execution remains exposed to contract mix and program timing.",
-          "Long-cycle government and nuclear programs shift the bottleneck from technical capability to authorization, funding, qualification and execution.",
-          "Government/customer concentration and appropriations expose timing and economics to policy and procurement decisions.",
-          "Specialized nuclear execution carries schedule, quality and regulatory consequences.",
-          "Program announcements can overstate near-term economics when contract value or production scope is undisclosed.",
-          "Most operating evidence is issuer-origin; independent corroboration is presently strongest for current market valuation rather than operating claims.",
-          "Government/customer concentration, appropriations, contract mix and long-cycle nuclear execution can delay or impair economics; newest selections do not yet establish scaled production economics."
-        ],
-        "unknowns": [
-          "Contract value and downstream production scope for the NNSA design award are not disclosed in the retrieved release.",
-          "Valuation attractiveness is not established by this operating evidence.",
-          "NNSA conceptual-design contract value and downstream production scope remain undisclosed.",
-          "Current evidence does not quantify concentration by individual government program or economics of newest selections.",
-          "No independent source in this run independently verifies every issuer operating claim.",
-          "Individual-program concentration and newest-program production economics are undisclosed.",
-          "Current evidence is insufficient to characterize governance as exceptional; score remains in the strong/adequate boundary region."
-        ],
-        "contradictions": [],
-        "gatingIssues": [],
-        "preflightFailures": []
-      },
-      "causalContext": {
-        "mapped": true,
-        "edges": [
-          "nuclear engineering/manufacturing capability -> qualified systems -> defense/energy/isotope infrastructure -> strategic energy/security needs",
-          "program selection -> design work -> follow-on production decision -> economic realization",
-          "contract mix/program timing -> segment margin -> cash conversion -> execution credibility"
-        ]
-      },
-      "improvementWindows": [],
-      "bridgeInputs": {
-        "capabilityCandidates": [
-          "thesisQuality",
-          "catalystScore",
-          "alignment2036",
-          "crossDivisionLeverage",
-          "bottleneckControl",
-          "financialOperatingMomentum",
-          "scenarioRobustness",
-          "supplyChainResilience",
-          "substitutionResilience",
-          "marketValuationOpportunity",
-          "governancePower",
-          "pricingPower"
-        ],
-        "needOrConstraintCandidates": [
-          "Contract value and downstream production scope for the NNSA design award are not disclosed in the retrieved release.",
-          "Valuation attractiveness is not established by this operating evidence.",
-          "NNSA conceptual-design contract value and downstream production scope remain undisclosed.",
-          "Current evidence does not quantify concentration by individual government program or economics of newest selections.",
-          "No independent source in this run independently verifies every issuer operating claim.",
-          "Individual-program concentration and newest-program production economics are undisclosed.",
-          "Current evidence is insufficient to characterize governance as exceptional; score remains in the strong/adequate boundary region.",
-          "Program selections and conceptual-design awards do not establish full production economics or timing.",
-          "Government Operations operating income declined 3% year over year in Q2 and execution remains exposed to contract mix and program timing.",
-          "Long-cycle government and nuclear programs shift the bottleneck from technical capability to authorization, funding, qualification and execution.",
-          "Government/customer concentration and appropriations expose timing and economics to policy and procurement decisions.",
-          "Specialized nuclear execution carries schedule, quality and regulatory consequences.",
-          "Program announcements can overstate near-term economics when contract value or production scope is undisclosed.",
-          "Most operating evidence is issuer-origin; independent corroboration is presently strongest for current market valuation rather than operating claims.",
-          "Government/customer concentration, appropriations, contract mix and long-cycle nuclear execution can delay or impair economics; newest selections do not yet establish scaled production economics."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -20342,7 +20257,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "FLNC",
       "workId": "t0:FLNC",
-      "inputSignature": "440f8cdb8aaf428a0e4d5335",
+      "inputSignature": "8684d90fa0c394fc87754f3d",
       "sourceState": "researching",
       "identity": {
         "ticker": "FLNC",
@@ -20365,19 +20280,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 2,
         "sourceLineage": {
-          "rawSourceCount": 3,
+          "rawSourceCount": 7,
           "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 1,
+          "duplicatesCollapsed": 5,
           "missingLineage": 0,
           "uniqueOrigins": [
             "fluence:guidance:2026-09-16",
@@ -20386,8 +20301,8 @@
         },
         "evidenceWindow": {
           "start": "2026-09-19T19:07:11.000Z",
-          "end": "2026-09-19T19:07:11.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T19:07:11.000Z"
+          "end": "2026-09-20T13:26:36.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T13:26:36.000Z"
         },
         "preflightPassed": false
       },
@@ -20396,36 +20311,71 @@
         "financialOperatingMomentum",
         "scenarioRobustness",
         "demandSignal",
-        "expectationCalibration"
+        "expectationCalibration",
+        "bottleneckControl",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "alignment2036",
+        "dataConfidence"
       ],
       "constraintSignals": {
         "risks": [
           "Manufacturing ramp delays are now large enough to materially impair current-year revenue and profitability despite strong backlog.",
-          "A large backlog can overstate near-term economic realization when production capacity is the binding constraint."
+          "A large backlog can overstate near-term economic realization when production capacity is the binding constraint.",
+          "Contract-manufacturing throughput is currently a binding bottleneck that can prevent strong demand from becoming revenue/cash.",
+          "Supplier concentration and alternative storage/integration providers reduce structural exclusivity.",
+          "Further contract-manufacturing delay can shift revenue again, erode margin and increase external-capital need.",
+          "Supplier/contract-manufacturer concentration and limited alternatives can amplify execution fragility."
         ],
         "unknowns": [
           "Timing and cost required to stabilize U.S. contract manufacturing and recover deferred project economics remain uncertain.",
-          "Whether delayed revenue shifts into FY2027 without further margin erosion is not yet demonstrated."
+          "Whether delayed revenue shifts into FY2027 without further margin erosion is not yet demonstrated.",
+          "Whether corrective actions sustain targeted U.S. production rates through FY2027 is not yet observed.",
+          "FY2027 cash neutrality and backlog conversion remain management objectives, not observed outcomes."
         ],
         "contradictions": [
-          "Record backlog/order intake indicates demand strength while repeated guidance reductions indicate execution bottlenecks are preventing timely conversion."
+          "Record backlog/order intake indicates demand strength while repeated guidance reductions indicate execution bottlenecks are preventing timely conversion.",
+          "Record demand/backlog coexists with severe execution shortfall; this resolves as a demand-versus-throughput distinction rather than a demand-thesis falsification.",
+          "Strong order intake/backlog versus sharply reduced revenue/EBITDA guidance is material but causally explained by production constraints; it lowers execution confidence without blocking treatment."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "human-need:grid-reliability-and-load-balancing",
+            "to": "infrastructure:energy-storage",
+            "relationship": "requires-flexibility-capacity",
+            "direction": 1
+          },
+          {
+            "from": "infrastructure:energy-storage",
+            "to": "company:FLNC",
+            "relationship": "demand-exposure",
+            "direction": 1
+          },
+          {
+            "from": "resource:contract-manufacturing-throughput",
+            "to": "company:FLNC",
+            "relationship": "current-binding-conversion-constraint",
+            "direction": -1
+          },
+          {
+            "from": "risk:manufacturing-ramp-failure",
+            "to": "company:FLNC",
+            "relationship": "delays-revenue-and-erodes-margin",
+            "direction": -1
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -20436,16 +20386,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -20467,11 +20407,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -20480,13 +20415,24 @@
           "financialOperatingMomentum",
           "scenarioRobustness",
           "demandSignal",
-          "expectationCalibration"
+          "expectationCalibration",
+          "bottleneckControl",
+          "substitutionResilience",
+          "supplyChainResilience",
+          "alignment2036",
+          "dataConfidence"
         ],
         "needOrConstraintCandidates": [
           "Timing and cost required to stabilize U.S. contract manufacturing and recover deferred project economics remain uncertain.",
           "Whether delayed revenue shifts into FY2027 without further margin erosion is not yet demonstrated.",
+          "Whether corrective actions sustain targeted U.S. production rates through FY2027 is not yet observed.",
+          "FY2027 cash neutrality and backlog conversion remain management objectives, not observed outcomes.",
           "Manufacturing ramp delays are now large enough to materially impair current-year revenue and profitability despite strong backlog.",
-          "A large backlog can overstate near-term economic realization when production capacity is the binding constraint."
+          "A large backlog can overstate near-term economic realization when production capacity is the binding constraint.",
+          "Contract-manufacturing throughput is currently a binding bottleneck that can prevent strong demand from becoming revenue/cash.",
+          "Supplier concentration and alternative storage/integration providers reduce structural exclusivity.",
+          "Further contract-manufacturing delay can shift revenue again, erode margin and increase external-capital need.",
+          "Supplier/contract-manufacturer concentration and limited alternatives can amplify execution fragility."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -33853,7 +33799,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "FMC",
       "workId": "t0:FMC",
-      "inputSignature": "4a5f8a1e0b83598651a5358f",
+      "inputSignature": "374c1dda2497841c6e40b046",
       "sourceState": "researching",
       "identity": {
         "ticker": "FMC",
@@ -33876,19 +33822,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 2,
         "sourceLineage": {
-          "rawSourceCount": 3,
+          "rawSourceCount": 7,
           "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 1,
+          "duplicatesCollapsed": 5,
           "missingLineage": 0,
           "uniqueOrigins": [
             "fmc:q2-results:2026-07-29",
@@ -33897,8 +33843,8 @@
         },
         "evidenceWindow": {
           "start": "2026-09-19T19:07:11.000Z",
-          "end": "2026-09-19T19:07:11.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T19:07:11.000Z"
+          "end": "2026-09-20T13:26:36.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T13:26:36.000Z"
         },
         "preflightPassed": false
       },
@@ -33907,36 +33853,79 @@
         "balanceSheetResilience",
         "executionCapability",
         "innovationPipeline",
-        "expectationCalibration"
+        "expectationCalibration",
+        "thesisQuality",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "alignment2036",
+        "governancePower",
+        "pricingPower",
+        "dataConfidence"
       ],
       "constraintSignals": {
         "risks": [
           "Core legacy-product price and volume pressure plus higher interest expense remain material while deleveraging depends partly on transactions not yet fully closed.",
-          "Announced financing and asset actions can improve liquidity without resolving weak end-market pricing or legacy-product demand."
+          "Announced financing and asset actions can improve liquidity without resolving weak end-market pricing or legacy-product demand.",
+          "Post-patent/generic and legacy-product price pressure can erode economic capture faster than new actives scale.",
+          "Grower margin pressure and channel timing can slow adoption even when agronomic need remains.",
+          "Deleveraging relies partly on transactions/approvals and one-time monetizations while core earnings remain pressured.",
+          "Approximately 20% minority equity issuance is substantial dilution and introduces a large strategic shareholder."
         ],
         "unknowns": [
           "Net leverage after all announced transactions close and the sustainable earnings contribution from new active ingredients remain unproven.",
-          "Whether the expected Q4 return to year-over-year growth occurs remains a forward expectation rather than observed evidence."
+          "Whether the expected Q4 return to year-over-year growth occurs remains a forward expectation rather than observed evidence.",
+          "Sustainable revenue/margin contribution from the new-active portfolio at scale remains unproven in current results.",
+          "Final leverage after all announced transactions and the governance effects of Tessenderlo's approximately 20% stake remain to be observed after closing."
         ],
         "contradictions": [
-          "Cash generation and planned deleveraging improved while underlying revenue and EBITDA deteriorated materially."
+          "Cash generation and planned deleveraging improved while underlying revenue and EBITDA deteriorated materially.",
+          "Improved Q2 cash generation coexists with sharply weaker recurring operating performance; the difference is partly explained by the $200 million licensing prepayment and should remain separated in underwriting."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "human-need:crop-yield-and-pest-control",
+            "to": "technology:crop-protection-actives",
+            "relationship": "requires-effective-control-tools",
+            "direction": 1
+          },
+          {
+            "from": "technology:new-proprietary-actives",
+            "to": "company:FMC",
+            "relationship": "portfolio-renewal-path",
+            "direction": 1
+          },
+          {
+            "from": "market:generic-and-alternative-crop-protection",
+            "to": "company:FMC",
+            "relationship": "substitution-and-price-pressure",
+            "direction": -1
+          },
+          {
+            "from": "risk:legacy-price-volume-pressure",
+            "to": "company:FMC",
+            "relationship": "erodes-earnings-and-deleveraging-capacity",
+            "direction": -1
+          },
+          {
+            "from": "action:asset-sales-licensing-equity",
+            "to": "company:FMC",
+            "relationship": "improves-liquidity-with-dilution-and-one-time-cash-tradeoffs",
+            "direction": 1
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -33947,16 +33936,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -33978,11 +33957,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -33991,13 +33965,27 @@
           "balanceSheetResilience",
           "executionCapability",
           "innovationPipeline",
-          "expectationCalibration"
+          "expectationCalibration",
+          "thesisQuality",
+          "bottleneckControl",
+          "scenarioRobustness",
+          "substitutionResilience",
+          "alignment2036",
+          "governancePower",
+          "pricingPower",
+          "dataConfidence"
         ],
         "needOrConstraintCandidates": [
           "Net leverage after all announced transactions close and the sustainable earnings contribution from new active ingredients remain unproven.",
           "Whether the expected Q4 return to year-over-year growth occurs remains a forward expectation rather than observed evidence.",
+          "Sustainable revenue/margin contribution from the new-active portfolio at scale remains unproven in current results.",
+          "Final leverage after all announced transactions and the governance effects of Tessenderlo's approximately 20% stake remain to be observed after closing.",
           "Core legacy-product price and volume pressure plus higher interest expense remain material while deleveraging depends partly on transactions not yet fully closed.",
-          "Announced financing and asset actions can improve liquidity without resolving weak end-market pricing or legacy-product demand."
+          "Announced financing and asset actions can improve liquidity without resolving weak end-market pricing or legacy-product demand.",
+          "Post-patent/generic and legacy-product price pressure can erode economic capture faster than new actives scale.",
+          "Grower margin pressure and channel timing can slow adoption even when agronomic need remains.",
+          "Deleveraging relies partly on transactions/approvals and one-time monetizations while core earnings remain pressured.",
+          "Approximately 20% minority equity issuance is substantial dilution and introduces a large strategic shareholder."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

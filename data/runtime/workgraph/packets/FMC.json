@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "FMC",
   "workId": "t0:FMC",
-  "generatedAt": "2026-09-20T13:14:51.809Z",
+  "generatedAt": "2026-09-20T13:30:54.233Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-19T19:07:11.000Z",
-    "end": "2026-09-19T19:07:11.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T19:07:11.000Z"
+    "end": "2026-09-20T13:26:36.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T13:26:36.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/FMC-20260919T190711Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/FMC-20260919T190711Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/FMC-20260920T132636Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -61,19 +64,39 @@
       "balanceSheetResilience",
       "executionCapability",
       "innovationPipeline",
-      "expectationCalibration"
+      "expectationCalibration",
+      "thesisQuality",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "alignment2036",
+      "governancePower",
+      "pricingPower",
+      "dataConfidence"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "alignment2036"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "balanceSheetResilience",
         "executionCapability",
         "innovationPipeline"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "governancePower",
+        "scenarioRobustness",
+        "pricingPower",
+        "dataConfidence"
+      ],
       "expectations-execution": [
         "executionCapability",
         "expectationCalibration",
@@ -123,7 +146,15 @@
     "balanceSheetResilience",
     "executionCapability",
     "innovationPipeline",
-    "expectationCalibration"
+    "expectationCalibration",
+    "thesisQuality",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "alignment2036",
+    "governancePower",
+    "pricingPower",
+    "dataConfidence"
   ],
   "riskEvidence": {
     "present": true,
@@ -135,6 +166,22 @@
       {
         "risk": "Announced financing and asset actions can improve liquidity without resolving weak end-market pricing or legacy-product demand.",
         "gating": false
+      },
+      {
+        "risk": "Post-patent/generic and legacy-product price pressure can erode economic capture faster than new actives scale.",
+        "gating": false
+      },
+      {
+        "risk": "Grower margin pressure and channel timing can slow adoption even when agronomic need remains.",
+        "gating": false
+      },
+      {
+        "risk": "Deleveraging relies partly on transactions/approvals and one-time monetizations while core earnings remain pressured.",
+        "gating": false
+      },
+      {
+        "risk": "Approximately 20% minority equity issuance is substantial dilution and introduces a large strategic shareholder.",
+        "gating": false
       }
     ]
   },
@@ -145,6 +192,22 @@
     },
     {
       "risk": "Announced financing and asset actions can improve liquidity without resolving weak end-market pricing or legacy-product demand.",
+      "gating": false
+    },
+    {
+      "risk": "Post-patent/generic and legacy-product price pressure can erode economic capture faster than new actives scale.",
+      "gating": false
+    },
+    {
+      "risk": "Grower margin pressure and channel timing can slow adoption even when agronomic need remains.",
+      "gating": false
+    },
+    {
+      "risk": "Deleveraging relies partly on transactions/approvals and one-time monetizations while core earnings remain pressured.",
+      "gating": false
+    },
+    {
+      "risk": "Approximately 20% minority equity issuance is substantial dilution and introduces a large strategic shareholder.",
       "gating": false
     }
   ],
@@ -159,14 +222,76 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "human-need:crop-yield-and-pest-control",
+        "to": "technology:crop-protection-actives",
+        "relationship": "requires-effective-control-tools",
+        "direction": 1
+      },
+      {
+        "from": "technology:new-proprietary-actives",
+        "to": "company:FMC",
+        "relationship": "portfolio-renewal-path",
+        "direction": 1
+      },
+      {
+        "from": "market:generic-and-alternative-crop-protection",
+        "to": "company:FMC",
+        "relationship": "substitution-and-price-pressure",
+        "direction": -1
+      },
+      {
+        "from": "risk:legacy-price-volume-pressure",
+        "to": "company:FMC",
+        "relationship": "erodes-earnings-and-deleveraging-capacity",
+        "direction": -1
+      },
+      {
+        "from": "action:asset-sales-licensing-equity",
+        "to": "company:FMC",
+        "relationship": "improves-liquidity-with-dilution-and-one-time-cash-tradeoffs",
+        "direction": 1
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "human-need:crop-yield-and-pest-control",
+      "to": "technology:crop-protection-actives",
+      "relationship": "requires-effective-control-tools",
+      "direction": 1
+    },
+    {
+      "from": "technology:new-proprietary-actives",
+      "to": "company:FMC",
+      "relationship": "portfolio-renewal-path",
+      "direction": 1
+    },
+    {
+      "from": "market:generic-and-alternative-crop-protection",
+      "to": "company:FMC",
+      "relationship": "substitution-and-price-pressure",
+      "direction": -1
+    },
+    {
+      "from": "risk:legacy-price-volume-pressure",
+      "to": "company:FMC",
+      "relationship": "erodes-earnings-and-deleveraging-capacity",
+      "direction": -1
+    },
+    {
+      "from": "action:asset-sales-licensing-equity",
+      "to": "company:FMC",
+      "relationship": "improves-liquidity-with-dilution-and-one-time-cash-tradeoffs",
+      "direction": 1
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "fmc:q2-results:2026-07-29",
@@ -193,6 +318,10 @@
     {
       "contradiction": "Cash generation and planned deleveraging improved while underlying revenue and EBITDA deteriorated materially.",
       "gating": false
+    },
+    {
+      "contradiction": "Improved Q2 cash generation coexists with sharply weaker recurring operating performance; the difference is partly explained by the $200 million licensing prepayment and should remain separated in underwriting.",
+      "gating": false
     }
   ],
   "contradictionDispositions": {
@@ -200,6 +329,10 @@
     "items": [
       {
         "contradiction": "Cash generation and planned deleveraging improved while underlying revenue and EBITDA deteriorated materially.",
+        "gating": false
+      },
+      {
+        "contradiction": "Improved Q2 cash generation coexists with sharply weaker recurring operating performance; the difference is partly explained by the $200 million licensing prepayment and should remain separated in underwriting.",
         "gating": false
       }
     ]
@@ -212,26 +345,31 @@
     {
       "unknown": "Whether the expected Q4 return to year-over-year growth occurs remains a forward expectation rather than observed evidence.",
       "gating": false
+    },
+    {
+      "unknown": "Sustainable revenue/margin contribution from the new-active portfolio at scale remains unproven in current results.",
+      "gating": false
+    },
+    {
+      "unknown": "Final leverage after all announced transactions and the governance effects of Tessenderlo's approximately 20% stake remain to be observed after closing.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 98,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -241,14 +379,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -265,10 +395,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

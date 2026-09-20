@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "FLEX",
   "workId": "t0:FLEX",
-  "generatedAt": "2026-09-20T13:14:51.805Z",
+  "generatedAt": "2026-09-20T13:30:54.230Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-03-16T00:00:00.000Z",
-    "end": "2026-09-19T18:02:12.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T18:02:12.000Z"
+    "end": "2026-09-20T13:26:36.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T13:26:36.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/FLEX-20260919T180212Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/FLEX-20260919T180212Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/FLEX-20260920T132636Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,19 +65,36 @@
       "alignment2036",
       "catalystScore",
       "executionCapability",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "substitutionResilience",
+      "governancePower",
+      "financialOperatingMomentum",
+      "thesisQuality",
+      "dataConfidence"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "alignment2036"
+      ],
       "discovery-weak-signals": [
         "bottleneckControl",
         "crossDivisionLeverage",
         "alignment2036",
         "catalystScore"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "governancePower",
+        "financialOperatingMomentum",
+        "thesisQuality",
+        "dataConfidence"
+      ],
       "expectations-execution": [
         "executionCapability",
         "scenarioRobustness",
@@ -125,7 +145,12 @@
     "alignment2036",
     "catalystScore",
     "executionCapability",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "substitutionResilience",
+    "governancePower",
+    "financialOperatingMomentum",
+    "thesisQuality",
+    "dataConfidence"
   ],
   "riskEvidence": {
     "present": true,
@@ -136,6 +161,22 @@
       },
       {
         "risk": "A simultaneous large acquisition and business separation can create operational distraction and attribution uncertainty.",
+        "gating": false
+      },
+      {
+        "risk": "Power-conversion technology can be substituted by competing architectures/vendors; scale and integration, not exclusivity, are the defensible mechanism visible today.",
+        "gating": false
+      },
+      {
+        "risk": "Separation changes which public entity owns the CPI bottleneck exposure.",
+        "gating": false
+      },
+      {
+        "risk": "Up to $4.4 billion bridge financing and post-spin refinancing can increase leverage/financing sensitivity before acquisition synergies are realized.",
+        "gating": false
+      },
+      {
+        "risk": "Management attention, systems, controls, customer/supplier relationships and capital structures face simultaneous acquisition/separation complexity.",
         "gating": false
       }
     ]
@@ -148,6 +189,22 @@
     {
       "risk": "A simultaneous large acquisition and business separation can create operational distraction and attribution uncertainty.",
       "gating": false
+    },
+    {
+      "risk": "Power-conversion technology can be substituted by competing architectures/vendors; scale and integration, not exclusivity, are the defensible mechanism visible today.",
+      "gating": false
+    },
+    {
+      "risk": "Separation changes which public entity owns the CPI bottleneck exposure.",
+      "gating": false
+    },
+    {
+      "risk": "Up to $4.4 billion bridge financing and post-spin refinancing can increase leverage/financing sensitivity before acquisition synergies are realized.",
+      "gating": false
+    },
+    {
+      "risk": "Management attention, systems, controls, customer/supplier relationships and capital structures face simultaneous acquisition/separation complexity.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -158,21 +215,73 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 4
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "human-need:compute-and-grid-reliability",
+        "to": "infrastructure:high-density-power-conversion",
+        "relationship": "requires",
+        "direction": 1
+      },
+      {
+        "from": "technology:800v-grid-forming-power",
+        "to": "company:FLEX",
+        "relationship": "capability-exposure",
+        "direction": 1
+      },
+      {
+        "from": "event:axiom-separation",
+        "to": "company:FLEX",
+        "relationship": "changes-entity-boundary-and-causal-exposure",
+        "direction": -1
+      },
+      {
+        "from": "risk:transaction-financing-and-separation",
+        "to": "company:FLEX",
+        "relationship": "raises-execution-and-capital-structure-risk",
+        "direction": -1
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "human-need:compute-and-grid-reliability",
+      "to": "infrastructure:high-density-power-conversion",
+      "relationship": "requires",
+      "direction": 1
+    },
+    {
+      "from": "technology:800v-grid-forming-power",
+      "to": "company:FLEX",
+      "relationship": "capability-exposure",
+      "direction": 1
+    },
+    {
+      "from": "event:axiom-separation",
+      "to": "company:FLEX",
+      "relationship": "changes-entity-boundary-and-causal-exposure",
+      "direction": -1
+    },
+    {
+      "from": "risk:transaction-financing-and-separation",
+      "to": "company:FLEX",
+      "relationship": "raises-execution-and-capital-structure-risk",
+      "direction": -1
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "rawSourceCount": 10,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "flex:epc-power-acquisition:2026-09-03",
-      "flex:800v-power-rack:2026-03-16"
+      "flex:800v-power-rack:2026-03-16",
+      "flex:axiom-form10:2026-09-15",
+      "flex:pre14a:2026-09-16"
     ]
   },
   "sources": [
@@ -191,6 +300,22 @@
       "primary": true,
       "publishedAt": "2026-03-16",
       "originFingerprint": "flex:800v-power-rack:2026-03-16"
+    },
+    {
+      "sourceId": "flex:axiom-form10:2026-09-15",
+      "url": "https://investors.flex.com/news/news-details/2026/Flex-Announces-New-Company-Name-for-the-Planned-Cloud-and-Power-Infrastructure-Spin-Off-and-Files-Form-10-Registration-Statement/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-15",
+      "originFingerprint": "flex:axiom-form10:2026-09-15"
+    },
+    {
+      "sourceId": "flex:spin-proxy:2026-09-16",
+      "url": "https://www.sec.gov/Archives/edgar/data/866374/000119312526393030/d79728dpre14a.htm",
+      "kind": "primary-sec",
+      "primary": true,
+      "publishedAt": "2026-09-16",
+      "originFingerprint": "flex:pre14a:2026-09-16"
     }
   ],
   "contradictions": [],
@@ -206,26 +331,31 @@
     {
       "unknown": "Closing conditions and post-close integration outcomes remain future events.",
       "gating": false
+    },
+    {
+      "unknown": "EPC Power standalone customer concentration and realized post-close economics are not yet demonstrated.",
+      "gating": false
+    },
+    {
+      "unknown": "Final permanent financing mix, post-spin credit profile and realized EPC Power margins remain unresolved future outcomes.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 96,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -235,14 +365,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -259,10 +381,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

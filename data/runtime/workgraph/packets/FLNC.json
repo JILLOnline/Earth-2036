@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "FLNC",
   "workId": "t0:FLNC",
-  "generatedAt": "2026-09-20T13:14:51.807Z",
+  "generatedAt": "2026-09-20T13:30:54.231Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-19T19:07:11.000Z",
-    "end": "2026-09-19T19:07:11.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T19:07:11.000Z"
+    "end": "2026-09-20T13:26:36.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T13:26:36.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/FLNC-20260919T190711Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/FLNC-20260919T190711Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/FLNC-20260920T132636Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -61,19 +64,36 @@
       "financialOperatingMomentum",
       "scenarioRobustness",
       "demandSignal",
-      "expectationCalibration"
+      "expectationCalibration",
+      "bottleneckControl",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "alignment2036",
+      "dataConfidence"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "alignment2036"
+      ],
       "discovery-weak-signals": [
         "executionCapability",
         "financialOperatingMomentum",
         "scenarioRobustness",
         "demandSignal"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "executionCapability",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "dataConfidence"
+      ],
       "expectations-execution": [
         "executionCapability",
         "expectationCalibration",
@@ -123,7 +143,12 @@
     "financialOperatingMomentum",
     "scenarioRobustness",
     "demandSignal",
-    "expectationCalibration"
+    "expectationCalibration",
+    "bottleneckControl",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "alignment2036",
+    "dataConfidence"
   ],
   "riskEvidence": {
     "present": true,
@@ -135,6 +160,22 @@
       {
         "risk": "A large backlog can overstate near-term economic realization when production capacity is the binding constraint.",
         "gating": false
+      },
+      {
+        "risk": "Contract-manufacturing throughput is currently a binding bottleneck that can prevent strong demand from becoming revenue/cash.",
+        "gating": false
+      },
+      {
+        "risk": "Supplier concentration and alternative storage/integration providers reduce structural exclusivity.",
+        "gating": false
+      },
+      {
+        "risk": "Further contract-manufacturing delay can shift revenue again, erode margin and increase external-capital need.",
+        "gating": false
+      },
+      {
+        "risk": "Supplier/contract-manufacturer concentration and limited alternatives can amplify execution fragility.",
+        "gating": false
       }
     ]
   },
@@ -145,6 +186,22 @@
     },
     {
       "risk": "A large backlog can overstate near-term economic realization when production capacity is the binding constraint.",
+      "gating": false
+    },
+    {
+      "risk": "Contract-manufacturing throughput is currently a binding bottleneck that can prevent strong demand from becoming revenue/cash.",
+      "gating": false
+    },
+    {
+      "risk": "Supplier concentration and alternative storage/integration providers reduce structural exclusivity.",
+      "gating": false
+    },
+    {
+      "risk": "Further contract-manufacturing delay can shift revenue again, erode margin and increase external-capital need.",
+      "gating": false
+    },
+    {
+      "risk": "Supplier/contract-manufacturer concentration and limited alternatives can amplify execution fragility.",
       "gating": false
     }
   ],
@@ -159,14 +216,64 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "human-need:grid-reliability-and-load-balancing",
+        "to": "infrastructure:energy-storage",
+        "relationship": "requires-flexibility-capacity",
+        "direction": 1
+      },
+      {
+        "from": "infrastructure:energy-storage",
+        "to": "company:FLNC",
+        "relationship": "demand-exposure",
+        "direction": 1
+      },
+      {
+        "from": "resource:contract-manufacturing-throughput",
+        "to": "company:FLNC",
+        "relationship": "current-binding-conversion-constraint",
+        "direction": -1
+      },
+      {
+        "from": "risk:manufacturing-ramp-failure",
+        "to": "company:FLNC",
+        "relationship": "delays-revenue-and-erodes-margin",
+        "direction": -1
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "human-need:grid-reliability-and-load-balancing",
+      "to": "infrastructure:energy-storage",
+      "relationship": "requires-flexibility-capacity",
+      "direction": 1
+    },
+    {
+      "from": "infrastructure:energy-storage",
+      "to": "company:FLNC",
+      "relationship": "demand-exposure",
+      "direction": 1
+    },
+    {
+      "from": "resource:contract-manufacturing-throughput",
+      "to": "company:FLNC",
+      "relationship": "current-binding-conversion-constraint",
+      "direction": -1
+    },
+    {
+      "from": "risk:manufacturing-ramp-failure",
+      "to": "company:FLNC",
+      "relationship": "delays-revenue-and-erodes-margin",
+      "direction": -1
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "fluence:guidance:2026-09-16",
@@ -193,6 +300,14 @@
     {
       "contradiction": "Record backlog/order intake indicates demand strength while repeated guidance reductions indicate execution bottlenecks are preventing timely conversion.",
       "gating": false
+    },
+    {
+      "contradiction": "Record demand/backlog coexists with severe execution shortfall; this resolves as a demand-versus-throughput distinction rather than a demand-thesis falsification.",
+      "gating": false
+    },
+    {
+      "contradiction": "Strong order intake/backlog versus sharply reduced revenue/EBITDA guidance is material but causally explained by production constraints; it lowers execution confidence without blocking treatment.",
+      "gating": false
     }
   ],
   "contradictionDispositions": {
@@ -200,6 +315,14 @@
     "items": [
       {
         "contradiction": "Record backlog/order intake indicates demand strength while repeated guidance reductions indicate execution bottlenecks are preventing timely conversion.",
+        "gating": false
+      },
+      {
+        "contradiction": "Record demand/backlog coexists with severe execution shortfall; this resolves as a demand-versus-throughput distinction rather than a demand-thesis falsification.",
+        "gating": false
+      },
+      {
+        "contradiction": "Strong order intake/backlog versus sharply reduced revenue/EBITDA guidance is material but causally explained by production constraints; it lowers execution confidence without blocking treatment.",
         "gating": false
       }
     ]
@@ -212,26 +335,31 @@
     {
       "unknown": "Whether delayed revenue shifts into FY2027 without further margin erosion is not yet demonstrated.",
       "gating": false
+    },
+    {
+      "unknown": "Whether corrective actions sustain targeted U.S. production rates through FY2027 is not yet observed.",
+      "gating": false
+    },
+    {
+      "unknown": "FY2027 cash neutrality and backlog conversion remain management objectives, not observed outcomes.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 99,
+  "confidence": 95,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -241,14 +369,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -265,10 +385,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

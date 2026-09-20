@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-20T07:19:25.118Z",
+  "updatedAt": "2026-09-20T10:56:29.129Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -434,6 +434,42 @@
       "type": "market",
       "label": "BG structural demand",
       "description": "Bunge's expanded post-Viterra network connects origination, storage, processing and merchandising across agricultural flows; structural value comes from routing optionality and asset density rather than control of an irreplaceable commodity bottleneck."
+    },
+    {
+      "id": "company:BHP",
+      "type": "company",
+      "label": "BHP Group",
+      "description": "BHP links large-scale copper, iron ore and emerging potash supply to electrification/digital infrastructure, steel-intensive development and food security. Copper growth and Jansen diversify the portfolio, but geological endowment is converted into value only through permitting, safe execution, infrastructure and cost discipline."
+    },
+    {
+      "id": "market:BHP-bhp-structural-demand",
+      "type": "market",
+      "label": "BHP structural demand",
+      "description": "BHP links large-scale copper, iron ore and emerging potash supply to electrification/digital infrastructure, steel-intensive development and food security. Copper growth and Jansen diversify the portfolio, but geological endowment is converted into value only through permitting, safe execution, infrastructure and cost discipline."
+    },
+    {
+      "id": "company:BKNG",
+      "type": "company",
+      "label": "Booking Holdings Inc.",
+      "description": "Booking's structural role is a demand-routing layer between travelers and fragmented travel supply. Property breadth, direct/app traffic, payments, loyalty and Connected Trip can reduce search/coordination friction, but control of traveler discovery is not physically scarce and can migrate to AI agents, search platforms or suppliers."
+    },
+    {
+      "id": "market:BKNG-bkng-structural-demand",
+      "type": "market",
+      "label": "BKNG structural demand",
+      "description": "Booking's structural role is a demand-routing layer between travelers and fragmented travel supply. Property breadth, direct/app traffic, payments, loyalty and Connected Trip can reduce search/coordination friction, but control of traveler discovery is not physically scarce and can migrate to AI agents, search platforms or suppliers."
+    },
+    {
+      "id": "company:BKSY",
+      "type": "company",
+      "label": "BlackSky Technology Inc.",
+      "description": "BlackSky's structural value proposition is a vertically integrated low-latency geospatial intelligence loop: Gen-3 satellite collection plus analytics converts persistent defense/security monitoring demand into subscription intelligence services; recent pilot-to-multi-year conversion is consistent with that causal path."
+    },
+    {
+      "id": "market:BKSY-rapid-revisit-imagery-and-analytics-demand",
+      "type": "market",
+      "label": "rapid-revisit imagery and analytics demand",
+      "description": "customers require frequent collection and low-latency interpretation rather than static imagery alone"
     }
   ],
   "edges": [
@@ -1047,6 +1083,50 @@
         "issuer:BG:Q2:20260729"
       ],
       "observedAt": "2026-09-19T18:27:54Z"
+    },
+    {
+      "id": "edge:BHP-structural-exposure",
+      "from": "company:BHP",
+      "to": "market:BHP-bhp-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 80,
+      "confidence": 92,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:BHP:FY26:20260818",
+        "issuer:BHP:Jansen2:202606"
+      ],
+      "observedAt": "2026-09-19T18:27:54Z"
+    },
+    {
+      "id": "edge:BKNG-structural-exposure",
+      "from": "company:BKNG",
+      "to": "market:BKNG-bkng-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 55,
+      "confidence": 84,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:BKNG:IR:20260919"
+      ],
+      "observedAt": "2026-09-19T18:27:54Z"
+    },
+    {
+      "id": "edge:BKSY-structural-exposure",
+      "from": "company:BKSY",
+      "to": "market:BKSY-rapid-revisit-imagery-and-analytics-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 64,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "bksy-ir:intl-subscription:2026-08-11",
+        "bksy-ir:q2-2026:2026-08-06"
+      ],
+      "observedAt": "2026-09-19T07:25:25Z"
     }
   ],
   "structuralSignals": [
@@ -1774,6 +1854,62 @@
       "observedAt": "2026-09-19T18:27:54Z",
       "thesis": "Bunge's expanded post-Viterra network connects origination, storage, processing and merchandising across agricultural flows; structural value comes from routing optionality and asset density rather than control of an irreplaceable commodity bottleneck.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:BHP-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:BHP-bhp-structural-demand",
+      "affectedNodeIds": [
+        "company:BHP"
+      ],
+      "direction": 1,
+      "magnitude": 80,
+      "confidence": 92,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:BHP:FY26:20260818",
+        "issuer:BHP:Jansen2:202606"
+      ],
+      "observedAt": "2026-09-19T18:27:54Z",
+      "thesis": "BHP links large-scale copper, iron ore and emerging potash supply to electrification/digital infrastructure, steel-intensive development and food security. Copper growth and Jansen diversify the portfolio, but geological endowment is converted into value only through permitting, safe execution, infrastructure and cost discipline.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:BKNG-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:BKNG-bkng-structural-demand",
+      "affectedNodeIds": [
+        "company:BKNG"
+      ],
+      "direction": 1,
+      "magnitude": 55,
+      "confidence": 84,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:BKNG:IR:20260919"
+      ],
+      "observedAt": "2026-09-19T18:27:54Z",
+      "thesis": "Booking's structural role is a demand-routing layer between travelers and fragmented travel supply. Property breadth, direct/app traffic, payments, loyalty and Connected Trip can reduce search/coordination friction, but control of traveler discovery is not physically scarce and can migrate to AI agents, search platforms or suppliers.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:BKSY-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:BKSY-rapid-revisit-imagery-and-analytics-demand",
+      "affectedNodeIds": [
+        "company:BKSY"
+      ],
+      "direction": 1,
+      "magnitude": 64,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "bksy-ir:intl-subscription:2026-08-11",
+        "bksy-ir:q2-2026:2026-08-06"
+      ],
+      "observedAt": "2026-09-19T07:25:25Z",
+      "thesis": "BlackSky's structural value proposition is a vertically integrated low-latency geospatial intelligence loop: Gen-3 satellite collection plus analytics converts persistent defense/security monitoring demand into subscription intelligence services; recent pilot-to-multi-year conversion is consistent with that causal path.",
+      "falsifier": "Gen-3 pilots fail to convert or subscription utilization/renewals weaken materially"
     }
   ],
   "roadmapMilestones": [

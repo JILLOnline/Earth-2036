@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-20T01:19:12.800Z",
+  "updatedAt": "2026-09-20T02:16:29.673Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -362,6 +362,18 @@
       "type": "market",
       "label": "AUR structural demand",
       "description": "Aurora's causal thesis links autonomous-driving software and sensor/computing integration to a trucking need for safer, more available freight capacity; commercial driverless miles and planned fleet scaling are the bridge from technology to infrastructure utilization."
+    },
+    {
+      "id": "company:AVAV",
+      "type": "company",
+      "label": "AeroVironment, Inc.",
+      "description": "AeroVironment now spans uncrewed systems, loitering munitions, counter-UAS, directed energy and adjacent BlueHalo capabilities, linking sensing/autonomy/kinetic and non-kinetic effects to defense demand for distributed, lower-cost mission systems."
+    },
+    {
+      "id": "market:AVAV-avav-structural-demand",
+      "type": "market",
+      "label": "AVAV structural demand",
+      "description": "AeroVironment now spans uncrewed systems, loitering munitions, counter-UAS, directed energy and adjacent BlueHalo capabilities, linking sensing/autonomy/kinetic and non-kinetic effects to defense demand for distributed, lower-cost mission systems."
     }
   ],
   "edges": [
@@ -885,6 +897,21 @@
       "evidenceTier": "Iron",
       "sourceIds": [
         "issuer:AUR:2026Q2"
+      ],
+      "observedAt": "2026-09-19T15:22:52Z"
+    },
+    {
+      "id": "edge:AVAV-structural-exposure",
+      "from": "company:AVAV",
+      "to": "market:AVAV-avav-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 76,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:AVAV:press-index",
+        "sec:AVAV:FY2027Q1:10Q"
       ],
       "observedAt": "2026-09-19T15:22:52Z"
     }
@@ -1501,6 +1528,25 @@
       ],
       "observedAt": "2026-09-19T15:22:52Z",
       "thesis": "Aurora's causal thesis links autonomous-driving software and sensor/computing integration to a trucking need for safer, more available freight capacity; commercial driverless miles and planned fleet scaling are the bridge from technology to infrastructure utilization.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:AVAV-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:AVAV-avav-structural-demand",
+      "affectedNodeIds": [
+        "company:AVAV"
+      ],
+      "direction": 1,
+      "magnitude": 76,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:AVAV:press-index",
+        "sec:AVAV:FY2027Q1:10Q"
+      ],
+      "observedAt": "2026-09-19T15:22:52Z",
+      "thesis": "AeroVironment now spans uncrewed systems, loitering munitions, counter-UAS, directed energy and adjacent BlueHalo capabilities, linking sensing/autonomy/kinetic and non-kinetic effects to defense demand for distributed, lower-cost mission systems.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

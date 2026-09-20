@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-20T13:14:54.366Z",
+  "updatedAt": "2026-09-20T14:20:04.490Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -506,6 +506,18 @@
       "type": "market",
       "label": "BWXT structural demand",
       "description": "BWXT sits at a specialized nuclear manufacturing/engineering bottleneck connecting reactor and nuclear-material technologies to defense, energy and isotope infrastructure; recent Army Janus and NNSA design selections indicate transfer of that capability beyond the naval base, while production-scale value remains contingent on follow-on scope and program execution."
+    },
+    {
+      "id": "company:CAT",
+      "type": "company",
+      "label": "Caterpillar",
+      "description": "Caterpillar links power-generation equipment and industrial machines to the infrastructure needed for compute, construction and resource extraction; the 2-GW AI-power order creates a direct bridge from gas generation to hyperscale compute availability, while the FieldAI collaboration targets the labor/productivity bottleneck through autonomy and physical AI."
+    },
+    {
+      "id": "market:CAT-cat-structural-demand",
+      "type": "market",
+      "label": "CAT structural demand",
+      "description": "Caterpillar links power-generation equipment and industrial machines to the infrastructure needed for compute, construction and resource extraction; the 2-GW AI-power order creates a direct bridge from gas generation to hyperscale compute availability, while the FieldAI collaboration targets the labor/productivity bottleneck through autonomy and physical AI."
     }
   ],
   "edges": [
@@ -1206,6 +1218,21 @@
       "sourceIds": [
         "issuer:BWXT:NNSA:20260903",
         "issuer:BWXT:2026Q2"
+      ],
+      "observedAt": "2026-09-19T19:26:41Z"
+    },
+    {
+      "id": "edge:CAT-structural-exposure",
+      "from": "company:CAT",
+      "to": "market:CAT-cat-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 84,
+      "confidence": 86,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:CAT:AIP:20260128",
+        "issuer:CAT:FieldAI:20260902"
       ],
       "observedAt": "2026-09-19T19:26:41Z"
     }
@@ -2047,6 +2074,25 @@
       ],
       "observedAt": "2026-09-19T19:26:41Z",
       "thesis": "BWXT sits at a specialized nuclear manufacturing/engineering bottleneck connecting reactor and nuclear-material technologies to defense, energy and isotope infrastructure; recent Army Janus and NNSA design selections indicate transfer of that capability beyond the naval base, while production-scale value remains contingent on follow-on scope and program execution.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:CAT-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:CAT-cat-structural-demand",
+      "affectedNodeIds": [
+        "company:CAT"
+      ],
+      "direction": 1,
+      "magnitude": 84,
+      "confidence": 86,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:CAT:AIP:20260128",
+        "issuer:CAT:FieldAI:20260902"
+      ],
+      "observedAt": "2026-09-19T19:26:41Z",
+      "thesis": "Caterpillar links power-generation equipment and industrial machines to the infrastructure needed for compute, construction and resource extraction; the 2-GW AI-power order creates a direct bridge from gas generation to hyperscale compute availability, while the FieldAI collaboration targets the labor/productivity bottleneck through autonomy and physical AI.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

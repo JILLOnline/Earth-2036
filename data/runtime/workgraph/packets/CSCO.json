@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CSCO",
   "workId": "t0:CSCO",
-  "generatedAt": "2026-09-20T01:19:09.711Z",
+  "generatedAt": "2026-09-20T01:26:21.263Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-20T00:48:48.574Z"
   },
   "evidenceWindow": {
-    "start": "2026-08-25T00:00:00.000Z",
-    "end": "2026-09-19T12:08:05.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T12:08:05.000Z"
+    "start": "2024-03-18T00:00:00.000Z",
+    "end": "2026-09-20T01:25:16.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T01:25:16.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/CSCO-20260919T120805Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/CSCO-20260919T120805Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/CSCO-20260920T012516Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -63,19 +66,35 @@
       "supplyChainResilience",
       "catalystScore",
       "scenarioRobustness",
-      "thesisQuality"
+      "thesisQuality",
+      "substitutionResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "crossDivisionLeverage"
+      ],
       "discovery-weak-signals": [
         "alignment2036",
         "crossDivisionLeverage",
         "bottleneckControl",
         "supplyChainResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "governancePower",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "crossDivisionLeverage"
+      ],
       "expectations-execution": [
         "crossDivisionLeverage",
         "catalystScore",
@@ -128,7 +147,9 @@
     "supplyChainResilience",
     "catalystScore",
     "scenarioRobustness",
-    "thesisQuality"
+    "thesisQuality",
+    "substitutionResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -139,6 +160,22 @@
       },
       {
         "risk": "Product integration progress must be validated against realized cross-sell, recurring revenue growth and acquisition return economics.",
+        "gating": false
+      },
+      {
+        "risk": "Cisco benefits from the AI infrastructure bottleneck but does not control accelerator supply or power/cooling; value capture can migrate toward GPU vendors, merchant Ethernet alternatives or customer-designed networking.",
+        "gating": false
+      },
+      {
+        "risk": "AI-infrastructure growth increases exposure to a smaller hyperscaler customer set and to supply constraints; a capex digestion cycle could make recent order growth less durable.",
+        "gating": false
+      },
+      {
+        "risk": "Competitive Ethernet/networking alternatives, customer silicon and vertically integrated stacks can reduce Cisco's share of AI-cluster economics even if the end market grows.",
+        "gating": false
+      },
+      {
+        "risk": "Splunk product integration is observable, but realized acquisition return economics and incremental retention/cross-sell remain insufficiently quantified in the current evidence set.",
         "gating": false
       }
     ]
@@ -151,6 +188,22 @@
     {
       "risk": "Product integration progress must be validated against realized cross-sell, recurring revenue growth and acquisition return economics.",
       "gating": false
+    },
+    {
+      "risk": "Cisco benefits from the AI infrastructure bottleneck but does not control accelerator supply or power/cooling; value capture can migrate toward GPU vendors, merchant Ethernet alternatives or customer-designed networking.",
+      "gating": false
+    },
+    {
+      "risk": "AI-infrastructure growth increases exposure to a smaller hyperscaler customer set and to supply constraints; a capex digestion cycle could make recent order growth less durable.",
+      "gating": false
+    },
+    {
+      "risk": "Competitive Ethernet/networking alternatives, customer silicon and vertically integrated stacks can reduce Cisco's share of AI-cluster economics even if the end market grows.",
+      "gating": false
+    },
+    {
+      "risk": "Splunk product integration is observable, but realized acquisition return economics and incremental retention/cross-sell remain insufficiently quantified in the current evidence set.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -161,21 +214,62 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 5
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "AI compute growth",
+        "to": "high-bandwidth secure networking and optics demand",
+        "mechanism": "larger distributed accelerator clusters require low-latency interconnect and observability/security",
+        "confidence": 92
+      },
+      {
+        "from": "Cisco networking+security+Splunk",
+        "to": "enterprise/neocloud/sovereign AI deployment",
+        "mechanism": "validated full-stack architecture reduces integration and operational complexity",
+        "confidence": 86
+      },
+      {
+        "from": "power/cooling/GPU supply",
+        "to": "Cisco AI infrastructure realization",
+        "mechanism": "successor physical bottlenecks constrain deployment independent of networking demand",
+        "confidence": 90
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "AI compute growth",
+      "to": "high-bandwidth secure networking and optics demand",
+      "mechanism": "larger distributed accelerator clusters require low-latency interconnect and observability/security",
+      "confidence": 92
+    },
+    {
+      "from": "Cisco networking+security+Splunk",
+      "to": "enterprise/neocloud/sovereign AI deployment",
+      "mechanism": "validated full-stack architecture reduces integration and operational complexity",
+      "confidence": 86
+    },
+    {
+      "from": "power/cooling/GPU supply",
+      "to": "Cisco AI infrastructure realization",
+      "mechanism": "successor physical bottlenecks constrain deployment independent of networking demand",
+      "confidence": 90
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 9,
+    "uniqueSourceCount": 5,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:CSCO:SecureAIFactory-NVIDIA-Supermicro:20260825",
-      "issuer:CSCO:SplunkAI:20260915"
+      "issuer:CSCO:SplunkAI:20260915",
+      "issuer:CSCO:FY2026-results:20260812",
+      "sec:858877:10-K:20260725",
+      "issuer:CSCO:Splunk-close:20240318"
     ]
   },
   "sources": [
@@ -194,6 +288,30 @@
       "primary": true,
       "publishedAt": "2026-09-15",
       "originFingerprint": "issuer:CSCO:SplunkAI:20260915"
+    },
+    {
+      "sourceId": "issuer:CSCO:FY2026:20260812",
+      "url": "https://investor.cisco.com/news/news-details/2026/CISCO-REPORTS-FOURTH-QUARTER-AND-FISCAL-YEAR-2026-EARNINGS/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-12",
+      "originFingerprint": "issuer:CSCO:FY2026-results:20260812"
+    },
+    {
+      "sourceId": "sec:CSCO:10K:20260725",
+      "url": "https://www.sec.gov/Archives/edgar/data/858877/000085887726000132/csco-20260725.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-04",
+      "originFingerprint": "sec:858877:10-K:20260725"
+    },
+    {
+      "sourceId": "issuer:CSCO:SplunkAcquisition:20240318",
+      "url": "https://investor.cisco.com/news/news-details/2024/Cisco-Completes-Acquisition-of-Splunk/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2024-03-18",
+      "originFingerprint": "issuer:CSCO:Splunk-close:20240318"
     }
   ],
   "contradictions": [],
@@ -209,11 +327,23 @@
     {
       "unknown": "The release does not quantify Splunk-driven incremental bookings, retention or acquisition synergies realized to date.",
       "gating": false
+    },
+    {
+      "unknown": "Durable Cisco-specific gross-margin and return profile of the rapidly growing hyperscaler AI mix is not separately disclosed.",
+      "gating": false
+    },
+    {
+      "unknown": "Current evidence does not isolate customer-level concentration within the $9.3B FY2026 AI-infrastructure order pool.",
+      "gating": false
+    },
+    {
+      "unknown": "Current evidence does not quantify realized Splunk acquisition ROI on a fully allocated basis.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
   "confidence": 89,
@@ -222,13 +352,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -238,14 +365,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -262,10 +381,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

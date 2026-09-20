@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MDB",
   "workId": "t0:MDB",
-  "generatedAt": "2026-09-20T16:54:02.605Z",
+  "generatedAt": "2026-09-20T17:06:18.674Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-20T16:53:15.590Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-09-01T00:00:00.000Z",
+    "end": "2026-09-20T17:04:05.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T17:04:05.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -38,15 +42,23 @@
     "complete": false
   },
   "perspectives": [],
-  "evidencePaths": [],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/MDB-20260920T170405Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "30% revenue growth",
+      "29% Atlas growth",
+      "36% EA/other growth",
+      "raised FY2027 guidance",
+      "AI workload optionality"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
@@ -93,12 +105,40 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "30% revenue growth",
+    "29% Atlas growth",
+    "36% EA/other growth",
+    "raised FY2027 guidance",
+    "AI workload optionality"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "cloud consumption variability",
+      "competition from hyperscalers/databases",
+      "AI monetization uncertainty",
+      "valuation/expectation sensitivity",
+      "enterprise spending cycles",
+      "cloud consumption variability",
+      "competition from hyperscalers/databases",
+      "AI monetization uncertainty",
+      "valuation/expectation sensitivity",
+      "enterprise spending cycles"
+    ]
   },
-  "risks": [],
+  "risks": [
+    "cloud consumption variability",
+    "competition from hyperscalers/databases",
+    "AI monetization uncertainty",
+    "valuation/expectation sensitivity",
+    "enterprise spending cycles",
+    "cloud consumption variability",
+    "competition from hyperscalers/databases",
+    "AI monetization uncertainty",
+    "valuation/expectation sensitivity",
+    "enterprise spending cycles"
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -115,30 +155,59 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "investors.mongodb.com|q2-fy2027-results|2026-09-01",
+      "investors.mongodb.com|investor-day-notice|2026-09-11"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "origin": "MongoDB Investor Relations",
+      "url": "https://investors.mongodb.com/news-releases/news-release-details/mongodb-inc-announces-second-quarter-fiscal-2027-financial",
+      "publishedAt": "2026-09-01",
+      "originFingerprint": "investors.mongodb.com|q2-fy2027-results|2026-09-01",
+      "use": "current operating/guidance evidence",
+      "sourceId": null,
+      "primary": false
+    },
+    {
+      "origin": "MongoDB Investor Relations",
+      "url": "https://investors.mongodb.com/news-releases/news-release-details/mongodb-inc-host-investor-day-new-york-city",
+      "publishedAt": "2026-09-11",
+      "originFingerprint": "investors.mongodb.com|investor-day-notice|2026-09-11",
+      "use": "expectations calendar only",
+      "sourceId": null,
+      "primary": false
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    "durability of 30% growth",
+    "AI workload contribution to Atlas consumption",
+    "Investor Day long-term targets until released",
+    "net-new versus expansion contribution",
+    "durability of 30% growth",
+    "AI workload contribution to Atlas consumption",
+    "Investor Day long-term targets until released",
+    "net-new versus expansion contribution"
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 8
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
@@ -148,20 +217,11 @@
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -197,10 +257,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MCHP",
   "workId": "t0:MCHP",
-  "generatedAt": "2026-09-20T16:54:02.605Z",
+  "generatedAt": "2026-09-20T17:06:18.675Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-20T16:53:15.590Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-08-06T00:00:00.000Z",
+    "end": "2026-09-20T17:04:04.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T17:04:04.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -38,15 +42,23 @@
     "complete": false
   },
   "perspectives": [],
-  "evidencePaths": [],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/MCHP-20260920T170404Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "38% year-over-year sales growth",
+      "inventory normalization",
+      "gross-margin recovery",
+      "book-to-bill above 1",
+      "PCIe Gen6 design-win momentum"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
@@ -93,12 +105,40 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "38% year-over-year sales growth",
+    "inventory normalization",
+    "gross-margin recovery",
+    "book-to-bill above 1",
+    "PCIe Gen6 design-win momentum"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "semiconductor cyclicality",
+      "inventory reaccumulation",
+      "customer/end-market concentration",
+      "debt load and capital allocation",
+      "design-win conversion risk",
+      "semiconductor cyclicality",
+      "inventory reaccumulation",
+      "customer/end-market concentration",
+      "debt load and capital allocation",
+      "design-win conversion risk"
+    ]
   },
-  "risks": [],
+  "risks": [
+    "semiconductor cyclicality",
+    "inventory reaccumulation",
+    "customer/end-market concentration",
+    "debt load and capital allocation",
+    "design-win conversion risk",
+    "semiconductor cyclicality",
+    "inventory reaccumulation",
+    "customer/end-market concentration",
+    "debt load and capital allocation",
+    "design-win conversion risk"
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -115,30 +155,65 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "ir.microchip.com|fq1-2027-results|2026-08-06",
+      "ir.microchip.com|8k-ex99.1-fq1-2027|2026-08-06"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "origin": "Microchip Technology Investor Relations",
+      "url": "https://ir.microchip.com/news-events/press-releases/detail/1409/microchip-technology-announces-financial-results-for-first-quarter-of-fiscal-year-2027",
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "ir.microchip.com|fq1-2027-results|2026-08-06",
+      "use": "current operating recovery evidence",
+      "sourceId": null,
+      "primary": false
+    },
+    {
+      "origin": "Microchip Technology SEC filing mirror",
+      "url": "https://ir.microchip.com/sec-filings/all-sec-filings/content/0000827054-26-000037/exhibit991q1fy27.htm",
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "ir.microchip.com|8k-ex99.1-fq1-2027|2026-08-06",
+      "use": "filing-backed financial detail",
+      "sourceId": null,
+      "primary": false
+    }
+  ],
+  "contradictions": [
+    "Strong current growth follows a depressed prior-year base, so year-over-year acceleration may overstate normalized demand strength.",
+    "Strong current growth follows a depressed prior-year base, so year-over-year acceleration may overstate normalized demand strength."
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 2,
+    "items": [
+      "Strong current growth follows a depressed prior-year base, so year-over-year acceleration may overstate normalized demand strength.",
+      "Strong current growth follows a depressed prior-year base, so year-over-year acceleration may overstate normalized demand strength."
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    "duration of recovery",
+    "production revenue timing from PCIe Gen6 wins",
+    "end-market mix and normalized utilization",
+    "pace of further deleveraging",
+    "duration of recovery",
+    "production revenue timing from PCIe Gen6 wins",
+    "end-market mix and normalized utilization",
+    "pace of further deleveraging"
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 8
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
@@ -148,20 +223,12 @@
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_causal_mapping",
+      "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -199,10 +266,6 @@
         "owner": "council-alpha"
       },
       {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
-      },
-      {
         "failure": "missing_score_risk_evidence",
         "owner": "council-alpha"
       },
@@ -213,6 +276,10 @@
       {
         "failure": "missing_causal_mapping",
         "owner": "council-beta"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

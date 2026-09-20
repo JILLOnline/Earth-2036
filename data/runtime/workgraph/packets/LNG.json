@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "LNG",
   "workId": "t0:LNG",
-  "generatedAt": "2026-09-20T16:54:02.612Z",
+  "generatedAt": "2026-09-20T17:06:18.680Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-20T16:53:15.590Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-08-06T00:00:00.000Z",
+    "end": "2026-09-20T17:04:02.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T17:04:02.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -38,15 +42,22 @@
     "complete": false
   },
   "perspectives": [],
-  "evidencePaths": [],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/LNG-20260920T170402Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "raised 2026 EBITDA/DCF guidance",
+      "53-54 mtpa production outlook",
+      "CCL Stage 3 completion progression",
+      "large operating LNG platform"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
@@ -93,12 +104,39 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "raised 2026 EBITDA/DCF guidance",
+    "53-54 mtpa production outlook",
+    "CCL Stage 3 completion progression",
+    "large operating LNG platform"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "commodity/LNG spread exposure",
+      "project execution and capex",
+      "regulatory approvals",
+      "feedgas and facility availability",
+      "contract/counterparty concentration",
+      "commodity/LNG spread exposure",
+      "project execution and capex",
+      "regulatory approvals",
+      "feedgas and facility availability",
+      "contract/counterparty concentration"
+    ]
   },
-  "risks": [],
+  "risks": [
+    "commodity/LNG spread exposure",
+    "project execution and capex",
+    "regulatory approvals",
+    "feedgas and facility availability",
+    "contract/counterparty concentration",
+    "commodity/LNG spread exposure",
+    "project execution and capex",
+    "regulatory approvals",
+    "feedgas and facility availability",
+    "contract/counterparty concentration"
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -115,30 +153,63 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "lngir.cheniere.com|q2-2026-results-guidance|2026-08-06",
+      "lngir.cheniere.com|ccl-stage3-completion-5000-cargo|2026-08-31"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "origin": "Cheniere Energy Investor Relations",
+      "url": "https://lngir.cheniere.com/news-events/press-releases/detail/343/cheniere-reports-second-quarter-2026-results-and-raises",
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "lngir.cheniere.com|q2-2026-results-guidance|2026-08-06",
+      "use": "financial/operational execution",
+      "sourceId": null,
+      "primary": false
+    },
+    {
+      "origin": "Cheniere Energy Investor Relations",
+      "url": "https://lngir.cheniere.com/news-events",
+      "publishedAt": "2026-08-31",
+      "originFingerprint": "lngir.cheniere.com|ccl-stage3-completion-5000-cargo|2026-08-31",
+      "use": "project completion signal",
+      "sourceId": null,
+      "primary": false
+    }
+  ],
+  "contradictions": [
+    "Six-month 2026 net loss of $0.43B coexisted with $4.14B adjusted EBITDA, highlighting derivative/noncash/accounting volatility versus operating cash economics.",
+    "Six-month 2026 net loss of $0.43B coexisted with $4.14B adjusted EBITDA, highlighting derivative/noncash/accounting volatility versus operating cash economics."
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 2,
+    "items": [
+      "Six-month 2026 net loss of $0.43B coexisted with $4.14B adjusted EBITDA, highlighting derivative/noncash/accounting volatility versus operating cash economics.",
+      "Six-month 2026 net loss of $0.43B coexisted with $4.14B adjusted EBITDA, highlighting derivative/noncash/accounting volatility versus operating cash economics."
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    "final economics/timing of pending CCL and SPL expansions",
+    "future realized LNG margins",
+    "incremental capex and financing mix",
+    "final economics/timing of pending CCL and SPL expansions",
+    "future realized LNG margins",
+    "incremental capex and financing mix"
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
@@ -148,20 +219,12 @@
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_causal_mapping",
+      "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -199,10 +262,6 @@
         "owner": "council-alpha"
       },
       {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
-      },
-      {
         "failure": "missing_score_risk_evidence",
         "owner": "council-alpha"
       },
@@ -213,6 +272,10 @@
       {
         "failure": "missing_causal_mapping",
         "owner": "council-beta"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

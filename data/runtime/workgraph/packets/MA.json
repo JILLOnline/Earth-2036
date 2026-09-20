@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MA",
   "workId": "t0:MA",
-  "generatedAt": "2026-09-20T16:54:02.612Z",
+  "generatedAt": "2026-09-20T17:06:18.680Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-20T16:53:15.590Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-07-23T00:00:00.000Z",
+    "end": "2026-09-20T17:04:03.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T17:04:03.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -38,15 +42,22 @@
     "complete": false
   },
   "perspectives": [],
-  "evidencePaths": [],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/MA-20260920T170403Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "wallet interoperability expansion",
+      "B2B virtual-card platform depth",
+      "global acceptance/network effects",
+      "embedded payments adoption"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
@@ -93,12 +104,35 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "wallet interoperability expansion",
+    "B2B virtual-card platform depth",
+    "global acceptance/network effects",
+    "embedded payments adoption"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "regulatory/antitrust pressure",
+      "payment competition",
+      "cyber/fraud risk",
+      "partner adoption and monetization uncertainty",
+      "regulatory/antitrust pressure",
+      "payment competition",
+      "cyber/fraud risk",
+      "partner adoption and monetization uncertainty"
+    ]
   },
-  "risks": [],
+  "risks": [
+    "regulatory/antitrust pressure",
+    "payment competition",
+    "cyber/fraud risk",
+    "partner adoption and monetization uncertainty",
+    "regulatory/antitrust pressure",
+    "payment competition",
+    "cyber/fraud risk",
+    "partner adoption and monetization uncertainty"
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -115,30 +149,67 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "investor.mastercard.com|wallet-pay-launch|2026-09-09",
+      "investor.mastercard.com|virtual-card-platform-expansion|2026-07-23",
+      "investor.mastercard.com|q2-2026-results-availability|2026-07-30"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "origin": "Mastercard Investor Relations",
+      "url": "https://investor.mastercard.com/investor-news/investor-news-details/2026/Mastercard-Launches-Wallet-Pay-to-Scale-Digital-Wallets-Worldwide/default.aspx",
+      "publishedAt": "2026-09-09",
+      "originFingerprint": "investor.mastercard.com|wallet-pay-launch|2026-09-09",
+      "use": "fresh product/adoption signal",
+      "sourceId": null,
+      "primary": false
+    },
+    {
+      "origin": "Mastercard Investor Relations",
+      "url": "https://investor.mastercard.com/investor-news/investor-news-details/2026/Mastercard-Expands-Virtual-Card-Platform-with-New-Security-Controls-Embedded-Payments-Network-and-Single-API-Access/default.aspx",
+      "publishedAt": "2026-07-23",
+      "originFingerprint": "investor.mastercard.com|virtual-card-platform-expansion|2026-07-23",
+      "use": "B2B execution signal",
+      "sourceId": null,
+      "primary": false
+    },
+    {
+      "origin": "Mastercard Investor Relations",
+      "url": "https://investor.mastercard.com/investor-news/investor-news-details/2026/Mastercard-Incorporated-Second-Quarter-2026-Financial-Results-Available-on-Companys-Website/default.aspx",
+      "publishedAt": "2026-07-30",
+      "originFingerprint": "investor.mastercard.com|q2-2026-results-availability|2026-07-30",
+      "use": "current reporting anchor",
+      "sourceId": null,
+      "primary": false
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    "Wallet Pay transaction ramp",
+    "incremental revenue/margin from new wallet and VCN capabilities",
+    "partner concentration and cannibalization effects",
+    "Wallet Pay transaction ramp",
+    "incremental revenue/margin from new wallet and VCN capabilities",
+    "partner concentration and cannibalization effects"
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 86,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
@@ -148,20 +219,11 @@
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -197,10 +259,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

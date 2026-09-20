@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "GD",
   "workId": "t0:GD",
-  "generatedAt": "2026-09-20T15:16:42.629Z",
+  "generatedAt": "2026-09-20T15:23:57.244Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-19T20:07:11.000Z",
-    "end": "2026-09-19T20:07:11.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T20:07:11.000Z"
+    "end": "2026-09-20T15:22:37.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T15:22:37.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/GD-20260919T200711Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/GD-20260919T200711Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/GD-20260920T152237Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -61,19 +64,36 @@
       "executionCapability",
       "demandVisibility",
       "scenarioRobustness",
-      "thesisQuality"
+      "thesisQuality",
+      "bottleneckControl",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "alignment2036",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "alignment2036"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "executionCapability",
         "demandVisibility",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "governancePower",
+        "financialOperatingMomentum"
+      ],
       "expectations-execution": [
         "executionCapability",
         "scenarioRobustness",
@@ -123,7 +143,12 @@
     "executionCapability",
     "demandVisibility",
     "scenarioRobustness",
-    "thesisQuality"
+    "thesisQuality",
+    "bottleneckControl",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "alignment2036",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -134,6 +159,22 @@
       },
       {
         "risk": "Demand certainty can outpace physical throughput; future evidence should test delivery cadence and cost control rather than infer execution from backlog alone.",
+        "gating": false
+      },
+      {
+        "risk": "Demand certainty can shift the binding constraint to labor, supplier and shipyard throughput; persistent schedule slippage would weaken value capture even with funded backlog.",
+        "gating": false
+      },
+      {
+        "risk": "Government/customer concentration and appropriations/program priorities can alter timing or economics despite strategic demand.",
+        "gating": false
+      },
+      {
+        "risk": "Long-lead components, skilled labor and supplier capacity can cause schedule/cost pressure; infrastructure funding is evidence of both mitigation and the underlying constraint.",
+        "gating": false
+      },
+      {
+        "risk": "Large headline award values can inflate confidence if treated as realized revenue or margin rather than multi-year funded/optioned work.",
         "gating": false
       }
     ]
@@ -146,6 +187,22 @@
     {
       "risk": "Demand certainty can outpace physical throughput; future evidence should test delivery cadence and cost control rather than infer execution from backlog alone.",
       "gating": false
+    },
+    {
+      "risk": "Demand certainty can shift the binding constraint to labor, supplier and shipyard throughput; persistent schedule slippage would weaken value capture even with funded backlog.",
+      "gating": false
+    },
+    {
+      "risk": "Government/customer concentration and appropriations/program priorities can alter timing or economics despite strategic demand.",
+      "gating": false
+    },
+    {
+      "risk": "Long-lead components, skilled labor and supplier capacity can cause schedule/cost pressure; infrastructure funding is evidence of both mitigation and the underlying constraint.",
+      "gating": false
+    },
+    {
+      "risk": "Large headline award values can inflate confidence if treated as realized revenue or margin rather than multi-year funded/optioned work.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -156,21 +213,72 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "company:GD",
+        "to": "technology:nuclear-submarine-design-build",
+        "relationship": "controls-specialized-capability",
+        "direction": 1
+      },
+      {
+        "from": "technology:nuclear-submarine-design-build",
+        "to": "bottleneck:shipyard-skilled-labor-supplier-throughput",
+        "relationship": "constrained-by",
+        "direction": -1
+      },
+      {
+        "from": "bottleneck:shipyard-skilled-labor-supplier-throughput",
+        "to": "infrastructure:naval-fleet-modernization",
+        "relationship": "limits-delivery-cadence",
+        "direction": -1
+      },
+      {
+        "from": "infrastructure:naval-fleet-modernization",
+        "to": "human-need:national-security-deterrence",
+        "relationship": "serves",
+        "direction": 1
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "company:GD",
+      "to": "technology:nuclear-submarine-design-build",
+      "relationship": "controls-specialized-capability",
+      "direction": 1
+    },
+    {
+      "from": "technology:nuclear-submarine-design-build",
+      "to": "bottleneck:shipyard-skilled-labor-supplier-throughput",
+      "relationship": "constrained-by",
+      "direction": -1
+    },
+    {
+      "from": "bottleneck:shipyard-skilled-labor-supplier-throughput",
+      "to": "infrastructure:naval-fleet-modernization",
+      "relationship": "limits-delivery-cadence",
+      "direction": -1
+    },
+    {
+      "from": "infrastructure:naval-fleet-modernization",
+      "to": "human-need:national-security-deterrence",
+      "relationship": "serves",
+      "direction": 1
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "rawSourceCount": 10,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 7,
     "missingLineage": 0,
     "uniqueOrigins": [
       "gd:ir:2026-07-29:q2-results",
-      "gd:ir:2026-07-29:submarine-awards"
+      "gd:ir:2026-07-29:submarine-awards",
+      "gd:ir:2025-07-02:long-lead-material"
     ]
   },
   "sources": [
@@ -187,6 +295,13 @@
       "kind": "primary-issuer",
       "primary": true,
       "originFingerprint": "gd:ir:2026-07-29:submarine-awards"
+    },
+    {
+      "sourceId": "gd:eb-long-lead-2025",
+      "url": "https://investorrelations.gd.com/news/press-release-details/2025/General-Dynamics-Electric-Boat-awarded-1-85-billion-contract-modification-for-long-lead-time-material-and-preliminary-construction-for-submarine-production/default.aspx",
+      "kind": "primary-issuer",
+      "primary": true,
+      "originFingerprint": "gd:ir:2025-07-02:long-lead-material"
     }
   ],
   "contradictions": [],
@@ -202,26 +317,31 @@
     {
       "unknown": "No independent schedule-performance source was acquired in this Scout pass.",
       "gating": false
+    },
+    {
+      "unknown": "Current evidence does not quantify program-level schedule variance or supplier bottleneck severity.",
+      "gating": false
+    },
+    {
+      "unknown": "No independent same-period program schedule-performance source was located in this bounded pass; this limits confidence on delivery-cadence risk but does not create a locked-methodology blocker for the Beta perspective.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -231,14 +351,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -255,10 +367,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "KEYS",
   "workId": "t0:KEYS",
-  "generatedAt": "2026-09-20T21:17:42.104Z",
+  "generatedAt": "2026-09-20T21:30:07.046Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-20T21:17:00.740Z"
   },
   "evidenceWindow": {
-    "start": "2026-08-18T00:00:00.000Z",
-    "end": "2026-09-19T23:05:33.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T23:05:33.000Z"
+    "start": "2026-05-19T00:00:00.000Z",
+    "end": "2026-09-20T21:27:25.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T21:27:25.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,65 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/KEYS-20260919T230533Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/KEYS-20260919T230533Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/KEYS-20260920T212725Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "test-and-measurement bottleneck exposure",
       "cross-market resilience",
       "execution momentum",
-      "expectation hurdle"
+      "expectation hurdle",
+      "bottleneck-control",
+      "substitution-resilience",
+      "scenario-robustness",
+      "expectation-risk",
+      "geopolitical-export-risk",
+      "demand-diversification"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneck-control",
+          "direction": "positive",
+          "basis": "Complex engineering programs require measurement, emulation and validation before deployment."
+        },
+        {
+          "name": "substitution-resilience",
+          "direction": "positive",
+          "basis": "Changing architectures often increase rather than remove validation needs, though competitors and in-house tools can substitute."
+        },
+        {
+          "name": "scenario-robustness",
+          "direction": "positive",
+          "basis": "Q3 growth spanned communications, ADG and electronic industrial end markets."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "test-and-measurement bottleneck exposure",
@@ -78,7 +103,23 @@
           "basis": "Q3 growth spanned commercial communications, aerospace/defense/government and electronic industrial markets."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "expectation-risk",
+          "direction": "negative",
+          "basis": "Record orders and high Q4 growth guidance create a demanding conversion hurdle."
+        },
+        {
+          "name": "geopolitical-export-risk",
+          "direction": "negative",
+          "basis": "Export controls, tariffs and geopolitical tension can restrict customer access and demand."
+        },
+        {
+          "name": "demand-diversification",
+          "direction": "positive",
+          "basis": "Growth is present across communications, ADG and electronic industrial markets."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "execution momentum",
@@ -134,7 +175,13 @@
     "test-and-measurement bottleneck exposure",
     "cross-market resilience",
     "execution momentum",
-    "expectation hurdle"
+    "expectation hurdle",
+    "bottleneck-control",
+    "substitution-resilience",
+    "scenario-robustness",
+    "expectation-risk",
+    "geopolitical-export-risk",
+    "demand-diversification"
   ],
   "riskEvidence": {
     "present": true,
@@ -149,6 +196,22 @@
       },
       {
         "risk": "A record-order environment may not persist; cancellations, purchasing timing or macro/geopolitical changes could weaken conversion.",
+        "gating": false
+      },
+      {
+        "risk": "If customer architectures standardize or internal validation improves enough, incremental external test intensity could moderate.",
+        "gating": false
+      },
+      {
+        "risk": "Record orders can normalize after a concentrated technology-investment cycle.",
+        "gating": false
+      },
+      {
+        "risk": "High near-term guidance increases downside sensitivity to timing slippage.",
+        "gating": false
+      },
+      {
+        "risk": "Non-GAAP presentation excludes acquisition-related items that remain real economic costs; GAAP and cash measures should remain the check.",
         "gating": false
       }
     ]
@@ -165,6 +228,22 @@
     {
       "risk": "A record-order environment may not persist; cancellations, purchasing timing or macro/geopolitical changes could weaken conversion.",
       "gating": false
+    },
+    {
+      "risk": "If customer architectures standardize or internal validation improves enough, incremental external test intensity could moderate.",
+      "gating": false
+    },
+    {
+      "risk": "Record orders can normalize after a concentrated technology-investment cycle.",
+      "gating": false
+    },
+    {
+      "risk": "High near-term guidance increases downside sensitivity to timing slippage.",
+      "gating": false
+    },
+    {
+      "risk": "Non-GAAP presentation excludes acquisition-related items that remain real economic costs; GAAP and cash measures should remain the check.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -175,20 +254,73 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "technology complexity and faster standards cycles",
+        "to": "test/emulation demand",
+        "mechanism": "engineers need earlier validation to reduce design and deployment risk"
+      },
+      {
+        "from": "test/emulation capability",
+        "to": "faster reliable deployment",
+        "mechanism": "measurement identifies defects and validates performance before scale"
+      },
+      {
+        "from": "customer R&D/capex",
+        "to": "Keysight orders",
+        "mechanism": "engineering investment funds test-system procurement"
+      },
+      {
+        "from": "customer purchasing delays/order cancellations",
+        "to": "revenue conversion",
+        "mechanism": "booked demand may shift or fail to convert on expected timing"
+      },
+      {
+        "from": "export controls and tariffs",
+        "to": "addressable demand and cost",
+        "mechanism": "trade restrictions can limit shipments or change customer economics"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "technology complexity and faster standards cycles",
+      "to": "test/emulation demand",
+      "mechanism": "engineers need earlier validation to reduce design and deployment risk"
+    },
+    {
+      "from": "test/emulation capability",
+      "to": "faster reliable deployment",
+      "mechanism": "measurement identifies defects and validates performance before scale"
+    },
+    {
+      "from": "customer R&D/capex",
+      "to": "Keysight orders",
+      "mechanism": "engineering investment funds test-system procurement"
+    },
+    {
+      "from": "customer purchasing delays/order cancellations",
+      "to": "revenue conversion",
+      "mechanism": "booked demand may shift or fail to convert on expected timing"
+    },
+    {
+      "from": "export controls and tariffs",
+      "to": "addressable demand and cost",
+      "mechanism": "trade restrictions can limit shipments or change customer economics"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 5,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "keysight-ir:2026-08-18:q3-results"
+      "keysight-ir:2026-08-18:q3-results",
+      "keysight-ir:2026-05-19:q2-results"
     ]
   },
   "sources": [
@@ -198,6 +330,14 @@
       "primary": true,
       "publishedAt": "2026-08-18",
       "originFingerprint": "keysight-ir:2026-08-18:q3-results",
+      "sourceId": null
+    },
+    {
+      "url": "https://investor.keysight.com/investor-news-and-events/financial-press-releases/press-release-details/2026/Keysight-Technologies-Reports-Second-Quarter-2026-Results/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-19",
+      "originFingerprint": "keysight-ir:2026-05-19:q2-results",
       "sourceId": null
     }
   ],
@@ -214,26 +354,31 @@
     {
       "unknown": "Scout does not assert valuation or numeric underwriting; those remain root-owner responsibilities.",
       "gating": false
+    },
+    {
+      "unknown": "The portion of 2026 commercial-communications growth directly attributable to AI infrastructure is not quantified.",
+      "gating": false
+    },
+    {
+      "unknown": "Current evidence does not establish whether order growth reflects durable multi-year demand or temporary purchasing concentration.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 93,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -243,14 +388,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -267,10 +404,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

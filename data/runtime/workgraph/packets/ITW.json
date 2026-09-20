@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ITW",
   "workId": "t0:ITW",
-  "generatedAt": "2026-09-20T21:17:42.111Z",
+  "generatedAt": "2026-09-20T21:30:07.052Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-20T21:17:00.740Z"
   },
   "evidenceWindow": {
-    "start": "2026-04-30T00:00:00.000Z",
-    "end": "2026-09-19T23:05:33.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T23:05:33.000Z"
+    "start": "2026-02-03T00:00:00.000Z",
+    "end": "2026-09-20T21:27:25.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T21:27:25.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,65 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/ITW-20260919T230533Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ITW-20260919T230533Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ITW-20260920T212725Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "capex-cycle exposure",
       "operating model leverage",
       "guidance conversion",
-      "cash conversion checkpoint"
+      "cash conversion checkpoint",
+      "cross-division-leverage",
+      "scenario-robustness",
+      "bottleneck-control",
+      "cyclical-exposure",
+      "pricing-power",
+      "cash-conversion"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "cross-division-leverage",
+          "direction": "positive",
+          "basis": "Enterprise initiatives and a common operating model apply across seven decentralized segments."
+        },
+        {
+          "name": "scenario-robustness",
+          "direction": "positive",
+          "basis": "Diversified end markets plus pricing and enterprise initiatives provide multiple adaptation paths."
+        },
+        {
+          "name": "bottleneck-control",
+          "direction": "mixed",
+          "basis": "Application-specific products can occupy workflow bottlenecks, but ITW generally does not control upstream commodity availability or customer capex cycles."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "capex-cycle exposure",
@@ -78,7 +103,23 @@
           "basis": "Q2 operating margin reached 26.7% while enterprise initiatives contributed 120 bps."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "cyclical-exposure",
+          "direction": "negative",
+          "basis": "Capex-related acceleration can reverse with industrial demand."
+        },
+        {
+          "name": "pricing-power",
+          "direction": "mixed",
+          "basis": "Price more than offset raw-material inflation in dollars in Q2, but timing lags diluted margins."
+        },
+        {
+          "name": "cash-conversion",
+          "direction": "mixed",
+          "basis": "Q2 FCF grew 41% but conversion remained 77% versus >100% full-year guidance."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "guidance conversion",
@@ -134,7 +175,13 @@
     "capex-cycle exposure",
     "operating model leverage",
     "guidance conversion",
-    "cash conversion checkpoint"
+    "cash conversion checkpoint",
+    "cross-division-leverage",
+    "scenario-robustness",
+    "bottleneck-control",
+    "cyclical-exposure",
+    "pricing-power",
+    "cash-conversion"
   ],
   "riskEvidence": {
     "present": true,
@@ -149,6 +196,18 @@
       },
       {
         "risk": "Raised expectations increase disappointment sensitivity if organic growth or margin expansion fades.",
+        "gating": false
+      },
+      {
+        "risk": "Successor bottleneck can move upstream to raw materials/supply or downstream to customer capex availability, limiting benefit from internal execution.",
+        "gating": false
+      },
+      {
+        "risk": "Raised guidance increases sensitivity to a second-half industrial slowdown.",
+        "gating": false
+      },
+      {
+        "risk": "Portfolio breadth reduces but does not eliminate correlated macro/capex exposure.",
         "gating": false
       }
     ]
@@ -165,6 +224,18 @@
     {
       "risk": "Raised expectations increase disappointment sensitivity if organic growth or margin expansion fades.",
       "gating": false
+    },
+    {
+      "risk": "Successor bottleneck can move upstream to raw materials/supply or downstream to customer capex availability, limiting benefit from internal execution.",
+      "gating": false
+    },
+    {
+      "risk": "Raised guidance increases sensitivity to a second-half industrial slowdown.",
+      "gating": false
+    },
+    {
+      "risk": "Portfolio breadth reduces but does not eliminate correlated macro/capex exposure.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -175,21 +246,74 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "customer application pain points",
+        "to": "Customer-Back Innovation",
+        "mechanism": "decentralized teams design differentiated solutions around specific customer needs"
+      },
+      {
+        "from": "enterprise initiatives",
+        "to": "operating margin and capacity efficiency",
+        "mechanism": "portfolio-wide productivity and operating practices improve conversion"
+      },
+      {
+        "from": "industrial/capex demand",
+        "to": "segment organic growth",
+        "mechanism": "customer investment cycles change demand for welding, test and other equipment"
+      },
+      {
+        "from": "raw-material inflation",
+        "to": "margin",
+        "mechanism": "pricing timing lag temporarily compresses variable margin"
+      },
+      {
+        "from": "capex cycle reversal",
+        "to": "organic growth",
+        "mechanism": "customers can defer equipment purchases"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "customer application pain points",
+      "to": "Customer-Back Innovation",
+      "mechanism": "decentralized teams design differentiated solutions around specific customer needs"
+    },
+    {
+      "from": "enterprise initiatives",
+      "to": "operating margin and capacity efficiency",
+      "mechanism": "portfolio-wide productivity and operating practices improve conversion"
+    },
+    {
+      "from": "industrial/capex demand",
+      "to": "segment organic growth",
+      "mechanism": "customer investment cycles change demand for welding, test and other equipment"
+    },
+    {
+      "from": "raw-material inflation",
+      "to": "margin",
+      "mechanism": "pricing timing lag temporarily compresses variable margin"
+    },
+    {
+      "from": "capex cycle reversal",
+      "to": "organic growth",
+      "mechanism": "customers can defer equipment purchases"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "itw-ir:2026-04-30:q1-results",
-      "itw-ir:2026-07-28:q2-results-guidance"
+      "itw-ir:2026-07-28:q2-results-guidance",
+      "itw-ir:2026-02-03:fy2025-results"
     ]
   },
   "sources": [
@@ -208,6 +332,14 @@
       "publishedAt": "2026-07-28",
       "originFingerprint": "itw-ir:2026-07-28:q2-results-guidance",
       "sourceId": null
+    },
+    {
+      "url": "https://investor.itw.com/news-and-events/news/news-details/2026/ITW-Reports-Fourth-Quarter-and-Full-Year-2025-Results/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-03",
+      "originFingerprint": "itw-ir:2026-02-03:fy2025-results",
+      "sourceId": null
     }
   ],
   "contradictions": [],
@@ -223,26 +355,31 @@
     {
       "unknown": "No Scout valuation/entry conclusion is asserted; canonical valuation remains Alpha-owned.",
       "gating": false
+    },
+    {
+      "unknown": "Durability of 2026 capex acceleration into 2027 remains unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Full-year cash conversion above 100% remains a forward execution test, not a present blocker.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 93,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -252,14 +389,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -276,10 +405,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

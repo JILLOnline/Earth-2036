@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ISRG",
   "workId": "t0:ISRG",
-  "generatedAt": "2026-09-20T21:17:42.108Z",
+  "generatedAt": "2026-09-20T21:30:07.049Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-22T00:00:00.000Z",
-    "end": "2026-09-19T22:05:31.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T22:05:31.000Z"
+    "end": "2026-09-20T21:27:25.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T21:27:25.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,63 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/ISRG-20260919T220531Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ISRG-20260919T220531Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ISRG-20260920T212725Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "robotic-surgery platform adoption",
-      "expectation conversion"
+      "expectation conversion",
+      "bottleneck-control",
+      "scenario-robustness",
+      "substitution-resilience",
+      "financing-dilution",
+      "demand-concentration",
+      "margin-fragility"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneck-control",
+          "direction": "positive",
+          "basis": "Large installed base, procedure growth and recurring instruments/accessories tie platform adoption to utilization economics."
+        },
+        {
+          "name": "scenario-robustness",
+          "direction": "mixed",
+          "basis": "Utilization loop is resilient to individual system-placement timing, but access/reimbursement, tariffs and competing robotic platforms can slow conversion."
+        },
+        {
+          "name": "substitution-resilience",
+          "direction": "mixed",
+          "basis": "Workflow integration and installed base create switching friction, but alternative robotic and non-robotic minimally invasive approaches remain substitutes."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "robotic-surgery platform adoption",
@@ -71,7 +96,23 @@
           "basis": "Procedure growth, installed-base growth and rising system placements reinforce recurring utilization and platform expansion evidence."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "financing-dilution",
+          "direction": "positive",
+          "basis": "Q1 ended with $7.98B cash/investments and included $1.1B repurchases; no financing stress is evidenced here."
+        },
+        {
+          "name": "demand-concentration",
+          "direction": "mixed",
+          "basis": "Broad procedure adoption supports resilience, but U.S. procedure growth slowed and access policy can affect volumes."
+        },
+        {
+          "name": "margin-fragility",
+          "direction": "negative",
+          "basis": "2026 outlook explicitly includes tariff drag and warns additional tariffs could be material."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "expectation conversion",
@@ -120,7 +161,13 @@
   },
   "factors": [
     "robotic-surgery platform adoption",
-    "expectation conversion"
+    "expectation conversion",
+    "bottleneck-control",
+    "scenario-robustness",
+    "substitution-resilience",
+    "financing-dilution",
+    "demand-concentration",
+    "margin-fragility"
   ],
   "riskEvidence": {
     "present": true,
@@ -131,6 +178,22 @@
       },
       {
         "risk": "Tariffs and product mix can pressure gross margin even if procedure adoption remains strong; the prior outlook explicitly incorporated tariff impact.",
+        "gating": false
+      },
+      {
+        "risk": "A successor bottleneck can migrate from system availability to trained clinicians, hospital budgets, reimbursement/access, or procedure-specific clinical evidence.",
+        "gating": false
+      },
+      {
+        "risk": "Procedure growth can decelerate even while installed base expands, weakening utilization economics.",
+        "gating": false
+      },
+      {
+        "risk": "Lease-heavy placements can defer economic realization and increase dependence on subsequent procedure utilization.",
+        "gating": false
+      },
+      {
+        "risk": "Competition or evidence showing inferior procedure economics would weaken switching-friction assumptions.",
         "gating": false
       }
     ]
@@ -143,6 +206,22 @@
     {
       "risk": "Tariffs and product mix can pressure gross margin even if procedure adoption remains strong; the prior outlook explicitly incorporated tariff impact.",
       "gating": false
+    },
+    {
+      "risk": "A successor bottleneck can migrate from system availability to trained clinicians, hospital budgets, reimbursement/access, or procedure-specific clinical evidence.",
+      "gating": false
+    },
+    {
+      "risk": "Procedure growth can decelerate even while installed base expands, weakening utilization economics.",
+      "gating": false
+    },
+    {
+      "risk": "Lease-heavy placements can defer economic realization and increase dependence on subsequent procedure utilization.",
+      "gating": false
+    },
+    {
+      "risk": "Competition or evidence showing inferior procedure economics would weaken switching-friction assumptions.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -153,21 +232,84 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "da Vinci/Ion installed base",
+        "to": "procedure capacity and clinician workflow adoption",
+        "mechanism": "systems placed into hospitals enable robotic procedures"
+      },
+      {
+        "from": "procedure growth",
+        "to": "instruments/accessories and service demand",
+        "mechanism": "procedure-linked consumables and recurring support scale with utilization"
+      },
+      {
+        "from": "minimally invasive care demand",
+        "to": "robotic platform adoption",
+        "mechanism": "hospitals seek tools supporting complex minimally invasive procedures"
+      },
+      {
+        "from": "access/reimbursement and hospital economics",
+        "to": "procedure volume",
+        "mechanism": "patient affordability and provider economics influence utilization"
+      },
+      {
+        "from": "tariffs and cross-border sourcing",
+        "to": "gross margin",
+        "mechanism": "higher component/finished-goods cost can reduce margin unless offset"
+      },
+      {
+        "from": "ACA subsidy expiration/access pressure",
+        "to": "U.S. procedure volume",
+        "mechanism": "patient affordability can modestly suppress elective procedure demand"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "da Vinci/Ion installed base",
+      "to": "procedure capacity and clinician workflow adoption",
+      "mechanism": "systems placed into hospitals enable robotic procedures"
+    },
+    {
+      "from": "procedure growth",
+      "to": "instruments/accessories and service demand",
+      "mechanism": "procedure-linked consumables and recurring support scale with utilization"
+    },
+    {
+      "from": "minimally invasive care demand",
+      "to": "robotic platform adoption",
+      "mechanism": "hospitals seek tools supporting complex minimally invasive procedures"
+    },
+    {
+      "from": "access/reimbursement and hospital economics",
+      "to": "procedure volume",
+      "mechanism": "patient affordability and provider economics influence utilization"
+    },
+    {
+      "from": "tariffs and cross-border sourcing",
+      "to": "gross margin",
+      "mechanism": "higher component/finished-goods cost can reduce margin unless offset"
+    },
+    {
+      "from": "ACA subsidy expiration/access pressure",
+      "to": "U.S. procedure volume",
+      "mechanism": "patient affordability can modestly suppress elective procedure demand"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "isrg:2026-04-21:q1-results",
-      "isrg:2026-01-22:q4-results-2026-outlook"
+      "isrg:2026-01-22:q4-results-2026-outlook",
+      "isrg:2026-07-21:q2-10q"
     ]
   },
   "sources": [
@@ -186,6 +328,14 @@
       "publishedAt": "2026-01-22",
       "originFingerprint": "isrg:2026-01-22:q4-results-2026-outlook",
       "sourceId": null
+    },
+    {
+      "url": "https://isrg.intuitive.com/static-files/20869e45-f9e1-4a97-8af5-ad1499e1e3a7",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-21",
+      "originFingerprint": "isrg:2026-07-21:q2-10q",
+      "sourceId": null
     }
   ],
   "contradictions": [],
@@ -201,11 +351,19 @@
     {
       "unknown": "Later-2026 guidance changes require a verified current primary source before being asserted.",
       "gating": false
+    },
+    {
+      "unknown": "Relative long-run clinical/economic advantage versus each competing robotic platform is procedure-specific and not established by these sources.",
+      "gating": false
+    },
+    {
+      "unknown": "No current source here quantifies competitor share shifts or procedure-level comparative outcomes; absence is non-gating for Beta perspective completion.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 90,
@@ -214,13 +372,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -230,14 +385,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -254,10 +401,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

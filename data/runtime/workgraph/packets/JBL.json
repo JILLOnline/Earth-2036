@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "JBL",
   "workId": "t0:JBL",
-  "generatedAt": "2026-09-20T21:17:42.104Z",
+  "generatedAt": "2026-09-20T21:30:07.046Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-20T21:17:00.740Z"
   },
   "evidenceWindow": {
-    "start": "2025-11-04T00:00:00.000Z",
-    "end": "2026-09-19T23:05:33.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T23:05:33.000Z"
+    "start": "2025-06-17T00:00:00.000Z",
+    "end": "2026-09-20T21:27:25.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T21:27:25.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,65 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/JBL-20260919T230533Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/JBL-20260919T230533Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/JBL-20260920T212725Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "AI infrastructure bottleneck exposure",
       "geographic manufacturing optionality",
       "expectation conversion",
-      "near-term verification event"
+      "near-term verification event",
+      "bottleneck-control",
+      "substitution-resilience",
+      "supply-chain-resilience",
+      "customer-concentration",
+      "supplier-concentration",
+      "integration-risk"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneck-control",
+          "direction": "positive",
+          "basis": "Power management, thermal management, rack integration and manufacturing sit in physical constraints of dense AI infrastructure."
+        },
+        {
+          "name": "substitution-resilience",
+          "direction": "mixed",
+          "basis": "Architecture-agnostic manufacturing and infrastructure capabilities can adapt, but hyperscalers can redesign, dual-source or vertically integrate."
+        },
+        {
+          "name": "supply-chain-resilience",
+          "direction": "positive",
+          "basis": "U.S. expansion and proposed India platform create geographic manufacturing optionality."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "AI infrastructure bottleneck exposure",
@@ -78,7 +103,23 @@
           "basis": "The proposed Adani alliance would add a vertically integrated India manufacturing platform tied to hyperscale infrastructure."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "customer-concentration",
+          "direction": "negative",
+          "basis": "Company risk disclosures explicitly cite dependence on a limited number of customers."
+        },
+        {
+          "name": "supplier-concentration",
+          "direction": "negative",
+          "basis": "Company cites reliance on limited suppliers for critical components."
+        },
+        {
+          "name": "integration-risk",
+          "direction": "mixed",
+          "basis": "Hanley and other capability additions expand the stack but require successful integration and profitability."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "expectation conversion",
@@ -134,7 +175,13 @@
     "AI infrastructure bottleneck exposure",
     "geographic manufacturing optionality",
     "expectation conversion",
-    "near-term verification event"
+    "near-term verification event",
+    "bottleneck-control",
+    "substitution-resilience",
+    "supply-chain-resilience",
+    "customer-concentration",
+    "supplier-concentration",
+    "integration-risk"
   ],
   "riskEvidence": {
     "present": true,
@@ -149,6 +196,22 @@
       },
       {
         "risk": "High AI expectations create downside sensitivity if customer capex, mix or margins decelerate.",
+        "gating": false
+      },
+      {
+        "risk": "Value capture can migrate toward customer-owned designs or alternative suppliers even if physical AI buildout continues.",
+        "gating": false
+      },
+      {
+        "risk": "AI capex concentration can create sharp downside if hyperscalers pause or redesign programs.",
+        "gating": false
+      },
+      {
+        "risk": "Capability acquisitions can fail to earn expected returns or create integration drag.",
+        "gating": false
+      },
+      {
+        "risk": "The proposed India alliance could fail to reach definitive documentation or targeted scale.",
         "gating": false
       }
     ]
@@ -165,6 +228,22 @@
     {
       "risk": "High AI expectations create downside sensitivity if customer capex, mix or margins decelerate.",
       "gating": false
+    },
+    {
+      "risk": "Value capture can migrate toward customer-owned designs or alternative suppliers even if physical AI buildout continues.",
+      "gating": false
+    },
+    {
+      "risk": "AI capex concentration can create sharp downside if hyperscalers pause or redesign programs.",
+      "gating": false
+    },
+    {
+      "risk": "Capability acquisitions can fail to earn expected returns or create integration drag.",
+      "gating": false
+    },
+    {
+      "risk": "The proposed India alliance could fail to reach definitive documentation or targeted scale.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -175,23 +254,76 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 4
+    "count": 5
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "AI compute density",
+        "to": "power and thermal demand",
+        "mechanism": "higher rack density increases electrical distribution and heat-removal requirements"
+      },
+      {
+        "from": "power/thermal/rack integration",
+        "to": "data-center deployment capacity",
+        "mechanism": "integrated infrastructure enables compute hardware to operate reliably at scale"
+      },
+      {
+        "from": "hyperscaler capex",
+        "to": "Jabil AI infrastructure demand",
+        "mechanism": "customer buildout determines manufacturing and integration volumes"
+      },
+      {
+        "from": "customer concentration",
+        "to": "revenue volatility",
+        "mechanism": "large-program changes can rapidly alter manufacturing demand"
+      },
+      {
+        "from": "critical-component supplier dependence",
+        "to": "delivery capacity",
+        "mechanism": "shortages or supplier disruption can constrain production"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "AI compute density",
+      "to": "power and thermal demand",
+      "mechanism": "higher rack density increases electrical distribution and heat-removal requirements"
+    },
+    {
+      "from": "power/thermal/rack integration",
+      "to": "data-center deployment capacity",
+      "mechanism": "integrated infrastructure enables compute hardware to operate reliably at scale"
+    },
+    {
+      "from": "hyperscaler capex",
+      "to": "Jabil AI infrastructure demand",
+      "mechanism": "customer buildout determines manufacturing and integration volumes"
+    },
+    {
+      "from": "customer concentration",
+      "to": "revenue volatility",
+      "mechanism": "large-program changes can rapidly alter manufacturing demand"
+    },
+    {
+      "from": "critical-component supplier dependence",
+      "to": "delivery capacity",
+      "mechanism": "shortages or supplier disruption can constrain production"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 5,
-    "uniqueSourceCount": 4,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 10,
+    "uniqueSourceCount": 5,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "jabil-ir:2025-11-04:hanley-agreement",
       "jabil-ir:2026-06-15:adani-ai-infrastructure",
       "jabil-ir:2026-06-17:q3-results",
-      "jabil-ir:2026-09-09:q4-event"
+      "jabil-ir:2026-09-09:q4-event",
+      "jabil-ir:2025-06-17:us-ai-manufacturing"
     ]
   },
   "sources": [
@@ -226,6 +358,14 @@
       "publishedAt": "2026-09-09",
       "originFingerprint": "jabil-ir:2026-09-09:q4-event",
       "sourceId": null
+    },
+    {
+      "url": "https://investors.jabil.com/news/news-details/2025/Jabil-Announces-Planned-Multi-Year-500-Million-Investment-in-U-S--Manufacturing-for-Cloud-and-AI-Data-Center-Infrastructure/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2025-06-17",
+      "originFingerprint": "jabil-ir:2025-06-17:us-ai-manufacturing",
+      "sourceId": null
     }
   ],
   "contradictions": [],
@@ -241,26 +381,31 @@
     {
       "unknown": "Fiscal Q4/FY2026 results are not yet available and must not be inferred before September 30.",
       "gating": false
+    },
+    {
+      "unknown": "The Adani alliance remains proposed; binding economics and realized volume are not established.",
+      "gating": false
+    },
+    {
+      "unknown": "Customer-level AI revenue concentration is not quantified in the cited sources.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 92,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -270,14 +415,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -294,10 +431,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

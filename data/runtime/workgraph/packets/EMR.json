@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "EMR",
   "workId": "t0:EMR",
-  "generatedAt": "2026-09-20T06:14:16.320Z",
+  "generatedAt": "2026-09-20T06:26:50.111Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-19T15:07:19.000Z",
-    "end": "2026-09-19T15:07:19.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T15:07:19.000Z"
+    "end": "2026-09-20T06:25:30.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T06:25:30.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/EMR-20260919T150719Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/EMR-20260919T150719Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/EMR-20260920T062530Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,19 +65,38 @@
       "scenarioRobustness",
       "alignment2036",
       "thesisQuality",
-      "catalystScore"
+      "catalystScore",
+      "crossDivisionLeverage",
+      "bottleneckControl",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "pricingPower",
         "scenarioRobustness",
         "alignment2036"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "governancePower",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "pricingPower",
+        "thesisQuality"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "thesisQuality",
@@ -125,7 +147,12 @@
     "scenarioRobustness",
     "alignment2036",
     "thesisQuality",
-    "catalystScore"
+    "catalystScore",
+    "crossDivisionLeverage",
+    "bottleneckControl",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -136,6 +163,26 @@
       },
       {
         "risk": "Raised expectations increase the future delivery bar; geopolitical and regional demand conditions remain variable.",
+        "gating": false
+      },
+      {
+        "risk": "Integrated breadth can improve cross-division leverage but does not itself establish control of an irreplaceable bottleneck; customers can retain heterogeneous automation and software stacks.",
+        "gating": false
+      },
+      {
+        "risk": "Successor bottlenecks may migrate from control hardware/software toward electricity availability, interconnection, skilled labor, cybersecurity and customer data quality, limiting how much value Emerson can capture.",
+        "gating": false
+      },
+      {
+        "risk": "Adjusted profitability can overstate recurring economics if tariff refunds, restructuring exclusions or acquisition-related amortization are treated as normal operating improvement.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition-led portfolio expansion creates integration and capital-allocation exposure; AI/software capabilities face rapid competitive response and substitution.",
+        "gating": false
+      },
+      {
+        "risk": "Geographic and end-market variability plus tariffs/currency/geopolitical conditions can interrupt an otherwise constructive demand cycle.",
         "gating": false
       }
     ]
@@ -148,6 +195,26 @@
     {
       "risk": "Raised expectations increase the future delivery bar; geopolitical and regional demand conditions remain variable.",
       "gating": false
+    },
+    {
+      "risk": "Integrated breadth can improve cross-division leverage but does not itself establish control of an irreplaceable bottleneck; customers can retain heterogeneous automation and software stacks.",
+      "gating": false
+    },
+    {
+      "risk": "Successor bottlenecks may migrate from control hardware/software toward electricity availability, interconnection, skilled labor, cybersecurity and customer data quality, limiting how much value Emerson can capture.",
+      "gating": false
+    },
+    {
+      "risk": "Adjusted profitability can overstate recurring economics if tariff refunds, restructuring exclusions or acquisition-related amortization are treated as normal operating improvement.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition-led portfolio expansion creates integration and capital-allocation exposure; AI/software capabilities face rapid competitive response and substitution.",
+      "gating": false
+    },
+    {
+      "risk": "Geographic and end-market variability plus tariffs/currency/geopolitical conditions can interrupt an otherwise constructive demand cycle.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -158,21 +225,56 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 5
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "industrial sensing/control + AspenTech software",
+        "to": "operational visibility and decision support",
+        "mechanism": "contextualizes OT data and embeds domain models into operating workflows"
+      },
+      {
+        "from": "grid digital management",
+        "to": "grid resilience and capacity utilization",
+        "mechanism": "network modeling, distribution automation and outage/workforce coordination improve response and visibility"
+      },
+      {
+        "from": "growing power/data-center/industrial demand",
+        "to": "automation and grid-management demand",
+        "mechanism": "higher infrastructure utilization increases need for reliable control, test, optimization and grid visibility"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "industrial sensing/control + AspenTech software",
+      "to": "operational visibility and decision support",
+      "mechanism": "contextualizes OT data and embeds domain models into operating workflows"
+    },
+    {
+      "from": "grid digital management",
+      "to": "grid resilience and capacity utilization",
+      "mechanism": "network modeling, distribution automation and outage/workforce coordination improve response and visibility"
+    },
+    {
+      "from": "growing power/data-center/industrial demand",
+      "to": "automation and grid-management demand",
+      "mechanism": "higher infrastructure utilization increases need for reliable control, test, optimization and grid visibility"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 9,
+    "uniqueSourceCount": 5,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "emerson:2026-08-04:q3-results",
-      "sec:emr:2026q3-10q"
+      "sec:emr:2026q3-10q",
+      "emerson:2026-05-12:oncor-grid",
+      "emerson:2026-05-11:ava-industrial-ai",
+      "emerson:2026-08-06:glue-acquisition"
     ]
   },
   "sources": [
@@ -189,37 +291,81 @@
       "kind": "primary",
       "primary": true,
       "originFingerprint": "sec:emr:2026q3-10q"
+    },
+    {
+      "sourceId": "emerson:2026-05-12:oncor-grid",
+      "url": "https://www.emerson.com/en/corporate/news/2026/emerson-selected-by-oncor-to-address-growing-energy-needs-texas",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "emerson:2026-05-12:oncor-grid"
+    },
+    {
+      "sourceId": "emerson:2026-05-11:ava-industrial-ai",
+      "url": "https://www.emerson.com/en/corporate/news/2026/new-emerson-industrial-ai-platform-delivers-enterprise-scale-ai",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "emerson:2026-05-11:ava-industrial-ai"
+    },
+    {
+      "sourceId": "emerson:2026-08-06:glue-acquisition",
+      "url": "https://ir.emerson.com/news-events/press-releases/detail/644/emerson-acquires-glue-inc-to-accelerate-ai-driven-test--measurement-innovation",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "emerson:2026-08-06:glue-acquisition"
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "contradiction": "Strong adjusted Test & Measurement margin coexists with much lower GAAP EBIT margin, so profitability quality depends materially on treatment of amortization and restructuring.",
+      "material": true,
+      "resolved": true,
+      "resolution": "Treat adjusted margin as an operating lens, not equivalent to GAAP economic earnings; retain acquisition-related costs as a present risk rather than a blocker."
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "contradiction": "Strong adjusted Test & Measurement margin coexists with much lower GAAP EBIT margin, so profitability quality depends materially on treatment of amortization and restructuring.",
+        "material": true,
+        "resolved": true,
+        "resolution": "Treat adjusted margin as an operating lens, not equivalent to GAAP economic earnings; retain acquisition-related costs as a present risk rather than a blocker."
+      }
+    ]
   },
   "unknowns": [
     {
       "unknown": "Current sources do not establish security-level valuation attractiveness or isolate long-run pricing power from mix and inflation recovery.",
       "gating": false
+    },
+    {
+      "unknown": "Current evidence does not quantify customer switching costs or prove that AVA/AspenTech integration materially raises retention versus competing interoperable stacks.",
+      "gating": false
+    },
+    {
+      "unknown": "Current evidence does not establish whether recent AI acquisitions will generate incremental organic revenue sufficient to exceed integration and acquisition costs.",
+      "gating": false
+    },
+    {
+      "unknown": "No evidence reviewed here proves durable pricing power independent of mix, inflation recovery and the current infrastructure demand cycle.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 1
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 96,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -229,14 +375,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -253,10 +391,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

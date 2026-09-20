@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-20T04:10:18.097Z",
+  "generatedAt": "2026-09-20T04:16:49.016Z",
   "canonicalWriteAuthority": false,
   "total": 222,
   "twins": [
@@ -25014,8 +25014,8 @@
       "canonicalWriteAuthority": false,
       "ticker": "BA",
       "workId": "t0:BA",
-      "inputSignature": "9418f6ebbceb2fd080c5d6d8",
-      "sourceState": "researching",
+      "inputSignature": "f31a1adaabf7daab5e93e600",
+      "sourceState": "chief_ready",
       "identity": {
         "ticker": "BA",
         "company": "Boeing",
@@ -25039,30 +25039,31 @@
           "discovery-weak-signals",
           "expectations-execution",
           "structural-causal",
-          "adversarial-red-team"
-        ],
-        "missingPerspectives": [
+          "adversarial-red-team",
           "source-integrity",
           "company-underwriting"
         ],
-        "primarySourceCount": 3,
+        "missingPerspectives": [],
+        "primarySourceCount": 4,
         "sourceLineage": {
-          "rawSourceCount": 6,
-          "uniqueSourceCount": 3,
-          "duplicatesCollapsed": 3,
+          "rawSourceCount": 12,
+          "uniqueSourceCount": 5,
+          "duplicatesCollapsed": 7,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:BA:order:SMBC:100MAX:20260720",
             "issuer:BA:2Q26:results:deliveries-production-certification-backlog",
-            "issuer:BA:2Q26:results:cash-debt-margin-backlog-program-losses"
+            "issuer:BA:2Q26:results:cash-debt-margin-backlog-program-losses",
+            "issuer:BA:2Q26:results",
+            "independent:companiesmarketcap:BA:marketcap:202609"
           ]
         },
         "evidenceWindow": {
           "start": "2026-07-20T00:00:00.000Z",
-          "end": "2026-09-19T17:27:54.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T17:27:54.000Z"
+          "end": "2026-09-20T04:15:08.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T04:15:08.000Z"
         },
-        "preflightPassed": false
+        "preflightPassed": true
       },
       "capabilitySignals": [
         "thesisQuality",
@@ -25074,7 +25075,9 @@
         "supplyChainResilience",
         "substitutionResilience",
         "governancePower",
-        "pricingPower"
+        "pricingPower",
+        "marketValuationOpportunity",
+        "crossDivisionLeverage"
       ],
       "constraintSignals": {
         "risks": [
@@ -25085,26 +25088,25 @@
           "Commercial-airplane margins remain negative despite higher deliveries, leaving profitability normalization unproven.",
           "First-half free cash flow remains negative and debt remains large even after repayment progress.",
           "Program-specific losses show that backlog/revenue can coexist with weak economics; backlog must not be used as a proxy for margin or cash quality.",
-          "Certification and production-rate execution remain exposed to safety, quality, regulatory and supplier constraints."
+          "Certification and production-rate execution remain exposed to safety, quality, regulatory and supplier constraints.",
+          "Issuer operating evidence is strong on disclosed facts but does not independently corroborate issuer claims; valuation evidence is independent but market-derived.",
+          "Execution, safety/quality, certification, supplier throughput, negative commercial margins, leverage and cash conversion remain material risks."
         ],
         "unknowns": [
           "Current 737-10 certification schedule and conversion of orderbook demand into delivered aircraft were not established by this source.",
           "Latest delivery cadence, production stability, certification progress and free-cash-flow trajectory require separate primary operating evidence.",
           "Long-run margin and cash conversion at higher production rates remain unproven by the available Q2 evidence.",
-          "Normalized margins and free-cash-flow generation after the 737 rate transition and certification milestones are not yet observable."
+          "Normalized margins and free-cash-flow generation after the 737 rate transition and certification milestones are not yet observable.",
+          "Normalized post-rate-transition margins and cash conversion remain unobservable.",
+          "Long-run normalized free cash flow and margins after planned production/certification milestones."
         ],
         "contradictions": [
-          "Strong order/backlog evidence supports demand while negative Commercial Airplanes margin and negative first-half free cash flow show incomplete economic conversion."
+          "Strong order/backlog evidence supports demand while negative Commercial Airplanes margin and negative first-half free cash flow show incomplete economic conversion.",
+          "Strong demand/backlog coexists with weak current commercial-airplane margin and still-negative first-half free cash flow.",
+          "Backlog strength versus weak realized commercial margins/free cash flow."
         ],
         "gatingIssues": [],
-        "preflightFailures": [
-          "missing_specialist_perspective:source-integrity",
-          "missing_specialist_perspective:company-underwriting",
-          "missing_factor_evidence",
-          "missing_numeric_score_record",
-          "missing_score_risk_evidence",
-          "missing_data_confidence_evidence"
-        ]
+        "preflightFailures": []
       },
       "causalContext": {
         "mapped": true,
@@ -25146,38 +25148,7 @@
           }
         ]
       },
-      "improvementWindows": [
-        {
-          "failure": "missing_specialist_perspective:source-integrity",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:source-integrity?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:company-underwriting",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_factor_evidence",
-          "question": "Which required methodology factor still lacks source-addressed evidence?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_numeric_score_record",
-          "question": "Which source-addressed factor assessments are still required before a reproducible score can be constructed?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_score_risk_evidence",
-          "question": "Which material risks require source-addressed quantitative treatment?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_data_confidence_evidence",
-          "question": "Which evidence-quality dimensions remain insufficiently supported?",
-          "stance": "improvement-oriented"
-        }
-      ],
+      "improvementWindows": [],
       "bridgeInputs": {
         "capabilityCandidates": [
           "thesisQuality",
@@ -25189,13 +25160,17 @@
           "supplyChainResilience",
           "substitutionResilience",
           "governancePower",
-          "pricingPower"
+          "pricingPower",
+          "marketValuationOpportunity",
+          "crossDivisionLeverage"
         ],
         "needOrConstraintCandidates": [
           "Current 737-10 certification schedule and conversion of orderbook demand into delivered aircraft were not established by this source.",
           "Latest delivery cadence, production stability, certification progress and free-cash-flow trajectory require separate primary operating evidence.",
           "Long-run margin and cash conversion at higher production rates remain unproven by the available Q2 evidence.",
           "Normalized margins and free-cash-flow generation after the 737 rate transition and certification milestones are not yet observable.",
+          "Normalized post-rate-transition margins and cash conversion remain unobservable.",
+          "Long-run normalized free cash flow and margins after planned production/certification milestones.",
           "Order strength does not establish delivery timing, certification timing for the 737-10, production-rate execution, margins or free-cash-flow conversion.",
           "Boeing's central execution test remains safe, timely production and delivery; this evidence cannot resolve that test.",
           "Production-rate transitions increase dependence on stable quality systems and supplier throughput; backlog is not self-executing.",
@@ -25203,7 +25178,9 @@
           "Commercial-airplane margins remain negative despite higher deliveries, leaving profitability normalization unproven.",
           "First-half free cash flow remains negative and debt remains large even after repayment progress.",
           "Program-specific losses show that backlog/revenue can coexist with weak economics; backlog must not be used as a proxy for margin or cash quality.",
-          "Certification and production-rate execution remain exposed to safety, quality, regulatory and supplier constraints."
+          "Certification and production-rate execution remain exposed to safety, quality, regulatory and supplier constraints.",
+          "Issuer operating evidence is strong on disclosed facts but does not independently corroborate issuer claims; valuation evidence is independent but market-derived.",
+          "Execution, safety/quality, certification, supplier throughput, negative commercial margins, leverage and cash conversion remain material risks."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

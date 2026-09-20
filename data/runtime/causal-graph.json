@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-20T11:16:25.185Z",
+  "updatedAt": "2026-09-20T12:19:00.115Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -482,6 +482,18 @@
       "type": "market",
       "label": "BMI structural demand",
       "description": "Badger Meter's causal role is best represented as measurement/monitoring infrastructure linking water-network physical state to utility operating decisions: smart metering plus sewer-network monitoring can reduce information latency around consumption, leakage and network conditions, but the human-need outcome still depends on utility adoption, workflow integration and maintenance response."
+    },
+    {
+      "id": "company:BTDR",
+      "type": "company",
+      "label": "Bitdeer Technologies Group",
+      "description": "Bitdeer's structural pivot uses controlled power/data-center infrastructure as the scarce input for AI compute, converting an energy-and-site footprint originally optimized for mining into contracted GPU capacity; the fully contracted A102 facility is evidence of demand but not yet proof of realized economics."
+    },
+    {
+      "id": "market:BTDR-deployable-ai-compute-capacity",
+      "type": "market",
+      "label": "deployable AI compute capacity",
+      "description": "energized infrastructure can host high-density GPUs faster than greenfield development"
     }
   ],
   "edges": [
@@ -1154,6 +1166,21 @@
         "issuer:BMI:FY25:20260128"
       ],
       "observedAt": "2026-09-19T19:26:41Z"
+    },
+    {
+      "id": "edge:BTDR-structural-exposure",
+      "from": "company:BTDR",
+      "to": "market:BTDR-deployable-ai-compute-capacity",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 72,
+      "confidence": 90,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "bitdeer:august-2026-operations:2026-09-16",
+        "bitdeer:q2-2026:2026-08-10"
+      ],
+      "observedAt": "2026-09-19T07:25:25Z"
     }
   ],
   "structuralSignals": [
@@ -1956,6 +1983,25 @@
       "observedAt": "2026-09-19T19:26:41Z",
       "thesis": "Badger Meter's causal role is best represented as measurement/monitoring infrastructure linking water-network physical state to utility operating decisions: smart metering plus sewer-network monitoring can reduce information latency around consumption, leakage and network conditions, but the human-need outcome still depends on utility adoption, workflow integration and maintenance response.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:BTDR-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:BTDR-deployable-ai-compute-capacity",
+      "affectedNodeIds": [
+        "company:BTDR"
+      ],
+      "direction": 1,
+      "magnitude": 72,
+      "confidence": 90,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "bitdeer:august-2026-operations:2026-09-16",
+        "bitdeer:q2-2026:2026-08-10"
+      ],
+      "observedAt": "2026-09-19T07:25:25Z",
+      "thesis": "Bitdeer's structural pivot uses controlled power/data-center infrastructure as the scarce input for AI compute, converting an energy-and-site footprint originally optimized for mining into contracted GPU capacity; the fully contracted A102 facility is evidence of demand but not yet proof of realized economics.",
+      "falsifier": "energization/GPU deployment delays materially prevent contracted capacity from entering service"
     }
   ],
   "roadmapMilestones": [

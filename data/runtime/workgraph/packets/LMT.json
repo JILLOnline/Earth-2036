@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "LMT",
   "workId": "t0:LMT",
-  "generatedAt": "2026-09-20T05:53:25.919Z",
+  "generatedAt": "2026-09-20T06:04:45.359Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-20T05:52:43.398Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-04-23T00:00:00.000Z",
+    "end": "2026-09-20T06:03:35.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T06:03:35.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -38,15 +42,25 @@
     "complete": false
   },
   "perspectives": [],
-  "evidencePaths": [],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/LMT-20260920T060335Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "record $230B backlog",
+      "11% Q2 sales growth",
+      "$65B Q2 new orders",
+      "raised 2026 guidance",
+      "AIM-260/JATM production framework",
+      "GPS ground-segment modernization",
+      "munition capacity expansion"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
@@ -93,12 +107,46 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "record $230B backlog",
+    "11% Q2 sales growth",
+    "$65B Q2 new orders",
+    "raised 2026 guidance",
+    "AIM-260/JATM production framework",
+    "GPS ground-segment modernization",
+    "munition capacity expansion"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "government funding and contract definitization",
+      "fixed-price/program execution losses",
+      "supply-chain and production-ramp constraints",
+      "customer concentration in U.S. government/allies",
+      "backlog-to-revenue timing",
+      "capital required for capacity expansion",
+      "government funding and contract definitization",
+      "fixed-price/program execution losses",
+      "supply-chain and production-ramp constraints",
+      "customer concentration in U.S. government/allies",
+      "backlog-to-revenue timing",
+      "capital required for capacity expansion"
+    ]
   },
-  "risks": [],
+  "risks": [
+    "government funding and contract definitization",
+    "fixed-price/program execution losses",
+    "supply-chain and production-ramp constraints",
+    "customer concentration in U.S. government/allies",
+    "backlog-to-revenue timing",
+    "capital required for capacity expansion",
+    "government funding and contract definitization",
+    "fixed-price/program execution losses",
+    "supply-chain and production-ramp constraints",
+    "customer concentration in U.S. government/allies",
+    "backlog-to-revenue timing",
+    "capital required for capacity expansion"
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -115,30 +163,85 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "investors.lockheedmartin.com|q2-2026-results|2026-07-23",
+      "investors.lockheedmartin.com|aim260-jatm-framework|2026-09-17",
+      "news.lockheedmartin.com|gps-ground-modernization|2026-09-10",
+      "investors.lockheedmartin.com|q1-2026-results|2026-04-23"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "origin": "Lockheed Martin Investor Relations",
+      "url": "https://investors.lockheedmartin.com/news-releases/news-release-details/lockheed-martin-reports-second-quarter-2026-financial-results",
+      "publishedAt": "2026-07-23",
+      "originFingerprint": "investors.lockheedmartin.com|q2-2026-results|2026-07-23",
+      "use": "current operating performance, backlog, orders and guidance",
+      "sourceId": null,
+      "primary": false
+    },
+    {
+      "origin": "Lockheed Martin Investor Relations",
+      "url": "https://investors.lockheedmartin.com/news-releases/news-release-details/lockheed-martin-and-department-war-accelerate-air-dominance",
+      "publishedAt": "2026-09-17",
+      "originFingerprint": "investors.lockheedmartin.com|aim260-jatm-framework|2026-09-17",
+      "use": "fresh missile-production framework signal",
+      "sourceId": null,
+      "primary": false
+    },
+    {
+      "origin": "Lockheed Martin News",
+      "url": "https://news.lockheedmartin.com/lockheed-martin-secures-space-force-contracts-contracts-to-further-modernize-the-GPS-ground-segment",
+      "publishedAt": "2026-09-10",
+      "originFingerprint": "news.lockheedmartin.com|gps-ground-modernization|2026-09-10",
+      "use": "fresh Space Force modernization awards",
+      "sourceId": null,
+      "primary": false
+    },
+    {
+      "origin": "Lockheed Martin Investor Relations",
+      "url": "https://investors.lockheedmartin.com/news-releases/news-release-details/lockheed-martin-reports-first-quarter-2026-financial-results",
+      "publishedAt": "2026-04-23",
+      "originFingerprint": "investors.lockheedmartin.com|q1-2026-results|2026-04-23",
+      "use": "cash-flow contradiction and production-framework baseline",
+      "sourceId": null,
+      "primary": false
+    }
+  ],
+  "contradictions": [
+    "Q1 2026 free cash flow was negative $291M while Q2 rebounded to $2.9B; timing of customer receipts materially affects quarter-to-quarter cash conversion, so one strong quarter should not be extrapolated mechanically.",
+    "Q1 2026 free cash flow was negative $291M while Q2 rebounded to $2.9B; timing of customer receipts materially affects quarter-to-quarter cash conversion, so one strong quarter should not be extrapolated mechanically."
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 2,
+    "items": [
+      "Q1 2026 free cash flow was negative $291M while Q2 rebounded to $2.9B; timing of customer receipts materially affects quarter-to-quarter cash conversion, so one strong quarter should not be extrapolated mechanically.",
+      "Q1 2026 free cash flow was negative $291M while Q2 rebounded to $2.9B; timing of customer receipts materially affects quarter-to-quarter cash conversion, so one strong quarter should not be extrapolated mechanically."
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    "economic terms and funded quantities under the September 17 JATM framework",
+    "incremental capital required and margin profile for the accelerated missile ramps",
+    "portion and timing of the $230B backlog converting to revenue beyond disclosed guidance",
+    "whether future program charges emerge as production rates scale",
+    "economic terms and funded quantities under the September 17 JATM framework",
+    "incremental capital required and margin profile for the accelerated missile ramps",
+    "portion and timing of the $230B backlog converting to revenue beyond disclosed guidance",
+    "whether future program charges emerge as production rates scale"
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 8
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
@@ -148,20 +251,12 @@
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_causal_mapping",
+      "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -199,10 +294,6 @@
         "owner": "council-alpha"
       },
       {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
-      },
-      {
         "failure": "missing_score_risk_evidence",
         "owner": "council-alpha"
       },
@@ -213,6 +304,10 @@
       {
         "failure": "missing_causal_mapping",
         "owner": "council-beta"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

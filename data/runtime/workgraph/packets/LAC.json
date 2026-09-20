@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "LAC",
   "workId": "t0:LAC",
-  "generatedAt": "2026-09-19T23:37:37.433Z",
+  "generatedAt": "2026-09-20T00:08:55.175Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T22:14:36.596Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-02-20T00:00:00.000Z",
+    "end": "2026-09-20T00:06:29.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T00:06:29.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -38,15 +42,22 @@
     "complete": false
   },
   "perspectives": [],
-  "evidencePaths": [],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/LAC-20260920T000629Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "domestic lithium supply",
+      "GM strategic alignment",
+      "DOE project finance",
+      "late-2027 construction milestone"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
@@ -93,12 +104,31 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "domestic lithium supply",
+    "GM strategic alignment",
+    "DOE project finance",
+    "late-2027 construction milestone"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "No Phase 1 operating production yet; value remains construction- and ramp-dependent.",
+      "Lithium price cycles can materially alter project economics before commissioning.",
+      "Large-project schedule/cost risk remains despite strategic financing.",
+      "No Phase 1 operating production yet; value remains construction- and ramp-dependent.",
+      "Lithium price cycles can materially alter project economics before commissioning.",
+      "Large-project schedule/cost risk remains despite strategic financing."
+    ]
   },
-  "risks": [],
+  "risks": [
+    "No Phase 1 operating production yet; value remains construction- and ramp-dependent.",
+    "Lithium price cycles can materially alter project economics before commissioning.",
+    "Large-project schedule/cost risk remains despite strategic financing.",
+    "No Phase 1 operating production yet; value remains construction- and ramp-dependent.",
+    "Lithium price cycles can materially alter project economics before commissioning.",
+    "Large-project schedule/cost risk remains despite strategic financing."
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -115,30 +145,53 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "lithiumamericas.com|q1-2026-thacker-pass|2026",
+      "lithiumamericas.com|thacker-pass-2026-capex-update|2026"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "origin": "Lithium Americas",
+      "url": "https://lithiumamericas.com/news/news-details/2026/Lithium-Americas-Reports-First-Quarter-2026-Results/",
+      "publishedAt": "2026-05-07",
+      "originFingerprint": "lithiumamericas.com|q1-2026-thacker-pass|2026",
+      "sourceId": null,
+      "primary": false
+    },
+    {
+      "origin": "Lithium Americas",
+      "url": "https://www.lithiumamericas.com/news/news-details/2026/Lithium-Americas-Provides-a-Project-Update-and-2026-Capex-Guidance-for-Thacker-Pass/default.aspx",
+      "publishedAt": "2026-02-20",
+      "originFingerprint": "lithiumamericas.com|thacker-pass-2026-capex-update|2026",
+      "sourceId": null,
+      "primary": false
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    "Current percent construction completion and latest cost-to-complete were not established in the sources used here.",
+    "Post-ramp realized pricing and unit costs remain unknown.",
+    "Current percent construction completion and latest cost-to-complete were not established in the sources used here.",
+    "Post-ramp realized pricing and unit costs remain unknown."
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 84,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
@@ -148,20 +201,11 @@
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -197,10 +241,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

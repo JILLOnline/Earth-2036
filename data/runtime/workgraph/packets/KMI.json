@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "KMI",
   "workId": "t0:KMI",
-  "generatedAt": "2026-09-19T23:37:37.437Z",
+  "generatedAt": "2026-09-20T00:08:55.180Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T22:14:36.596Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-07-15T00:00:00.000Z",
+    "end": "2026-09-20T00:06:29.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T00:06:29.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -38,15 +42,22 @@
     "complete": false
   },
   "perspectives": [],
-  "evidencePaths": [],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/KMI-20260920T000629Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "natural-gas infrastructure demand",
+      "data-center and power-load growth",
+      "long-term contracted backlog",
+      "internal funding capacity"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
@@ -93,12 +104,31 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "natural-gas infrastructure demand",
+    "data-center and power-load growth",
+    "long-term contracted backlog",
+    "internal funding capacity"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "Pipeline projects remain exposed to permitting and construction timing.",
+      "Long-lived gas infrastructure faces policy, demand-transition and commodity-adjacent risks despite fee-based contracts.",
+      "Backlog does not guarantee all contingent projects reach service.",
+      "Pipeline projects remain exposed to permitting and construction timing.",
+      "Long-lived gas infrastructure faces policy, demand-transition and commodity-adjacent risks despite fee-based contracts.",
+      "Backlog does not guarantee all contingent projects reach service."
+    ]
   },
-  "risks": [],
+  "risks": [
+    "Pipeline projects remain exposed to permitting and construction timing.",
+    "Long-lived gas infrastructure faces policy, demand-transition and commodity-adjacent risks despite fee-based contracts.",
+    "Backlog does not guarantee all contingent projects reach service.",
+    "Pipeline projects remain exposed to permitting and construction timing.",
+    "Long-lived gas infrastructure faces policy, demand-transition and commodity-adjacent risks despite fee-based contracts.",
+    "Backlog does not guarantee all contingent projects reach service."
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -115,30 +145,44 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 2,
+    "uniqueSourceCount": 1,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "ir.kindermorgan.com|q2-2026-results-backlog|2026-07"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "origin": "Kinder Morgan investor relations",
+      "url": "https://ir.kindermorgan.com/news/news-details/2026/Kinder-Morgan-Reports-Second-Quarter-2026-Financial-Results/default.aspx",
+      "publishedAt": "2026-07-15",
+      "originFingerprint": "ir.kindermorgan.com|q2-2026-results-backlog|2026-07",
+      "sourceId": null,
+      "primary": false
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    "Project-by-project realized returns versus planned economics remain unverified here.",
+    "Long-run durability of incremental data-center gas demand is uncertain.",
+    "Project-by-project realized returns versus planned economics remain unverified here.",
+    "Long-run durability of incremental data-center gas demand is uncertain."
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
@@ -148,20 +192,11 @@
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -197,10 +232,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

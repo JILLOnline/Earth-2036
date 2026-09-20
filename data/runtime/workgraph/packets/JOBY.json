@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "JOBY",
   "workId": "t0:JOBY",
-  "generatedAt": "2026-09-19T23:37:37.435Z",
+  "generatedAt": "2026-09-20T00:08:55.178Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-19T22:14:36.596Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-03-11T00:00:00.000Z",
+    "end": "2026-09-20T00:06:29.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T00:06:29.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -38,15 +42,23 @@
     "complete": false
   },
   "perspectives": [],
-  "evidencePaths": [],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/JOBY-20260920T000629Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "FAA certification execution",
+      "manufacturing scale-up",
+      "Toyota production-system transfer",
+      "vertiport infrastructure buildout",
+      "autonomy optionality and dual-use expansion"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
@@ -93,12 +105,36 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "FAA certification execution",
+    "manufacturing scale-up",
+    "Toyota production-system transfer",
+    "vertiport infrastructure buildout",
+    "autonomy optionality and dual-use expansion"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "Type certification remains incomplete; final-stage progress must not be treated as approval.",
+      "Manufacturing footprint and conforming-aircraft work do not establish achieved commercial production economics or rate.",
+      "Vertiport availability is an external commercialization dependency and may become a critical-path constraint.",
+      "Autonomy demonstrations broaden optionality but do not establish near-term passenger-service revenue or regulatory approval for autonomous commercial operations.",
+      "Type certification remains incomplete; final-stage progress must not be treated as approval.",
+      "Manufacturing footprint and conforming-aircraft work do not establish achieved commercial production economics or rate.",
+      "Vertiport availability is an external commercialization dependency and may become a critical-path constraint.",
+      "Autonomy demonstrations broaden optionality but do not establish near-term passenger-service revenue or regulatory approval for autonomous commercial operations."
+    ]
   },
-  "risks": [],
+  "risks": [
+    "Type certification remains incomplete; final-stage progress must not be treated as approval.",
+    "Manufacturing footprint and conforming-aircraft work do not establish achieved commercial production economics or rate.",
+    "Vertiport availability is an external commercialization dependency and may become a critical-path constraint.",
+    "Autonomy demonstrations broaden optionality but do not establish near-term passenger-service revenue or regulatory approval for autonomous commercial operations.",
+    "Type certification remains incomplete; final-stage progress must not be treated as approval.",
+    "Manufacturing footprint and conforming-aircraft work do not establish achieved commercial production economics or rate.",
+    "Vertiport availability is an external commercialization dependency and may become a critical-path constraint.",
+    "Autonomy demonstrations broaden optionality but do not establish near-term passenger-service revenue or regulatory approval for autonomous commercial operations."
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -115,30 +151,87 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 10,
+    "uniqueSourceCount": 5,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "jobyaviation.com|news|faa-conforming-tia-first-flight|2026-03-11",
+      "ir.jobyaviation.com|q1-2026-results|manufacturing-certification",
+      "jobyaviation.com|toyota-manufacturing-alliance|2026-06-30",
+      "jobyaviation.com|atoms-vertiport-network|2026-08-04",
+      "jobyaviation.com|autonomous-transcontinental-j208|2026-09-18"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "origin": "Joby Aviation newsroom",
+      "url": "https://www.jobyaviation.com/news/joby-s-first-faa-conforming-aircraft-takes-flight",
+      "publishedAt": "2026-03-11",
+      "originFingerprint": "jobyaviation.com|news|faa-conforming-tia-first-flight|2026-03-11",
+      "use": "FAA certification execution",
+      "sourceId": null,
+      "primary": false
+    },
+    {
+      "origin": "Joby Aviation investor relations",
+      "url": "https://ir.jobyaviation.com/news-events/press-releases/detail/182/joby-reports-first-quarter-2026-financial-results",
+      "publishedAt": "2026-05-07",
+      "originFingerprint": "ir.jobyaviation.com|q1-2026-results|manufacturing-certification",
+      "use": "manufacturing and certification execution",
+      "sourceId": null,
+      "primary": false
+    },
+    {
+      "origin": "Joby Aviation newsroom",
+      "url": "https://www.jobyaviation.com/news/joby-aviation-and-toyota-motor-corporation-launch-initial-phase-of-a-strategic-manufacturing-alliance-to-realize-air-mobility-for-all",
+      "publishedAt": "2026-06-30",
+      "originFingerprint": "jobyaviation.com|toyota-manufacturing-alliance|2026-06-30",
+      "use": "industrialization mechanism",
+      "sourceId": null,
+      "primary": false
+    },
+    {
+      "origin": "Joby Aviation newsroom",
+      "url": "https://www.jobyaviation.com/news/atoms-and-joby-aviation-form-strategic-partnership-to-build-americas-vertiport-network",
+      "publishedAt": "2026-08-04",
+      "originFingerprint": "jobyaviation.com|atoms-vertiport-network|2026-08-04",
+      "use": "commercial infrastructure dependency and expansion",
+      "sourceId": null,
+      "primary": false
+    },
+    {
+      "origin": "Joby Aviation newsroom",
+      "url": "https://www.jobyaviation.com/news/joby-completes-first-ever-fully-autonomous-flight-across-the-united-states",
+      "publishedAt": "2026-09-18",
+      "originFingerprint": "jobyaviation.com|autonomous-transcontinental-j208|2026-09-18",
+      "use": "fresh weak signal and autonomy optionality",
+      "sourceId": null,
+      "primary": false
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    "Exact current FAA for-credit TIA flight-test completion percentage and remaining certification findings were not established by the sources used here.",
+    "Current unit economics, achieved production rate, and commercial passenger-service revenue cadence remain unverified in this Scout artifact.",
+    "The degree to which autonomy programs materially alter near-term financial outcomes remains unknown.",
+    "Exact current FAA for-credit TIA flight-test completion percentage and remaining certification findings were not established by the sources used here.",
+    "Current unit economics, achieved production rate, and commercial passenger-service revenue cadence remain unverified in this Scout artifact.",
+    "The degree to which autonomy programs materially alter near-term financial outcomes remains unknown."
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 88,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
@@ -148,20 +241,11 @@
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -197,10 +281,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

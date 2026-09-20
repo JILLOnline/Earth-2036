@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-20T02:16:29.673Z",
+  "updatedAt": "2026-09-20T05:53:26.242Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -374,6 +374,42 @@
       "type": "market",
       "label": "AVAV structural demand",
       "description": "AeroVironment now spans uncrewed systems, loitering munitions, counter-UAS, directed energy and adjacent BlueHalo capabilities, linking sensing/autonomy/kinetic and non-kinetic effects to defense demand for distributed, lower-cost mission systems."
+    },
+    {
+      "id": "company:AWK",
+      "type": "company",
+      "label": "American Water Works",
+      "description": "American Water's durable causal chain is regulated capital deployment into water/wastewater infrastructure -> rate-base growth subject to jurisdictional approval -> reliable essential service for households, businesses and military installations; scale and acquisitions can widen the infrastructure base but do not remove regulatory dependence."
+    },
+    {
+      "id": "market:AWK-water-wastewater-infrastructure-renewal-and-expansion",
+      "type": "market",
+      "label": "water/wastewater infrastructure renewal and expansion",
+      "description": "capital projects and acquisitions add/upgrade regulated assets"
+    },
+    {
+      "id": "company:BA",
+      "type": "company",
+      "label": "The Boeing Company",
+      "description": "Boeing sits on a structurally important commercial-aircraft bottleneck: airline fleet renewal and capacity growth depend on a very small set of large-aircraft OEMs, while Boeing's 6,200-plus commercial-airplane backlog and rising 737 output demonstrate durable demand but make production-system throughput, certification and supplier stability the binding conversion mechanisms."
+    },
+    {
+      "id": "market:BA-airline-fleet-renewal-capacity",
+      "type": "market",
+      "label": "airline fleet renewal/capacity",
+      "description": "Boeing sits on a structurally important commercial-aircraft bottleneck: airline fleet renewal and capacity growth depend on a very small set of large-aircraft OEMs, while Boeing's 6,200-plus commercial-airplane backlog and rising 737 output demonstrate durable demand but make production-system throughput, certification and supplier stability the binding conversion mechanisms."
+    },
+    {
+      "id": "company:BE",
+      "type": "company",
+      "label": "Bloom Energy",
+      "description": "Bloom Energy occupies a grid-constrained onsite-power pathway for AI/data-center infrastructure: the April 2026 Oracle master agreement supports up to 2.8 GW, with 1.2 GW described as contracted and deploying; this supports a causal link from delayed grid capacity to rapidly deployable onsite fuel-cell demand without treating the 2.8 GW ceiling as contracted backlog."
+    },
+    {
+      "id": "market:BE-onsite-fuel-cell-demand",
+      "type": "market",
+      "label": "onsite fuel-cell demand",
+      "description": "customers can deploy generation alongside data-center construction rather than wait solely for equivalent grid expansion"
     }
   ],
   "edges": [
@@ -914,6 +950,51 @@
         "sec:AVAV:FY2027Q1:10Q"
       ],
       "observedAt": "2026-09-19T15:22:52Z"
+    },
+    {
+      "id": "edge:AWK-structural-exposure",
+      "from": "company:AWK",
+      "to": "market:AWK-water-wastewater-infrastructure-renewal-and-expansion",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 72,
+      "confidence": 92,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:AWK:2026Q2",
+        "issuer:AWK:merger-2025"
+      ],
+      "observedAt": "2026-09-19T16:28:00Z"
+    },
+    {
+      "id": "edge:BA-structural-exposure",
+      "from": "company:BA",
+      "to": "market:BA-airline-fleet-renewal-capacity",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 82,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:BA:2Q26-results:20260729",
+        "issuer:BA:SMBC:20260720"
+      ],
+      "observedAt": "2026-09-19T17:27:54Z"
+    },
+    {
+      "id": "edge:BE-structural-exposure",
+      "from": "company:BE",
+      "to": "market:BE-onsite-fuel-cell-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 76,
+      "confidence": 86,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "be:oracle-2.8gw:2026-04-13",
+        "be:fy2025-results:2026-02-05"
+      ],
+      "observedAt": "2026-09-19T06:24:39Z"
     }
   ],
   "structuralSignals": [
@@ -1548,6 +1629,63 @@
       "observedAt": "2026-09-19T15:22:52Z",
       "thesis": "AeroVironment now spans uncrewed systems, loitering munitions, counter-UAS, directed energy and adjacent BlueHalo capabilities, linking sensing/autonomy/kinetic and non-kinetic effects to defense demand for distributed, lower-cost mission systems.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:AWK-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:AWK-water-wastewater-infrastructure-renewal-and-expansion",
+      "affectedNodeIds": [
+        "company:AWK"
+      ],
+      "direction": 1,
+      "magnitude": 72,
+      "confidence": 92,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:AWK:2026Q2",
+        "issuer:AWK:merger-2025"
+      ],
+      "observedAt": "2026-09-19T16:28:00Z",
+      "thesis": "American Water's durable causal chain is regulated capital deployment into water/wastewater infrastructure -> rate-base growth subject to jurisdictional approval -> reliable essential service for households, businesses and military installations; scale and acquisitions can widen the infrastructure base but do not remove regulatory dependence.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:BA-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:BA-airline-fleet-renewal-capacity",
+      "affectedNodeIds": [
+        "company:BA"
+      ],
+      "direction": 1,
+      "magnitude": 82,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:BA:2Q26-results:20260729",
+        "issuer:BA:SMBC:20260720"
+      ],
+      "observedAt": "2026-09-19T17:27:54Z",
+      "thesis": "Boeing sits on a structurally important commercial-aircraft bottleneck: airline fleet renewal and capacity growth depend on a very small set of large-aircraft OEMs, while Boeing's 6,200-plus commercial-airplane backlog and rising 737 output demonstrate durable demand but make production-system throughput, certification and supplier stability the binding conversion mechanisms.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:BE-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:BE-onsite-fuel-cell-demand",
+      "affectedNodeIds": [
+        "company:BE"
+      ],
+      "direction": 1,
+      "magnitude": 76,
+      "confidence": 86,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "be:oracle-2.8gw:2026-04-13",
+        "be:fy2025-results:2026-02-05"
+      ],
+      "observedAt": "2026-09-19T06:24:39Z",
+      "thesis": "Bloom Energy occupies a grid-constrained onsite-power pathway for AI/data-center infrastructure: the April 2026 Oracle master agreement supports up to 2.8 GW, with 1.2 GW described as contracted and deploying; this supports a causal link from delayed grid capacity to rapidly deployable onsite fuel-cell demand without treating the 2.8 GW ceiling as contracted backlog.",
+      "falsifier": "utility interconnection lead times compress materially or competing onsite architectures consistently beat Bloom on delivered time/cost/reliability"
     }
   ],
   "roadmapMilestones": [

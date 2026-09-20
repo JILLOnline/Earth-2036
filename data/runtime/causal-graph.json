@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-20T12:19:00.115Z",
+  "updatedAt": "2026-09-20T13:14:54.366Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -494,6 +494,18 @@
       "type": "market",
       "label": "deployable AI compute capacity",
       "description": "energized infrastructure can host high-density GPUs faster than greenfield development"
+    },
+    {
+      "id": "company:BWXT",
+      "type": "company",
+      "label": "BWX Technologies",
+      "description": "BWXT sits at a specialized nuclear manufacturing/engineering bottleneck connecting reactor and nuclear-material technologies to defense, energy and isotope infrastructure; recent Army Janus and NNSA design selections indicate transfer of that capability beyond the naval base, while production-scale value remains contingent on follow-on scope and program execution."
+    },
+    {
+      "id": "market:BWXT-bwxt-structural-demand",
+      "type": "market",
+      "label": "BWXT structural demand",
+      "description": "BWXT sits at a specialized nuclear manufacturing/engineering bottleneck connecting reactor and nuclear-material technologies to defense, energy and isotope infrastructure; recent Army Janus and NNSA design selections indicate transfer of that capability beyond the naval base, while production-scale value remains contingent on follow-on scope and program execution."
     }
   ],
   "edges": [
@@ -1181,6 +1193,21 @@
         "bitdeer:q2-2026:2026-08-10"
       ],
       "observedAt": "2026-09-19T07:25:25Z"
+    },
+    {
+      "id": "edge:BWXT-structural-exposure",
+      "from": "company:BWXT",
+      "to": "market:BWXT-bwxt-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 84,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:BWXT:NNSA:20260903",
+        "issuer:BWXT:2026Q2"
+      ],
+      "observedAt": "2026-09-19T19:26:41Z"
     }
   ],
   "structuralSignals": [
@@ -2002,6 +2029,25 @@
       "observedAt": "2026-09-19T07:25:25Z",
       "thesis": "Bitdeer's structural pivot uses controlled power/data-center infrastructure as the scarce input for AI compute, converting an energy-and-site footprint originally optimized for mining into contracted GPU capacity; the fully contracted A102 facility is evidence of demand but not yet proof of realized economics.",
       "falsifier": "energization/GPU deployment delays materially prevent contracted capacity from entering service"
+    },
+    {
+      "id": "signal:BWXT-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:BWXT-bwxt-structural-demand",
+      "affectedNodeIds": [
+        "company:BWXT"
+      ],
+      "direction": 1,
+      "magnitude": 84,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:BWXT:NNSA:20260903",
+        "issuer:BWXT:2026Q2"
+      ],
+      "observedAt": "2026-09-19T19:26:41Z",
+      "thesis": "BWXT sits at a specialized nuclear manufacturing/engineering bottleneck connecting reactor and nuclear-material technologies to defense, energy and isotope infrastructure; recent Army Janus and NNSA design selections indicate transfer of that capability beyond the naval base, while production-scale value remains contingent on follow-on scope and program execution.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],
   "roadmapMilestones": [

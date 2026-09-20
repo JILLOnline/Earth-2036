@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "HEI",
   "workId": "t0:HEI",
-  "generatedAt": "2026-09-20T17:15:16.396Z",
+  "generatedAt": "2026-09-20T17:30:13.923Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-16T00:00:00.000Z",
-    "end": "2026-09-19T22:05:31.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T22:05:31.000Z"
+    "end": "2026-09-20T17:27:59.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T17:27:59.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,39 +32,58 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/HEI-20260919T220531Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/HEI-20260919T220531Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/HEI-20260920T172759Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "aerospace-electronics demand and execution",
       "operating conversion",
-      "capital structure"
+      "capital structure",
+      "alignment2036",
+      "bottleneckControl",
+      "crossDivisionLeverage",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "thesisQuality",
+      "governancePower",
+      "financialOperatingMomentum"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         {
           "name": "aerospace-electronics demand and execution",
@@ -72,7 +91,13 @@
           "basis": "Double-digit organic growth alongside faster operating-income growth is direct operating evidence of demand and execution strength."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "governancePower",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "substitutionResilience"
+      ],
       "expectations-execution": [
         {
           "name": "operating conversion",
@@ -127,7 +152,16 @@
   "factors": [
     "aerospace-electronics demand and execution",
     "operating conversion",
-    "capital structure"
+    "capital structure",
+    "alignment2036",
+    "bottleneckControl",
+    "crossDivisionLeverage",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "thesisQuality",
+    "governancePower",
+    "financialOperatingMomentum"
   ],
   "riskEvidence": {
     "present": true,
@@ -139,7 +173,11 @@
       {
         "risk": "Acquisition-led expansion and additional debt can magnify integration and capital-allocation risk even while current operations are strong.",
         "gating": false
-      }
+      },
+      "Acquisition integration and capital-allocation risk",
+      "Higher fixed financing obligations",
+      "Potential OEM competitive response or qualification barriers",
+      "Source set is issuer-primary and does not independently test customer concentration"
     ]
   },
   "risks": [
@@ -150,7 +188,11 @@
     {
       "risk": "Acquisition-led expansion and additional debt can magnify integration and capital-allocation risk even while current operations are strong.",
       "gating": false
-    }
+    },
+    "Acquisition integration and capital-allocation risk",
+    "Higher fixed financing obligations",
+    "Potential OEM competitive response or qualification barriers",
+    "Source set is issuer-primary and does not independently test customer concentration"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -163,14 +205,24 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "fleet/system utilization -> maintenance demand",
+      "maintenance demand + certification constraints -> qualified component demand",
+      "HEICO product breadth/engineering -> replacement/electronics supply -> asset availability",
+      "acquisitions -> broader capability -> integration/capital-allocation load"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "fleet/system utilization -> maintenance demand",
+    "maintenance demand + certification constraints -> qualified component demand",
+    "HEICO product breadth/engineering -> replacement/electronics supply -> asset availability",
+    "acquisitions -> broader capability -> integration/capital-allocation load"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "heico:2026-08-25:fq3-results",
@@ -208,26 +260,27 @@
     {
       "unknown": "No valuation or entry conclusion is asserted by Scout.",
       "gating": false
-    }
+    },
+    "Durability of current organic growth beyond reported period",
+    "Product/customer concentration detail in the retrieved evidence",
+    "Normalized leverage after acquisitions",
+    "Durability of organic growth and margin conversion"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": 91,
+  "confidence": 81,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -237,14 +290,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -261,10 +306,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

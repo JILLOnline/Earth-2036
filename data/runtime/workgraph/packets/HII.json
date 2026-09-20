@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "HII",
   "workId": "t0:HII",
-  "generatedAt": "2026-09-20T17:15:16.395Z",
+  "generatedAt": "2026-09-20T17:30:13.923Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-04T00:00:00.000Z",
-    "end": "2026-09-19T21:02:25.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T21:02:25.000Z"
+    "end": "2026-09-20T17:27:59.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T17:27:59.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/HII-20260919T210225Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/HII-20260919T210225Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/HII-20260920T172759Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -64,12 +67,21 @@
       "supplyChainResilience",
       "financialOperatingMomentum",
       "scenarioRobustness",
-      "substitutionResilience"
+      "substitutionResilience",
+      "thesisQuality",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "alignment2036",
         "bottleneckControl",
@@ -77,7 +89,13 @@
         "catalystScore",
         "supplyChainResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "scenarioRobustness",
+        "bottleneckControl",
+        "supplyChainResilience",
+        "governancePower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -131,7 +149,9 @@
     "supplyChainResilience",
     "financialOperatingMomentum",
     "scenarioRobustness",
-    "substitutionResilience"
+    "substitutionResilience",
+    "thesisQuality",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -139,14 +159,22 @@
       "U.S. naval programs carry schedule, labor, supplier, appropriations and cost-overrun risk.",
       "Automation investments may require substantial process redesign before promised throughput gains are realized.",
       "Demand visibility does not eliminate execution risk; shipyard productivity and workforce constraints remain central to delivery economics.",
-      "Government program concentration and budget timing can shift cash-flow and margin realization."
+      "Government program concentration and budget timing can shift cash-flow and margin realization.",
+      "Program and customer concentration in U.S. government demand",
+      "Labor and supplier bottlenecks",
+      "Cost/schedule overrun exposure",
+      "Automation deployment value may lag headline commitment amounts"
     ]
   },
   "risks": [
     "U.S. naval programs carry schedule, labor, supplier, appropriations and cost-overrun risk.",
     "Automation investments may require substantial process redesign before promised throughput gains are realized.",
     "Demand visibility does not eliminate execution risk; shipyard productivity and workforce constraints remain central to delivery economics.",
-    "Government program concentration and budget timing can shift cash-flow and margin realization."
+    "Government program concentration and budget timing can shift cash-flow and margin realization.",
+    "Program and customer concentration in U.S. government demand",
+    "Labor and supplier bottlenecks",
+    "Cost/schedule overrun exposure",
+    "Automation deployment value may lag headline commitment amounts"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -159,14 +187,24 @@
     "count": 5
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "naval readiness need -> ship procurement/sustainment demand",
+      "specialized yard/labor scarcity -> shipbuilding throughput constraint",
+      "robotics/welding automation -> potential labor-productivity relief",
+      "long-lead material funding -> earlier supply commitment -> future carrier construction readiness"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "naval readiness need -> ship procurement/sustainment demand",
+    "specialized yard/labor scarcity -> shipbuilding throughput constraint",
+    "robotics/welding automation -> potential labor-productivity relief",
+    "long-lead material funding -> earlier supply commitment -> future carrier construction readiness"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 10,
+    "rawSourceCount": 18,
     "uniqueSourceCount": 5,
-    "duplicatesCollapsed": 5,
+    "duplicatesCollapsed": 13,
     "missingLineage": 0,
     "uniqueOrigins": [
       "hii.com|2026-09-11|cvn82-336m-lltm",
@@ -232,26 +270,27 @@
     "The $900M robotics agreement value is an up-to amount; actual deployment pace and economics are not established here.",
     "CVN 82 full construction authorization, timing and ultimate contract economics remain future decisions.",
     "Numeric margin uplift from automation is not disclosed.",
-    "Scout leaves numeric underwriting, valuation and final causal judgment to Alpha/Beta."
+    "Scout leaves numeric underwriting, valuation and final causal judgment to Alpha/Beta.",
+    "Numeric margin and throughput uplift from automation",
+    "Final CVN 82 authorization and contract economics",
+    "Realized automation deployment pace and ROI",
+    "Future carrier contract economics and budget timing"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 8
   },
   "gatingIssues": [],
-  "confidence": 85,
+  "confidence": 84,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -261,14 +300,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -285,10 +316,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

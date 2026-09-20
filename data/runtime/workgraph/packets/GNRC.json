@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "GNRC",
   "workId": "t0:GNRC",
-  "generatedAt": "2026-09-20T17:15:16.393Z",
+  "generatedAt": "2026-09-20T17:30:13.921Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-05T00:00:00.000Z",
-    "end": "2026-09-19T21:02:25.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T21:02:25.000Z"
+    "end": "2026-09-20T17:27:59.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T17:27:59.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/GNRC-20260919T210225Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/GNRC-20260919T210225Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/GNRC-20260920T172759Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -64,12 +67,22 @@
       "supplyChainResilience",
       "financialOperatingMomentum",
       "scenarioRobustness",
-      "pricingPower"
+      "pricingPower",
+      "substitutionResilience",
+      "thesisQuality",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "bottleneckControl",
         "alignment2036",
@@ -77,7 +90,13 @@
         "catalystScore",
         "supplyChainResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "pricingPower",
+        "governancePower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -131,7 +150,10 @@
     "supplyChainResilience",
     "financialOperatingMomentum",
     "scenarioRobustness",
-    "pricingPower"
+    "pricingPower",
+    "substitutionResilience",
+    "thesisQuality",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -139,14 +161,22 @@
       "Hyperscale customer identity, volumes and economics are undisclosed, limiting concentration and margin assessment.",
       "Simultaneous capacity expansion and acquisition integration create execution and capital-allocation risk.",
       "Issuer releases establish milestones but do not establish incremental profitability or returns on new capacity.",
-      "Data-center power architectures can shift among diesel/gas generation, batteries, grid services and alternative technologies."
+      "Data-center power architectures can shift among diesel/gas generation, batteries, grid services and alternative technologies.",
+      "Undisclosed hyperscale customer economics and concentration",
+      "Capacity/integration spending may precede durable utilization",
+      "Power-architecture substitution can shift value away from generator-centric configurations",
+      "Issuer-heavy source set limits independent corroboration of economics"
     ]
   },
   "risks": [
     "Hyperscale customer identity, volumes and economics are undisclosed, limiting concentration and margin assessment.",
     "Simultaneous capacity expansion and acquisition integration create execution and capital-allocation risk.",
     "Issuer releases establish milestones but do not establish incremental profitability or returns on new capacity.",
-    "Data-center power architectures can shift among diesel/gas generation, batteries, grid services and alternative technologies."
+    "Data-center power architectures can shift among diesel/gas generation, batteries, grid services and alternative technologies.",
+    "Undisclosed hyperscale customer economics and concentration",
+    "Capacity/integration spending may precede durable utilization",
+    "Power-architecture substitution can shift value away from generator-centric configurations",
+    "Issuer-heavy source set limits independent corroboration of economics"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -159,14 +189,24 @@
     "count": 4
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "AI/cloud compute growth -> data-center power demand",
+      "grid/interconnection constraint -> need for resilient on-site power",
+      "Generac generation + Enercon switchgear/enclosures + EPC Power storage/controls -> integrated mission-critical power capability",
+      "manufacturing expansion -> potential delivery capacity -> customer uptime infrastructure"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "AI/cloud compute growth -> data-center power demand",
+    "grid/interconnection constraint -> need for resilient on-site power",
+    "Generac generation + Enercon switchgear/enclosures + EPC Power storage/controls -> integrated mission-critical power capability",
+    "manufacturing expansion -> potential delivery capacity -> customer uptime infrastructure"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 8,
+    "rawSourceCount": 16,
     "uniqueSourceCount": 4,
-    "duplicatesCollapsed": 4,
+    "duplicatesCollapsed": 12,
     "missingLineage": 0,
     "uniqueOrigins": [
       "investors.generac.com|2026-06-02|hyperscale-global-supply",
@@ -222,26 +262,27 @@
     "Revenue phasing and minimum purchase obligations under the hyperscale agreement are unknown.",
     "Enercon closing/integration economics and realized capacity utilization require later verification.",
     "No numeric underwriting or valuation conclusion is produced by Scout.",
-    "Quarterly filings are needed to test whether announced data-center wins convert to backlog, revenue and margins."
+    "Quarterly filings are needed to test whether announced data-center wins convert to backlog, revenue and margins.",
+    "Customer concentration and minimum purchase obligations are undisclosed",
+    "Incremental margins and returns on new capacity are not established",
+    "Revenue phasing, minimum commitments, realized margins and utilization",
+    "Enercon integration economics"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 8
   },
   "gatingIssues": [],
-  "confidence": 82,
+  "confidence": 80,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -251,14 +292,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -275,10 +308,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

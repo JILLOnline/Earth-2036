@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "GOOGL",
   "workId": "t0:GOOGL",
-  "generatedAt": "2026-09-20T17:15:16.391Z",
+  "generatedAt": "2026-09-20T17:30:13.919Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2025-12-22T00:00:00.000Z",
-    "end": "2026-09-19T21:02:25.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T21:02:25.000Z"
+    "end": "2026-09-20T17:27:59.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T17:27:59.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/GOOGL-20260919T210225Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/GOOGL-20260919T210225Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/GOOGL-20260920T172759Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -64,12 +67,21 @@
       "supplyChainResilience",
       "financialOperatingMomentum",
       "scenarioRobustness",
-      "pricingPower"
+      "pricingPower",
+      "substitutionResilience",
+      "thesisQuality"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "alignment2036",
         "bottleneckControl",
@@ -77,7 +89,13 @@
         "catalystScore",
         "supplyChainResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "financialOperatingMomentum",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -131,7 +149,9 @@
     "supplyChainResilience",
     "financialOperatingMomentum",
     "scenarioRobustness",
-    "pricingPower"
+    "pricingPower",
+    "substitutionResilience",
+    "thesisQuality"
   ],
   "riskEvidence": {
     "present": true,
@@ -139,14 +159,22 @@
       "The scale of planned capex raises return-on-invested-capital and execution risk if AI monetization lags infrastructure deployment.",
       "Energy and data-center development exposes Alphabet to permitting, grid interconnection, construction and power-market constraints.",
       "Large capex commitments can compress free cash flow and magnify forecasting errors.",
-      "AI product competition and rapid model/hardware shifts can shorten the useful economic life of infrastructure assumptions."
+      "AI product competition and rapid model/hardware shifts can shorten the useful economic life of infrastructure assumptions.",
+      "Capex/monetization mismatch",
+      "Grid, permitting and construction delays",
+      "Technology obsolescence and efficiency shifts",
+      "Issuer-only current source lineage for this packet"
     ]
   },
   "risks": [
     "The scale of planned capex raises return-on-invested-capital and execution risk if AI monetization lags infrastructure deployment.",
     "Energy and data-center development exposes Alphabet to permitting, grid interconnection, construction and power-market constraints.",
     "Large capex commitments can compress free cash flow and magnify forecasting errors.",
-    "AI product competition and rapid model/hardware shifts can shorten the useful economic life of infrastructure assumptions."
+    "AI product competition and rapid model/hardware shifts can shorten the useful economic life of infrastructure assumptions.",
+    "Capex/monetization mismatch",
+    "Grid, permitting and construction delays",
+    "Technology obsolescence and efficiency shifts",
+    "Issuer-only current source lineage for this packet"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -159,14 +187,24 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "AI/service demand -> compute demand",
+      "compute demand -> data-center capex and electricity demand",
+      "grid/interconnection scarcity -> energy-development constraint",
+      "Intersect energy-development capability -> potential faster power availability -> cloud/AI capacity"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "AI/service demand -> compute demand",
+    "compute demand -> data-center capex and electricity demand",
+    "grid/interconnection scarcity -> energy-development constraint",
+    "Intersect energy-development capability -> potential faster power availability -> cloud/AI capacity"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 8,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "abc.xyz|2026-q4call|cloud48-backlog240-capex175-185",
@@ -202,11 +240,15 @@
     "Current 2026 quarterly realization versus the initial $175B-$185B capex plan was not established by the retrieved primary sources.",
     "Intersect transaction close status and post-close integration contribution require current verification.",
     "Scout does not infer valuation or numeric factor scores.",
-    "Updated 2026 operating results are required for current execution calibration."
+    "Updated 2026 operating results are required for current execution calibration.",
+    "Current realization versus the initial 2026 capex plan",
+    "Intersect close/integration contribution and project economics",
+    "Updated 2026 operating conversion and free-cash-flow burden",
+    "Post-close Intersect execution"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 8
   },
   "gatingIssues": [],
   "confidence": 78,
@@ -215,13 +257,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -231,14 +270,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -255,10 +286,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

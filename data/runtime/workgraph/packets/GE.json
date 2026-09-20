@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "GE",
   "workId": "t0:GE",
-  "generatedAt": "2026-09-20T16:16:07.160Z",
+  "generatedAt": "2026-09-20T16:29:36.995Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-19T20:07:11.000Z",
-    "end": "2026-09-19T20:07:11.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T20:07:11.000Z"
+    "end": "2026-09-20T16:28:15.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T16:28:15.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/GE-20260919T200711Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/GE-20260919T200711Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/GE-20260920T162815Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -61,19 +64,35 @@
       "executionCapability",
       "capacityExpansion",
       "scenarioRobustness",
-      "thesisQuality"
+      "thesisQuality",
+      "bottleneckControl",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "crossDivisionLeverage",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "crossDivisionLeverage"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "executionCapability",
         "capacityExpansion",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "governancePower",
+        "thesisQuality"
+      ],
       "expectations-execution": [
         "executionCapability",
         "scenarioRobustness",
@@ -123,7 +142,12 @@
     "executionCapability",
     "capacityExpansion",
     "scenarioRobustness",
-    "thesisQuality"
+    "thesisQuality",
+    "bottleneckControl",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "crossDivisionLeverage",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -138,6 +162,14 @@
       },
       {
         "risk": "Capacity acquisition is an execution response, not proof that supply-chain constraints are already resolved.",
+        "gating": false
+      },
+      {
+        "risk": "Large acquisition price creates integration and return-on-capital risk.",
+        "gating": false
+      },
+      {
+        "risk": "Margin contraction shows mix, investment and inflation can absorb demand strength.",
         "gating": false
       }
     ]
@@ -154,6 +186,14 @@
     {
       "risk": "Capacity acquisition is an execution response, not proof that supply-chain constraints are already resolved.",
       "gating": false
+    },
+    {
+      "risk": "Large acquisition price creates integration and return-on-capital risk.",
+      "gating": false
+    },
+    {
+      "risk": "Margin contraction shows mix, investment and inflation can absorb demand strength.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -167,14 +207,24 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "air-travel-and-defense-demand -> engine-and-aftermarket-demand",
+      "precision-casting-availability -> engine-delivery-throughput",
+      "CPP-capacity-control -> reduced-external-casting-dependence",
+      "integration-and-qualification -> realized-capacity-economics"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "air-travel-and-defense-demand -> engine-and-aftermarket-demand",
+    "precision-casting-availability -> engine-delivery-throughput",
+    "CPP-capacity-control -> reduced-external-casting-dependence",
+    "integration-and-qualification -> realized-capacity-economics"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 8,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "ge:ir:2026-07-16:q2-results",
@@ -210,26 +260,27 @@
     {
       "unknown": "Scout did not independently quantify CPP integration synergies or acquisition-return thresholds.",
       "gating": false
+    },
+    {
+      "unknown": "Realized CPP synergies, qualification timing and post-close capacity economics remain forward-looking.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 3
   },
   "gatingIssues": [],
-  "confidence": 95,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -239,14 +290,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -263,10 +306,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

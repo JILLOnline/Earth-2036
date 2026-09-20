@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "GLW",
   "workId": "t0:GLW",
-  "generatedAt": "2026-09-20T16:16:07.157Z",
+  "generatedAt": "2026-09-20T16:29:36.990Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-27T00:00:00.000Z",
-    "end": "2026-09-19T21:02:25.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T21:02:25.000Z"
+    "end": "2026-09-20T16:28:15.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T16:28:15.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/GLW-20260919T210225Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/GLW-20260919T210225Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/GLW-20260920T162815Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -64,12 +67,21 @@
       "supplyChainResilience",
       "financialOperatingMomentum",
       "scenarioRobustness",
-      "pricingPower"
+      "pricingPower",
+      "substitutionResilience",
+      "thesisQuality"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "bottleneckControl",
         "alignment2036",
@@ -77,7 +89,12 @@
         "catalystScore",
         "supplyChainResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "pricingPower",
+        "supplyChainResilience",
+        "thesisQuality"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -131,7 +148,9 @@
     "supplyChainResilience",
     "financialOperatingMomentum",
     "scenarioRobustness",
-    "pricingPower"
+    "pricingPower",
+    "substitutionResilience",
+    "thesisQuality"
   ],
   "riskEvidence": {
     "present": true,
@@ -139,14 +158,38 @@
       "Large announced capacity expansion raises execution, utilization and capital-deployment risk if AI infrastructure demand or customer schedules soften.",
       "Large named-customer commitments can increase customer-concentration and program-timing sensitivity; contract economics are not fully disclosed in these releases.",
       "Execution evidence is still primarily issuer-reported; future quarterly filings should verify revenue conversion, margins, capex burden and working-capital effects.",
-      "Technology transitions such as CPO/NPO can alter product mix and competitive positioning faster than long-lived fiber capacity can be adjusted."
+      "Technology transitions such as CPO/NPO can alter product mix and competitive positioning faster than long-lived fiber capacity can be adjusted.",
+      {
+        "risk": "Capacity expansion can become underutilized if AI infrastructure schedules soften.",
+        "gating": false
+      },
+      {
+        "risk": "Named-customer concentration and contract timing can create revenue volatility.",
+        "gating": false
+      },
+      {
+        "risk": "CPO/NPO transitions can shift product mix before long-lived capacity adjusts.",
+        "gating": false
+      }
     ]
   },
   "risks": [
     "Large announced capacity expansion raises execution, utilization and capital-deployment risk if AI infrastructure demand or customer schedules soften.",
     "Large named-customer commitments can increase customer-concentration and program-timing sensitivity; contract economics are not fully disclosed in these releases.",
     "Execution evidence is still primarily issuer-reported; future quarterly filings should verify revenue conversion, margins, capex burden and working-capital effects.",
-    "Technology transitions such as CPO/NPO can alter product mix and competitive positioning faster than long-lived fiber capacity can be adjusted."
+    "Technology transitions such as CPO/NPO can alter product mix and competitive positioning faster than long-lived fiber capacity can be adjusted.",
+    {
+      "risk": "Capacity expansion can become underutilized if AI infrastructure schedules soften.",
+      "gating": false
+    },
+    {
+      "risk": "Named-customer concentration and contract timing can create revenue volatility.",
+      "gating": false
+    },
+    {
+      "risk": "CPO/NPO transitions can shift product mix before long-lived capacity adjusts.",
+      "gating": false
+    }
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -159,14 +202,24 @@
     "count": 5
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "AI-compute-and-broadband-growth -> optical-bandwidth-demand",
+      "optical-bandwidth-demand -> fiber-cable-connector-capacity",
+      "customer-commitments -> US-manufacturing-expansion",
+      "CPO-NPO-transition -> product-mix-and-capacity-adaptation"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "AI-compute-and-broadband-growth -> optical-bandwidth-demand",
+    "optical-bandwidth-demand -> fiber-cable-connector-capacity",
+    "customer-commitments -> US-manufacturing-expansion",
+    "CPO-NPO-transition -> product-mix-and-capacity-adaptation"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 10,
+    "rawSourceCount": 20,
     "uniqueSourceCount": 5,
-    "duplicatesCollapsed": 5,
+    "duplicatesCollapsed": 15,
     "missingLineage": 0,
     "uniqueOrigins": [
       "corning.com|2026-09-08|verizon-multibillion-80m-miles-2032",
@@ -232,11 +285,15 @@
     "Incremental margins, take-or-pay characteristics and exact annual revenue phasing of the Verizon, Meta and NVIDIA-linked commitments are not disclosed in the cited releases.",
     "Independent confirmation of realized volume and capacity utilization remains required as projects move from announcement to production.",
     "No numeric Earth Score or underwriting value is inferred by Scout.",
-    "Current valuation and quantified return-on-capital implications remain Alpha-owned."
+    "Current valuation and quantified return-on-capital implications remain Alpha-owned.",
+    {
+      "unknown": "Incremental margins, take-or-pay protections and exact annual revenue phasing are undisclosed.",
+      "gating": false
+    }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
   "confidence": 86,
@@ -245,13 +302,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -261,14 +315,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -285,10 +331,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "GFS",
   "workId": "t0:GFS",
-  "generatedAt": "2026-09-20T16:16:07.156Z",
+  "generatedAt": "2026-09-20T16:29:36.989Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-19T20:07:11.000Z",
-    "end": "2026-09-19T20:07:11.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T20:07:11.000Z"
+    "end": "2026-09-20T16:28:15.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T16:28:15.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/GFS-20260919T200711Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/GFS-20260919T200711Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/GFS-20260920T162815Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,12 +65,25 @@
       "capacityExpansion",
       "innovationOptionality",
       "scenarioRobustness",
-      "thesisQuality"
+      "thesisQuality",
+      "bottleneckControl",
+      "alignment2036",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "crossDivisionLeverage",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "alignment2036",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "crossDivisionLeverage"
+      ],
       "discovery-weak-signals": [
         "strategicPositioning",
         "executionCapability",
@@ -75,7 +91,12 @@
         "innovationOptionality",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "thesisQuality",
+        "governancePower"
+      ],
       "expectations-execution": [
         "executionCapability",
         "scenarioRobustness",
@@ -126,7 +147,13 @@
     "capacityExpansion",
     "innovationOptionality",
     "scenarioRobustness",
-    "thesisQuality"
+    "thesisQuality",
+    "bottleneckControl",
+    "alignment2036",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "crossDivisionLeverage",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -138,6 +165,14 @@
       {
         "risk": "Strategic breadth can consume capital and management attention before volume economics are proven.",
         "gating": false
+      },
+      {
+        "risk": "Future qualification and customer adoption may lag announced capacity and R&D commitments.",
+        "gating": false
+      },
+      {
+        "risk": "Capital intensity can rise before volume economics are demonstrated.",
+        "gating": false
       }
     ]
   },
@@ -148,6 +183,14 @@
     },
     {
       "risk": "Strategic breadth can consume capital and management attention before volume economics are proven.",
+      "gating": false
+    },
+    {
+      "risk": "Future qualification and customer adoption may lag announced capacity and R&D commitments.",
+      "gating": false
+    },
+    {
+      "risk": "Capital intensity can rise before volume economics are demonstrated.",
       "gating": false
     }
   ],
@@ -162,14 +205,24 @@
     "count": 4
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "AI-connectivity-demand -> SiGe-specialty-capacity-demand",
+      "electrification -> power-management-semiconductor-demand",
+      "domestic-resilience-policy -> US-RD-and-manufacturing-support",
+      "qualification-and-volume-ramp -> realized-fab-economics"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "AI-connectivity-demand -> SiGe-specialty-capacity-demand",
+    "electrification -> power-management-semiconductor-demand",
+    "domestic-resilience-policy -> US-RD-and-manufacturing-support",
+    "qualification-and-volume-ramp -> realized-fab-economics"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 6,
+    "rawSourceCount": 14,
     "uniqueSourceCount": 4,
-    "duplicatesCollapsed": 2,
+    "duplicatesCollapsed": 10,
     "missingLineage": 0,
     "uniqueOrigins": [
       "gfs:ir:2026-09-17:marvell-sige",
@@ -221,26 +274,27 @@
     {
       "unknown": "No Scout inference is made about numeric returns or probability-weighted commercialization outcomes.",
       "gating": false
+    },
+    {
+      "unknown": "Incremental margins, capital intensity and probability-weighted commercialization outcomes for the cited programs are not established.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 3
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -250,14 +304,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -274,10 +320,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

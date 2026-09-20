@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-20T09:17:28.957Z",
+  "generatedAt": "2026-09-20T09:24:01.041Z",
   "canonicalWriteAuthority": false,
   "total": 217,
   "twins": [
@@ -20479,7 +20479,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "ENVX",
       "workId": "t0:ENVX",
-      "inputSignature": "de4b5428f0eff951b4efced8",
+      "inputSignature": "62b39be8f63ecbf658959e5e",
       "sourceState": "researching",
       "identity": {
         "ticker": "ENVX",
@@ -20502,28 +20502,30 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 1,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 3,
         "sourceLineage": {
-          "rawSourceCount": 2,
-          "uniqueSourceCount": 1,
-          "duplicatesCollapsed": 1,
+          "rawSourceCount": 7,
+          "uniqueSourceCount": 3,
+          "duplicatesCollapsed": 4,
           "missingLineage": 0,
           "uniqueOrigins": [
-            "enovix:2026-08-12:q2-results"
+            "enovix:2026-08-12:q2-results",
+            "sec:1828318:2026Q2:10-Q",
+            "enovix:2025-09-05:warrant-completion"
           ]
         },
         "evidenceWindow": {
           "start": "2026-09-19T16:07:49.000Z",
-          "end": "2026-09-19T16:07:49.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T16:07:49.000Z"
+          "end": "2026-09-20T09:22:49.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T09:22:49.000Z"
         },
         "preflightPassed": false
       },
@@ -20532,34 +20534,70 @@
         "executionCapability",
         "financialOperatingMomentum",
         "scenarioRobustness",
-        "thesisQuality"
+        "thesisQuality",
+        "bottleneckControl",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
           "Commercial revenue remains small relative to the scale implied by smartphone and drone opportunity claims, and final smartphone qualification was not complete at the reporting date.",
-          "Qualification delays, yield/manufacturing scale-up or customer program changes could prevent pipeline conversion despite technical milestones."
+          "Qualification delays, yield/manufacturing scale-up or customer program changes could prevent pipeline conversion despite technical milestones.",
+          "The present bottleneck may migrate from dicing to another process, customer qualification, demand conversion or cost after Zone 1 improves; successor bottlenecks are not yet demonstrated away.",
+          "Competing silicon-doped, silicon-anode or other battery architectures can reduce Enovix's relative advantage if they reach acceptable energy density, cycle life, safety and manufacturability sooner or cheaper.",
+          "Pipeline/TAM language can overstate near-term economic proof if customer identities, firm commitments, qualification completion and conversion timing remain undisclosed.",
+          "Further capital requirements could create additional dilution or financing costs if manufacturing scale-up consumes cash faster than commercial revenue matures.",
+          "A qualification failure, delayed production award or persistent Zone 1 constraint would falsify the near-term transition-to-scale thesis even if laboratory performance remains attractive."
         ],
         "unknowns": [
           "Customer identities, firm purchase commitments and conversion timing for much of the opportunity pipeline remain undisclosed.",
-          "The source does not establish high-volume manufacturing yield or smartphone production award economics."
+          "The source does not establish high-volume manufacturing yield or smartphone production award economics.",
+          "Independent evidence does not yet establish sustained high-volume Fab2 yield, cost per cell, or production economics at smartphone scale.",
+          "The magnitude and durability of Enovix's energy-density advantage versus future substitute architectures is not established by the current evidence set.",
+          "Customer concentration and binding economics for major smartphone/drone opportunities are not disclosed in the reused/current evidence set.",
+          "Current evidence does not quantify long-run unit cost competitiveness after the hybrid dicing transition."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "silicon-anode cell architecture",
+            "to": "higher energy density in space-constrained devices",
+            "relation": "enables"
+          },
+          {
+            "from": "higher energy density",
+            "to": "smartphone/smart-eyewear/drone runtime and capability",
+            "relation": "supports human/device need"
+          },
+          {
+            "from": "Fab2 Zone 1 dicing yield/throughput",
+            "to": "commercial scale and unit economics",
+            "relation": "constrains"
+          },
+          {
+            "from": "hybrid laser/mechanical dicing",
+            "to": "Zone 1 throughput constraint",
+            "relation": "intended mitigation"
+          },
+          {
+            "from": "customer qualification",
+            "to": "scaled smartphone adoption",
+            "relation": "gates"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -20570,16 +20608,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -20601,11 +20629,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -20614,13 +20637,26 @@
           "executionCapability",
           "financialOperatingMomentum",
           "scenarioRobustness",
-          "thesisQuality"
+          "thesisQuality",
+          "bottleneckControl",
+          "substitutionResilience",
+          "supplyChainResilience",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "Customer identities, firm purchase commitments and conversion timing for much of the opportunity pipeline remain undisclosed.",
           "The source does not establish high-volume manufacturing yield or smartphone production award economics.",
+          "Independent evidence does not yet establish sustained high-volume Fab2 yield, cost per cell, or production economics at smartphone scale.",
+          "The magnitude and durability of Enovix's energy-density advantage versus future substitute architectures is not established by the current evidence set.",
+          "Customer concentration and binding economics for major smartphone/drone opportunities are not disclosed in the reused/current evidence set.",
+          "Current evidence does not quantify long-run unit cost competitiveness after the hybrid dicing transition.",
           "Commercial revenue remains small relative to the scale implied by smartphone and drone opportunity claims, and final smartphone qualification was not complete at the reporting date.",
-          "Qualification delays, yield/manufacturing scale-up or customer program changes could prevent pipeline conversion despite technical milestones."
+          "Qualification delays, yield/manufacturing scale-up or customer program changes could prevent pipeline conversion despite technical milestones.",
+          "The present bottleneck may migrate from dicing to another process, customer qualification, demand conversion or cost after Zone 1 improves; successor bottlenecks are not yet demonstrated away.",
+          "Competing silicon-doped, silicon-anode or other battery architectures can reduce Enovix's relative advantage if they reach acceptable energy density, cycle life, safety and manufacturability sooner or cheaper.",
+          "Pipeline/TAM language can overstate near-term economic proof if customer identities, firm commitments, qualification completion and conversion timing remain undisclosed.",
+          "Further capital requirements could create additional dilution or financing costs if manufacturing scale-up consumes cash faster than commercial revenue matures.",
+          "A qualification failure, delayed production award or persistent Zone 1 constraint would falsify the near-term transition-to-scale thesis even if laboratory performance remains attractive."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

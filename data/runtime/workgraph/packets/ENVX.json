@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ENVX",
   "workId": "t0:ENVX",
-  "generatedAt": "2026-09-20T09:17:28.949Z",
+  "generatedAt": "2026-09-20T09:24:01.039Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-19T16:07:49.000Z",
-    "end": "2026-09-19T16:07:49.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T16:07:49.000Z"
+    "end": "2026-09-20T09:22:49.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T09:22:49.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/ENVX-20260919T160749Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ENVX-20260919T160749Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ENVX-20260920T092249Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -61,19 +64,37 @@
       "executionCapability",
       "financialOperatingMomentum",
       "scenarioRobustness",
-      "thesisQuality"
+      "thesisQuality",
+      "bottleneckControl",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "technologyCriticality",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "executionCapability"
+      ],
       "discovery-weak-signals": [
         "technologyCriticality",
         "executionCapability",
         "financialOperatingMomentum",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "executionCapability",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "governancePower",
+        "thesisQuality",
+        "supplyChainResilience"
+      ],
       "expectations-execution": [
         "executionCapability",
         "thesisQuality",
@@ -123,7 +144,11 @@
     "executionCapability",
     "financialOperatingMomentum",
     "scenarioRobustness",
-    "thesisQuality"
+    "thesisQuality",
+    "bottleneckControl",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -134,6 +159,26 @@
       },
       {
         "risk": "Qualification delays, yield/manufacturing scale-up or customer program changes could prevent pipeline conversion despite technical milestones.",
+        "gating": false
+      },
+      {
+        "risk": "The present bottleneck may migrate from dicing to another process, customer qualification, demand conversion or cost after Zone 1 improves; successor bottlenecks are not yet demonstrated away.",
+        "gating": false
+      },
+      {
+        "risk": "Competing silicon-doped, silicon-anode or other battery architectures can reduce Enovix's relative advantage if they reach acceptable energy density, cycle life, safety and manufacturability sooner or cheaper.",
+        "gating": false
+      },
+      {
+        "risk": "Pipeline/TAM language can overstate near-term economic proof if customer identities, firm commitments, qualification completion and conversion timing remain undisclosed.",
+        "gating": false
+      },
+      {
+        "risk": "Further capital requirements could create additional dilution or financing costs if manufacturing scale-up consumes cash faster than commercial revenue matures.",
+        "gating": false
+      },
+      {
+        "risk": "A qualification failure, delayed production award or persistent Zone 1 constraint would falsify the near-term transition-to-scale thesis even if laboratory performance remains attractive.",
         "gating": false
       }
     ]
@@ -146,6 +191,26 @@
     {
       "risk": "Qualification delays, yield/manufacturing scale-up or customer program changes could prevent pipeline conversion despite technical milestones.",
       "gating": false
+    },
+    {
+      "risk": "The present bottleneck may migrate from dicing to another process, customer qualification, demand conversion or cost after Zone 1 improves; successor bottlenecks are not yet demonstrated away.",
+      "gating": false
+    },
+    {
+      "risk": "Competing silicon-doped, silicon-anode or other battery architectures can reduce Enovix's relative advantage if they reach acceptable energy density, cycle life, safety and manufacturability sooner or cheaper.",
+      "gating": false
+    },
+    {
+      "risk": "Pipeline/TAM language can overstate near-term economic proof if customer identities, firm commitments, qualification completion and conversion timing remain undisclosed.",
+      "gating": false
+    },
+    {
+      "risk": "Further capital requirements could create additional dilution or financing costs if manufacturing scale-up consumes cash faster than commercial revenue matures.",
+      "gating": false
+    },
+    {
+      "risk": "A qualification failure, delayed production award or persistent Zone 1 constraint would falsify the near-term transition-to-scale thesis even if laboratory performance remains attractive.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -156,20 +221,74 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "silicon-anode cell architecture",
+        "to": "higher energy density in space-constrained devices",
+        "relation": "enables"
+      },
+      {
+        "from": "higher energy density",
+        "to": "smartphone/smart-eyewear/drone runtime and capability",
+        "relation": "supports human/device need"
+      },
+      {
+        "from": "Fab2 Zone 1 dicing yield/throughput",
+        "to": "commercial scale and unit economics",
+        "relation": "constrains"
+      },
+      {
+        "from": "hybrid laser/mechanical dicing",
+        "to": "Zone 1 throughput constraint",
+        "relation": "intended mitigation"
+      },
+      {
+        "from": "customer qualification",
+        "to": "scaled smartphone adoption",
+        "relation": "gates"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "silicon-anode cell architecture",
+      "to": "higher energy density in space-constrained devices",
+      "relation": "enables"
+    },
+    {
+      "from": "higher energy density",
+      "to": "smartphone/smart-eyewear/drone runtime and capability",
+      "relation": "supports human/device need"
+    },
+    {
+      "from": "Fab2 Zone 1 dicing yield/throughput",
+      "to": "commercial scale and unit economics",
+      "relation": "constrains"
+    },
+    {
+      "from": "hybrid laser/mechanical dicing",
+      "to": "Zone 1 throughput constraint",
+      "relation": "intended mitigation"
+    },
+    {
+      "from": "customer qualification",
+      "to": "scaled smartphone adoption",
+      "relation": "gates"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "enovix:2026-08-12:q2-results"
+      "enovix:2026-08-12:q2-results",
+      "sec:1828318:2026Q2:10-Q",
+      "enovix:2025-09-05:warrant-completion"
     ]
   },
   "sources": [
@@ -179,12 +298,42 @@
       "kind": "primary",
       "primary": true,
       "originFingerprint": "enovix:2026-08-12:q2-results"
+    },
+    {
+      "sourceId": "sec:ENVX:2026Q2:10-Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1828318/000182831826000056/envx-20260705.htm",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "sec:1828318:2026Q2:10-Q"
+    },
+    {
+      "sourceId": "enovix:2025-09-05:warrant-completion",
+      "url": "https://ir.enovix.com/news-releases/news-release-details/enovix-announces-completion-warrant-dividend-program/",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "enovix:2025-09-05:warrant-completion"
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claimA": "Management describes a transition from technology validation toward commercial scale.",
+      "claimB": "Smartphone final accelerated cycle-life qualification remained underway and revenue remained small relative to claimed opportunity pipelines.",
+      "material": true,
+      "resolved": true,
+      "resolution": "These statements can coexist: commercialization has begun in smart eyewear/other markets, while smartphone scale remains unproven. Treat smartphone scale as conditional rather than current fact."
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claimA": "Management describes a transition from technology validation toward commercial scale.",
+        "claimB": "Smartphone final accelerated cycle-life qualification remained underway and revenue remained small relative to claimed opportunity pipelines.",
+        "material": true,
+        "resolved": true,
+        "resolution": "These statements can coexist: commercialization has begun in smart eyewear/other markets, while smartphone scale remains unproven. Treat smartphone scale as conditional rather than current fact."
+      }
+    ]
   },
   "unknowns": [
     {
@@ -194,26 +343,39 @@
     {
       "unknown": "The source does not establish high-volume manufacturing yield or smartphone production award economics.",
       "gating": false
+    },
+    {
+      "unknown": "Independent evidence does not yet establish sustained high-volume Fab2 yield, cost per cell, or production economics at smartphone scale.",
+      "gating": false
+    },
+    {
+      "unknown": "The magnitude and durability of Enovix's energy-density advantage versus future substitute architectures is not established by the current evidence set.",
+      "gating": false
+    },
+    {
+      "unknown": "Customer concentration and binding economics for major smartphone/drone opportunities are not disclosed in the reused/current evidence set.",
+      "gating": false
+    },
+    {
+      "unknown": "Current evidence does not quantify long-run unit cost competitiveness after the hybrid dicing transition.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -223,14 +385,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -247,10 +401,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

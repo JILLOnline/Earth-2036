@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "role": "earth-scout",
+  "generatedAt": "2026-09-20T02:04:09Z",
+  "startingGitHead": "f9e620f005d3f827916f9fed823c2003965a4a0e",
+  "companiesInspected": ["LAC", "LEU", "LHX", "JOBY", "KMI", "LLY"],
+  "evidencePairsCompleted": 1,
+  "artifacts": ["data/runtime/workgraph/evidence/LLY-20260920T020409Z-earth-scout.json"],
+  "assistAttempts": [
+    {
+      "requestId": "assist:MU:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "a432b0751f9ccfcf0ea3",
+      "outcome": "not_retried_unchanged_failed_input; prior attempt already failed on identical signature and anti-repeat policy requires changed input",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": ["reused assist-bus priorAttempt record; no repeated search"]
+    }
+  ],
+  "result": "Inspected the six highest-ranked owned Scout items. LAC, LEU and LHX already had defensible cumulative Scout evidence refreshed at 01:05Z; JOBY and KMI already had defensible evidence from 00:06:29Z. Fresh primary-source review did not justify duplicating those artifacts merely for activity. LLY had materially new 2026-09-18 FDA approval evidence, so an append-only superseding artifact was persisted with both required Scout perspectives. The active MU assist was not retried because its input signature is unchanged from the prior failed attempt.",
+  "blockers": [
+    "Routing still reports missing Scout perspectives for LAC, LEU, LHX, JOBY and KMI despite current defensible Scout artifacts already present; this appears to require downstream ingestion/reconcile rather than duplicate Scout research.",
+    "MU assist input signature unchanged after prior failed attempt; dormant-by-policy until inputs change."
+  ],
+  "repeatedBlocker": true,
+  "changedStrategy": "Avoided artifact-count inflation and repeated failed searches; reused current cumulative evidence and spent fresh acquisition only where a new source materially changed the evidence surface (LLY FDA approval)."
+}

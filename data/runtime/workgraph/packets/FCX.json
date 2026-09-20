@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "FCX",
   "workId": "t0:FCX",
-  "generatedAt": "2026-09-20T12:18:56.917Z",
+  "generatedAt": "2026-09-20T12:28:13.079Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-20T10:55:38.678Z"
   },
   "evidenceWindow": {
-    "start": "2026-07-27T00:00:00.000Z",
-    "end": "2026-09-19T18:02:12.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T18:02:12.000Z"
+    "start": "2026-07-23T00:00:00.000Z",
+    "end": "2026-09-20T12:26:41.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T12:26:41.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,46 +32,63 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/FCX-20260919T180212Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/FCX-20260919T180212Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/FCX-20260920T122641Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "bottleneckControl",
       "supplyChainResilience",
       "scenarioRobustness",
-      "executionCapability"
+      "executionCapability",
+      "substitutionResilience",
+      "alignment2036",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "alignment2036"
+      ],
       "discovery-weak-signals": [
         "bottleneckControl",
         "supplyChainResilience",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "bottleneckControl",
+        "governancePower"
+      ],
       "expectations-execution": [
         "executionCapability",
         "scenarioRobustness"
@@ -119,7 +136,10 @@
     "bottleneckControl",
     "supplyChainResilience",
     "scenarioRobustness",
-    "executionCapability"
+    "executionCapability",
+    "substitutionResilience",
+    "alignment2036",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -130,6 +150,26 @@
       },
       {
         "risk": "A slower mine ramp can defer metal sales and leave smelting assets underutilized.",
+        "gating": false
+      },
+      {
+        "risk": "A slower-than-planned Grasberg ramp propagates upstream scarcity into smelter underutilization and deferred metal sales.",
+        "gating": false
+      },
+      {
+        "risk": "Geographic diversification mitigates but does not eliminate dependence on Grasberg's large production contribution.",
+        "gating": false
+      },
+      {
+        "risk": "Execution and safety remediation at Grasberg remain the material near-term operational risk; a renewed delay would weaken the recovery case.",
+        "gating": false
+      },
+      {
+        "risk": "Large 2026 capital spending and PTFI downstream debt increase the cost of prolonged underutilization, though current liquidity does not establish a financing blocker.",
+        "gating": false
+      },
+      {
+        "risk": "Copper-price strength can mask operational weakness in consolidated earnings, so physical production recovery should be tested separately from commodity-price effects.",
         "gating": false
       }
     ]
@@ -142,6 +182,26 @@
     {
       "risk": "A slower mine ramp can defer metal sales and leave smelting assets underutilized.",
       "gating": false
+    },
+    {
+      "risk": "A slower-than-planned Grasberg ramp propagates upstream scarcity into smelter underutilization and deferred metal sales.",
+      "gating": false
+    },
+    {
+      "risk": "Geographic diversification mitigates but does not eliminate dependence on Grasberg's large production contribution.",
+      "gating": false
+    },
+    {
+      "risk": "Execution and safety remediation at Grasberg remain the material near-term operational risk; a renewed delay would weaken the recovery case.",
+      "gating": false
+    },
+    {
+      "risk": "Large 2026 capital spending and PTFI downstream debt increase the cost of prolonged underutilization, though current liquidity does not establish a financing blocker.",
+      "gating": false
+    },
+    {
+      "risk": "Copper-price strength can mask operational weakness in consolidated earnings, so physical production recovery should be tested separately from commodity-price effects.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -152,21 +212,86 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 5
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "Grasberg Block Cave safe mine recovery",
+        "to": "copper concentrate availability",
+        "relation": "enables"
+      },
+      {
+        "from": "copper concentrate availability",
+        "to": "Indonesian smelter utilization",
+        "relation": "constrains"
+      },
+      {
+        "from": "FCX geographically diverse copper mines",
+        "to": "portfolio production resilience",
+        "relation": "supports"
+      },
+      {
+        "from": "copper production",
+        "to": "electrification and industrial infrastructure",
+        "relation": "serves"
+      },
+      {
+        "from": "Grasberg recovery delay",
+        "to": "Indonesia production and smelter utilization",
+        "relation": "weakens"
+      },
+      {
+        "from": "portfolio diversification",
+        "to": "single-region disruption impact",
+        "relation": "mitigates"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "Grasberg Block Cave safe mine recovery",
+      "to": "copper concentrate availability",
+      "relation": "enables"
+    },
+    {
+      "from": "copper concentrate availability",
+      "to": "Indonesian smelter utilization",
+      "relation": "constrains"
+    },
+    {
+      "from": "FCX geographically diverse copper mines",
+      "to": "portfolio production resilience",
+      "relation": "supports"
+    },
+    {
+      "from": "copper production",
+      "to": "electrification and industrial infrastructure",
+      "relation": "serves"
+    },
+    {
+      "from": "Grasberg recovery delay",
+      "to": "Indonesia production and smelter utilization",
+      "relation": "weakens"
+    },
+    {
+      "from": "portfolio diversification",
+      "to": "single-region disruption impact",
+      "relation": "mitigates"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 9,
+    "uniqueSourceCount": 5,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "fcx:indonesia:operations:2026-09-19",
-      "fcx:manyar:copper-mark:2026-07-27"
+      "fcx:manyar:copper-mark:2026-07-27",
+      "sec:831259:2026q2:000083125926000036",
+      "fcx:indonesia:operations:2026-09-20",
+      "sec:831259:2026q2:ex99-1"
     ]
   },
   "sources": [
@@ -184,6 +309,29 @@
       "primary": true,
       "publishedAt": "2026-07-27",
       "originFingerprint": "fcx:manyar:copper-mark:2026-07-27"
+    },
+    {
+      "sourceId": "fcx-sec-2026q2",
+      "url": "https://www.sec.gov/Archives/edgar/data/831259/000083125926000036/fcx-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "sec:831259:2026q2:000083125926000036"
+    },
+    {
+      "sourceId": "fcx-indonesia-operations-2026",
+      "url": "https://www.fcx.com/operations/indonesia",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "fcx:indonesia:operations:2026-09-20"
+    },
+    {
+      "sourceId": "fcx-2q26-results",
+      "url": "https://www.sec.gov/Archives/edgar/data/831259/000083125926000033/a2q2026exhibit991.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-23",
+      "originFingerprint": "sec:831259:2026q2:ex99-1"
     }
   ],
   "contradictions": [],
@@ -199,11 +347,23 @@
     {
       "unknown": "No inference is made here about copper price or valuation.",
       "gating": false
+    },
+    {
+      "unknown": "Post-June 2026 realized Grasberg ramp volumes are not yet established by a newer filed quarterly report.",
+      "gating": false
+    },
+    {
+      "unknown": "No current evidence reviewed establishes material equity dilution, governance misconduct, or misleading backlog/TAM claims; absence of such evidence is not proof they cannot emerge.",
+      "gating": false
+    },
+    {
+      "unknown": "Latest post-Q2 production trajectory requires a subsequent primary operating update or filing.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
   "confidence": 93,
@@ -212,13 +372,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -228,14 +385,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -252,10 +401,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

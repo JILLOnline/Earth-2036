@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "KTOS",
   "workId": "t0:KTOS",
-  "generatedAt": "2026-09-20T22:16:40.296Z",
+  "generatedAt": "2026-09-20T22:26:28.948Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-20T21:17:00.740Z"
   },
   "evidenceWindow": {
-    "start": "2026-09-01T00:00:00.000Z",
-    "end": "2026-09-18T20:03:18.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-18T20:03:18.000Z"
+    "start": "2026-02-26T00:00:00.000Z",
+    "end": "2026-09-20T22:24:46.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T22:24:46.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/KTOS-20260918T2000Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/KTOS-20260918T2000Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/KTOS-20260920T222446Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -61,19 +64,39 @@
       "catalystScore",
       "crossDivisionLeverage",
       "scenarioRobustness",
-      "financialOperatingMomentum"
+      "financialOperatingMomentum",
+      "thesisQuality",
+      "bottleneckControl",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "alignment2036",
         "catalystScore",
         "crossDivisionLeverage",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "governancePower",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -123,7 +146,12 @@
     "catalystScore",
     "crossDivisionLeverage",
     "scenarioRobustness",
-    "financialOperatingMomentum"
+    "financialOperatingMomentum",
+    "thesisQuality",
+    "bottleneckControl",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -134,6 +162,30 @@
       },
       {
         "risk": "Government procurement timing and classified program opacity can obscure execution slippage.",
+        "gating": false
+      },
+      {
+        "risk": "Production scaling can become the successor bottleneck as demand moves from demonstrations to serial output.",
+        "gating": false
+      },
+      {
+        "risk": "Defense budget/program timing and substitute platforms can interrupt otherwise valid technology-demand links.",
+        "gating": false
+      },
+      {
+        "risk": "Capacity expansion, program investment and acquisitions can consume cash before production economics are proven at scale.",
+        "gating": false
+      },
+      {
+        "risk": "Automatic shelf capacity permits future issuance; monitor actual financing rather than treating registration as dilution.",
+        "gating": false
+      },
+      {
+        "risk": "Classified and customer-constrained disclosure reduces independent visibility into program margins, milestones and concentration.",
+        "gating": false
+      },
+      {
+        "risk": "Competitive response from larger primes or alternative autonomous/propulsion architectures could compress the affordability advantage.",
         "gating": false
       }
     ]
@@ -146,6 +198,30 @@
     {
       "risk": "Government procurement timing and classified program opacity can obscure execution slippage.",
       "gating": false
+    },
+    {
+      "risk": "Production scaling can become the successor bottleneck as demand moves from demonstrations to serial output.",
+      "gating": false
+    },
+    {
+      "risk": "Defense budget/program timing and substitute platforms can interrupt otherwise valid technology-demand links.",
+      "gating": false
+    },
+    {
+      "risk": "Capacity expansion, program investment and acquisitions can consume cash before production economics are proven at scale.",
+      "gating": false
+    },
+    {
+      "risk": "Automatic shelf capacity permits future issuance; monitor actual financing rather than treating registration as dilution.",
+      "gating": false
+    },
+    {
+      "risk": "Classified and customer-constrained disclosure reduces independent visibility into program margins, milestones and concentration.",
+      "gating": false
+    },
+    {
+      "risk": "Competitive response from larger primes or alternative autonomous/propulsion architectures could compress the affordability advantage.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -156,20 +232,55 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 4
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "Kratos affordable defense technology portfolio",
+        "to": "autonomous mass and contested-environment mission capability",
+        "mechanism": "lower-cost unmanned aircraft, propulsion, communications and mission hardware expand deployable capacity"
+      },
+      {
+        "from": "customer-funded programs and awards",
+        "to": "production-scale demand",
+        "mechanism": "awards and planned delivery schedules trigger manufacturing and capacity expansion"
+      },
+      {
+        "from": "production capacity and cleared engineering workforce",
+        "to": "delivery resilience",
+        "mechanism": "qualified facilities, specialized labor and designed-in positions constrain timely scaling"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "Kratos affordable defense technology portfolio",
+      "to": "autonomous mass and contested-environment mission capability",
+      "mechanism": "lower-cost unmanned aircraft, propulsion, communications and mission hardware expand deployable capacity"
+    },
+    {
+      "from": "customer-funded programs and awards",
+      "to": "production-scale demand",
+      "mechanism": "awards and planned delivery schedules trigger manufacturing and capacity expansion"
+    },
+    {
+      "from": "production capacity and cleared engineering workforce",
+      "to": "delivery resilience",
+      "mechanism": "qualified facilities, specialized labor and designed-in positions constrain timely scaling"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:KTOS:2026-09:ir-releases"
+      "issuer:KTOS:2026-09:ir-releases",
+      "issuer:KTOS:2026-02:fy2025-results",
+      "sec:1069258:2025-annual-report",
+      "sec:1069258:2026-02-26:S-3ASR"
     ]
   },
   "sources": [
@@ -180,6 +291,30 @@
       "primary": true,
       "publishedAt": "2026-09-01",
       "originFingerprint": "issuer:KTOS:2026-09:ir-releases"
+    },
+    {
+      "sourceId": "issuer:KTOS:2025-results",
+      "url": "https://ir.kratosdefense.com/node/32181/pdf",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-26",
+      "originFingerprint": "issuer:KTOS:2026-02:fy2025-results"
+    },
+    {
+      "sourceId": "sec:KTOS:2025-annual",
+      "url": "https://www.sec.gov/Archives/edgar/data/1069258/000106925826000042/kratos2025annualreport.pdf",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-04-01",
+      "originFingerprint": "sec:1069258:2025-annual-report"
+    },
+    {
+      "sourceId": "sec:KTOS:S-3ASR:2026-02-26",
+      "url": "https://ir.kratosdefense.com/sec-filings/sec-filing/s-3asr/0001628280-26-012259",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-26",
+      "originFingerprint": "sec:1069258:2026-02-26:S-3ASR"
     }
   ],
   "contradictions": [],
@@ -195,26 +330,35 @@
     {
       "unknown": "Exact profitability and delivery schedule of the new awards are undisclosed.",
       "gating": false
+    },
+    {
+      "unknown": "Program-level unit economics and exact capacity utilization are not sufficiently disclosed for Beta to judge profitability of scale-up.",
+      "gating": false
+    },
+    {
+      "unknown": "No present evidence establishes that the shelf has produced material new dilution; actual issuance remains to be verified from subsequent filings.",
+      "gating": false
+    },
+    {
+      "unknown": "Program-specific backlog quality and cancellation/option composition remain insufficiently transparent in the current evidence set.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
-  "confidence": 88,
+  "confidence": 84,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -224,14 +368,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -248,10 +384,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

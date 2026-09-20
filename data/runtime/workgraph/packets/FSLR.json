@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "FSLR",
   "workId": "t0:FSLR",
-  "generatedAt": "2026-09-20T14:20:01.599Z",
+  "generatedAt": "2026-09-20T14:25:33.959Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-19T19:07:11.000Z",
-    "end": "2026-09-19T19:07:11.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T19:07:11.000Z"
+    "end": "2026-09-20T14:24:08.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T14:24:08.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/FSLR-20260919T190711Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/FSLR-20260919T190711Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/FSLR-20260920T142408Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -61,19 +64,35 @@
       "executionCapability",
       "backlogQuality",
       "scenarioRobustness",
-      "expectationCalibration"
+      "expectationCalibration",
+      "thesisQuality",
+      "bottleneckControl",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "executionCapability",
         "backlogQuality",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "backlogQuality",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "executionCapability",
         "expectationCalibration",
@@ -123,7 +142,12 @@
     "executionCapability",
     "backlogQuality",
     "scenarioRobustness",
-    "expectationCalibration"
+    "expectationCalibration",
+    "thesisQuality",
+    "bottleneckControl",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -135,6 +159,18 @@
       {
         "risk": "Backlog realization depends on customer commitments, policy/permitting and delivery economics rather than backlog volume alone.",
         "gating": false
+      },
+      {
+        "risk": "Contract termination evidence means backlog cannot be treated as equivalent to realized revenue.",
+        "gating": false
+      },
+      {
+        "risk": "Policy, permitting, financing and customer project economics can reduce backlog conversion independently of manufacturing execution.",
+        "gating": false
+      },
+      {
+        "risk": "Backlog volume can overstate resilience if termination rights or economic adjustments are material.",
+        "gating": false
       }
     ]
   },
@@ -145,6 +181,18 @@
     },
     {
       "risk": "Backlog realization depends on customer commitments, policy/permitting and delivery economics rather than backlog volume alone.",
+      "gating": false
+    },
+    {
+      "risk": "Contract termination evidence means backlog cannot be treated as equivalent to realized revenue.",
+      "gating": false
+    },
+    {
+      "risk": "Policy, permitting, financing and customer project economics can reduce backlog conversion independently of manufacturing execution.",
+      "gating": false
+    },
+    {
+      "risk": "Backlog volume can overstate resilience if termination rights or economic adjustments are material.",
       "gating": false
     }
   ],
@@ -159,14 +207,22 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "utility-scale electricity demand -> solar project buildout -> module demand -> First Solar manufacturing -> generation capacity",
+      "customer project economics/policy/permitting -> contract durability -> backlog realization",
+      "module availability -> grid/interconnection/project finance as successor bottlenecks"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "utility-scale electricity demand -> solar project buildout -> module demand -> First Solar manufacturing -> generation capacity",
+    "customer project economics/policy/permitting -> contract durability -> backlog realization",
+    "module availability -> grid/interconnection/project finance as successor bottlenecks"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "sec:fslr:2026-07-30:8k-ex99-1"
@@ -185,6 +241,14 @@
     {
       "contradiction": "Backlog remains large and guidance was reaffirmed even as current-quarter revenue fell due partly to contract terminations.",
       "gating": false
+    },
+    {
+      "contradiction": "Large backlog and reaffirmed guidance coexist with revenue pressure from customer terminations; this narrows confidence in backlog quality without invalidating current execution.",
+      "gating": false
+    },
+    {
+      "contradiction": "Current profitability and guidance support execution while terminations demonstrate non-zero demand fragility; both facts should remain represented.",
+      "gating": false
     }
   ],
   "contradictionDispositions": {
@@ -192,6 +256,14 @@
     "items": [
       {
         "contradiction": "Backlog remains large and guidance was reaffirmed even as current-quarter revenue fell due partly to contract terminations.",
+        "gating": false
+      },
+      {
+        "contradiction": "Large backlog and reaffirmed guidance coexist with revenue pressure from customer terminations; this narrows confidence in backlog quality without invalidating current execution.",
+        "gating": false
+      },
+      {
+        "contradiction": "Current profitability and guidance support execution while terminations demonstrate non-zero demand fragility; both facts should remain represented.",
         "gating": false
       }
     ]
@@ -204,26 +276,31 @@
     {
       "unknown": "This pass does not quantify policy/tariff sensitivity or cancellation-adjusted backlog economics.",
       "gating": false
+    },
+    {
+      "unknown": "Cancellation-adjusted backlog economics and policy/tariff sensitivity are not quantified in the reused evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "The present evidence does not quantify cancellation rights, tariff sensitivity or cancellation-adjusted backlog margin.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 98,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -233,14 +310,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -257,10 +326,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

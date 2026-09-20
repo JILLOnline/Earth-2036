@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "FN",
   "workId": "t0:FN",
-  "generatedAt": "2026-09-20T14:20:01.596Z",
+  "generatedAt": "2026-09-20T14:25:33.957Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-19T19:07:11.000Z",
-    "end": "2026-09-19T19:07:11.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T19:07:11.000Z"
+    "end": "2026-09-20T14:24:08.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T14:24:08.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,46 +32,66 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/FN-20260919T190711Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/FN-20260919T190711Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/FN-20260920T142408Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "financialOperatingMomentum",
       "executionCapability",
       "infrastructureExposure",
-      "expectationCalibration"
+      "expectationCalibration",
+      "thesisQuality",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "executionCapability",
         "infrastructureExposure"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "substitutionResilience",
+        "pricingPower",
+        "supplyChainResilience"
+      ],
       "expectations-execution": [
         "executionCapability",
         "expectationCalibration"
@@ -119,7 +139,13 @@
     "financialOperatingMomentum",
     "executionCapability",
     "infrastructureExposure",
-    "expectationCalibration"
+    "expectationCalibration",
+    "thesisQuality",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -131,6 +157,18 @@
       {
         "risk": "Peak growth can normalize if optical/AI infrastructure programs or major customers change schedules.",
         "gating": false
+      },
+      {
+        "risk": "Customer or program concentration can make otherwise valuable manufacturing capability fragile to a small number of schedule changes.",
+        "gating": false
+      },
+      {
+        "risk": "Growth concentration and outsourced-manufacturing cyclicality may inflate confidence if record revenue is treated as proof of durable control.",
+        "gating": false
+      },
+      {
+        "risk": "Vertical integration by major customers is a credible substitute to outsourced manufacturing for selected programs.",
+        "gating": false
       }
     ]
   },
@@ -141,6 +179,18 @@
     },
     {
       "risk": "Peak growth can normalize if optical/AI infrastructure programs or major customers change schedules.",
+      "gating": false
+    },
+    {
+      "risk": "Customer or program concentration can make otherwise valuable manufacturing capability fragile to a small number of schedule changes.",
+      "gating": false
+    },
+    {
+      "risk": "Growth concentration and outsourced-manufacturing cyclicality may inflate confidence if record revenue is treated as proof of durable control.",
+      "gating": false
+    },
+    {
+      "risk": "Vertical integration by major customers is a credible substitute to outsourced manufacturing for selected programs.",
       "gating": false
     }
   ],
@@ -155,14 +205,22 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "advanced optical/electronic designs -> outsourced precision manufacturing -> communications/AI infrastructure deployment -> bandwidth and compute availability",
+      "customer outsourcing preference -> Fabrinet utilization -> manufacturing scale economics",
+      "customer vertical integration or program delay -| Fabrinet utilization and bottleneck control"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "advanced optical/electronic designs -> outsourced precision manufacturing -> communications/AI infrastructure deployment -> bandwidth and compute availability",
+    "customer outsourcing preference -> Fabrinet utilization -> manufacturing scale economics",
+    "customer vertical integration or program delay -| Fabrinet utilization and bottleneck control"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "fabrinet:fy2026-results:2026-08-17"
@@ -190,26 +248,31 @@
     {
       "unknown": "No independent evidence in this pass establishes forward capacity utilization or customer diversification.",
       "gating": false
+    },
+    {
+      "unknown": "Customer concentration, program mix and forward capacity utilization remain unquantified in the reused source.",
+      "gating": false
+    },
+    {
+      "unknown": "No reused evidence quantifies top-customer exposure, dilution/financing stress, or capacity utilization; Alpha/filing work can address financial quantification without blocking Beta closure.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 95,
+  "confidence": 86,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -219,14 +282,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -243,10 +298,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

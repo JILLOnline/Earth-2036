@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-20T16:16:10.059Z",
+  "updatedAt": "2026-09-20T17:15:19.174Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -542,6 +542,18 @@
       "type": "market",
       "label": "demand for firm generation",
       "description": "large continuous loads require reliable capacity and energy, favoring nuclear and dispatchable generation"
+    },
+    {
+      "id": "company:CENX",
+      "type": "company",
+      "label": "Century Aluminum Company",
+      "description": "Century Aluminum occupies a primary-material bottleneck linking electricity and alumina inputs to domestic aluminum supply used across transport, construction, grid and defense infrastructure; Mt. Holly expansion increases existing U.S. output while the planned Oklahoma smelter would materially expand domestic capacity if financed, built and powered as planned."
+    },
+    {
+      "id": "market:CENX-cenx-structural-demand",
+      "type": "market",
+      "label": "CENX structural demand",
+      "description": "Century Aluminum occupies a primary-material bottleneck linking electricity and alumina inputs to domestic aluminum supply used across transport, construction, grid and defense infrastructure; Mt. Holly expansion increases existing U.S. output while the planned Oklahoma smelter would materially expand domestic capacity if financed, built and powered as planned."
     }
   ],
   "edges": [
@@ -1289,6 +1301,22 @@
         "ceg:pjm-divestiture:2026-03-18"
       ],
       "observedAt": "2026-09-19T07:25:25Z"
+    },
+    {
+      "id": "edge:CENX-structural-exposure",
+      "from": "company:CENX",
+      "to": "market:CENX-cenx-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 74,
+      "confidence": 90,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:CENX:MtHolly:20260416",
+        "issuer:CENX:EGA:20260126",
+        "issuer:CENX:2026Q2"
+      ],
+      "observedAt": "2026-09-19T19:26:41Z"
     }
   ],
   "structuralSignals": [
@@ -2186,6 +2214,26 @@
       "observedAt": "2026-09-19T07:25:25Z",
       "thesis": "Constellation's enlarged nuclear-and-gas generation platform sits directly on the reliable-power bottleneck created by AI/data-center and electrification load growth; Calpine broadens dispatchable capacity while nuclear provides high-capacity-factor clean generation, improving scenario robustness across power-market conditions.",
       "falsifier": "load growth or long-term contracting economics weaken materially"
+    },
+    {
+      "id": "signal:CENX-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:CENX-cenx-structural-demand",
+      "affectedNodeIds": [
+        "company:CENX"
+      ],
+      "direction": 1,
+      "magnitude": 74,
+      "confidence": 90,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:CENX:MtHolly:20260416",
+        "issuer:CENX:EGA:20260126",
+        "issuer:CENX:2026Q2"
+      ],
+      "observedAt": "2026-09-19T19:26:41Z",
+      "thesis": "Century Aluminum occupies a primary-material bottleneck linking electricity and alumina inputs to domestic aluminum supply used across transport, construction, grid and defense infrastructure; Mt. Holly expansion increases existing U.S. output while the planned Oklahoma smelter would materially expand domestic capacity if financed, built and powered as planned.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],
   "roadmapMilestones": [

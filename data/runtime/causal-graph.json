@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-20T14:20:04.490Z",
+  "updatedAt": "2026-09-20T15:16:45.570Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -518,6 +518,18 @@
       "type": "market",
       "label": "CAT structural demand",
       "description": "Caterpillar links power-generation equipment and industrial machines to the infrastructure needed for compute, construction and resource extraction; the 2-GW AI-power order creates a direct bridge from gas generation to hyperscale compute availability, while the FieldAI collaboration targets the labor/productivity bottleneck through autonomy and physical AI."
+    },
+    {
+      "id": "company:CCJ",
+      "type": "company",
+      "label": "Cameco Corporation",
+      "description": "Cameco spans multiple nuclear bottlenecks—tier-one uranium production, fuel services and Westinghouse exposure—linking reactor build/life-extension demand to scarce fuel-cycle and reactor-service capacity; increased Cigar Lake ownership deepens control of a high-quality upstream node."
+    },
+    {
+      "id": "market:CCJ-uranium-fuel-reactor-service-demand",
+      "type": "market",
+      "label": "uranium/fuel/reactor-service demand",
+      "description": "operating and new reactors require secure fuel supply and long-lived technical services"
     }
   ],
   "edges": [
@@ -1235,6 +1247,21 @@
         "issuer:CAT:FieldAI:20260902"
       ],
       "observedAt": "2026-09-19T19:26:41Z"
+    },
+    {
+      "id": "edge:CCJ-structural-exposure",
+      "from": "company:CCJ",
+      "to": "market:CCJ-uranium-fuel-reactor-service-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 84,
+      "confidence": 93,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "ccj:q2-2026:2026-07-31",
+        "ccj:cigar-lake-stake:2026-06-01"
+      ],
+      "observedAt": "2026-09-19T07:25:25Z"
     }
   ],
   "structuralSignals": [
@@ -2094,6 +2121,25 @@
       "observedAt": "2026-09-19T19:26:41Z",
       "thesis": "Caterpillar links power-generation equipment and industrial machines to the infrastructure needed for compute, construction and resource extraction; the 2-GW AI-power order creates a direct bridge from gas generation to hyperscale compute availability, while the FieldAI collaboration targets the labor/productivity bottleneck through autonomy and physical AI.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:CCJ-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:CCJ-uranium-fuel-reactor-service-demand",
+      "affectedNodeIds": [
+        "company:CCJ"
+      ],
+      "direction": 1,
+      "magnitude": 84,
+      "confidence": 93,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "ccj:q2-2026:2026-07-31",
+        "ccj:cigar-lake-stake:2026-06-01"
+      ],
+      "observedAt": "2026-09-19T07:25:25Z",
+      "thesis": "Cameco spans multiple nuclear bottlenecks—tier-one uranium production, fuel services and Westinghouse exposure—linking reactor build/life-extension demand to scarce fuel-cycle and reactor-service capacity; increased Cigar Lake ownership deepens control of a high-quality upstream node.",
+      "falsifier": "long-term contracting/pricing weakens persistently despite reactor growth"
     }
   ],
   "roadmapMilestones": [

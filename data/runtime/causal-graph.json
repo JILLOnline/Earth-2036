@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-20T00:49:35.115Z",
+  "updatedAt": "2026-09-20T01:19:12.800Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -350,6 +350,18 @@
       "type": "market",
       "label": "ATI structural demand",
       "description": "ATI occupies a materials/process bottleneck in aerospace, defense and specialty energy: nickel superalloys, titanium alloys, forgings and advanced powders connect constrained metallurgical capacity to jet engines, airframes and defense systems."
+    },
+    {
+      "id": "company:AUR",
+      "type": "company",
+      "label": "Aurora Innovation, Inc.",
+      "description": "Aurora's causal thesis links autonomous-driving software and sensor/computing integration to a trucking need for safer, more available freight capacity; commercial driverless miles and planned fleet scaling are the bridge from technology to infrastructure utilization."
+    },
+    {
+      "id": "market:AUR-aur-structural-demand",
+      "type": "market",
+      "label": "AUR structural demand",
+      "description": "Aurora's causal thesis links autonomous-driving software and sensor/computing integration to a trucking need for safer, more available freight capacity; commercial driverless miles and planned fleet scaling are the bridge from technology to infrastructure utilization."
     }
   ],
   "edges": [
@@ -859,6 +871,20 @@
       "sourceIds": [
         "issuer:ATI:2026Q2",
         "sec:ATI:2026Q2:10Q"
+      ],
+      "observedAt": "2026-09-19T15:22:52Z"
+    },
+    {
+      "id": "edge:AUR-structural-exposure",
+      "from": "company:AUR",
+      "to": "market:AUR-aur-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 67,
+      "confidence": 87,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:AUR:2026Q2"
       ],
       "observedAt": "2026-09-19T15:22:52Z"
     }
@@ -1457,6 +1483,24 @@
       ],
       "observedAt": "2026-09-19T15:22:52Z",
       "thesis": "ATI occupies a materials/process bottleneck in aerospace, defense and specialty energy: nickel superalloys, titanium alloys, forgings and advanced powders connect constrained metallurgical capacity to jet engines, airframes and defense systems.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:AUR-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:AUR-aur-structural-demand",
+      "affectedNodeIds": [
+        "company:AUR"
+      ],
+      "direction": 1,
+      "magnitude": 67,
+      "confidence": 87,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:AUR:2026Q2"
+      ],
+      "observedAt": "2026-09-19T15:22:52Z",
+      "thesis": "Aurora's causal thesis links autonomous-driving software and sensor/computing integration to a trucking need for safer, more available freight capacity; commercial driverless miles and planned fleet scaling are the bridge from technology to infrastructure utilization.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

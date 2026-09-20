@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-20T08:16:33.547Z",
+  "generatedAt": "2026-09-20T08:28:27.619Z",
   "canonicalWriteAuthority": false,
   "total": 217,
   "twins": [
@@ -10096,7 +10096,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "ENTG",
       "workId": "t0:ENTG",
-      "inputSignature": "84cf27d057039639883f3d64",
+      "inputSignature": "3ce3ccce873017c07d5dbe2a",
       "sourceState": "researching",
       "identity": {
         "ticker": "ENTG",
@@ -10119,28 +10119,30 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 1,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 3,
         "sourceLineage": {
-          "rawSourceCount": 2,
-          "uniqueSourceCount": 1,
-          "duplicatesCollapsed": 1,
+          "rawSourceCount": 8,
+          "uniqueSourceCount": 3,
+          "duplicatesCollapsed": 5,
           "missingLineage": 0,
           "uniqueOrigins": [
-            "entegris:2026-08-04:q2-results"
+            "entegris:2026-08-04:q2-results",
+            "entegris:2026:spcc",
+            "entegris:2026:spie-advanced-lithography"
           ]
         },
         "evidenceWindow": {
           "start": "2026-09-19T16:07:49.000Z",
-          "end": "2026-09-19T16:07:49.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T16:07:49.000Z"
+          "end": "2026-09-20T08:27:10.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T08:27:10.000Z"
         },
         "preflightPassed": false
       },
@@ -10148,34 +10150,65 @@
         "financialOperatingMomentum",
         "executionCapability",
         "technologyCriticality",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "bottleneckControl",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "pricingPower",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
           "Semiconductor capital-spending cyclicality can reverse quickly; current acceleration does not prove durable demand through a downcycle.",
-          "Execution evidence is partly entangled with favorable industry demand; future margin resilience under weaker wafer-fab spending remains unproven."
+          "Execution evidence is partly entangled with favorable industry demand; future margin resilience under weaker wafer-fab spending remains unproven.",
+          "The structural bridge can be eroded if competing qualified materials/filters deliver equivalent defect control at lower total cost or customers redesign processes to reduce Entegris-specific content.",
+          "Semiconductor capex cyclicality can delay facility and tool-linked demand even when long-run contamination requirements remain intact.",
+          "Current operating acceleration is partly exposed to wafer-fab and customer capital-spending cycles; extrapolating Q2 momentum would inflate confidence.",
+          "Evidence concentration in issuer-originated material limits independent verification of share, customer concentration and competitive displacement risk.",
+          "Process qualification creates stickiness but does not eliminate substitution; competitors can win at new process transitions before incumbent positions become entrenched."
         ],
         "unknowns": [
           "The release does not quantify customer concentration or isolate advanced-node exposure sufficiently to prove the durability of the mix shift.",
-          "No independent foundry/customer capex source was added in this pass."
+          "No independent foundry/customer capex source was added in this pass.",
+          "Current evidence does not quantify share by advanced-node process step or customer-specific qualification duration, so bottleneck control should remain conservative rather than exclusive.",
+          "Customer concentration and revenue exposure to the largest advanced-node customers were not quantified in the evidence reviewed.",
+          "Debt/dilution and acquisition-integration risk were not independently refreshed in this Beta pass and remain for source-addressed underwriting rather than a fabricated Beta blocker."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "advanced-node/3D semiconductor complexity",
+            "to": "tighter contamination and process-variation tolerances",
+            "relation": "increases requirement"
+          },
+          {
+            "from": "tighter contamination and process-variation tolerances",
+            "to": "filtration/purification/CMP/material qualification demand",
+            "relation": "raises yield-critical need"
+          },
+          {
+            "from": "Entegris qualified materials and contamination-control products",
+            "to": "wafer yield/process stability",
+            "relation": "supports"
+          },
+          {
+            "from": "wafer yield/process stability",
+            "to": "economically viable advanced compute and electronics",
+            "relation": "enables human/infrastructure need"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -10186,16 +10219,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -10217,11 +10240,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -10229,13 +10247,26 @@
           "financialOperatingMomentum",
           "executionCapability",
           "technologyCriticality",
-          "scenarioRobustness"
+          "scenarioRobustness",
+          "bottleneckControl",
+          "substitutionResilience",
+          "supplyChainResilience",
+          "pricingPower",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "The release does not quantify customer concentration or isolate advanced-node exposure sufficiently to prove the durability of the mix shift.",
           "No independent foundry/customer capex source was added in this pass.",
+          "Current evidence does not quantify share by advanced-node process step or customer-specific qualification duration, so bottleneck control should remain conservative rather than exclusive.",
+          "Customer concentration and revenue exposure to the largest advanced-node customers were not quantified in the evidence reviewed.",
+          "Debt/dilution and acquisition-integration risk were not independently refreshed in this Beta pass and remain for source-addressed underwriting rather than a fabricated Beta blocker.",
           "Semiconductor capital-spending cyclicality can reverse quickly; current acceleration does not prove durable demand through a downcycle.",
-          "Execution evidence is partly entangled with favorable industry demand; future margin resilience under weaker wafer-fab spending remains unproven."
+          "Execution evidence is partly entangled with favorable industry demand; future margin resilience under weaker wafer-fab spending remains unproven.",
+          "The structural bridge can be eroded if competing qualified materials/filters deliver equivalent defect control at lower total cost or customers redesign processes to reduce Entegris-specific content.",
+          "Semiconductor capex cyclicality can delay facility and tool-linked demand even when long-run contamination requirements remain intact.",
+          "Current operating acceleration is partly exposed to wafer-fab and customer capital-spending cycles; extrapolating Q2 momentum would inflate confidence.",
+          "Evidence concentration in issuer-originated material limits independent verification of share, customer concentration and competitive displacement risk.",
+          "Process qualification creates stickiness but does not eliminate substitution; competitors can win at new process transitions before incumbent positions become entrenched."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

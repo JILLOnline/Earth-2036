@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ENTG",
   "workId": "t0:ENTG",
-  "generatedAt": "2026-09-20T08:16:33.541Z",
+  "generatedAt": "2026-09-20T08:28:27.609Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-19T16:07:49.000Z",
-    "end": "2026-09-19T16:07:49.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T16:07:49.000Z"
+    "end": "2026-09-20T08:27:10.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T08:27:10.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,47 +32,69 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/ENTG-20260919T160749Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ENTG-20260919T160749Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ENTG-20260920T082710Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "financialOperatingMomentum",
       "executionCapability",
       "technologyCriticality",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "bottleneckControl",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "pricingPower",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "technologyCriticality",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "pricingPower"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "executionCapability",
         "technologyCriticality",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "pricingPower",
+        "governancePower",
+        "financialOperatingMomentum"
+      ],
       "expectations-execution": [
         "executionCapability",
         "financialOperatingMomentum"
@@ -120,7 +142,12 @@
     "financialOperatingMomentum",
     "executionCapability",
     "technologyCriticality",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "bottleneckControl",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "pricingPower",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -131,6 +158,26 @@
       },
       {
         "risk": "Execution evidence is partly entangled with favorable industry demand; future margin resilience under weaker wafer-fab spending remains unproven.",
+        "gating": false
+      },
+      {
+        "risk": "The structural bridge can be eroded if competing qualified materials/filters deliver equivalent defect control at lower total cost or customers redesign processes to reduce Entegris-specific content.",
+        "gating": false
+      },
+      {
+        "risk": "Semiconductor capex cyclicality can delay facility and tool-linked demand even when long-run contamination requirements remain intact.",
+        "gating": false
+      },
+      {
+        "risk": "Current operating acceleration is partly exposed to wafer-fab and customer capital-spending cycles; extrapolating Q2 momentum would inflate confidence.",
+        "gating": false
+      },
+      {
+        "risk": "Evidence concentration in issuer-originated material limits independent verification of share, customer concentration and competitive displacement risk.",
+        "gating": false
+      },
+      {
+        "risk": "Process qualification creates stickiness but does not eliminate substitution; competitors can win at new process transitions before incumbent positions become entrenched.",
         "gating": false
       }
     ]
@@ -143,6 +190,26 @@
     {
       "risk": "Execution evidence is partly entangled with favorable industry demand; future margin resilience under weaker wafer-fab spending remains unproven.",
       "gating": false
+    },
+    {
+      "risk": "The structural bridge can be eroded if competing qualified materials/filters deliver equivalent defect control at lower total cost or customers redesign processes to reduce Entegris-specific content.",
+      "gating": false
+    },
+    {
+      "risk": "Semiconductor capex cyclicality can delay facility and tool-linked demand even when long-run contamination requirements remain intact.",
+      "gating": false
+    },
+    {
+      "risk": "Current operating acceleration is partly exposed to wafer-fab and customer capital-spending cycles; extrapolating Q2 momentum would inflate confidence.",
+      "gating": false
+    },
+    {
+      "risk": "Evidence concentration in issuer-originated material limits independent verification of share, customer concentration and competitive displacement risk.",
+      "gating": false
+    },
+    {
+      "risk": "Process qualification creates stickiness but does not eliminate substitution; competitors can win at new process transitions before incumbent positions become entrenched.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -153,20 +220,64 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "advanced-node/3D semiconductor complexity",
+        "to": "tighter contamination and process-variation tolerances",
+        "relation": "increases requirement"
+      },
+      {
+        "from": "tighter contamination and process-variation tolerances",
+        "to": "filtration/purification/CMP/material qualification demand",
+        "relation": "raises yield-critical need"
+      },
+      {
+        "from": "Entegris qualified materials and contamination-control products",
+        "to": "wafer yield/process stability",
+        "relation": "supports"
+      },
+      {
+        "from": "wafer yield/process stability",
+        "to": "economically viable advanced compute and electronics",
+        "relation": "enables human/infrastructure need"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "advanced-node/3D semiconductor complexity",
+      "to": "tighter contamination and process-variation tolerances",
+      "relation": "increases requirement"
+    },
+    {
+      "from": "tighter contamination and process-variation tolerances",
+      "to": "filtration/purification/CMP/material qualification demand",
+      "relation": "raises yield-critical need"
+    },
+    {
+      "from": "Entegris qualified materials and contamination-control products",
+      "to": "wafer yield/process stability",
+      "relation": "supports"
+    },
+    {
+      "from": "wafer yield/process stability",
+      "to": "economically viable advanced compute and electronics",
+      "relation": "enables human/infrastructure need"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "entegris:2026-08-04:q2-results"
+      "entegris:2026-08-04:q2-results",
+      "entegris:2026:spcc",
+      "entegris:2026:spie-advanced-lithography"
     ]
   },
   "sources": [
@@ -176,6 +287,20 @@
       "kind": "primary",
       "primary": true,
       "originFingerprint": "entegris:2026-08-04:q2-results"
+    },
+    {
+      "sourceId": "entegris:2026:spcc",
+      "url": "https://www.entegris.com/en/home/about-us/events/surface-preparation-and-cleaning-spcc-2026.html",
+      "kind": "primary-technical",
+      "primary": true,
+      "originFingerprint": "entegris:2026:spcc"
+    },
+    {
+      "sourceId": "entegris:2026:spie-advanced-lithography",
+      "url": "https://www.entegris.com/en/home/about-us/events/spie-advanced-lithography-2026.html",
+      "kind": "primary-technical",
+      "primary": true,
+      "originFingerprint": "entegris:2026:spie-advanced-lithography"
     }
   ],
   "contradictions": [],
@@ -191,26 +316,35 @@
     {
       "unknown": "No independent foundry/customer capex source was added in this pass.",
       "gating": false
+    },
+    {
+      "unknown": "Current evidence does not quantify share by advanced-node process step or customer-specific qualification duration, so bottleneck control should remain conservative rather than exclusive.",
+      "gating": false
+    },
+    {
+      "unknown": "Customer concentration and revenue exposure to the largest advanced-node customers were not quantified in the evidence reviewed.",
+      "gating": false
+    },
+    {
+      "unknown": "Debt/dilution and acquisition-integration risk were not independently refreshed in this Beta pass and remain for source-addressed underwriting rather than a fabricated Beta blocker.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
-  "confidence": 95,
+  "confidence": 87,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -220,14 +354,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -244,10 +370,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

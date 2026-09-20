@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-20T19:20:54.059Z",
+  "updatedAt": "2026-09-20T21:17:42.448Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -578,6 +578,30 @@
       "type": "market",
       "label": "AI-enabled attack surface",
       "description": "Check Point's AI Network Firewall and AI Defense strategy links enterprise AI adoption to a growing need to secure users, applications and agents; the relevant structural bottleneck is trusted policy/enforcement across an expanding AI attack surface rather than AI compute itself."
+    },
+    {
+      "id": "company:CIEN",
+      "type": "company",
+      "label": "Ciena Corporation",
+      "description": "Ciena sits on the optical/interconnect path between AI compute clusters, data centers and wide-area networks; sustained bandwidth growth raises the value of coherent optics and switching, while customer ability to multi-source equipment prevents absolute bottleneck control."
+    },
+    {
+      "id": "market:CIEN-cien-structural-demand",
+      "type": "market",
+      "label": "CIEN structural demand",
+      "description": "Ciena sits on the optical/interconnect path between AI compute clusters, data centers and wide-area networks; sustained bandwidth growth raises the value of coherent optics and switching, while customer ability to multi-source equipment prevents absolute bottleneck control."
+    },
+    {
+      "id": "company:CIFR",
+      "type": "company",
+      "label": "Cipher Digital Inc.",
+      "description": "Cipher's structural asset is access to large energized sites and interconnection, which can bridge electricity supply to AI/HPC compute demand; the economic bottleneck shifts from bitcoin-mining hardware toward grid access, construction delivery, cooling and tenant-ready infrastructure."
+    },
+    {
+      "id": "market:CIFR-cifr-structural-demand",
+      "type": "market",
+      "label": "CIFR structural demand",
+      "description": "Cipher's structural asset is access to large energized sites and interconnection, which can bridge electricity supply to AI/HPC compute demand; the economic bottleneck shifts from bitcoin-mining hardware toward grid access, construction delivery, cooling and tenant-ready infrastructure."
     }
   ],
   "edges": [
@@ -1371,6 +1395,35 @@
         "issuer:CHKP:2026Q2:20260730"
       ],
       "observedAt": "2026-09-19T21:23:16Z"
+    },
+    {
+      "id": "edge:CIEN-structural-exposure",
+      "from": "company:CIEN",
+      "to": "market:CIEN-cien-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 74,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:CIEN:2026Q3:10Q",
+        "issuer:CIEN:ai-networking:20260310"
+      ],
+      "observedAt": "2026-09-19T22:26:14Z"
+    },
+    {
+      "id": "edge:CIFR-structural-exposure",
+      "from": "company:CIFR",
+      "to": "market:CIFR-cifr-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 76,
+      "confidence": 94,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:CIFR:2026Q2:10Q"
+      ],
+      "observedAt": "2026-09-19T22:26:15Z"
     }
   ],
   "structuralSignals": [
@@ -2325,6 +2378,43 @@
       ],
       "observedAt": "2026-09-19T21:23:16Z",
       "thesis": "Check Point's AI Network Firewall and AI Defense strategy links enterprise AI adoption to a growing need to secure users, applications and agents; the relevant structural bottleneck is trusted policy/enforcement across an expanding AI attack surface rather than AI compute itself.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:CIEN-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:CIEN-cien-structural-demand",
+      "affectedNodeIds": [
+        "company:CIEN"
+      ],
+      "direction": 1,
+      "magnitude": 74,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:CIEN:2026Q3:10Q",
+        "issuer:CIEN:ai-networking:20260310"
+      ],
+      "observedAt": "2026-09-19T22:26:14Z",
+      "thesis": "Ciena sits on the optical/interconnect path between AI compute clusters, data centers and wide-area networks; sustained bandwidth growth raises the value of coherent optics and switching, while customer ability to multi-source equipment prevents absolute bottleneck control.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:CIFR-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:CIFR-cifr-structural-demand",
+      "affectedNodeIds": [
+        "company:CIFR"
+      ],
+      "direction": 1,
+      "magnitude": 76,
+      "confidence": 94,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:CIFR:2026Q2:10Q"
+      ],
+      "observedAt": "2026-09-19T22:26:15Z",
+      "thesis": "Cipher's structural asset is access to large energized sites and interconnection, which can bridge electricity supply to AI/HPC compute demand; the economic bottleneck shifts from bitcoin-mining hardware toward grid access, construction delivery, cooling and tenant-ready infrastructure.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

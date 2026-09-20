@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-20T05:53:26.242Z",
+  "updatedAt": "2026-09-20T06:14:19.369Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -410,6 +410,18 @@
       "type": "market",
       "label": "onsite fuel-cell demand",
       "description": "customers can deploy generation alongside data-center construction rather than wait solely for equivalent grid expansion"
+    },
+    {
+      "id": "company:BEAM",
+      "type": "company",
+      "label": "Beam Therapeutics",
+      "description": "Beam's base-editing platform targets disease-causing sequence changes without double-strand DNA breaks; BEAM-302's current AATD path links precision editing to a durable protein-correction need, but the bottleneck shifts from editing capability to pivotal efficacy, long-term safety, regulatory acceptance, manufacturing reliability and commercial delivery."
+    },
+    {
+      "id": "market:BEAM-beam-structural-demand",
+      "type": "market",
+      "label": "BEAM structural demand",
+      "description": "Beam's base-editing platform targets disease-causing sequence changes without double-strand DNA breaks; BEAM-302's current AATD path links precision editing to a durable protein-correction need, but the bottleneck shifts from editing capability to pivotal efficacy, long-term safety, regulatory acceptance, manufacturing reliability and commercial delivery."
     }
   ],
   "edges": [
@@ -995,6 +1007,20 @@
         "be:fy2025-results:2026-02-05"
       ],
       "observedAt": "2026-09-19T06:24:39Z"
+    },
+    {
+      "id": "edge:BEAM-structural-exposure",
+      "from": "company:BEAM",
+      "to": "market:BEAM-beam-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 55,
+      "confidence": 86,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:BEAM:BEAM302:ERS2026"
+      ],
+      "observedAt": "2026-09-19T18:27:54Z"
     }
   ],
   "structuralSignals": [
@@ -1686,6 +1712,24 @@
       "observedAt": "2026-09-19T06:24:39Z",
       "thesis": "Bloom Energy occupies a grid-constrained onsite-power pathway for AI/data-center infrastructure: the April 2026 Oracle master agreement supports up to 2.8 GW, with 1.2 GW described as contracted and deploying; this supports a causal link from delayed grid capacity to rapidly deployable onsite fuel-cell demand without treating the 2.8 GW ceiling as contracted backlog.",
       "falsifier": "utility interconnection lead times compress materially or competing onsite architectures consistently beat Bloom on delivered time/cost/reliability"
+    },
+    {
+      "id": "signal:BEAM-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:BEAM-beam-structural-demand",
+      "affectedNodeIds": [
+        "company:BEAM"
+      ],
+      "direction": 1,
+      "magnitude": 55,
+      "confidence": 86,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:BEAM:BEAM302:ERS2026"
+      ],
+      "observedAt": "2026-09-19T18:27:54Z",
+      "thesis": "Beam's base-editing platform targets disease-causing sequence changes without double-strand DNA breaks; BEAM-302's current AATD path links precision editing to a durable protein-correction need, but the bottleneck shifts from editing capability to pivotal efficacy, long-term safety, regulatory acceptance, manufacturing reliability and commercial delivery.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],
   "roadmapMilestones": [

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "DDOG",
   "workId": "t0:DDOG",
-  "generatedAt": "2026-09-20T03:19:42.287Z",
+  "generatedAt": "2026-09-20T03:26:42.997Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-05-07T00:00:00.000Z",
-    "end": "2026-09-19T13:07:45.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T13:07:45.000Z"
+    "end": "2026-09-20T03:24:31.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T03:24:31.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/DDOG-20260919T130745Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/DDOG-20260919T130745Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/DDOG-20260920T032431Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -64,19 +67,32 @@
       "financialOperatingMomentum",
       "catalystScore",
       "scenarioRobustness",
-      "pricingPower"
+      "pricingPower",
+      "substitutionResilience"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         "alignment2036",
         "crossDivisionLeverage",
         "thesisQuality",
         "bottleneckControl"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "pricingPower",
+        "scenarioRobustness",
+        "substitutionResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -130,7 +146,8 @@
     "financialOperatingMomentum",
     "catalystScore",
     "scenarioRobustness",
-    "pricingPower"
+    "pricingPower",
+    "substitutionResilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -142,6 +159,18 @@
       {
         "risk": "GAAP operating margin remained near breakeven despite strong non-GAAP profitability, so stock-based compensation and other adjustments remain material to economic-quality assessment.",
         "gating": false
+      },
+      {
+        "risk": "Hyperscaler-native observability and security tooling can substitute for portions of the platform, especially where customers prioritize integrated cloud economics over vendor-neutral breadth.",
+        "gating": false
+      },
+      {
+        "risk": "Cloud-platform vendors and observability/security peers can compress differentiation or pricing if comparable capabilities become bundled.",
+        "gating": false
+      },
+      {
+        "risk": "Economic profitability can be overstated if non-GAAP performance is considered without the material effect of stock-based compensation and related adjustments.",
+        "gating": false
       }
     ]
   },
@@ -152,6 +181,18 @@
     },
     {
       "risk": "GAAP operating margin remained near breakeven despite strong non-GAAP profitability, so stock-based compensation and other adjustments remain material to economic-quality assessment.",
+      "gating": false
+    },
+    {
+      "risk": "Hyperscaler-native observability and security tooling can substitute for portions of the platform, especially where customers prioritize integrated cloud economics over vendor-neutral breadth.",
+      "gating": false
+    },
+    {
+      "risk": "Cloud-platform vendors and observability/security peers can compress differentiation or pricing if comparable capabilities become bundled.",
+      "gating": false
+    },
+    {
+      "risk": "Economic profitability can be overstated if non-GAAP performance is considered without the material effect of stock-based compensation and related adjustments.",
       "gating": false
     }
   ],
@@ -166,14 +207,22 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "cloud/AI complexity -> telemetry volume/operational opacity -> observability need -> service reliability",
+      "agentic software -> autonomous failure/security surface -> automated detection/investigation/remediation -> trustworthy digital operations",
+      "platform breadth -> shared telemetry context -> cross-product operational leverage"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "cloud/AI complexity -> telemetry volume/operational opacity -> observability need -> service reliability",
+    "agentic software -> autonomous failure/security surface -> automated detection/investigation/remediation -> trustworthy digital operations",
+    "platform breadth -> shared telemetry context -> cross-product operational leverage"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 6,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:DDOG:2026Q2:20260806",
@@ -211,26 +260,31 @@
     {
       "unknown": "Current valuation and expectations embedded in the share price require separate market evidence before opportunity can be scored.",
       "gating": false
+    },
+    {
+      "unknown": "Durable monetization and retention specifically attributable to the 2026 AI/agent product wave are not separately disclosed.",
+      "gating": false
+    },
+    {
+      "unknown": "Current market expectations/valuation and AI-specific unit economics are outside this Beta evidence and remain for the owning underwriting lane.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 90,
+  "confidence": 89,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -240,14 +294,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -264,10 +310,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

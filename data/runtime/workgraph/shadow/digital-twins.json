@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-20T10:16:31.039Z",
+  "generatedAt": "2026-09-20T10:29:33.939Z",
   "canonicalWriteAuthority": false,
   "total": 217,
   "twins": [
@@ -12248,7 +12248,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "EQIX",
       "workId": "t0:EQIX",
-      "inputSignature": "9eb7c2457e27d4359d45e745",
+      "inputSignature": "a103431fe21f637351368c17",
       "sourceState": "researching",
       "identity": {
         "ticker": "EQIX",
@@ -12271,19 +12271,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 2,
         "sourceLineage": {
-          "rawSourceCount": 4,
+          "rawSourceCount": 8,
           "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 2,
+          "duplicatesCollapsed": 6,
           "missingLineage": 0,
           "uniqueOrigins": [
             "sec:eqix:2026-07-29:8k-ex99-1",
@@ -12292,8 +12292,8 @@
         },
         "evidenceWindow": {
           "start": "2026-09-19T17:03:20.000Z",
-          "end": "2026-09-19T17:03:20.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T17:03:20.000Z"
+          "end": "2026-09-20T10:27:37.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T10:27:37.000Z"
         },
         "preflightPassed": false
       },
@@ -12302,33 +12302,43 @@
         "executionCapability",
         "structuralDemand",
         "resourceIntensity",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "bottleneckControl",
+        "supplyChainResilience",
+        "pricingPower",
+        "capitalEfficiency"
       ],
       "constraintSignals": {
         "risks": [
           "Growth in high-density AI workloads increases dependence on timely power, cooling and new-capacity delivery in constrained markets.",
-          "Power infrastructure delays can decouple demand from monetizable capacity."
+          "Power infrastructure delays can decouple demand from monetizable capacity.",
+          "Power or cooling delays can strand demand before it becomes revenue-producing capacity.",
+          "Capital intensity and utility dependency can delay returns even when customer demand remains strong.",
+          "Alternative deployment architectures or locations can redirect incremental workloads if constrained metros cannot add power economically."
         ],
         "unknowns": [
-          "Current filings do not isolate the share of incremental bookings economically attributable to AI versus broader cloud/network demand."
+          "Current filings do not isolate the share of incremental bookings economically attributable to AI versus broader cloud/network demand.",
+          "The evidence does not isolate AI's incremental economics from broader cloud/network demand.",
+          "Current evidence does not quantify incremental return on capital for AI-density capacity separately from the broader portfolio."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "digital-demand->colocation-interconnection-demand",
+          "AI-density->power-and-cooling-intensity",
+          "utility-and-capacity-delivery->monetizable-data-center-capacity"
+        ]
       },
       "improvementWindows": [
         {
@@ -12339,16 +12349,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -12370,11 +12370,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -12383,12 +12378,21 @@
           "executionCapability",
           "structuralDemand",
           "resourceIntensity",
-          "scenarioRobustness"
+          "scenarioRobustness",
+          "bottleneckControl",
+          "supplyChainResilience",
+          "pricingPower",
+          "capitalEfficiency"
         ],
         "needOrConstraintCandidates": [
           "Current filings do not isolate the share of incremental bookings economically attributable to AI versus broader cloud/network demand.",
+          "The evidence does not isolate AI's incremental economics from broader cloud/network demand.",
+          "Current evidence does not quantify incremental return on capital for AI-density capacity separately from the broader portfolio.",
           "Growth in high-density AI workloads increases dependence on timely power, cooling and new-capacity delivery in constrained markets.",
-          "Power infrastructure delays can decouple demand from monetizable capacity."
+          "Power infrastructure delays can decouple demand from monetizable capacity.",
+          "Power or cooling delays can strand demand before it becomes revenue-producing capacity.",
+          "Capital intensity and utility dependency can delay returns even when customer demand remains strong.",
+          "Alternative deployment architectures or locations can redirect incremental workloads if constrained metros cannot add power economically."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -20973,7 +20977,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "EOSE",
       "workId": "t0:EOSE",
-      "inputSignature": "6aad76dd4e3b9fe4b8794471",
+      "inputSignature": "0302dcb1070ca476cfc37240",
       "sourceState": "researching",
       "identity": {
         "ticker": "EOSE",
@@ -20996,19 +21000,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 2,
         "sourceLineage": {
-          "rawSourceCount": 4,
+          "rawSourceCount": 8,
           "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 2,
+          "duplicatesCollapsed": 6,
           "missingLineage": 0,
           "uniqueOrigins": [
             "eos:2026-08-05:q2-results",
@@ -21017,8 +21021,8 @@
         },
         "evidenceWindow": {
           "start": "2026-09-19T16:07:49.000Z",
-          "end": "2026-09-19T16:07:49.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T16:07:49.000Z"
+          "end": "2026-09-20T10:27:37.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T10:27:37.000Z"
         },
         "preflightPassed": false
       },
@@ -21026,35 +21030,44 @@
         "executionCapability",
         "financialOperatingMomentum",
         "scenarioRobustness",
-        "supplyChainResilience"
+        "supplyChainResilience",
+        "bottleneckControl",
+        "substitutionResilience",
+        "pricingPower"
       ],
       "constraintSignals": {
         "risks": [
           "Revenue/backlog concentration around FPUSA and deeply negative gross margin create material conversion and profitability risk despite rapid top-line growth.",
           "Tightened guidance and contemplated manufacturing consolidation indicate timing/capacity-utilization execution remains unsettled.",
-          "Scale without margin improvement can increase cash consumption; concentrated project economics can make headline growth less durable than it appears."
+          "Scale without margin improvement can increase cash consumption; concentrated project economics can make headline growth less durable than it appears.",
+          "Alternative storage chemistries and grid solutions can satisfy portions of the same reliability need if Eos cannot improve delivered economics.",
+          "Customer/project concentration and negative gross margin can turn nominal scale into greater cash consumption if conversion economics lag.",
+          "Guidance-range tightening and manufacturing-consolidation evaluation indicate execution remains adaptive rather than settled."
         ],
         "unknowns": [
           "The path and timing to positive gross margin and sustainable cash generation are not established by current operating evidence.",
-          "No evidence in this pass proves Line 2 speed gains translate into positive unit economics at sustained high utilization."
+          "No evidence in this pass proves Line 2 speed gains translate into positive unit economics at sustained high utilization.",
+          "Sustained high-utilization unit economics for Line 2 are not established.",
+          "Current evidence does not quantify dilution or external-financing needs through the point of sustainable positive gross margin."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "long-duration-grid-storage-demand->Eos-order-pipeline",
+          "Eos-manufacturing-throughput->deliverable-storage-capacity",
+          "manufacturing-unit-economics->sustainable-scale"
+        ]
       },
       "improvementWindows": [
         {
@@ -21065,16 +21078,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -21096,11 +21099,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -21108,14 +21106,22 @@
           "executionCapability",
           "financialOperatingMomentum",
           "scenarioRobustness",
-          "supplyChainResilience"
+          "supplyChainResilience",
+          "bottleneckControl",
+          "substitutionResilience",
+          "pricingPower"
         ],
         "needOrConstraintCandidates": [
           "The path and timing to positive gross margin and sustainable cash generation are not established by current operating evidence.",
           "No evidence in this pass proves Line 2 speed gains translate into positive unit economics at sustained high utilization.",
+          "Sustained high-utilization unit economics for Line 2 are not established.",
+          "Current evidence does not quantify dilution or external-financing needs through the point of sustainable positive gross margin.",
           "Revenue/backlog concentration around FPUSA and deeply negative gross margin create material conversion and profitability risk despite rapid top-line growth.",
           "Tightened guidance and contemplated manufacturing consolidation indicate timing/capacity-utilization execution remains unsettled.",
-          "Scale without margin improvement can increase cash consumption; concentrated project economics can make headline growth less durable than it appears."
+          "Scale without margin improvement can increase cash consumption; concentrated project economics can make headline growth less durable than it appears.",
+          "Alternative storage chemistries and grid solutions can satisfy portions of the same reliability need if Eos cannot improve delivered economics.",
+          "Customer/project concentration and negative gross margin can turn nominal scale into greater cash consumption if conversion economics lag.",
+          "Guidance-range tightening and manufacturing-consolidation evaluation indicate execution remains adaptive rather than settled."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -32467,7 +32473,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "ERIC",
       "workId": "t0:ERIC",
-      "inputSignature": "be38e6d06e5d7c05449aaaf0",
+      "inputSignature": "9184881e4f6391ce03b03fc5",
       "sourceState": "researching",
       "identity": {
         "ticker": "ERIC",
@@ -32490,19 +32496,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 2,
         "sourceLineage": {
-          "rawSourceCount": 3,
+          "rawSourceCount": 7,
           "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 1,
+          "duplicatesCollapsed": 5,
           "missingLineage": 0,
           "uniqueOrigins": [
             "sec:eric:2026-04-17:6k",
@@ -32511,8 +32517,8 @@
         },
         "evidenceWindow": {
           "start": "2026-09-19T17:03:20.000Z",
-          "end": "2026-09-19T17:03:20.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T17:03:20.000Z"
+          "end": "2026-09-20T10:27:37.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T10:27:37.000Z"
         },
         "preflightPassed": false
       },
@@ -32521,34 +32527,42 @@
         "innovationCapability",
         "executionCapability",
         "costStructure",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "bottleneckControl",
+        "substitutionResilience"
       ],
       "constraintSignals": {
         "risks": [
           "Currency headwinds and restructuring costs can obscure or offset underlying network-demand improvement; product announcements do not establish scaled customer adoption.",
-          "AI-native radio positioning is an execution signal, not evidence of durable incremental economics until customer deployment and margin contribution are demonstrated."
+          "AI-native radio positioning is an execution signal, not evidence of durable incremental economics until customer deployment and margin contribution are demonstrated.",
+          "Competing radio architectures and vendors can substitute if product advantages do not translate into operator economics.",
+          "Product narrative can outrun adoption evidence if AI positioning is treated as economic proof before deployments scale.",
+          "Currency and restructuring effects complicate inference from headline profitability."
         ],
         "unknowns": [
           "This source pass did not retrieve the full Q2 exhibit details needed to quantify whether Q1 organic momentum persisted into Q2.",
-          "Full Q2 operating metrics remain to be source-addressed from the exhibit attached to the July 2026 6-K."
+          "Full Q2 operating metrics remain to be source-addressed from the exhibit attached to the July 2026 6-K.",
+          "Full Q2 operating detail and scaled customer economics for AI-native radios are not established by the reused evidence.",
+          "Full Q2 exhibit metrics were not source-addressed in the inherited Scout pass, limiting current-period falsification strength."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "connectivity-demand->carrier-network-investment",
+          "radio-technology-capability->network-efficiency-and-capacity",
+          "operator-adoption->durable-product-economics"
+        ]
       },
       "improvementWindows": [
         {
@@ -32559,16 +32573,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -32590,11 +32594,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -32603,13 +32602,20 @@
           "innovationCapability",
           "executionCapability",
           "costStructure",
-          "scenarioRobustness"
+          "scenarioRobustness",
+          "bottleneckControl",
+          "substitutionResilience"
         ],
         "needOrConstraintCandidates": [
           "This source pass did not retrieve the full Q2 exhibit details needed to quantify whether Q1 organic momentum persisted into Q2.",
           "Full Q2 operating metrics remain to be source-addressed from the exhibit attached to the July 2026 6-K.",
+          "Full Q2 operating detail and scaled customer economics for AI-native radios are not established by the reused evidence.",
+          "Full Q2 exhibit metrics were not source-addressed in the inherited Scout pass, limiting current-period falsification strength.",
           "Currency headwinds and restructuring costs can obscure or offset underlying network-demand improvement; product announcements do not establish scaled customer adoption.",
-          "AI-native radio positioning is an execution signal, not evidence of durable incremental economics until customer deployment and margin contribution are demonstrated."
+          "AI-native radio positioning is an execution signal, not evidence of durable incremental economics until customer deployment and margin contribution are demonstrated.",
+          "Competing radio architectures and vendors can substitute if product advantages do not translate into operator economics.",
+          "Product narrative can outrun adoption evidence if AI positioning is treated as economic proof before deployments scale.",
+          "Currency and restructuring effects complicate inference from headline profitability."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -35420,7 +35426,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "EQT",
       "workId": "t0:EQT",
-      "inputSignature": "02b4ffbb5400004e77c3d4d3",
+      "inputSignature": "1373f2b722f0ee36ebe4d66e",
       "sourceState": "researching",
       "identity": {
         "ticker": "EQT",
@@ -35443,19 +35449,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 2,
         "sourceLineage": {
-          "rawSourceCount": 4,
+          "rawSourceCount": 8,
           "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 2,
+          "duplicatesCollapsed": 6,
           "missingLineage": 0,
           "uniqueOrigins": [
             "sec:eqt:2026-07-21:8k-ex99-1",
@@ -35464,8 +35470,8 @@
         },
         "evidenceWindow": {
           "start": "2026-09-19T17:03:20.000Z",
-          "end": "2026-09-19T17:03:20.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T17:03:20.000Z"
+          "end": "2026-09-20T10:27:37.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T10:27:37.000Z"
         },
         "preflightPassed": false
       },
@@ -35474,33 +35480,41 @@
         "executionCapability",
         "capitalEfficiency",
         "marketAccess",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "bottleneckControl",
+        "pricingPower"
       ],
       "constraintSignals": {
         "risks": [
           "Natural-gas cash generation remains exposed to commodity prices, basis differentials and infrastructure/transport constraints; long-duration LNG commitments add execution and utilization obligations.",
-          "A favorable operating quarter does not remove commodity-cycle and basis risk."
+          "A favorable operating quarter does not remove commodity-cycle and basis risk.",
+          "Transport constraints and commodity prices can dominate company-level operating improvements.",
+          "Commodity and basis volatility can overwhelm favorable field execution.",
+          "Future LNG logistics commitments create fixed-duration exposure before utilization economics are established."
         ],
         "unknowns": [
-          "The filings do not establish realized economics of the future LNG vessel capacity once leases commence in 2028."
+          "The filings do not establish realized economics of the future LNG vessel capacity once leases commence in 2028.",
+          "Realized economics and utilization of LNG vessel capacity beginning in 2028 remain unknown.",
+          "The current evidence does not establish downside economics for LNG commitments under weak utilization or adverse spreads."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "Appalachian-gas-resource->EQT-production",
+          "pipeline-basis-capacity->realized-gas-economics",
+          "LNG-logistics->broader-market-access"
+        ]
       },
       "improvementWindows": [
         {
@@ -35511,16 +35525,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -35542,11 +35546,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -35555,12 +35554,19 @@
           "executionCapability",
           "capitalEfficiency",
           "marketAccess",
-          "scenarioRobustness"
+          "scenarioRobustness",
+          "bottleneckControl",
+          "pricingPower"
         ],
         "needOrConstraintCandidates": [
           "The filings do not establish realized economics of the future LNG vessel capacity once leases commence in 2028.",
+          "Realized economics and utilization of LNG vessel capacity beginning in 2028 remain unknown.",
+          "The current evidence does not establish downside economics for LNG commitments under weak utilization or adverse spreads.",
           "Natural-gas cash generation remains exposed to commodity prices, basis differentials and infrastructure/transport constraints; long-duration LNG commitments add execution and utilization obligations.",
-          "A favorable operating quarter does not remove commodity-cycle and basis risk."
+          "A favorable operating quarter does not remove commodity-cycle and basis risk.",
+          "Transport constraints and commodity prices can dominate company-level operating improvements.",
+          "Commodity and basis volatility can overwhelm favorable field execution.",
+          "Future LNG logistics commitments create fixed-duration exposure before utilization economics are established."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

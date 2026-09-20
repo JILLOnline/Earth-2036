@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "EOSE",
   "workId": "t0:EOSE",
-  "generatedAt": "2026-09-20T10:16:31.036Z",
+  "generatedAt": "2026-09-20T10:29:33.933Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-19T16:07:49.000Z",
-    "end": "2026-09-19T16:07:49.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T16:07:49.000Z"
+    "end": "2026-09-20T10:27:37.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T10:27:37.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,47 +32,63 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/EOSE-20260919T160749Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/EOSE-20260919T160749Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/EOSE-20260920T102737Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "executionCapability",
       "financialOperatingMomentum",
       "scenarioRobustness",
-      "supplyChainResilience"
+      "supplyChainResilience",
+      "bottleneckControl",
+      "substitutionResilience",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "executionCapability",
         "financialOperatingMomentum",
         "scenarioRobustness",
         "supplyChainResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower",
+        "substitutionResilience"
+      ],
       "expectations-execution": [
         "executionCapability",
         "financialOperatingMomentum",
@@ -121,7 +137,10 @@
     "executionCapability",
     "financialOperatingMomentum",
     "scenarioRobustness",
-    "supplyChainResilience"
+    "supplyChainResilience",
+    "bottleneckControl",
+    "substitutionResilience",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -136,6 +155,18 @@
       },
       {
         "risk": "Scale without margin improvement can increase cash consumption; concentrated project economics can make headline growth less durable than it appears.",
+        "gating": false
+      },
+      {
+        "risk": "Alternative storage chemistries and grid solutions can satisfy portions of the same reliability need if Eos cannot improve delivered economics.",
+        "gating": false
+      },
+      {
+        "risk": "Customer/project concentration and negative gross margin can turn nominal scale into greater cash consumption if conversion economics lag.",
+        "gating": false
+      },
+      {
+        "risk": "Guidance-range tightening and manufacturing-consolidation evaluation indicate execution remains adaptive rather than settled.",
         "gating": false
       }
     ]
@@ -152,6 +183,18 @@
     {
       "risk": "Scale without margin improvement can increase cash consumption; concentrated project economics can make headline growth less durable than it appears.",
       "gating": false
+    },
+    {
+      "risk": "Alternative storage chemistries and grid solutions can satisfy portions of the same reliability need if Eos cannot improve delivered economics.",
+      "gating": false
+    },
+    {
+      "risk": "Customer/project concentration and negative gross margin can turn nominal scale into greater cash consumption if conversion economics lag.",
+      "gating": false
+    },
+    {
+      "risk": "Guidance-range tightening and manufacturing-consolidation evaluation indicate execution remains adaptive rather than settled.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -165,14 +208,22 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "long-duration-grid-storage-demand->Eos-order-pipeline",
+      "Eos-manufacturing-throughput->deliverable-storage-capacity",
+      "manufacturing-unit-economics->sustainable-scale"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "long-duration-grid-storage-demand->Eos-order-pipeline",
+    "Eos-manufacturing-throughput->deliverable-storage-capacity",
+    "manufacturing-unit-economics->sustainable-scale"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 8,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "eos:2026-08-05:q2-results",
@@ -208,26 +259,31 @@
     {
       "unknown": "No evidence in this pass proves Line 2 speed gains translate into positive unit economics at sustained high utilization.",
       "gating": false
+    },
+    {
+      "unknown": "Sustained high-utilization unit economics for Line 2 are not established.",
+      "gating": false
+    },
+    {
+      "unknown": "Current evidence does not quantify dilution or external-financing needs through the point of sustainable positive gross margin.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 96,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -237,14 +293,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -261,10 +309,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ERIC",
   "workId": "t0:ERIC",
-  "generatedAt": "2026-09-20T10:16:31.038Z",
+  "generatedAt": "2026-09-20T10:29:33.937Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-19T17:03:20.000Z",
-    "end": "2026-09-19T17:03:20.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T17:03:20.000Z"
+    "end": "2026-09-20T10:27:37.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T10:27:37.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/ERIC-20260919T170320Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ERIC-20260919T170320Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ERIC-20260920T102737Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -61,19 +64,31 @@
       "innovationCapability",
       "executionCapability",
       "costStructure",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "bottleneckControl",
+      "substitutionResilience"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "innovationCapability"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "innovationCapability",
         "executionCapability",
         "costStructure"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "innovationCapability",
+        "costStructure",
+        "substitutionResilience"
+      ],
       "expectations-execution": [
         "executionCapability",
         "scenarioRobustness",
@@ -123,7 +138,9 @@
     "innovationCapability",
     "executionCapability",
     "costStructure",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "bottleneckControl",
+    "substitutionResilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -135,6 +152,18 @@
       {
         "risk": "AI-native radio positioning is an execution signal, not evidence of durable incremental economics until customer deployment and margin contribution are demonstrated.",
         "gating": false
+      },
+      {
+        "risk": "Competing radio architectures and vendors can substitute if product advantages do not translate into operator economics.",
+        "gating": false
+      },
+      {
+        "risk": "Product narrative can outrun adoption evidence if AI positioning is treated as economic proof before deployments scale.",
+        "gating": false
+      },
+      {
+        "risk": "Currency and restructuring effects complicate inference from headline profitability.",
+        "gating": false
       }
     ]
   },
@@ -145,6 +174,18 @@
     },
     {
       "risk": "AI-native radio positioning is an execution signal, not evidence of durable incremental economics until customer deployment and margin contribution are demonstrated.",
+      "gating": false
+    },
+    {
+      "risk": "Competing radio architectures and vendors can substitute if product advantages do not translate into operator economics.",
+      "gating": false
+    },
+    {
+      "risk": "Product narrative can outrun adoption evidence if AI positioning is treated as economic proof before deployments scale.",
+      "gating": false
+    },
+    {
+      "risk": "Currency and restructuring effects complicate inference from headline profitability.",
       "gating": false
     }
   ],
@@ -159,14 +200,22 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "connectivity-demand->carrier-network-investment",
+      "radio-technology-capability->network-efficiency-and-capacity",
+      "operator-adoption->durable-product-economics"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "connectivity-demand->carrier-network-investment",
+    "radio-technology-capability->network-efficiency-and-capacity",
+    "operator-adoption->durable-product-economics"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "sec:eric:2026-04-17:6k",
@@ -202,26 +251,31 @@
     {
       "unknown": "Full Q2 operating metrics remain to be source-addressed from the exhibit attached to the July 2026 6-K.",
       "gating": false
+    },
+    {
+      "unknown": "Full Q2 operating detail and scaled customer economics for AI-native radios are not established by the reused evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Full Q2 exhibit metrics were not source-addressed in the inherited Scout pass, limiting current-period falsification strength.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 89,
+  "confidence": 86,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -231,14 +285,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -255,10 +301,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

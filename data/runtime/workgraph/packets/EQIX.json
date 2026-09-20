@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "EQIX",
   "workId": "t0:EQIX",
-  "generatedAt": "2026-09-20T10:16:31.033Z",
+  "generatedAt": "2026-09-20T10:29:33.927Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-19T17:03:20.000Z",
-    "end": "2026-09-19T17:03:20.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T17:03:20.000Z"
+    "end": "2026-09-20T10:27:37.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T10:27:37.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/EQIX-20260919T170320Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/EQIX-20260919T170320Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/EQIX-20260920T102737Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -61,19 +64,33 @@
       "executionCapability",
       "structuralDemand",
       "resourceIntensity",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "bottleneckControl",
+      "supplyChainResilience",
+      "pricingPower",
+      "capitalEfficiency"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "pricingPower"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "executionCapability",
         "structuralDemand",
         "resourceIntensity"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "capitalEfficiency",
+        "supplyChainResilience",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "executionCapability",
         "scenarioRobustness",
@@ -123,7 +140,11 @@
     "executionCapability",
     "structuralDemand",
     "resourceIntensity",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "bottleneckControl",
+    "supplyChainResilience",
+    "pricingPower",
+    "capitalEfficiency"
   ],
   "riskEvidence": {
     "present": true,
@@ -135,6 +156,18 @@
       {
         "risk": "Power infrastructure delays can decouple demand from monetizable capacity.",
         "gating": false
+      },
+      {
+        "risk": "Power or cooling delays can strand demand before it becomes revenue-producing capacity.",
+        "gating": false
+      },
+      {
+        "risk": "Capital intensity and utility dependency can delay returns even when customer demand remains strong.",
+        "gating": false
+      },
+      {
+        "risk": "Alternative deployment architectures or locations can redirect incremental workloads if constrained metros cannot add power economically.",
+        "gating": false
       }
     ]
   },
@@ -145,6 +178,18 @@
     },
     {
       "risk": "Power infrastructure delays can decouple demand from monetizable capacity.",
+      "gating": false
+    },
+    {
+      "risk": "Power or cooling delays can strand demand before it becomes revenue-producing capacity.",
+      "gating": false
+    },
+    {
+      "risk": "Capital intensity and utility dependency can delay returns even when customer demand remains strong.",
+      "gating": false
+    },
+    {
+      "risk": "Alternative deployment architectures or locations can redirect incremental workloads if constrained metros cannot add power economically.",
       "gating": false
     }
   ],
@@ -159,14 +204,22 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "digital-demand->colocation-interconnection-demand",
+      "AI-density->power-and-cooling-intensity",
+      "utility-and-capacity-delivery->monetizable-data-center-capacity"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "digital-demand->colocation-interconnection-demand",
+    "AI-density->power-and-cooling-intensity",
+    "utility-and-capacity-delivery->monetizable-data-center-capacity"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 8,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "sec:eqix:2026-07-29:8k-ex99-1",
@@ -198,26 +251,31 @@
     {
       "unknown": "Current filings do not isolate the share of incremental bookings economically attributable to AI versus broader cloud/network demand.",
       "gating": false
+    },
+    {
+      "unknown": "The evidence does not isolate AI's incremental economics from broader cloud/network demand.",
+      "gating": false
+    },
+    {
+      "unknown": "Current evidence does not quantify incremental return on capital for AI-density capacity separately from the broader portfolio.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 1
+    "nonGatingCount": 3
   },
   "gatingIssues": [],
-  "confidence": 97,
+  "confidence": 94,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -227,14 +285,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -251,10 +301,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

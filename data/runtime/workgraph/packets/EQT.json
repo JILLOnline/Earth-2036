@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "EQT",
   "workId": "t0:EQT",
-  "generatedAt": "2026-09-20T10:16:31.038Z",
+  "generatedAt": "2026-09-20T10:29:33.939Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-19T17:03:20.000Z",
-    "end": "2026-09-19T17:03:20.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T17:03:20.000Z"
+    "end": "2026-09-20T10:27:37.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T10:27:37.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/EQT-20260919T170320Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/EQT-20260919T170320Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/EQT-20260920T102737Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -61,19 +64,31 @@
       "executionCapability",
       "capitalEfficiency",
       "marketAccess",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "bottleneckControl",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "marketAccess",
+        "capitalEfficiency"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "executionCapability",
         "capitalEfficiency",
         "marketAccess"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "capitalEfficiency",
+        "marketAccess",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "executionCapability",
         "scenarioRobustness",
@@ -123,7 +138,9 @@
     "executionCapability",
     "capitalEfficiency",
     "marketAccess",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "bottleneckControl",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -135,6 +152,18 @@
       {
         "risk": "A favorable operating quarter does not remove commodity-cycle and basis risk.",
         "gating": false
+      },
+      {
+        "risk": "Transport constraints and commodity prices can dominate company-level operating improvements.",
+        "gating": false
+      },
+      {
+        "risk": "Commodity and basis volatility can overwhelm favorable field execution.",
+        "gating": false
+      },
+      {
+        "risk": "Future LNG logistics commitments create fixed-duration exposure before utilization economics are established.",
+        "gating": false
       }
     ]
   },
@@ -145,6 +174,18 @@
     },
     {
       "risk": "A favorable operating quarter does not remove commodity-cycle and basis risk.",
+      "gating": false
+    },
+    {
+      "risk": "Transport constraints and commodity prices can dominate company-level operating improvements.",
+      "gating": false
+    },
+    {
+      "risk": "Commodity and basis volatility can overwhelm favorable field execution.",
+      "gating": false
+    },
+    {
+      "risk": "Future LNG logistics commitments create fixed-duration exposure before utilization economics are established.",
       "gating": false
     }
   ],
@@ -159,14 +200,22 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "Appalachian-gas-resource->EQT-production",
+      "pipeline-basis-capacity->realized-gas-economics",
+      "LNG-logistics->broader-market-access"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "Appalachian-gas-resource->EQT-production",
+    "pipeline-basis-capacity->realized-gas-economics",
+    "LNG-logistics->broader-market-access"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 8,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "sec:eqt:2026-07-21:8k-ex99-1",
@@ -198,26 +247,31 @@
     {
       "unknown": "The filings do not establish realized economics of the future LNG vessel capacity once leases commence in 2028.",
       "gating": false
+    },
+    {
+      "unknown": "Realized economics and utilization of LNG vessel capacity beginning in 2028 remain unknown.",
+      "gating": false
+    },
+    {
+      "unknown": "The current evidence does not establish downside economics for LNG commitments under weak utilization or adverse spreads.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 1
+    "nonGatingCount": 3
   },
   "gatingIssues": [],
-  "confidence": 97,
+  "confidence": 95,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -227,14 +281,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -251,10 +297,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

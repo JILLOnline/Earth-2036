@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MDB",
   "workId": "t0:MDB",
-  "generatedAt": "2026-09-20T18:07:45.386Z",
+  "generatedAt": "2026-09-20T18:10:29.697Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-01T00:00:00.000Z",
-    "end": "2026-09-20T17:04:05.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-20T17:04:05.000Z"
+    "end": "2026-09-20T18:08:01.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T18:08:01.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -43,13 +43,14 @@
   },
   "perspectives": [],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/MDB-20260920T170405Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/MDB-20260920T170405Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/MDB-20260920T180801Z-earth-scout.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -124,7 +125,15 @@
       "competition from hyperscalers/databases",
       "AI monetization uncertainty",
       "valuation/expectation sensitivity",
-      "enterprise spending cycles"
+      "enterprise spending cycles",
+      "cloud consumption variability",
+      "hyperscaler competition",
+      "AI monetization uncertainty",
+      "expectation sensitivity",
+      "cloud consumption variability",
+      "hyperscaler competition",
+      "AI monetization uncertainty",
+      "expectation sensitivity"
     ]
   },
   "risks": [
@@ -137,7 +146,15 @@
     "competition from hyperscalers/databases",
     "AI monetization uncertainty",
     "valuation/expectation sensitivity",
-    "enterprise spending cycles"
+    "enterprise spending cycles",
+    "cloud consumption variability",
+    "hyperscaler competition",
+    "AI monetization uncertainty",
+    "expectation sensitivity",
+    "cloud consumption variability",
+    "hyperscaler competition",
+    "AI monetization uncertainty",
+    "expectation sensitivity"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -155,13 +172,15 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 4,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "investors.mongodb.com|q2-fy2027-results|2026-09-01",
-      "investors.mongodb.com|investor-day-notice|2026-09-11"
+      "investors.mongodb.com|investor-day-notice|2026-09-11",
+      "investors.mongodb.com|news-index-through-2026-09-11",
+      "marketwatch.com|mongodb-atlas-expectations-q2fy27"
     ]
   },
   "sources": [
@@ -182,12 +201,36 @@
       "use": "expectations calendar only",
       "sourceId": null,
       "primary": false
+    },
+    {
+      "origin": "MongoDB Investor Relations",
+      "url": "https://investors.mongodb.com/news-events/news-releases",
+      "publishedAt": "2026-09-11",
+      "originFingerprint": "investors.mongodb.com|news-index-through-2026-09-11",
+      "use": "primary current disclosure index",
+      "sourceId": null,
+      "primary": false
+    },
+    {
+      "origin": "MarketWatch",
+      "url": "https://www.marketwatch.com/story/mongodb-shares-tumble-despite-strong-earnings-on-disappointing-news-for-investors-5ee13c7b",
+      "publishedAt": "2026-09-02",
+      "originFingerprint": "marketwatch.com|mongodb-atlas-expectations-q2fy27",
+      "use": "independent expectations context",
+      "sourceId": null,
+      "primary": false
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    "Strong total growth and raised guidance coexist with investor concern that Atlas growth has not accelerated.",
+    "Strong total growth and raised guidance coexist with investor concern that Atlas growth has not accelerated."
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 2,
+    "items": [
+      "Strong total growth and raised guidance coexist with investor concern that Atlas growth has not accelerated.",
+      "Strong total growth and raised guidance coexist with investor concern that Atlas growth has not accelerated."
+    ]
   },
   "unknowns": [
     "durability of 30% growth",
@@ -197,11 +240,17 @@
     "durability of 30% growth",
     "AI workload contribution to Atlas consumption",
     "Investor Day long-term targets until released",
-    "net-new versus expansion contribution"
+    "net-new versus expansion contribution",
+    "durability of growth",
+    "AI contribution to Atlas consumption",
+    "Investor Day long-term targets until released",
+    "durability of growth",
+    "AI contribution to Atlas consumption",
+    "Investor Day long-term targets until released"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 8
+    "nonGatingCount": 14
   },
   "gatingIssues": [],
   "confidence": 92,
@@ -219,7 +268,8 @@
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_causal_mapping",
+      "unresolved_material_contradiction"
     ],
     "routing": [
       {
@@ -269,6 +319,10 @@
       {
         "failure": "missing_causal_mapping",
         "owner": "council-beta"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-20T18:19:36.129Z",
+  "updatedAt": "2026-09-20T19:20:54.059Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -566,6 +566,18 @@
       "type": "market",
       "label": "automated inspection/identification",
       "description": "edge sensing and inference convert visual production data into real-time decisions"
+    },
+    {
+      "id": "company:CHKP",
+      "type": "company",
+      "label": "Check Point Software Technologies Ltd.",
+      "description": "Check Point's AI Network Firewall and AI Defense strategy links enterprise AI adoption to a growing need to secure users, applications and agents; the relevant structural bottleneck is trusted policy/enforcement across an expanding AI attack surface rather than AI compute itself."
+    },
+    {
+      "id": "market:CHKP-ai-enabled-attack-surface",
+      "type": "market",
+      "label": "AI-enabled attack surface",
+      "description": "Check Point's AI Network Firewall and AI Defense strategy links enterprise AI adoption to a growing need to secure users, applications and agents; the relevant structural bottleneck is trusted policy/enforcement across an expanding AI attack surface rather than AI compute itself."
     }
   ],
   "edges": [
@@ -1345,6 +1357,20 @@
         "issuer:CGNX:insight3900:20260505"
       ],
       "observedAt": "2026-09-19T20:22:26Z"
+    },
+    {
+      "id": "edge:CHKP-structural-exposure",
+      "from": "company:CHKP",
+      "to": "market:CHKP-ai-enabled-attack-surface",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 58,
+      "confidence": 82,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:CHKP:2026Q2:20260730"
+      ],
+      "observedAt": "2026-09-19T21:23:16Z"
     }
   ],
   "structuralSignals": [
@@ -2281,6 +2307,24 @@
       ],
       "observedAt": "2026-09-19T20:22:26Z",
       "thesis": "Cognex industrial machine vision sits directly in the factory/warehouse automation loop: sensing and edge inference support inspection, identification and quality/throughput decisions, connecting AI vision technology to manufacturing and distribution efficiency needs.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:CHKP-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:CHKP-ai-enabled-attack-surface",
+      "affectedNodeIds": [
+        "company:CHKP"
+      ],
+      "direction": 1,
+      "magnitude": 58,
+      "confidence": 82,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:CHKP:2026Q2:20260730"
+      ],
+      "observedAt": "2026-09-19T21:23:16Z",
+      "thesis": "Check Point's AI Network Firewall and AI Defense strategy links enterprise AI adoption to a growing need to secure users, applications and agents; the relevant structural bottleneck is trusted policy/enforcement across an expanding AI attack surface rather than AI compute itself.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

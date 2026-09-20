@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-20T21:17:42.448Z",
+  "updatedAt": "2026-09-20T22:16:43.013Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -602,6 +602,18 @@
       "type": "market",
       "label": "CIFR structural demand",
       "description": "Cipher's structural asset is access to large energized sites and interconnection, which can bridge electricity supply to AI/HPC compute demand; the economic bottleneck shifts from bitcoin-mining hardware toward grid access, construction delivery, cooling and tenant-ready infrastructure."
+    },
+    {
+      "id": "company:CLF",
+      "type": "company",
+      "label": "Cleveland-Cliffs Inc.",
+      "description": "Cleveland-Cliffs links domestic iron ore, pellets/DRI, primary steelmaking and downstream finishing to automotive, infrastructure and manufacturing demand; vertical integration reduces some upstream dependency but does not remove steel-cycle or end-market demand sensitivity."
+    },
+    {
+      "id": "market:CLF-clf-structural-demand",
+      "type": "market",
+      "label": "CLF structural demand",
+      "description": "Cleveland-Cliffs links domestic iron ore, pellets/DRI, primary steelmaking and downstream finishing to automotive, infrastructure and manufacturing demand; vertical integration reduces some upstream dependency but does not remove steel-cycle or end-market demand sensitivity."
     }
   ],
   "edges": [
@@ -1424,6 +1436,21 @@
         "sec:CIFR:2026Q2:10Q"
       ],
       "observedAt": "2026-09-19T22:26:15Z"
+    },
+    {
+      "id": "edge:CLF-structural-exposure",
+      "from": "company:CLF",
+      "to": "market:CLF-clf-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 70,
+      "confidence": 92,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:CLF:2025:10K",
+        "sec:CLF:2026Q2:8K-ex991"
+      ],
+      "observedAt": "2026-09-19T22:26:16Z"
     }
   ],
   "structuralSignals": [
@@ -2415,6 +2442,25 @@
       ],
       "observedAt": "2026-09-19T22:26:15Z",
       "thesis": "Cipher's structural asset is access to large energized sites and interconnection, which can bridge electricity supply to AI/HPC compute demand; the economic bottleneck shifts from bitcoin-mining hardware toward grid access, construction delivery, cooling and tenant-ready infrastructure.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:CLF-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:CLF-clf-structural-demand",
+      "affectedNodeIds": [
+        "company:CLF"
+      ],
+      "direction": 1,
+      "magnitude": 70,
+      "confidence": 92,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:CLF:2025:10K",
+        "sec:CLF:2026Q2:8K-ex991"
+      ],
+      "observedAt": "2026-09-19T22:26:16Z",
+      "thesis": "Cleveland-Cliffs links domestic iron ore, pellets/DRI, primary steelmaking and downstream finishing to automotive, infrastructure and manufacturing demand; vertical integration reduces some upstream dependency but does not remove steel-cycle or end-market demand sensitivity.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

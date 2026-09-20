@@ -1,9 +1,9 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-20T07:19:22.542Z",
+  "generatedAt": "2026-09-20T07:25:07.736Z",
   "canonicalWriteAuthority": false,
-  "total": 218,
+  "total": 217,
   "twins": [
     {
       "version": 1,
@@ -21242,7 +21242,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "ENPH",
       "workId": "t0:ENPH",
-      "inputSignature": "8089ca051b427854d4aa0c29",
+      "inputSignature": "efa6422f1a82f395820dd7b3",
       "sourceState": "researching",
       "identity": {
         "ticker": "ENPH",
@@ -21265,29 +21265,30 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 2,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 3,
         "sourceLineage": {
-          "rawSourceCount": 3,
-          "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 1,
+          "rawSourceCount": 7,
+          "uniqueSourceCount": 3,
+          "duplicatesCollapsed": 4,
           "missingLineage": 0,
           "uniqueOrigins": [
             "enphase:2026-07-28:q2-results",
-            "enphase:2026-04-28:q1-results"
+            "enphase:2026-04-28:q1-results",
+            "sec:ENPH:2025-10K"
           ]
         },
         "evidenceWindow": {
           "start": "2026-09-19T15:07:19.000Z",
-          "end": "2026-09-19T15:07:19.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T15:07:19.000Z"
+          "end": "2026-09-20T07:23:56.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T07:23:56.000Z"
         },
         "preflightPassed": false
       },
@@ -21296,35 +21297,50 @@
         "catalystScore",
         "alignment2036",
         "crossDivisionLeverage",
-        "thesisQuality"
+        "thesisQuality",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "governancePower",
+        "pricingPower"
       ],
       "constraintSignals": {
         "risks": [
           "Q2 GAAP gross margin was boosted by $45.4M of prior-period tariff refunds; non-GAAP gross margin of 46.8% is more representative of ongoing economics.",
           "Q2 revenue remained materially below Q2 2025, and U.S. revenue declined about 3% sequentially.",
-          "Safe-harbor revenue, tax-credit mechanics and tariff refunds can obscure normalized demand and margin trends if not separated."
+          "Safe-harbor revenue, tax-credit mechanics and tariff refunds can obscure normalized demand and margin trends if not separated.",
+          "Core residential solar/storage demand is policy-, financing- and regional-demand sensitive; platform relevance does not establish irreplaceable bottleneck control.",
+          "The IQ SST adjacency is pre-commercial in current evidence, so it should not carry causal weight equivalent to demonstrated solar/storage revenue.",
+          "Government incentives, safe-harbor mechanics, tariff refunds and trade policy can materially change reported revenue/margins and customer economics.",
+          "Residential inverter/storage markets have credible substitutes; differentiation can erode through price competition, integrated alternatives or regional demand weakness.",
+          "Treating IQ SST RFI/RFP activity as backlog or contracted demand would inflate confidence; current evidence supports pipeline only."
         ],
         "unknowns": [
           "IQ SST multi-gigawatt opportunities are pipeline, not contracted revenue; timing, economics and win rates remain unknown.",
-          "A full-system IQ SST demonstration is planned later in 2026; commercial proof remains outstanding."
+          "A full-system IQ SST demonstration is planned later in 2026; commercial proof remains outstanding.",
+          "Commercial IQ SST conversion, unit economics and customer concentration are unproven.",
+          "Current normalized gross margin absent tariff refunds/incentive effects and future policy mix remains uncertain.",
+          "No current evidence establishes durable scarcity rent or non-substitutability in the proposed data-center adjacency."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "microinverter+storage-control capability -> distributed solar/storage integration -> household/grid electricity resilience",
+          "power-electronics capability -> IQ SST -> potential data-center power conversion -> AI infrastructure electricity demand",
+          "China-centered LFP cell sourcing -> storage component dependency -> tariff/trade exposure -> margin/supply resilience risk"
+        ]
       },
       "improvementWindows": [
         {
@@ -21335,16 +21351,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -21366,11 +21372,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -21379,14 +21380,28 @@
           "catalystScore",
           "alignment2036",
           "crossDivisionLeverage",
-          "thesisQuality"
+          "thesisQuality",
+          "bottleneckControl",
+          "scenarioRobustness",
+          "substitutionResilience",
+          "supplyChainResilience",
+          "governancePower",
+          "pricingPower"
         ],
         "needOrConstraintCandidates": [
           "IQ SST multi-gigawatt opportunities are pipeline, not contracted revenue; timing, economics and win rates remain unknown.",
           "A full-system IQ SST demonstration is planned later in 2026; commercial proof remains outstanding.",
+          "Commercial IQ SST conversion, unit economics and customer concentration are unproven.",
+          "Current normalized gross margin absent tariff refunds/incentive effects and future policy mix remains uncertain.",
+          "No current evidence establishes durable scarcity rent or non-substitutability in the proposed data-center adjacency.",
           "Q2 GAAP gross margin was boosted by $45.4M of prior-period tariff refunds; non-GAAP gross margin of 46.8% is more representative of ongoing economics.",
           "Q2 revenue remained materially below Q2 2025, and U.S. revenue declined about 3% sequentially.",
-          "Safe-harbor revenue, tax-credit mechanics and tariff refunds can obscure normalized demand and margin trends if not separated."
+          "Safe-harbor revenue, tax-credit mechanics and tariff refunds can obscure normalized demand and margin trends if not separated.",
+          "Core residential solar/storage demand is policy-, financing- and regional-demand sensitive; platform relevance does not establish irreplaceable bottleneck control.",
+          "The IQ SST adjacency is pre-commercial in current evidence, so it should not carry causal weight equivalent to demonstrated solar/storage revenue.",
+          "Government incentives, safe-harbor mechanics, tariff refunds and trade policy can materially change reported revenue/margins and customer economics.",
+          "Residential inverter/storage markets have credible substitutes; differentiation can erode through price competition, integrated alternatives or regional demand weakness.",
+          "Treating IQ SST RFI/RFP activity as backlog or contracted demand would inflate confidence; current evidence supports pipeline only."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -34084,150 +34099,6 @@
           "Normalized earnings power excluding timing and unusually constructive biofuel conditions remains uncertain.",
           "Results remain exposed to agricultural commodity spreads, energy prices, policy incentives and mark-to-market timing.",
           "Policy incentives and favorable energy/corn economics contributed to ethanol performance, limiting confidence in straight-line extrapolation."
-        ],
-        "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
-      },
-      "doctrine": {
-        "recommendationStyle": "facts + interpretation + options; never coercion",
-        "representationIsNotRanking": true,
-        "uncertaintyVisible": true
-      }
-    },
-    {
-      "version": 1,
-      "contract": "earth2036-company-digital-twin-shadow-v1",
-      "canonicalWriteAuthority": false,
-      "ticker": "BG",
-      "workId": "t0:BG",
-      "inputSignature": "ae4973fd2233edb8f95fd726",
-      "sourceState": "chief_ready",
-      "identity": {
-        "ticker": "BG",
-        "company": "Bunge Global",
-        "cik": "0001996862",
-        "exchange": "NYSE",
-        "exchangeName": "Bunge Limited Common Shares",
-        "identityStatus": "validated",
-        "tradabilityStatus": "validated",
-        "validatedAt": "2026-09-20T05:52:43.398Z"
-      },
-      "representationQuality": {
-        "requiredPerspectives": [
-          "source-integrity",
-          "company-underwriting",
-          "structural-causal",
-          "discovery-weak-signals",
-          "adversarial-red-team",
-          "expectations-execution"
-        ],
-        "presentPerspectives": [
-          "discovery-weak-signals",
-          "expectations-execution",
-          "structural-causal",
-          "adversarial-red-team",
-          "source-integrity",
-          "company-underwriting"
-        ],
-        "missingPerspectives": [],
-        "primarySourceCount": 1,
-        "sourceLineage": {
-          "rawSourceCount": 8,
-          "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 6,
-          "missingLineage": 0,
-          "uniqueOrigins": [
-            "issuer:BG:Q2results:20260729",
-            "market:companiesmarketcap:BG:20260920"
-          ]
-        },
-        "evidenceWindow": {
-          "start": "2026-07-29T00:00:00.000Z",
-          "end": "2026-09-20T07:17:35.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-20T07:17:35.000Z"
-        },
-        "preflightPassed": true
-      },
-      "capabilitySignals": [
-        "thesisQuality",
-        "alignment2036",
-        "crossDivisionLeverage",
-        "bottleneckControl",
-        "supplyChainResilience",
-        "financialOperatingMomentum",
-        "catalystScore",
-        "scenarioRobustness",
-        "pricingPower",
-        "substitutionResilience",
-        "governancePower",
-        "marketValuationOpportunity",
-        "dataConfidence"
-      ],
-      "constraintSignals": {
-        "risks": [
-          "Commodity processing economics remain exposed to crush margins, crop conditions, policy and trade-flow volatility.",
-          "Raised guidance still depends on forward commodity curves and margin conditions; Corporate and Other costs were higher year over year.",
-          "Processing and merchandising capacity is substitutable across global agribusiness peers; network breadth does not guarantee durable scarcity rents.",
-          "Climate, crop, trade-policy and crush-margin changes can move the economic bottleneck away from Bunge-controlled assets.",
-          "Commodity-margin cyclicality can make short-period earnings improvement a weak proxy for durable economics.",
-          "Integration costs, leverage trajectory and synergy capture can dilute the strategic value of greater scale.",
-          "Issuer operating claims remain primarily supported by one issuer-origin family; independence is stronger for current market value than for operating assertions.",
-          "Commodity-margin cyclicality, crop availability, policy and trade-flow changes can overwhelm company-specific execution.",
-          "Post-Viterra integration, leverage normalization and durable return on incremental capital remain unproven across cycles."
-        ],
-        "unknowns": [
-          "Durable synergy capture and normalized post-integration returns on the expanded asset base remain to be demonstrated over multiple cycles.",
-          "Full-year integration costs, leverage trajectory and realized synergies require continued monitoring.",
-          "Normalized post-Viterra return on the expanded asset base and durable synergy realization remain unproven across cycles.",
-          "Multi-cycle synergy realization, leverage normalization and return on incremental invested capital require continued evidence.",
-          "No independent source in this Alpha run separately corroborated management's synergy and guidance assertions.",
-          "Normalized post-integration ROIC and multi-cycle synergy capture remain undisclosed/unproven in the evidence window."
-        ],
-        "contradictions": [],
-        "gatingIssues": [],
-        "preflightFailures": []
-      },
-      "causalContext": {
-        "mapped": true,
-        "edges": [
-          "global-crop-production->origination-network",
-          "origination+storage+processing->trade-flow-routing",
-          "trade-flow-routing->food+feed+fuel-supply",
-          "network-density+integration-quality->resilience+returns"
-        ]
-      },
-      "improvementWindows": [],
-      "bridgeInputs": {
-        "capabilityCandidates": [
-          "thesisQuality",
-          "alignment2036",
-          "crossDivisionLeverage",
-          "bottleneckControl",
-          "supplyChainResilience",
-          "financialOperatingMomentum",
-          "catalystScore",
-          "scenarioRobustness",
-          "pricingPower",
-          "substitutionResilience",
-          "governancePower",
-          "marketValuationOpportunity",
-          "dataConfidence"
-        ],
-        "needOrConstraintCandidates": [
-          "Durable synergy capture and normalized post-integration returns on the expanded asset base remain to be demonstrated over multiple cycles.",
-          "Full-year integration costs, leverage trajectory and realized synergies require continued monitoring.",
-          "Normalized post-Viterra return on the expanded asset base and durable synergy realization remain unproven across cycles.",
-          "Multi-cycle synergy realization, leverage normalization and return on incremental invested capital require continued evidence.",
-          "No independent source in this Alpha run separately corroborated management's synergy and guidance assertions.",
-          "Normalized post-integration ROIC and multi-cycle synergy capture remain undisclosed/unproven in the evidence window.",
-          "Commodity processing economics remain exposed to crush margins, crop conditions, policy and trade-flow volatility.",
-          "Raised guidance still depends on forward commodity curves and margin conditions; Corporate and Other costs were higher year over year.",
-          "Processing and merchandising capacity is substitutable across global agribusiness peers; network breadth does not guarantee durable scarcity rents.",
-          "Climate, crop, trade-policy and crush-margin changes can move the economic bottleneck away from Bunge-controlled assets.",
-          "Commodity-margin cyclicality can make short-period earnings improvement a weak proxy for durable economics.",
-          "Integration costs, leverage trajectory and synergy capture can dilute the strategic value of greater scale.",
-          "Issuer operating claims remain primarily supported by one issuer-origin family; independence is stronger for current market value than for operating assertions.",
-          "Commodity-margin cyclicality, crop availability, policy and trade-flow changes can overwhelm company-specific execution.",
-          "Post-Viterra integration, leverage normalization and durable return on incremental capital remain unproven across cycles."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

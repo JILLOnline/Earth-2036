@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ENPH",
   "workId": "t0:ENPH",
-  "generatedAt": "2026-09-20T07:19:22.536Z",
+  "generatedAt": "2026-09-20T07:25:07.731Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-19T15:07:19.000Z",
-    "end": "2026-09-19T15:07:19.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T15:07:19.000Z"
+    "end": "2026-09-20T07:23:56.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T07:23:56.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/ENPH-20260919T150719Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ENPH-20260919T150719Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ENPH-20260920T072356Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -61,19 +64,41 @@
       "catalystScore",
       "alignment2036",
       "crossDivisionLeverage",
-      "thesisQuality"
+      "thesisQuality",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "governancePower",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "catalystScore",
         "alignment2036",
         "crossDivisionLeverage"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "thesisQuality",
+        "governancePower",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "thesisQuality",
@@ -123,7 +148,13 @@
     "catalystScore",
     "alignment2036",
     "crossDivisionLeverage",
-    "thesisQuality"
+    "thesisQuality",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "governancePower",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -138,6 +169,26 @@
       },
       {
         "risk": "Safe-harbor revenue, tax-credit mechanics and tariff refunds can obscure normalized demand and margin trends if not separated.",
+        "gating": false
+      },
+      {
+        "risk": "Core residential solar/storage demand is policy-, financing- and regional-demand sensitive; platform relevance does not establish irreplaceable bottleneck control.",
+        "gating": false
+      },
+      {
+        "risk": "The IQ SST adjacency is pre-commercial in current evidence, so it should not carry causal weight equivalent to demonstrated solar/storage revenue.",
+        "gating": false
+      },
+      {
+        "risk": "Government incentives, safe-harbor mechanics, tariff refunds and trade policy can materially change reported revenue/margins and customer economics.",
+        "gating": false
+      },
+      {
+        "risk": "Residential inverter/storage markets have credible substitutes; differentiation can erode through price competition, integrated alternatives or regional demand weakness.",
+        "gating": false
+      },
+      {
+        "risk": "Treating IQ SST RFI/RFP activity as backlog or contracted demand would inflate confidence; current evidence supports pipeline only.",
         "gating": false
       }
     ]
@@ -154,6 +205,26 @@
     {
       "risk": "Safe-harbor revenue, tax-credit mechanics and tariff refunds can obscure normalized demand and margin trends if not separated.",
       "gating": false
+    },
+    {
+      "risk": "Core residential solar/storage demand is policy-, financing- and regional-demand sensitive; platform relevance does not establish irreplaceable bottleneck control.",
+      "gating": false
+    },
+    {
+      "risk": "The IQ SST adjacency is pre-commercial in current evidence, so it should not carry causal weight equivalent to demonstrated solar/storage revenue.",
+      "gating": false
+    },
+    {
+      "risk": "Government incentives, safe-harbor mechanics, tariff refunds and trade policy can materially change reported revenue/margins and customer economics.",
+      "gating": false
+    },
+    {
+      "risk": "Residential inverter/storage markets have credible substitutes; differentiation can erode through price competition, integrated alternatives or regional demand weakness.",
+      "gating": false
+    },
+    {
+      "risk": "Treating IQ SST RFI/RFP activity as backlog or contracted demand would inflate confidence; current evidence supports pipeline only.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -164,21 +235,30 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "microinverter+storage-control capability -> distributed solar/storage integration -> household/grid electricity resilience",
+      "power-electronics capability -> IQ SST -> potential data-center power conversion -> AI infrastructure electricity demand",
+      "China-centered LFP cell sourcing -> storage component dependency -> tariff/trade exposure -> margin/supply resilience risk"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "microinverter+storage-control capability -> distributed solar/storage integration -> household/grid electricity resilience",
+    "power-electronics capability -> IQ SST -> potential data-center power conversion -> AI infrastructure electricity demand",
+    "China-centered LFP cell sourcing -> storage component dependency -> tariff/trade exposure -> margin/supply resilience risk"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "enphase:2026-07-28:q2-results",
-      "enphase:2026-04-28:q1-results"
+      "enphase:2026-04-28:q1-results",
+      "sec:ENPH:2025-10K"
     ]
   },
   "sources": [
@@ -195,6 +275,13 @@
       "kind": "primary",
       "primary": true,
       "originFingerprint": "enphase:2026-04-28:q1-results"
+    },
+    {
+      "sourceId": "sec:ENPH:2025-10K",
+      "url": "https://www.sec.gov/Archives/edgar/data/1463101/000146310126000030/annualreport2025.pdf",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "sec:ENPH:2025-10K"
     }
   ],
   "contradictions": [],
@@ -210,26 +297,35 @@
     {
       "unknown": "A full-system IQ SST demonstration is planned later in 2026; commercial proof remains outstanding.",
       "gating": false
+    },
+    {
+      "unknown": "Commercial IQ SST conversion, unit economics and customer concentration are unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Current normalized gross margin absent tariff refunds/incentive effects and future policy mix remains uncertain.",
+      "gating": false
+    },
+    {
+      "unknown": "No current evidence establishes durable scarcity rent or non-substitutability in the proposed data-center adjacency.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
-  "confidence": 96,
+  "confidence": 88,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -239,14 +335,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -263,10 +351,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

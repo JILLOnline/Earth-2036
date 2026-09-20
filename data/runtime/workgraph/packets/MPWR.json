@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MPWR",
   "workId": "t0:MPWR",
-  "generatedAt": "2026-09-20T23:13:54.773Z",
+  "generatedAt": "2026-09-20T23:29:08.033Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-20T21:17:00.740Z"
   },
   "evidenceWindow": {
-    "start": "2026-07-30T00:00:00.000Z",
-    "end": "2026-09-18T06:05:22.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-18T06:05:22.000Z"
+    "start": "2025-03-03T00:00:00.000Z",
+    "end": "2026-09-20T23:27:37.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T23:27:37.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,68 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/MPWR-20260918T0500Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/MPWR-20260918T0500Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/MPWR-20260920T232737Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "AI power bottleneck exposure",
-      "Execution momentum"
+      "Execution momentum",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "thesisQuality",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "Power conversion is required infrastructure for higher-density compute, and current enterprise-data growth shows material exposure; evidence does not establish exclusive control."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "AI/server, communications, storage/computing, automotive and industrial exposures diversify demand, while Enterprise Data reached 38.8% of Q2 revenue and is increasingly important."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Power management remains necessary across architectures, but socket displacement, customer redesign, integration and competing suppliers can shift content and economics."
+        },
+        {
+          "name": "supplyChainResilience",
+          "direction": "mixed",
+          "basis": "Management describes a diversified global supply chain, but semiconductor supplier capacity/yield dependence remains a structural constraint."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "AI power bottleneck exposure",
@@ -71,7 +101,23 @@
           "basis": "Enterprise Data growth shows power-management content scaling with AI/server infrastructure."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "thesisQuality",
+          "direction": "mixed",
+          "basis": "Exceptional current growth supports the thesis, while concentration, architecture substitution and a high execution bar remain material falsifiers."
+        },
+        {
+          "name": "governancePower",
+          "direction": "unknown",
+          "basis": "Reviewed Beta evidence does not establish a complete current governance assessment."
+        },
+        {
+          "name": "supplyChainResilience",
+          "direction": "mixed",
+          "basis": "Diversification efforts are positive, but supplier capacity/yield dependence and committed wafer exposure remain real semiconductor-chain risks."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "Execution momentum",
@@ -120,7 +166,13 @@
   },
   "factors": [
     "AI power bottleneck exposure",
-    "Execution momentum"
+    "Execution momentum",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "thesisQuality",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -132,6 +184,30 @@
       {
         "risk": "Rapid sequential growth and aggressive capacity expansion raise the execution bar.",
         "gating": false
+      },
+      {
+        "risk": "AI infrastructure demand can remain strong while MPS captures less value if power architectures integrate functions differently, competitors win sockets, or customer ramps change.",
+        "gating": false
+      },
+      {
+        "risk": "Supplier capacity and yield constraints can become a successor bottleneck as MPS expands capacity goals beyond $6B.",
+        "gating": false
+      },
+      {
+        "risk": "Enterprise Data represented 38.8% of Q2 2026 revenue, increasing sensitivity to AI/server ordering patterns and major platform cycles.",
+        "gating": false
+      },
+      {
+        "risk": "Stock-based compensation and a higher diluted share count create shareholder dilution pressure even while earnings are growing rapidly.",
+        "gating": false
+      },
+      {
+        "risk": "Supplier capacity, wafer commitments, yield issues and customer cancellations can create inventory, margin or fulfillment stress during a demand transition.",
+        "gating": false
+      },
+      {
+        "risk": "AI TAM growth is not equivalent to durable MPS socket share, pricing power or content per system.",
+        "gating": false
       }
     ]
   },
@@ -142,6 +218,30 @@
     },
     {
       "risk": "Rapid sequential growth and aggressive capacity expansion raise the execution bar.",
+      "gating": false
+    },
+    {
+      "risk": "AI infrastructure demand can remain strong while MPS captures less value if power architectures integrate functions differently, competitors win sockets, or customer ramps change.",
+      "gating": false
+    },
+    {
+      "risk": "Supplier capacity and yield constraints can become a successor bottleneck as MPS expands capacity goals beyond $6B.",
+      "gating": false
+    },
+    {
+      "risk": "Enterprise Data represented 38.8% of Q2 2026 revenue, increasing sensitivity to AI/server ordering patterns and major platform cycles.",
+      "gating": false
+    },
+    {
+      "risk": "Stock-based compensation and a higher diluted share count create shareholder dilution pressure even while earnings are growing rapidly.",
+      "gating": false
+    },
+    {
+      "risk": "Supplier capacity, wafer commitments, yield issues and customer cancellations can create inventory, margin or fulfillment stress during a demand transition.",
+      "gating": false
+    },
+    {
+      "risk": "AI TAM growth is not equivalent to durable MPS socket share, pricing power or content per system.",
       "gating": false
     }
   ],
@@ -169,6 +269,36 @@
         "to": "revenue growth",
         "mechanism": "design wins convert into higher enterprise-data shipments",
         "falsifier": "customer ramps slip or socket share falls"
+      },
+      {
+        "from": "AI compute density",
+        "to": "power-conversion complexity and demand",
+        "mechanism": "higher rack power requires more sophisticated conversion, regulation and delivery",
+        "falsifier": "new architectures materially reduce addressable MPS content per deployed compute unit"
+      },
+      {
+        "from": "power-management design wins",
+        "to": "MPS Enterprise Data revenue",
+        "mechanism": "socket wins convert deployed AI/server platforms into semiconductor shipments",
+        "falsifier": "enterprise-data deployments rise while MPS revenue/content materially decouples"
+      },
+      {
+        "from": "architecture transition toward 800V data centers",
+        "to": "new MPS addressable power stages",
+        "mechanism": "high-voltage AC-to-DC sampling can extend MPS upstream in the power chain",
+        "falsifier": "sampling fails to convert to production or alternate architectures/suppliers capture the layer"
+      },
+      {
+        "from": "AI/server demand concentration",
+        "to": "revenue volatility",
+        "mechanism": "a larger revenue share tied to enterprise-data ramps increases sensitivity to platform timing and capex cycles",
+        "falsifier": "non-enterprise growth and customer diversification offset a material AI/server slowdown"
+      },
+      {
+        "from": "capacity commitments plus order changes",
+        "to": "utilization/inventory risk",
+        "mechanism": "supplier commitments can outlast rescheduled or cancelled customer demand",
+        "falsifier": "flexible sourcing and sustained broad demand keep utilization, inventory and margins resilient"
       }
     ]
   },
@@ -184,15 +314,47 @@
       "to": "revenue growth",
       "mechanism": "design wins convert into higher enterprise-data shipments",
       "falsifier": "customer ramps slip or socket share falls"
+    },
+    {
+      "from": "AI compute density",
+      "to": "power-conversion complexity and demand",
+      "mechanism": "higher rack power requires more sophisticated conversion, regulation and delivery",
+      "falsifier": "new architectures materially reduce addressable MPS content per deployed compute unit"
+    },
+    {
+      "from": "power-management design wins",
+      "to": "MPS Enterprise Data revenue",
+      "mechanism": "socket wins convert deployed AI/server platforms into semiconductor shipments",
+      "falsifier": "enterprise-data deployments rise while MPS revenue/content materially decouples"
+    },
+    {
+      "from": "architecture transition toward 800V data centers",
+      "to": "new MPS addressable power stages",
+      "mechanism": "high-voltage AC-to-DC sampling can extend MPS upstream in the power chain",
+      "falsifier": "sampling fails to convert to production or alternate architectures/suppliers capture the layer"
+    },
+    {
+      "from": "AI/server demand concentration",
+      "to": "revenue volatility",
+      "mechanism": "a larger revenue share tied to enterprise-data ramps increases sensitivity to platform timing and capex cycles",
+      "falsifier": "non-enterprise growth and customer diversification offset a material AI/server slowdown"
+    },
+    {
+      "from": "capacity commitments plus order changes",
+      "to": "utilization/inventory risk",
+      "mechanism": "supplier commitments can outlast rescheduled or cancelled customer demand",
+      "falsifier": "flexible sourcing and sustained broad demand keep utilization, inventory and margins resilient"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "mps-release:2026-07-30:q2-2026"
+      "mps-release:2026-07-30:q2-2026",
+      "sec-mpwr:2026q2:10q-mirror",
+      "sec-mpwr:2024fy:10k-mirror"
     ]
   },
   "sources": [
@@ -202,6 +364,22 @@
       "primary": false,
       "publishedAt": "2026-07-30",
       "originFingerprint": "mps-release:2026-07-30:q2-2026",
+      "sourceId": null
+    },
+    {
+      "url": "https://companiesmarketcap.com/monolithic-power-systems/sec-reports-10q/0001628280-26-053275/",
+      "kind": "sec-filing-mirror",
+      "primary": false,
+      "publishedAt": "2026-07-30",
+      "originFingerprint": "sec-mpwr:2026q2:10q-mirror",
+      "sourceId": null
+    },
+    {
+      "url": "https://fintel.io/doc/sec-monolithic-power-systems-inc-1280452-10k-2025-march-03-20150-2349",
+      "kind": "sec-filing-mirror",
+      "primary": false,
+      "publishedAt": "2025-03-03",
+      "originFingerprint": "sec-mpwr:2024fy:10k-mirror",
       "sourceId": null
     }
   ],
@@ -218,21 +396,35 @@
     {
       "unknown": "No live valuation conclusion is asserted.",
       "gating": false
+    },
+    {
+      "unknown": "Customer-specific AI/server concentration and socket share are not quantified in the reviewed evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Primary-hosted filing/release lineage is still an Alpha/source-integrity gap; Beta conclusions use current company-origin syndication and an SEC-filing mirror without claiming primary-source closure.",
+      "gating": false
+    },
+    {
+      "unknown": "Exact top-customer concentration, current wafer-supplier concentration and contractual take-or-pay exposure are not established by reviewed Beta evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "No complete source-addressed current governance assessment is asserted.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": 88,
+  "confidence": 86,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
@@ -247,14 +439,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_primary_source",

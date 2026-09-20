@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "HON",
   "workId": "t0:HON",
-  "generatedAt": "2026-09-20T19:20:50.695Z",
+  "generatedAt": "2026-09-20T19:26:44.801Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-20T18:06:58.870Z"
   },
   "evidenceWindow": {
-    "start": "2026-06-09T00:00:00.000Z",
-    "end": "2026-09-19T21:02:25.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T21:02:25.000Z"
+    "start": "2026-03-19T00:00:00.000Z",
+    "end": "2026-09-20T19:25:31.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T19:25:31.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/HON-20260919T210225Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/HON-20260919T210225Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/HON-20260920T192531Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -139,14 +142,28 @@
       "Historical HON comparisons require recasting because the aerospace separation materially changed the entity represented by the ticker.",
       "Autonomous industrial-control adoption carries safety, cybersecurity, validation and customer-change-management risk.",
       "Targets are forward-looking management expectations and require independent quarterly verification.",
-      "Separation can expose stranded-cost, dis-synergy and recast-history interpretation risk."
+      "Separation can expose stranded-cost, dis-synergy and recast-history interpretation risk.",
+      "post-spin/reverse-split comparability",
+      "portfolio separation and divestiture dis-synergy",
+      "autonomy pilot-to-scale execution",
+      "cybersecurity and safety validation",
+      "competitive substitution",
+      "customer change-management friction",
+      "confidence inflation from issuer-led pilot evidence"
     ]
   },
   "risks": [
     "Historical HON comparisons require recasting because the aerospace separation materially changed the entity represented by the ticker.",
     "Autonomous industrial-control adoption carries safety, cybersecurity, validation and customer-change-management risk.",
     "Targets are forward-looking management expectations and require independent quarterly verification.",
-    "Separation can expose stranded-cost, dis-synergy and recast-history interpretation risk."
+    "Separation can expose stranded-cost, dis-synergy and recast-history interpretation risk.",
+    "post-spin/reverse-split comparability",
+    "portfolio separation and divestiture dis-synergy",
+    "autonomy pilot-to-scale execution",
+    "cybersecurity and safety validation",
+    "competitive substitution",
+    "customer change-management friction",
+    "confidence inflation from issuer-led pilot evidence"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -156,22 +173,76 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 3
+    "count": 5
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "installed Experion/automation base",
+        "to": "site-specific operating data and integration context",
+        "mechanism": "existing control-system deployment supplies operational context and lowers integration friction"
+      },
+      {
+        "from": "site-specific data + process expertise",
+        "to": "AI-assisted/autonomous control",
+        "mechanism": "models can detect abnormal conditions and recommend or automate responses"
+      },
+      {
+        "from": "AI-assisted/autonomous control",
+        "to": "uptime/safety/productivity",
+        "mechanism": "earlier anomaly detection and response can reduce process mistakes and downtime"
+      },
+      {
+        "from": "industrial workforce aging/skills gap",
+        "to": "demand for encoded operating knowledge",
+        "mechanism": "automation can extend experienced-operator knowledge across a thinner workforce"
+      },
+      {
+        "from": "greater autonomy",
+        "to": "cybersecurity/validation/change-management bottleneck",
+        "mechanism": "more automated decision authority increases the cost of erroneous, compromised or poorly adopted control actions"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "installed Experion/automation base",
+      "to": "site-specific operating data and integration context",
+      "mechanism": "existing control-system deployment supplies operational context and lowers integration friction"
+    },
+    {
+      "from": "site-specific data + process expertise",
+      "to": "AI-assisted/autonomous control",
+      "mechanism": "models can detect abnormal conditions and recommend or automate responses"
+    },
+    {
+      "from": "AI-assisted/autonomous control",
+      "to": "uptime/safety/productivity",
+      "mechanism": "earlier anomaly detection and response can reduce process mistakes and downtime"
+    },
+    {
+      "from": "industrial workforce aging/skills gap",
+      "to": "demand for encoded operating knowledge",
+      "mechanism": "automation can extend experienced-operator knowledge across a thinner workforce"
+    },
+    {
+      "from": "greater autonomy",
+      "to": "cybersecurity/validation/change-management bottleneck",
+      "mechanism": "more automated decision authority increases the cost of erroneous, compromised or poorly adopted control actions"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 6,
-    "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 3,
+    "rawSourceCount": 14,
+    "uniqueSourceCount": 5,
+    "duplicatesCollapsed": 9,
     "missingLineage": 0,
     "uniqueOrigins": [
       "honeywell.com|2026-06-29|hon-pureplay-spin-complete",
       "honeywell.com|2026-06-09|experion-cognition-autonomy",
-      "investor.honeywell.com|2026-09-19|postspin-targets"
+      "investor.honeywell.com|2026-09-19|postspin-targets",
+      "honeywell.com|2026-03-19|experion-operations-assistant",
+      "honeywell.com|2026-07-27|wws-divestiture"
     ]
   },
   "sources": [
@@ -201,6 +272,24 @@
       "originFingerprint": "investor.honeywell.com|2026-09-19|postspin-targets",
       "sourceId": null,
       "primary": true
+    },
+    {
+      "sourceId": "issuer:HON:operations-assistant:20260319",
+      "origin": "honeywell.com",
+      "url": "https://www.honeywell.com/us/en/news/press-releases/2026/03/honeywell-unveils-commercial-launch-of-ai-powered-control-room-assistant-following-successful-pilot",
+      "publishedAt": "2026-03-19",
+      "sourceType": "issuer-primary",
+      "originFingerprint": "honeywell.com|2026-03-19|experion-operations-assistant",
+      "primary": true
+    },
+    {
+      "sourceId": "issuer:HON:wws-sale:20260727",
+      "origin": "honeywell.com",
+      "url": "https://www.honeywell.com/us/en/news/press-releases/2026/07/honeywell-technologies-completes-sale-of-warehouse-and-workflow-solutions-business-to-american-industrial-partners",
+      "publishedAt": "2026-07-27",
+      "sourceType": "issuer-primary",
+      "originFingerprint": "honeywell.com|2026-07-27|wws-divestiture",
+      "primary": true
     }
   ],
   "contradictions": [],
@@ -212,26 +301,28 @@
     "Current post-spin segment results and adoption/revenue contribution from Experion Cognition are not established by these releases.",
     "The packet identity should be checked to ensure no pre-spin Honeywell International assumptions contaminate post-spin HON underwriting.",
     "No numeric Earth score is inferred.",
-    "Current valuation and whether post-spin results track the stated targets remain Alpha-owned."
+    "Current valuation and whether post-spin results track the stated targets remain Alpha-owned.",
+    "Current post-spin revenue contribution and adoption scale for Experion Cognition are not established by the cited evidence.",
+    "No evidence here establishes exclusive bottleneck control or superior economics versus all competing industrial automation stacks.",
+    "Current post-spin leverage, stranded-cost realization and segment economics require Alpha-owned current financial evidence.",
+    "Independent large-scale outcome data for Experion Cognition is not established here.",
+    "Customer concentration and autonomy-specific backlog quality are not established by the retrieved sources."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 9
   },
   "gatingIssues": [],
-  "confidence": 86,
+  "confidence": 84,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -241,14 +332,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -265,10 +348,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

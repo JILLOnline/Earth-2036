@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-20T17:15:19.174Z",
+  "updatedAt": "2026-09-20T18:19:36.129Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -554,6 +554,18 @@
       "type": "market",
       "label": "CENX structural demand",
       "description": "Century Aluminum occupies a primary-material bottleneck linking electricity and alumina inputs to domestic aluminum supply used across transport, construction, grid and defense infrastructure; Mt. Holly expansion increases existing U.S. output while the planned Oklahoma smelter would materially expand domestic capacity if financed, built and powered as planned."
+    },
+    {
+      "id": "company:CGNX",
+      "type": "company",
+      "label": "Cognex Corporation",
+      "description": "Cognex industrial machine vision sits directly in the factory/warehouse automation loop: sensing and edge inference support inspection, identification and quality/throughput decisions, connecting AI vision technology to manufacturing and distribution efficiency needs."
+    },
+    {
+      "id": "market:CGNX-automated-inspection-identification",
+      "type": "market",
+      "label": "automated inspection/identification",
+      "description": "edge sensing and inference convert visual production data into real-time decisions"
     }
   ],
   "edges": [
@@ -1317,6 +1329,22 @@
         "issuer:CENX:2026Q2"
       ],
       "observedAt": "2026-09-19T19:26:41Z"
+    },
+    {
+      "id": "edge:CGNX-structural-exposure",
+      "from": "company:CGNX",
+      "to": "market:CGNX-automated-inspection-identification",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 58,
+      "confidence": 85,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:CGNX:10k:2025",
+        "sec:CGNX:10q:q1-2026",
+        "issuer:CGNX:insight3900:20260505"
+      ],
+      "observedAt": "2026-09-19T20:22:26Z"
     }
   ],
   "structuralSignals": [
@@ -2233,6 +2261,26 @@
       ],
       "observedAt": "2026-09-19T19:26:41Z",
       "thesis": "Century Aluminum occupies a primary-material bottleneck linking electricity and alumina inputs to domestic aluminum supply used across transport, construction, grid and defense infrastructure; Mt. Holly expansion increases existing U.S. output while the planned Oklahoma smelter would materially expand domestic capacity if financed, built and powered as planned.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:CGNX-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:CGNX-automated-inspection-identification",
+      "affectedNodeIds": [
+        "company:CGNX"
+      ],
+      "direction": 1,
+      "magnitude": 58,
+      "confidence": 85,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:CGNX:10k:2025",
+        "sec:CGNX:10q:q1-2026",
+        "issuer:CGNX:insight3900:20260505"
+      ],
+      "observedAt": "2026-09-19T20:22:26Z",
+      "thesis": "Cognex industrial machine vision sits directly in the factory/warehouse automation loop: sensing and edge inference support inspection, identification and quality/throughput decisions, connecting AI vision technology to manufacturing and distribution efficiency needs.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

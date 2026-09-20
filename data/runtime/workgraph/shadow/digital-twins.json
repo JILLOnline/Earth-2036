@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-20T05:16:19.600Z",
+  "generatedAt": "2026-09-20T05:25:04.212Z",
   "canonicalWriteAuthority": false,
   "total": 222,
   "twins": [
@@ -14064,7 +14064,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "EME",
       "workId": "t0:EME",
-      "inputSignature": "7ec7dab399a71ddfb0ff686c",
+      "inputSignature": "5ac700b4be19bb217893b45c",
       "sourceState": "researching",
       "identity": {
         "ticker": "EME",
@@ -14087,28 +14087,30 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 1,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 3,
         "sourceLineage": {
-          "rawSourceCount": 2,
-          "uniqueSourceCount": 1,
-          "duplicatesCollapsed": 1,
+          "rawSourceCount": 6,
+          "uniqueSourceCount": 3,
+          "duplicatesCollapsed": 3,
           "missingLineage": 0,
           "uniqueOrigins": [
-            "emcor:2026-07-30:q2-results"
+            "emcor:2026-07-30:q2-results",
+            "sec:EME:2026Q2:ex991",
+            "sec:EME:2025:10K"
           ]
         },
         "evidenceWindow": {
-          "start": "2026-09-19T16:07:49.000Z",
-          "end": "2026-09-19T16:07:49.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T16:07:49.000Z"
+          "start": "2026-02-26T00:00:00.000Z",
+          "end": "2026-09-20T05:23:03.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T05:23:03.000Z"
         },
         "preflightPassed": false
       },
@@ -14116,34 +14118,45 @@
         "financialOperatingMomentum",
         "executionCapability",
         "scenarioRobustness",
-        "thesisQuality"
+        "thesisQuality",
+        "bottleneckControl",
+        "supplyChainResilience",
+        "substitutionResilience",
+        "pricingPower",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
           "Large remaining performance obligations support visibility but do not guarantee timing, margin realization or absence of project execution/cost pressure.",
-          "Raised guidance increases the future execution bar and makes project mix, labor availability and cost control important falsifiers."
+          "Raised guidance increases the future execution bar and makes project mix, labor availability and cost control important falsifiers.",
+          "Skilled-labor scarcity, materials constraints and project complexity can shift a demand bottleneck into an execution bottleneck.",
+          "RPO can overstate economic certainty if project timing, scope or margins change before conversion.",
+          "Raised guidance increases the execution bar; sustained margin expansion must be verified against labor and project-mix pressure."
         ],
         "unknowns": [
           "This source alone does not disaggregate how much backlog growth is organic versus acquisition-related or quantify hyperscale/data-center concentration.",
-          "No independent customer-level corroboration was acquired in this pass."
+          "No independent customer-level corroboration was acquired in this pass.",
+          "Customer-level concentration and exact data-center share are not disclosed in the cited Q2 release.",
+          "No material present accounting or governance contradiction was established in this pass; customer concentration remains a non-gating unknown."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "infrastructure/data/water/health demand -> complex MEP projects -> skilled trades/project management -> commissioned capacity -> human/economic services",
+          "skilled-labor/material constraints -> execution capacity -> schedule/margin -> realized project value",
+          "diverse sector RPO -> workload visibility -> execution demand"
+        ]
       },
       "improvementWindows": [
         {
@@ -14154,16 +14167,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -14185,11 +14188,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -14197,13 +14195,23 @@
           "financialOperatingMomentum",
           "executionCapability",
           "scenarioRobustness",
-          "thesisQuality"
+          "thesisQuality",
+          "bottleneckControl",
+          "supplyChainResilience",
+          "substitutionResilience",
+          "pricingPower",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "This source alone does not disaggregate how much backlog growth is organic versus acquisition-related or quantify hyperscale/data-center concentration.",
           "No independent customer-level corroboration was acquired in this pass.",
+          "Customer-level concentration and exact data-center share are not disclosed in the cited Q2 release.",
+          "No material present accounting or governance contradiction was established in this pass; customer concentration remains a non-gating unknown.",
           "Large remaining performance obligations support visibility but do not guarantee timing, margin realization or absence of project execution/cost pressure.",
-          "Raised guidance increases the future execution bar and makes project mix, labor availability and cost control important falsifiers."
+          "Raised guidance increases the future execution bar and makes project mix, labor availability and cost control important falsifiers.",
+          "Skilled-labor scarcity, materials constraints and project complexity can shift a demand bottleneck into an execution bottleneck.",
+          "RPO can overstate economic certainty if project timing, scope or margins change before conversion.",
+          "Raised guidance increases the execution bar; sustained margin expansion must be verified against labor and project-mix pressure."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -15048,7 +15056,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "DUK",
       "workId": "t0:DUK",
-      "inputSignature": "1fd23d349f33fa4c16456fe9",
+      "inputSignature": "67404b2f4c3607c62d86c940",
       "sourceState": "researching",
       "identity": {
         "ticker": "DUK",
@@ -15071,29 +15079,32 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 2,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 5,
         "sourceLineage": {
-          "rawSourceCount": 3,
-          "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 1,
+          "rawSourceCount": 7,
+          "uniqueSourceCount": 5,
+          "duplicatesCollapsed": 2,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:DUK:2026Q2:20260804",
-            "issuer:DUK:2026Q2schedule:20260707"
+            "issuer:DUK:2026Q2schedule:20260707",
+            "issuer:DUK:datacenter:20260723",
+            "issuer:DUK:bess:20260114",
+            "issuer:DUK:equityunits:20260811"
           ]
         },
         "evidenceWindow": {
-          "start": "2026-07-07T00:00:00.000Z",
-          "end": "2026-09-19T14:12:00.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T14:12:00.000Z"
+          "start": "2026-01-14T00:00:00.000Z",
+          "end": "2026-09-20T05:23:03.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T05:23:03.000Z"
         },
         "preflightPassed": false
       },
@@ -15101,34 +15112,45 @@
         "thesisQuality",
         "alignment2036",
         "bottleneckControl",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "governancePower",
+        "pricingPower",
+        "financialOperatingMomentum"
       ],
       "constraintSignals": {
         "risks": [
           "Utility investment opportunity is constrained by regulatory recovery, financing costs and project execution timelines.",
-          "Reporting cadence alone does not establish financial outperformance."
+          "Reporting cadence alone does not establish financial outperformance.",
+          "If forecast large-load growth fails to materialize, excess capacity or stranded-cost pressure can weaken the causal investment case.",
+          "Equity-linked financing evidences real capital intensity and potential dilution exposure.",
+          "Regulated returns depend on timely approvals and cost recovery; forecast error can shift pressure toward customers or shareholders."
         ],
         "unknowns": [
           "The retrieved issuer news-center release points to detailed financial materials but does not itself provide Q2 earnings/guidance figures.",
-          "Detailed Q2 financial execution requires the linked investor release/presentation."
+          "Detailed Q2 financial execution requires the linked investor release/presentation.",
+          "Independent regulator evidence on realized customer savings from the large-load framework remains outside this Beta pass.",
+          "This pass does not quantify fully diluted share impact from the equity units or jurisdiction-by-jurisdiction allowed-return sensitivity."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "large-load/economic growth -> electricity demand -> grid/generation/storage investment -> regulated service capacity -> reliability/affordability",
+          "generation intermittency/peak demand -> storage -> dispatch flexibility -> reliability",
+          "regulatory approval + financing cost + realized load growth -> capital recovery -> investment durability"
+        ]
       },
       "improvementWindows": [
         {
@@ -15139,16 +15161,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -15170,11 +15182,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -15182,13 +15189,23 @@
           "thesisQuality",
           "alignment2036",
           "bottleneckControl",
-          "scenarioRobustness"
+          "scenarioRobustness",
+          "substitutionResilience",
+          "supplyChainResilience",
+          "governancePower",
+          "pricingPower",
+          "financialOperatingMomentum"
         ],
         "needOrConstraintCandidates": [
           "The retrieved issuer news-center release points to detailed financial materials but does not itself provide Q2 earnings/guidance figures.",
           "Detailed Q2 financial execution requires the linked investor release/presentation.",
+          "Independent regulator evidence on realized customer savings from the large-load framework remains outside this Beta pass.",
+          "This pass does not quantify fully diluted share impact from the equity units or jurisdiction-by-jurisdiction allowed-return sensitivity.",
           "Utility investment opportunity is constrained by regulatory recovery, financing costs and project execution timelines.",
-          "Reporting cadence alone does not establish financial outperformance."
+          "Reporting cadence alone does not establish financial outperformance.",
+          "If forecast large-load growth fails to materialize, excess capacity or stranded-cost pressure can weaken the causal investment case.",
+          "Equity-linked financing evidences real capital intensity and potential dilution exposure.",
+          "Regulated returns depend on timely approvals and cost recovery; forecast error can shift pressure toward customers or shareholders."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -29424,7 +29441,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "ECL",
       "workId": "t0:ECL",
-      "inputSignature": "35a85ba3036cb498ae2a1579",
+      "inputSignature": "622449e5fc1329eaf7118911",
       "sourceState": "researching",
       "identity": {
         "ticker": "ECL",
@@ -29447,29 +29464,31 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 2,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 4,
         "sourceLineage": {
-          "rawSourceCount": 2,
-          "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 0,
+          "rawSourceCount": 5,
+          "uniqueSourceCount": 4,
+          "duplicatesCollapsed": 1,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:ECL:CoolIT:202607",
-            "issuer:ECL:2026Q2:quarterly-results"
+            "issuer:ECL:2026Q2:quarterly-results",
+            "issuer:ECL:CoolIT:20260702",
+            "issuer:ECL:CoolITannounce:20260320"
           ]
         },
         "evidenceWindow": {
-          "start": "2026-07-01T00:00:00.000Z",
-          "end": "2026-09-19T14:14:00.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T14:14:00.000Z"
+          "start": "2026-03-20T00:00:00.000Z",
+          "end": "2026-09-20T05:23:03.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T05:23:03.000Z"
         },
         "preflightPassed": false
       },
@@ -29481,33 +29500,41 @@
         "bottleneckControl",
         "financialOperatingMomentum",
         "pricingPower",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "substitutionResilience",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
           "The 2030 $4B target is management aspiration and depends on integration, AI infrastructure spending and successful cross-selling.",
-          "Acquisition financing increased interest expense and reported results include special gains/charges, requiring normalization by Alpha."
+          "Acquisition financing increased interest expense and reported results include special gains/charges, requiring normalization by Alpha.",
+          "A rapid architecture shift or hyperscaler insourcing could weaken the assumed durability of direct-liquid-cooling economics.",
+          "High acquisition multiple raises the execution bar and makes deleveraging and cross-selling realization important falsifiers.",
+          "Hyperscaler/customer concentration is not quantified, limiting confidence in revenue durability."
         ],
         "unknowns": [
-          "Standalone CoolIT revenue, purchase-price return profile and customer concentration are not established by this release."
+          "Standalone CoolIT revenue, purchase-price return profile and customer concentration are not established by this release.",
+          "Customer concentration and standalone CoolIT economics remain undisclosed in the cited evidence.",
+          "No present evidence establishes a material accounting or governance defect; acquisition economics require future verification."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "AI compute density -> heat load -> liquid cooling need -> CoolIT hardware/fluids -> compute uptime",
+          "AI infrastructure -> water/power constraints -> Ecolab monitoring/water management -> resource efficiency",
+          "hyperscaler qualification + cooling architecture choice -> adoption -> platform revenue"
+        ]
       },
       "improvementWindows": [
         {
@@ -29518,16 +29545,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -29549,11 +29566,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -29565,12 +29577,19 @@
           "bottleneckControl",
           "financialOperatingMomentum",
           "pricingPower",
-          "scenarioRobustness"
+          "scenarioRobustness",
+          "substitutionResilience",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "Standalone CoolIT revenue, purchase-price return profile and customer concentration are not established by this release.",
+          "Customer concentration and standalone CoolIT economics remain undisclosed in the cited evidence.",
+          "No present evidence establishes a material accounting or governance defect; acquisition economics require future verification.",
           "The 2030 $4B target is management aspiration and depends on integration, AI infrastructure spending and successful cross-selling.",
-          "Acquisition financing increased interest expense and reported results include special gains/charges, requiring normalization by Alpha."
+          "Acquisition financing increased interest expense and reported results include special gains/charges, requiring normalization by Alpha.",
+          "A rapid architecture shift or hyperscaler insourcing could weaken the assumed durability of direct-liquid-cooling economics.",
+          "High acquisition multiple raises the execution bar and makes deleveraging and cross-selling realization important falsifiers.",
+          "Hyperscaler/customer concentration is not quantified, limiting confidence in revenue durability."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -36183,7 +36202,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "DVN",
       "workId": "t0:DVN",
-      "inputSignature": "10361ba940e8389401700464",
+      "inputSignature": "47bea3b0843db2c086138d8c",
       "sourceState": "researching",
       "identity": {
         "ticker": "DVN",
@@ -36206,29 +36225,33 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 2,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 6,
         "sourceLineage": {
-          "rawSourceCount": 3,
-          "uniqueSourceCount": 2,
+          "rawSourceCount": 7,
+          "uniqueSourceCount": 6,
           "duplicatesCollapsed": 1,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:DVN:press-index:20260919",
-            "issuer:DVN:2026Q2schedule:20260701"
+            "issuer:DVN:2026Q2schedule:20260701",
+            "issuer:DVN:mergerclose:20260507",
+            "issuer:DVN:solitude:20260817",
+            "issuer:DVN:mergerannounce:20260202",
+            "issuer:DVN:outlook:202606"
           ]
         },
         "evidenceWindow": {
-          "start": "2026-07-01T00:00:00.000Z",
-          "end": "2026-09-19T14:13:00.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T14:13:00.000Z"
+          "start": "2026-02-02T00:00:00.000Z",
+          "end": "2026-09-20T05:23:03.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T05:23:03.000Z"
         },
         "preflightPassed": false
       },
@@ -36238,34 +36261,44 @@
         "crossDivisionLeverage",
         "bottleneckControl",
         "supplyChainResilience",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "substitutionResilience",
+        "financialOperatingMomentum",
+        "governancePower",
+        "pricingPower"
       ],
       "constraintSignals": {
         "risks": [
           "Large merger integration can create execution, synergy-realization and capital-allocation risk.",
-          "Milestone timing does not establish the quality of underlying Q2 operating performance."
+          "Milestone timing does not establish the quality of underlying Q2 operating performance.",
+          "Infrastructure integration increases fixed-capital exposure if production, shipper demand or commodity economics disappoint.",
+          "Synergy and portfolio-review benefits can be delayed or offset by integration costs and commodity-price weakness.",
+          "High shareholder-return ambitions compete with debt reduction and infrastructure investment under downside commodity scenarios."
         ],
         "unknowns": [
           "This artifact does not quantify realized merger synergies or Solitude project economics.",
-          "Detailed Q2 post-merger production, cost and free-cash-flow metrics were not captured in this Scout pass."
+          "Detailed Q2 post-merger production, cost and free-cash-flow metrics were not captured in this Scout pass.",
+          "Realized post-merger synergy capture and Solitude project returns remain future execution questions, not present gating defects.",
+          "This Beta pass does not independently quantify realized 2026 synergy dollars or post-merger asset-sale proceeds."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "Delaware resource -> production -> gathering/pipeline egress -> demand centers -> realized commodity value",
+          "Permian gas egress constraint -> Solitude capacity -> transport optionality -> margin resilience",
+          "merger scale + technology -> capital/operating efficiency -> free cash flow resilience"
+        ]
       },
       "improvementWindows": [
         {
@@ -36276,16 +36309,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -36307,11 +36330,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -36321,13 +36339,22 @@
           "crossDivisionLeverage",
           "bottleneckControl",
           "supplyChainResilience",
-          "scenarioRobustness"
+          "scenarioRobustness",
+          "substitutionResilience",
+          "financialOperatingMomentum",
+          "governancePower",
+          "pricingPower"
         ],
         "needOrConstraintCandidates": [
           "This artifact does not quantify realized merger synergies or Solitude project economics.",
           "Detailed Q2 post-merger production, cost and free-cash-flow metrics were not captured in this Scout pass.",
+          "Realized post-merger synergy capture and Solitude project returns remain future execution questions, not present gating defects.",
+          "This Beta pass does not independently quantify realized 2026 synergy dollars or post-merger asset-sale proceeds.",
           "Large merger integration can create execution, synergy-realization and capital-allocation risk.",
-          "Milestone timing does not establish the quality of underlying Q2 operating performance."
+          "Milestone timing does not establish the quality of underlying Q2 operating performance.",
+          "Infrastructure integration increases fixed-capital exposure if production, shipper demand or commodity economics disappoint.",
+          "Synergy and portfolio-review benefits can be delayed or offset by integration costs and commodity-price weakness.",
+          "High shareholder-return ambitions compete with debt reduction and infrastructure investment under downside commodity scenarios."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

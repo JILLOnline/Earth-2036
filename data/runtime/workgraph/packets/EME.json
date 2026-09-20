@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "EME",
   "workId": "t0:EME",
-  "generatedAt": "2026-09-20T05:16:19.595Z",
+  "generatedAt": "2026-09-20T05:25:04.205Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-20T00:48:48.574Z"
   },
   "evidenceWindow": {
-    "start": "2026-09-19T16:07:49.000Z",
-    "end": "2026-09-19T16:07:49.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T16:07:49.000Z"
+    "start": "2026-02-26T00:00:00.000Z",
+    "end": "2026-09-20T05:23:03.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T05:23:03.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,47 +32,66 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/EME-20260919T160749Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/EME-20260919T160749Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/EME-20260920T052303Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "financialOperatingMomentum",
       "executionCapability",
       "scenarioRobustness",
-      "thesisQuality"
+      "thesisQuality",
+      "bottleneckControl",
+      "supplyChainResilience",
+      "substitutionResilience",
+      "pricingPower",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "executionCapability",
         "scenarioRobustness",
         "thesisQuality"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower",
+        "governancePower"
+      ],
       "expectations-execution": [
         "executionCapability",
         "financialOperatingMomentum"
@@ -120,7 +139,12 @@
     "financialOperatingMomentum",
     "executionCapability",
     "scenarioRobustness",
-    "thesisQuality"
+    "thesisQuality",
+    "bottleneckControl",
+    "supplyChainResilience",
+    "substitutionResilience",
+    "pricingPower",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -131,6 +155,18 @@
       },
       {
         "risk": "Raised guidance increases the future execution bar and makes project mix, labor availability and cost control important falsifiers.",
+        "gating": false
+      },
+      {
+        "risk": "Skilled-labor scarcity, materials constraints and project complexity can shift a demand bottleneck into an execution bottleneck.",
+        "gating": false
+      },
+      {
+        "risk": "RPO can overstate economic certainty if project timing, scope or margins change before conversion.",
+        "gating": false
+      },
+      {
+        "risk": "Raised guidance increases the execution bar; sustained margin expansion must be verified against labor and project-mix pressure.",
         "gating": false
       }
     ]
@@ -143,6 +179,18 @@
     {
       "risk": "Raised guidance increases the future execution bar and makes project mix, labor availability and cost control important falsifiers.",
       "gating": false
+    },
+    {
+      "risk": "Skilled-labor scarcity, materials constraints and project complexity can shift a demand bottleneck into an execution bottleneck.",
+      "gating": false
+    },
+    {
+      "risk": "RPO can overstate economic certainty if project timing, scope or margins change before conversion.",
+      "gating": false
+    },
+    {
+      "risk": "Raised guidance increases the execution bar; sustained margin expansion must be verified against labor and project-mix pressure.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -153,20 +201,30 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "infrastructure/data/water/health demand -> complex MEP projects -> skilled trades/project management -> commissioned capacity -> human/economic services",
+      "skilled-labor/material constraints -> execution capacity -> schedule/margin -> realized project value",
+      "diverse sector RPO -> workload visibility -> execution demand"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "infrastructure/data/water/health demand -> complex MEP projects -> skilled trades/project management -> commissioned capacity -> human/economic services",
+    "skilled-labor/material constraints -> execution capacity -> schedule/margin -> realized project value",
+    "diverse sector RPO -> workload visibility -> execution demand"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "emcor:2026-07-30:q2-results"
+      "emcor:2026-07-30:q2-results",
+      "sec:EME:2026Q2:ex991",
+      "sec:EME:2025:10K"
     ]
   },
   "sources": [
@@ -176,6 +234,22 @@
       "kind": "primary",
       "primary": true,
       "originFingerprint": "emcor:2026-07-30:q2-results"
+    },
+    {
+      "sourceId": "sec:EME:2026Q2-ex991",
+      "url": "https://www.sec.gov/Archives/edgar/data/105634/000010563426000112/eme-ex991_2026630xq2.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-30",
+      "originFingerprint": "sec:EME:2026Q2:ex991"
+    },
+    {
+      "sourceId": "sec:EME:2025-10K",
+      "url": "https://emcorgroup.gcs-web.com/static-files/5b1177dd-acff-460b-8c35-e1da001ce7ad",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-26",
+      "originFingerprint": "sec:EME:2025:10K"
     }
   ],
   "contradictions": [],
@@ -191,26 +265,31 @@
     {
       "unknown": "No independent customer-level corroboration was acquired in this pass.",
       "gating": false
+    },
+    {
+      "unknown": "Customer-level concentration and exact data-center share are not disclosed in the cited Q2 release.",
+      "gating": false
+    },
+    {
+      "unknown": "No material present accounting or governance contradiction was established in this pass; customer concentration remains a non-gating unknown.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 95,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -220,14 +299,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -244,10 +315,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

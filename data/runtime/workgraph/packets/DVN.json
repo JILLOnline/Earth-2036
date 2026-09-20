@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "DVN",
   "workId": "t0:DVN",
-  "generatedAt": "2026-09-20T05:16:19.599Z",
+  "generatedAt": "2026-09-20T05:25:04.212Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-20T00:48:48.574Z"
   },
   "evidenceWindow": {
-    "start": "2026-07-01T00:00:00.000Z",
-    "end": "2026-09-19T14:13:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T14:13:00.000Z"
+    "start": "2026-02-02T00:00:00.000Z",
+    "end": "2026-09-20T05:23:03.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T05:23:03.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/DVN-20260919T141300Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/DVN-20260919T141300Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/DVN-20260920T052303Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,12 +65,23 @@
       "crossDivisionLeverage",
       "bottleneckControl",
       "supplyChainResilience",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "substitutionResilience",
+      "financialOperatingMomentum",
+      "governancePower",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "bottleneckControl",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "catalystScore",
@@ -75,7 +89,12 @@
         "bottleneckControl",
         "supplyChainResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "governancePower",
+        "scenarioRobustness",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "scenarioRobustness"
       ]
@@ -124,7 +143,11 @@
     "crossDivisionLeverage",
     "bottleneckControl",
     "supplyChainResilience",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "substitutionResilience",
+    "financialOperatingMomentum",
+    "governancePower",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -135,6 +158,18 @@
       },
       {
         "risk": "Milestone timing does not establish the quality of underlying Q2 operating performance.",
+        "gating": false
+      },
+      {
+        "risk": "Infrastructure integration increases fixed-capital exposure if production, shipper demand or commodity economics disappoint.",
+        "gating": false
+      },
+      {
+        "risk": "Synergy and portfolio-review benefits can be delayed or offset by integration costs and commodity-price weakness.",
+        "gating": false
+      },
+      {
+        "risk": "High shareholder-return ambitions compete with debt reduction and infrastructure investment under downside commodity scenarios.",
         "gating": false
       }
     ]
@@ -147,6 +182,18 @@
     {
       "risk": "Milestone timing does not establish the quality of underlying Q2 operating performance.",
       "gating": false
+    },
+    {
+      "risk": "Infrastructure integration increases fixed-capital exposure if production, shipper demand or commodity economics disappoint.",
+      "gating": false
+    },
+    {
+      "risk": "Synergy and portfolio-review benefits can be delayed or offset by integration costs and commodity-price weakness.",
+      "gating": false
+    },
+    {
+      "risk": "High shareholder-return ambitions compete with debt reduction and infrastructure investment under downside commodity scenarios.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -157,21 +204,33 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 6
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "Delaware resource -> production -> gathering/pipeline egress -> demand centers -> realized commodity value",
+      "Permian gas egress constraint -> Solitude capacity -> transport optionality -> margin resilience",
+      "merger scale + technology -> capital/operating efficiency -> free cash flow resilience"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "Delaware resource -> production -> gathering/pipeline egress -> demand centers -> realized commodity value",
+    "Permian gas egress constraint -> Solitude capacity -> transport optionality -> margin resilience",
+    "merger scale + technology -> capital/operating efficiency -> free cash flow resilience"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 2,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 6,
     "duplicatesCollapsed": 1,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:DVN:press-index:20260919",
-      "issuer:DVN:2026Q2schedule:20260701"
+      "issuer:DVN:2026Q2schedule:20260701",
+      "issuer:DVN:mergerclose:20260507",
+      "issuer:DVN:solitude:20260817",
+      "issuer:DVN:mergerannounce:20260202",
+      "issuer:DVN:outlook:202606"
     ]
   },
   "sources": [
@@ -190,6 +249,38 @@
       "primary": true,
       "publishedAt": "2026-07-01",
       "originFingerprint": "issuer:DVN:2026Q2schedule:20260701"
+    },
+    {
+      "sourceId": "issuer:DVN:merger-close:20260507",
+      "url": "https://www.devonenergy.com/news/2026/Devon-Energy-and-Coterra-Energy-Complete-Merger",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-07",
+      "originFingerprint": "issuer:DVN:mergerclose:20260507"
+    },
+    {
+      "sourceId": "issuer:DVN:solitude-fid:20260817",
+      "url": "https://www.devonenergy.com/news/2026/Integrating-The-Delaware-Basin-Devon-Energy-Reaches-Final-Investment-Decision-on-Solitude-Pipeline-System",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-17",
+      "originFingerprint": "issuer:DVN:solitude:20260817"
+    },
+    {
+      "sourceId": "issuer:DVN:merger-announce:20260202",
+      "url": "https://investors.devonenergy.com/investors/press-releases/press-release-details/2026/Devon-Energy-and-Coterra-Energy-to-Combine-Creating-a-Premier-Shale-Operator/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-02",
+      "originFingerprint": "issuer:DVN:mergerannounce:20260202"
+    },
+    {
+      "sourceId": "issuer:DVN:2026-outlook",
+      "url": "https://www.devonenergy.com/news/2026/Devon-Energy-Provides-Updated-2026-Outlook",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-06",
+      "originFingerprint": "issuer:DVN:outlook:202606"
     }
   ],
   "contradictions": [],
@@ -205,11 +296,19 @@
     {
       "unknown": "Detailed Q2 post-merger production, cost and free-cash-flow metrics were not captured in this Scout pass.",
       "gating": false
+    },
+    {
+      "unknown": "Realized post-merger synergy capture and Solitude project returns remain future execution questions, not present gating defects.",
+      "gating": false
+    },
+    {
+      "unknown": "This Beta pass does not independently quantify realized 2026 synergy dollars or post-merger asset-sale proceeds.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 79,
@@ -218,13 +317,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -234,14 +330,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -258,10 +346,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

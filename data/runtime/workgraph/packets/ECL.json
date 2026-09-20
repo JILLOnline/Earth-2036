@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ECL",
   "workId": "t0:ECL",
-  "generatedAt": "2026-09-20T05:16:19.598Z",
+  "generatedAt": "2026-09-20T05:25:04.209Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-20T00:48:48.574Z"
   },
   "evidenceWindow": {
-    "start": "2026-07-01T00:00:00.000Z",
-    "end": "2026-09-19T14:14:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T14:14:00.000Z"
+    "start": "2026-03-20T00:00:00.000Z",
+    "end": "2026-09-20T05:23:03.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T05:23:03.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/ECL-20260919T141400Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ECL-20260919T141400Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ECL-20260920T052303Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -64,12 +67,21 @@
       "bottleneckControl",
       "financialOperatingMomentum",
       "pricingPower",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "substitutionResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "catalystScore",
@@ -77,7 +89,12 @@
         "crossDivisionLeverage",
         "bottleneckControl"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "governancePower",
+        "scenarioRobustness",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "pricingPower",
@@ -130,7 +147,9 @@
     "bottleneckControl",
     "financialOperatingMomentum",
     "pricingPower",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "substitutionResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -141,6 +160,18 @@
       },
       {
         "risk": "Acquisition financing increased interest expense and reported results include special gains/charges, requiring normalization by Alpha.",
+        "gating": false
+      },
+      {
+        "risk": "A rapid architecture shift or hyperscaler insourcing could weaken the assumed durability of direct-liquid-cooling economics.",
+        "gating": false
+      },
+      {
+        "risk": "High acquisition multiple raises the execution bar and makes deleveraging and cross-selling realization important falsifiers.",
+        "gating": false
+      },
+      {
+        "risk": "Hyperscaler/customer concentration is not quantified, limiting confidence in revenue durability.",
         "gating": false
       }
     ]
@@ -153,6 +184,18 @@
     {
       "risk": "Acquisition financing increased interest expense and reported results include special gains/charges, requiring normalization by Alpha.",
       "gating": false
+    },
+    {
+      "risk": "A rapid architecture shift or hyperscaler insourcing could weaken the assumed durability of direct-liquid-cooling economics.",
+      "gating": false
+    },
+    {
+      "risk": "High acquisition multiple raises the execution bar and makes deleveraging and cross-selling realization important falsifiers.",
+      "gating": false
+    },
+    {
+      "risk": "Hyperscaler/customer concentration is not quantified, limiting confidence in revenue durability.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -163,21 +206,31 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 4
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "AI compute density -> heat load -> liquid cooling need -> CoolIT hardware/fluids -> compute uptime",
+      "AI infrastructure -> water/power constraints -> Ecolab monitoring/water management -> resource efficiency",
+      "hyperscaler qualification + cooling architecture choice -> adoption -> platform revenue"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "AI compute density -> heat load -> liquid cooling need -> CoolIT hardware/fluids -> compute uptime",
+    "AI infrastructure -> water/power constraints -> Ecolab monitoring/water management -> resource efficiency",
+    "hyperscaler qualification + cooling architecture choice -> adoption -> platform revenue"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 5,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:ECL:CoolIT:202607",
-      "issuer:ECL:2026Q2:quarterly-results"
+      "issuer:ECL:2026Q2:quarterly-results",
+      "issuer:ECL:CoolIT:20260702",
+      "issuer:ECL:CoolITannounce:20260320"
     ]
   },
   "sources": [
@@ -196,6 +249,22 @@
       "primary": true,
       "publishedAt": "2026-Q2",
       "originFingerprint": "issuer:ECL:2026Q2:quarterly-results"
+    },
+    {
+      "sourceId": "issuer:ECL:CoolIT-close:20260702",
+      "url": "https://investor.ecolab.com/news/news-details/2026/Ecolab-Closes-CoolIT-Acquisition-and-Expands-AI-Cooling-Platform-as-Global-High-Tech-Business-Targets-4-Billion-by-2030/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-02",
+      "originFingerprint": "issuer:ECL:CoolIT:20260702"
+    },
+    {
+      "sourceId": "issuer:ECL:CoolIT-announce:20260320",
+      "url": "https://investor.ecolab.com/news/news-details/2026/Ecolab-to-Acquire-CoolIT-Systems-a-Global-Leader-in-Advanced-Liquid-Cooling-for-Next-Gen-AI-Data-Centers/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-03-20",
+      "originFingerprint": "issuer:ECL:CoolITannounce:20260320"
     }
   ],
   "contradictions": [],
@@ -207,11 +276,19 @@
     {
       "unknown": "Standalone CoolIT revenue, purchase-price return profile and customer concentration are not established by this release.",
       "gating": false
+    },
+    {
+      "unknown": "Customer concentration and standalone CoolIT economics remain undisclosed in the cited evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "No present evidence establishes a material accounting or governance defect; acquisition economics require future verification.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 1
+    "nonGatingCount": 3
   },
   "gatingIssues": [],
   "confidence": 89,
@@ -220,13 +297,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -236,14 +310,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -260,10 +326,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

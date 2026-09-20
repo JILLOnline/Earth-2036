@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "DUK",
   "workId": "t0:DUK",
-  "generatedAt": "2026-09-20T05:16:19.595Z",
+  "generatedAt": "2026-09-20T05:25:04.205Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-20T00:48:48.574Z"
   },
   "evidenceWindow": {
-    "start": "2026-07-07T00:00:00.000Z",
-    "end": "2026-09-19T14:12:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T14:12:00.000Z"
+    "start": "2026-01-14T00:00:00.000Z",
+    "end": "2026-09-20T05:23:03.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T05:23:03.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,47 +32,67 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/DUK-20260919T141200Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/DUK-20260919T141200Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/DUK-20260920T052303Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "thesisQuality",
       "alignment2036",
       "bottleneckControl",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "governancePower",
+      "pricingPower",
+      "financialOperatingMomentum"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
         "bottleneckControl",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "governancePower",
+        "scenarioRobustness",
+        "pricingPower",
+        "financialOperatingMomentum"
+      ],
       "expectations-execution": [
         "scenarioRobustness"
       ]
@@ -119,7 +139,12 @@
     "thesisQuality",
     "alignment2036",
     "bottleneckControl",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "governancePower",
+    "pricingPower",
+    "financialOperatingMomentum"
   ],
   "riskEvidence": {
     "present": true,
@@ -130,6 +155,18 @@
       },
       {
         "risk": "Reporting cadence alone does not establish financial outperformance.",
+        "gating": false
+      },
+      {
+        "risk": "If forecast large-load growth fails to materialize, excess capacity or stranded-cost pressure can weaken the causal investment case.",
+        "gating": false
+      },
+      {
+        "risk": "Equity-linked financing evidences real capital intensity and potential dilution exposure.",
+        "gating": false
+      },
+      {
+        "risk": "Regulated returns depend on timely approvals and cost recovery; forecast error can shift pressure toward customers or shareholders.",
         "gating": false
       }
     ]
@@ -142,6 +179,18 @@
     {
       "risk": "Reporting cadence alone does not establish financial outperformance.",
       "gating": false
+    },
+    {
+      "risk": "If forecast large-load growth fails to materialize, excess capacity or stranded-cost pressure can weaken the causal investment case.",
+      "gating": false
+    },
+    {
+      "risk": "Equity-linked financing evidences real capital intensity and potential dilution exposure.",
+      "gating": false
+    },
+    {
+      "risk": "Regulated returns depend on timely approvals and cost recovery; forecast error can shift pressure toward customers or shareholders.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -152,21 +201,32 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 5
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "large-load/economic growth -> electricity demand -> grid/generation/storage investment -> regulated service capacity -> reliability/affordability",
+      "generation intermittency/peak demand -> storage -> dispatch flexibility -> reliability",
+      "regulatory approval + financing cost + realized load growth -> capital recovery -> investment durability"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "large-load/economic growth -> electricity demand -> grid/generation/storage investment -> regulated service capacity -> reliability/affordability",
+    "generation intermittency/peak demand -> storage -> dispatch flexibility -> reliability",
+    "regulatory approval + financing cost + realized load growth -> capital recovery -> investment durability"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 5,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:DUK:2026Q2:20260804",
-      "issuer:DUK:2026Q2schedule:20260707"
+      "issuer:DUK:2026Q2schedule:20260707",
+      "issuer:DUK:datacenter:20260723",
+      "issuer:DUK:bess:20260114",
+      "issuer:DUK:equityunits:20260811"
     ]
   },
   "sources": [
@@ -185,6 +245,30 @@
       "primary": true,
       "publishedAt": "2026-07-07",
       "originFingerprint": "issuer:DUK:2026Q2schedule:20260707"
+    },
+    {
+      "sourceId": "issuer:DUK:2026-data-center-framework",
+      "url": "https://news.duke-energy.com/releases/duke-energy-data-center-growth-will-deliver-billions-of-dollars-in-customer-savings",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-23",
+      "originFingerprint": "issuer:DUK:datacenter:20260723"
+    },
+    {
+      "sourceId": "issuer:DUK:2026-bess-allen",
+      "url": "https://news.duke-energy.com/releases/duke-energy-brings-new-grid-battery-on-line-at-former-allen-coal-plant",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-01-14",
+      "originFingerprint": "issuer:DUK:bess:20260114"
+    },
+    {
+      "sourceId": "issuer:DUK:2026-equity-units",
+      "url": "https://news.duke-energy.com/releases/duke-energy-announces-pricing-of-equity-units-offering",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-11",
+      "originFingerprint": "issuer:DUK:equityunits:20260811"
     }
   ],
   "contradictions": [],
@@ -200,11 +284,19 @@
     {
       "unknown": "Detailed Q2 financial execution requires the linked investor release/presentation.",
       "gating": false
+    },
+    {
+      "unknown": "Independent regulator evidence on realized customer savings from the large-load framework remains outside this Beta pass.",
+      "gating": false
+    },
+    {
+      "unknown": "This pass does not quantify fully diluted share impact from the equity units or jurisdiction-by-jurisdiction allowed-return sensitivity.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 76,
@@ -213,13 +305,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -229,14 +318,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -253,10 +334,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

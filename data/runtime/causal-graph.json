@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-19T23:18:17.446Z",
+  "updatedAt": "2026-09-20T00:49:35.115Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -338,6 +338,18 @@
       "type": "market",
       "label": "ARRY structural demand",
       "description": "ARRAY sits between utility-scale solar module deployment and the physical tracking/control layer: tracker hardware and software improve energy capture, while its installed scale and $2.5B orderbook indicate customers continue to allocate capital to this layer."
+    },
+    {
+      "id": "company:ATI",
+      "type": "company",
+      "label": "ATI Inc.",
+      "description": "ATI occupies a materials/process bottleneck in aerospace, defense and specialty energy: nickel superalloys, titanium alloys, forgings and advanced powders connect constrained metallurgical capacity to jet engines, airframes and defense systems."
+    },
+    {
+      "id": "market:ATI-ati-structural-demand",
+      "type": "market",
+      "label": "ATI structural demand",
+      "description": "ATI occupies a materials/process bottleneck in aerospace, defense and specialty energy: nickel superalloys, titanium alloys, forgings and advanced powders connect constrained metallurgical capacity to jet engines, airframes and defense systems."
     }
   ],
   "edges": [
@@ -832,6 +844,21 @@
       "sourceIds": [
         "issuer:ARRY:2026Q2",
         "sec:ARRY:2026Q2:10Q"
+      ],
+      "observedAt": "2026-09-19T15:22:52Z"
+    },
+    {
+      "id": "edge:ATI-structural-exposure",
+      "from": "company:ATI",
+      "to": "market:ATI-ati-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 83,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:ATI:2026Q2",
+        "sec:ATI:2026Q2:10Q"
       ],
       "observedAt": "2026-09-19T15:22:52Z"
     }
@@ -1411,6 +1438,25 @@
       ],
       "observedAt": "2026-09-19T15:22:52Z",
       "thesis": "ARRAY sits between utility-scale solar module deployment and the physical tracking/control layer: tracker hardware and software improve energy capture, while its installed scale and $2.5B orderbook indicate customers continue to allocate capital to this layer.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:ATI-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:ATI-ati-structural-demand",
+      "affectedNodeIds": [
+        "company:ATI"
+      ],
+      "direction": 1,
+      "magnitude": 83,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:ATI:2026Q2",
+        "sec:ATI:2026Q2:10Q"
+      ],
+      "observedAt": "2026-09-19T15:22:52Z",
+      "thesis": "ATI occupies a materials/process bottleneck in aerospace, defense and specialty energy: nickel superalloys, titanium alloys, forgings and advanced powders connect constrained metallurgical capacity to jet engines, airframes and defense systems.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

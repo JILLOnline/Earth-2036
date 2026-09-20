@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-20T10:56:29.129Z",
+  "updatedAt": "2026-09-20T11:16:25.185Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -470,6 +470,18 @@
       "type": "market",
       "label": "rapid-revisit imagery and analytics demand",
       "description": "customers require frequent collection and low-latency interpretation rather than static imagery alone"
+    },
+    {
+      "id": "company:BMI",
+      "type": "company",
+      "label": "Badger Meter",
+      "description": "Badger Meter's causal role is best represented as measurement/monitoring infrastructure linking water-network physical state to utility operating decisions: smart metering plus sewer-network monitoring can reduce information latency around consumption, leakage and network conditions, but the human-need outcome still depends on utility adoption, workflow integration and maintenance response."
+    },
+    {
+      "id": "market:BMI-bmi-structural-demand",
+      "type": "market",
+      "label": "BMI structural demand",
+      "description": "Badger Meter's causal role is best represented as measurement/monitoring infrastructure linking water-network physical state to utility operating decisions: smart metering plus sewer-network monitoring can reduce information latency around consumption, leakage and network conditions, but the human-need outcome still depends on utility adoption, workflow integration and maintenance response."
     }
   ],
   "edges": [
@@ -1127,6 +1139,21 @@
         "bksy-ir:q2-2026:2026-08-06"
       ],
       "observedAt": "2026-09-19T07:25:25Z"
+    },
+    {
+      "id": "edge:BMI-structural-exposure",
+      "from": "company:BMI",
+      "to": "market:BMI-bmi-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 68,
+      "confidence": 86,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:BMI:UDlive:20260501",
+        "issuer:BMI:FY25:20260128"
+      ],
+      "observedAt": "2026-09-19T19:26:41Z"
     }
   ],
   "structuralSignals": [
@@ -1910,6 +1937,25 @@
       "observedAt": "2026-09-19T07:25:25Z",
       "thesis": "BlackSky's structural value proposition is a vertically integrated low-latency geospatial intelligence loop: Gen-3 satellite collection plus analytics converts persistent defense/security monitoring demand into subscription intelligence services; recent pilot-to-multi-year conversion is consistent with that causal path.",
       "falsifier": "Gen-3 pilots fail to convert or subscription utilization/renewals weaken materially"
+    },
+    {
+      "id": "signal:BMI-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:BMI-bmi-structural-demand",
+      "affectedNodeIds": [
+        "company:BMI"
+      ],
+      "direction": 1,
+      "magnitude": 68,
+      "confidence": 86,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:BMI:UDlive:20260501",
+        "issuer:BMI:FY25:20260128"
+      ],
+      "observedAt": "2026-09-19T19:26:41Z",
+      "thesis": "Badger Meter's causal role is best represented as measurement/monitoring infrastructure linking water-network physical state to utility operating decisions: smart metering plus sewer-network monitoring can reduce information latency around consumption, leakage and network conditions, but the human-need outcome still depends on utility adoption, workflow integration and maintenance response.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],
   "roadmapMilestones": [

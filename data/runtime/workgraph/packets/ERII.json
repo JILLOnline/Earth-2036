@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ERII",
   "workId": "t0:ERII",
-  "generatedAt": "2026-09-20T11:16:22.371Z",
+  "generatedAt": "2026-09-20T11:29:48.123Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-19T17:03:20.000Z",
-    "end": "2026-09-19T17:03:20.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T17:03:20.000Z"
+    "end": "2026-09-20T11:27:56.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T11:27:56.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/ERII-20260919T170320Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ERII-20260919T170320Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ERII-20260920T112756Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -61,19 +64,35 @@
       "executionCapability",
       "marketConcentration",
       "scenarioRobustness",
-      "thesisQuality"
+      "thesisQuality",
+      "alignment2036",
+      "bottleneckControl",
+      "substitutionResilience"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "thesisQuality"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "executionCapability",
         "marketConcentration",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "executionCapability",
+        "marketConcentration",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "thesisQuality"
+      ],
       "expectations-execution": [
         "executionCapability",
         "scenarioRobustness",
@@ -123,7 +142,10 @@
     "executionCapability",
     "marketConcentration",
     "scenarioRobustness",
-    "thesisQuality"
+    "thesisQuality",
+    "alignment2036",
+    "bottleneckControl",
+    "substitutionResilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -135,6 +157,26 @@
       {
         "risk": "High gross margin can coexist with weak shipment timing and does not by itself prove durable growth.",
         "gating": false
+      },
+      {
+        "risk": "Megaproject concentration and timing can decouple durable freshwater demand from near-term ERII revenue realization.",
+        "gating": false
+      },
+      {
+        "risk": "Adjacent-market success is not implied by core desalination competence; the CO2 retail wind-down is an observed failure analog for causal overextension.",
+        "gating": false
+      },
+      {
+        "risk": "Revenue concentration in large desalination projects can make backlog/TAM narratives misleading if conversion timing and customer awards are not source-addressed.",
+        "gating": false
+      },
+      {
+        "risk": "Confidence inflation is possible if high gross margin is treated as evidence that the volume decline is immaterial.",
+        "gating": false
+      },
+      {
+        "risk": "Substitution and competitive-response risk remain insufficiently quantified in current lineage.",
+        "gating": false
       }
     ]
   },
@@ -145,6 +187,26 @@
     },
     {
       "risk": "High gross margin can coexist with weak shipment timing and does not by itself prove durable growth.",
+      "gating": false
+    },
+    {
+      "risk": "Megaproject concentration and timing can decouple durable freshwater demand from near-term ERII revenue realization.",
+      "gating": false
+    },
+    {
+      "risk": "Adjacent-market success is not implied by core desalination competence; the CO2 retail wind-down is an observed failure analog for causal overextension.",
+      "gating": false
+    },
+    {
+      "risk": "Revenue concentration in large desalination projects can make backlog/TAM narratives misleading if conversion timing and customer awards are not source-addressed.",
+      "gating": false
+    },
+    {
+      "risk": "Confidence inflation is possible if high gross margin is treated as evidence that the volume decline is immaterial.",
+      "gating": false
+    },
+    {
+      "risk": "Substitution and competitive-response risk remain insufficiently quantified in current lineage.",
       "gating": false
     }
   ],
@@ -159,14 +221,86 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "freshwater scarcity / municipal-industrial water need",
+        "to": "reverse-osmosis desalination capacity",
+        "mechanism": "scarcity and reliability needs support desalination where local economics permit"
+      },
+      {
+        "from": "reverse-osmosis desalination capacity",
+        "to": "high-pressure pumping energy requirement",
+        "mechanism": "membrane separation requires substantial pressure and electricity input"
+      },
+      {
+        "from": "high-pressure brine stream",
+        "to": "pressure-exchanger energy recovery",
+        "mechanism": "recoverable hydraulic energy can be transferred instead of dissipated"
+      },
+      {
+        "from": "pressure-exchanger energy recovery",
+        "to": "lower plant energy intensity and operating cost",
+        "mechanism": "recovered pressure reduces incremental pumping energy"
+      },
+      {
+        "from": "lower plant energy intensity and operating cost",
+        "to": "Energy Recovery value capture",
+        "mechanism": "qualified pressure-exchanger equipment participates in project economics subject to competition, project timing and customer selection"
+      },
+      {
+        "from": "large-project shipment timing",
+        "to": "reported revenue volatility",
+        "mechanism": "a limited number of megaproject deliveries can shift revenue between periods"
+      },
+      {
+        "from": "adjacent-market assumptions",
+        "to": "capital/execution risk",
+        "mechanism": "technology transfer without durable product-market fit can consume resources without creating a new franchise"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "freshwater scarcity / municipal-industrial water need",
+      "to": "reverse-osmosis desalination capacity",
+      "mechanism": "scarcity and reliability needs support desalination where local economics permit"
+    },
+    {
+      "from": "reverse-osmosis desalination capacity",
+      "to": "high-pressure pumping energy requirement",
+      "mechanism": "membrane separation requires substantial pressure and electricity input"
+    },
+    {
+      "from": "high-pressure brine stream",
+      "to": "pressure-exchanger energy recovery",
+      "mechanism": "recoverable hydraulic energy can be transferred instead of dissipated"
+    },
+    {
+      "from": "pressure-exchanger energy recovery",
+      "to": "lower plant energy intensity and operating cost",
+      "mechanism": "recovered pressure reduces incremental pumping energy"
+    },
+    {
+      "from": "lower plant energy intensity and operating cost",
+      "to": "Energy Recovery value capture",
+      "mechanism": "qualified pressure-exchanger equipment participates in project economics subject to competition, project timing and customer selection"
+    },
+    {
+      "from": "large-project shipment timing",
+      "to": "reported revenue volatility",
+      "mechanism": "a limited number of megaproject deliveries can shift revenue between periods"
+    },
+    {
+      "from": "adjacent-market assumptions",
+      "to": "capital/execution risk",
+      "mechanism": "technology transfer without durable product-market fit can consume resources without creating a new franchise"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 8,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "sec:erii:2026-08-05:8k-ex99-1",
@@ -202,26 +336,39 @@
     {
       "unknown": "Future megaproject delivery schedule and wastewater scale-up need additional source-addressed evidence.",
       "gating": false
+    },
+    {
+      "unknown": "Current lineage does not quantify ERII's share of newly awarded desalination energy-recovery systems or the performance gap versus credible substitutes.",
+      "gating": false
+    },
+    {
+      "unknown": "Current lineage does not establish whether the Q2 megaproject shipment decline is only timing or includes weaker forward demand.",
+      "gating": false
+    },
+    {
+      "unknown": "Current evidence does not establish customer concentration, forward award share, or current dilution/financing pressure sufficiently to make those present blockers.",
+      "gating": false
+    },
+    {
+      "unknown": "No current evidence demonstrates a material governance contradiction; absence of such evidence is not affirmative proof of governance strength.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": 96,
+  "confidence": 84,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -231,14 +378,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -255,10 +394,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

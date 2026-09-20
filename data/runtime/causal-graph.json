@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-20T22:16:43.013Z",
+  "updatedAt": "2026-09-20T23:13:57.604Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -614,6 +614,18 @@
       "type": "market",
       "label": "CLF structural demand",
       "description": "Cleveland-Cliffs links domestic iron ore, pellets/DRI, primary steelmaking and downstream finishing to automotive, infrastructure and manufacturing demand; vertical integration reduces some upstream dependency but does not remove steel-cycle or end-market demand sensitivity."
+    },
+    {
+      "id": "company:CLS",
+      "type": "company",
+      "label": "Celestica",
+      "description": "Celestica is positioned in the physical AI-infrastructure chain through networking/server hardware manufacturing; the causal thesis depends on sustained hyperscale capex, outsourced manufacturing content and continued favorable mix rather than on AI demand alone."
+    },
+    {
+      "id": "market:CLS-networking-server-infrastructure-demand",
+      "type": "market",
+      "label": "networking/server infrastructure demand",
+      "description": "larger clusters require more physical compute and network hardware"
     }
   ],
   "edges": [
@@ -1451,6 +1463,20 @@
         "sec:CLF:2026Q2:8K-ex991"
       ],
       "observedAt": "2026-09-19T22:26:16Z"
+    },
+    {
+      "id": "edge:CLS-structural-exposure",
+      "from": "company:CLS",
+      "to": "market:CLS-networking-server-infrastructure-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 58,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "celestica-sec-ex99:2026-07-27:q2-2026"
+      ],
+      "observedAt": "2026-09-19T08:22:12Z"
     }
   ],
   "structuralSignals": [
@@ -2462,6 +2488,24 @@
       "observedAt": "2026-09-19T22:26:16Z",
       "thesis": "Cleveland-Cliffs links domestic iron ore, pellets/DRI, primary steelmaking and downstream finishing to automotive, infrastructure and manufacturing demand; vertical integration reduces some upstream dependency but does not remove steel-cycle or end-market demand sensitivity.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:CLS-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:CLS-networking-server-infrastructure-demand",
+      "affectedNodeIds": [
+        "company:CLS"
+      ],
+      "direction": 1,
+      "magnitude": 58,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "celestica-sec-ex99:2026-07-27:q2-2026"
+      ],
+      "observedAt": "2026-09-19T08:22:12Z",
+      "thesis": "Celestica is positioned in the physical AI-infrastructure chain through networking/server hardware manufacturing; the causal thesis depends on sustained hyperscale capex, outsourced manufacturing content and continued favorable mix rather than on AI demand alone.",
+      "falsifier": "hyperscale capex or deployed hardware volumes materially contract"
     }
   ],
   "roadmapMilestones": [

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CSTM",
   "workId": "t0:CSTM",
-  "generatedAt": "2026-09-20T02:16:26.609Z",
+  "generatedAt": "2026-09-20T02:24:39.043Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-20T00:48:48.574Z"
   },
   "evidenceWindow": {
-    "start": "2026-07-29T00:00:00.000Z",
-    "end": "2026-09-19T13:07:45.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T13:07:45.000Z"
+    "start": "2026-01-01T00:00:00.000Z",
+    "end": "2026-09-20T02:23:10.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T02:23:10.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/CSTM-20260919T130745Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/CSTM-20260919T130745Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/CSTM-20260920T022310Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -64,12 +67,22 @@
       "supplyChainResilience",
       "financialOperatingMomentum",
       "catalystScore",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "substitutionResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "pricingPower"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
@@ -77,7 +90,16 @@
         "pricingPower",
         "supplyChainResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "pricingPower",
+        "governancePower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -131,7 +153,9 @@
     "supplyChainResilience",
     "financialOperatingMomentum",
     "catalystScore",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "substitutionResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -142,6 +166,26 @@
       },
       {
         "risk": "Reported adjusted EBITDA included a $129M positive non-cash metal-price-lag impact, so headline EBITDA is not a clean measure of underlying execution.",
+        "gating": false
+      },
+      {
+        "risk": "Input resilience remains exposed to primary-aluminum availability, scrap spreads, energy and regional trade conditions.",
+        "gating": false
+      },
+      {
+        "risk": "Automotive rolled-product shortages and favorable scrap dynamics can temporarily amplify economics beyond normalized structural advantage.",
+        "gating": false
+      },
+      {
+        "risk": "Metal-price lag can inflate headline adjusted EBITDA and obscure underlying operating comparability.",
+        "gating": false
+      },
+      {
+        "risk": "Shortage-driven automotive demand and favorable scrap spreads may normalize, testing pricing power and margin durability.",
+        "gating": false
+      },
+      {
+        "risk": "High-value aerospace and automotive exposure carries customer qualification, program-cycle and macro demand dependence; competing aluminum suppliers and alternate materials remain substitutes.",
         "gating": false
       }
     ]
@@ -154,6 +198,26 @@
     {
       "risk": "Reported adjusted EBITDA included a $129M positive non-cash metal-price-lag impact, so headline EBITDA is not a clean measure of underlying execution.",
       "gating": false
+    },
+    {
+      "risk": "Input resilience remains exposed to primary-aluminum availability, scrap spreads, energy and regional trade conditions.",
+      "gating": false
+    },
+    {
+      "risk": "Automotive rolled-product shortages and favorable scrap dynamics can temporarily amplify economics beyond normalized structural advantage.",
+      "gating": false
+    },
+    {
+      "risk": "Metal-price lag can inflate headline adjusted EBITDA and obscure underlying operating comparability.",
+      "gating": false
+    },
+    {
+      "risk": "Shortage-driven automotive demand and favorable scrap spreads may normalize, testing pricing power and margin durability.",
+      "gating": false
+    },
+    {
+      "risk": "High-value aerospace and automotive exposure carries customer qualification, program-cycle and macro demand dependence; competing aluminum suppliers and alternate materials remain substitutes.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -164,20 +228,31 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 4
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "primary/recycled aluminum supply -> Constellium melting/recycling and alloy conversion -> qualified rolled/extruded products -> aerospace/automotive/packaging infrastructure -> mobility, defense and food/beverage needs",
+      "higher scrap capture/recycling capacity -> lower primary-metal and energy intensity -> improved input resilience subject to scrap availability and spreads",
+      "qualification/manufacturing know-how -> switching friction -> potential pricing/bottleneck value, constrained by competing processors and material substitution"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "primary/recycled aluminum supply -> Constellium melting/recycling and alloy conversion -> qualified rolled/extruded products -> aerospace/automotive/packaging infrastructure -> mobility, defense and food/beverage needs",
+    "higher scrap capture/recycling capacity -> lower primary-metal and energy intensity -> improved input resilience subject to scrap availability and spreads",
+    "qualification/manufacturing know-how -> switching friction -> potential pricing/bottleneck value, constrained by competing processors and material substitution"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:CSTM:2026Q2:20260729"
+      "issuer:CSTM:2026Q2:20260729",
+      "issuer:CSTM:sustainability:2025",
+      "issuer:CSTM:recycling:current",
+      "issuer:CSTM:2026Q1"
     ]
   },
   "sources": [
@@ -188,6 +263,29 @@
       "primary": true,
       "publishedAt": "2026-07-29",
       "originFingerprint": "issuer:CSTM:2026Q2:20260729"
+    },
+    {
+      "sourceId": "issuer:CSTM:2025sustainability",
+      "url": "https://www.constellium.com/news/constellium-releases-2025-sustainability-report",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026",
+      "originFingerprint": "issuer:CSTM:sustainability:2025"
+    },
+    {
+      "sourceId": "issuer:CSTM:recycling",
+      "url": "https://www.constellium.com/sustainability/promoting-recycling",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "issuer:CSTM:recycling:current"
+    },
+    {
+      "sourceId": "issuer:CSTM:2026Q1results",
+      "url": "https://www.constellium.com/news/constellium-reports-strong-first-quarter-2026-results-including-record-quarterly-segment-adjusted-ebitda-raises-full-year-2026-guidance",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026",
+      "originFingerprint": "issuer:CSTM:2026Q1"
     }
   ],
   "contradictions": [],
@@ -203,26 +301,35 @@
     {
       "unknown": "No post-Q2 issuer financial update was located in this bounded Scout pass.",
       "gating": false
+    },
+    {
+      "unknown": "Long-run share of economics attributable to durable qualification/process advantages versus cyclical metal and shortage conditions remains uncertain.",
+      "gating": false
+    },
+    {
+      "unknown": "Customer concentration and program-level profitability are not resolved by the reused evidence set.",
+      "gating": false
+    },
+    {
+      "unknown": "No independent source in this bounded pass quantifies competitive share durability across major product categories.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
-  "confidence": 88,
+  "confidence": 86,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -232,14 +339,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -256,10 +355,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

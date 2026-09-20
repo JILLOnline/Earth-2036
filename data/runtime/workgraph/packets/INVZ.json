@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "INVZ",
   "workId": "t0:INVZ",
-  "generatedAt": "2026-09-20T20:13:49.671Z",
+  "generatedAt": "2026-09-20T20:24:38.766Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-30T00:00:00.000Z",
-    "end": "2026-09-19T22:05:31.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T22:05:31.000Z"
+    "end": "2026-09-20T20:22:16.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T20:22:16.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,63 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/INVZ-20260919T220531Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/INVZ-20260919T220531Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/INVZ-20260920T202216Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "market diversification",
-      "commercial execution"
+      "commercial execution",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "financingRisk",
+      "concentrationRisk",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "mixed",
+          "basis": "Automotive-grade sensing and perception capability is differentiated, but deployment success and customer program conversion remain external bottlenecks."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Defense diversification reduces dependence on automotive timing, yet both markets require customer qualification and recurring orders."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "LiDAR provides precise 3D sensing, but radar, cameras and sensor fusion architectures can substitute in some applications."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "market diversification",
@@ -71,7 +96,23 @@
           "basis": "Defense/security orders and deployments provide a second commercialization path beyond long automotive qualification cycles."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "financingRisk",
+          "direction": "risk",
+          "basis": "Operating losses and a July registered direct offering show external capital remains relevant before self-funded economics are established."
+        },
+        {
+          "name": "concentrationRisk",
+          "direction": "risk",
+          "basis": "Large automotive programs and early defense orders depend on a limited number of customer program decisions and deployment outcomes."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "risk",
+          "basis": "Six engagements and prospective-customer conversations should not be equated with recurring production revenue."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "commercial execution",
@@ -120,7 +161,13 @@
   },
   "factors": [
     "market diversification",
-    "commercial execution"
+    "commercial execution",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "financingRisk",
+    "concentrationRisk",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -132,6 +179,26 @@
       {
         "risk": "Cash burn, dilution and customer-program timing remain material risks before sustained positive operating economics are demonstrated.",
         "gating": false
+      },
+      {
+        "risk": "Sensor substitution can cap addressable value even where perception demand grows.",
+        "gating": false
+      },
+      {
+        "risk": "The successor bottleneck is customer conversion and volume economics rather than technical capability alone.",
+        "gating": false
+      },
+      {
+        "risk": "Cash burn and equity financing can dilute shareholders before durable positive operating economics.",
+        "gating": false
+      },
+      {
+        "risk": "Initial defense orders are contingent evidence: additional units depend on successful first deployment.",
+        "gating": false
+      },
+      {
+        "risk": "Automotive SOP schedules can slip and alternative sensor stacks can pressure volumes/pricing.",
+        "gating": false
       }
     ]
   },
@@ -142,6 +209,26 @@
     },
     {
       "risk": "Cash burn, dilution and customer-program timing remain material risks before sustained positive operating economics are demonstrated.",
+      "gating": false
+    },
+    {
+      "risk": "Sensor substitution can cap addressable value even where perception demand grows.",
+      "gating": false
+    },
+    {
+      "risk": "The successor bottleneck is customer conversion and volume economics rather than technical capability alone.",
+      "gating": false
+    },
+    {
+      "risk": "Cash burn and equity financing can dilute shareholders before durable positive operating economics.",
+      "gating": false
+    },
+    {
+      "risk": "Initial defense orders are contingent evidence: additional units depend on successful first deployment.",
+      "gating": false
+    },
+    {
+      "risk": "Automotive SOP schedules can slip and alternative sensor stacks can pressure volumes/pricing.",
       "gating": false
     }
   ],
@@ -156,14 +243,52 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "autonomy and security sensing need",
+        "to": "high-resolution 3D perception demand",
+        "mechanism": "vehicles and defense systems require reliable object/location information under operational constraints",
+        "falsifier": "alternative sensor stacks meet required performance at materially better lifecycle economics"
+      },
+      {
+        "from": "automotive-grade LiDAR capability",
+        "to": "defense/security deployments",
+        "mechanism": "qualified sensors can be repurposed into counter-UAS, perimeter and situational-awareness systems",
+        "falsifier": "initial deployments fail operational validation or do not generate follow-on orders"
+      },
+      {
+        "from": "successful deployments and program wins",
+        "to": "recurring volume revenue",
+        "mechanism": "customer validation can convert initial orders into repeat units and SOP volume",
+        "falsifier": "collaborations remain pilots or program timing slips without recurring material orders"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "autonomy and security sensing need",
+      "to": "high-resolution 3D perception demand",
+      "mechanism": "vehicles and defense systems require reliable object/location information under operational constraints",
+      "falsifier": "alternative sensor stacks meet required performance at materially better lifecycle economics"
+    },
+    {
+      "from": "automotive-grade LiDAR capability",
+      "to": "defense/security deployments",
+      "mechanism": "qualified sensors can be repurposed into counter-UAS, perimeter and situational-awareness systems",
+      "falsifier": "initial deployments fail operational validation or do not generate follow-on orders"
+    },
+    {
+      "from": "successful deployments and program wins",
+      "to": "recurring volume revenue",
+      "mechanism": "customer validation can convert initial orders into repeat units and SOP volume",
+      "falsifier": "collaborations remain pilots or program timing slips without recurring material orders"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "innoviz-ir:2026-08-05:q2-results",
@@ -194,6 +319,12 @@
       "resolution": "Both are directly supported; revenue/order progress does not establish self-funded economics.",
       "resolved": true,
       "gating": false
+    },
+    {
+      "claim": "Commercial traction is improving while operating economics remain loss-making.",
+      "resolution": "Both are supported; traction strengthens the thesis but does not remove financing risk.",
+      "resolved": true,
+      "gating": false
     }
   ],
   "contradictionDispositions": {
@@ -202,6 +333,12 @@
       {
         "claim": "Commercial momentum is improving while operating losses remain substantial.",
         "resolution": "Both are directly supported; revenue/order progress does not establish self-funded economics.",
+        "resolved": true,
+        "gating": false
+      },
+      {
+        "claim": "Commercial traction is improving while operating economics remain loss-making.",
+        "resolution": "Both are supported; traction strengthens the thesis but does not remove financing risk.",
         "resolved": true,
         "gating": false
       }
@@ -215,26 +352,31 @@
     {
       "unknown": "Timing and economics of automotive SOP ramps and follow-on defense orders remain uncertain.",
       "gating": false
+    },
+    {
+      "unknown": "Recurring defense reorder rate and mature automotive program unit economics remain unproven in current lineage.",
+      "gating": false
+    },
+    {
+      "unknown": "Cash runway after ongoing burn and the July financing, absent later financial statements, is not established here.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -244,14 +386,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -268,10 +402,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

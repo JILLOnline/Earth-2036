@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-20T20:13:49.675Z",
+  "generatedAt": "2026-09-20T20:24:38.770Z",
   "canonicalWriteAuthority": false,
   "total": 205,
   "twins": [
@@ -3717,7 +3717,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "IREN",
       "workId": "t0:IREN",
-      "inputSignature": "f7c955a278daf17b2714f61d",
+      "inputSignature": "b824c37f8e8b06ec1d248501",
       "sourceState": "researching",
       "identity": {
         "ticker": "IREN",
@@ -3740,19 +3740,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 1,
         "sourceLineage": {
-          "rawSourceCount": 2,
+          "rawSourceCount": 4,
           "uniqueSourceCount": 1,
-          "duplicatesCollapsed": 1,
+          "duplicatesCollapsed": 3,
           "missingLineage": 0,
           "uniqueOrigins": [
             "iren:2025-11-03:microsoft-9.7b"
@@ -3760,41 +3760,72 @@
         },
         "evidenceWindow": {
           "start": "2025-11-03T00:00:00.000Z",
-          "end": "2026-09-19T22:05:31.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T22:05:31.000Z"
+          "end": "2026-09-20T20:22:16.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T20:22:16.000Z"
         },
         "preflightPassed": false
       },
       "capabilitySignals": [
         "hyperscaler AI infrastructure demand",
-        "contract conversion"
+        "contract conversion",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "financingRisk",
+        "concentrationRisk",
+        "confidenceInflation"
       ],
       "constraintSignals": {
         "risks": [
           "The contract requires large-scale phased delivery and depends on infrastructure/GPU commissioning; contract value is not equivalent to recognized revenue or profit.",
-          "Capital intensity and customer concentration can amplify downside if commissioning slips or contracted economics differ from headline run-rate expectations."
+          "Capital intensity and customer concentration can amplify downside if commissioning slips or contracted economics differ from headline run-rate expectations.",
+          "Successor bottlenecks are capital and execution intensive and can delay conversion of contracted demand into operating capacity.",
+          "Customer concentration reduces resilience if a major contract is modified or not renewed.",
+          "Construction, energization, GPU delivery and commissioning slippage can defer revenue while capital obligations remain.",
+          "Hyperscaler self-build and competing GPU-cloud providers can pressure renewal economics over time.",
+          "The evidence base is currently concentrated in one issuer source and lacks a fresher phase-by-phase commissioning update."
         ],
         "unknowns": [
           "This bounded run did not establish a newer primary-source commissioning update for all four phases.",
-          "Current phase-by-phase delivery status and realized economics require fresher primary evidence before stronger execution conclusions."
+          "Current phase-by-phase delivery status and realized economics require fresher primary evidence before stronger execution conclusions.",
+          "Current phase-by-phase commissioning status and realized economics are not established by the reused source.",
+          "Financing mix, realized margins and current delivery status for all phases remain unknown in this lineage."
         ],
-        "contradictions": [],
+        "contradictions": [
+          "Large contracted demand versus still-unproven realized phase economics."
+        ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "AI model and inference growth",
+            "to": "accelerated-compute demand",
+            "mechanism": "larger training and inference workloads require GPU compute, power and data-center capacity",
+            "falsifier": "compute-efficiency gains or demand slowdown materially reduce required external capacity"
+          },
+          {
+            "from": "power and data-center capacity",
+            "to": "deployable GPU cloud infrastructure",
+            "mechanism": "energized sites and physical infrastructure allow large GPU clusters to be installed and operated",
+            "falsifier": "power, construction, networking, cooling or GPU constraints prevent commissioning"
+          },
+          {
+            "from": "phased Microsoft deployment",
+            "to": "recurring AI cloud revenue",
+            "mechanism": "commissioned contracted capacity converts infrastructure into customer service revenue",
+            "falsifier": "phases slip materially, contract terms change, or delivered economics fail to support expected returns"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -3805,16 +3836,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -3836,23 +3857,31 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
         "capabilityCandidates": [
           "hyperscaler AI infrastructure demand",
-          "contract conversion"
+          "contract conversion",
+          "bottleneckControl",
+          "scenarioRobustness",
+          "substitutionResilience",
+          "financingRisk",
+          "concentrationRisk",
+          "confidenceInflation"
         ],
         "needOrConstraintCandidates": [
           "This bounded run did not establish a newer primary-source commissioning update for all four phases.",
           "Current phase-by-phase delivery status and realized economics require fresher primary evidence before stronger execution conclusions.",
+          "Current phase-by-phase commissioning status and realized economics are not established by the reused source.",
+          "Financing mix, realized margins and current delivery status for all phases remain unknown in this lineage.",
           "The contract requires large-scale phased delivery and depends on infrastructure/GPU commissioning; contract value is not equivalent to recognized revenue or profit.",
-          "Capital intensity and customer concentration can amplify downside if commissioning slips or contracted economics differ from headline run-rate expectations."
+          "Capital intensity and customer concentration can amplify downside if commissioning slips or contracted economics differ from headline run-rate expectations.",
+          "Successor bottlenecks are capital and execution intensive and can delay conversion of contracted demand into operating capacity.",
+          "Customer concentration reduces resilience if a major contract is modified or not renewed.",
+          "Construction, energization, GPU delivery and commissioning slippage can defer revenue while capital obligations remain.",
+          "Hyperscaler self-build and competing GPU-cloud providers can pressure renewal economics over time.",
+          "The evidence base is currently concentrated in one issuer source and lacks a fresher phase-by-phase commissioning update."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -12507,7 +12536,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "HUBB",
       "workId": "t0:HUBB",
-      "inputSignature": "85d69e7209a293b644503af9",
+      "inputSignature": "507ccb894db771ac3d9df3f4",
       "sourceState": "researching",
       "identity": {
         "ticker": "HUBB",
@@ -12530,62 +12559,93 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 2,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 3,
         "sourceLineage": {
-          "rawSourceCount": 3,
-          "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 1,
+          "rawSourceCount": 7,
+          "uniqueSourceCount": 3,
+          "duplicatesCollapsed": 4,
           "missingLineage": 0,
           "uniqueOrigins": [
             "hubbell:2026-09-03:linedefender-facility",
-            "hubbell:2026-01-30:dtech-grid-automation"
+            "hubbell:2026-01-30:dtech-grid-automation",
+            "hubbell:2026-05-04:linedefender-scm"
           ]
         },
         "evidenceWindow": {
           "start": "2026-01-30T00:00:00.000Z",
-          "end": "2026-09-19T22:05:31.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T22:05:31.000Z"
+          "end": "2026-09-20T20:22:16.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T20:22:16.000Z"
         },
         "preflightPassed": false
       },
       "capabilitySignals": [
         "grid-hardening demand",
-        "capacity-to-service conversion"
+        "capacity-to-service conversion",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "confidenceInflation",
+        "competitiveResponse"
       ],
       "constraintSignals": {
         "risks": [
           "Management characterization of demand is not equivalent to disclosed backlog or revenue contribution for LineDefender.",
-          "The 2027 lead-time reduction is forward-looking and depends on ramp quality, component availability and realized demand."
+          "The 2027 lead-time reduction is forward-looking and depends on ramp quality, component availability and realized demand.",
+          "Successor bottlenecks may move to electronics/components, utility integration, communications and field deployment rather than factory floor capacity.",
+          "Grid modernization need does not guarantee LineDefender-specific share if substitutes offer better economics or interoperability.",
+          "Demand language is issuer-sourced and unquantified at product economics level.",
+          "The up-to-50% lead-time reduction by 2027 is forward-looking and can be falsified by ramp quality, component availability or stronger-than-capacity demand.",
+          "Substitution and interoperability pressure can limit product-specific adoption even if grid-hardening spending grows."
         ],
         "unknowns": [
           "Incremental revenue, margin and customer concentration for the new facility are not disclosed in this source.",
-          "Actual 2027 lead-time performance remains a future falsifier."
+          "Actual 2027 lead-time performance remains a future falsifier.",
+          "Independent fleet-scale outage, truck-roll and lifecycle-cost outcomes versus substitutes are not established by current lineage.",
+          "Product-level margins, concentration and facility return are undisclosed."
         ],
-        "contradictions": [],
+        "contradictions": [
+          "Strong stated market response versus absent disclosed product backlog/revenue economics."
+        ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "distribution-grid outages and reliability pressure",
+            "to": "utility demand for automated lateral protection",
+            "mechanism": "automatic clearing of temporary faults and remote visibility can reduce sustained outages, restoration time and truck rolls",
+            "falsifier": "utilities do not realize operational benefits at scale or competing architectures deliver superior lifecycle economics"
+          },
+          {
+            "from": "utility pilot validation and demand",
+            "to": "dedicated LineDefender production capacity",
+            "mechanism": "validated field use and demand support investment in parallel production lines",
+            "falsifier": "facility utilization remains weak or lead times fail to improve despite capacity"
+          },
+          {
+            "from": "production scale and remote communications",
+            "to": "grid resilience service capacity",
+            "mechanism": "greater device availability plus SCADA connectivity expands deployable automated protection",
+            "falsifier": "component, interoperability, cybersecurity or adoption constraints prevent economic deployment"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -12596,16 +12656,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -12627,23 +12677,30 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
         "capabilityCandidates": [
           "grid-hardening demand",
-          "capacity-to-service conversion"
+          "capacity-to-service conversion",
+          "bottleneckControl",
+          "scenarioRobustness",
+          "substitutionResilience",
+          "confidenceInflation",
+          "competitiveResponse"
         ],
         "needOrConstraintCandidates": [
           "Incremental revenue, margin and customer concentration for the new facility are not disclosed in this source.",
           "Actual 2027 lead-time performance remains a future falsifier.",
+          "Independent fleet-scale outage, truck-roll and lifecycle-cost outcomes versus substitutes are not established by current lineage.",
+          "Product-level margins, concentration and facility return are undisclosed.",
           "Management characterization of demand is not equivalent to disclosed backlog or revenue contribution for LineDefender.",
-          "The 2027 lead-time reduction is forward-looking and depends on ramp quality, component availability and realized demand."
+          "The 2027 lead-time reduction is forward-looking and depends on ramp quality, component availability and realized demand.",
+          "Successor bottlenecks may move to electronics/components, utility integration, communications and field deployment rather than factory floor capacity.",
+          "Grid modernization need does not guarantee LineDefender-specific share if substitutes offer better economics or interoperability.",
+          "Demand language is issuer-sourced and unquantified at product economics level.",
+          "The up-to-50% lead-time reduction by 2027 is forward-looking and can be falsified by ramp quality, component availability or stronger-than-capacity demand.",
+          "Substitution and interoperability pressure can limit product-specific adoption even if grid-hardening spending grows."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -22687,7 +22744,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "INVZ",
       "workId": "t0:INVZ",
-      "inputSignature": "a2ff2866b23764b5079d9bb5",
+      "inputSignature": "3b5d60d01ab38b4d62fa069b",
       "sourceState": "researching",
       "identity": {
         "ticker": "INVZ",
@@ -22710,19 +22767,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 2,
         "sourceLineage": {
-          "rawSourceCount": 3,
+          "rawSourceCount": 7,
           "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 1,
+          "duplicatesCollapsed": 5,
           "missingLineage": 0,
           "uniqueOrigins": [
             "innoviz-ir:2026-08-05:q2-results",
@@ -22731,43 +22788,73 @@
         },
         "evidenceWindow": {
           "start": "2026-07-30T00:00:00.000Z",
-          "end": "2026-09-19T22:05:31.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T22:05:31.000Z"
+          "end": "2026-09-20T20:22:16.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T20:22:16.000Z"
         },
         "preflightPassed": false
       },
       "capabilitySignals": [
         "market diversification",
-        "commercial execution"
+        "commercial execution",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "financingRisk",
+        "concentrationRisk",
+        "confidenceInflation"
       ],
       "constraintSignals": {
         "risks": [
           "Initial defense orders are small relative to the scale required for durable profitability and follow-on orders depend on deployment success.",
-          "Cash burn, dilution and customer-program timing remain material risks before sustained positive operating economics are demonstrated."
+          "Cash burn, dilution and customer-program timing remain material risks before sustained positive operating economics are demonstrated.",
+          "Sensor substitution can cap addressable value even where perception demand grows.",
+          "The successor bottleneck is customer conversion and volume economics rather than technical capability alone.",
+          "Cash burn and equity financing can dilute shareholders before durable positive operating economics.",
+          "Initial defense orders are contingent evidence: additional units depend on successful first deployment.",
+          "Automotive SOP schedules can slip and alternative sensor stacks can pressure volumes/pricing."
         ],
         "unknowns": [
           "Conversion rate from announced collaborations and prospective customers to recurring material orders is unknown.",
-          "Timing and economics of automotive SOP ramps and follow-on defense orders remain uncertain."
+          "Timing and economics of automotive SOP ramps and follow-on defense orders remain uncertain.",
+          "Recurring defense reorder rate and mature automotive program unit economics remain unproven in current lineage.",
+          "Cash runway after ongoing burn and the July financing, absent later financial statements, is not established here."
         ],
         "contradictions": [
-          "Commercial momentum is improving while operating losses remain substantial."
+          "Commercial momentum is improving while operating losses remain substantial.",
+          "Commercial traction is improving while operating economics remain loss-making."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "autonomy and security sensing need",
+            "to": "high-resolution 3D perception demand",
+            "mechanism": "vehicles and defense systems require reliable object/location information under operational constraints",
+            "falsifier": "alternative sensor stacks meet required performance at materially better lifecycle economics"
+          },
+          {
+            "from": "automotive-grade LiDAR capability",
+            "to": "defense/security deployments",
+            "mechanism": "qualified sensors can be repurposed into counter-UAS, perimeter and situational-awareness systems",
+            "falsifier": "initial deployments fail operational validation or do not generate follow-on orders"
+          },
+          {
+            "from": "successful deployments and program wins",
+            "to": "recurring volume revenue",
+            "mechanism": "customer validation can convert initial orders into repeat units and SOP volume",
+            "falsifier": "collaborations remain pilots or program timing slips without recurring material orders"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -22778,16 +22865,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -22809,23 +22886,31 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
         "capabilityCandidates": [
           "market diversification",
-          "commercial execution"
+          "commercial execution",
+          "bottleneckControl",
+          "scenarioRobustness",
+          "substitutionResilience",
+          "financingRisk",
+          "concentrationRisk",
+          "confidenceInflation"
         ],
         "needOrConstraintCandidates": [
           "Conversion rate from announced collaborations and prospective customers to recurring material orders is unknown.",
           "Timing and economics of automotive SOP ramps and follow-on defense orders remain uncertain.",
+          "Recurring defense reorder rate and mature automotive program unit economics remain unproven in current lineage.",
+          "Cash runway after ongoing burn and the July financing, absent later financial statements, is not established here.",
           "Initial defense orders are small relative to the scale required for durable profitability and follow-on orders depend on deployment success.",
-          "Cash burn, dilution and customer-program timing remain material risks before sustained positive operating economics are demonstrated."
+          "Cash burn, dilution and customer-program timing remain material risks before sustained positive operating economics are demonstrated.",
+          "Sensor substitution can cap addressable value even where perception demand grows.",
+          "The successor bottleneck is customer conversion and volume economics rather than technical capability alone.",
+          "Cash burn and equity financing can dilute shareholders before durable positive operating economics.",
+          "Initial defense orders are contingent evidence: additional units depend on successful first deployment.",
+          "Automotive SOP schedules can slip and alternative sensor stacks can pressure volumes/pricing."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -32148,7 +32233,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "IR",
       "workId": "t0:IR",
-      "inputSignature": "2e036b9ad09fac8888567db3",
+      "inputSignature": "16c491087d67a53a0ed3d13d",
       "sourceState": "researching",
       "identity": {
         "ticker": "IR",
@@ -32171,63 +32256,95 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 3,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 4,
         "sourceLineage": {
-          "rawSourceCount": 3,
-          "uniqueSourceCount": 3,
-          "duplicatesCollapsed": 0,
+          "rawSourceCount": 7,
+          "uniqueSourceCount": 4,
+          "duplicatesCollapsed": 3,
           "missingLineage": 0,
           "uniqueOrigins": [
             "irco:2026-08-03:lone-star-acquisition",
             "irco:2026-04-28:q1-results",
-            "irco:2026-02-12:fy25-results-guidance"
+            "irco:2026-02-12:fy25-results-guidance",
+            "irco:2026-07-30:q2-results"
           ]
         },
         "evidenceWindow": {
           "start": "2026-02-12T00:00:00.000Z",
-          "end": "2026-09-19T22:05:31.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T22:05:31.000Z"
+          "end": "2026-09-20T20:22:16.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-20T20:22:16.000Z"
         },
         "preflightPassed": false
       },
       "capabilitySignals": [
         "water-infrastructure exposure",
-        "execution resilience"
+        "execution resilience",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "pricingPower",
+        "acquisitionExecutionRisk",
+        "confidenceInflation",
+        "financingRisk"
       ],
       "constraintSignals": {
         "risks": [
           "Bolt-on acquisition economics depend on integration and realization of expected synergies; disclosed revenue alone does not establish value creation.",
-          "Acquisition contribution can mask weaker organic demand; guidance assumptions should be tested against later reported periods by Alpha."
+          "Acquisition contribution can mask weaker organic demand; guidance assumptions should be tested against later reported periods by Alpha.",
+          "M&A breadth can add complexity and integration burden faster than cross-selling/service synergies materialize.",
+          "Inflation and regional pricing pressure can weaken conversion of revenue growth into margin growth.",
+          "Acquisition contribution can obscure underlying organic demand and create integration dependency.",
+          "IT&S pricing/inflation pressure shows that mission-critical positioning does not eliminate regional margin pressure.",
+          "Long-cycle blower/vacuum project timing can create order volatility independent of long-run end-market need."
         ],
         "unknowns": [
           "Post-acquisition organic growth and realized synergies are not yet established.",
-          "Scout did not establish the latest post-Q1 full-year guidance revision in this bounded run."
+          "Scout did not establish the latest post-Q1 full-year guidance revision in this bounded run.",
+          "Realized Lone Star synergies and post-close organic growth are not yet established.",
+          "Lone Star post-close retention, synergy capture and return on invested capital are not yet observable."
         ],
-        "contradictions": [],
+        "contradictions": [
+          "Strong revenue/order growth versus slower EBITDA growth and segment margin pressure."
+        ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "water/wastewater and industrial process needs",
+            "to": "reliable flow creation and aeration demand",
+            "mechanism": "treatment and industrial processes require controlled movement of air, gas and liquids",
+            "falsifier": "end-market project demand structurally weakens or substitute processes materially reduce equipment/service intensity"
+          },
+          {
+            "from": "broader blower technology plus rental/service",
+            "to": "system-solution and aftermarket capability",
+            "mechanism": "technology breadth and installed-base support allow equipment, controls, rental and service to address customer lifecycle needs",
+            "falsifier": "integration fails to cross-sell or acquired installed base does not produce expected service economics"
+          },
+          {
+            "from": "installed equipment and service network",
+            "to": "recurring lifecycle value",
+            "mechanism": "mission-critical equipment requires maintenance, parts, rental and operational support",
+            "falsifier": "customers internalize service or competitors commoditize aftermarket economics"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -32238,16 +32355,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -32269,23 +32376,31 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
         "capabilityCandidates": [
           "water-infrastructure exposure",
-          "execution resilience"
+          "execution resilience",
+          "bottleneckControl",
+          "scenarioRobustness",
+          "pricingPower",
+          "acquisitionExecutionRisk",
+          "confidenceInflation",
+          "financingRisk"
         ],
         "needOrConstraintCandidates": [
           "Post-acquisition organic growth and realized synergies are not yet established.",
           "Scout did not establish the latest post-Q1 full-year guidance revision in this bounded run.",
+          "Realized Lone Star synergies and post-close organic growth are not yet established.",
+          "Lone Star post-close retention, synergy capture and return on invested capital are not yet observable.",
           "Bolt-on acquisition economics depend on integration and realization of expected synergies; disclosed revenue alone does not establish value creation.",
-          "Acquisition contribution can mask weaker organic demand; guidance assumptions should be tested against later reported periods by Alpha."
+          "Acquisition contribution can mask weaker organic demand; guidance assumptions should be tested against later reported periods by Alpha.",
+          "M&A breadth can add complexity and integration burden faster than cross-selling/service synergies materialize.",
+          "Inflation and regional pricing pressure can weaken conversion of revenue growth into margin growth.",
+          "Acquisition contribution can obscure underlying organic demand and create integration dependency.",
+          "IT&S pricing/inflation pressure shows that mission-critical positioning does not eliminate regional margin pressure.",
+          "Long-cycle blower/vacuum project timing can create order volatility independent of long-run end-market need."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

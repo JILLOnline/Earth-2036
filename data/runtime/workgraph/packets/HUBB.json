@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "HUBB",
   "workId": "t0:HUBB",
-  "generatedAt": "2026-09-20T20:13:49.669Z",
+  "generatedAt": "2026-09-20T20:24:38.763Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-30T00:00:00.000Z",
-    "end": "2026-09-19T22:05:31.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T22:05:31.000Z"
+    "end": "2026-09-20T20:22:16.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T20:22:16.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,62 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/HUBB-20260919T220531Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/HUBB-20260919T220531Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/HUBB-20260920T202216Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "grid-hardening demand",
-      "capacity-to-service conversion"
+      "capacity-to-service conversion",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "confidenceInflation",
+      "competitiveResponse"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "Dedicated production plus field-retrofittable SCADA capability address equipment availability and remote-operation needs."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Grid reliability demand is durable, but product-specific growth still depends on utility adoption and execution of the 2027 lead-time target."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Reclosers solve a real reliability need, but utilities can use competing protection/automation architectures and vendors."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "grid-hardening demand",
@@ -71,7 +95,18 @@
           "basis": "Dedicated domestic capacity following utility pilots is physical evidence of demand for distribution automation and reliability equipment."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "confidenceInflation",
+          "direction": "risk",
+          "basis": "Management's statement that market response exceeded expectations should not be treated as quantified backlog or economics."
+        },
+        {
+          "name": "competitiveResponse",
+          "direction": "risk",
+          "basis": "Distribution automation and protection have competing architectures/vendors; dedicated capacity alone does not prove durable pricing power."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "capacity-to-service conversion",
@@ -120,7 +155,12 @@
   },
   "factors": [
     "grid-hardening demand",
-    "capacity-to-service conversion"
+    "capacity-to-service conversion",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "confidenceInflation",
+    "competitiveResponse"
   ],
   "riskEvidence": {
     "present": true,
@@ -131,6 +171,26 @@
       },
       {
         "risk": "The 2027 lead-time reduction is forward-looking and depends on ramp quality, component availability and realized demand.",
+        "gating": false
+      },
+      {
+        "risk": "Successor bottlenecks may move to electronics/components, utility integration, communications and field deployment rather than factory floor capacity.",
+        "gating": false
+      },
+      {
+        "risk": "Grid modernization need does not guarantee LineDefender-specific share if substitutes offer better economics or interoperability.",
+        "gating": false
+      },
+      {
+        "risk": "Demand language is issuer-sourced and unquantified at product economics level.",
+        "gating": false
+      },
+      {
+        "risk": "The up-to-50% lead-time reduction by 2027 is forward-looking and can be falsified by ramp quality, component availability or stronger-than-capacity demand.",
+        "gating": false
+      },
+      {
+        "risk": "Substitution and interoperability pressure can limit product-specific adoption even if grid-hardening spending grows.",
         "gating": false
       }
     ]
@@ -143,6 +203,26 @@
     {
       "risk": "The 2027 lead-time reduction is forward-looking and depends on ramp quality, component availability and realized demand.",
       "gating": false
+    },
+    {
+      "risk": "Successor bottlenecks may move to electronics/components, utility integration, communications and field deployment rather than factory floor capacity.",
+      "gating": false
+    },
+    {
+      "risk": "Grid modernization need does not guarantee LineDefender-specific share if substitutes offer better economics or interoperability.",
+      "gating": false
+    },
+    {
+      "risk": "Demand language is issuer-sourced and unquantified at product economics level.",
+      "gating": false
+    },
+    {
+      "risk": "The up-to-50% lead-time reduction by 2027 is forward-looking and can be falsified by ramp quality, component availability or stronger-than-capacity demand.",
+      "gating": false
+    },
+    {
+      "risk": "Substitution and interoperability pressure can limit product-specific adoption even if grid-hardening spending grows.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -153,21 +233,60 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "distribution-grid outages and reliability pressure",
+        "to": "utility demand for automated lateral protection",
+        "mechanism": "automatic clearing of temporary faults and remote visibility can reduce sustained outages, restoration time and truck rolls",
+        "falsifier": "utilities do not realize operational benefits at scale or competing architectures deliver superior lifecycle economics"
+      },
+      {
+        "from": "utility pilot validation and demand",
+        "to": "dedicated LineDefender production capacity",
+        "mechanism": "validated field use and demand support investment in parallel production lines",
+        "falsifier": "facility utilization remains weak or lead times fail to improve despite capacity"
+      },
+      {
+        "from": "production scale and remote communications",
+        "to": "grid resilience service capacity",
+        "mechanism": "greater device availability plus SCADA connectivity expands deployable automated protection",
+        "falsifier": "component, interoperability, cybersecurity or adoption constraints prevent economic deployment"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "distribution-grid outages and reliability pressure",
+      "to": "utility demand for automated lateral protection",
+      "mechanism": "automatic clearing of temporary faults and remote visibility can reduce sustained outages, restoration time and truck rolls",
+      "falsifier": "utilities do not realize operational benefits at scale or competing architectures deliver superior lifecycle economics"
+    },
+    {
+      "from": "utility pilot validation and demand",
+      "to": "dedicated LineDefender production capacity",
+      "mechanism": "validated field use and demand support investment in parallel production lines",
+      "falsifier": "facility utilization remains weak or lead times fail to improve despite capacity"
+    },
+    {
+      "from": "production scale and remote communications",
+      "to": "grid resilience service capacity",
+      "mechanism": "greater device availability plus SCADA connectivity expands deployable automated protection",
+      "falsifier": "component, interoperability, cybersecurity or adoption constraints prevent economic deployment"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "hubbell:2026-09-03:linedefender-facility",
-      "hubbell:2026-01-30:dtech-grid-automation"
+      "hubbell:2026-01-30:dtech-grid-automation",
+      "hubbell:2026-05-04:linedefender-scm"
     ]
   },
   "sources": [
@@ -186,12 +305,34 @@
       "publishedAt": "2026-01-30",
       "originFingerprint": "hubbell:2026-01-30:dtech-grid-automation",
       "sourceId": null
+    },
+    {
+      "url": "https://www.hubbell.com/hubbellpowersystems/en/news/bolt-on-scada-cellular-modem-adds-remote-communications-to-the-linedefender-recloser",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-04",
+      "originFingerprint": "hubbell:2026-05-04:linedefender-scm",
+      "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Strong stated market response versus absent disclosed product backlog/revenue economics.",
+      "resolution": "Treat demand signal as credible but bounded; do not infer financial magnitude from the facility announcement.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Strong stated market response versus absent disclosed product backlog/revenue economics.",
+        "resolution": "Treat demand signal as credible but bounded; do not infer financial magnitude from the facility announcement.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
   "unknowns": [
     {
@@ -201,26 +342,31 @@
     {
       "unknown": "Actual 2027 lead-time performance remains a future falsifier.",
       "gating": false
+    },
+    {
+      "unknown": "Independent fleet-scale outage, truck-roll and lifecycle-cost outcomes versus substitutes are not established by current lineage.",
+      "gating": false
+    },
+    {
+      "unknown": "Product-level margins, concentration and facility return are undisclosed.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 90,
+  "confidence": 88,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -230,14 +376,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -254,10 +392,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

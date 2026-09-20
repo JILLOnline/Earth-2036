@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "IREN",
   "workId": "t0:IREN",
-  "generatedAt": "2026-09-20T20:13:49.666Z",
+  "generatedAt": "2026-09-20T20:24:38.759Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2025-11-03T00:00:00.000Z",
-    "end": "2026-09-19T22:05:31.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T22:05:31.000Z"
+    "end": "2026-09-20T20:22:16.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-20T20:22:16.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,63 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/IREN-20260919T220531Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/IREN-20260919T220531Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/IREN-20260920T202216Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "hyperscaler AI infrastructure demand",
-      "contract conversion"
+      "contract conversion",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "financingRisk",
+      "concentrationRisk",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "Power and data-center footprint can control a scarce physical input to AI compute deployment."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Contracted hyperscaler demand supports utilization, but concentrated customer exposure and phased execution create binary schedule risk."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Compute demand is robust, but hyperscalers can self-build or source from competing infrastructure providers."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "hyperscaler AI infrastructure demand",
@@ -71,7 +96,23 @@
           "basis": "A named multi-year customer contract materially strengthens evidence that IREN's power-and-data-center footprint can convert into AI cloud demand."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "financingRisk",
+          "direction": "risk",
+          "basis": "Large equipment and infrastructure commitments create substantial capital requirements before full revenue conversion."
+        },
+        {
+          "name": "concentrationRisk",
+          "direction": "risk",
+          "basis": "A very large named customer contract can make execution and renewal outcomes disproportionately important."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "risk",
+          "basis": "Contract value and annualized run-rate should not be treated as present revenue or profit before commissioning."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "contract conversion",
@@ -120,7 +161,13 @@
   },
   "factors": [
     "hyperscaler AI infrastructure demand",
-    "contract conversion"
+    "contract conversion",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "financingRisk",
+    "concentrationRisk",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -132,6 +179,26 @@
       {
         "risk": "Capital intensity and customer concentration can amplify downside if commissioning slips or contracted economics differ from headline run-rate expectations.",
         "gating": false
+      },
+      {
+        "risk": "Successor bottlenecks are capital and execution intensive and can delay conversion of contracted demand into operating capacity.",
+        "gating": false
+      },
+      {
+        "risk": "Customer concentration reduces resilience if a major contract is modified or not renewed.",
+        "gating": false
+      },
+      {
+        "risk": "Construction, energization, GPU delivery and commissioning slippage can defer revenue while capital obligations remain.",
+        "gating": false
+      },
+      {
+        "risk": "Hyperscaler self-build and competing GPU-cloud providers can pressure renewal economics over time.",
+        "gating": false
+      },
+      {
+        "risk": "The evidence base is currently concentrated in one issuer source and lacks a fresher phase-by-phase commissioning update.",
+        "gating": false
       }
     ]
   },
@@ -142,6 +209,26 @@
     },
     {
       "risk": "Capital intensity and customer concentration can amplify downside if commissioning slips or contracted economics differ from headline run-rate expectations.",
+      "gating": false
+    },
+    {
+      "risk": "Successor bottlenecks are capital and execution intensive and can delay conversion of contracted demand into operating capacity.",
+      "gating": false
+    },
+    {
+      "risk": "Customer concentration reduces resilience if a major contract is modified or not renewed.",
+      "gating": false
+    },
+    {
+      "risk": "Construction, energization, GPU delivery and commissioning slippage can defer revenue while capital obligations remain.",
+      "gating": false
+    },
+    {
+      "risk": "Hyperscaler self-build and competing GPU-cloud providers can pressure renewal economics over time.",
+      "gating": false
+    },
+    {
+      "risk": "The evidence base is currently concentrated in one issuer source and lacks a fresher phase-by-phase commissioning update.",
       "gating": false
     }
   ],
@@ -156,14 +243,52 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "AI model and inference growth",
+        "to": "accelerated-compute demand",
+        "mechanism": "larger training and inference workloads require GPU compute, power and data-center capacity",
+        "falsifier": "compute-efficiency gains or demand slowdown materially reduce required external capacity"
+      },
+      {
+        "from": "power and data-center capacity",
+        "to": "deployable GPU cloud infrastructure",
+        "mechanism": "energized sites and physical infrastructure allow large GPU clusters to be installed and operated",
+        "falsifier": "power, construction, networking, cooling or GPU constraints prevent commissioning"
+      },
+      {
+        "from": "phased Microsoft deployment",
+        "to": "recurring AI cloud revenue",
+        "mechanism": "commissioned contracted capacity converts infrastructure into customer service revenue",
+        "falsifier": "phases slip materially, contract terms change, or delivered economics fail to support expected returns"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "AI model and inference growth",
+      "to": "accelerated-compute demand",
+      "mechanism": "larger training and inference workloads require GPU compute, power and data-center capacity",
+      "falsifier": "compute-efficiency gains or demand slowdown materially reduce required external capacity"
+    },
+    {
+      "from": "power and data-center capacity",
+      "to": "deployable GPU cloud infrastructure",
+      "mechanism": "energized sites and physical infrastructure allow large GPU clusters to be installed and operated",
+      "falsifier": "power, construction, networking, cooling or GPU constraints prevent commissioning"
+    },
+    {
+      "from": "phased Microsoft deployment",
+      "to": "recurring AI cloud revenue",
+      "mechanism": "commissioned contracted capacity converts infrastructure into customer service revenue",
+      "falsifier": "phases slip materially, contract terms change, or delivered economics fail to support expected returns"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "iren:2025-11-03:microsoft-9.7b"
@@ -179,10 +304,24 @@
       "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Large contracted demand versus still-unproven realized phase economics.",
+      "resolution": "Contract validates demand but not completion, margin or return; preserve both facts without treating the latter uncertainty as a present contradiction blocker.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Large contracted demand versus still-unproven realized phase economics.",
+        "resolution": "Contract validates demand but not completion, margin or return; preserve both facts without treating the latter uncertainty as a present contradiction blocker.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
   "unknowns": [
     {
@@ -192,11 +331,19 @@
     {
       "unknown": "Current phase-by-phase delivery status and realized economics require fresher primary evidence before stronger execution conclusions.",
       "gating": false
+    },
+    {
+      "unknown": "Current phase-by-phase commissioning status and realized economics are not established by the reused source.",
+      "gating": false
+    },
+    {
+      "unknown": "Financing mix, realized margins and current delivery status for all phases remain unknown in this lineage.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 82,
@@ -205,13 +352,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -221,14 +365,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -245,10 +381,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

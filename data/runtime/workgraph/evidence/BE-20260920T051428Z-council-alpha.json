@@ -1,0 +1,90 @@
+[
+  {
+    "version":1,
+    "ticker":"BE",
+    "entityId":"BE",
+    "workId":"t0:BE",
+    "cycleKey":"20260920T0000Z",
+    "role":"council-alpha",
+    "perspective":"source-integrity",
+    "generatedAt":"2026-09-20T05:14:28Z",
+    "claims":[
+      {"claim":"Identity/tradability is validated as Bloom Energy Corporation Class A common stock, ticker BE, NYSE, CIK 0001664703.","status":"supported"},
+      {"claim":"Cumulative evidence is provenance-addressed to distinct Bloom investor-relations disclosures for FY2025 results, Q1 2026 results, Q2 2026 results, and the Oracle expansion; the current valuation input is separately sourced and is not treated as issuer corroboration.","status":"supported"},
+      {"claim":"The Oracle agreement ceiling is not treated as contracted backlog: only the initial 1.2 GW is treated as contracted/deploying, resolving the prior scope contradiction conservatively.","status":"supported"}
+    ],
+    "sources":[
+      {"sourceId":"be:fy2025-results:2026-02-05","url":"https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results-with-Record-Full-Year-Revenues/","kind":"primary","primary":true,"publishedAt":"2026-02-05","originFingerprint":"be:fy2025-results:2026-02-05"},
+      {"sourceId":"be:q1-2026-results:2026-04-28","url":"https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Record-First-Quarter-2026-Results-and-Raises-Full-Year-2026-Guidance/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-04-28","originFingerprint":"be:q1-2026-results:2026-04-28"},
+      {"sourceId":"be:oracle-2.8gw:2026-04-13","url":"https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-and-Oracle-Expand-Strategic-Partnership-to-Deploy-up-to-2-8-GW-to-Accelerate-AI-Infrastructure-Build-Out/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-04-13","originFingerprint":"be:oracle-2.8gw:2026-04-13"},
+      {"sourceId":"be:q2-2026-results:2026-07-28","url":"https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Record-Second-Quarter-2026-Financial-Results-and-Raises-Full-Year-2026-Guidance/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-07-28","originFingerprint":"be:q2-2026-results:2026-07-28"},
+      {"sourceId":"be:marketcap:2026-09","url":"https://companiesmarketcap.com/bloom-energy/marketcap/","kind":"independent-market","primary":false,"publishedAt":"2026-09-18","originFingerprint":"be:companiesmarketcap:2026-09"}
+    ],
+    "risks":[{"risk":"Issuer operating disclosures are primary facts but not independent corroboration of issuer characterization; confidence is reduced where comparative cost, supply-chain concentration, or customer concentration percentages remain undisclosed.","gating":false}],
+    "contradictions":[{"issue":"2.8 GW master-agreement ceiling versus 1.2 GW contracted/deploying","material":true,"disposition":"resolved: scoring and thesis use 1.2 GW as contracted; remaining capacity is optional agreement ceiling only"}],
+    "unknowns":[{"unknown":"Exact customer concentration percentages and component-level supplier concentration are not established in the routed evidence.","gating":false}],
+    "gatingIssues":[],
+    "confidence":88,
+    "recommendedNextState":"packet_ready",
+    "recommendedOwner":"chief-earth",
+    "lineage":{"supersedes":null,"inputs":["data/runtime/workgraph/evidence/BE-20260918T1100Z-earth-scout.json","data/runtime/workgraph/evidence/BE-20260919T062439Z-council-beta.json","data/runtime/workgraph/packets/BE.json"]}
+  },
+  {
+    "version":1,
+    "ticker":"BE",
+    "entityId":"BE",
+    "workId":"t0:BE",
+    "cycleKey":"20260920T0000Z",
+    "role":"council-alpha",
+    "perspective":"company-underwriting",
+    "generatedAt":"2026-09-20T05:14:28Z",
+    "calibrationVersion":"1.0.0-calibration-a",
+    "claims":[
+      {"claim":"FY2025 revenue was $2.02B, up 37.3%, gross margin 29.0%, operating income $72.8M, operating cash flow $113.9M, product backlog about $6B and total current backlog about $20B.","status":"supported"},
+      {"claim":"Q2 2026 revenue reached $1.065B, up 165.5% year over year; gross margin was 33.4%, operating income $182.2M, operating cash flow $226.4M, cash and equivalents $2.667B, and full-year revenue guidance rose to $3.9B-$4.2B.","status":"supported"},
+      {"claim":"September 2026 market capitalization around $78B implies a demanding valuation relative to FY2026 revenue guidance, despite exceptional operating acceleration.","status":"inference"}
+    ],
+    "scoreRecord":{
+      "ticker":"BE","company":"Bloom Energy","methodologyVersion":"1.0.0","calibrationVersion":"1.0.0-calibration-a","earthScore":61.35,"risk":55,"dataConfidence":82,
+      "thesisQuality":78,"financialOperatingMomentum":92,"marketValuationOpportunity":25,"catalystScore":82,"governancePower":62,"alignment2036":84,"crossDivisionLeverage":68,"bottleneckControl":76,"scenarioRobustness":67,"substitutionResilience":58,"supplyChainResilience":55,"pricingPower":64,
+      "factorEvidence":{
+        "thesisQuality":{"numericAssessment":78,"basis":"Strong demand validation, backlog and multi-quarter acceleration support the strong band, capped below exceptional by concentration and substitution uncertainty.","sourceIds":["be:fy2025-results:2026-02-05","be:q2-2026-results:2026-07-28","be:oracle-2.8gw:2026-04-13"]},
+        "financialOperatingMomentum":{"numericAssessment":92,"basis":"Q2 revenue +165.5% YoY, 33.4% gross margin, $182.2M operating income, $226.4M operating cash flow and $2.667B cash demonstrate exceptional broad operating acceleration and funding capacity.","sourceIds":["be:q2-2026-results:2026-07-28","be:fy2025-results:2026-02-05"]},
+        "marketValuationOpportunity":{"numericAssessment":25,"basis":"About $78B September market cap against $3.9B-$4.2B FY2026 revenue guidance embeds aggressive outcomes; strong growth prevents a critical-weakness assessment but downside-adjusted headroom is limited.","sourceIds":["be:marketcap:2026-09","be:q2-2026-results:2026-07-28"]},
+        "catalystScore":{"numericAssessment":82,"basis":"Raised 2026 guidance plus contracted Oracle deployment provide multiple material, source-supported execution catalysts with identifiable near/medium-term conversion windows.","sourceIds":["be:q2-2026-results:2026-07-28","be:oracle-2.8gw:2026-04-13"]},
+        "governancePower":{"numericAssessment":62,"basis":"Repeated guidance raises, improving profitability/cash generation and transparent distinction of backlog definitions support adequate-to-strong execution; routed evidence does not justify exceptional governance/alignment claims.","sourceIds":["be:fy2025-results:2026-02-05","be:q1-2026-results:2026-04-28","be:q2-2026-results:2026-07-28"]},
+        "alignment2036":{"numericAssessment":84,"basis":"Onsite power directly addresses durable electricity and grid-interconnection constraints for AI/data-center and industrial infrastructure across multiple customer classes.","sourceIds":["be:oracle-2.8gw:2026-04-13","be:q2-2026-results:2026-07-28"]},
+        "crossDivisionLeverage":{"numericAssessment":68,"basis":"Core solid-oxide platform serves data centers, semiconductor manufacturing, utilities and broader C&I/mission-critical loads, but current acceleration is heavily AI/data-center influenced.","sourceIds":["be:q2-2026-results:2026-07-28","be:fy2025-results:2026-02-05"]},
+        "bottleneckControl":{"numericAssessment":76,"basis":"Rapidly deployable onsite generation participates meaningfully in the grid/interconnection bottleneck and has hyperscaler validation, but Bloom does not exclusively control the constraint and substitutes exist.","sourceIds":["be:oracle-2.8gw:2026-04-13","be:q2-2026-results:2026-07-28"]},
+        "scenarioRobustness":{"numericAssessment":67,"basis":"Multiple end markets and strong balance-sheet liquidity support resilience, while economics remain exposed to AI buildout pace, grid expansion and alternative onsite architectures.","sourceIds":["be:q2-2026-results:2026-07-28","be:fy2025-results:2026-02-05"]},
+        "substitutionResilience":{"numericAssessment":58,"basis":"Large deployments and approvals validate performance, but utility grid expansion, turbines/engines, storage-backed renewables and other distributed generation remain credible substitutes.","sourceIds":["be:oracle-2.8gw:2026-04-13","be:q2-2026-results:2026-07-28"]},
+        "supplyChainResilience":{"numericAssessment":55,"basis":"US manufacturing and large cash resources support execution, but routed evidence does not establish tested multi-source redundancy for critical components or fuel dependencies.","sourceIds":["be:q2-2026-results:2026-07-28"]},
+        "pricingPower":{"numericAssessment":64,"basis":"Gross margin expanded to 33.4% in Q2 2026 amid rapid scale, supporting some value capture; evidence does not isolate price realization from mix and cost reductions.","sourceIds":["be:q2-2026-results:2026-07-28","be:fy2025-results:2026-02-05"]}
+      },
+      "riskEvidence":{"numericAssessment":55,"basis":"Material valuation, customer/program concentration, scale execution and substitution risks remain despite strong liquidity and operating acceleration.","sourceIds":["be:marketcap:2026-09","be:oracle-2.8gw:2026-04-13","be:q2-2026-results:2026-07-28"]},
+      "dataConfidenceEvidence":{"numericAssessment":82,"basis":"Recent primary operating evidence is strong and identity/tradability is validated; confidence is capped by limited independent corroboration and unresolved supplier/customer concentration detail.","sourceIds":["be:fy2025-results:2026-02-05","be:q2-2026-results:2026-07-28","be:marketcap:2026-09"]},
+      "primarySourceUrls":["https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results-with-Record-Full-Year-Revenues/","https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Record-First-Quarter-2026-Results-and-Raises-Full-Year-2026-Guidance/default.aspx","https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-and-Oracle-Expand-Strategic-Partnership-to-Deploy-up-to-2-8-GW-to-Accelerate-AI-Infrastructure-Build-Out/default.aspx","https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Record-Second-Quarter-2026-Financial-Results-and-Raises-Full-Year-2026-Guidance/default.aspx"],
+      "independentSourceUrls":["https://companiesmarketcap.com/bloom-energy/marketcap/"],
+      "causalMapped":true,
+      "thesis":"Bloom has become a rapidly scaling onsite-power provider positioned against grid/interconnection scarcity, with exceptional 2026 operating momentum and hyperscaler validation; the investment case is tempered materially by a very demanding current valuation and credible substitute architectures.",
+      "keyRisk":"Current valuation embeds aggressive execution while customer/program concentration and substitute power architectures can compress expected value if deployment growth or margins disappoint.",
+      "nextCatalyst":"Conversion of contracted hyperscaler deployments and the next operating update against raised $3.9B-$4.2B FY2026 revenue guidance.",
+      "scoreBreakdown":{"weightedComponentScore":70.15,"riskPenaltyWeight":0.16,"riskPenalty":8.8,"earthScore":61.35,"note":"Earth score = weighted methodology component score minus risk*0.16; confidence is reported separately and not used to manufacture a higher score."}
+    },
+    "sources":[
+      {"sourceId":"be:fy2025-results:2026-02-05","url":"https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results-with-Record-Full-Year-Revenues/","kind":"primary","primary":true,"publishedAt":"2026-02-05","originFingerprint":"be:fy2025-results:2026-02-05"},
+      {"sourceId":"be:q1-2026-results:2026-04-28","url":"https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Record-First-Quarter-2026-Results-and-Raises-Full-Year-2026-Guidance/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-04-28","originFingerprint":"be:q1-2026-results:2026-04-28"},
+      {"sourceId":"be:oracle-2.8gw:2026-04-13","url":"https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-and-Oracle-Expand-Strategic-Partnership-to-Deploy-up-to-2-8-GW-to-Accelerate-AI-Infrastructure-Build-Out/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-04-13","originFingerprint":"be:oracle-2.8gw:2026-04-13"},
+      {"sourceId":"be:q2-2026-results:2026-07-28","url":"https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Record-Second-Quarter-2026-Financial-Results-and-Raises-Full-Year-2026-Guidance/default.aspx","kind":"primary","primary":true,"publishedAt":"2026-07-28","originFingerprint":"be:q2-2026-results:2026-07-28"},
+      {"sourceId":"be:marketcap:2026-09","url":"https://companiesmarketcap.com/bloom-energy/marketcap/","kind":"independent-market","primary":false,"publishedAt":"2026-09-18","originFingerprint":"be:companiesmarketcap:2026-09"}
+    ],
+    "risks":[{"risk":"Valuation requires aggressive execution; customer/program concentration, manufacturing/service scaling, fuel availability and substitution remain material.","gating":false}],
+    "contradictions":[{"issue":"2.8 GW headline versus 1.2 GW contracted/deploying","material":true,"disposition":"resolved conservatively; only 1.2 GW is treated as contracted"}],
+    "unknowns":[{"unknown":"Exact customer concentration percentages and critical-component supplier redundancy remain undisclosed in current routed evidence.","gating":false}],
+    "gatingIssues":[],
+    "confidence":82,
+    "recommendedNextState":"packet_ready",
+    "recommendedOwner":"chief-earth",
+    "lineage":{"supersedes":null,"inputs":["data/runtime/workgraph/evidence/BE-20260918T1100Z-earth-scout.json","data/runtime/workgraph/evidence/BE-20260919T062439Z-council-beta.json","data/runtime/workgraph/packets/BE.json"]}
+  }
+]

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MDB",
   "workId": "t0:MDB",
-  "generatedAt": "2026-09-21T02:36:44.414Z",
+  "generatedAt": "2026-09-21T03:08:19.554Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-01T00:00:00.000Z",
-    "end": "2026-09-20T20:06:17.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-20T20:06:17.000Z"
+    "end": "2026-09-21T03:05:28.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T03:05:28.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -30,29 +30,35 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/MDB-20260920T170405Z-earth-scout.json",
     "data/runtime/workgraph/evidence/MDB-20260920T180801Z-earth-scout.json",
     "data/runtime/workgraph/evidence/MDB-20260920T190406Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/MDB-20260920T200617Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/MDB-20260921T030528Z-earth-scout.json"
   ],
   "evidenceResolution": {
-    "supersededPaths": [],
+    "supersededPaths": [
+      "data/runtime/workgraph/evidence/MDB-20260920T200617Z-earth-scout.json"
+    ],
     "resolvedGateKinds": [],
     "activeEvidenceCount": 8,
-    "historicalEvidenceCount": 8
+    "historicalEvidenceCount": 10
   },
   "factorEvidence": {
     "names": [
@@ -60,15 +66,35 @@
       "29% Atlas growth",
       "36% EA/other growth",
       "raised FY2027 guidance",
-      "AI workload optionality"
+      "AI workload optionality",
+      "revenue growth",
+      "Atlas growth",
+      "guidance execution"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "revenue growth",
+          "direction": "positive",
+          "basis": "Reported Q2 FY2027 revenue grew 30%."
+        },
+        {
+          "name": "Atlas growth",
+          "direction": "positive",
+          "basis": "Atlas growth near 29% supports cloud consumption execution."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "guidance execution",
+          "direction": "positive",
+          "basis": "Raised FY2027 guidance accompanies broad reported growth."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -113,7 +139,10 @@
     "29% Atlas growth",
     "36% EA/other growth",
     "raised FY2027 guidance",
-    "AI workload optionality"
+    "AI workload optionality",
+    "revenue growth",
+    "Atlas growth",
+    "guidance execution"
   ],
   "riskEvidence": {
     "present": true,
@@ -144,14 +173,14 @@
       "hyperscaler competition",
       "AI monetization uncertainty",
       "expectation sensitivity",
-      "cloud consumption variability",
-      "hyperscaler competition",
-      "AI monetization uncertainty",
-      "expectation sensitivity",
-      "cloud consumption variability",
-      "hyperscaler competition",
-      "AI monetization uncertainty",
-      "expectation sensitivity"
+      {
+        "risk": "Cloud consumption variability, hyperscaler competition and expectation sensitivity remain material.",
+        "gating": false
+      },
+      {
+        "risk": "AI narrative can outrun measurable consumption contribution.",
+        "gating": false
+      }
     ]
   },
   "risks": [
@@ -181,14 +210,14 @@
     "hyperscaler competition",
     "AI monetization uncertainty",
     "expectation sensitivity",
-    "cloud consumption variability",
-    "hyperscaler competition",
-    "AI monetization uncertainty",
-    "expectation sensitivity",
-    "cloud consumption variability",
-    "hyperscaler competition",
-    "AI monetization uncertainty",
-    "expectation sensitivity"
+    {
+      "risk": "Cloud consumption variability, hyperscaler competition and expectation sensitivity remain material.",
+      "gating": false
+    },
+    {
+      "risk": "AI narrative can outrun measurable consumption contribution.",
+      "gating": false
+    }
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -206,9 +235,9 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 16,
+    "rawSourceCount": 15,
     "uniqueSourceCount": 5,
-    "duplicatesCollapsed": 11,
+    "duplicatesCollapsed": 10,
     "missingLineage": 0,
     "uniqueOrigins": [
       "investors.mongodb.com|q2-fy2027-results|2026-09-01",
@@ -270,18 +299,26 @@
     "Strong total growth and raised guidance coexist with investor concern that Atlas growth has not accelerated.",
     "Strong total growth and raised guidance coexist with uncertainty over whether Atlas growth will accelerate.",
     "Strong total growth and raised guidance coexist with uncertainty over whether Atlas growth will accelerate.",
-    "Strong total growth and raised guidance coexist with uncertainty over whether Atlas growth will accelerate.",
-    "Strong total growth and raised guidance coexist with uncertainty over whether Atlas growth will accelerate."
+    {
+      "claim": "Strong total growth coexists with uncertainty over Atlas acceleration.",
+      "resolution": "Treat current growth as realized while leaving future acceleration unproven.",
+      "resolved": true,
+      "gating": false
+    }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 6,
+    "unresolvedMaterialCount": 4,
     "items": [
       "Strong total growth and raised guidance coexist with investor concern that Atlas growth has not accelerated.",
       "Strong total growth and raised guidance coexist with investor concern that Atlas growth has not accelerated.",
       "Strong total growth and raised guidance coexist with uncertainty over whether Atlas growth will accelerate.",
       "Strong total growth and raised guidance coexist with uncertainty over whether Atlas growth will accelerate.",
-      "Strong total growth and raised guidance coexist with uncertainty over whether Atlas growth will accelerate.",
-      "Strong total growth and raised guidance coexist with uncertainty over whether Atlas growth will accelerate."
+      {
+        "claim": "Strong total growth coexists with uncertainty over Atlas acceleration.",
+        "resolution": "Treat current growth as realized while leaving future acceleration unproven.",
+        "resolved": true,
+        "gating": false
+      }
     ]
   },
   "unknowns": [
@@ -305,16 +342,18 @@
     "durability of growth",
     "AI contribution to Atlas consumption",
     "Investor Day long-term targets until released",
-    "durability of growth",
-    "AI contribution to Atlas consumption",
-    "Investor Day long-term targets until released",
-    "durability of growth",
-    "AI contribution to Atlas consumption",
-    "Investor Day long-term targets until released"
+    {
+      "unknown": "AI contribution to Atlas consumption and future Investor Day targets remain unknown until disclosed.",
+      "gating": false
+    },
+    {
+      "unknown": "Durability of growth and measurable AI contribution remain unknown.",
+      "gating": false
+    }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 26
+    "nonGatingCount": 22
   },
   "gatingIssues": [],
   "confidence": 92,
@@ -324,9 +363,7 @@
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
@@ -349,16 +386,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
       },
       {
         "failure": "missing_primary_source",

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MA",
   "workId": "t0:MA",
-  "generatedAt": "2026-09-21T02:36:44.422Z",
+  "generatedAt": "2026-09-21T03:08:19.563Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-23T00:00:00.000Z",
-    "end": "2026-09-20T20:06:12.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-20T20:06:12.000Z"
+    "end": "2026-09-21T03:05:23.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T03:05:23.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -30,44 +30,69 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/MA-20260920T170403Z-earth-scout.json",
     "data/runtime/workgraph/evidence/MA-20260920T180800Z-earth-scout.json",
     "data/runtime/workgraph/evidence/MA-20260920T190401Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/MA-20260920T200612Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/MA-20260921T030523Z-earth-scout.json"
   ],
   "evidenceResolution": {
-    "supersededPaths": [],
+    "supersededPaths": [
+      "data/runtime/workgraph/evidence/MA-20260920T200612Z-earth-scout.json"
+    ],
     "resolvedGateKinds": [],
     "activeEvidenceCount": 8,
-    "historicalEvidenceCount": 8
+    "historicalEvidenceCount": 10
   },
   "factorEvidence": {
     "names": [
       "wallet interoperability expansion",
       "B2B virtual-card platform depth",
       "global acceptance/network effects",
-      "embedded payments adoption"
+      "embedded payments adoption",
+      "agentic commerce connectivity",
+      "execution breadth"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "wallet interoperability expansion",
+          "direction": "positive",
+          "basis": "Wallet Pay connects named wallet providers across NFC, QR and online acceptance."
+        },
+        {
+          "name": "agentic commerce connectivity",
+          "direction": "positive",
+          "basis": "Agent Connect offers a single integration path among merchants, agents, platforms and payment providers."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "execution breadth",
+          "direction": "positive",
+          "basis": "Two September launches name multiple wallet, merchant and platform participants."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -111,7 +136,9 @@
     "wallet interoperability expansion",
     "B2B virtual-card platform depth",
     "global acceptance/network effects",
-    "embedded payments adoption"
+    "embedded payments adoption",
+    "agentic commerce connectivity",
+    "execution breadth"
   ],
   "riskEvidence": {
     "present": true,
@@ -140,14 +167,14 @@
       "payment competition",
       "cyber/fraud risk",
       "partner monetization uncertainty",
-      "regulatory/antitrust pressure",
-      "payment competition",
-      "cyber/fraud risk",
-      "partner monetization uncertainty",
-      "regulatory/antitrust pressure",
-      "payment competition",
-      "cyber/fraud risk",
-      "partner monetization uncertainty"
+      {
+        "risk": "Partner breadth and product availability do not establish transaction ramp or incremental margin.",
+        "gating": false
+      },
+      {
+        "risk": "Adoption may not translate into attractive incremental economics.",
+        "gating": false
+      }
     ]
   },
   "risks": [
@@ -175,14 +202,14 @@
     "payment competition",
     "cyber/fraud risk",
     "partner monetization uncertainty",
-    "regulatory/antitrust pressure",
-    "payment competition",
-    "cyber/fraud risk",
-    "partner monetization uncertainty",
-    "regulatory/antitrust pressure",
-    "payment competition",
-    "cyber/fraud risk",
-    "partner monetization uncertainty"
+    {
+      "risk": "Partner breadth and product availability do not establish transaction ramp or incremental margin.",
+      "gating": false
+    },
+    {
+      "risk": "Adoption may not translate into attractive incremental economics.",
+      "gating": false
+    }
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -191,8 +218,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
     "present": false,
@@ -200,15 +227,16 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 14,
-    "uniqueSourceCount": 4,
+    "rawSourceCount": 15,
+    "uniqueSourceCount": 5,
     "duplicatesCollapsed": 10,
     "missingLineage": 0,
     "uniqueOrigins": [
       "investor.mastercard.com|wallet-pay-launch|2026-09-09",
       "investor.mastercard.com|virtual-card-platform-expansion|2026-07-23",
       "investor.mastercard.com|q2-2026-results-availability|2026-07-30",
-      "nypost.com|visa-mastercard-atm-settlement|2026-09-17"
+      "nypost.com|visa-mastercard-atm-settlement|2026-09-17",
+      "mastercard.com|agent-connect-launch|2026-09-09"
     ]
   },
   "sources": [
@@ -247,6 +275,15 @@
       "use": "independent regulatory-risk signal",
       "sourceId": null,
       "primary": false
+    },
+    {
+      "origin": "Mastercard Newsroom",
+      "url": "https://www.mastercard.com/us/en/news-and-trends/press/2026/september/mastercard-gives-merchants-a-simpler-way-to-build--connect-and-s.html",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-09",
+      "originFingerprint": "mastercard.com|agent-connect-launch|2026-09-09",
+      "sourceId": null
     }
   ],
   "contradictions": [],
@@ -273,16 +310,18 @@
     "Wallet Pay transaction ramp",
     "incremental revenue/margin",
     "future regulatory remedies",
-    "Wallet Pay transaction ramp",
-    "incremental revenue/margin",
-    "future regulatory remedies",
-    "Wallet Pay transaction ramp",
-    "incremental revenue/margin",
-    "future regulatory remedies"
+    {
+      "unknown": "Scaled transaction volume and incremental economics from Wallet Pay and Agent Connect remain undisclosed.",
+      "gating": false
+    },
+    {
+      "unknown": "Revenue, margin and transaction contribution from the new rails remain unknown.",
+      "gating": false
+    }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 24
+    "nonGatingCount": 20
   },
   "gatingIssues": [],
   "confidence": 86,
@@ -292,10 +331,7 @@
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -316,20 +352,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",

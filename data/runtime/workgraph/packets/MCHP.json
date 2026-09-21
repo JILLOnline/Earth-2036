@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MCHP",
   "workId": "t0:MCHP",
-  "generatedAt": "2026-09-21T02:36:44.415Z",
+  "generatedAt": "2026-09-21T03:08:19.554Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-06T00:00:00.000Z",
-    "end": "2026-09-20T20:06:16.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-20T20:06:16.000Z"
+    "end": "2026-09-21T03:05:27.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T03:05:27.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -30,29 +30,35 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/MCHP-20260920T170404Z-earth-scout.json",
     "data/runtime/workgraph/evidence/MCHP-20260920T180805Z-earth-scout.json",
     "data/runtime/workgraph/evidence/MCHP-20260920T190405Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/MCHP-20260920T200616Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/MCHP-20260921T030527Z-earth-scout.json"
   ],
   "evidenceResolution": {
-    "supersededPaths": [],
+    "supersededPaths": [
+      "data/runtime/workgraph/evidence/MCHP-20260920T200616Z-earth-scout.json"
+    ],
     "resolvedGateKinds": [],
     "activeEvidenceCount": 8,
-    "historicalEvidenceCount": 8
+    "historicalEvidenceCount": 10
   },
   "factorEvidence": {
     "names": [
@@ -62,15 +68,33 @@
       "book-to-bill above 1",
       "PCIe Gen6 design-win momentum",
       "sales recovery",
-      "PCIe Gen6 design wins"
+      "PCIe Gen6 design wins",
+      "cycle execution"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "sales recovery",
+          "direction": "positive",
+          "basis": "Reported revenue grew materially from a depressed comparison base."
+        },
+        {
+          "name": "inventory normalization",
+          "direction": "positive",
+          "basis": "Company reported improving inventory conditions and book-to-bill above 1."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "cycle execution",
+          "direction": "mixed",
+          "basis": "Sales and margin recovery are visible while durability is not yet established."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -117,7 +141,8 @@
     "book-to-bill above 1",
     "PCIe Gen6 design-win momentum",
     "sales recovery",
-    "PCIe Gen6 design wins"
+    "PCIe Gen6 design wins",
+    "cycle execution"
   ],
   "riskEvidence": {
     "present": true,
@@ -148,14 +173,14 @@
       "inventory reaccumulation",
       "debt load",
       "design-win conversion risk",
-      "semiconductor cyclicality",
-      "inventory reaccumulation",
-      "debt load",
-      "design-win conversion risk",
-      "semiconductor cyclicality",
-      "inventory reaccumulation",
-      "debt load",
-      "design-win conversion risk"
+      {
+        "risk": "A depressed comparison base can overstate normalized recovery strength; design wins can lag production.",
+        "gating": false
+      },
+      {
+        "risk": "Semiconductor cyclicality, inventory reaccumulation and debt can weaken recovery conversion.",
+        "gating": false
+      }
     ]
   },
   "risks": [
@@ -185,14 +210,14 @@
     "inventory reaccumulation",
     "debt load",
     "design-win conversion risk",
-    "semiconductor cyclicality",
-    "inventory reaccumulation",
-    "debt load",
-    "design-win conversion risk",
-    "semiconductor cyclicality",
-    "inventory reaccumulation",
-    "debt load",
-    "design-win conversion risk"
+    {
+      "risk": "A depressed comparison base can overstate normalized recovery strength; design wins can lag production.",
+      "gating": false
+    },
+    {
+      "risk": "Semiconductor cyclicality, inventory reaccumulation and debt can weaken recovery conversion.",
+      "gating": false
+    }
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -210,9 +235,9 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 16,
+    "rawSourceCount": 15,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 14,
+    "duplicatesCollapsed": 13,
     "missingLineage": 0,
     "uniqueOrigins": [
       "ir.microchip.com|fq1-2027-results|2026-08-06",
@@ -246,11 +271,15 @@
     "Strong year-over-year growth follows a depressed base and may overstate normalized demand strength.",
     "Strong year-over-year growth follows a depressed base and may overstate normalized demand strength.",
     "Strong year-over-year growth follows a depressed base and may overstate normalized demand strength.",
-    "Strong year-over-year growth follows a depressed base and may overstate normalized demand strength.",
-    "Strong year-over-year growth follows a depressed base and may overstate normalized demand strength."
+    {
+      "claim": "Strong year-over-year growth follows a depressed base.",
+      "resolution": "Treat recovery as visible but not proof of normalized cycle strength.",
+      "resolved": true,
+      "gating": false
+    }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 8,
+    "unresolvedMaterialCount": 6,
     "items": [
       "Strong current growth follows a depressed prior-year base, so year-over-year acceleration may overstate normalized demand strength.",
       "Strong current growth follows a depressed prior-year base, so year-over-year acceleration may overstate normalized demand strength.",
@@ -258,8 +287,12 @@
       "Strong year-over-year growth follows a depressed base and may overstate normalized demand strength.",
       "Strong year-over-year growth follows a depressed base and may overstate normalized demand strength.",
       "Strong year-over-year growth follows a depressed base and may overstate normalized demand strength.",
-      "Strong year-over-year growth follows a depressed base and may overstate normalized demand strength.",
-      "Strong year-over-year growth follows a depressed base and may overstate normalized demand strength."
+      {
+        "claim": "Strong year-over-year growth follows a depressed base.",
+        "resolution": "Treat recovery as visible but not proof of normalized cycle strength.",
+        "resolved": true,
+        "gating": false
+      }
     ]
   },
   "unknowns": [
@@ -287,30 +320,28 @@
     "production timing from design wins",
     "normalized utilization",
     "deleveraging pace",
-    "duration of recovery",
-    "production timing from design wins",
-    "normalized utilization",
-    "deleveraging pace",
-    "duration of recovery",
-    "production timing from design wins",
-    "normalized utilization",
-    "deleveraging pace"
+    {
+      "unknown": "Recovery duration, normalized utilization and design-win production timing remain unknown.",
+      "gating": false
+    },
+    {
+      "unknown": "Deleveraging pace and normalized utilization remain unknown.",
+      "gating": false
+    }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 32
+    "nonGatingCount": 26
   },
   "gatingIssues": [],
-  "confidence": 91,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
@@ -333,16 +364,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
       },
       {
         "failure": "missing_primary_source",

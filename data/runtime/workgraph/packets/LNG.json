@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "LNG",
   "workId": "t0:LNG",
-  "generatedAt": "2026-09-21T02:36:44.423Z",
+  "generatedAt": "2026-09-21T03:08:19.563Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-06T00:00:00.000Z",
-    "end": "2026-09-20T20:06:15.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-20T20:06:15.000Z"
+    "end": "2026-09-21T03:05:26.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T03:05:26.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -30,29 +30,35 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/LNG-20260920T170402Z-earth-scout.json",
     "data/runtime/workgraph/evidence/LNG-20260920T180804Z-earth-scout.json",
     "data/runtime/workgraph/evidence/LNG-20260920T190404Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/LNG-20260920T200615Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/LNG-20260921T030526Z-earth-scout.json"
   ],
   "evidenceResolution": {
-    "supersededPaths": [],
+    "supersededPaths": [
+      "data/runtime/workgraph/evidence/LNG-20260920T200615Z-earth-scout.json"
+    ],
     "resolvedGateKinds": [],
     "activeEvidenceCount": 8,
-    "historicalEvidenceCount": 8
+    "historicalEvidenceCount": 10
   },
   "factorEvidence": {
     "names": [
@@ -62,15 +68,33 @@
       "large operating LNG platform",
       "raised 2026 guidance",
       "53-54 mtpa outlook",
-      "CCL Stage 3 completion"
+      "CCL Stage 3 completion",
+      "execution conversion"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "raised 2026 guidance",
+          "direction": "positive",
+          "basis": "Management raised current-year adjusted EBITDA and distributable cash flow expectations."
+        },
+        {
+          "name": "CCL Stage 3 completion",
+          "direction": "positive",
+          "basis": "Project completion converts construction risk into operating capacity."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "execution conversion",
+          "direction": "positive",
+          "basis": "Completed Stage 3 capacity and raised guidance are realized milestones."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -117,7 +141,8 @@
     "large operating LNG platform",
     "raised 2026 guidance",
     "53-54 mtpa outlook",
-    "CCL Stage 3 completion"
+    "CCL Stage 3 completion",
+    "execution conversion"
   ],
   "riskEvidence": {
     "present": true,
@@ -148,14 +173,14 @@
       "project execution/capex",
       "regulatory approvals",
       "feedgas availability",
-      "LNG spread exposure",
-      "project execution/capex",
-      "regulatory approvals",
-      "feedgas availability",
-      "LNG spread exposure",
-      "project execution/capex",
-      "regulatory approvals",
-      "feedgas availability"
+      {
+        "risk": "Expansion economics remain exposed to construction discipline, approvals, contracts/spreads and feedgas availability.",
+        "gating": false
+      },
+      {
+        "risk": "Future projects can face capex, regulatory, feedgas and financing pressure.",
+        "gating": false
+      }
     ]
   },
   "risks": [
@@ -185,14 +210,14 @@
     "project execution/capex",
     "regulatory approvals",
     "feedgas availability",
-    "LNG spread exposure",
-    "project execution/capex",
-    "regulatory approvals",
-    "feedgas availability",
-    "LNG spread exposure",
-    "project execution/capex",
-    "regulatory approvals",
-    "feedgas availability"
+    {
+      "risk": "Expansion economics remain exposed to construction discipline, approvals, contracts/spreads and feedgas availability.",
+      "gating": false
+    },
+    {
+      "risk": "Future projects can face capex, regulatory, feedgas and financing pressure.",
+      "gating": false
+    }
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -210,9 +235,9 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 16,
+    "rawSourceCount": 15,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 14,
+    "duplicatesCollapsed": 13,
     "missingLineage": 0,
     "uniqueOrigins": [
       "lngir.cheniere.com|q2-2026-results-guidance|2026-08-06",
@@ -246,11 +271,15 @@
     "GAAP net-loss volatility coexists with strong adjusted EBITDA, requiring careful separation of derivatives/accounting from operating economics.",
     "GAAP net-loss volatility coexists with strong adjusted EBITDA, requiring separation of derivatives/accounting from operating economics.",
     "GAAP net-loss volatility coexists with strong adjusted EBITDA, requiring separation of derivatives/accounting from operating economics.",
-    "GAAP net-loss volatility coexists with strong adjusted EBITDA, requiring separation of derivatives/accounting from operating economics.",
-    "GAAP net-loss volatility coexists with strong adjusted EBITDA, requiring separation of derivatives/accounting from operating economics."
+    {
+      "claim": "GAAP net-loss volatility coexists with strong adjusted EBITDA.",
+      "resolution": "Derivative/accounting volatility must be separated from operating economics.",
+      "resolved": true,
+      "gating": false
+    }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 8,
+    "unresolvedMaterialCount": 6,
     "items": [
       "Six-month 2026 net loss of $0.43B coexisted with $4.14B adjusted EBITDA, highlighting derivative/noncash/accounting volatility versus operating cash economics.",
       "Six-month 2026 net loss of $0.43B coexisted with $4.14B adjusted EBITDA, highlighting derivative/noncash/accounting volatility versus operating cash economics.",
@@ -258,8 +287,12 @@
       "GAAP net-loss volatility coexists with strong adjusted EBITDA, requiring careful separation of derivatives/accounting from operating economics.",
       "GAAP net-loss volatility coexists with strong adjusted EBITDA, requiring separation of derivatives/accounting from operating economics.",
       "GAAP net-loss volatility coexists with strong adjusted EBITDA, requiring separation of derivatives/accounting from operating economics.",
-      "GAAP net-loss volatility coexists with strong adjusted EBITDA, requiring separation of derivatives/accounting from operating economics.",
-      "GAAP net-loss volatility coexists with strong adjusted EBITDA, requiring separation of derivatives/accounting from operating economics."
+      {
+        "claim": "GAAP net-loss volatility coexists with strong adjusted EBITDA.",
+        "resolution": "Derivative/accounting volatility must be separated from operating economics.",
+        "resolved": true,
+        "gating": false
+      }
     ]
   },
   "unknowns": [
@@ -281,28 +314,28 @@
     "pending expansion timing/economics",
     "future realized LNG margins",
     "incremental financing mix",
-    "pending expansion timing/economics",
-    "future realized LNG margins",
-    "incremental financing mix",
-    "pending expansion timing/economics",
-    "future realized LNG margins",
-    "incremental financing mix"
+    {
+      "unknown": "Pending expansion timing, economics and future realized LNG margins remain unknown.",
+      "gating": false
+    },
+    {
+      "unknown": "Incremental financing mix and realized expansion returns remain unknown.",
+      "gating": false
+    }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 24
+    "nonGatingCount": 20
   },
   "gatingIssues": [],
-  "confidence": 90,
+  "confidence": 89,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
@@ -325,16 +358,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
       },
       {
         "failure": "missing_primary_source",

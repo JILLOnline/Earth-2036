@@ -19,6 +19,7 @@ export default function ProgressiveList({
   const items = useMemo(() => Children.toArray(children), [children]);
   const [visibleLimit, setVisibleLimit] = useState(firstBatch);
   const rootRef = useRef<HTMLDivElement | null>(null);
+  const listRef = useRef<HTMLDivElement | null>(null);
 
   const visible = items.slice(0, visibleLimit);
   const hasMore = visible.length < items.length;
@@ -32,12 +33,17 @@ export default function ProgressiveList({
       setVisibleLimit(nextLimit);
       return;
     }
-    rootRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const target = listRef.current ?? rootRef.current;
+    if (!target) return;
+    const header = document.querySelector<HTMLElement>(".earthHeader");
+    const headerOffset = (header?.offsetHeight ?? 0) + 12;
+    const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - headerOffset);
+    window.scrollTo({ top, behavior: "smooth" });
   }
 
   return (
     <div ref={rootRef} className="progressiveList">
-      <div className={className}>{visible}</div>
+      <div ref={listRef} className={className}>{visible}</div>
       {needsControl && (
         <div className="universeLoadRail">
           <button type="button" className="universeLoadButton" onClick={handleControl}>

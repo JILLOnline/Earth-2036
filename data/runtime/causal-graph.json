@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-21T07:17:59.431Z",
+  "updatedAt": "2026-09-21T08:19:13.474Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -710,6 +710,18 @@
       "type": "market",
       "label": "CRSP structural demand",
       "description": "CRISPR Therapeutics links gene-editing technology to unmet need in serious genetic and cardiometabolic disease; the structural chain depends on editing efficacy and safety, delivery/manufacturing, regulatory acceptance and eventual treatment access. CASGEVY provides commercial validation of the platform while CTX310 remains early clinical evidence rather than proof of scalable success."
+    },
+    {
+      "id": "company:CRWD",
+      "type": "company",
+      "label": "CrowdStrike Holdings, Inc.",
+      "description": "CrowdStrike's structural role is moving from endpoint detection toward a shared security control plane for endpoints, cloud workloads, identity and AI-agent runtime. The causal chain is enterprise digitization and autonomous-agent adoption -> larger machine-identity and runtime attack surface -> demand for unified telemetry, policy and response -> Falcon platform/module adoption; the key bottleneck is trusted, low-latency security telemetry plus enforcement across heterogeneous environments."
+    },
+    {
+      "id": "market:CRWD-machine-runtime-attack-surface",
+      "type": "market",
+      "label": "machine/runtime attack surface",
+      "description": "CrowdStrike's structural role is moving from endpoint detection toward a shared security control plane for endpoints, cloud workloads, identity and AI-agent runtime. The causal chain is enterprise digitization and autonomous-agent adoption -> larger machine-identity and runtime attack surface -> demand for unified telemetry, policy and response -> Falcon platform/module adoption; the key bottleneck is trusted, low-latency security telemetry plus enforcement across heterogeneous environments."
     }
   ],
   "edges": [
@@ -1665,6 +1677,22 @@
         "issuer:CRSP:2026Q2"
       ],
       "observedAt": "2026-09-19T23:27:41Z"
+    },
+    {
+      "id": "edge:CRWD-structural-exposure",
+      "from": "company:CRWD",
+      "to": "market:CRWD-machine-runtime-attack-surface",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 80,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:CRWD:Q2FY27:20260827",
+        "issuer:CRWD:OpenAI:20260902",
+        "issuer:CRWD:Guardian:20260901"
+      ],
+      "observedAt": "2026-09-20T00:23:06Z"
     }
   ],
   "structuralSignals": [
@@ -2825,6 +2853,26 @@
       ],
       "observedAt": "2026-09-19T23:27:41Z",
       "thesis": "CRISPR Therapeutics links gene-editing technology to unmet need in serious genetic and cardiometabolic disease; the structural chain depends on editing efficacy and safety, delivery/manufacturing, regulatory acceptance and eventual treatment access. CASGEVY provides commercial validation of the platform while CTX310 remains early clinical evidence rather than proof of scalable success.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:CRWD-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:CRWD-machine-runtime-attack-surface",
+      "affectedNodeIds": [
+        "company:CRWD"
+      ],
+      "direction": 1,
+      "magnitude": 80,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:CRWD:Q2FY27:20260827",
+        "issuer:CRWD:OpenAI:20260902",
+        "issuer:CRWD:Guardian:20260901"
+      ],
+      "observedAt": "2026-09-20T00:23:06Z",
+      "thesis": "CrowdStrike's structural role is moving from endpoint detection toward a shared security control plane for endpoints, cloud workloads, identity and AI-agent runtime. The causal chain is enterprise digitization and autonomous-agent adoption -> larger machine-identity and runtime attack surface -> demand for unified telemetry, policy and response -> Falcon platform/module adoption; the key bottleneck is trusted, low-latency security telemetry plus enforcement across heterogeneous environments.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

@@ -7,6 +7,7 @@ import scoreStateJson from "../../../data/runtime/score-state.json";
 import { liveUniverse, liveUniverseByTicker } from "../../../lib/live-universe";
 import { runtimeTime } from "../../../lib/dashboard-runtime";
 import { Bubble, Deck, DeckHeader, Screen, ScreenHeader, Stat, StatRail } from "../../components/Display";
+import ProgressiveList from "../../components/ProgressiveList";
 
 type ScoreFactor = { value?: number; sourceIds?: string[]; note?: string };
 type ScoreRecord = { methodologyVersion?: string; updatedAt?: string; earthScore?: number; risk?: number; dataConfidence?: number; components?: Record<string, number>; factorEvidence?: Record<string, Record<string, ScoreFactor>>; primarySourceUrls?: string[]; independentSourceUrls?: string[]; causalMapped?: boolean; evidenceTier?: string; thesis?: string; keyRisk?: string; nextCatalyst?: string };
@@ -69,15 +70,15 @@ export default async function CompanyPage({ params }: { params: Promise<{ ticker
         </Deck>
         <Deck>
           <DeckHeader eyebrow={edges.length} title="CAUSAL EDGES" />
-          {edges.length ? <div className="edgeMatrix">{edges.map((edge, index) => <div key={edge.id ?? index}><b>{pretty(edge.relationship ?? "relationship")}</b><span>STRENGTH {edge.strength ?? "—"}</span><span>CONFIDENCE {edge.confidence ?? "—"}</span><small>{edge.sourceIds?.join(" · ") ?? ""}</small></div>)}</div> : <div className="empty">NO CAUSAL EDGES</div>}
+          {edges.length ? <ProgressiveList className="edgeMatrix">{edges.map((edge, index) => <div key={edge.id ?? index}><b>{pretty(edge.relationship ?? "relationship")}</b><span>STRENGTH {edge.strength ?? "—"}</span><span>CONFIDENCE {edge.confidence ?? "—"}</span><small>{edge.sourceIds?.join(" · ") ?? ""}</small></div>)}</ProgressiveList> : <div className="empty">NO CAUSAL EDGES</div>}
         </Deck>
       </section>
 
-      {factors.length > 0 && <Deck><DeckHeader eyebrow={factors.length} title="RUBRIC EVIDENCE" /><div className="factorMatrix">{factors.map(([component, group]) => <details key={component}><summary>{pretty(component)}</summary><div>{Object.entries(group).map(([factor, evidence]) => <article key={factor}><span>{pretty(factor)}</span><b>{evidence.value ?? "—"}</b>{evidence.note && <p>{evidence.note}</p>}<small>{evidence.sourceIds?.join(" · ") ?? ""}</small></article>)}</div></details>)}</div></Deck>}
+      {factors.length > 0 && <Deck><DeckHeader eyebrow={factors.length} title="RUBRIC EVIDENCE" /><ProgressiveList className="factorMatrix">{factors.map(([component, group]) => <details key={component}><summary>{pretty(component)}</summary><ProgressiveList className="factorEvidenceGrid">{Object.entries(group).map(([factor, evidence]) => <article key={factor}><span>{pretty(factor)}</span><b>{evidence.value ?? "—"}</b>{evidence.note && <p>{evidence.note}</p>}<small>{evidence.sourceIds?.join(" · ") ?? ""}</small></article>)}</ProgressiveList></details>)}</ProgressiveList></Deck>}
 
       <section className="displayGrid displayGridEqual">
-        <Deck><DeckHeader eyebrow={filings.length} title="RECENT FILINGS" />{filings.length ? <div className="filingMatrix">{filings.map((filing, index) => <div key={filing.accessionNumber ?? index}><b>{filing.form ?? "—"}</b><span>{filing.filingDate ?? "—"}</span><small>{filing.reportDate ?? ""}</small></div>)}</div> : <div className="empty">NO FILINGS STORED</div>}</Deck>
-        <Deck><DeckHeader eyebrow={sourceBundle.length} title="SOURCE BUNDLE" />{sourceBundle.length ? <div className="sourceRail sourceBundle">{sourceBundle.map((url, index) => <a className="earthBubble" key={`${url}-${index}`} href={url} target="_blank" rel="noreferrer">SOURCE {index + 1} ↗</a>)}</div> : <div className="empty">NO SCORE SOURCES</div>}</Deck>
+        <Deck><DeckHeader eyebrow={filings.length} title="RECENT FILINGS" />{filings.length ? <ProgressiveList className="filingMatrix">{filings.map((filing, index) => <div key={filing.accessionNumber ?? index}><b>{filing.form ?? "—"}</b><span>{filing.filingDate ?? "—"}</span><small>{filing.reportDate ?? ""}</small></div>)}</ProgressiveList> : <div className="empty">NO FILINGS STORED</div>}</Deck>
+        <Deck><DeckHeader eyebrow={sourceBundle.length} title="SOURCE BUNDLE" />{sourceBundle.length ? <ProgressiveList className="sourceRail sourceBundle">{sourceBundle.map((url, index) => <a className="earthBubble" key={`${url}-${index}`} href={url} target="_blank" rel="noreferrer">SOURCE {index + 1} ↗</a>)}</ProgressiveList> : <div className="empty">NO SCORE SOURCES</div>}</Deck>
       </section>
     </Screen>
   );

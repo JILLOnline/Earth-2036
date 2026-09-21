@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-21T20:05:41.771Z",
+  "generatedAt": "2026-09-21T20:19:24.008Z",
   "canonicalWriteAuthority": false,
   "total": 182,
   "twins": [
@@ -13624,8 +13624,8 @@
       "canonicalWriteAuthority": false,
       "ticker": "DUK",
       "workId": "t0:DUK",
-      "inputSignature": "67404b2f4c3607c62d86c940",
-      "sourceState": "researching",
+      "inputSignature": "99f03a0ba672602ac07c1fc3",
+      "sourceState": "chief_ready",
       "identity": {
         "ticker": "DUK",
         "company": "Duke Energy",
@@ -13649,32 +13649,35 @@
           "discovery-weak-signals",
           "expectations-execution",
           "structural-causal",
-          "adversarial-red-team"
-        ],
-        "missingPerspectives": [
+          "adversarial-red-team",
           "source-integrity",
           "company-underwriting"
         ],
-        "primarySourceCount": 5,
+        "missingPerspectives": [],
+        "primarySourceCount": 7,
         "sourceLineage": {
-          "rawSourceCount": 7,
-          "uniqueSourceCount": 5,
-          "duplicatesCollapsed": 2,
+          "rawSourceCount": 21,
+          "uniqueSourceCount": 9,
+          "duplicatesCollapsed": 12,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:DUK:2026Q2:20260804",
             "issuer:DUK:2026Q2schedule:20260707",
             "issuer:DUK:datacenter:20260723",
             "issuer:DUK:bess:20260114",
-            "issuer:DUK:equityunits:20260811"
+            "issuer:DUK:equityunits:20260811",
+            "issuer:DUK:equityunits:20260810",
+            "issuer:DUK:costsavings:20260504",
+            "yahoo:DUK:quote:20260918",
+            "yahoo:DUK:stats:20260918"
           ]
         },
         "evidenceWindow": {
           "start": "2026-01-14T00:00:00.000Z",
-          "end": "2026-09-20T05:23:03.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-20T05:23:03.000Z"
+          "end": "2026-09-21T20:18:00.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-21T20:18:00.000Z"
         },
-        "preflightPassed": false
+        "preflightPassed": true
       },
       "capabilitySignals": [
         "thesisQuality",
@@ -13685,7 +13688,10 @@
         "supplyChainResilience",
         "governancePower",
         "pricingPower",
-        "financialOperatingMomentum"
+        "financialOperatingMomentum",
+        "marketValuationOpportunity",
+        "catalystScore",
+        "crossDivisionLeverage"
       ],
       "constraintSignals": {
         "risks": [
@@ -13693,24 +13699,21 @@
           "Reporting cadence alone does not establish financial outperformance.",
           "If forecast large-load growth fails to materialize, excess capacity or stranded-cost pressure can weaken the causal investment case.",
           "Equity-linked financing evidences real capital intensity and potential dilution exposure.",
-          "Regulated returns depend on timely approvals and cost recovery; forecast error can shift pressure toward customers or shareholders."
+          "Regulated returns depend on timely approvals and cost recovery; forecast error can shift pressure toward customers or shareholders.",
+          "Issuer evidence dominates operating claims; independent market data corroborates valuation/tradability but not every issuer operational claim.",
+          "Regulatory recovery, financing cost, dilution and load-forecast error can impair per-share economics despite essential-service demand."
         ],
         "unknowns": [
           "The retrieved issuer news-center release points to detailed financial materials but does not itself provide Q2 earnings/guidance figures.",
           "Detailed Q2 financial execution requires the linked investor release/presentation.",
           "Independent regulator evidence on realized customer savings from the large-load framework remains outside this Beta pass.",
-          "This pass does not quantify fully diluted share impact from the equity units or jurisdiction-by-jurisdiction allowed-return sensitivity."
+          "This pass does not quantify fully diluted share impact from the equity units or jurisdiction-by-jurisdiction allowed-return sensitivity.",
+          "Jurisdiction-specific allowed-return sensitivity is not fully quantified in current lineage.",
+          "Exact jurisdiction-by-jurisdiction allowed-return sensitivity remains unquantified and is reflected in confidence rather than treated favorably."
         ],
         "contradictions": [],
         "gatingIssues": [],
-        "preflightFailures": [
-          "missing_specialist_perspective:source-integrity",
-          "missing_specialist_perspective:company-underwriting",
-          "missing_factor_evidence",
-          "missing_numeric_score_record",
-          "missing_score_risk_evidence",
-          "missing_data_confidence_evidence"
-        ]
+        "preflightFailures": []
       },
       "causalContext": {
         "mapped": true,
@@ -13720,38 +13723,7 @@
           "regulatory approval + financing cost + realized load growth -> capital recovery -> investment durability"
         ]
       },
-      "improvementWindows": [
-        {
-          "failure": "missing_specialist_perspective:source-integrity",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:source-integrity?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:company-underwriting",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_factor_evidence",
-          "question": "Which required methodology factor still lacks source-addressed evidence?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_numeric_score_record",
-          "question": "Which source-addressed factor assessments are still required before a reproducible score can be constructed?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_score_risk_evidence",
-          "question": "Which material risks require source-addressed quantitative treatment?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_data_confidence_evidence",
-          "question": "Which evidence-quality dimensions remain insufficiently supported?",
-          "stance": "improvement-oriented"
-        }
-      ],
+      "improvementWindows": [],
       "bridgeInputs": {
         "capabilityCandidates": [
           "thesisQuality",
@@ -13762,18 +13734,25 @@
           "supplyChainResilience",
           "governancePower",
           "pricingPower",
-          "financialOperatingMomentum"
+          "financialOperatingMomentum",
+          "marketValuationOpportunity",
+          "catalystScore",
+          "crossDivisionLeverage"
         ],
         "needOrConstraintCandidates": [
           "The retrieved issuer news-center release points to detailed financial materials but does not itself provide Q2 earnings/guidance figures.",
           "Detailed Q2 financial execution requires the linked investor release/presentation.",
           "Independent regulator evidence on realized customer savings from the large-load framework remains outside this Beta pass.",
           "This pass does not quantify fully diluted share impact from the equity units or jurisdiction-by-jurisdiction allowed-return sensitivity.",
+          "Jurisdiction-specific allowed-return sensitivity is not fully quantified in current lineage.",
+          "Exact jurisdiction-by-jurisdiction allowed-return sensitivity remains unquantified and is reflected in confidence rather than treated favorably.",
           "Utility investment opportunity is constrained by regulatory recovery, financing costs and project execution timelines.",
           "Reporting cadence alone does not establish financial outperformance.",
           "If forecast large-load growth fails to materialize, excess capacity or stranded-cost pressure can weaken the causal investment case.",
           "Equity-linked financing evidences real capital intensity and potential dilution exposure.",
-          "Regulated returns depend on timely approvals and cost recovery; forecast error can shift pressure toward customers or shareholders."
+          "Regulated returns depend on timely approvals and cost recovery; forecast error can shift pressure toward customers or shareholders.",
+          "Issuer evidence dominates operating claims; independent market data corroborates valuation/tradability but not every issuer operational claim.",
+          "Regulatory recovery, financing cost, dilution and load-forecast error can impair per-share economics despite essential-service demand."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

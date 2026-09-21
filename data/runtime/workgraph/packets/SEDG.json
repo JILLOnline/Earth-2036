@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SEDG",
   "workId": "t0:SEDG",
-  "generatedAt": "2026-09-21T12:38:31.109Z",
+  "generatedAt": "2026-09-21T13:10:14.529Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T10:29:40.904Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-02-18T00:00:00.000Z",
+    "end": "2026-09-21T13:07:30.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T13:07:30.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,67 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/SEDG-20260921T1307Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "recovery breadth",
+      "AI data-center adjacency",
+      "execution conversion",
+      "new-market execution"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "recovery breadth",
+          "direction": "positive",
+          "basis": "Revenue growth and repeated margin expansion indicate improving operating quality."
+        },
+        {
+          "name": "AI data-center adjacency",
+          "direction": "positive",
+          "basis": "Management has identified AI data-center power as a high-growth adjacency, creating optionality beyond residential/commercial solar."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "execution conversion",
+          "direction": "positive",
+          "basis": "Revenue, margin and operating-loss trends provide measurable conversion of turnaround claims."
+        },
+        {
+          "name": "new-market execution",
+          "direction": "mixed",
+          "basis": "Data-center power is strategically attractive but remains less proven than the core inverter/energy-storage franchise."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +130,35 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "recovery breadth",
+    "AI data-center adjacency",
+    "execution conversion",
+    "new-market execution"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "The recovery follows a severe prior downturn; absolute GAAP profitability remains incomplete.",
+        "gating": false
+      },
+      {
+        "risk": "GAAP net loss persisted in Q2, so the turnaround should not be represented as fully complete.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "The recovery follows a severe prior downturn; absolute GAAP profitability remains incomplete.",
+      "gating": false
+    },
+    {
+      "risk": "GAAP net loss persisted in Q2, so the turnaround should not be represented as fully complete.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +166,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +175,68 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "solaredge-ir:2026-08-05:q2-2026-results",
+      "solaredge-ir:2026-02-18:fy2025-results"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://investors.solaredge.com/news-releases/news-release-details/solaredge-announces-second-quarter-2026-financial-results",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-05",
+      "originFingerprint": "solaredge-ir:2026-08-05:q2-2026-results",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.solaredge.com/news-releases/news-release-details/solaredge-announces-fourth-quarter-and-full-year-2025-financial",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-18",
+      "originFingerprint": "solaredge-ir:2026-02-18:fy2025-results",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Durability of demand and margin recovery through a full solar inventory cycle remains unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "No Scout valuation or entry-price conclusion is asserted.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +250,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +260,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

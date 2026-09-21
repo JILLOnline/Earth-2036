@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SNOW",
   "workId": "t0:SNOW",
-  "generatedAt": "2026-09-21T12:38:31.105Z",
+  "generatedAt": "2026-09-21T13:10:14.524Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T10:29:40.904Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-05-27T00:00:00.000Z",
+    "end": "2026-09-21T13:07:33.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T13:07:33.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,73 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/SNOW-20260921T1307Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "AI workload adoption",
+      "contracted demand",
+      "agentic governance expansion",
+      "growth execution",
+      "operating leverage"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "AI workload adoption",
+          "direction": "positive",
+          "basis": "Broad account-level AI usage suggests AI is becoming a platform workload rather than only a narrative adjacency."
+        },
+        {
+          "name": "contracted demand",
+          "direction": "positive",
+          "basis": "RPO growth exceeded current product-revenue growth, supporting forward demand visibility."
+        },
+        {
+          "name": "agentic governance expansion",
+          "direction": "positive",
+          "basis": "Natoma and partner integrations extend Snowflake from data governance toward governed agent actions."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "growth execution",
+          "direction": "positive",
+          "basis": "Product revenue, customer expansion and raised guidance support execution against growth expectations."
+        },
+        {
+          "name": "operating leverage",
+          "direction": "positive",
+          "basis": "Raised operating-margin guidance indicates management expects growth to convert into improved non-GAAP profitability."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +136,36 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "AI workload adoption",
+    "contracted demand",
+    "agentic governance expansion",
+    "growth execution",
+    "operating leverage"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Usage metrics are company-defined and do not by themselves establish incremental AI revenue or durable unit economics.",
+        "gating": false
+      },
+      {
+        "risk": "Consumption-based demand can react quickly to customer optimization, macro pressure or competitive workload shifts.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Usage metrics are company-defined and do not by themselves establish incremental AI revenue or durable unit economics.",
+      "gating": false
+    },
+    {
+      "risk": "Consumption-based demand can react quickly to customer optimization, macro pressure or competitive workload shifts.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +173,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +182,59 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 2,
+    "uniqueSourceCount": 1,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "snowflake-ir:2026:q1-fy2027-results"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://investors.snowflake.com/financials/quarterly-results/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-27",
+      "originFingerprint": "snowflake-ir:2026:q1-fy2027-results",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Incremental revenue directly attributable to first-party AI products is not separately disclosed in the cited release.",
+      "gating": false
+    },
+    {
+      "unknown": "The investor page available to Scout currently exposes Q1 FY2027 as the latest FY2027 report; no later quarter is inferred.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +248,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +258,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

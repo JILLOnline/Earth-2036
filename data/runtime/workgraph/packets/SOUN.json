@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SOUN",
   "workId": "t0:SOUN",
-  "generatedAt": "2026-09-21T12:38:31.105Z",
+  "generatedAt": "2026-09-21T13:10:14.525Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T10:29:40.904Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-05-07T00:00:00.000Z",
+    "end": "2026-09-21T13:07:34.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T13:07:34.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,67 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/SOUN-20260921T1307Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "enterprise agentic AI expansion",
+      "organic core growth",
+      "top-line execution",
+      "profitability conversion"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "enterprise agentic AI expansion",
+          "direction": "positive",
+          "basis": "OASYS and enterprise channel expansion create a broader demand surface."
+        },
+        {
+          "name": "organic core growth",
+          "direction": "positive",
+          "basis": "Reported Q1 growth excluding acquisitions reduces, but does not eliminate, concern that expansion is acquisition-only."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "top-line execution",
+          "direction": "positive",
+          "basis": "45% Q2 revenue growth and raised outlook show strong demand conversion."
+        },
+        {
+          "name": "profitability conversion",
+          "direction": "mixed",
+          "basis": "Margins and losses improved, but adjusted EBITDA and GAAP operating income remain negative."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +130,35 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "enterprise agentic AI expansion",
+    "organic core growth",
+    "top-line execution",
+    "profitability conversion"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Rapid expansion across products and acquisitions can increase integration and execution complexity.",
+        "gating": false
+      },
+      {
+        "risk": "Growth must continue converting into sustainable cash economics; current profitability remains incomplete.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Rapid expansion across products and acquisitions can increase integration and execution complexity.",
+      "gating": false
+    },
+    {
+      "risk": "Growth must continue converting into sustainable cash economics; current profitability remains incomplete.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +166,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +175,82 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "soundhound-ir:2026-08-05:q2-2026-results",
+      "soundhound-ir:2026-05-07:q1-2026-results"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "url": "https://investors.soundhound.com/news-releases/news-release-details/soundhound-ai-reports-record-q2-and-all-time-high-revenue-619",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-05",
+      "originFingerprint": "soundhound-ir:2026-08-05:q2-2026-results",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.soundhound.com/news-releases/news-release-details/soundhound-ai-reports-record-q1-revenue-442-million-52",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-07",
+      "originFingerprint": "soundhound-ir:2026-05-07:q1-2026-results",
+      "sourceId": null
+    }
+  ],
+  "contradictions": [
+    {
+      "claim": "Record growth coexists with continuing operating losses.",
+      "resolution": "The operating trend is improving but the evidence does not support representing the business as sustainably profitable yet.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Record growth coexists with continuing operating losses.",
+        "resolution": "The operating trend is improving but the evidence does not support representing the business as sustainably profitable yet.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Durability and margin profile of OASYS-led enterprise growth across a full renewal cycle remain unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Scout does not assert a security-level valuation or entry recommendation.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +264,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +274,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

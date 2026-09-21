@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-21T04:43:38.445Z",
+  "updatedAt": "2026-09-21T05:15:47.473Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -674,6 +674,18 @@
       "type": "market",
       "label": "interoperable payment acceptance and routing",
       "description": "buyers and sellers require common trust, identity, settlement and dispute primitives"
+    },
+    {
+      "id": "company:CRM",
+      "type": "company",
+      "label": "Salesforce, Inc.",
+      "description": "Salesforce is positioning its CRM/data estate as an enterprise coordination layer for agentic software: customer data and workflow context feed Agentforce, while acquisitions extend data and agent capabilities. The human need served is lower-friction sales/service/operations work, but value depends on reliable data integration and measurable workflow outcomes rather than agent deployment counts alone."
+    },
+    {
+      "id": "market:CRM-crm-structural-demand",
+      "type": "market",
+      "label": "CRM structural demand",
+      "description": "Salesforce is positioning its CRM/data estate as an enterprise coordination layer for agentic software: customer data and workflow context feed Agentforce, while acquisitions extend data and agent capabilities. The human need served is lower-friction sales/service/operations work, but value depends on reliable data integration and measurable workflow outcomes rather than agent deployment counts alone."
     }
   ],
   "edges": [
@@ -1585,6 +1597,21 @@
         "ma-annual-letter-2025"
       ],
       "observedAt": "2026-09-21T03:25:30Z"
+    },
+    {
+      "id": "edge:CRM-structural-exposure",
+      "from": "company:CRM",
+      "to": "market:CRM-crm-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 68,
+      "confidence": 85,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:CRM:FY27Q2",
+        "issuer:CRM:FinClose"
+      ],
+      "observedAt": "2026-09-19T23:27:41Z"
     }
   ],
   "structuralSignals": [
@@ -2689,6 +2716,25 @@
       ],
       "observedAt": "2026-09-21T03:25:30Z",
       "thesis": "Mastercard's durable structural role is an interoperability, trust and routing layer connecting consumers, issuers, merchants and digital partners; current wallet and agentic-commerce launches extend that coordination layer rather than proving a new standalone profit pool.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:CRM-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:CRM-crm-structural-demand",
+      "affectedNodeIds": [
+        "company:CRM"
+      ],
+      "direction": 1,
+      "magnitude": 68,
+      "confidence": 85,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:CRM:FY27Q2",
+        "issuer:CRM:FinClose"
+      ],
+      "observedAt": "2026-09-19T23:27:41Z",
+      "thesis": "Salesforce is positioning its CRM/data estate as an enterprise coordination layer for agentic software: customer data and workflow context feed Agentforce, while acquisitions extend data and agent capabilities. The human need served is lower-friction sales/service/operations work, but value depends on reliable data integration and measurable workflow outcomes rather than agent deployment counts alone.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

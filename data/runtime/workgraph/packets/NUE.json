@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "NUE",
   "workId": "t0:NUE",
-  "generatedAt": "2026-09-21T07:17:56.542Z",
+  "generatedAt": "2026-09-21T07:30:52.135Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-06-17T00:00:00.000Z",
-    "end": "2026-09-21T06:10:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T06:10:00.000Z"
+    "end": "2026-09-21T07:28:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T07:28:00.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/NUE-20260921T061000Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/NUE-20260921T061000Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/NUE-20260921T072800Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,19 +65,36 @@
       "scenarioRobustness",
       "thesisQuality",
       "financialOperatingMomentum",
-      "execution"
+      "execution",
+      "supplyChainResilience",
+      "substitutionResilience",
+      "crossDivisionLeverage",
+      "governancePower",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "substitutionResilience",
+        "crossDivisionLeverage",
+        "thesisQuality"
+      ],
       "discovery-weak-signals": [
         "bottleneckControl",
         "optionality",
         "scenarioRobustness",
         "thesisQuality"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "governancePower",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -125,7 +145,12 @@
     "scenarioRobustness",
     "thesisQuality",
     "financialOperatingMomentum",
-    "execution"
+    "execution",
+    "supplyChainResilience",
+    "substitutionResilience",
+    "crossDivisionLeverage",
+    "governancePower",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -137,6 +162,18 @@
       {
         "risk": "Quarterly earnings can move sharply with steel pricing and utilization; the Helion mark is non-operating and should not be treated as core execution.",
         "gating": false
+      },
+      {
+        "risk": "Physical steel demand is durable, but company returns remain sensitive to spreads, utilization and capital discipline on new capacity.",
+        "gating": false
+      },
+      {
+        "risk": "Steel spreads and utilization can reverse quickly with construction/manufacturing cycles and trade-policy changes.",
+        "gating": false
+      },
+      {
+        "risk": "Non-operating investment marks can inflate reported earnings and confidence if not separated from core operating performance.",
+        "gating": false
       }
     ]
   },
@@ -147,6 +184,18 @@
     },
     {
       "risk": "Quarterly earnings can move sharply with steel pricing and utilization; the Helion mark is non-operating and should not be treated as core execution.",
+      "gating": false
+    },
+    {
+      "risk": "Physical steel demand is durable, but company returns remain sensitive to spreads, utilization and capital discipline on new capacity.",
+      "gating": false
+    },
+    {
+      "risk": "Steel spreads and utilization can reverse quickly with construction/manufacturing cycles and trade-policy changes.",
+      "gating": false
+    },
+    {
+      "risk": "Non-operating investment marks can inflate reported earnings and confidence if not separated from core operating performance.",
       "gating": false
     }
   ],
@@ -161,14 +210,52 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "company:NUE",
+        "to": "technology:eaf-steelmaking",
+        "relationship": "operates",
+        "confidence": 93
+      },
+      {
+        "from": "technology:eaf-steelmaking",
+        "to": "infrastructure:steel-intensive-systems",
+        "relationship": "supplies",
+        "confidence": 94
+      },
+      {
+        "from": "company:NUE",
+        "to": "bottleneck:domestic-steel-capacity",
+        "relationship": "controls_exposure",
+        "confidence": 87
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "company:NUE",
+      "to": "technology:eaf-steelmaking",
+      "relationship": "operates",
+      "confidence": 93
+    },
+    {
+      "from": "technology:eaf-steelmaking",
+      "to": "infrastructure:steel-intensive-systems",
+      "relationship": "supplies",
+      "confidence": 94
+    },
+    {
+      "from": "company:NUE",
+      "to": "bottleneck:domestic-steel-capacity",
+      "relationship": "controls_exposure",
+      "confidence": 87
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 6,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:NUE:2026Q2:20260727",
@@ -193,10 +280,24 @@
       "originFingerprint": "issuer:NUE:2026Q2guidance:20260617"
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Reported EPS includes a favorable Helion mark while adjusted EPS excludes it.",
+      "resolution": "Use adjusted EPS and operating EBITDA for core execution; treat Helion as separate optionality rather than steel earnings.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Reported EPS includes a favorable Helion mark while adjusted EPS excludes it.",
+        "resolution": "Use adjusted EPS and operating EBITDA for core execution; treat Helion as separate optionality rather than steel earnings.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
   "unknowns": [
     {
@@ -206,11 +307,19 @@
     {
       "unknown": "Durability of Q2 earnings above guidance requires subsequent-quarter confirmation.",
       "gating": false
+    },
+    {
+      "unknown": "Project-level returns on new capacity and adjacent technology investments remain unproven in current evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Durability of above-guidance earnings requires subsequent-quarter evidence.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 87,
@@ -219,13 +328,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -235,14 +341,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -259,10 +357,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

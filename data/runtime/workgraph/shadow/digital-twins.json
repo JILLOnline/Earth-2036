@@ -1,9 +1,9 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-21T07:17:56.547Z",
+  "generatedAt": "2026-09-21T07:30:52.138Z",
   "canonicalWriteAuthority": false,
-  "total": 195,
+  "total": 194,
   "twins": [
     {
       "version": 1,
@@ -17102,7 +17102,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "NTR",
       "workId": "t0:NTR",
-      "inputSignature": "4d9940162eaa0346b2c2c187",
+      "inputSignature": "da3eb8b97ddc2728cac31b1d",
       "sourceState": "researching",
       "identity": {
         "ticker": "NTR",
@@ -17125,19 +17125,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 1,
         "sourceLineage": {
-          "rawSourceCount": 2,
+          "rawSourceCount": 4,
           "uniqueSourceCount": 1,
-          "duplicatesCollapsed": 1,
+          "duplicatesCollapsed": 3,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:NTR:2026Q2:20260805"
@@ -17145,8 +17145,8 @@
         },
         "evidenceWindow": {
           "start": "2026-08-05T00:00:00.000Z",
-          "end": "2026-09-21T06:10:00.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-21T06:10:00.000Z"
+          "end": "2026-09-21T07:28:00.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-21T07:28:00.000Z"
         },
         "preflightPassed": false
       },
@@ -17155,34 +17155,58 @@
         "bottleneckControl",
         "thesisQuality",
         "scenarioRobustness",
-        "financialOperatingMomentum"
+        "financialOperatingMomentum",
+        "supplyChainResilience",
+        "pricingPower",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
           "Fertilizer economics remain exposed to commodity benchmarks, natural-gas costs, weather, farmer affordability and geopolitics.",
-          "Strong results partly reflect higher global fertilizer benchmarks, which are cyclical and not wholly execution-driven."
+          "Strong results partly reflect higher global fertilizer benchmarks, which are cyclical and not wholly execution-driven.",
+          "Structural necessity of fertilizer does not guarantee stable company economics because benchmark prices and farmer affordability mediate value capture.",
+          "Commodity-price normalization can compress margins even if physical demand and volumes remain healthy.",
+          "Natural-gas/input costs, weather, geopolitics and farmer economics can create correlated volatility across fertilizer segments."
         ],
         "unknowns": [
           "Long-run automation productivity and normalized potash pricing need separate underwriting.",
-          "Normalized through-cycle earnings power requires commodity-price sensitivity analysis."
+          "Normalized through-cycle earnings power requires commodity-price sensitivity analysis.",
+          "Normalized long-run potash price and automation productivity are not established by the current evidence window.",
+          "Through-cycle earnings sensitivity by fertilizer benchmark remains an Alpha-owned underwriting gap."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "company:NTR",
+            "to": "resource:crop-nutrients",
+            "relationship": "supplies",
+            "confidence": 96
+          },
+          {
+            "from": "resource:crop-nutrients",
+            "to": "need:food-production",
+            "relationship": "enables",
+            "confidence": 95
+          },
+          {
+            "from": "company:NTR",
+            "to": "bottleneck:potash-scale-logistics",
+            "relationship": "controls_exposure",
+            "confidence": 88
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -17193,16 +17217,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -17224,11 +17238,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -17237,13 +17246,21 @@
           "bottleneckControl",
           "thesisQuality",
           "scenarioRobustness",
-          "financialOperatingMomentum"
+          "financialOperatingMomentum",
+          "supplyChainResilience",
+          "pricingPower",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "Long-run automation productivity and normalized potash pricing need separate underwriting.",
           "Normalized through-cycle earnings power requires commodity-price sensitivity analysis.",
+          "Normalized long-run potash price and automation productivity are not established by the current evidence window.",
+          "Through-cycle earnings sensitivity by fertilizer benchmark remains an Alpha-owned underwriting gap.",
           "Fertilizer economics remain exposed to commodity benchmarks, natural-gas costs, weather, farmer affordability and geopolitics.",
-          "Strong results partly reflect higher global fertilizer benchmarks, which are cyclical and not wholly execution-driven."
+          "Strong results partly reflect higher global fertilizer benchmarks, which are cyclical and not wholly execution-driven.",
+          "Structural necessity of fertilizer does not guarantee stable company economics because benchmark prices and farmer affordability mediate value capture.",
+          "Commodity-price normalization can compress margins even if physical demand and volumes remain healthy.",
+          "Natural-gas/input costs, weather, geopolitics and farmer economics can create correlated volatility across fertilizer segments."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -17795,7 +17812,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "NUE",
       "workId": "t0:NUE",
-      "inputSignature": "012ed6755fe5cf0e945153d1",
+      "inputSignature": "469dac66ae2a5ec8174efbf8",
       "sourceState": "researching",
       "identity": {
         "ticker": "NUE",
@@ -17818,19 +17835,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 2,
         "sourceLineage": {
-          "rawSourceCount": 3,
+          "rawSourceCount": 6,
           "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 1,
+          "duplicatesCollapsed": 4,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:NUE:2026Q2:20260727",
@@ -17839,8 +17856,8 @@
         },
         "evidenceWindow": {
           "start": "2026-06-17T00:00:00.000Z",
-          "end": "2026-09-21T06:10:00.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-21T06:10:00.000Z"
+          "end": "2026-09-21T07:28:00.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-21T07:28:00.000Z"
         },
         "preflightPassed": false
       },
@@ -17850,34 +17867,62 @@
         "scenarioRobustness",
         "thesisQuality",
         "financialOperatingMomentum",
-        "execution"
+        "execution",
+        "supplyChainResilience",
+        "substitutionResilience",
+        "crossDivisionLeverage",
+        "governancePower",
+        "pricingPower"
       ],
       "constraintSignals": {
         "risks": [
           "Steel demand and spreads remain cyclical and exposed to construction, manufacturing, trade policy and raw-material costs.",
-          "Quarterly earnings can move sharply with steel pricing and utilization; the Helion mark is non-operating and should not be treated as core execution."
+          "Quarterly earnings can move sharply with steel pricing and utilization; the Helion mark is non-operating and should not be treated as core execution.",
+          "Physical steel demand is durable, but company returns remain sensitive to spreads, utilization and capital discipline on new capacity.",
+          "Steel spreads and utilization can reverse quickly with construction/manufacturing cycles and trade-policy changes.",
+          "Non-operating investment marks can inflate reported earnings and confidence if not separated from core operating performance."
         ],
         "unknowns": [
           "Returns on new capacity and adjacent investments require project-level evidence.",
-          "Durability of Q2 earnings above guidance requires subsequent-quarter confirmation."
+          "Durability of Q2 earnings above guidance requires subsequent-quarter confirmation.",
+          "Project-level returns on new capacity and adjacent technology investments remain unproven in current evidence.",
+          "Durability of above-guidance earnings requires subsequent-quarter evidence."
         ],
-        "contradictions": [],
+        "contradictions": [
+          "Reported EPS includes a favorable Helion mark while adjusted EPS excludes it."
+        ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "company:NUE",
+            "to": "technology:eaf-steelmaking",
+            "relationship": "operates",
+            "confidence": 93
+          },
+          {
+            "from": "technology:eaf-steelmaking",
+            "to": "infrastructure:steel-intensive-systems",
+            "relationship": "supplies",
+            "confidence": 94
+          },
+          {
+            "from": "company:NUE",
+            "to": "bottleneck:domestic-steel-capacity",
+            "relationship": "controls_exposure",
+            "confidence": 87
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -17888,16 +17933,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -17919,11 +17954,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -17933,13 +17963,23 @@
           "scenarioRobustness",
           "thesisQuality",
           "financialOperatingMomentum",
-          "execution"
+          "execution",
+          "supplyChainResilience",
+          "substitutionResilience",
+          "crossDivisionLeverage",
+          "governancePower",
+          "pricingPower"
         ],
         "needOrConstraintCandidates": [
           "Returns on new capacity and adjacent investments require project-level evidence.",
           "Durability of Q2 earnings above guidance requires subsequent-quarter confirmation.",
+          "Project-level returns on new capacity and adjacent technology investments remain unproven in current evidence.",
+          "Durability of above-guidance earnings requires subsequent-quarter evidence.",
           "Steel demand and spreads remain cyclical and exposed to construction, manufacturing, trade policy and raw-material costs.",
-          "Quarterly earnings can move sharply with steel pricing and utilization; the Helion mark is non-operating and should not be treated as core execution."
+          "Quarterly earnings can move sharply with steel pricing and utilization; the Helion mark is non-operating and should not be treated as core execution.",
+          "Physical steel demand is durable, but company returns remain sensitive to spreads, utilization and capital discipline on new capacity.",
+          "Steel spreads and utilization can reverse quickly with construction/manufacturing cycles and trade-policy changes.",
+          "Non-operating investment marks can inflate reported earnings and confidence if not separated from core operating performance."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -28278,7 +28318,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "NVO",
       "workId": "t0:NVO",
-      "inputSignature": "a58a382daadf274b4945f586",
+      "inputSignature": "20ec893663018cf27d59ec1f",
       "sourceState": "researching",
       "identity": {
         "ticker": "NVO",
@@ -28301,32 +28341,34 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 5,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 7,
         "sourceLineage": {
-          "rawSourceCount": 5,
-          "uniqueSourceCount": 5,
-          "duplicatesCollapsed": 0,
+          "rawSourceCount": 9,
+          "uniqueSourceCount": 7,
+          "duplicatesCollapsed": 2,
           "missingLineage": 0,
           "uniqueOrigins": [
             "novo:2026-06-07:wegovy-pill-3m",
             "novo:2026-07-15:eu-wegovy-pill-hd",
             "novo:2026-09-07:step-young",
             "novo:2026-q1:investor-presentation",
-            "novo:2026-09-21:cmd-event"
+            "novo:2026-09-21:cmd-event",
+            "fda:semaglutide-hd:20260319",
+            "fda:orforglipron:20260401"
           ]
         },
         "evidenceWindow": {
-          "start": "2026-05-06T00:00:00.000Z",
-          "end": "2026-09-21T07:06:30.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-21T07:06:30.000Z"
+          "start": "2026-03-19T00:00:00.000Z",
+          "end": "2026-09-21T07:28:00.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-21T07:28:00.000Z"
         },
         "preflightPassed": false
       },
@@ -28334,36 +28376,66 @@
         "formulation/access expansion",
         "indication optionality",
         "adoption versus pricing",
-        "near-term expectation checkpoint"
+        "near-term expectation checkpoint",
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "pricingPower",
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "execution"
       ],
       "constraintSignals": {
         "risks": [
           "Clinical success does not establish regulatory approval, reimbursement, uptake or durable economics in pediatric obesity.",
-          "US realized-price pressure and competition can offset prescription growth."
+          "US realized-price pressure and competition can offset prescription growth.",
+          "As formulation choice broadens, differentiation can migrate from availability toward net price, persistence, tolerability, outcomes and payer preference.",
+          "US realized-price pressure can offset prescription growth and reduce economic conversion of strong demand.",
+          "Oral small-molecule and other GLP-1 competitors can pressure share, pricing and formulary positioning even if the obesity market continues expanding."
         ],
         "unknowns": [
           "Current Q3 prescription persistence, net pricing and competitive share are not established by these sources.",
-          "Capital Markets Day disclosures were not yet available at generation time and must not be inferred."
+          "Capital Markets Day disclosures were not yet available at generation time and must not be inferred.",
+          "Current Q3 persistence, net pricing and competitive share remain outside the evidence window.",
+          "Capital Markets Day disclosures and post-event market/operating implications were not used because they were not available in the routed evidence at run start."
         ],
         "contradictions": [
-          "Strong Wegovy pill adoption coexists with weak adjusted company sales growth."
+          "Strong Wegovy pill adoption coexists with weak adjusted company sales growth.",
+          "Rapid oral-Wegovy uptake coexists with weak adjusted company sales growth."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "company:NVO",
+            "to": "technology:semaglutide-formulations",
+            "relationship": "develops_and_supplies",
+            "confidence": 96
+          },
+          {
+            "from": "technology:semaglutide-formulations",
+            "to": "need:obesity-cardiometabolic-care",
+            "relationship": "addresses",
+            "confidence": 95
+          },
+          {
+            "from": "company:NVO",
+            "to": "bottleneck:access-pricing-competition",
+            "relationship": "exposed_to",
+            "confidence": 92
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -28374,16 +28446,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -28405,11 +28467,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -28417,13 +28474,26 @@
           "formulation/access expansion",
           "indication optionality",
           "adoption versus pricing",
-          "near-term expectation checkpoint"
+          "near-term expectation checkpoint",
+          "alignment2036",
+          "bottleneckControl",
+          "scenarioRobustness",
+          "substitutionResilience",
+          "pricingPower",
+          "thesisQuality",
+          "financialOperatingMomentum",
+          "execution"
         ],
         "needOrConstraintCandidates": [
           "Current Q3 prescription persistence, net pricing and competitive share are not established by these sources.",
           "Capital Markets Day disclosures were not yet available at generation time and must not be inferred.",
+          "Current Q3 persistence, net pricing and competitive share remain outside the evidence window.",
+          "Capital Markets Day disclosures and post-event market/operating implications were not used because they were not available in the routed evidence at run start.",
           "Clinical success does not establish regulatory approval, reimbursement, uptake or durable economics in pediatric obesity.",
-          "US realized-price pressure and competition can offset prescription growth."
+          "US realized-price pressure and competition can offset prescription growth.",
+          "As formulation choice broadens, differentiation can migrate from availability toward net price, persistence, tolerability, outcomes and payer preference.",
+          "US realized-price pressure can offset prescription growth and reduce economic conversion of strong demand.",
+          "Oral small-molecule and other GLP-1 competitors can pressure share, pricing and formulary positioning even if the obesity market continues expanding."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -28763,152 +28833,9 @@
       "version": 1,
       "contract": "earth2036-company-digital-twin-shadow-v1",
       "canonicalWriteAuthority": false,
-      "ticker": "CRSP",
-      "workId": "t0:CRSP",
-      "inputSignature": "d803455e58a3ab9a7b26081e",
-      "sourceState": "chief_ready",
-      "identity": {
-        "ticker": "CRSP",
-        "company": "CRISPR Therapeutics",
-        "cik": "0001674416",
-        "exchange": "NASDAQ",
-        "exchangeName": "CRISPR Therapeutics AG - Common Shares",
-        "identityStatus": "validated",
-        "tradabilityStatus": "validated",
-        "validatedAt": "2026-09-21T06:31:43.015Z"
-      },
-      "representationQuality": {
-        "requiredPerspectives": [
-          "source-integrity",
-          "company-underwriting",
-          "structural-causal",
-          "discovery-weak-signals",
-          "adversarial-red-team",
-          "expectations-execution"
-        ],
-        "presentPerspectives": [
-          "discovery-weak-signals",
-          "expectations-execution",
-          "structural-causal",
-          "adversarial-red-team",
-          "source-integrity",
-          "company-underwriting"
-        ],
-        "missingPerspectives": [],
-        "primarySourceCount": 3,
-        "sourceLineage": {
-          "rawSourceCount": 13,
-          "uniqueSourceCount": 4,
-          "duplicatesCollapsed": 9,
-          "missingLineage": 0,
-          "uniqueOrigins": [
-            "issuer:CRSP:CTX310-ESC:20260828",
-            "issuer:CRSP:2026Q2:20260803",
-            "sec:1674416:10Q:20260630",
-            "stockanalysis:CRSP:20260918"
-          ]
-        },
-        "evidenceWindow": {
-          "start": "2026-08-03T00:00:00.000Z",
-          "end": "2026-09-21T07:15:54.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-21T07:15:54.000Z"
-        },
-        "preflightPassed": true
-      },
-      "capabilitySignals": [
-        "thesisQuality",
-        "alignment2036",
-        "catalystScore",
-        "scenarioRobustness",
-        "financialOperatingMomentum",
-        "crossDivisionLeverage",
-        "substitutionResilience",
-        "marketValuationOpportunity",
-        "governancePower",
-        "bottleneckControl",
-        "supplyChainResilience",
-        "pricingPower"
-      ],
-      "constraintSignals": {
-        "risks": [
-          "Phase 1a involved only 15 participants and early efficacy/safety cannot establish registrational success.",
-          "Broad clinical pipeline increases trial, regulatory and capital-allocation execution burden.",
-          "Early clinical signals may not persist in larger or longer studies, shifting the causal chain before commercialization.",
-          "Small early-stage cohorts can overstate durable efficacy or underrepresent safety events.",
-          "Broad pipeline breadth can increase cash-burn and capital-allocation complexity before multiple assets are de-risked.",
-          "Most pipeline assets remain early-stage; larger trials can reverse early efficacy/safety signals.",
-          "Persistent losses, convertible debt and historical share-count growth create financing/dilution risk despite strong liquidity.",
-          "CASGEVY commercialization depends materially on Vertex, reimbursement, treatment-center throughput and complex patient access."
-        ],
-        "unknowns": [
-          "Phase 1b efficacy, safety and regulatory path remain unresolved.",
-          "Commercial CASGEVY economics and pipeline cash-burn durability require full financial underwriting.",
-          "Phase 1b durability, safety and regulatory path remain unresolved.",
-          "Commercial CASGEVY economics and pipeline cash-burn durability require Alpha financial underwriting.",
-          "No independent source in this run independently validates issuer clinical efficacy claims; those claims remain issuer/primary-source facts rather than independent corroboration.",
-          "Long-run CASGEVY net economics to CRISPR and mature pricing power remain incompletely disclosed.",
-          "Pipeline probability-adjusted values remain highly uncertain before later-stage data."
-        ],
-        "contradictions": [],
-        "gatingIssues": [],
-        "preflightFailures": []
-      },
-      "causalContext": {
-        "mapped": true,
-        "edges": [
-          "gene-editing precision + delivery -> biological effect -> durable patient benefit",
-          "clinical safety/efficacy -> regulatory acceptance -> commercial access",
-          "successful editing -> successor bottlenecks in manufacturing/reimbursement/access -> realized population impact"
-        ]
-      },
-      "improvementWindows": [],
-      "bridgeInputs": {
-        "capabilityCandidates": [
-          "thesisQuality",
-          "alignment2036",
-          "catalystScore",
-          "scenarioRobustness",
-          "financialOperatingMomentum",
-          "crossDivisionLeverage",
-          "substitutionResilience",
-          "marketValuationOpportunity",
-          "governancePower",
-          "bottleneckControl",
-          "supplyChainResilience",
-          "pricingPower"
-        ],
-        "needOrConstraintCandidates": [
-          "Phase 1b efficacy, safety and regulatory path remain unresolved.",
-          "Commercial CASGEVY economics and pipeline cash-burn durability require full financial underwriting.",
-          "Phase 1b durability, safety and regulatory path remain unresolved.",
-          "Commercial CASGEVY economics and pipeline cash-burn durability require Alpha financial underwriting.",
-          "No independent source in this run independently validates issuer clinical efficacy claims; those claims remain issuer/primary-source facts rather than independent corroboration.",
-          "Long-run CASGEVY net economics to CRISPR and mature pricing power remain incompletely disclosed.",
-          "Pipeline probability-adjusted values remain highly uncertain before later-stage data.",
-          "Phase 1a involved only 15 participants and early efficacy/safety cannot establish registrational success.",
-          "Broad clinical pipeline increases trial, regulatory and capital-allocation execution burden.",
-          "Early clinical signals may not persist in larger or longer studies, shifting the causal chain before commercialization.",
-          "Small early-stage cohorts can overstate durable efficacy or underrepresent safety events.",
-          "Broad pipeline breadth can increase cash-burn and capital-allocation complexity before multiple assets are de-risked.",
-          "Most pipeline assets remain early-stage; larger trials can reverse early efficacy/safety signals.",
-          "Persistent losses, convertible debt and historical share-count growth create financing/dilution risk despite strong liquidity.",
-          "CASGEVY commercialization depends materially on Vertex, reimbursement, treatment-center throughput and complex patient access."
-        ],
-        "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
-      },
-      "doctrine": {
-        "recommendationStyle": "facts + interpretation + options; never coercion",
-        "representationIsNotRanking": true,
-        "uncertaintyVisible": true
-      }
-    },
-    {
-      "version": 1,
-      "contract": "earth2036-company-digital-twin-shadow-v1",
-      "canonicalWriteAuthority": false,
       "ticker": "NTLA",
       "workId": "t0:NTLA",
-      "inputSignature": "9cd4014f2262f12bbdee8f5d",
+      "inputSignature": "6bcbb28968e428e7b967df76",
       "sourceState": "researching",
       "identity": {
         "ticker": "NTLA",
@@ -28931,19 +28858,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 2,
         "sourceLineage": {
-          "rawSourceCount": 3,
+          "rawSourceCount": 6,
           "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 1,
+          "duplicatesCollapsed": 4,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:NTLA:2026Q2:20260806",
@@ -28952,8 +28879,8 @@
         },
         "evidenceWindow": {
           "start": "2026-08-06T00:00:00.000Z",
-          "end": "2026-09-21T06:10:00.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-21T06:10:00.000Z"
+          "end": "2026-09-21T07:28:00.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-21T07:28:00.000Z"
         },
         "preflightPassed": false
       },
@@ -28963,34 +28890,60 @@
         "optionality",
         "scenarioRobustness",
         "financialOperatingMomentum",
-        "execution"
+        "execution",
+        "bottleneckControl",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
           "Regulatory acceptance, approval, launch execution and long-term safety remain binary-to-high-impact uncertainties for a first-wave in-vivo gene-editing product.",
-          "Debt extends flexibility but introduces secured financing obligations and milestone dependence; runway guidance remains management expectation."
+          "Debt extends flexibility but introduces secured financing obligations and milestone dependence; runway guidance remains management expectation.",
+          "The successor bottleneck shifts from editing efficacy toward long-duration safety, regulatory review, manufacturing consistency, payer access and launch execution.",
+          "A one-time genetic intervention carries asymmetric safety and regulatory consequences if delayed adverse effects emerge.",
+          "Secured debt can reduce near-term equity dilution while increasing fixed claims and milestone dependence ahead of commercialization.",
+          "Competing prophylactic HAE therapies can preserve a substitution path if gene-editing access, safety perception or economics disappoint."
         ],
         "unknowns": [
           "Commercial uptake, pricing, payer access and long-duration safety remain unproven before launch.",
-          "Exact future draw timing, covenant headroom and commercialization cash needs require financial underwriting."
+          "Exact future draw timing, covenant headroom and commercialization cash needs require financial underwriting.",
+          "Durability beyond observed follow-up and commercial access economics remain unproven.",
+          "Covenant headroom, exact future draw timing and net commercialization cash need require Alpha underwriting."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "company:NTLA",
+            "to": "technology:in-vivo-crispr",
+            "relationship": "develops",
+            "confidence": 92
+          },
+          {
+            "from": "technology:in-vivo-crispr",
+            "to": "need:durable-hae-disease-control",
+            "relationship": "addresses",
+            "confidence": 86
+          },
+          {
+            "from": "technology:in-vivo-crispr",
+            "to": "bottleneck:regulatory-safety-access",
+            "relationship": "depends_on",
+            "confidence": 91
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -29001,16 +28954,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -29032,11 +28975,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -29046,13 +28984,23 @@
           "optionality",
           "scenarioRobustness",
           "financialOperatingMomentum",
-          "execution"
+          "execution",
+          "bottleneckControl",
+          "substitutionResilience",
+          "supplyChainResilience",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "Commercial uptake, pricing, payer access and long-duration safety remain unproven before launch.",
           "Exact future draw timing, covenant headroom and commercialization cash needs require financial underwriting.",
+          "Durability beyond observed follow-up and commercial access economics remain unproven.",
+          "Covenant headroom, exact future draw timing and net commercialization cash need require Alpha underwriting.",
           "Regulatory acceptance, approval, launch execution and long-term safety remain binary-to-high-impact uncertainties for a first-wave in-vivo gene-editing product.",
-          "Debt extends flexibility but introduces secured financing obligations and milestone dependence; runway guidance remains management expectation."
+          "Debt extends flexibility but introduces secured financing obligations and milestone dependence; runway guidance remains management expectation.",
+          "The successor bottleneck shifts from editing efficacy toward long-duration safety, regulatory review, manufacturing consistency, payer access and launch execution.",
+          "A one-time genetic intervention carries asymmetric safety and regulatory consequences if delayed adverse effects emerge.",
+          "Secured debt can reduce near-term equity dilution while increasing fixed claims and milestone dependence ahead of commercialization.",
+          "Competing prophylactic HAE therapies can preserve a substitution path if gene-editing access, safety perception or economics disappoint."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

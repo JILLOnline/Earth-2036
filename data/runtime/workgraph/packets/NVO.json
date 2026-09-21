@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "NVO",
   "workId": "t0:NVO",
-  "generatedAt": "2026-09-21T07:17:56.545Z",
+  "generatedAt": "2026-09-21T07:30:52.137Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-21T06:31:43.015Z"
   },
   "evidenceWindow": {
-    "start": "2026-05-06T00:00:00.000Z",
-    "end": "2026-09-21T07:06:30.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T07:06:30.000Z"
+    "start": "2026-03-19T00:00:00.000Z",
+    "end": "2026-09-21T07:28:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T07:28:00.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,58 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/NVO-20260921T070630Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/NVO-20260921T070630Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/NVO-20260921T072800Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "formulation/access expansion",
       "indication optionality",
       "adoption versus pricing",
-      "near-term expectation checkpoint"
+      "near-term expectation checkpoint",
+      "alignment2036",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "pricingPower",
+      "thesisQuality",
+      "financialOperatingMomentum",
+      "execution"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "pricingPower",
+        "thesisQuality"
+      ],
       "discovery-weak-signals": [
         {
           "name": "formulation/access expansion",
@@ -78,7 +96,13 @@
           "basis": "Positive pediatric phase-3 data creates a potential future population expansion subject to regulatory review."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "pricingPower",
+        "substitutionResilience",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "execution"
+      ],
       "expectations-execution": [
         {
           "name": "adoption versus pricing",
@@ -134,7 +158,15 @@
     "formulation/access expansion",
     "indication optionality",
     "adoption versus pricing",
-    "near-term expectation checkpoint"
+    "near-term expectation checkpoint",
+    "alignment2036",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "pricingPower",
+    "thesisQuality",
+    "financialOperatingMomentum",
+    "execution"
   ],
   "riskEvidence": {
     "present": true,
@@ -145,6 +177,18 @@
       },
       {
         "risk": "US realized-price pressure and competition can offset prescription growth.",
+        "gating": false
+      },
+      {
+        "risk": "As formulation choice broadens, differentiation can migrate from availability toward net price, persistence, tolerability, outcomes and payer preference.",
+        "gating": false
+      },
+      {
+        "risk": "US realized-price pressure can offset prescription growth and reduce economic conversion of strong demand.",
+        "gating": false
+      },
+      {
+        "risk": "Oral small-molecule and other GLP-1 competitors can pressure share, pricing and formulary positioning even if the obesity market continues expanding.",
         "gating": false
       }
     ]
@@ -157,6 +201,18 @@
     {
       "risk": "US realized-price pressure and competition can offset prescription growth.",
       "gating": false
+    },
+    {
+      "risk": "As formulation choice broadens, differentiation can migrate from availability toward net price, persistence, tolerability, outcomes and payer preference.",
+      "gating": false
+    },
+    {
+      "risk": "US realized-price pressure can offset prescription growth and reduce economic conversion of strong demand.",
+      "gating": false
+    },
+    {
+      "risk": "Oral small-molecule and other GLP-1 competitors can pressure share, pricing and formulary positioning even if the obesity market continues expanding.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -167,24 +223,64 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 5
+    "count": 7
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "company:NVO",
+        "to": "technology:semaglutide-formulations",
+        "relationship": "develops_and_supplies",
+        "confidence": 96
+      },
+      {
+        "from": "technology:semaglutide-formulations",
+        "to": "need:obesity-cardiometabolic-care",
+        "relationship": "addresses",
+        "confidence": 95
+      },
+      {
+        "from": "company:NVO",
+        "to": "bottleneck:access-pricing-competition",
+        "relationship": "exposed_to",
+        "confidence": 92
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "company:NVO",
+      "to": "technology:semaglutide-formulations",
+      "relationship": "develops_and_supplies",
+      "confidence": 96
+    },
+    {
+      "from": "technology:semaglutide-formulations",
+      "to": "need:obesity-cardiometabolic-care",
+      "relationship": "addresses",
+      "confidence": 95
+    },
+    {
+      "from": "company:NVO",
+      "to": "bottleneck:access-pricing-competition",
+      "relationship": "exposed_to",
+      "confidence": 92
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 5,
-    "uniqueSourceCount": 5,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 9,
+    "uniqueSourceCount": 7,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
     "uniqueOrigins": [
       "novo:2026-06-07:wegovy-pill-3m",
       "novo:2026-07-15:eu-wegovy-pill-hd",
       "novo:2026-09-07:step-young",
       "novo:2026-q1:investor-presentation",
-      "novo:2026-09-21:cmd-event"
+      "novo:2026-09-21:cmd-event",
+      "fda:semaglutide-hd:20260319",
+      "fda:orforglipron:20260401"
     ]
   },
   "sources": [
@@ -227,12 +323,34 @@
       "publishedAt": "2026-09-21",
       "originFingerprint": "novo:2026-09-21:cmd-event",
       "sourceId": null
+    },
+    {
+      "sourceId": "fda:wegovy-hd:20260319",
+      "url": "https://www.fda.gov/news-events/press-announcements/fda-approves-fourth-product-under-national-priority-voucher-program-higher-dose-semaglutide",
+      "kind": "regulator",
+      "primary": true,
+      "publishedAt": "2026-03-19",
+      "originFingerprint": "fda:semaglutide-hd:20260319"
+    },
+    {
+      "sourceId": "fda:orforglipron:20260401",
+      "url": "https://www.fda.gov/news-events/press-announcements/fda-approves-first-new-molecular-entity-under-national-priority-voucher-program",
+      "kind": "regulator",
+      "primary": true,
+      "publishedAt": "2026-04-01",
+      "originFingerprint": "fda:orforglipron:20260401"
     }
   ],
   "contradictions": [
     {
       "claim": "Strong Wegovy pill adoption coexists with weak adjusted company sales growth.",
       "resolution": "Treat adoption as product execution evidence and pricing/company growth as a separate economic constraint; neither cancels the other.",
+      "resolved": true,
+      "gating": false
+    },
+    {
+      "claim": "Rapid oral-Wegovy uptake coexists with weak adjusted company sales growth.",
+      "resolution": "Treat uptake as execution evidence and pricing/company economics as a separate constraint; the two observations are simultaneously valid.",
       "resolved": true,
       "gating": false
     }
@@ -243,6 +361,12 @@
       {
         "claim": "Strong Wegovy pill adoption coexists with weak adjusted company sales growth.",
         "resolution": "Treat adoption as product execution evidence and pricing/company growth as a separate economic constraint; neither cancels the other.",
+        "resolved": true,
+        "gating": false
+      },
+      {
+        "claim": "Rapid oral-Wegovy uptake coexists with weak adjusted company sales growth.",
+        "resolution": "Treat uptake as execution evidence and pricing/company economics as a separate constraint; the two observations are simultaneously valid.",
         "resolved": true,
         "gating": false
       }
@@ -256,11 +380,19 @@
     {
       "unknown": "Capital Markets Day disclosures were not yet available at generation time and must not be inferred.",
       "gating": false
+    },
+    {
+      "unknown": "Current Q3 persistence, net pricing and competitive share remain outside the evidence window.",
+      "gating": false
+    },
+    {
+      "unknown": "Capital Markets Day disclosures and post-event market/operating implications were not used because they were not available in the routed evidence at run start.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 91,
@@ -269,13 +401,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -285,14 +414,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -309,10 +430,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

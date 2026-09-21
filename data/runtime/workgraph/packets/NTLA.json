@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "NTLA",
   "workId": "t0:NTLA",
-  "generatedAt": "2026-09-21T07:17:56.545Z",
+  "generatedAt": "2026-09-21T07:30:52.137Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-06T00:00:00.000Z",
-    "end": "2026-09-21T06:10:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T06:10:00.000Z"
+    "end": "2026-09-21T07:28:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T07:28:00.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/NTLA-20260921T061000Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/NTLA-20260921T061000Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/NTLA-20260921T072800Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,19 +65,35 @@
       "optionality",
       "scenarioRobustness",
       "financialOperatingMomentum",
-      "execution"
+      "execution",
+      "bottleneckControl",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "alignment2036",
         "thesisQuality",
         "optionality",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "substitutionResilience",
+        "financialOperatingMomentum",
+        "governancePower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -125,7 +144,11 @@
     "optionality",
     "scenarioRobustness",
     "financialOperatingMomentum",
-    "execution"
+    "execution",
+    "bottleneckControl",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -137,6 +160,22 @@
       {
         "risk": "Debt extends flexibility but introduces secured financing obligations and milestone dependence; runway guidance remains management expectation.",
         "gating": false
+      },
+      {
+        "risk": "The successor bottleneck shifts from editing efficacy toward long-duration safety, regulatory review, manufacturing consistency, payer access and launch execution.",
+        "gating": false
+      },
+      {
+        "risk": "A one-time genetic intervention carries asymmetric safety and regulatory consequences if delayed adverse effects emerge.",
+        "gating": false
+      },
+      {
+        "risk": "Secured debt can reduce near-term equity dilution while increasing fixed claims and milestone dependence ahead of commercialization.",
+        "gating": false
+      },
+      {
+        "risk": "Competing prophylactic HAE therapies can preserve a substitution path if gene-editing access, safety perception or economics disappoint.",
+        "gating": false
       }
     ]
   },
@@ -147,6 +186,22 @@
     },
     {
       "risk": "Debt extends flexibility but introduces secured financing obligations and milestone dependence; runway guidance remains management expectation.",
+      "gating": false
+    },
+    {
+      "risk": "The successor bottleneck shifts from editing efficacy toward long-duration safety, regulatory review, manufacturing consistency, payer access and launch execution.",
+      "gating": false
+    },
+    {
+      "risk": "A one-time genetic intervention carries asymmetric safety and regulatory consequences if delayed adverse effects emerge.",
+      "gating": false
+    },
+    {
+      "risk": "Secured debt can reduce near-term equity dilution while increasing fixed claims and milestone dependence ahead of commercialization.",
+      "gating": false
+    },
+    {
+      "risk": "Competing prophylactic HAE therapies can preserve a substitution path if gene-editing access, safety perception or economics disappoint.",
       "gating": false
     }
   ],
@@ -161,14 +216,52 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "company:NTLA",
+        "to": "technology:in-vivo-crispr",
+        "relationship": "develops",
+        "confidence": 92
+      },
+      {
+        "from": "technology:in-vivo-crispr",
+        "to": "need:durable-hae-disease-control",
+        "relationship": "addresses",
+        "confidence": 86
+      },
+      {
+        "from": "technology:in-vivo-crispr",
+        "to": "bottleneck:regulatory-safety-access",
+        "relationship": "depends_on",
+        "confidence": 91
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "company:NTLA",
+      "to": "technology:in-vivo-crispr",
+      "relationship": "develops",
+      "confidence": 92
+    },
+    {
+      "from": "technology:in-vivo-crispr",
+      "to": "need:durable-hae-disease-control",
+      "relationship": "addresses",
+      "confidence": 86
+    },
+    {
+      "from": "technology:in-vivo-crispr",
+      "to": "bottleneck:regulatory-safety-access",
+      "relationship": "depends_on",
+      "confidence": 91
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 6,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:NTLA:2026Q2:20260806",
@@ -206,11 +299,19 @@
     {
       "unknown": "Exact future draw timing, covenant headroom and commercialization cash needs require financial underwriting.",
       "gating": false
+    },
+    {
+      "unknown": "Durability beyond observed follow-up and commercial access economics remain unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Covenant headroom, exact future draw timing and net commercialization cash need require Alpha underwriting.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 88,
@@ -219,13 +320,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -235,14 +333,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -259,10 +349,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

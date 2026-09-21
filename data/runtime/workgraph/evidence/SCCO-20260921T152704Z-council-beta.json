@@ -1,0 +1,77 @@
+[
+  {
+    "version":1,
+    "ticker":"SCCO",
+    "entityId":"SCCO",
+    "workId":"t0:SCCO",
+    "cycleKey":"20260921T1200Z",
+    "role":"council-beta",
+    "perspective":"structural-causal",
+    "generatedAt":"2026-09-21T15:27:04Z",
+    "claims":[
+      {"claim":"Southern Copper sits on a durable electrification/infrastructure bottleneck because copper is a required conductive material across grids, motors, industrial equipment and data-center power systems; its operating leverage is therefore to copper availability and price rather than to one downstream technology.","status":"supported"},
+      {"claim":"Tía María provides a concrete supply-expansion bridge, but the causal path from scarcity to shareholder value is conditional on permitting/social acceptance, construction execution, grades and realized copper prices.","status":"supported"}
+    ],
+    "factors":[
+      {"name":"bottleneckControl","direction":"positive","basis":"Owned copper reserves/production capacity participate directly in a difficult-to-substitute physical bottleneck."},
+      {"name":"scenarioRobustness","direction":"mixed","basis":"Copper demand spans multiple infrastructure and electrification scenarios, while commodity-price and project-execution sensitivity remain material."},
+      {"name":"substitutionResilience","direction":"positive","basis":"Aluminum and efficiency gains can substitute in some applications, but broad copper conductivity/use requirements preserve substantial demand resilience."},
+      {"name":"supplyChainResilience","direction":"mixed","basis":"Mine ownership gives upstream control, but jurisdiction, grades, water, permitting and project timing are concentrated physical constraints."}
+    ],
+    "sources":[
+      {"url":"https://www.sec.gov/Archives/edgar/data/1001838/000110465926089169/scco-20260630x10q.htm","kind":"primary","primary":true,"publishedAt":"2026-08-03","originFingerprint":"sec:scco:2026q2:10q"},
+      {"url":"https://www.sec.gov/Archives/edgar/data/1001838/000110465926085515/scco-20260721xex99d1.htm","kind":"primary","primary":true,"publishedAt":"2026-07-21","originFingerprint":"sec:scco:2026-07-21:q2-results"}
+    ],
+    "causalEdges":[
+      {"from":"electrification/grid/data-center infrastructure","to":"copper demand","relation":"raises material requirement"},
+      {"from":"copper scarcity/price","to":"SCCO cash generation","relation":"increases realized-price operating leverage, conditional on volume/cost"},
+      {"from":"Tía María execution","to":"SCCO copper supply","relation":"adds future production capacity if schedule and social/permitting conditions hold"},
+      {"from":"aluminum substitution/material efficiency","to":"copper intensity","relation":"reduces copper demand in technically/economically substitutable uses"}
+    ],
+    "risks":[{"risk":"Successor bottlenecks can shift from copper availability to permitting, water, grid interconnection, construction capacity or customer affordability; copper scarcity alone does not guarantee project value capture.","gating":false}],
+    "contradictions":[{"claim":"Record financial acceleration coexisted with lower copper sales volume.","resolution":"This strengthens the commodity-price leverage thesis but weakens any claim that current earnings growth proves operating-volume expansion.","resolved":true,"gating":false}],
+    "unknowns":[{"unknown":"Long-run application-level substitution elasticity between copper, aluminum and design efficiency is not established by the current company evidence.","gating":false}],
+    "gatingIssues":[],
+    "confidence":88,
+    "recommendedNextState":"researching",
+    "recommendedOwner":"council-alpha",
+    "lineage":{"reusedEvidencePaths":["data/runtime/workgraph/evidence/SCCO-20260921T120655Z-earth-scout.json"],"supersedes":null}
+  },
+  {
+    "version":1,
+    "ticker":"SCCO",
+    "entityId":"SCCO",
+    "workId":"t0:SCCO",
+    "cycleKey":"20260921T1200Z",
+    "role":"council-beta",
+    "perspective":"adversarial-red-team",
+    "generatedAt":"2026-09-21T15:27:04Z",
+    "claims":[
+      {"claim":"The strongest present falsification pressure is that Q2 earnings growth was price-led while copper sales volume fell, so extrapolating record earnings as proof of operating expansion would inflate confidence.","status":"supported"},
+      {"claim":"The $1.25B debt financing improves project funding visibility but increases fixed financing exposure before Tía María contributes production, making schedule slippage more consequential rather than inherently disqualifying.","status":"supported"}
+    ],
+    "factors":[
+      {"name":"commodity-price dependence","direction":"risk","basis":"Current earnings acceleration depended materially on higher realized metal prices."},
+      {"name":"financing/dilution","direction":"mixed","basis":"Debt rather than equity avoids immediate dilution but adds fixed obligations ahead of project cash generation."},
+      {"name":"concentration/governance","direction":"risk","basis":"Large mining projects remain exposed to jurisdictional, social-license and execution concentration; current Beta evidence does not establish a governance defect."},
+      {"name":"backlog/TAM discipline","direction":"neutral","basis":"No backlog/TAM claim is needed for the thesis; project completion and realized production are the relevant falsifiable measures."}
+    ],
+    "sources":[
+      {"url":"https://www.sec.gov/Archives/edgar/data/1001838/000110465926089169/scco-20260630x10q.htm","kind":"primary","primary":true,"publishedAt":"2026-08-03","originFingerprint":"sec:scco:2026q2:10q"},
+      {"url":"https://www.sec.gov/Archives/edgar/data/1001838/000110465926085515/scco-20260721xex99d1.htm","kind":"primary","primary":true,"publishedAt":"2026-07-21","originFingerprint":"sec:scco:2026-07-21:q2-results"}
+    ],
+    "causalEdges":[{"from":"copper-price reversal","to":"SCCO earnings/cash generation","relation":"can reverse price-led operating leverage even if strategic copper demand remains intact"}],
+    "risks":[
+      {"risk":"Commodity-price reversal can overwhelm modest operating progress.","gating":false},
+      {"risk":"Project delays or cost escalation can raise carrying costs and defer the supply-growth thesis.","gating":false},
+      {"risk":"Substitution and recycling can moderate scarcity economics at the margin even when absolute copper demand remains durable.","gating":false}
+    ],
+    "contradictions":[{"claim":"Record earnings imply broad operating momentum.","resolution":"Partially falsified: the evidence supports strong financial momentum but not broad volume momentum because copper sales volume declined 1.5% year over year.","resolved":true,"gating":false}],
+    "unknowns":[{"unknown":"Beta has not independently quantified valuation/crowding or future copper prices; these remain non-gating and belong outside this perspective's canonical authority.","gating":false}],
+    "gatingIssues":[],
+    "confidence":91,
+    "recommendedNextState":"researching",
+    "recommendedOwner":"council-alpha",
+    "lineage":{"reusedEvidencePaths":["data/runtime/workgraph/evidence/SCCO-20260921T120655Z-earth-scout.json"],"supersedes":null}
+  }
+]

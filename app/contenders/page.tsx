@@ -101,8 +101,8 @@ export default function UniversePage() {
     const source = viewRows(view);
     return needle ? source.filter((row) => [row.ticker, row.company, row.exchange ?? "", row.division ?? "", row.cohort ?? ""].join(" ").toLowerCase().includes(needle)) : source;
   }, [query, view]);
-  const visibleRows = view === "ANNUAL" ? rows : rows.slice(0, visibleLimit);
-  const hasMore = view !== "ANNUAL" && visibleRows.length < rows.length;
+  const visibleRows = rows.slice(0, visibleLimit);
+  const hasMore = visibleRows.length < rows.length;
   const nextLimit = visibleLimit <= FIRST_BATCH ? Math.min(SECOND_BATCH, rows.length) : rows.length;
   const sortMode = periodViews.includes(view as (typeof periodViews)[number]) ? (bucketFor(view)?.status === "frozen" ? "FROZEN" : "PENDING") : (liveRankingOfficial ? "OFFICIAL RANK" : "READINESS");
 

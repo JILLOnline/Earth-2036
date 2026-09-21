@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "S",
   "workId": "t0:S",
-  "generatedAt": "2026-09-21T14:20:35.653Z",
+  "generatedAt": "2026-09-21T14:24:39.781Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-03-12T00:00:00.000Z",
-    "end": "2026-09-21T12:06:55.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T12:06:55.000Z"
+    "end": "2026-09-21T14:23:02.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T14:23:02.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,65 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/S-20260921T120655Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/S-20260921T120655Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/S-20260921T142302Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "AI security surface expansion",
       "ecosystem leverage",
       "scale conversion",
-      "competitive intensity"
+      "competitive intensity",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "competitive response",
+      "confidence inflation",
+      "source dependence"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "Security telemetry and response sit directly in the operational control loop, though customers retain multiple viable platforms."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "positive",
+          "basis": "Cloud, on-premise, sovereign and air-gapped deployment modes reduce dependence on one infrastructure model."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Integrated telemetry and automation create switching costs, but endpoint, SIEM, cloud and AI-security markets have strong incumbent and specialist substitutes."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "AI security surface expansion",
@@ -78,7 +103,23 @@
           "basis": "Google Cloud and AWS integrations can extend distribution and telemetry reach."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "competitive response",
+          "direction": "risk",
+          "basis": "Large incumbents and specialists can bundle or replicate adjacent AI-security capabilities."
+        },
+        {
+          "name": "confidence inflation",
+          "direction": "risk",
+          "basis": "Partnership and product breadth do not establish module-level monetization or win rates."
+        },
+        {
+          "name": "source dependence",
+          "direction": "risk",
+          "basis": "Current evidence is issuer-originated and should be supplemented by independent customer/market evidence over time."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "scale conversion",
@@ -134,7 +175,13 @@
     "AI security surface expansion",
     "ecosystem leverage",
     "scale conversion",
-    "competitive intensity"
+    "competitive intensity",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "competitive response",
+    "confidence inflation",
+    "source dependence"
   ],
   "riskEvidence": {
     "present": true,
@@ -146,6 +193,14 @@
       {
         "risk": "Rapid category expansion can raise execution and integration complexity even as platform breadth improves.",
         "gating": false
+      },
+      {
+        "risk": "Platform breadth only creates durable control if integrations remain operationally coherent and competitive on detection quality.",
+        "gating": false
+      },
+      {
+        "risk": "Category expansion can dilute product focus or raise integration complexity if cross-platform execution lags.",
+        "gating": false
       }
     ]
   },
@@ -156,6 +211,14 @@
     },
     {
       "risk": "Rapid category expansion can raise execution and integration complexity even as platform breadth improves.",
+      "gating": false
+    },
+    {
+      "risk": "Platform breadth only creates durable control if integrations remain operationally coherent and competitive on detection quality.",
+      "gating": false
+    },
+    {
+      "risk": "Category expansion can dilute product focus or raise integration complexity if cross-platform execution lags.",
       "gating": false
     }
   ],
@@ -170,14 +233,40 @@
     "count": 4
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "security telemetry and AI controls",
+        "to": "automated threat detection/response",
+        "mechanism": "integrated endpoint/cloud/agent monitoring",
+        "status": "supported"
+      },
+      {
+        "from": "automated response",
+        "to": "enterprise resilience",
+        "mechanism": "faster containment and policy enforcement",
+        "status": "mechanistically_supported"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "security telemetry and AI controls",
+      "to": "automated threat detection/response",
+      "mechanism": "integrated endpoint/cloud/agent monitoring",
+      "status": "supported"
+    },
+    {
+      "from": "automated response",
+      "to": "enterprise resilience",
+      "mechanism": "faster containment and policy enforcement",
+      "status": "mechanistically_supported"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 4,
-    "duplicatesCollapsed": 0,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "sentinelone-ir:2026-03-25:google-cloud",
@@ -233,26 +322,31 @@
     {
       "unknown": "Scout does not infer current valuation or post-March financial performance without a fresher canonical financial source.",
       "gating": false
+    },
+    {
+      "unknown": "Incremental ARR attributable to newer AI-security modules remains unestablished.",
+      "gating": false
+    },
+    {
+      "unknown": "Current-period competitive win rates and AI-module unit economics are not established in this evidence set.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 91,
+  "confidence": 87,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -262,14 +356,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -286,10 +372,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

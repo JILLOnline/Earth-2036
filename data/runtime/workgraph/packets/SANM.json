@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SANM",
   "workId": "t0:SANM",
-  "generatedAt": "2026-09-21T14:20:35.648Z",
+  "generatedAt": "2026-09-21T14:24:39.776Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2025-10-27T00:00:00.000Z",
-    "end": "2026-09-21T12:06:55.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T12:06:55.000Z"
+    "end": "2026-09-21T14:23:02.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T14:23:02.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,65 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/SANM-20260921T120655Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/SANM-20260921T120655Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/SANM-20260921T142302Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "AI infrastructure manufacturing exposure",
       "vertical integration",
       "guidance conversion",
-      "cash conversion"
+      "cash conversion",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "concentration",
+      "integration",
+      "confidence inflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "Full-system manufacturing/integration capacity participates directly in the physical deployment bottleneck for AI infrastructure."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Diversified manufacturing capabilities help, but the acquired AI/cloud exposure increases sensitivity to hyperscaler capex cycles."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Scale, quality systems and integration capability create execution barriers, while large customers can dual-source and other EMS/ODM providers remain substitutes."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "AI infrastructure manufacturing exposure",
@@ -78,7 +103,23 @@
           "basis": "Management reported capacity expansion and synergy progress after the acquisition."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "concentration",
+          "direction": "risk",
+          "basis": "Greater cloud/AI infrastructure exposure increases dependence on a smaller set of large-capex customers and programs."
+        },
+        {
+          "name": "integration",
+          "direction": "risk",
+          "basis": "Acquisition synergies and capacity expansion must convert without disrupting margins or working capital."
+        },
+        {
+          "name": "confidence inflation",
+          "direction": "risk",
+          "basis": "Raised guidance is constructive but should not be treated as proof of cycle-proof demand or normalized post-acquisition margins."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "guidance conversion",
@@ -134,7 +175,13 @@
     "AI infrastructure manufacturing exposure",
     "vertical integration",
     "guidance conversion",
-    "cash conversion"
+    "cash conversion",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "concentration",
+    "integration",
+    "confidence inflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -146,6 +193,14 @@
       {
         "risk": "Forward demand claims remain exposed to hyperscaler capex, customer concentration, tariffs/trade policy and integration execution.",
         "gating": false
+      },
+      {
+        "risk": "Manufacturing is important but not irreplaceable; customer sourcing strategy and capex timing can shift utilization quickly.",
+        "gating": false
+      },
+      {
+        "risk": "Hyperscaler capex, tariffs/trade policy, customer concentration and acquisition integration can amplify downside if AI infrastructure demand slows.",
+        "gating": false
       }
     ]
   },
@@ -156,6 +211,14 @@
     },
     {
       "risk": "Forward demand claims remain exposed to hyperscaler capex, customer concentration, tariffs/trade policy and integration execution.",
+      "gating": false
+    },
+    {
+      "risk": "Manufacturing is important but not irreplaceable; customer sourcing strategy and capex timing can shift utilization quickly.",
+      "gating": false
+    },
+    {
+      "risk": "Hyperscaler capex, tariffs/trade policy, customer concentration and acquisition integration can amplify downside if AI infrastructure demand slows.",
       "gating": false
     }
   ],
@@ -170,14 +233,40 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "hyperscaler AI compute demand",
+        "to": "server/data-center manufacturing demand",
+        "mechanism": "physical systems are required to deploy compute capacity",
+        "status": "supported"
+      },
+      {
+        "from": "manufacturing and integration capacity",
+        "to": "operational AI infrastructure",
+        "mechanism": "assembly, test and system integration convert components into deployable systems",
+        "status": "supported"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "hyperscaler AI compute demand",
+      "to": "server/data-center manufacturing demand",
+      "mechanism": "physical systems are required to deploy compute capacity",
+      "status": "supported"
+    },
+    {
+      "from": "manufacturing and integration capacity",
+      "to": "operational AI infrastructure",
+      "mechanism": "assembly, test and system integration convert components into deployable systems",
+      "status": "supported"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 6,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "sanmina-ir:2025-10-27:zt-close",
@@ -215,26 +304,31 @@
     {
       "unknown": "Fiscal Q4 outcome is not yet available in the cited evidence window.",
       "gating": false
+    },
+    {
+      "unknown": "Long-run combined-business customer concentration and normalized margin profile remain to be established by underwriting.",
+      "gating": false
+    },
+    {
+      "unknown": "Fiscal Q4 outcome and normalized ZT margin/cash-conversion profile were not yet available in the cited evidence window.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -244,14 +338,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -268,10 +354,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

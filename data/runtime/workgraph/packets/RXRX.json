@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "RXRX",
   "workId": "t0:RXRX",
-  "generatedAt": "2026-09-21T14:20:35.655Z",
+  "generatedAt": "2026-09-21T14:24:39.782Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-05T00:00:00.000Z",
-    "end": "2026-09-21T12:06:55.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T12:06:55.000Z"
+    "end": "2026-09-21T14:23:02.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T14:23:02.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,65 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/RXRX-20260921T120655Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/RXRX-20260921T120655Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/RXRX-20260921T142302Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "partner validation",
       "clinical translation",
       "runway",
-      "revenue dependence"
+      "revenue dependence",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "financing/dilution",
+      "source dependence",
+      "confidence inflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "mixed",
+          "basis": "Integrated data/automation can compress discovery iteration, but clinical validation remains an external successor bottleneck."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Partner programs diversify discovery validation while outcomes remain exposed to binary clinical translation."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Platform scale and partner integration can create switching friction, but competing AI/automation and conventional discovery approaches remain substitutes."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "partner validation",
@@ -78,7 +103,23 @@
           "basis": "IND clearance advances platform output toward human testing, but efficacy remains unproven."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "financing/dilution",
+          "direction": "risk",
+          "basis": "Meaningful cash burn persists before product economics are proven; runway reduces near-term pressure but does not remove future financing risk."
+        },
+        {
+          "name": "source dependence",
+          "direction": "risk",
+          "basis": "Current packet evidence is issuer-originated, so confidence should remain below certainty until independent clinical/partner evidence accumulates."
+        },
+        {
+          "name": "confidence inflation",
+          "direction": "risk",
+          "basis": "Partner advancement and IND clearance are validation steps, not proof of efficacy or commercial success."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "runway",
@@ -134,7 +175,13 @@
     "partner validation",
     "clinical translation",
     "runway",
-    "revenue dependence"
+    "revenue dependence",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "financing/dilution",
+    "source dependence",
+    "confidence inflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -146,6 +193,14 @@
       {
         "risk": "Cash burn and clinical-development uncertainty remain substantial before product economics are proven.",
         "gating": false
+      },
+      {
+        "risk": "Clinical translation can break the causal chain even when discovery-stage milestones are achieved.",
+        "gating": false
+      },
+      {
+        "risk": "Milestone-sensitive revenue and clinical burn can require additional capital if translation takes longer than runway assumptions.",
+        "gating": false
       }
     ]
   },
@@ -156,6 +211,14 @@
     },
     {
       "risk": "Cash burn and clinical-development uncertainty remain substantial before product economics are proven.",
+      "gating": false
+    },
+    {
+      "risk": "Clinical translation can break the causal chain even when discovery-stage milestones are achieved.",
+      "gating": false
+    },
+    {
+      "risk": "Milestone-sensitive revenue and clinical burn can require additional capital if translation takes longer than runway assumptions.",
       "gating": false
     }
   ],
@@ -170,14 +233,40 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "Recursion discovery platform",
+        "to": "partner/program target selection",
+        "mechanism": "computational and experimental discovery workflow",
+        "status": "supported"
+      },
+      {
+        "from": "candidate selection",
+        "to": "human therapeutic value",
+        "mechanism": "clinical efficacy and safety validation",
+        "status": "unproven_successor_bottleneck"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "Recursion discovery platform",
+      "to": "partner/program target selection",
+      "mechanism": "computational and experimental discovery workflow",
+      "status": "supported"
+    },
+    {
+      "from": "candidate selection",
+      "to": "human therapeutic value",
+      "mechanism": "clinical efficacy and safety validation",
+      "status": "unproven_successor_bottleneck"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 0,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
     "uniqueOrigins": [
       "recursion-ir:2026-08-05:q2-genentech-rec7735",
@@ -215,26 +304,31 @@
     {
       "unknown": "No Scout valuation or entry-price conclusion is asserted.",
       "gating": false
+    },
+    {
+      "unknown": "Human efficacy for REC-7735 and other platform-derived programs remains unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Future dilution magnitude and timing cannot be established from current evidence.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 91,
+  "confidence": 86,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -244,14 +338,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -268,10 +354,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SAIL",
   "workId": "t0:SAIL",
-  "generatedAt": "2026-09-21T14:20:35.653Z",
+  "generatedAt": "2026-09-21T14:24:39.780Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2025-09-09T00:00:00.000Z",
-    "end": "2026-09-21T12:06:55.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T12:06:55.000Z"
+    "end": "2026-09-21T14:23:02.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T14:23:02.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,65 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/SAIL-20260921T120655Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/SAIL-20260921T120655Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/SAIL-20260921T142302Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "agentic identity demand",
       "AI product conversion",
       "ARR execution",
-      "expectation sensitivity"
+      "expectation sensitivity",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "source dependence",
+      "competitive response",
+      "confidence inflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "Identity authorization is a control-plane bottleneck as human, service and AI-agent identities proliferate."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "positive",
+          "basis": "The need persists across cloud, hybrid and agentic adoption scenarios even if specific AI architectures change."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Deep identity integrations and governance workflows create switching friction, but cloud suites and specialist identity vendors remain substitutes."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "agentic identity demand",
@@ -78,7 +103,23 @@
           "basis": "Reported new-ARR contribution suggests monetization of AI-driven capabilities."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "source dependence",
+          "direction": "risk",
+          "basis": "The newest AI new-ARR mix and quarter details rely materially on independent press reporting rather than a same-period primary release in the packet."
+        },
+        {
+          "name": "competitive response",
+          "direction": "risk",
+          "basis": "Cloud/security suites can bundle identity governance and compress standalone differentiation."
+        },
+        {
+          "name": "confidence inflation",
+          "direction": "risk",
+          "basis": "Strong ARR does not by itself prove durable pricing power or AI-specific unit economics."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "ARR execution",
@@ -134,7 +175,13 @@
     "agentic identity demand",
     "AI product conversion",
     "ARR execution",
-    "expectation sensitivity"
+    "expectation sensitivity",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "source dependence",
+    "competitive response",
+    "confidence inflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -146,6 +193,14 @@
       {
         "risk": "Current-period numeric underwriting should wait for direct primary filing/earnings materials rather than rely solely on press interpretation.",
         "gating": false
+      },
+      {
+        "risk": "Identity remains essential, but value capture can shift toward broader cloud/security suites if standalone differentiation weakens.",
+        "gating": false
+      },
+      {
+        "risk": "Expectation-sensitive valuation can react negatively even when recurring metrics remain strong if revenue or margins miss elevated assumptions.",
+        "gating": false
       }
     ]
   },
@@ -156,6 +211,14 @@
     },
     {
       "risk": "Current-period numeric underwriting should wait for direct primary filing/earnings materials rather than rely solely on press interpretation.",
+      "gating": false
+    },
+    {
+      "risk": "Identity remains essential, but value capture can shift toward broader cloud/security suites if standalone differentiation weakens.",
+      "gating": false
+    },
+    {
+      "risk": "Expectation-sensitive valuation can react negatively even when recurring metrics remain strong if revenue or margins miss elevated assumptions.",
       "gating": false
     }
   ],
@@ -170,14 +233,40 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "growth of human and machine identities",
+        "to": "identity-governance complexity",
+        "mechanism": "more principals and entitlements increase authorization surface",
+        "status": "supported"
+      },
+      {
+        "from": "identity governance",
+        "to": "enterprise resilience",
+        "mechanism": "policy enforcement and least-privilege controls reduce access risk",
+        "status": "mechanistically_supported"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "growth of human and machine identities",
+      "to": "identity-governance complexity",
+      "mechanism": "more principals and entitlements increase authorization surface",
+      "status": "supported"
+    },
+    {
+      "from": "identity governance",
+      "to": "enterprise resilience",
+      "mechanism": "policy enforcement and least-privilege controls reduce access risk",
+      "status": "mechanistically_supported"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 6,
     "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 0,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "barrons:2026-09-16:sailpoint-q2-ai-arr",
@@ -217,6 +306,12 @@
       "resolution": "Treat as mixed execution/expectations evidence; recurring demand appears strong but market expectations were already elevated.",
       "resolved": true,
       "gating": false
+    },
+    {
+      "claim": "Strong ARR/guidance versus slight revenue miss",
+      "resolution": "Mixed but not materially contradictory; recurring execution is positive while top-line timing/expectations remain a risk.",
+      "resolved": true,
+      "gating": false
     }
   ],
   "contradictionDispositions": {
@@ -225,6 +320,12 @@
       {
         "claim": "Strong ARR/guidance versus slight revenue miss and weak market response",
         "resolution": "Treat as mixed execution/expectations evidence; recurring demand appears strong but market expectations were already elevated.",
+        "resolved": true,
+        "gating": false
+      },
+      {
+        "claim": "Strong ARR/guidance versus slight revenue miss",
+        "resolution": "Mixed but not materially contradictory; recurring execution is positive while top-line timing/expectations remain a risk.",
         "resolved": true,
         "gating": false
       }
@@ -238,11 +339,19 @@
     {
       "unknown": "Exact current-period primary reconciliation and GAAP/non-GAAP bridge remain for Alpha acquisition.",
       "gating": false
+    },
+    {
+      "unknown": "Newest same-period primary evidence for the reported AI new-ARR mix remains an Alpha/source-integrity acquisition need, not a Beta causal blocker.",
+      "gating": false
+    },
+    {
+      "unknown": "Current-period GAAP/non-GAAP reconciliation and AI-specific economics remain outside Beta ownership and require primary-source underwriting by Alpha.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 76,
@@ -251,13 +360,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -267,14 +373,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -291,10 +389,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

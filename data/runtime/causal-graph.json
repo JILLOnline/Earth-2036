@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-21T22:14:50.805Z",
+  "updatedAt": "2026-09-21T23:23:33.612Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -890,6 +890,18 @@
       "type": "market",
       "label": "ECL structural demand",
       "description": "CoolIT extends Ecolab's water/chemistry/service position into direct-to-chip liquid cooling, linking semiconductor and AI compute growth to heat-removal, water and power-efficiency bottlenecks in high-density data centers."
+    },
+    {
+      "id": "company:EME",
+      "type": "company",
+      "label": "EMCOR Group",
+      "description": "EMCOR sits at the skilled-trade execution layer connecting electrical/mechanical systems and industrial/building infrastructure to data-network, water, healthcare and institutional demand; this makes labor availability, project execution and customer capital spending the key bottleneck chain."
+    },
+    {
+      "id": "market:EME-eme-structural-demand",
+      "type": "market",
+      "label": "EME structural demand",
+      "description": "EMCOR sits at the skilled-trade execution layer connecting electrical/mechanical systems and industrial/building infrastructure to data-network, water, healthcare and institutional demand; this makes labor availability, project execution and customer capital spending the key bottleneck chain."
     }
   ],
   "edges": [
@@ -2069,6 +2081,21 @@
       "evidenceTier": "Iron",
       "sourceIds": [
         "issuer:ECL:CoolIT-close:20260702"
+      ],
+      "observedAt": "2026-09-20T05:23:03Z"
+    },
+    {
+      "id": "edge:EME-structural-exposure",
+      "from": "company:EME",
+      "to": "market:EME-eme-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 92,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:EME:2026Q2",
+        "sec:EME:2026Q2-ex991"
       ],
       "observedAt": "2026-09-20T05:23:03Z"
     }
@@ -3517,6 +3544,25 @@
       ],
       "observedAt": "2026-09-20T05:23:03Z",
       "thesis": "CoolIT extends Ecolab's water/chemistry/service position into direct-to-chip liquid cooling, linking semiconductor and AI compute growth to heat-removal, water and power-efficiency bottlenecks in high-density data centers.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:EME-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:EME-eme-structural-demand",
+      "affectedNodeIds": [
+        "company:EME"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 92,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:EME:2026Q2",
+        "sec:EME:2026Q2-ex991"
+      ],
+      "observedAt": "2026-09-20T05:23:03Z",
+      "thesis": "EMCOR sits at the skilled-trade execution layer connecting electrical/mechanical systems and industrial/building infrastructure to data-network, water, healthcare and institutional demand; this makes labor availability, project execution and customer capital spending the key bottleneck chain.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

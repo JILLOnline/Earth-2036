@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-21T10:30:24.735Z",
+  "updatedAt": "2026-09-21T11:15:44.411Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -746,6 +746,18 @@
       "type": "market",
       "label": "CSTM structural demand",
       "description": "Constellium occupies a conversion-and-recycling layer between primary/recycled aluminum supply and aerospace, automotive and packaging demand; its recycling footprint can reduce dependence on energy-intensive primary metal while specialized rolled/extruded alloys retain qualification and manufacturing know-how friction."
+    },
+    {
+      "id": "company:CTVA",
+      "type": "company",
+      "label": "Corteva, Inc.",
+      "description": "Corteva's dated Vylor distribution separates seed/genetics from the remaining crop-protection platform, creating two more specialized control points in agricultural productivity: genetic yield/trait technology and chemical/biological crop protection."
+    },
+    {
+      "id": "market:CTVA-ctva-structural-demand",
+      "type": "market",
+      "label": "CTVA structural demand",
+      "description": "Corteva's dated Vylor distribution separates seed/genetics from the remaining crop-protection platform, creating two more specialized control points in agricultural productivity: genetic yield/trait technology and chemical/biological crop protection."
     }
   ],
   "edges": [
@@ -1749,6 +1761,21 @@
         "issuer:CSTM:recycling"
       ],
       "observedAt": "2026-09-20T02:23:10Z"
+    },
+    {
+      "id": "edge:CTVA-structural-exposure",
+      "from": "company:CTVA",
+      "to": "market:CTVA-ctva-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 68,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:CTVA:8K:20260914:Vylor",
+        "issuer:CTVA:GlobachemJV:20260909"
+      ],
+      "observedAt": "2026-09-20T03:24:31Z"
     }
   ],
   "structuralSignals": [
@@ -2969,6 +2996,25 @@
       ],
       "observedAt": "2026-09-20T02:23:10Z",
       "thesis": "Constellium occupies a conversion-and-recycling layer between primary/recycled aluminum supply and aerospace, automotive and packaging demand; its recycling footprint can reduce dependence on energy-intensive primary metal while specialized rolled/extruded alloys retain qualification and manufacturing know-how friction.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:CTVA-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:CTVA-ctva-structural-demand",
+      "affectedNodeIds": [
+        "company:CTVA"
+      ],
+      "direction": 1,
+      "magnitude": 68,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:CTVA:8K:20260914:Vylor",
+        "issuer:CTVA:GlobachemJV:20260909"
+      ],
+      "observedAt": "2026-09-20T03:24:31Z",
+      "thesis": "Corteva's dated Vylor distribution separates seed/genetics from the remaining crop-protection platform, creating two more specialized control points in agricultural productivity: genetic yield/trait technology and chemical/biological crop protection.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

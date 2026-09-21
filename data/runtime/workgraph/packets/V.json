@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "V",
   "workId": "t0:V",
-  "generatedAt": "2026-09-21T20:53:11.896Z",
+  "generatedAt": "2026-09-21T21:06:08.902Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-21T20:52:26.016Z"
   },
   "evidenceWindow": {
-    "start": "2026-09-21T20:03:23.000Z",
-    "end": "2026-09-21T20:03:23.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T20:03:23.000Z"
+    "start": "2026-07-28T00:00:00.000Z",
+    "end": "2026-09-21T21:03:08.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T21:03:08.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -30,41 +30,58 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/V-20260921T200323Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/V-20260921T210308Z-earth-scout.json"
   ],
   "evidenceResolution": {
-    "supersededPaths": [],
+    "supersededPaths": [
+      "data/runtime/workgraph/evidence/V-20260921T200323Z-earth-scout.json"
+    ],
     "resolvedGateKinds": [],
     "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
-      "global payment-volume scale",
-      "cross-border network economics",
-      "transaction growth",
-      "technology/product velocity"
+      "financialOperatingMomentum",
+      "bottleneckControl",
+      "substitutionResilience",
+      "scenarioRobustness",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "financialOperatingMomentum",
+        "bottleneckControl",
+        "substitutionResilience",
+        "scenarioRobustness"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "financialOperatingMomentum",
+        "pricingPower",
+        "scenarioRobustness",
+        "substitutionResilience"
+      ]
     }
   },
   "scoreRecord": null,
@@ -105,33 +122,34 @@
     }
   },
   "factors": [
-    "global payment-volume scale",
-    "cross-border network economics",
-    "transaction growth",
-    "technology/product velocity"
+    "financialOperatingMomentum",
+    "bottleneckControl",
+    "substitutionResilience",
+    "scenarioRobustness",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
     "items": [
-      "operating expense growth",
-      "regulatory and payment-network policy exposure",
-      "technology shifts including AI/stablecoin/agentic commerce can alter payment rails",
-      "workforce restructuring execution",
-      "operating expense growth",
-      "regulatory and payment-network policy exposure",
-      "technology shifts including AI/stablecoin/agentic commerce can alter payment rails",
-      "workforce restructuring execution"
+      {
+        "risk": "Technology and regulatory changes can alter payment-rail economics despite current network growth.",
+        "gating": false
+      },
+      {
+        "risk": "Expense restructuring and payment-network regulatory exposure remain execution variables.",
+        "gating": false
+      }
     ]
   },
   "risks": [
-    "operating expense growth",
-    "regulatory and payment-network policy exposure",
-    "technology shifts including AI/stablecoin/agentic commerce can alter payment rails",
-    "workforce restructuring execution",
-    "operating expense growth",
-    "regulatory and payment-network policy exposure",
-    "technology shifts including AI/stablecoin/agentic commerce can alter payment rails",
-    "workforce restructuring execution"
+    {
+      "risk": "Technology and regulatory changes can alter payment-rail economics despite current network growth.",
+      "gating": false
+    },
+    {
+      "risk": "Expense restructuring and payment-network regulatory exposure remain execution variables.",
+      "gating": false
+    }
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -140,8 +158,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
     "present": false,
@@ -149,53 +167,61 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 3,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "sec:V:2026Q3-results",
-      "independent:V:2026Q3-reuters"
+      "sec:V:2026Q3:20260728",
+      "reuters:V:q3-2026:20260728"
     ]
   },
   "sources": [
     {
-      "id": "sec:V:2026Q3-results",
-      "url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316126000103/q32026earningsrelease.htm",
-      "origin": "SEC-filed-earnings-release",
-      "fingerprint": "visa-fq3-2026-2026-07-28",
       "sourceId": "sec:V:2026Q3-results",
-      "primary": false
+      "url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316126000103/q32026earningsrelease.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-28",
+      "originFingerprint": "sec:V:2026Q3:20260728"
     },
     {
-      "id": "independent:V:2026Q3-reuters",
-      "url": "https://www.reuters.com/business/visa-quarterly-profit-rises-resilient-consumer-spending-2026-07-28/",
-      "origin": "Reuters",
-      "fingerprint": "visa-q3-2026-independent-2026-07-28",
       "sourceId": "independent:V:2026Q3-reuters",
-      "primary": false
+      "url": "https://www.reuters.com/business/visa-quarterly-profit-rises-resilient-consumer-spending-2026-07-28/",
+      "kind": "independent",
+      "primary": false,
+      "publishedAt": "2026-07-28",
+      "originFingerprint": "reuters:V:q3-2026:20260728"
     }
   ],
   "contradictions": [
-    "Strong volume/revenue growth coexists with cost restructuring and rapid technology change in payments.",
-    "Strong volume/revenue growth coexists with cost restructuring and rapid technology change in payments."
+    {
+      "contradiction": "Strong volume and revenue growth coexist with cost restructuring and rapid technology change in payments.",
+      "material": true
+    }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 1,
     "items": [
-      "Strong volume/revenue growth coexists with cost restructuring and rapid technology change in payments.",
-      "Strong volume/revenue growth coexists with cost restructuring and rapid technology change in payments."
+      {
+        "contradiction": "Strong volume and revenue growth coexist with cost restructuring and rapid technology change in payments.",
+        "material": true
+      }
     ]
   },
   "unknowns": [
-    "long-run economics of emerging agentic/stablecoin rails relative to card-network economics",
-    "durability of cross-border growth after event/travel effects normalize",
-    "long-run economics of emerging agentic/stablecoin rails relative to card-network economics",
-    "durability of cross-border growth after event/travel effects normalize"
+    {
+      "unknown": "Long-run economics of agentic and stablecoin rails relative to card-network economics remain uncertain.",
+      "gating": false
+    },
+    {
+      "unknown": "Durability of cross-border growth after travel/event effects normalize remains uncertain.",
+      "gating": false
+    }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
   "confidence": 95,
@@ -205,10 +231,7 @@
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -230,20 +253,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "UEC",
   "workId": "t0:UEC",
-  "generatedAt": "2026-09-21T20:53:11.888Z",
+  "generatedAt": "2026-09-21T21:06:08.894Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-21T20:52:26.016Z"
   },
   "evidenceWindow": {
-    "start": "2026-09-21T20:03:23.000Z",
-    "end": "2026-09-21T20:03:23.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T20:03:23.000Z"
+    "start": "2026-06-09T00:00:00.000Z",
+    "end": "2026-09-21T21:03:06.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T21:03:06.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -30,41 +30,59 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/UEC-20260921T200323Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/UEC-20260921T210306Z-earth-scout.json"
   ],
   "evidenceResolution": {
-    "supersededPaths": [],
+    "supersededPaths": [
+      "data/runtime/workgraph/evidence/UEC-20260921T200323Z-earth-scout.json"
+    ],
     "resolvedGateKinds": [],
     "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
-      "domestic uranium supply-chain localization",
-      "ISR production ramp",
-      "unhedged uranium inventory optionality",
-      "conversion vertical-integration option"
+      "catalystScore",
+      "alignment2036",
+      "bottleneckControl",
+      "supplyChainResilience",
+      "financialOperatingMomentum",
+      "scenarioRobustness"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "catalystScore",
+        "alignment2036",
+        "bottleneckControl",
+        "supplyChainResilience"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "catalystScore",
+        "supplyChainResilience"
+      ]
     }
   },
   "scoreRecord": null,
@@ -105,29 +123,35 @@
     }
   },
   "factors": [
-    "domestic uranium supply-chain localization",
-    "ISR production ramp",
-    "unhedged uranium inventory optionality",
-    "conversion vertical-integration option"
+    "catalystScore",
+    "alignment2036",
+    "bottleneckControl",
+    "supplyChainResilience",
+    "financialOperatingMomentum",
+    "scenarioRobustness"
   ],
   "riskEvidence": {
     "present": true,
     "items": [
-      "quarterly unit costs rose on low production and regulatory timing",
-      "uranium price exposure is deliberately unhedged",
-      "conversion facility remains pre-license/design and siting stage",
-      "quarterly unit costs rose on low production and regulatory timing",
-      "uranium price exposure is deliberately unhedged",
-      "conversion facility remains pre-license/design and siting stage"
+      {
+        "risk": "Conversion capability remains subject to siting, licensing, design and capital execution.",
+        "gating": false
+      },
+      {
+        "risk": "Quarter unit costs were elevated by low production and regulatory timing; uranium price exposure is deliberately unhedged.",
+        "gating": false
+      }
     ]
   },
   "risks": [
-    "quarterly unit costs rose on low production and regulatory timing",
-    "uranium price exposure is deliberately unhedged",
-    "conversion facility remains pre-license/design and siting stage",
-    "quarterly unit costs rose on low production and regulatory timing",
-    "uranium price exposure is deliberately unhedged",
-    "conversion facility remains pre-license/design and siting stage"
+    {
+      "risk": "Conversion capability remains subject to siting, licensing, design and capital execution.",
+      "gating": false
+    },
+    {
+      "risk": "Quarter unit costs were elevated by low production and regulatory timing; uranium price exposure is deliberately unhedged.",
+      "gating": false
+    }
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -136,8 +160,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
     "present": false,
@@ -145,53 +169,61 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 3,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:UEC:2026-news-index",
-      "independent:UEC:2026Q3"
+      "issuer:UEC:2026-release-index",
+      "nasdaq:UEC:fq3-2026:20260609"
     ]
   },
   "sources": [
     {
-      "id": "issuer:UEC:2026-news-index",
-      "url": "https://www.uraniumenergy.com/news/releases/2026/",
-      "origin": "issuer",
-      "fingerprint": "uec-2026-release-index",
       "sourceId": "issuer:UEC:2026-news-index",
-      "primary": false
+      "url": "https://www.uraniumenergy.com/news/releases/2026/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-06-09",
+      "originFingerprint": "issuer:UEC:2026-release-index"
     },
     {
-      "id": "independent:UEC:2026Q3",
-      "url": "https://www.nasdaq.com/press-release/uranium-energy-corp-reports-results-third-quarter-fiscal-2026-2026-06-09",
-      "origin": "nasdaq-press-release-mirror",
-      "fingerprint": "uec-fq3-2026-2026-06-09",
       "sourceId": "independent:UEC:2026Q3",
-      "primary": false
+      "url": "https://www.nasdaq.com/press-release/uranium-energy-corp-reports-results-third-quarter-fiscal-2026-2026-06-09",
+      "kind": "independent",
+      "primary": false,
+      "publishedAt": "2026-06-09",
+      "originFingerprint": "nasdaq:UEC:fq3-2026:20260609"
     }
   ],
   "contradictions": [
-    "Strong liquidity and strategic inventory coexist with early-stage production volumes and quarter-specific cost inflation.",
-    "Strong liquidity and strategic inventory coexist with early-stage production volumes and quarter-specific cost inflation."
+    {
+      "contradiction": "Strong liquidity and strategic inventory coexist with early-stage production volumes and quarter-specific cost inflation.",
+      "material": true
+    }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 1,
     "items": [
-      "Strong liquidity and strategic inventory coexist with early-stage production volumes and quarter-specific cost inflation.",
-      "Strong liquidity and strategic inventory coexist with early-stage production volumes and quarter-specific cost inflation."
+      {
+        "contradiction": "Strong liquidity and strategic inventory coexist with early-stage production volumes and quarter-specific cost inflation.",
+        "material": true
+      }
     ]
   },
   "unknowns": [
-    "sustainable steady-state production/cost at Burke Hollow",
-    "conversion facility site, license timing and capital requirement",
-    "sustainable steady-state production/cost at Burke Hollow",
-    "conversion facility site, license timing and capital requirement"
+    {
+      "unknown": "Conversion facility site, license timing and capital requirement remain unknown.",
+      "gating": false
+    },
+    {
+      "unknown": "Sustainable steady-state Burke Hollow production and unit cost remain unproven.",
+      "gating": false
+    }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
   "confidence": 86,
@@ -201,10 +233,7 @@
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -226,20 +255,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",

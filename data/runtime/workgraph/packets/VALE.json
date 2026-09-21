@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "VALE",
   "workId": "t0:VALE",
-  "generatedAt": "2026-09-21T20:53:11.888Z",
+  "generatedAt": "2026-09-21T21:06:08.894Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-21T20:52:26.016Z"
   },
   "evidenceWindow": {
-    "start": "2026-09-21T20:03:23.000Z",
-    "end": "2026-09-21T20:03:23.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T20:03:23.000Z"
+    "start": "2026-04-22T00:00:00.000Z",
+    "end": "2026-09-21T21:03:09.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T21:03:09.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -30,41 +30,57 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/VALE-20260921T200323Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/VALE-20260921T210309Z-earth-scout.json"
   ],
   "evidenceResolution": {
-    "supersededPaths": [],
+    "supersededPaths": [
+      "data/runtime/workgraph/evidence/VALE-20260921T200323Z-earth-scout.json"
+    ],
     "resolvedGateKinds": [],
     "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
-      "iron-ore scale",
-      "copper growth",
-      "nickel recovery",
-      "asset reliability and project ramp"
+      "financialOperatingMomentum",
+      "alignment2036",
+      "bottleneckControl",
+      "supplyChainResilience",
+      "scenarioRobustness"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "financialOperatingMomentum",
+        "alignment2036",
+        "bottleneckControl",
+        "supplyChainResilience"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "supplyChainResilience"
+      ]
     }
   },
   "scoreRecord": null,
@@ -105,33 +121,34 @@
     }
   },
   "factors": [
-    "iron-ore scale",
-    "copper growth",
-    "nickel recovery",
-    "asset reliability and project ramp"
+    "financialOperatingMomentum",
+    "alignment2036",
+    "bottleneckControl",
+    "supplyChainResilience",
+    "scenarioRobustness"
   ],
   "riskEvidence": {
     "present": true,
     "items": [
-      "commodity price cyclicality",
-      "geographic/operational concentration",
-      "maintenance and processing interruptions",
-      "environmental/social/regulatory liabilities require separate underwriting",
-      "commodity price cyclicality",
-      "geographic/operational concentration",
-      "maintenance and processing interruptions",
-      "environmental/social/regulatory liabilities require separate underwriting"
+      {
+        "risk": "Production growth alone does not establish margin improvement because realized commodity prices and unit costs remain separate variables.",
+        "gating": false
+      },
+      {
+        "risk": "Commodity cyclicality, operational interruptions and environmental/social liabilities remain material execution risks.",
+        "gating": false
+      }
     ]
   },
   "risks": [
-    "commodity price cyclicality",
-    "geographic/operational concentration",
-    "maintenance and processing interruptions",
-    "environmental/social/regulatory liabilities require separate underwriting",
-    "commodity price cyclicality",
-    "geographic/operational concentration",
-    "maintenance and processing interruptions",
-    "environmental/social/regulatory liabilities require separate underwriting"
+    {
+      "risk": "Production growth alone does not establish margin improvement because realized commodity prices and unit costs remain separate variables.",
+      "gating": false
+    },
+    {
+      "risk": "Commodity cyclicality, operational interruptions and environmental/social liabilities remain material execution risks.",
+      "gating": false
+    }
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -140,8 +157,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -149,68 +166,71 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 3,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:VALE:2Q26-production",
-      "issuer:VALE:1Q26-production"
+      "issuer:VALE:2Q26-production:20260722",
+      "issuer:VALE:1Q26-production:20260422"
     ]
   },
   "sources": [
     {
-      "id": "issuer:VALE:2Q26-production",
-      "url": "https://vale.com/w/vales-production-and-sales-in-2q26",
-      "origin": "issuer",
-      "fingerprint": "vale-production-sales-2q26-2026-07-22",
       "sourceId": "issuer:VALE:2Q26-production",
-      "primary": false
+      "url": "https://vale.com/w/vales-production-and-sales-in-2q26",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-22",
+      "originFingerprint": "issuer:VALE:2Q26-production:20260722"
     },
     {
-      "id": "issuer:VALE:1Q26-production",
-      "url": "https://www.vale.com/in/check-out-the-production-and-sales-in-1q26-and-2026",
-      "origin": "issuer",
-      "fingerprint": "vale-production-sales-1q26",
       "sourceId": "issuer:VALE:1Q26-production",
-      "primary": false
+      "url": "https://www.vale.com/in/check-out-the-production-and-sales-in-1q26-and-2026",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-04-22",
+      "originFingerprint": "issuer:VALE:1Q26-production:20260422"
     }
   ],
   "contradictions": [
-    "Broad production improvement does not by itself establish margin or free-cash-flow improvement because realized commodity prices and costs are not captured in this Scout artifact.",
-    "Broad production improvement does not by itself establish margin or free-cash-flow improvement because realized commodity prices and costs are not captured in this Scout artifact."
+    {
+      "contradiction": "Broad production improvement does not itself prove margin or free-cash-flow improvement.",
+      "material": true
+    }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 1,
     "items": [
-      "Broad production improvement does not by itself establish margin or free-cash-flow improvement because realized commodity prices and costs are not captured in this Scout artifact.",
-      "Broad production improvement does not by itself establish margin or free-cash-flow improvement because realized commodity prices and costs are not captured in this Scout artifact."
+      {
+        "contradiction": "Broad production improvement does not itself prove margin or free-cash-flow improvement.",
+        "material": true
+      }
     ]
   },
   "unknowns": [
-    "current unit-cost trajectory",
-    "realized pricing/margin conversion",
-    "current quantified environmental and tailings-risk status",
-    "current unit-cost trajectory",
-    "realized pricing/margin conversion",
-    "current quantified environmental and tailings-risk status"
+    {
+      "unknown": "Current unit-cost trajectory and realized pricing conversion remain unknown in Scout evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Current quantified environmental/tailings risk and margin conversion remain outside this Scout artifact.",
+      "gating": false
+    }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 6
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": 88,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -232,20 +252,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",

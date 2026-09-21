@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "VALE",
   "workId": "t0:VALE",
-  "generatedAt": "2026-09-21T19:36:52.897Z",
+  "generatedAt": "2026-09-21T20:05:41.762Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T19:35:57.725Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-09-21T20:03:23.000Z",
+    "end": "2026-09-21T20:03:23.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T20:03:23.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -38,15 +42,22 @@
     "complete": false
   },
   "perspectives": [],
-  "evidencePaths": [],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/VALE-20260921T200323Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "iron-ore scale",
+      "copper growth",
+      "nickel recovery",
+      "asset reliability and project ramp"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
@@ -93,12 +104,35 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "iron-ore scale",
+    "copper growth",
+    "nickel recovery",
+    "asset reliability and project ramp"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "commodity price cyclicality",
+      "geographic/operational concentration",
+      "maintenance and processing interruptions",
+      "environmental/social/regulatory liabilities require separate underwriting",
+      "commodity price cyclicality",
+      "geographic/operational concentration",
+      "maintenance and processing interruptions",
+      "environmental/social/regulatory liabilities require separate underwriting"
+    ]
   },
-  "risks": [],
+  "risks": [
+    "commodity price cyclicality",
+    "geographic/operational concentration",
+    "maintenance and processing interruptions",
+    "environmental/social/regulatory liabilities require separate underwriting",
+    "commodity price cyclicality",
+    "geographic/operational concentration",
+    "maintenance and processing interruptions",
+    "environmental/social/regulatory liabilities require separate underwriting"
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -115,30 +149,61 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "issuer:VALE:2Q26-production",
+      "issuer:VALE:1Q26-production"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "id": "issuer:VALE:2Q26-production",
+      "url": "https://vale.com/w/vales-production-and-sales-in-2q26",
+      "origin": "issuer",
+      "fingerprint": "vale-production-sales-2q26-2026-07-22",
+      "sourceId": "issuer:VALE:2Q26-production",
+      "primary": false
+    },
+    {
+      "id": "issuer:VALE:1Q26-production",
+      "url": "https://www.vale.com/in/check-out-the-production-and-sales-in-1q26-and-2026",
+      "origin": "issuer",
+      "fingerprint": "vale-production-sales-1q26",
+      "sourceId": "issuer:VALE:1Q26-production",
+      "primary": false
+    }
+  ],
+  "contradictions": [
+    "Broad production improvement does not by itself establish margin or free-cash-flow improvement because realized commodity prices and costs are not captured in this Scout artifact.",
+    "Broad production improvement does not by itself establish margin or free-cash-flow improvement because realized commodity prices and costs are not captured in this Scout artifact."
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 2,
+    "items": [
+      "Broad production improvement does not by itself establish margin or free-cash-flow improvement because realized commodity prices and costs are not captured in this Scout artifact.",
+      "Broad production improvement does not by itself establish margin or free-cash-flow improvement because realized commodity prices and costs are not captured in this Scout artifact."
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    "current unit-cost trajectory",
+    "realized pricing/margin conversion",
+    "current quantified environmental and tailings-risk status",
+    "current unit-cost trajectory",
+    "realized pricing/margin conversion",
+    "current quantified environmental and tailings-risk status"
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 88,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
@@ -148,20 +213,12 @@
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_causal_mapping",
+      "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -199,10 +256,6 @@
         "owner": "council-alpha"
       },
       {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
-      },
-      {
         "failure": "missing_score_risk_evidence",
         "owner": "council-alpha"
       },
@@ -213,6 +266,10 @@
       {
         "failure": "missing_causal_mapping",
         "owner": "council-beta"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

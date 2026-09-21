@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "VIAV",
   "workId": "t0:VIAV",
-  "generatedAt": "2026-09-21T19:36:52.895Z",
+  "generatedAt": "2026-09-21T20:05:41.760Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T19:35:57.725Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-09-21T20:03:23.000Z",
+    "end": "2026-09-21T20:03:23.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T20:03:23.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -38,15 +42,22 @@
     "complete": false
   },
   "perspectives": [],
-  "evidencePaths": [],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/VIAV-20260921T200323Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "datacenter/network test demand",
+      "margin expansion",
+      "aerospace-defense diversification",
+      "6G/security testing optionality"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
@@ -93,12 +104,35 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "datacenter/network test demand",
+    "margin expansion",
+    "aerospace-defense diversification",
+    "6G/security testing optionality"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "FY GAAP net loss despite strong non-GAAP earnings",
+      "acquisition/intangible and financing complexity",
+      "rapid end-market growth may normalize",
+      "6G program economics are early and small",
+      "FY GAAP net loss despite strong non-GAAP earnings",
+      "acquisition/intangible and financing complexity",
+      "rapid end-market growth may normalize",
+      "6G program economics are early and small"
+    ]
   },
-  "risks": [],
+  "risks": [
+    "FY GAAP net loss despite strong non-GAAP earnings",
+    "acquisition/intangible and financing complexity",
+    "rapid end-market growth may normalize",
+    "6G program economics are early and small",
+    "FY GAAP net loss despite strong non-GAAP earnings",
+    "acquisition/intangible and financing complexity",
+    "rapid end-market growth may normalize",
+    "6G program economics are early and small"
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -115,30 +149,61 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "issuer:VIAV:FY2026",
+      "issuer:VIAV:shield6g"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "id": "issuer:VIAV:FY2026",
+      "url": "https://investor.viavisolutions.com/news-events/news-releases/news-details/2026/VIAVI-Announces-Fiscal-Fourth-Quarter-and-Fiscal-Year-2026-Results/default.aspx",
+      "origin": "issuer-investor-relations",
+      "fingerprint": "viav-fy2026-results-2026-08-05",
+      "sourceId": "issuer:VIAV:FY2026",
+      "primary": false
+    },
+    {
+      "id": "issuer:VIAV:shield6g",
+      "url": "https://investor.viavisolutions.com/news-events/news-releases/news-details/2026/VIAVI-Joins-EU-Funded-SHIELD-6G-Consortium-to-Advance-AI-Driven-Security-Testing-for-Future-6G-Networks/default.aspx",
+      "origin": "issuer-investor-relations",
+      "fingerprint": "viav-shield6g-2026-07-14",
+      "sourceId": "issuer:VIAV:shield6g",
+      "primary": false
+    }
+  ],
+  "contradictions": [
+    "Strong revenue and non-GAAP profitability growth coexists with a FY GAAP net loss, requiring reconciliation by underwriting rather than narrative promotion.",
+    "Strong revenue and non-GAAP profitability growth coexists with a FY GAAP net loss, requiring reconciliation by underwriting rather than narrative promotion."
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 2,
+    "items": [
+      "Strong revenue and non-GAAP profitability growth coexists with a FY GAAP net loss, requiring reconciliation by underwriting rather than narrative promotion.",
+      "Strong revenue and non-GAAP profitability growth coexists with a FY GAAP net loss, requiring reconciliation by underwriting rather than narrative promotion."
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    "organic versus acquired share of growth",
+    "sustainability of datacenter demand and margin gains",
+    "commercial monetization timeline for 6G security tooling",
+    "organic versus acquired share of growth",
+    "sustainability of datacenter demand and margin gains",
+    "commercial monetization timeline for 6G security tooling"
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 93,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
@@ -148,20 +213,12 @@
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_causal_mapping",
+      "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -199,10 +256,6 @@
         "owner": "council-alpha"
       },
       {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
-      },
-      {
         "failure": "missing_score_risk_evidence",
         "owner": "council-alpha"
       },
@@ -213,6 +266,10 @@
       {
         "failure": "missing_causal_mapping",
         "owner": "council-beta"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

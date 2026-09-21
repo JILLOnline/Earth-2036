@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "TXT",
   "workId": "t0:TXT",
-  "generatedAt": "2026-09-21T19:36:52.900Z",
+  "generatedAt": "2026-09-21T20:05:41.766Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T19:35:57.725Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-09-21T20:03:23.000Z",
+    "end": "2026-09-21T20:03:23.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T20:03:23.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -38,15 +42,22 @@
     "complete": false
   },
   "perspectives": [],
-  "evidencePaths": [],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/TXT-20260921T200323Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "aerospace-defense backlog visibility",
+      "commercial aviation demand",
+      "MV-75 execution",
+      "portfolio simplification"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
@@ -93,12 +104,31 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "aerospace-defense backlog visibility",
+    "commercial aviation demand",
+    "MV-75 execution",
+    "portfolio simplification"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "Q2 manufacturing operating cash flow fell versus prior year",
+      "Industrial separation execution and valuation uncertainty",
+      "defense program mix and commercial delivery cyclicality",
+      "Q2 manufacturing operating cash flow fell versus prior year",
+      "Industrial separation execution and valuation uncertainty",
+      "defense program mix and commercial delivery cyclicality"
+    ]
   },
-  "risks": [],
+  "risks": [
+    "Q2 manufacturing operating cash flow fell versus prior year",
+    "Industrial separation execution and valuation uncertainty",
+    "defense program mix and commercial delivery cyclicality",
+    "Q2 manufacturing operating cash flow fell versus prior year",
+    "Industrial separation execution and valuation uncertainty",
+    "defense program mix and commercial delivery cyclicality"
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -115,30 +145,53 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "issuer:TXT:2026Q2",
+      "issuer:TXT:industrial-separation"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "id": "issuer:TXT:2026Q2",
+      "url": "https://investor.textron.com/news-releases/news-details/2026/Textron-Reports-Second-Quarter-2026-Results/default.aspx",
+      "origin": "issuer-investor-relations",
+      "fingerprint": "txt-q2-2026-results-2026-07-28",
+      "sourceId": "issuer:TXT:2026Q2",
+      "primary": false
+    },
+    {
+      "id": "issuer:TXT:industrial-separation",
+      "url": "https://investor.textron.com/news-releases/news-details/2026/Textron-Announces-Intent-to-Separate-its-Industrial-Segment-Enhancing-Strategic-Focus-as-a-Pure-Play-Aerospace-and-Defense-Company/default.aspx",
+      "origin": "issuer-investor-relations",
+      "fingerprint": "txt-industrial-separation-2026-04-30",
+      "sourceId": "issuer:TXT:industrial-separation",
+      "primary": false
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    "final structure/timing/value realization of Industrial separation",
+    "durability of Aviation order strength through a downturn",
+    "final structure/timing/value realization of Industrial separation",
+    "durability of Aviation order strength through a downturn"
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
@@ -148,20 +201,11 @@
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -197,10 +241,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

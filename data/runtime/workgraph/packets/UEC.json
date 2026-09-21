@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "UEC",
   "workId": "t0:UEC",
-  "generatedAt": "2026-09-21T19:36:52.896Z",
+  "generatedAt": "2026-09-21T20:05:41.762Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T19:35:57.725Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-09-21T20:03:23.000Z",
+    "end": "2026-09-21T20:03:23.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T20:03:23.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -38,15 +42,22 @@
     "complete": false
   },
   "perspectives": [],
-  "evidencePaths": [],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/UEC-20260921T200323Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "domestic uranium supply-chain localization",
+      "ISR production ramp",
+      "unhedged uranium inventory optionality",
+      "conversion vertical-integration option"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
@@ -93,12 +104,31 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "domestic uranium supply-chain localization",
+    "ISR production ramp",
+    "unhedged uranium inventory optionality",
+    "conversion vertical-integration option"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "quarterly unit costs rose on low production and regulatory timing",
+      "uranium price exposure is deliberately unhedged",
+      "conversion facility remains pre-license/design and siting stage",
+      "quarterly unit costs rose on low production and regulatory timing",
+      "uranium price exposure is deliberately unhedged",
+      "conversion facility remains pre-license/design and siting stage"
+    ]
   },
-  "risks": [],
+  "risks": [
+    "quarterly unit costs rose on low production and regulatory timing",
+    "uranium price exposure is deliberately unhedged",
+    "conversion facility remains pre-license/design and siting stage",
+    "quarterly unit costs rose on low production and regulatory timing",
+    "uranium price exposure is deliberately unhedged",
+    "conversion facility remains pre-license/design and siting stage"
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -115,30 +145,59 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "issuer:UEC:2026-news-index",
+      "independent:UEC:2026Q3"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "id": "issuer:UEC:2026-news-index",
+      "url": "https://www.uraniumenergy.com/news/releases/2026/",
+      "origin": "issuer",
+      "fingerprint": "uec-2026-release-index",
+      "sourceId": "issuer:UEC:2026-news-index",
+      "primary": false
+    },
+    {
+      "id": "independent:UEC:2026Q3",
+      "url": "https://www.nasdaq.com/press-release/uranium-energy-corp-reports-results-third-quarter-fiscal-2026-2026-06-09",
+      "origin": "nasdaq-press-release-mirror",
+      "fingerprint": "uec-fq3-2026-2026-06-09",
+      "sourceId": "independent:UEC:2026Q3",
+      "primary": false
+    }
+  ],
+  "contradictions": [
+    "Strong liquidity and strategic inventory coexist with early-stage production volumes and quarter-specific cost inflation.",
+    "Strong liquidity and strategic inventory coexist with early-stage production volumes and quarter-specific cost inflation."
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 2,
+    "items": [
+      "Strong liquidity and strategic inventory coexist with early-stage production volumes and quarter-specific cost inflation.",
+      "Strong liquidity and strategic inventory coexist with early-stage production volumes and quarter-specific cost inflation."
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    "sustainable steady-state production/cost at Burke Hollow",
+    "conversion facility site, license timing and capital requirement",
+    "sustainable steady-state production/cost at Burke Hollow",
+    "conversion facility site, license timing and capital requirement"
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 86,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
@@ -148,20 +207,12 @@
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_causal_mapping",
+      "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -199,10 +250,6 @@
         "owner": "council-alpha"
       },
       {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
-      },
-      {
         "failure": "missing_score_risk_evidence",
         "owner": "council-alpha"
       },
@@ -213,6 +260,10 @@
       {
         "failure": "missing_causal_mapping",
         "owner": "council-beta"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

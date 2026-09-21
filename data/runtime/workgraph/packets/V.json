@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "V",
   "workId": "t0:V",
-  "generatedAt": "2026-09-21T19:36:52.904Z",
+  "generatedAt": "2026-09-21T20:05:41.771Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T19:35:57.725Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-09-21T20:03:23.000Z",
+    "end": "2026-09-21T20:03:23.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T20:03:23.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -38,15 +42,22 @@
     "complete": false
   },
   "perspectives": [],
-  "evidencePaths": [],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/V-20260921T200323Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "global payment-volume scale",
+      "cross-border network economics",
+      "transaction growth",
+      "technology/product velocity"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
@@ -93,12 +104,35 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "global payment-volume scale",
+    "cross-border network economics",
+    "transaction growth",
+    "technology/product velocity"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "operating expense growth",
+      "regulatory and payment-network policy exposure",
+      "technology shifts including AI/stablecoin/agentic commerce can alter payment rails",
+      "workforce restructuring execution",
+      "operating expense growth",
+      "regulatory and payment-network policy exposure",
+      "technology shifts including AI/stablecoin/agentic commerce can alter payment rails",
+      "workforce restructuring execution"
+    ]
   },
-  "risks": [],
+  "risks": [
+    "operating expense growth",
+    "regulatory and payment-network policy exposure",
+    "technology shifts including AI/stablecoin/agentic commerce can alter payment rails",
+    "workforce restructuring execution",
+    "operating expense growth",
+    "regulatory and payment-network policy exposure",
+    "technology shifts including AI/stablecoin/agentic commerce can alter payment rails",
+    "workforce restructuring execution"
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -115,30 +149,59 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "sec:V:2026Q3-results",
+      "independent:V:2026Q3-reuters"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "id": "sec:V:2026Q3-results",
+      "url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316126000103/q32026earningsrelease.htm",
+      "origin": "SEC-filed-earnings-release",
+      "fingerprint": "visa-fq3-2026-2026-07-28",
+      "sourceId": "sec:V:2026Q3-results",
+      "primary": false
+    },
+    {
+      "id": "independent:V:2026Q3-reuters",
+      "url": "https://www.reuters.com/business/visa-quarterly-profit-rises-resilient-consumer-spending-2026-07-28/",
+      "origin": "Reuters",
+      "fingerprint": "visa-q3-2026-independent-2026-07-28",
+      "sourceId": "independent:V:2026Q3-reuters",
+      "primary": false
+    }
+  ],
+  "contradictions": [
+    "Strong volume/revenue growth coexists with cost restructuring and rapid technology change in payments.",
+    "Strong volume/revenue growth coexists with cost restructuring and rapid technology change in payments."
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 2,
+    "items": [
+      "Strong volume/revenue growth coexists with cost restructuring and rapid technology change in payments.",
+      "Strong volume/revenue growth coexists with cost restructuring and rapid technology change in payments."
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    "long-run economics of emerging agentic/stablecoin rails relative to card-network economics",
+    "durability of cross-border growth after event/travel effects normalize",
+    "long-run economics of emerging agentic/stablecoin rails relative to card-network economics",
+    "durability of cross-border growth after event/travel effects normalize"
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 95,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
@@ -148,20 +211,12 @@
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_causal_mapping",
+      "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -199,10 +254,6 @@
         "owner": "council-alpha"
       },
       {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
-      },
-      {
         "failure": "missing_score_risk_evidence",
         "owner": "council-alpha"
       },
@@ -213,6 +264,10 @@
       {
         "failure": "missing_causal_mapping",
         "owner": "council-beta"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

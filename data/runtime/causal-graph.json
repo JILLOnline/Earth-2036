@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-21T15:17:20.202Z",
+  "updatedAt": "2026-09-21T16:19:38.841Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -806,6 +806,18 @@
       "type": "market",
       "label": "lower herbicide/input intensity",
       "description": "real-time weed identification and nozzle-level application"
+    },
+    {
+      "id": "company:DLR",
+      "type": "company",
+      "label": "Digital Realty Trust, Inc.",
+      "description": "Digital Realty sits on the AI/cloud infrastructure bottleneck through powered data-center capacity, connectivity and interconnection; Q2 backlog and new hyperscale leases show customers reserving scarce future capacity, while land acquisitions explicitly target multi-gigawatt utility power."
+    },
+    {
+      "id": "market:DLR-powered-data-center-capacity-demand",
+      "type": "market",
+      "label": "powered data-center capacity demand",
+      "description": "higher compute density and deployment requirements"
     }
   ],
   "edges": [
@@ -1880,6 +1892,20 @@
       "sourceIds": [
         "sec:DE:2026Q3:10Q",
         "deere:SeeSpray:2025usage"
+      ],
+      "observedAt": "2026-09-20T04:24:36Z"
+    },
+    {
+      "id": "edge:DLR-structural-exposure",
+      "from": "company:DLR",
+      "to": "market:DLR-powered-data-center-capacity-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 84,
+      "confidence": 92,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:DLR:2026Q2results"
       ],
       "observedAt": "2026-09-20T04:24:36Z"
     }
@@ -3195,6 +3221,24 @@
       ],
       "observedAt": "2026-09-20T04:24:36Z",
       "thesis": "Deere's precision-ag stack connects cameras/ML, targeted application and Operations Center data to the farmer need for lower chemical/input intensity and labor/productivity gains; this is a real technology-to-human-need bridge rather than a pure equipment-cycle claim.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:DLR-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:DLR-powered-data-center-capacity-demand",
+      "affectedNodeIds": [
+        "company:DLR"
+      ],
+      "direction": 1,
+      "magnitude": 84,
+      "confidence": 92,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:DLR:2026Q2results"
+      ],
+      "observedAt": "2026-09-20T04:24:36Z",
+      "thesis": "Digital Realty sits on the AI/cloud infrastructure bottleneck through powered data-center capacity, connectivity and interconnection; Q2 backlog and new hyperscale leases show customers reserving scarce future capacity, while land acquisitions explicitly target multi-gigawatt utility power.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

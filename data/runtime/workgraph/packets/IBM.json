@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "IBM",
   "workId": "t0:IBM",
-  "generatedAt": "2026-09-21T02:16:18.997Z",
+  "generatedAt": "2026-09-21T02:27:34.163Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-04-22T00:00:00.000Z",
-    "end": "2026-09-19T10:35:03.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T10:35:03.000Z"
+    "end": "2026-09-21T02:25:37.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T02:25:37.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,19 +32,21 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/IBM-20260918T1600Z-deep-resolver-v1.json",
@@ -54,13 +56,14 @@
     "data/runtime/workgraph/evidence/IBM-20260919T073623Z-deep-resolver.json",
     "data/runtime/workgraph/evidence/IBM-20260919T083607Z-deep-resolver.json",
     "data/runtime/workgraph/evidence/IBM-20260919T093520Z-deep-resolver.json",
-    "data/runtime/workgraph/evidence/IBM-20260919T103503Z-deep-resolver.json"
+    "data/runtime/workgraph/evidence/IBM-20260919T103503Z-deep-resolver.json",
+    "data/runtime/workgraph/evidence/IBM-20260921T022537Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 9,
-    "historicalEvidenceCount": 9
+    "activeEvidenceCount": 11,
+    "historicalEvidenceCount": 11
   },
   "factorEvidence": {
     "names": [
@@ -69,12 +72,20 @@
       "crossDivisionLeverage",
       "catalystScore",
       "scenarioRobustness",
-      "governancePower"
+      "governancePower",
+      "substitutionResilience",
+      "bottleneckControl"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "bottleneckControl"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "alignment2036",
@@ -82,7 +93,12 @@
         "catalystScore",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "governancePower",
+        "crossDivisionLeverage"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -134,7 +150,9 @@
     "crossDivisionLeverage",
     "catalystScore",
     "scenarioRobustness",
-    "governancePower"
+    "governancePower",
+    "substitutionResilience",
+    "bottleneckControl"
   ],
   "riskEvidence": {
     "present": true,
@@ -146,7 +164,15 @@
       {
         "risk": "Acquisition integration, debt and slow legacy segments can dilute returns from AI/quantum investment.",
         "gating": false
-      }
+      },
+      "legacy portfolio drag",
+      "acquisition integration",
+      "AI revenue attribution uncertainty",
+      "competitive substitution",
+      "confidence inflation from strategic narrative",
+      "acquisition/integration dilution",
+      "legacy infrastructure and transaction-processing decline",
+      "AI monetization opacity"
     ]
   },
   "risks": [
@@ -157,7 +183,15 @@
     {
       "risk": "Acquisition integration, debt and slow legacy segments can dilute returns from AI/quantum investment.",
       "gating": false
-    }
+    },
+    "legacy portfolio drag",
+    "acquisition integration",
+    "AI revenue attribution uncertainty",
+    "competitive substitution",
+    "confidence inflation from strategic narrative",
+    "acquisition/integration dilution",
+    "legacy infrastructure and transaction-processing decline",
+    "AI monetization opacity"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -170,14 +204,22 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "enterprise AI/hybrid-cloud need -> IBM software/consulting deployment -> recurring platform/service revenue",
+      "installed enterprise relationships -> lower integration friction/cross-sell -> potential cross-division leverage",
+      "legacy segment decline -> portfolio drag -> weaker conversion of strategic AI growth into consolidated growth"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "enterprise AI/hybrid-cloud need -> IBM software/consulting deployment -> recurring platform/service revenue",
+    "installed enterprise relationships -> lower integration friction/cross-sell -> potential cross-division leverage",
+    "legacy segment decline -> portfolio drag -> weaker conversion of strategic AI growth into consolidated growth"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 17,
+    "rawSourceCount": 21,
     "uniqueSourceCount": 4,
-    "duplicatesCollapsed": 13,
+    "duplicatesCollapsed": 17,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:IBM:2026Q2",
@@ -222,16 +264,36 @@
     },
     {
       "contradiction": "Raised full-year expectations contrast with weak reported Q2 top-line growth, requiring follow-through in subsequent quarters."
+    },
+    {
+      "contradiction": "Strong AI/quantum positioning versus modest Q2 revenue growth and declines in Infrastructure/Transaction Processing.",
+      "material": true,
+      "nextOwner": "deep-resolver"
+    },
+    {
+      "contradiction": "Raised full-year expectations versus weak reported Q2 top-line growth; requires subsequent-quarter follow-through.",
+      "material": true,
+      "nextOwner": "deep-resolver"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 4,
     "items": [
       {
         "contradiction": "Strong AI/quantum strategic positioning coexists with only 1% reported Q2 revenue growth and declines in Infrastructure and Transaction Processing."
       },
       {
         "contradiction": "Raised full-year expectations contrast with weak reported Q2 top-line growth, requiring follow-through in subsequent quarters."
+      },
+      {
+        "contradiction": "Strong AI/quantum positioning versus modest Q2 revenue growth and declines in Infrastructure/Transaction Processing.",
+        "material": true,
+        "nextOwner": "deep-resolver"
+      },
+      {
+        "contradiction": "Raised full-year expectations versus weak reported Q2 top-line growth; requires subsequent-quarter follow-through.",
+        "material": true,
+        "nextOwner": "deep-resolver"
       }
     ]
   },
@@ -243,26 +305,27 @@
     {
       "unknown": "Current valuation and acquisition-adjusted organic growth remain for Alpha underwriting.",
       "gating": false
-    }
+    },
+    "incremental revenue directly attributable to current AI offerings",
+    "acquisition-adjusted organic growth",
+    "current valuation",
+    "organic growth net of acquisitions"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": 89,
+  "confidence": 88,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -273,14 +336,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -297,10 +352,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

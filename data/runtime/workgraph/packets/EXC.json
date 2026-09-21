@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "EXC",
   "workId": "t0:EXC",
-  "generatedAt": "2026-09-21T02:16:19.000Z",
+  "generatedAt": "2026-09-21T02:27:34.166Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-05-06T00:00:00.000Z",
-    "end": "2026-09-19T18:02:12.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T18:02:12.000Z"
+    "end": "2026-09-21T02:25:37.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T02:25:37.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,45 +32,59 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/EXC-20260919T180212Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/EXC-20260919T180212Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/EXC-20260921T022537Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "bottleneckControl",
       "scenarioRobustness",
-      "executionCapability"
+      "executionCapability",
+      "substitutionResilience",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "executionCapability",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         "bottleneckControl",
         "scenarioRobustness",
         "executionCapability"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "bottleneckControl",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "executionCapability",
         "scenarioRobustness"
@@ -117,7 +131,9 @@
   "factors": [
     "bottleneckControl",
     "scenarioRobustness",
-    "executionCapability"
+    "executionCapability",
+    "substitutionResilience",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -129,7 +145,14 @@
       {
         "risk": "Regulatory affordability constraints and generation/transmission scarcity can delay conversion of committed load into rate-base growth.",
         "gating": false
-      }
+      },
+      "speculative load attrition",
+      "generation/transmission scarcity",
+      "regulatory affordability constraints",
+      "headline TAM/queue inflation",
+      "regulatory recovery lag",
+      "customer concentration in large-load growth",
+      "generation availability"
     ]
   },
   "risks": [
@@ -140,7 +163,14 @@
     {
       "risk": "Regulatory affordability constraints and generation/transmission scarcity can delay conversion of committed load into rate-base growth.",
       "gating": false
-    }
+    },
+    "speculative load attrition",
+    "generation/transmission scarcity",
+    "regulatory affordability constraints",
+    "headline TAM/queue inflation",
+    "regulatory recovery lag",
+    "customer concentration in large-load growth",
+    "generation availability"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -153,14 +183,22 @@
     "count": 0
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "large-load demand -> interconnection commitment/collateral -> transmission/distribution investment need -> potential regulated rate-base growth",
+      "generation/transmission scarcity -> interconnection delay -> delayed load conversion -> delayed infrastructure returns",
+      "affordability/regulatory constraint -> capital-plan moderation -> slower rate-base conversion"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "large-load demand -> interconnection commitment/collateral -> transmission/distribution investment need -> potential regulated rate-base growth",
+    "generation/transmission scarcity -> interconnection delay -> delayed load conversion -> delayed infrastructure returns",
+    "affordability/regulatory constraint -> capital-plan moderation -> slower rate-base conversion"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "reuters:exelon:q1-2026:data-center-capex",
@@ -198,27 +236,28 @@
     {
       "unknown": "Timing and realized returns for individual large-load projects remain uncertain.",
       "gating": false
-    }
+    },
+    "timing and realized returns for individual large-load projects",
+    "current primary-source confirmation of Q2 load figures",
+    "project-by-project collateral durability",
+    "incremental capital funding and allowed-return timing"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": 80,
+  "confidence": 78,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -228,14 +267,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_primary_source",
@@ -256,10 +287,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

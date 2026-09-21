@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "KMI",
   "workId": "t0:KMI",
-  "generatedAt": "2026-09-21T02:16:19.007Z",
+  "generatedAt": "2026-09-21T02:27:34.173Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-15T00:00:00.000Z",
-    "end": "2026-09-20T16:02:08.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-20T16:02:08.000Z"
+    "end": "2026-09-21T02:25:37.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T02:25:37.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,19 +32,21 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/KMI-20260920T000629Z-earth-scout.json",
@@ -59,13 +61,14 @@
     "data/runtime/workgraph/evidence/KMI-20260920T130801Z-earth-scout.json",
     "data/runtime/workgraph/evidence/KMI-20260920T140914Z-earth-scout.json",
     "data/runtime/workgraph/evidence/KMI-20260920T150516Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/KMI-20260920T160208Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/KMI-20260920T160208Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/KMI-20260921T022537Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 26,
-    "historicalEvidenceCount": 26
+    "activeEvidenceCount": 28,
+    "historicalEvidenceCount": 28
   },
   "factorEvidence": {
     "names": [
@@ -79,18 +82,34 @@
       "Western Gateway FID",
       "existing SFPP asset contribution",
       "230kbpd design capacity",
-      "western refined-products connectivity"
+      "western refined-products connectivity",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "pricingPower",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "Western Gateway FID",
         "existing SFPP asset contribution",
         "230kbpd design capacity"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "substitutionResilience",
+        "pricingPower",
+        "governancePower"
+      ],
       "expectations-execution": [
         "Western Gateway FID",
         "existing SFPP asset contribution",
@@ -146,7 +165,13 @@
     "Western Gateway FID",
     "existing SFPP asset contribution",
     "230kbpd design capacity",
-    "western refined-products connectivity"
+    "western refined-products connectivity",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "pricingPower",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -246,7 +271,14 @@
       "construction/permitting timing",
       "refined-products demand evolution",
       "joint-venture execution",
-      "capital-return realization"
+      "capital-return realization",
+      "energy-transition substitution",
+      "permitting and construction timing",
+      "contracted-throughput conversion",
+      "backlog/FID conversion risk",
+      "joint-venture execution",
+      "long-lived gas/refined-products demand transition",
+      "capital-return uncertainty"
     ]
   },
   "risks": [
@@ -345,7 +377,14 @@
     "construction/permitting timing",
     "refined-products demand evolution",
     "joint-venture execution",
-    "capital-return realization"
+    "capital-return realization",
+    "energy-transition substitution",
+    "permitting and construction timing",
+    "contracted-throughput conversion",
+    "backlog/FID conversion risk",
+    "joint-venture execution",
+    "long-lived gas/refined-products demand transition",
+    "capital-return uncertainty"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -358,14 +397,22 @@
     "count": 0
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "power/data-center load -> gas-fired generation need -> natural-gas transport demand -> KMI network utilization",
+      "refined-products demand -> western transport constraint -> Western Gateway/SFPP connectivity -> throughput opportunity",
+      "permitting/construction delay -> capacity in-service delay -> deferred cash-flow realization"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "power/data-center load -> gas-fired generation need -> natural-gas transport demand -> KMI network utilization",
+    "refined-products demand -> western transport constraint -> Western Gateway/SFPP connectivity -> throughput opportunity",
+    "permitting/construction delay -> capacity in-service delay -> deferred cash-flow realization"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 26,
+    "rawSourceCount": 30,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 24,
+    "duplicatesCollapsed": 28,
     "missingLineage": 0,
     "uniqueOrigins": [
       "ir.kindermorgan.com|q2-2026-results-backlog|2026-07",
@@ -466,27 +513,29 @@
     "contracted throughput and return profile",
     "KMI net capital commitment",
     "in-service schedule milestones",
-    "contracted throughput and return profile"
+    "contracted throughput and return profile",
+    "project-level realized returns",
+    "durability of incremental data-center gas demand",
+    "KMI net capital commitment to Western Gateway",
+    "contracted throughput and return profile",
+    "project-level leverage/funding mix"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 70
+    "nonGatingCount": 75
   },
   "gatingIssues": [],
-  "confidence": 86,
+  "confidence": 84,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -496,14 +545,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_primary_source",
@@ -524,10 +565,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

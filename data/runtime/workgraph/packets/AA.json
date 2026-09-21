@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "AA",
   "workId": "t0:AA",
-  "generatedAt": "2026-09-21T02:16:19.002Z",
+  "generatedAt": "2026-09-21T02:27:34.167Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-06-30T00:00:00.000Z",
-    "end": "2026-09-19T07:36:23.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T07:36:23.000Z"
+    "end": "2026-09-21T02:25:37.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T02:25:37.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,31 +32,34 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/AA-20260919T050657Z-earth-scout.json",
     "data/runtime/workgraph/evidence/AA-20260919T053229Z-deep-resolver.json",
     "data/runtime/workgraph/evidence/AA-20260919T063451Z-deep-resolver.json",
-    "data/runtime/workgraph/evidence/AA-20260919T073623Z-deep-resolver.json"
+    "data/runtime/workgraph/evidence/AA-20260919T073623Z-deep-resolver.json",
+    "data/runtime/workgraph/evidence/AA-20260921T022537Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 5,
-    "historicalEvidenceCount": 5
+    "activeEvidenceCount": 7,
+    "historicalEvidenceCount": 7
   },
   "factorEvidence": {
     "names": [
@@ -65,12 +68,20 @@
       "alignment2036",
       "bottleneckControl",
       "supplyChainResilience",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "substitutionResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "supplyChainResilience",
+        "scenarioRobustness",
+        "alignment2036",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -78,7 +89,12 @@
         "bottleneckControl",
         "supplyChainResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "governancePower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -130,7 +146,9 @@
     "alignment2036",
     "bottleneckControl",
     "supplyChainResilience",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "substitutionResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -142,7 +160,15 @@
       {
         "risk": "New acquisition financing increases fixed obligations while operating results remain exposed to commodity prices, energy costs and refinery disruptions.",
         "gating": false
-      }
+      },
+      "commodity-cycle sensitivity",
+      "energy-cost exposure",
+      "operational instability",
+      "acquisition integration",
+      "acquisition financing leverage",
+      "commodity-price reversal",
+      "operational disruption",
+      "synergy realization risk"
     ]
   },
   "risks": [
@@ -153,7 +179,15 @@
     {
       "risk": "New acquisition financing increases fixed obligations while operating results remain exposed to commodity prices, energy costs and refinery disruptions.",
       "gating": false
-    }
+    },
+    "commodity-cycle sensitivity",
+    "energy-cost exposure",
+    "operational instability",
+    "acquisition integration",
+    "acquisition financing leverage",
+    "commodity-price reversal",
+    "operational disruption",
+    "synergy realization risk"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -166,14 +200,22 @@
     "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "industrial/electrification demand -> aluminum demand -> alumina/bauxite requirement -> integrated Alcoa asset utilization",
+      "upstream asset acquisition -> resource/control depth -> potential supply resilience/cost position",
+      "refinery disruption or high energy cost -> lower production/higher unit cost -> weaker margin and supply reliability"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "industrial/electrification demand -> aluminum demand -> alumina/bauxite requirement -> integrated Alcoa asset utilization",
+    "upstream asset acquisition -> resource/control depth -> potential supply resilience/cost position",
+    "refinery disruption or high energy cost -> lower production/higher unit cost -> weaker margin and supply reliability"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 9,
+    "rawSourceCount": 15,
     "uniqueSourceCount": 5,
-    "duplicatesCollapsed": 4,
+    "duplicatesCollapsed": 10,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:AA:2026Q2",
@@ -225,14 +267,24 @@
     {
       "contradiction": "Record financial results coexist with reduced alumina production guidance from operational instability.",
       "material": true
+    },
+    {
+      "contradiction": "Record financial results coexist with reduced alumina production guidance from operational instability.",
+      "material": true,
+      "nextOwner": "deep-resolver"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "contradiction": "Record financial results coexist with reduced alumina production guidance from operational instability.",
         "material": true
+      },
+      {
+        "contradiction": "Record financial results coexist with reduced alumina production guidance from operational instability.",
+        "material": true,
+        "nextOwner": "deep-resolver"
       }
     ]
   },
@@ -244,26 +296,27 @@
     {
       "unknown": "Closing timing, final leverage and pace of synergy realization remain unknown.",
       "gating": false
-    }
+    },
+    "realized acquisition synergies",
+    "post-close cost-curve position",
+    "final leverage after closing",
+    "pace and magnitude of synergy realization"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": 96,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -274,14 +327,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -298,10 +343,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ON",
   "workId": "t0:ON",
-  "generatedAt": "2026-09-21T09:15:08.522Z",
+  "generatedAt": "2026-09-21T09:26:33.164Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-21T06:31:43.015Z"
   },
   "evidenceWindow": {
-    "start": "2026-09-16T00:00:00.000Z",
-    "end": "2026-09-21T08:02:30.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T08:02:30.000Z"
+    "start": "2026-08-03T00:00:00.000Z",
+    "end": "2026-09-21T09:24:11.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T09:24:11.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,71 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/ON-20260921T0802Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ON-20260921T0802Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ON-20260921T092411Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "AI infrastructure power-density exposure",
       "architecture differentiation",
       "strategy-product alignment",
-      "expectation conversion"
+      "expectation conversion",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "capitalIntensity",
+      "competitiveResponse",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "mixed",
+          "basis": "EPP targets power-density/thermal constraints directly, but current evidence is product-level rather than commercial-scale proof."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "positive",
+          "basis": "Power conversion is needed across AI data centers, automotive and industrial electrification, reducing dependence on one end market."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Power semiconductors remain essential, while competing silicon, SiC/GaN and packaging architectures can satisfy the same need."
+        },
+        {
+          "name": "supplyChainResilience",
+          "direction": "mixed",
+          "basis": "onsemi owns meaningful manufacturing assets but semiconductor utilization, yield and inventory remain economic constraints."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "AI infrastructure power-density exposure",
@@ -78,7 +109,23 @@
           "basis": "Wafer-as-package integration is a materially different packaging architecture rather than an incremental discrete-component refresh."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "capitalIntensity",
+          "direction": "mixed",
+          "basis": "Semiconductor manufacturing and inventory absorb substantial capital; utilization matters to returns."
+        },
+        {
+          "name": "competitiveResponse",
+          "direction": "mixed",
+          "basis": "Power markets have multiple material suppliers and alternative semiconductor/package architectures."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "negative",
+          "basis": "3-5x density is a company technical claim; adoption, yield, pricing and returns are not yet established."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "strategy-product alignment",
@@ -134,7 +181,14 @@
     "AI infrastructure power-density exposure",
     "architecture differentiation",
     "strategy-product alignment",
-    "expectation conversion"
+    "expectation conversion",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "capitalIntensity",
+    "competitiveResponse",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -145,6 +199,18 @@
       },
       {
         "risk": "AI data-center exposure can become expectation-heavy before meaningful revenue is visible.",
+        "gating": false
+      },
+      {
+        "risk": "Successor bottlenecks can move from package density to fabrication yield, qualification, thermal system integration and utilization economics.",
+        "gating": false
+      },
+      {
+        "risk": "Inventory/utilization pressure can dilute returns even when end-market demand grows.",
+        "gating": false
+      },
+      {
+        "risk": "EPP technical differentiation may not translate into customer switching, pricing power or attractive yield economics.",
         "gating": false
       }
     ]
@@ -157,6 +223,18 @@
     {
       "risk": "AI data-center exposure can become expectation-heavy before meaningful revenue is visible.",
       "gating": false
+    },
+    {
+      "risk": "Successor bottlenecks can move from package density to fabrication yield, qualification, thermal system integration and utilization economics.",
+      "gating": false
+    },
+    {
+      "risk": "Inventory/utilization pressure can dilute returns even when end-market demand grows.",
+      "gating": false
+    },
+    {
+      "risk": "EPP technical differentiation may not translate into customer switching, pricing power or attractive yield economics.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -167,21 +245,60 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "AI/electrification power density",
+        "to": "advanced power conversion and packaging demand",
+        "mechanism": "more compute/electrical load requires efficient high-density power delivery and heat management",
+        "falsifier": "system architectures reduce local conversion density or competing packaging/power technologies outperform EPP economically"
+      },
+      {
+        "from": "EPP wafer-as-package architecture",
+        "to": "higher power density",
+        "mechanism": "joint electrical/mechanical/thermal optimization reduces package overhead",
+        "falsifier": "production yield, reliability or customer qualification fails to support economic volume"
+      },
+      {
+        "from": "capacity/inventory plus uncertain qualification",
+        "to": "capital returns",
+        "mechanism": "fixed manufacturing costs and working capital amplify underutilization if ramps lag",
+        "falsifier": "customer ramps, yields and utilization improve with sustained margins"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "AI/electrification power density",
+      "to": "advanced power conversion and packaging demand",
+      "mechanism": "more compute/electrical load requires efficient high-density power delivery and heat management",
+      "falsifier": "system architectures reduce local conversion density or competing packaging/power technologies outperform EPP economically"
+    },
+    {
+      "from": "EPP wafer-as-package architecture",
+      "to": "higher power density",
+      "mechanism": "joint electrical/mechanical/thermal optimization reduces package overhead",
+      "falsifier": "production yield, reliability or customer qualification fails to support economic volume"
+    },
+    {
+      "from": "capacity/inventory plus uncertain qualification",
+      "to": "capital returns",
+      "mechanism": "fixed manufacturing costs and working capital amplify underutilization if ramps lag",
+      "falsifier": "customer ramps, yields and utilization improve with sustained margins"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "onsemi-ir:2026-09-16:embedded-power-platform",
-      "onsemi:2026-09-16:investor-day"
+      "onsemi:2026-09-16:investor-day",
+      "sec:ON:10-Q:2026-07-03"
     ]
   },
   "sources": [
@@ -200,12 +317,34 @@
       "publishedAt": "2026-09-16",
       "originFingerprint": "onsemi:2026-09-16:investor-day",
       "sourceId": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1097864/000109786426000017/on-20260703.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-03",
+      "originFingerprint": "sec:ON:10-Q:2026-07-03",
+      "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Revenue and gross profit improved while inventory remained above year-end levels and restructuring continued.",
+      "resolution": "This is a risk tension, not a material contradiction; improving operations can coexist with ongoing portfolio/capacity optimization.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Revenue and gross profit improved while inventory remained above year-end levels and restructuring continued.",
+        "resolution": "This is a risk tension, not a material contradiction; improving operations can coexist with ongoing portfolio/capacity optimization.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
   "unknowns": [
     {
@@ -215,11 +354,19 @@
     {
       "unknown": "No Scout valuation or numeric underwriting conclusion is asserted.",
       "gating": false
+    },
+    {
+      "unknown": "Named EPP customers, yields, production ramp and revenue contribution remain undisclosed in cited evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "EPP customer concentration and unit economics are not yet observable.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 86,
@@ -228,13 +375,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -244,14 +388,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -268,10 +404,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

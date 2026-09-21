@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "OUST",
   "workId": "t0:OUST",
-  "generatedAt": "2026-09-21T09:15:08.526Z",
+  "generatedAt": "2026-09-21T09:26:33.168Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-09T00:00:00.000Z",
-    "end": "2026-09-21T08:03:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T08:03:00.000Z"
+    "end": "2026-09-21T09:24:11.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T09:24:11.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,65 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/OUST-20260921T0803Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/OUST-20260921T0803Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/OUST-20260921T092411Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "physical-AI platform breadth",
       "robotics/heavy-industry pull",
       "product growth",
-      "profitability conversion"
+      "profitability conversion",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "financingDilution",
+      "integrationRisk",
+      "profitabilityConversion"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "mixed",
+          "basis": "Perception is necessary for many autonomous systems, but Ouster does not uniquely control the sensing stack."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "positive",
+          "basis": "Robotics, industrial automation and smart infrastructure diversify application demand."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Sensor fusion broadens capability while competing modalities and suppliers constrain exclusivity."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "physical-AI platform breadth",
@@ -78,7 +103,23 @@
           "basis": "AIM agreement provides application-level evidence in autonomous heavy equipment."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "financingDilution",
+          "direction": "negative",
+          "basis": "ATM issuance and the July equity offering increased share count to fund operations/growth."
+        },
+        {
+          "name": "integrationRisk",
+          "direction": "mixed",
+          "basis": "Stereolabs adds useful vision/software capability but requires integration across products, teams and go-to-market."
+        },
+        {
+          "name": "profitabilityConversion",
+          "direction": "mixed",
+          "basis": "Q2 gross margin improved while GAAP net loss and adjusted EBITDA loss remained negative."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "product growth",
@@ -134,7 +175,13 @@
     "physical-AI platform breadth",
     "robotics/heavy-industry pull",
     "product growth",
-    "profitability conversion"
+    "profitability conversion",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "financingDilution",
+    "integrationRisk",
+    "profitabilityConversion"
   ],
   "riskEvidence": {
     "present": true,
@@ -145,6 +192,18 @@
       },
       {
         "risk": "Prior-quarter royalty revenue was largely one-time, so headline sequential revenue comparisons can misstate underlying product trajectory.",
+        "gating": false
+      },
+      {
+        "risk": "Successor bottleneck shifts from sensor availability to integration cost, perception software quality, compute efficiency and OEM qualification.",
+        "gating": false
+      },
+      {
+        "risk": "Repeated equity financing can dilute per-share upside if operating cash generation does not catch up with growth investment.",
+        "gating": false
+      },
+      {
+        "risk": "Sensor-market competition and modality substitution can pressure pricing even as physical-AI adoption grows.",
         "gating": false
       }
     ]
@@ -157,6 +216,18 @@
     {
       "risk": "Prior-quarter royalty revenue was largely one-time, so headline sequential revenue comparisons can misstate underlying product trajectory.",
       "gating": false
+    },
+    {
+      "risk": "Successor bottleneck shifts from sensor availability to integration cost, perception software quality, compute efficiency and OEM qualification.",
+      "gating": false
+    },
+    {
+      "risk": "Repeated equity financing can dilute per-share upside if operating cash generation does not catch up with growth investment.",
+      "gating": false
+    },
+    {
+      "risk": "Sensor-market competition and modality substitution can pressure pricing even as physical-AI adoption grows.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -167,22 +238,62 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 3
+    "count": 5
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "physical automation growth",
+        "to": "machine perception demand",
+        "mechanism": "autonomous systems require reliable environment sensing and localization",
+        "falsifier": "target applications standardize on lower-cost modalities that materially reduce lidar/stereo demand"
+      },
+      {
+        "from": "combined lidar+vision+compute+software",
+        "to": "integration breadth",
+        "mechanism": "multi-modal platform can reduce integration burden and cover more environmental conditions",
+        "falsifier": "customers prefer modular best-of-breed stacks or integration complexity offsets platform benefits"
+      },
+      {
+        "from": "negative profitability plus growth investment",
+        "to": "equity financing dependence",
+        "mechanism": "external capital bridges cash needs until operations self-fund",
+        "falsifier": "sustained positive free cash flow eliminates recurring equity issuance"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "physical automation growth",
+      "to": "machine perception demand",
+      "mechanism": "autonomous systems require reliable environment sensing and localization",
+      "falsifier": "target applications standardize on lower-cost modalities that materially reduce lidar/stereo demand"
+    },
+    {
+      "from": "combined lidar+vision+compute+software",
+      "to": "integration breadth",
+      "mechanism": "multi-modal platform can reduce integration burden and cover more environmental conditions",
+      "falsifier": "customers prefer modular best-of-breed stacks or integration complexity offsets platform benefits"
+    },
+    {
+      "from": "negative profitability plus growth investment",
+      "to": "equity financing dependence",
+      "mechanism": "external capital bridges cash needs until operations self-fund",
+      "falsifier": "sustained positive free cash flow eliminates recurring equity issuance"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 5,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
     "uniqueOrigins": [
       "ouster-ir:2026-02-09:stereolabs-close",
       "ouster-ir:2026-06-17:aim-agreement",
-      "ouster-ir:2026-05-05:q1-2026-results"
+      "ouster-ir:2026-05-05:q1-2026-results",
+      "sec:OUST:10-Q:2026-06-30",
+      "sec:OUST:Q2-2026-results"
     ]
   },
   "sources": [
@@ -209,12 +320,42 @@
       "publishedAt": "2026-05-05",
       "originFingerprint": "ouster-ir:2026-05-05:q1-2026-results",
       "sourceId": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1816581/000162828026054467/oust-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "sec:OUST:10-Q:2026-06-30",
+      "sourceId": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1816581/000162828026054297/exhibit991-6302026.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "sec:OUST:Q2-2026-results",
+      "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Strong product revenue growth and margin improvement coexist with continued losses and equity issuance.",
+      "resolution": "Both are supported; growth quality is improving but has not yet eliminated financing dependence.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Strong product revenue growth and margin improvement coexist with continued losses and equity issuance.",
+        "resolution": "Both are supported; growth quality is improving but has not yet eliminated financing dependence.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
   "unknowns": [
     {
@@ -224,11 +365,19 @@
     {
       "unknown": "Later-quarter profitability and integration outcomes require newer financial evidence from Alpha.",
       "gating": false
+    },
+    {
+      "unknown": "Post-acquisition StereoLabs revenue contribution and cross-sell economics are not isolated in current evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Future financing cadence and fully integrated Stereolabs profitability are not established.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 90,
@@ -237,13 +386,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -253,14 +399,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -277,10 +415,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

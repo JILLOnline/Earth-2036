@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "OKTA",
   "workId": "t0:OKTA",
-  "generatedAt": "2026-09-21T09:15:08.527Z",
+  "generatedAt": "2026-09-21T09:26:33.169Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-26T00:00:00.000Z",
-    "end": "2026-09-21T07:06:30.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T07:06:30.000Z"
+    "end": "2026-09-21T09:24:11.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T09:24:11.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,65 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/OKTA-20260921T070630Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/OKTA-20260921T070630Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/OKTA-20260921T092411Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "identity-security demand",
       "agentic-AI security adjacency",
       "profitability conversion",
-      "forward demand conversion"
+      "forward demand conversion",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "trustConcentration",
+      "competitiveResponse",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "Identity/authentication remains required across workforce, customer and emerging non-human access paths."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Identity need persists across cloud/AI scenarios, but vendor share can shift to bundled suites or competing identity platforms."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "The function is hard to eliminate; Okta-specific economics are substitutable through Microsoft and other integrated security/identity stacks."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "identity-security demand",
@@ -78,7 +103,23 @@
           "basis": "Okta is extending identity controls to AI agents, an emerging non-human identity surface."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "trustConcentration",
+          "direction": "negative",
+          "basis": "Identity security vendors are attractive attack targets and historical incidents have had reputational/customer effects."
+        },
+        {
+          "name": "competitiveResponse",
+          "direction": "mixed",
+          "basis": "Larger established platforms can bundle identity with broader security/productivity estates."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "mixed",
+          "basis": "cRPO and AI-agent adjacency support execution signals but do not prove durable share or monetization."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "profitability conversion",
@@ -134,7 +175,13 @@
     "identity-security demand",
     "agentic-AI security adjacency",
     "profitability conversion",
-    "forward demand conversion"
+    "forward demand conversion",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "trustConcentration",
+    "competitiveResponse",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -145,6 +192,18 @@
       },
       {
         "risk": "Large-platform competition and customer optimization can pressure growth even with improving margins.",
+        "gating": false
+      },
+      {
+        "risk": "Successor bottleneck shifts from identity necessity to trust, integration quality and security reliability; a provider-specific breach can weaken the very control-plane trust that creates strategic value.",
+        "gating": false
+      },
+      {
+        "risk": "A material identity-platform security incident can impair trust, renewals and brand disproportionately to ordinary SaaS failures.",
+        "gating": false
+      },
+      {
+        "risk": "Bundled identity/security offerings can pressure standalone pricing and customer acquisition.",
         "gating": false
       }
     ]
@@ -157,6 +216,18 @@
     {
       "risk": "Large-platform competition and customer optimization can pressure growth even with improving margins.",
       "gating": false
+    },
+    {
+      "risk": "Successor bottleneck shifts from identity necessity to trust, integration quality and security reliability; a provider-specific breach can weaken the very control-plane trust that creates strategic value.",
+      "gating": false
+    },
+    {
+      "risk": "A material identity-platform security incident can impair trust, renewals and brand disproportionately to ordinary SaaS failures.",
+      "gating": false
+    },
+    {
+      "risk": "Bundled identity/security offerings can pressure standalone pricing and customer acquisition.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -167,21 +238,60 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "growth in cloud, automation and AI agents",
+        "to": "identity-control demand",
+        "mechanism": "more human and non-human principals require authentication, authorization and governance",
+        "falsifier": "architectures materially reduce centralized identity controls or customers consolidate identity into competing bundled platforms"
+      },
+      {
+        "from": "Okta identity platform",
+        "to": "secure digital access",
+        "mechanism": "policy and identity controls mediate access to applications and infrastructure",
+        "falsifier": "security/reliability failures or interoperability disadvantages cause sustained customer migration"
+      },
+      {
+        "from": "security incident or trust failure",
+        "to": "retention and new-logo demand",
+        "mechanism": "identity customers assign unusually high value to provider trust",
+        "falsifier": "renewal, expansion and customer acquisition remain resilient through material incidents"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "growth in cloud, automation and AI agents",
+      "to": "identity-control demand",
+      "mechanism": "more human and non-human principals require authentication, authorization and governance",
+      "falsifier": "architectures materially reduce centralized identity controls or customers consolidate identity into competing bundled platforms"
+    },
+    {
+      "from": "Okta identity platform",
+      "to": "secure digital access",
+      "mechanism": "policy and identity controls mediate access to applications and infrastructure",
+      "falsifier": "security/reliability failures or interoperability disadvantages cause sustained customer migration"
+    },
+    {
+      "from": "security incident or trust failure",
+      "to": "retention and new-logo demand",
+      "mechanism": "identity customers assign unusually high value to provider trust",
+      "falsifier": "renewal, expansion and customer acquisition remain resilient through material incidents"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "okta-ir:2026-08-26:q2-fy27",
-      "okta-ir:2026-09-14:oktane-investor-summit"
+      "okta-ir:2026-09-14:oktane-investor-summit",
+      "sec:OKTA:10-Q:2026-07-31"
     ]
   },
   "sources": [
@@ -200,12 +310,34 @@
       "publishedAt": "2026-09-14",
       "originFingerprint": "okta-ir:2026-09-14:oktane-investor-summit",
       "sourceId": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1660134/000166013426000069/okta-20260731.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-27",
+      "originFingerprint": "sec:OKTA:10-Q:2026-07-31",
+      "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Improving profitability and forward demand coexist with historical trust/security exposure.",
+      "resolution": "No present contradiction: execution is improving while security trust remains a persistent tail risk rather than a current blocker.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Improving profitability and forward demand coexist with historical trust/security exposure.",
+        "resolution": "No present contradiction: execution is improving while security trust remains a persistent tail risk rather than a current blocker.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
   "unknowns": [
     {
@@ -215,26 +347,31 @@
     {
       "unknown": "No security-level valuation conclusion is asserted by Scout.",
       "gating": false
+    },
+    {
+      "unknown": "AI-agent identity category share and monetization are not yet established.",
+      "gating": false
+    },
+    {
+      "unknown": "Current customer concentration and competitive win/loss rates are not established in reused evidence.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -244,14 +381,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -268,10 +397,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

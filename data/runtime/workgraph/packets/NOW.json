@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "NOW",
   "workId": "t0:NOW",
-  "generatedAt": "2026-09-21T06:21:44.645Z",
+  "generatedAt": "2026-09-21T06:30:54.811Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-22T00:00:00.000Z",
-    "end": "2026-09-21T06:10:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T06:10:00.000Z"
+    "end": "2026-09-21T06:27:57.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T06:27:57.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/NOW-20260921T061000Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/NOW-20260921T061000Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/NOW-20260921T062757Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,19 +65,52 @@
       "crossDivisionLeverage",
       "thesisQuality",
       "financialOperatingMomentum",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "substitutionResilience"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "Embedded workflows, CMDB/context, governance and cross-system action create coordination value and switching friction."
+        },
+        {
+          "name": "crossDivisionLeverage",
+          "direction": "positive",
+          "basis": "IT, security/risk, CRM and employee workflows share platform context and action infrastructure."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Deep workflow integration is sticky, but hyperscalers, application suites and model vendors can expand orchestration/governance capabilities."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "positive",
+          "basis": "A model-agnostic control layer can remain useful across changing AI models if customers continue to value governed cross-system workflows."
+        }
+      ],
       "discovery-weak-signals": [
         "alignment2036",
         "bottleneckControl",
         "crossDivisionLeverage",
         "thesisQuality"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "financialOperatingMomentum",
+          "direction": "positive",
+          "basis": "Subscription revenue grew 24.5% and cRPO 21%, with guidance raised."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Platform breadth supports resilience, but competitive and technology change can shift orchestration value toward hyperscalers, model vendors or application suites."
+        }
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness"
@@ -124,7 +160,8 @@
     "crossDivisionLeverage",
     "thesisQuality",
     "financialOperatingMomentum",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "substitutionResilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -136,6 +173,26 @@
       {
         "risk": "Q2 included some U.S. Federal on-premise revenue accelerated from Q3, so quarterly cadence should not be extrapolated mechanically.",
         "gating": false
+      },
+      {
+        "risk": "Control-layer value depends on measurable workflow outcomes and interoperability, not deployment counts or AI branding alone.",
+        "gating": false
+      },
+      {
+        "risk": "Quarterly revenue cadence benefited from federal on-premise timing acceleration and should not be extrapolated mechanically.",
+        "gating": false
+      },
+      {
+        "risk": "AI control/orchestration faces competitive response from hyperscalers, application suites and model vendors.",
+        "gating": false
+      },
+      {
+        "risk": "Longer customer commitments increase visibility but RPO is not equivalent to realized margin or cash flow.",
+        "gating": false
+      },
+      {
+        "risk": "Rapid AI product expansion raises execution, security, privacy and integration complexity.",
+        "gating": false
       }
     ]
   },
@@ -146,6 +203,26 @@
     },
     {
       "risk": "Q2 included some U.S. Federal on-premise revenue accelerated from Q3, so quarterly cadence should not be extrapolated mechanically.",
+      "gating": false
+    },
+    {
+      "risk": "Control-layer value depends on measurable workflow outcomes and interoperability, not deployment counts or AI branding alone.",
+      "gating": false
+    },
+    {
+      "risk": "Quarterly revenue cadence benefited from federal on-premise timing acceleration and should not be extrapolated mechanically.",
+      "gating": false
+    },
+    {
+      "risk": "AI control/orchestration faces competitive response from hyperscalers, application suites and model vendors.",
+      "gating": false
+    },
+    {
+      "risk": "Longer customer commitments increase visibility but RPO is not equivalent to realized margin or cash flow.",
+      "gating": false
+    },
+    {
+      "risk": "Rapid AI product expansion raises execution, security, privacy and integration complexity.",
       "gating": false
     }
   ],
@@ -160,14 +237,52 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "company:NOW",
+        "to": "technology:workflow-ai-governance-orchestration",
+        "relationship": "provides_platform",
+        "direction": 1
+      },
+      {
+        "from": "technology:workflow-ai-governance-orchestration",
+        "to": "infrastructure:enterprise-digital-operations",
+        "relationship": "coordinates",
+        "direction": 1
+      },
+      {
+        "from": "infrastructure:enterprise-digital-operations",
+        "to": "need:reliable-efficient-governed-work",
+        "relationship": "serves",
+        "direction": 1
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "company:NOW",
+      "to": "technology:workflow-ai-governance-orchestration",
+      "relationship": "provides_platform",
+      "direction": 1
+    },
+    {
+      "from": "technology:workflow-ai-governance-orchestration",
+      "to": "infrastructure:enterprise-digital-operations",
+      "relationship": "coordinates",
+      "direction": 1
+    },
+    {
+      "from": "infrastructure:enterprise-digital-operations",
+      "to": "need:reliable-efficient-governed-work",
+      "relationship": "serves",
+      "direction": 1
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:NOW:2026Q2:20260722"
@@ -183,10 +298,24 @@
       "originFingerprint": "issuer:NOW:2026Q2:20260722"
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Strong AI ACV/deployment growth versus incomplete evidence of incremental AI unit economics.",
+      "resolution": "Treat adoption as observed strength and AI margin/retention economics as a non-gating uncertainty requiring later verification.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Strong AI ACV/deployment growth versus incomplete evidence of incremental AI unit economics.",
+        "resolution": "Treat adoption as observed strength and AI margin/retention economics as a non-gating uncertainty requiring later verification.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
   "unknowns": [
     {
@@ -196,26 +325,31 @@
     {
       "unknown": "Magnitude of normalized growth excluding timing acceleration requires underwriting adjustment.",
       "gating": false
+    },
+    {
+      "unknown": "Incremental AI gross margin, retention and standalone ROI are not isolated in the retrieved release.",
+      "gating": false
+    },
+    {
+      "unknown": "Normalized Q2 growth excluding federal timing acceleration is not separately quantified in the release.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 91,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -225,14 +359,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -249,10 +375,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

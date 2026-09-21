@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MRCY",
   "workId": "t0:MRCY",
-  "generatedAt": "2026-09-21T06:21:44.652Z",
+  "generatedAt": "2026-09-21T06:30:54.819Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-05-05T00:00:00.000Z",
-    "end": "2026-09-21T04:03:23.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T04:03:23.000Z"
+    "end": "2026-09-21T06:27:57.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T06:27:57.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,61 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/MRCY-20260921T040323Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/MRCY-20260921T040323Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/MRCY-20260921T062757Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "defense electronics demand visibility",
-      "operating recovery versus cash conversion"
+      "operating recovery versus cash conversion",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "financialOperatingMomentum"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "Secure rugged edge-processing integration, U.S.-designed/manufactured motherboard capability and defense qualification create switching friction, but commercial silicon and competing defense integrators limit exclusivity."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Defense modernization supports demand, but program timing and customer procurement concentration make conversion uneven."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Qualification/security requirements raise replacement friction, while alternative qualified embedded-compute suppliers and primes remain substitutes."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "defense electronics demand visibility",
@@ -71,7 +94,13 @@
           "basis": "Record bookings and backlog provide forward demand evidence across Mercury's defense electronics portfolio."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "financialOperatingMomentum",
+          "direction": "mixed",
+          "basis": "Revenue/bookings/backlog improved strongly, but GAAP profitability and year-over-year cash conversion remain weaker than adjusted operating measures imply."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "operating recovery versus cash conversion",
@@ -120,7 +149,11 @@
   },
   "factors": [
     "defense electronics demand visibility",
-    "operating recovery versus cash conversion"
+    "operating recovery versus cash conversion",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "financialOperatingMomentum"
   ],
   "riskEvidence": {
     "present": true,
@@ -131,6 +164,22 @@
       },
       {
         "risk": "If cash conversion does not recover alongside backlog growth, earnings-quality expectations should be tempered.",
+        "gating": false
+      },
+      {
+        "risk": "Backlog is demand visibility, not guaranteed margin or cash conversion; program timing and execution remain material.",
+        "gating": false
+      },
+      {
+        "risk": "Adjusted EBITDA growth can overstate economic recovery if working-capital intensity, program charges or cash conversion remain weak.",
+        "gating": false
+      },
+      {
+        "risk": "Defense customer/program concentration and procurement timing can delay backlog conversion.",
+        "gating": false
+      },
+      {
+        "risk": "Commercial compute advances can reduce differentiation unless Mercury sustains security, qualification and integration advantages.",
         "gating": false
       }
     ]
@@ -143,6 +192,22 @@
     {
       "risk": "If cash conversion does not recover alongside backlog growth, earnings-quality expectations should be tempered.",
       "gating": false
+    },
+    {
+      "risk": "Backlog is demand visibility, not guaranteed margin or cash conversion; program timing and execution remain material.",
+      "gating": false
+    },
+    {
+      "risk": "Adjusted EBITDA growth can overstate economic recovery if working-capital intensity, program charges or cash conversion remain weak.",
+      "gating": false
+    },
+    {
+      "risk": "Defense customer/program concentration and procurement timing can delay backlog conversion.",
+      "gating": false
+    },
+    {
+      "risk": "Commercial compute advances can reduce differentiation unless Mercury sustains security, qualification and integration advantages.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -153,20 +218,62 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 5
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "company:MRCY",
+        "to": "technology:secure-rugged-edge-compute",
+        "relationship": "integrates_and_supplies",
+        "direction": 1
+      },
+      {
+        "from": "technology:secure-rugged-edge-compute",
+        "to": "infrastructure:defense-platforms",
+        "relationship": "enables_mission_processing",
+        "direction": 1
+      },
+      {
+        "from": "infrastructure:defense-platforms",
+        "to": "need:secure-real-time-mission-compute",
+        "relationship": "serves",
+        "direction": 1
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "company:MRCY",
+      "to": "technology:secure-rugged-edge-compute",
+      "relationship": "integrates_and_supplies",
+      "direction": 1
+    },
+    {
+      "from": "technology:secure-rugged-edge-compute",
+      "to": "infrastructure:defense-platforms",
+      "relationship": "enables_mission_processing",
+      "direction": 1
+    },
+    {
+      "from": "infrastructure:defense-platforms",
+      "to": "need:secure-real-time-mission-compute",
+      "relationship": "serves",
+      "direction": 1
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 5,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "mrcy-ir:fy26-q3-results"
+      "mrcy-ir:fy26-q3-results",
+      "sec:mrcy:10k:20260703",
+      "mrcy-ir:fy26-results",
+      "mrcy-ir:builsecure-order:20260528",
+      "mrcy-ir:palantir-factory:20260803"
     ]
   },
   "sources": [
@@ -177,12 +284,50 @@
       "publishedAt": "2026-05-05",
       "originFingerprint": "mrcy-ir:fy26-q3-results",
       "sourceId": null
+    },
+    {
+      "sourceId": "sec:MRCY:10K:20260703",
+      "url": "https://www.sec.gov/Archives/edgar/data/1049521/000104952126000045/mrcy-20260703.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-18",
+      "originFingerprint": "sec:mrcy:10k:20260703"
+    },
+    {
+      "sourceId": "issuer:MRCY:FY26",
+      "url": "https://newsroom.mrcy.com/posts/pressreleases/mercury-systems-reports-fourth-quarter-and-fi-15",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-18",
+      "originFingerprint": "mrcy-ir:fy26-results"
+    },
+    {
+      "sourceId": "issuer:MRCY:BuiltSECURE:20260528",
+      "url": "https://newsroom.mrcy.com/posts/pressreleases/mercury-receives-largest-production-order-for",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-28",
+      "originFingerprint": "mrcy-ir:builsecure-order:20260528"
+    },
+    {
+      "sourceId": "issuer:MRCY:Palantir:20260803",
+      "url": "https://ir.mrcy.com/news-releases/news-release-details/mercury-partners-palantir-enhance-factory-automation-and",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-03",
+      "originFingerprint": "mrcy-ir:palantir-factory:20260803"
     }
   ],
   "contradictions": [
     {
       "claim": "Strong operating recovery but weak quarterly free cash flow",
       "resolution": "Both are retained; backlog/EBITDA strength does not erase working-capital/cash-conversion risk.",
+      "resolved": true,
+      "gating": false
+    },
+    {
+      "claim": "Record backlog and stronger adjusted EBITDA coexist with a FY26 GAAP loss and lower full-year free cash flow.",
+      "resolution": "Treat demand recovery as supported while keeping earnings-quality/cash-conversion risk explicit; this is not a present methodology blocker.",
       "resolved": true,
       "gating": false
     }
@@ -195,6 +340,12 @@
         "resolution": "Both are retained; backlog/EBITDA strength does not erase working-capital/cash-conversion risk.",
         "resolved": true,
         "gating": false
+      },
+      {
+        "claim": "Record backlog and stronger adjusted EBITDA coexist with a FY26 GAAP loss and lower full-year free cash flow.",
+        "resolution": "Treat demand recovery as supported while keeping earnings-quality/cash-conversion risk explicit; this is not a present methodology blocker.",
+        "resolved": true,
+        "gating": false
       }
     ]
   },
@@ -202,26 +353,31 @@
     {
       "unknown": "Program-level backlog composition and cancellation/deferral sensitivity are not fully disclosed in this release.",
       "gating": false
+    },
+    {
+      "unknown": "Program-level backlog concentration and cancellation sensitivity remain incompletely disclosed.",
+      "gating": false
+    },
+    {
+      "unknown": "The durability of FY27 margin expansion after backlog conversion is not yet observed.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 1
+    "nonGatingCount": 3
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 88,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -231,14 +387,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -255,10 +403,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

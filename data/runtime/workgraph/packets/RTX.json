@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "RTX",
   "workId": "t0:RTX",
-  "generatedAt": "2026-09-21T13:19:34.173Z",
+  "generatedAt": "2026-09-21T13:24:17.426Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-04T00:00:00.000Z",
-    "end": "2026-09-21T11:02:38.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T11:02:38.000Z"
+    "end": "2026-09-21T13:22:17.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T13:22:17.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,39 +32,64 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/RTX-20260921T110238Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/RTX-20260921T110238Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/RTX-20260921T132217Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "defense production bottleneck",
       "capacity conversion",
-      "supply-chain burden"
+      "supply-chain burden",
+      "bottleneckControl",
+      "supplyChainResilience",
+      "scenarioRobustness",
+      "concentrationRisk",
+      "supplyChainRisk",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "Long-duration missile frameworks and contracts position RTX at a constrained defense-production node."
+        },
+        {
+          "name": "supplyChainResilience",
+          "direction": "mixed",
+          "basis": "Capacity investment is explicit, but throughput depends on hundreds of suppliers, workforce and facilities."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Contracted demand supports visibility, while procurement continuity and supplier execution remain external dependencies."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "defense production bottleneck",
@@ -72,7 +97,23 @@
           "basis": "Long-duration frameworks and rising deliveries provide source-addressed demand and capacity signals."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "concentrationRisk",
+          "direction": "mixed",
+          "basis": "Defense production depends materially on government procurement continuity and program priorities."
+        },
+        {
+          "name": "supplyChainRisk",
+          "direction": "negative",
+          "basis": "RTX explicitly identifies the need for investment across hundreds of suppliers, workforce and facilities."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "mixed",
+          "basis": "Delivery growth is observable, while future rate targets and economics remain prospective."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "capacity conversion",
@@ -127,7 +168,13 @@
   "factors": [
     "defense production bottleneck",
     "capacity conversion",
-    "supply-chain burden"
+    "supply-chain burden",
+    "bottleneckControl",
+    "supplyChainResilience",
+    "scenarioRobustness",
+    "concentrationRisk",
+    "supplyChainRisk",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -139,6 +186,18 @@
       {
         "risk": "Supplier or facility bottlenecks can prevent targeted production rates despite contracted demand.",
         "gating": false
+      },
+      {
+        "risk": "A constrained supplier base can keep production below contracted or targeted rates even when end demand is strong.",
+        "gating": false
+      },
+      {
+        "risk": "Supplier or facility bottlenecks can prevent contracted demand from converting to timely deliveries.",
+        "gating": false
+      },
+      {
+        "risk": "Government budget or program-priority changes can alter demand despite current frameworks.",
+        "gating": false
       }
     ]
   },
@@ -149,6 +208,18 @@
     },
     {
       "risk": "Supplier or facility bottlenecks can prevent targeted production rates despite contracted demand.",
+      "gating": false
+    },
+    {
+      "risk": "A constrained supplier base can keep production below contracted or targeted rates even when end demand is strong.",
+      "gating": false
+    },
+    {
+      "risk": "Supplier or facility bottlenecks can prevent contracted demand from converting to timely deliveries.",
+      "gating": false
+    },
+    {
+      "risk": "Government budget or program-priority changes can alter demand despite current frameworks.",
       "gating": false
     }
   ],
@@ -163,14 +234,52 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "defense replenishment and procurement demand",
+        "to": "missile production demand",
+        "mechanism": "multi-year government frameworks create sustained requirements for precision munitions",
+        "falsifier": "procurement priorities or budgets materially reverse"
+      },
+      {
+        "from": "RTX and supplier capacity investment",
+        "to": "delivered defense inventory",
+        "mechanism": "workforce, facilities, technology and supplier throughput convert contracts into units",
+        "falsifier": "supplier/facility constraints prevent sustained production-rate increases"
+      },
+      {
+        "from": "supplier constraints and procurement continuity",
+        "to": "realized program economics",
+        "mechanism": "throughput, input costs and funded quantities determine whether backlog converts into profitable deliveries",
+        "falsifier": "sustained delivery-rate increases and stable economics demonstrate resilient conversion"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "defense replenishment and procurement demand",
+      "to": "missile production demand",
+      "mechanism": "multi-year government frameworks create sustained requirements for precision munitions",
+      "falsifier": "procurement priorities or budgets materially reverse"
+    },
+    {
+      "from": "RTX and supplier capacity investment",
+      "to": "delivered defense inventory",
+      "mechanism": "workforce, facilities, technology and supplier throughput convert contracts into units",
+      "falsifier": "supplier/facility constraints prevent sustained production-rate increases"
+    },
+    {
+      "from": "supplier constraints and procurement continuity",
+      "to": "realized program economics",
+      "mechanism": "throughput, input costs and funded quantities determine whether backlog converts into profitable deliveries",
+      "falsifier": "sustained delivery-rate increases and stable economics demonstrate resilient conversion"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "rtx:2026-02-04:munition-frameworks",
@@ -195,35 +304,54 @@
       "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Strong contracted demand versus constrained production system",
+      "resolution": "The tension is structural rather than contradictory: demand visibility is high precisely while industrial capacity remains a limiting factor.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Strong contracted demand versus constrained production system",
+        "resolution": "The tension is structural rather than contradictory: demand visibility is high precisely while industrial capacity remains a limiting factor.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
   "unknowns": [
     {
       "unknown": "Scout does not infer segment margin impact or valuation from production targets.",
       "gating": false
+    },
+    {
+      "unknown": "Current evidence does not quantify supplier-specific bottlenecks or full production-rate economics.",
+      "gating": false
+    },
+    {
+      "unknown": "Segment margin impact and supplier-level concentration are not established by the reused evidence.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 1
+    "nonGatingCount": 3
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -233,14 +361,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -257,10 +377,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

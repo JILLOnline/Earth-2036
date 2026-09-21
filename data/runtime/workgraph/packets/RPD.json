@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "RPD",
   "workId": "t0:RPD",
-  "generatedAt": "2026-09-21T13:19:34.174Z",
+  "generatedAt": "2026-09-21T13:24:17.427Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-10T00:00:00.000Z",
-    "end": "2026-09-21T11:02:38.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T11:02:38.000Z"
+    "end": "2026-09-21T13:22:17.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T13:22:17.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,65 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/RPD-20260921T110238Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/RPD-20260921T110238Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/RPD-20260921T132217Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "platform expansion",
       "integration risk",
       "cash baseline",
-      "market need"
+      "market need",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "sourceDependence",
+      "competitiveResponse",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "mixed",
+          "basis": "Platform integration targets detection-to-remediation workflow friction, but current evidence does not prove durable control versus competing platforms."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Persistent cyber threats support need, while vendor consolidation and AI-native substitutes can reshape competitive advantage."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Integrated SecOps/GRC may deepen workflow value, but customers can adopt competing security platforms or point tools."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "platform expansion",
@@ -78,7 +103,23 @@
           "basis": "Acquired agentic technology must integrate without eroding reliability or economics."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "sourceDependence",
+          "direction": "negative",
+          "basis": "Current product-benefit and threat evidence is predominantly company-published."
+        },
+        {
+          "name": "competitiveResponse",
+          "direction": "mixed",
+          "basis": "Cybersecurity has multiple integrated-platform and specialist alternatives; platform breadth alone does not prove differentiation."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "negative",
+          "basis": "AI productivity claims should not be converted into durable customer economics without independent outcome evidence."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "cash baseline",
@@ -134,7 +175,13 @@
     "platform expansion",
     "integration risk",
     "cash baseline",
-    "market need"
+    "market need",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "sourceDependence",
+    "competitiveResponse",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -146,6 +193,18 @@
       {
         "risk": "Industry threat intensity does not automatically translate into ARR growth or durable competitive advantage.",
         "gating": false
+      },
+      {
+        "risk": "AI/security integration that adds noise, false positives or workflow complexity can weaken rather than relieve the remediation bottleneck.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition integration can dilute focus or economics if new capabilities fail to convert into retention or expansion.",
+        "gating": false
+      },
+      {
+        "risk": "Competing AI-native and incumbent security platforms can commoditize claimed automation advantages.",
+        "gating": false
       }
     ]
   },
@@ -156,6 +215,18 @@
     },
     {
       "risk": "Industry threat intensity does not automatically translate into ARR growth or durable competitive advantage.",
+      "gating": false
+    },
+    {
+      "risk": "AI/security integration that adds noise, false positives or workflow complexity can weaken rather than relieve the remediation bottleneck.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition integration can dilute focus or economics if new capabilities fail to convert into retention or expansion.",
+      "gating": false
+    },
+    {
+      "risk": "Competing AI-native and incumbent security platforms can commoditize claimed automation advantages.",
       "gating": false
     }
   ],
@@ -170,14 +241,52 @@
     "count": 4
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "shrinking exploit windows",
+        "to": "need for automated security operations",
+        "mechanism": "less human response time increases value of rapid detection, prioritization and remediation",
+        "falsifier": "attack intensity falls materially or alternative controls remove the need for rapid remediation"
+      },
+      {
+        "from": "integrated SecOps/GRC and agentic automation",
+        "to": "reduced remediation friction",
+        "mechanism": "shared context and automation can shorten handoffs and response cycles",
+        "falsifier": "integration fails to improve customer outcomes or competing platforms deliver materially better reliability/economics"
+      },
+      {
+        "from": "platform expansion without validated customer outcomes",
+        "to": "execution risk",
+        "mechanism": "feature breadth may increase complexity without improving retention, response quality or economics",
+        "falsifier": "independent customer evidence and current financials show durable retention, expansion and measurable response improvement"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "shrinking exploit windows",
+      "to": "need for automated security operations",
+      "mechanism": "less human response time increases value of rapid detection, prioritization and remediation",
+      "falsifier": "attack intensity falls materially or alternative controls remove the need for rapid remediation"
+    },
+    {
+      "from": "integrated SecOps/GRC and agentic automation",
+      "to": "reduced remediation friction",
+      "mechanism": "shared context and automation can shorten handoffs and response cycles",
+      "falsifier": "integration fails to improve customer outcomes or competing platforms deliver materially better reliability/economics"
+    },
+    {
+      "from": "platform expansion without validated customer outcomes",
+      "to": "execution risk",
+      "mechanism": "feature breadth may increase complexity without improving retention, response quality or economics",
+      "falsifier": "independent customer evidence and current financials show durable retention, expansion and measurable response improvement"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 9,
     "uniqueSourceCount": 4,
-    "duplicatesCollapsed": 0,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "rapid7:2026-03-26:kenzo",
@@ -220,35 +329,54 @@
       "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Positive cash baseline versus unproven current growth durability",
+      "resolution": "Cash generation supports investment capacity but does not resolve 2026 ARR/retention or competitive durability.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Positive cash baseline versus unproven current growth durability",
+        "resolution": "Cash generation supports investment capacity but does not resolve 2026 ARR/retention or competitive durability.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
   "unknowns": [
     {
       "unknown": "Current 2026 ARR growth and retention need root-owner underwriting from the latest financial filing.",
       "gating": false
+    },
+    {
+      "unknown": "Independent customer outcome evidence for new agentic and GRC capabilities is not established here.",
+      "gating": false
+    },
+    {
+      "unknown": "Current 2026 ARR growth, retention and independent AI outcome evidence remain outside this Beta evidence set.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 1
+    "nonGatingCount": 3
   },
   "gatingIssues": [],
-  "confidence": 90,
+  "confidence": 88,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -258,14 +386,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -282,10 +402,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

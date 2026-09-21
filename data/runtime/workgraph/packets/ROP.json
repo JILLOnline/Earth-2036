@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ROP",
   "workId": "t0:ROP",
-  "generatedAt": "2026-09-21T13:19:34.176Z",
+  "generatedAt": "2026-09-21T13:24:17.429Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-23T00:00:00.000Z",
-    "end": "2026-09-21T11:02:38.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T11:02:38.000Z"
+    "end": "2026-09-21T13:22:17.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T13:22:17.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,65 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/ROP-20260921T110238Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ROP-20260921T110238Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ROP-20260921T132217Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "portfolio breadth",
       "acquisition contribution",
       "cash execution",
-      "capital deployment"
+      "capital deployment",
+      "crossDivisionLeverage",
+      "scenarioRobustness",
+      "bottleneckControl",
+      "financingRisk",
+      "integrationRisk",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "crossDivisionLeverage",
+          "direction": "positive",
+          "basis": "Growth across all three operating segments reduces dependence on one vertical."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "positive",
+          "basis": "Portfolio breadth and cash generation provide multiple operating demand channels."
+        },
+        {
+          "name": "bottleneckControl",
+          "direction": "mixed",
+          "basis": "Specialized software can occupy workflow bottlenecks, but the reused evidence does not establish monopoly-like control."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "portfolio breadth",
@@ -78,7 +103,23 @@
           "basis": "Acquisitions add growth but complicate organic quality and capital-allocation assessment."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "financingRisk",
+          "direction": "mixed",
+          "basis": "Higher average debt and rates increased interest expense."
+        },
+        {
+          "name": "integrationRisk",
+          "direction": "negative",
+          "basis": "Network Software margin fell partly because acquired businesses carry different profiles."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "mixed",
+          "basis": "Portfolio growth and cash flow are observable; durable acquisition returns and repurchase attractiveness require separate evidence."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "cash execution",
@@ -134,7 +175,13 @@
     "portfolio breadth",
     "acquisition contribution",
     "cash execution",
-    "capital deployment"
+    "capital deployment",
+    "crossDivisionLeverage",
+    "scenarioRobustness",
+    "bottleneckControl",
+    "financingRisk",
+    "integrationRisk",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -146,6 +193,18 @@
       {
         "risk": "Interest expense increased because of higher average debt and rates, a counterweight to portfolio cash generation.",
         "gating": false
+      },
+      {
+        "risk": "Acquisition dependence can shift the limiting factor from product demand to integration discipline, leverage and capital allocation.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition-led growth can mask weaker organic economics or create integration/margin dilution.",
+        "gating": false
+      },
+      {
+        "risk": "Higher debt costs can reduce flexibility if acquisition cadence remains high.",
+        "gating": false
       }
     ]
   },
@@ -156,6 +215,18 @@
     },
     {
       "risk": "Interest expense increased because of higher average debt and rates, a counterweight to portfolio cash generation.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition dependence can shift the limiting factor from product demand to integration discipline, leverage and capital allocation.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition-led growth can mask weaker organic economics or create integration/margin dilution.",
+      "gating": false
+    },
+    {
+      "risk": "Higher debt costs can reduce flexibility if acquisition cadence remains high.",
       "gating": false
     }
   ],
@@ -170,14 +241,52 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "specialized customer workflows",
+        "to": "vertical software demand",
+        "mechanism": "mission-specific processes require durable software and technology infrastructure",
+        "falsifier": "customers standardize on broad horizontal substitutes without meaningful switching friction"
+      },
+      {
+        "from": "Roper cash generation and acquisitions",
+        "to": "portfolio capability expansion",
+        "mechanism": "cash can fund acquisitions that add niche workflow assets",
+        "falsifier": "integration drag, leverage or poor acquisition returns outweigh acquired growth"
+      },
+      {
+        "from": "acquisition cadence and debt cost",
+        "to": "incremental shareholder returns",
+        "mechanism": "purchase price, integration economics and financing cost determine whether acquired growth creates value",
+        "falsifier": "sustained organic growth, margin durability and cash conversion demonstrate acquired assets are compounding economically"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "specialized customer workflows",
+      "to": "vertical software demand",
+      "mechanism": "mission-specific processes require durable software and technology infrastructure",
+      "falsifier": "customers standardize on broad horizontal substitutes without meaningful switching friction"
+    },
+    {
+      "from": "Roper cash generation and acquisitions",
+      "to": "portfolio capability expansion",
+      "mechanism": "cash can fund acquisitions that add niche workflow assets",
+      "falsifier": "integration drag, leverage or poor acquisition returns outweigh acquired growth"
+    },
+    {
+      "from": "acquisition cadence and debt cost",
+      "to": "incremental shareholder returns",
+      "mechanism": "purchase price, integration economics and financing cost determine whether acquired growth creates value",
+      "falsifier": "sustained organic growth, margin durability and cash conversion demonstrate acquired assets are compounding economically"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 6,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 0,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "roper:2026-q2:10-q",
@@ -202,35 +311,54 @@
       "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Strong cash generation versus rising financing burden",
+      "resolution": "Both are present; cash capacity supports deployment while higher interest expense raises the hurdle rate for new capital allocation.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Strong cash generation versus rising financing burden",
+        "resolution": "Both are present; cash capacity supports deployment while higher interest expense raises the hurdle rate for new capital allocation.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
   "unknowns": [
     {
       "unknown": "Scout does not judge repurchase attractiveness without canonical valuation inputs.",
       "gating": false
+    },
+    {
+      "unknown": "The reused evidence does not quantify switching costs or organic growth durability by individual niche.",
+      "gating": false
+    },
+    {
+      "unknown": "Repurchase valuation and acquisition-level returns are outside the current Beta evidence set.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 1
+    "nonGatingCount": 3
   },
   "gatingIssues": [],
-  "confidence": 95,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -240,14 +368,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -264,10 +384,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

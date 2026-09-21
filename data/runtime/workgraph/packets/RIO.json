@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "RIO",
   "workId": "t0:RIO",
-  "generatedAt": "2026-09-21T13:19:34.170Z",
+  "generatedAt": "2026-09-21T13:24:17.423Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-05-29T00:00:00.000Z",
-    "end": "2026-09-21T11:02:38.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T11:02:38.000Z"
+    "end": "2026-09-21T13:22:17.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T13:22:17.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,64 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/RIO-20260921T110238Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/RIO-20260921T110238Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/RIO-20260921T132217Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "critical-mineral diversification",
       "project social license",
       "productivity conversion",
-      "capacity ramp"
+      "capacity ramp",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "supplyChainResilience",
+      "commodityCycle",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "Copper, aluminium and lithium are infrastructure/electrification inputs and already contribute more than half of disclosed underlying EBITDA."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Commodity diversification reduces single-commodity dependence, but major-project economics and commodity cycles remain material."
+        },
+        {
+          "name": "supplyChainResilience",
+          "direction": "mixed",
+          "basis": "AP60 adds aluminium capacity and Winu could broaden copper supply, but Winu is not yet an operating asset."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "critical-mineral diversification",
@@ -78,7 +102,18 @@
           "basis": "Winu project agreement provides concrete consent/governance evidence."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "commodityCycle",
+          "direction": "negative",
+          "basis": "Cash generation remains sensitive to commodity prices despite diversification."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "mixed",
+          "basis": "Commissioning and consent milestones are concrete; extrapolation to full ramp and project returns remains prospective."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "productivity conversion",
@@ -134,7 +169,12 @@
     "critical-mineral diversification",
     "project social license",
     "productivity conversion",
-    "capacity ramp"
+    "capacity ramp",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "supplyChainResilience",
+    "commodityCycle",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -146,6 +186,18 @@
       {
         "risk": "Commissioning schedules and commodity margins can diverge from targets.",
         "gating": false
+      },
+      {
+        "risk": "Successor bottlenecks can shift from resource availability to permitting, social license, project execution, power and commodity economics.",
+        "gating": false
+      },
+      {
+        "risk": "Commodity-price weakness or cost inflation can offset productivity and capacity gains.",
+        "gating": false
+      },
+      {
+        "risk": "Large projects can consume capital before economic output is proven.",
+        "gating": false
       }
     ]
   },
@@ -156,6 +208,18 @@
     },
     {
       "risk": "Commissioning schedules and commodity margins can diverge from targets.",
+      "gating": false
+    },
+    {
+      "risk": "Successor bottlenecks can shift from resource availability to permitting, social license, project execution, power and commodity economics.",
+      "gating": false
+    },
+    {
+      "risk": "Commodity-price weakness or cost inflation can offset productivity and capacity gains.",
+      "gating": false
+    },
+    {
+      "risk": "Large projects can consume capital before economic output is proven.",
       "gating": false
     }
   ],
@@ -170,14 +234,52 @@
     "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "electrification and infrastructure buildout",
+        "to": "copper/aluminium/lithium demand",
+        "mechanism": "grid, transport and industrial systems require conductive and battery materials",
+        "falsifier": "material intensity falls faster than end-demand grows or substitutes structurally displace these inputs"
+      },
+      {
+        "from": "Rio diversified production and AP60/Winu capacity pathway",
+        "to": "critical-material supply",
+        "mechanism": "existing diversified earnings plus commissioned/proposed capacity can relieve material constraints",
+        "falsifier": "project delays, consent loss, poor economics or commodity oversupply prevent durable economic supply"
+      },
+      {
+        "from": "commodity prices and project execution",
+        "to": "cash returns",
+        "mechanism": "realized prices, costs and ramp timing determine whether physical capacity becomes economic value",
+        "falsifier": "diversified volumes and productivity sustain returns through adverse commodity scenarios"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "electrification and infrastructure buildout",
+      "to": "copper/aluminium/lithium demand",
+      "mechanism": "grid, transport and industrial systems require conductive and battery materials",
+      "falsifier": "material intensity falls faster than end-demand grows or substitutes structurally displace these inputs"
+    },
+    {
+      "from": "Rio diversified production and AP60/Winu capacity pathway",
+      "to": "critical-material supply",
+      "mechanism": "existing diversified earnings plus commissioned/proposed capacity can relieve material constraints",
+      "falsifier": "project delays, consent loss, poor economics or commodity oversupply prevent durable economic supply"
+    },
+    {
+      "from": "commodity prices and project execution",
+      "to": "cash returns",
+      "mechanism": "realized prices, costs and ramp timing determine whether physical capacity becomes economic value",
+      "falsifier": "diversified volumes and productivity sustain returns through adverse commodity scenarios"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 9,
     "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "rio:2026-h1-results",
@@ -211,10 +313,24 @@
       "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Strong current diversification versus persistent commodity cyclicality",
+      "resolution": "Diversification reduces concentration but does not eliminate shared macro/commodity exposure.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Strong current diversification versus persistent commodity cyclicality",
+        "resolution": "Diversification reduces concentration but does not eliminate shared macro/commodity exposure.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
   "unknowns": [
     {
@@ -224,26 +340,31 @@
     {
       "unknown": "Year-end productivity run-rate and full AP60 ramp are future checkpoints.",
       "gating": false
+    },
+    {
+      "unknown": "Winu final economics and development timing remain unestablished.",
+      "gating": false
+    },
+    {
+      "unknown": "Full AP60 ramp and Winu investment returns remain future checkpoints.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -253,14 +374,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -277,10 +390,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

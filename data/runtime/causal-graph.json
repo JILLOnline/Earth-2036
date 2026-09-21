@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-21T20:19:28.586Z",
+  "updatedAt": "2026-09-21T21:19:19.376Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -866,6 +866,18 @@
       "type": "market",
       "label": "DUK structural demand",
       "description": "Duke's regulated grid, generation and storage build links rising electricity demand to transmission/distribution capacity, dispatchable generation and storage; the human need served is reliable, affordable electricity while large-load growth is conditioned on engineering studies and customer protections."
+    },
+    {
+      "id": "company:DVN",
+      "type": "company",
+      "label": "Devon Energy",
+      "description": "Devon's post-Coterra structure links Delaware Basin hydrocarbon resources to owned/partner midstream infrastructure and downstream demand centers; Solitude explicitly targets a Permian gas egress bottleneck with phased capacity from 2029."
+    },
+    {
+      "id": "market:DVN-dvn-structural-demand",
+      "type": "market",
+      "label": "DVN structural demand",
+      "description": "Devon's post-Coterra structure links Delaware Basin hydrocarbon resources to owned/partner midstream infrastructure and downstream demand centers; Solitude explicitly targets a Permian gas egress bottleneck with phased capacity from 2029."
     }
   ],
   "edges": [
@@ -2016,6 +2028,21 @@
       "sourceIds": [
         "issuer:DUK:2026-data-center-framework",
         "issuer:DUK:2026-bess-allen"
+      ],
+      "observedAt": "2026-09-20T05:23:03Z"
+    },
+    {
+      "id": "edge:DVN-structural-exposure",
+      "from": "company:DVN",
+      "to": "market:DVN-dvn-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 65,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:DVN:merger-close:20260507",
+        "issuer:DVN:solitude-fid:20260817"
       ],
       "observedAt": "2026-09-20T05:23:03Z"
     }
@@ -3427,6 +3454,25 @@
       ],
       "observedAt": "2026-09-20T05:23:03Z",
       "thesis": "Duke's regulated grid, generation and storage build links rising electricity demand to transmission/distribution capacity, dispatchable generation and storage; the human need served is reliable, affordable electricity while large-load growth is conditioned on engineering studies and customer protections.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:DVN-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:DVN-dvn-structural-demand",
+      "affectedNodeIds": [
+        "company:DVN"
+      ],
+      "direction": 1,
+      "magnitude": 65,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:DVN:merger-close:20260507",
+        "issuer:DVN:solitude-fid:20260817"
+      ],
+      "observedAt": "2026-09-20T05:23:03Z",
+      "thesis": "Devon's post-Coterra structure links Delaware Basin hydrocarbon resources to owned/partner midstream infrastructure and downstream demand centers; Solitude explicitly targets a Permian gas egress bottleneck with phased capacity from 2029.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

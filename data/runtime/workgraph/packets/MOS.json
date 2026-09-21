@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MOS",
   "workId": "t0:MOS",
-  "generatedAt": "2026-09-21T03:34:29.548Z",
+  "generatedAt": "2026-09-21T04:05:55.234Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-20T23:57:51.001Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-01-21T00:00:00.000Z",
+    "end": "2026-09-21T04:03:23.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T04:03:23.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,55 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/MOS-20260921T040323Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "crop-nutrient essentiality versus input-cost pressure",
+      "operational discipline"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "crop-nutrient essentiality versus input-cost pressure",
+          "direction": "mixed",
+          "basis": "The business supplies essential potash/phosphate inputs, but sulfur-cost inflation was severe enough to curtail SSP production in Brazil."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "operational discipline",
+          "direction": "mixed",
+          "basis": "Curtailment can protect economics but also signals real cost pressure and lost production opportunity."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +118,33 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "crop-nutrient essentiality versus input-cost pressure",
+    "operational discipline"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Sulfur and other input-cost volatility can impair phosphate economics and utilization.",
+        "gating": false
+      },
+      {
+        "risk": "Persistent sulfur inflation could keep assets curtailed or pressure margins after restart.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Sulfur and other input-cost volatility can impair phosphate economics and utilization.",
+      "gating": false
+    },
+    {
+      "risk": "Persistent sulfur inflation could keep assets curtailed or pressure margins after restart.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +152,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +161,68 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "mos-ir:2026-08-27:dividend",
+      "mos-ir:2026-01-21:brazil-curtailment"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://investors.mosaicco.com/press-releases/news-details/2026/MOSAIC-ANNOUNCES-QUARTERLY-DIVIDEND-OF-0-22-PER-SHARE-211991dd8/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-27",
+      "originFingerprint": "mos-ir:2026-08-27:dividend",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.mosaicco.com/press-releases/news-details/2026/Mosaic-Announces-Extension-of-Phosphate-Production-Curtailments-in-Brazil/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-01-21",
+      "originFingerprint": "mos-ir:2026-01-21:brazil-curtailment",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "These sources do not establish current fertilizer pricing, volume or full-quarter profitability.",
+      "gating": false
+    },
+    {
+      "unknown": "Restart timing and realized post-curtailment economics are not established here.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 84,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +236,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +246,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

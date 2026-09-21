@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-21T17:15:49.117Z",
+  "updatedAt": "2026-09-21T18:19:17.410Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -830,6 +830,18 @@
       "type": "market",
       "label": "ISR mine construction",
       "description": "licensed resource development and capital deployment"
+    },
+    {
+      "id": "company:DOV",
+      "type": "company",
+      "label": "Dover Corporation",
+      "description": "Dover has multiple component-level bridges into AI infrastructure: CPC liquid-cooling connectors and SWEP heat exchangers address the rising thermal load created by dense compute, while capacity investment is expanding physical throughput for larger heat-transfer products."
+    },
+    {
+      "id": "market:DOV-higher-thermal-load",
+      "type": "market",
+      "label": "higher thermal load",
+      "description": "increased chip/system power density"
     }
   ],
   "edges": [
@@ -1934,6 +1946,21 @@
         "issuer:DNN:2026Q2results",
         "issuer:DNN:construction:20260728",
         "issuer:DNN:licence:20260219"
+      ],
+      "observedAt": "2026-09-20T04:24:36Z"
+    },
+    {
+      "id": "edge:DOV-structural-exposure",
+      "from": "company:DOV",
+      "to": "market:DOV-higher-thermal-load",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 62,
+      "confidence": 89,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:DOV:CPC:EverisDC:20260722",
+        "issuer:DOV:SWEP:capacity:20260513"
       ],
       "observedAt": "2026-09-20T04:24:36Z"
     }
@@ -3287,6 +3314,25 @@
       ],
       "observedAt": "2026-09-20T04:24:36Z",
       "thesis": "Phoenix links a high-grade Athabasca uranium resource through ISR mining and grid/site infrastructure to nuclear-fuel supply; federal/provincial construction approvals and full-scale construction materially shorten the bridge from resource to usable fuel supply.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:DOV-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:DOV-higher-thermal-load",
+      "affectedNodeIds": [
+        "company:DOV"
+      ],
+      "direction": 1,
+      "magnitude": 62,
+      "confidence": 89,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:DOV:CPC:EverisDC:20260722",
+        "issuer:DOV:SWEP:capacity:20260513"
+      ],
+      "observedAt": "2026-09-20T04:24:36Z",
+      "thesis": "Dover has multiple component-level bridges into AI infrastructure: CPC liquid-cooling connectors and SWEP heat exchangers address the rising thermal load created by dense compute, while capacity investment is expanding physical throughput for larger heat-transfer products.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

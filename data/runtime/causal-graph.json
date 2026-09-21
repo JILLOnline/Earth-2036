@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-21T18:19:17.410Z",
+  "updatedAt": "2026-09-21T19:36:53.280Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -842,6 +842,18 @@
       "type": "market",
       "label": "higher thermal load",
       "description": "increased chip/system power density"
+    },
+    {
+      "id": "company:SPOT",
+      "type": "company",
+      "label": "Spotify Technology S.A.",
+      "description": "Spotify sits between global audio demand and concentrated rights-holder supply: scale, discovery and personalization can improve matching and monetization, but most streamed content remains licensed from third parties and major-label content represented about 72% of label-delivered audio streams in 2025."
+    },
+    {
+      "id": "market:SPOT-spotify-engagement-and-subscriber-scale",
+      "type": "market",
+      "label": "Spotify engagement and subscriber scale",
+      "description": "catalog access plus personalization reduces search/discovery friction"
     }
   ],
   "edges": [
@@ -1963,6 +1975,22 @@
         "issuer:DOV:SWEP:capacity:20260513"
       ],
       "observedAt": "2026-09-20T04:24:36Z"
+    },
+    {
+      "id": "edge:SPOT-structural-exposure",
+      "from": "company:SPOT",
+      "to": "market:SPOT-spotify-engagement-and-subscriber-scale",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 46,
+      "confidence": 90,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:SPOT:2025-20F",
+        "sec:SPOT:2026Q1-6K",
+        "issuer:SPOT:2026Q2"
+      ],
+      "observedAt": "2026-09-21T18:27:49Z"
     }
   ],
   "structuralSignals": [
@@ -3334,6 +3362,26 @@
       "observedAt": "2026-09-20T04:24:36Z",
       "thesis": "Dover has multiple component-level bridges into AI infrastructure: CPC liquid-cooling connectors and SWEP heat exchangers address the rising thermal load created by dense compute, while capacity investment is expanding physical throughput for larger heat-transfer products.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:SPOT-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:SPOT-spotify-engagement-and-subscriber-scale",
+      "affectedNodeIds": [
+        "company:SPOT"
+      ],
+      "direction": 1,
+      "magnitude": 46,
+      "confidence": 90,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:SPOT:2025-20F",
+        "sec:SPOT:2026Q1-6K",
+        "issuer:SPOT:2026Q2"
+      ],
+      "observedAt": "2026-09-21T18:27:49Z",
+      "thesis": "Spotify sits between global audio demand and concentrated rights-holder supply: scale, discovery and personalization can improve matching and monetization, but most streamed content remains licensed from third parties and major-label content represented about 72% of label-delivered audio streams in 2025.",
+      "falsifier": "engagement or paid conversion weakens despite continued product expansion"
     }
   ],
   "roadmapMilestones": [

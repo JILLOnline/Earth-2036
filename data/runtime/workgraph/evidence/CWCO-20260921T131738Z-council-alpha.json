@@ -1,0 +1,87 @@
+[
+  {
+    "version": 2,
+    "contract": "workgraph-v2-specialist-evidence",
+    "ticker": "CWCO",
+    "entityId": "CWCO",
+    "workId": "t0:CWCO",
+    "cycleKey": "20260921T1000Z",
+    "role": "council-alpha",
+    "perspective": "source-integrity",
+    "generatedAt": "2026-09-21T13:17:38Z",
+    "claims": [
+      {"claim":"Identity/tradability is validated as Consolidated Water Co. Ltd., NASDAQ:CWCO, CIK 0000928340; cumulative specialist evidence resolves to one primary SEC origin for the operating claims, with duplicate-origin reuse explicitly collapsed.","status":"supported"},
+      {"claim":"The August 10, 2026 SEC-filed Q2 release is primary and current enough for the T0 evidence window; current market valuation was separately checked against a September 19, 2026 market-data source rather than inferred from the issuer filing.","status":"supported"}
+    ],
+    "sources": [
+      {"sourceId":"sec:CWCO:8K:2026Q2results","url":"https://www.sec.gov/Archives/edgar/data/928340/000110465926093477/cwco-20260810xex99d1.htm","kind":"primary","primary":true,"publishedAt":"2026-08-10","originFingerprint":"sec:CIK928340:8K-EX99.1:20260810"},
+      {"sourceId":"market:CWCO:stocktitan:20260919","url":"https://www.stocktitan.net/news/CWCO/","kind":"independent-market","primary":false,"publishedAt":"2026-09-19","originFingerprint":"stocktitan:CWCO:market:20260919"}
+    ],
+    "affectedMethodologyFactors":["marketValuationOpportunity","financialOperatingMomentum","catalystScore","alignment2036"],
+    "risks":[{"risk":"Most operating assertions in the cumulative packet still trace to one issuer/SEC origin; independence is adequate for market-price context but limited for issuer operating claims.","gating":false}],
+    "contradictions":[],
+    "unknowns":[{"unknown":"No independently originated post-Q2 operating confirmation was located in this bounded closure pass.","gating":false}],
+    "gatingIssues":[],
+    "confidence":82,
+    "recommendedNextState":"packet_ready",
+    "recommendedOwner":"machine",
+    "lineage":{"supersedes":null,"inputEvidence":["data/runtime/workgraph/evidence/CWCO-20260919T130745Z-earth-scout.json","data/runtime/workgraph/evidence/CWCO-20260920T032431Z-council-beta.json"],"methodology":"config/methodology-1.0.json@1.0.0","calibrationVersion":"1.0.0-calibration-a"}
+  },
+  {
+    "version": 2,
+    "contract": "workgraph-v2-specialist-evidence",
+    "ticker": "CWCO",
+    "entityId": "CWCO",
+    "workId": "t0:CWCO",
+    "cycleKey": "20260921T1000Z",
+    "role": "council-alpha",
+    "perspective": "company-underwriting",
+    "generatedAt": "2026-09-21T13:17:38Z",
+    "claims":[
+      {"claim":"Q2 2026 revenue was $32.9M, down 2% year over year, while bulk revenue rose 20% to $9.9M; this supports mixed rather than strong current operating momentum.","status":"supported"},
+      {"claim":"The company disclosed a 25-year Grand Cayman concession, a second Cat Island desalination plant, a limited notice to proceed for long-lead equipment on the $204M Kalaeloa project, and $10.1M of Florida municipal equipment orders, supporting durable water-demand exposure and identifiable catalysts while preserving execution uncertainty.","status":"supported"},
+      {"claim":"At approximately $28.20 per share and about $451.6M market capitalization on September 19, 2026, valuation is not demonstrably distressed relative to trailing earnings/revenue; the valuation component is therefore held in the mixed band rather than treated as favorable by default.","status":"supported"}
+    ],
+    "sources":[
+      {"sourceId":"sec:CWCO:8K:2026Q2results","url":"https://www.sec.gov/Archives/edgar/data/928340/000110465926093477/cwco-20260810xex99d1.htm","kind":"primary","primary":true,"publishedAt":"2026-08-10","originFingerprint":"sec:CIK928340:8K-EX99.1:20260810"},
+      {"sourceId":"market:CWCO:stocktitan:20260919","url":"https://www.stocktitan.net/news/CWCO/","kind":"independent-market","primary":false,"publishedAt":"2026-09-19","originFingerprint":"stocktitan:CWCO:market:20260919"}
+    ],
+    "affectedMethodologyFactors":["thesisQuality","financialOperatingMomentum","marketValuationOpportunity","catalystScore","governancePower","alignment2036","crossDivisionLeverage","bottleneckControl","scenarioRobustness","substitutionResilience","supplyChainResilience","pricingPower"],
+    "risks":[{"risk":"Large-project timing, permitting and authorization can delay revenue conversion; consolidated revenue was still down year over year in Q2.","gating":false},{"risk":"Operating-source independence is limited because the current cumulative operating record is primarily one SEC-filed issuer release.","gating":false}],
+    "contradictions":[],
+    "unknowns":[{"unknown":"Full Kalaeloa authorization, construction timing and realized margins remain contingent.","gating":false},{"unknown":"Detailed supplier redundancy and current board incentive alignment were not independently established in this bounded pass; scores are conservatively capped rather than assumed favorable.","gating":false}],
+    "gatingIssues":[],
+    "confidence":76,
+    "recommendedNextState":"packet_ready",
+    "recommendedOwner":"machine",
+    "calibrationVersion":"1.0.0-calibration-a",
+    "scoreRecord":{
+      "ticker":"CWCO","company":"Consolidated Water Co. Ltd.","methodologyVersion":"1.0.0","calibrationVersion":"1.0.0-calibration-a","earthScore":59.2,"risk":42,"dataConfidence":76,
+      "thesisQuality":70,"financialOperatingMomentum":58,"marketValuationOpportunity":55,"catalystScore":72,"governancePower":55,"alignment2036":82,"crossDivisionLeverage":70,"bottleneckControl":65,"scenarioRobustness":68,"substitutionResilience":68,"supplyChainResilience":55,"pricingPower":62,
+      "factorEvidence":{
+        "thesisQuality":{"numericAssessment":70,"basis":"Long-duration concessions plus desalination/treatment demand demonstrate real adoption and durable need, but current revenue conversion remains lumpy.","sourceIds":["sec:CWCO:8K:2026Q2results"]},
+        "financialOperatingMomentum":{"numericAssessment":58,"basis":"Q2 revenue fell 2% while bulk revenue rose 20%; liquidity/project runway is constructive but broad acceleration is not yet demonstrated.","sourceIds":["sec:CWCO:8K:2026Q2results"]},
+        "marketValuationOpportunity":{"numericAssessment":55,"basis":"September 19 market data showed about $28.20/share and $451.6M market cap; trailing valuation is neither clearly distressed nor defensibly extreme on available evidence.","sourceIds":["market:CWCO:stocktitan:20260919"]},
+        "catalystScore":{"numericAssessment":72,"basis":"Kalaeloa long-lead procurement, Florida $10.1M orders, Cat Island commissioning and the 25-year concession are identifiable catalysts, but full Hawaii authorization/timing remains contingent.","sourceIds":["sec:CWCO:8K:2026Q2results"]},
+        "governancePower":{"numericAssessment":55,"basis":"Current primary disclosure is reproducible and management is executing multiple projects, but this pass lacks enough independent incentive/capital-allocation evidence for a strong band.","sourceIds":["sec:CWCO:8K:2026Q2results"]},
+        "alignment2036":{"numericAssessment":82,"basis":"Desalination, reuse and municipal treatment directly address durable freshwater scarcity and infrastructure resilience across multiple geographies.","sourceIds":["sec:CWCO:8K:2026Q2results"]},
+        "crossDivisionLeverage":{"numericAssessment":70,"basis":"Caribbean concessions/bulk operations and U.S. municipal design/equipment projects provide several demand channels using related water-treatment capability.","sourceIds":["sec:CWCO:8K:2026Q2results"]},
+        "bottleneckControl":{"numericAssessment":65,"basis":"Long-duration concessions and specialized membrane/desalination capability create meaningful constraint participation, but evidence does not establish an irreplaceable system bottleneck.","sourceIds":["sec:CWCO:8K:2026Q2results"]},
+        "scenarioRobustness":{"numericAssessment":68,"basis":"Geographic and project-type diversification improves resilience, offset by project timing/permitting and lumpy large-project exposure.","sourceIds":["sec:CWCO:8K:2026Q2results"]},
+        "substitutionResilience":{"numericAssessment":68,"basis":"Specialized desalination and membrane-treatment execution plus long operating contracts create moderate replacement barriers, without evidence of no practical substitutes.","sourceIds":["sec:CWCO:8K:2026Q2results"]},
+        "supplyChainResilience":{"numericAssessment":55,"basis":"Early procurement of long-lead Kalaeloa equipment shows active lead-time management, but supplier redundancy/geographic sourcing was not established.","sourceIds":["sec:CWCO:8K:2026Q2results"]},
+        "pricingPower":{"numericAssessment":62,"basis":"Long-duration concession/operating structures support some economic durability, but current evidence does not establish broad scarcity pricing or cycle-proof pass-through.","sourceIds":["sec:CWCO:8K:2026Q2results"]}
+      },
+      "riskEvidence":{"numericAssessment":42,"basis":"Execution risk is moderate: large-project authorization/permitting can slip and Q2 consolidated revenue declined despite stronger bulk activity.","sourceIds":["sec:CWCO:8K:2026Q2results"]},
+      "dataConfidenceEvidence":{"numericAssessment":76,"basis":"Identity and primary SEC lineage are reproducible and current market context is independently sourced; confidence is capped because most operating claims share one issuer origin and governance/supplier detail is limited.","sourceIds":["sec:CWCO:8K:2026Q2results","market:CWCO:stocktitan:20260919"]},
+      "primarySourceUrls":["https://www.sec.gov/Archives/edgar/data/928340/000110465926093477/cwco-20260810xex99d1.htm"],
+      "independentSourceUrls":["https://www.stocktitan.net/news/CWCO/"],
+      "causalMapped":true,
+      "thesis":"Specialized desalination and water-treatment capabilities, long-duration concessions and a widening U.S./Caribbean project set position CWCO for durable water-scarcity infrastructure demand, with value realization dependent on disciplined conversion of large projects into revenue and margins.",
+      "keyRisk":"Large-project permitting/authorization delays and lumpy conversion can keep revenue growth below the opportunity implied by announced awards.",
+      "nextCatalyst":"Further Kalaeloa authorization/construction progression and conversion of Florida/Cat Island awards into reported revenue.",
+      "scoreBreakdown":{"weightedComponentScore":65.92,"riskPenaltyWeight":0.16,"riskPenalty":6.72,"preConfidenceScore":59.2,"earthScore":59.2,"note":"Component weights and risk penalty follow Methodology 1.0; confidence is separately recorded and is not used here to manufacture a higher score."}
+    },
+    "lineage":{"supersedes":null,"inputEvidence":["data/runtime/workgraph/evidence/CWCO-20260919T130745Z-earth-scout.json","data/runtime/workgraph/evidence/CWCO-20260920T032431Z-council-beta.json"],"methodology":"config/methodology-1.0.json@1.0.0","calibrationVersion":"1.0.0-calibration-a"}
+  }
+]

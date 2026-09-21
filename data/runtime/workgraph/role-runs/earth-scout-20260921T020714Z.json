@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "contract": "workgraph-v2-role-run",
+  "role": "earth-scout",
+  "generatedAt": "2026-09-21T02:07:14Z",
+  "startingGitHead": "bbfdfec2e295e53abfccff39ad66310bb7b88ad1",
+  "companiesInspected": ["MA", "LLY", "LMT", "LNG", "MCHP", "MDB"],
+  "evidencePairsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [
+    {
+      "requestId": "assist:MU:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "a432b0751f9ccfcf0ea3",
+      "outcome": "not_retried_unchanged_failed_input",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": [
+        "data/runtime/workgraph/assist-bus.json priorAttempt inspected; identical input signature already failed unchanged, so no repeated browsing under workforce/learning contract"
+      ]
+    }
+  ],
+  "result": "blocked_by_reconciler_ingestion_mismatch_no_duplicate_evidence_created",
+  "blockers": [
+    "The ranked Scout queue still reports both owned specialist perspectives missing for MA, LLY, LMT, LNG, MCHP and MDB even though each has a latest cumulative earth-scout artifact whose perspectives are explicitly complete.",
+    "Direct packet validation on MA confirms the ingestion defect: evidencePaths includes data/runtime/workgraph/evidence/MA-20260920T200612Z-earth-scout.json and packet factors/risks/sources were ingested, yet specialistCoverage.present and perspectives remain empty and the same Scout failures are routed again.",
+    "Producing another semantically duplicate Scout artifact would increase artifact count without reducing uncertainty or changing the packet input, violating the operational learning rule that activity is not progress."
+  ],
+  "repeatedBlocker": true,
+  "changedStrategy": "Validated the repeated blocker against the fresh 01:38Z routing/packet state and compared the packet directly with its latest cumulative Scout artifact. This isolates the failure more precisely to specialist-perspective/primary-source classification ingestion rather than missing Scout research. No low-value browsing or duplicate evidence was performed.",
+  "recommendedSystemAction": "Repair deterministic workgraph reconciliation so valid earth-scout perspectives and primary company/IR sources are recognized from cumulative evidence, then reroute. Preserve existing immutable evidence; do not require Scout to regenerate identical artifacts merely to satisfy the parser.",
+  "evidenceChecked": [
+    "data/runtime/workgraph/evidence/MA-20260920T200612Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/LLY-20260920T200613Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/LMT-20260920T200614Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/LNG-20260920T200615Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/MCHP-20260920T200616Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/MDB-20260920T200617Z-earth-scout.json",
+    "data/runtime/workgraph/packets/MA.json"
+  ]
+}

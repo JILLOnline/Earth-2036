@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "OUST",
   "workId": "t0:OUST",
-  "generatedAt": "2026-09-21T07:34:42.868Z",
+  "generatedAt": "2026-09-21T08:04:35.077Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T06:31:43.015Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-02-09T00:00:00.000Z",
+    "end": "2026-09-21T08:03:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T08:03:00.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,67 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/OUST-20260921T0803Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "physical-AI platform breadth",
+      "robotics/heavy-industry pull",
+      "product growth",
+      "profitability conversion"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "physical-AI platform breadth",
+          "direction": "positive",
+          "basis": "Combined lidar, vision, compute and perception software expands the addressable sensing stack."
+        },
+        {
+          "name": "robotics/heavy-industry pull",
+          "direction": "positive",
+          "basis": "AIM agreement provides application-level evidence in autonomous heavy equipment."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "product growth",
+          "direction": "positive",
+          "basis": "55% year-over-year product revenue growth and higher unit shipments show operating demand expansion."
+        },
+        {
+          "name": "profitability conversion",
+          "direction": "mixed",
+          "basis": "Gross margin improved year over year while adjusted EBITDA remained negative."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +130,35 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "physical-AI platform breadth",
+    "robotics/heavy-industry pull",
+    "product growth",
+    "profitability conversion"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Acquisition integration and multi-sensor platform complexity can raise execution costs and dilute focus.",
+        "gating": false
+      },
+      {
+        "risk": "Prior-quarter royalty revenue was largely one-time, so headline sequential revenue comparisons can misstate underlying product trajectory.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Acquisition integration and multi-sensor platform complexity can raise execution costs and dilute focus.",
+      "gating": false
+    },
+    {
+      "risk": "Prior-quarter royalty revenue was largely one-time, so headline sequential revenue comparisons can misstate underlying product trajectory.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +166,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 3
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +175,77 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 3,
     "duplicatesCollapsed": 0,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "ouster-ir:2026-02-09:stereolabs-close",
+      "ouster-ir:2026-06-17:aim-agreement",
+      "ouster-ir:2026-05-05:q1-2026-results"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://investors.ouster.com/news-releases/news-release-details/ouster-acquires-stereolabs-creating-world-leading-physical-ai",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-09",
+      "originFingerprint": "ouster-ir:2026-02-09:stereolabs-close",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.ouster.com/news-releases/news-release-details/ouster-and-aim-intelligent-machines-announce-strategic-agreement",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-06-17",
+      "originFingerprint": "ouster-ir:2026-06-17:aim-agreement",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.ouster.com/news-releases/news-release-details/ouster-announces-results-first-quarter-2026",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-05",
+      "originFingerprint": "ouster-ir:2026-05-05:q1-2026-results",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Revenue scale and margins attributable to StereoLabs after integration are not isolated in these sources.",
+      "gating": false
+    },
+    {
+      "unknown": "Later-quarter profitability and integration outcomes require newer financial evidence from Alpha.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +259,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +269,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

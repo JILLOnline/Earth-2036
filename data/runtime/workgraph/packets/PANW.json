@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "PANW",
   "workId": "t0:PANW",
-  "generatedAt": "2026-09-21T07:34:42.869Z",
+  "generatedAt": "2026-09-21T08:04:35.078Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T06:31:43.015Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-02-11T00:00:00.000Z",
+    "end": "2026-09-21T08:03:20.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T08:03:20.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,67 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/PANW-20260921T0803Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "agentic-security surface expansion",
+      "platform integration burden",
+      "platform execution",
+      "long-range expectation burden"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "agentic-security surface expansion",
+          "direction": "positive",
+          "basis": "Multiple acquisitions cover gateway, endpoint, identity and operational-agent workflows."
+        },
+        {
+          "name": "platform integration burden",
+          "direction": "mixed",
+          "basis": "Rapid acquisition-led breadth creates meaningful integration and execution requirements."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "platform execution",
+          "direction": "positive",
+          "basis": "Large net-new NGS ARR and broad platform strength are current operating evidence supporting platformization."
+        },
+        {
+          "name": "long-range expectation burden",
+          "direction": "mixed",
+          "basis": "Explicit FY28 margin and FY30 ARR targets raise the standard for sustained execution."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +130,35 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "agentic-security surface expansion",
+    "platform integration burden",
+    "platform execution",
+    "long-range expectation burden"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Acquisition breadth can create product overlap, integration cost and execution complexity.",
+        "gating": false
+      },
+      {
+        "risk": "Strong AI-security expectations and acquisition activity increase disappointment risk if cross-sell, integration or margins lag targets.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Acquisition breadth can create product overlap, integration cost and execution complexity.",
+      "gating": false
+    },
+    {
+      "risk": "Strong AI-security expectations and acquisition activity increase disappointment risk if cross-sell, integration or margins lag targets.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +166,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 5
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +175,95 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
+    "rawSourceCount": 5,
+    "uniqueSourceCount": 5,
     "duplicatesCollapsed": 0,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "panw-ir:2026-09-01:console",
+      "panw-ir:2026-05-29:portkey-close",
+      "panw-ir:2026-04-14:koi-close",
+      "panw-ir:2026-02-11:cyberark-close",
+      "panw-ir:2026-09-01:fy2026-results"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://investors.paloaltonetworks.com/news-releases/news-release-details/palo-alto-networks-acquires-console-agentify-security",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-01",
+      "originFingerprint": "panw-ir:2026-09-01:console",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.paloaltonetworks.com/news-releases/news-release-details/palo-alto-networks-completes-acquisition-portkey-secure-ai",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-29",
+      "originFingerprint": "panw-ir:2026-05-29:portkey-close",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.paloaltonetworks.com/news-releases/news-release-details/palo-alto-networks-completes-acquisition-koi-secure-agentic",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-04-14",
+      "originFingerprint": "panw-ir:2026-04-14:koi-close",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.paloaltonetworks.com/news-releases/news-release-details/palo-alto-networks-completes-acquisition-cyberark-secure--ai-era",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-11",
+      "originFingerprint": "panw-ir:2026-02-11:cyberark-close",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.paloaltonetworks.com/news-releases/news-release-details/palo-alto-networks-reports-fiscal-fourth-quarter-and-fiscal-10",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-01",
+      "originFingerprint": "panw-ir:2026-09-01:fy2026-results",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Incremental revenue and retention attributable to each acquired agentic-security capability are not separately established here.",
+      "gating": false
+    },
+    {
+      "unknown": "Scout does not infer valuation attractiveness from operating execution alone.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 94,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +277,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +287,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

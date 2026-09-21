@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "PATH",
   "workId": "t0:PATH",
-  "generatedAt": "2026-09-21T07:34:42.863Z",
+  "generatedAt": "2026-09-21T08:04:35.071Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T06:31:43.015Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-09-03T00:00:00.000Z",
+    "end": "2026-09-21T08:03:40.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T08:03:40.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,67 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/PATH-20260921T0803Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "agentic orchestration demand",
+      "enterprise governance differentiation",
+      "operating discipline",
+      "near-term expectation checkpoint"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "agentic orchestration demand",
+          "direction": "positive",
+          "basis": "Double-digit ARR growth accompanies a product strategy centered on governed orchestration of agents and automation."
+        },
+        {
+          "name": "enterprise governance differentiation",
+          "direction": "positive",
+          "basis": "Deterministic automation plus orchestration targets a practical control gap as enterprises deploy autonomous agents."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "operating discipline",
+          "direction": "positive",
+          "basis": "Positive GAAP operating income alongside growth provides stronger execution evidence than growth without operating profitability."
+        },
+        {
+          "name": "near-term expectation checkpoint",
+          "direction": "mixed",
+          "basis": "Investor Day may clarify adoption and targets, but future disclosures must not be inferred before publication."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +130,35 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "agentic orchestration demand",
+    "enterprise governance differentiation",
+    "operating discipline",
+    "near-term expectation checkpoint"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Agentic-automation market positioning is competitive and platform differentiation must convert into durable retention and expansion.",
+        "gating": false
+      },
+      {
+        "risk": "Leadership changes announced with Q2 results add execution-transition risk even while operating metrics improve.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Agentic-automation market positioning is competitive and platform differentiation must convert into durable retention and expansion.",
+      "gating": false
+    },
+    {
+      "risk": "Leadership changes announced with Q2 results add execution-transition risk even while operating metrics improve.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +166,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +175,68 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "uipath-sec:2026-09-03:q2-fy2027-results",
+      "uipath-ir:2026-09-21:event-calendar"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://ir.uipath.com/financials/sec-filings/content/0001734722-26-000047/path-2026731xex991.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-03",
+      "originFingerprint": "uipath-sec:2026-09-03:q2-fy2027-results",
+      "sourceId": null
+    },
+    {
+      "url": "https://ir.uipath.com/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-21",
+      "originFingerprint": "uipath-ir:2026-09-21:event-calendar",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "The cited release does not isolate ARR contribution from agentic products versus the broader automation portfolio.",
+      "gating": false
+    },
+    {
+      "unknown": "September 22 Investor Day disclosures are not yet available and are not anticipated as facts.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +250,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +260,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

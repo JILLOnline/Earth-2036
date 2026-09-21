@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "PCG",
   "workId": "t0:PCG",
-  "generatedAt": "2026-09-21T07:34:42.865Z",
+  "generatedAt": "2026-09-21T08:04:35.073Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T06:31:43.015Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-05-01T00:00:00.000Z",
+    "end": "2026-09-21T08:04:20.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T08:04:20.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,73 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/PCG-20260921T0804Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "AI/data-center load growth",
+      "grid intelligence",
+      "financial execution",
+      "wildfire mitigation delivery",
+      "regulatory/capital burden"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "AI/data-center load growth",
+          "direction": "positive",
+          "basis": "A >12 GW pipeline is a material emerging demand signal for utility infrastructure if projects convert under appropriate tariffs."
+        },
+        {
+          "name": "grid intelligence",
+          "direction": "positive",
+          "basis": "Sensor and ML deployment has company-reported operational outcomes in ignition and outage avoidance."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "financial execution",
+          "direction": "positive",
+          "basis": "Year-over-year earnings improvement and reaffirmed guidance support current plan execution."
+        },
+        {
+          "name": "wildfire mitigation delivery",
+          "direction": "positive",
+          "basis": "Physical undergrounding and covered-line milestones provide measurable execution evidence."
+        },
+        {
+          "name": "regulatory/capital burden",
+          "direction": "mixed",
+          "basis": "Large infrastructure investment depends on regulatory recovery, financing and customer affordability."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +136,44 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "AI/data-center load growth",
+    "grid intelligence",
+    "financial execution",
+    "wildfire mitigation delivery",
+    "regulatory/capital burden"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Data-center pipeline is not equivalent to contracted energized load; interconnection, generation, transmission, tariff and permitting constraints can reduce conversion.",
+        "gating": false
+      },
+      {
+        "risk": "Wildfire exposure remains a high-materiality operational and financial risk despite mitigation progress.",
+        "gating": false
+      },
+      {
+        "risk": "Wildfire Fund expense, regulatory outcomes and financing costs remain material to realized shareholder economics.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Data-center pipeline is not equivalent to contracted energized load; interconnection, generation, transmission, tariff and permitting constraints can reduce conversion.",
+      "gating": false
+    },
+    {
+      "risk": "Wildfire exposure remains a high-materiality operational and financial risk despite mitigation progress.",
+      "gating": false
+    },
+    {
+      "risk": "Wildfire Fund expense, regulatory outcomes and financing costs remain material to realized shareholder economics.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +181,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +190,68 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "pcg-ir:2026-07-23:q2-results",
+      "pcg-ir:2026-05-01:continuous-monitoring-center"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://investor.pgecorp.com/news-events/press-releases/press-release-details/2026/PGE-Corporation-Reports-Second-Quarter-2026-Results-On-Track-to-Deliver-Solid-2026/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-23",
+      "originFingerprint": "pcg-ir:2026-07-23:q2-results",
+      "sourceId": null
+    },
+    {
+      "url": "https://investor.pgecorp.com/news-events/press-releases/press-release-details/2026/PGE-Unveils-First-of-its-kind-Monitoring-Hub-That-Helped-Prevent-17-Wildfires-and-Over-a-Thousand-Outages/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-01",
+      "originFingerprint": "pcg-ir:2026-05-01:continuous-monitoring-center",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Conversion timing and firm contractual status of the >12 GW pipeline are not established in the cited release.",
+      "gating": false
+    },
+    {
+      "unknown": "Future wildfire frequency/severity and regulatory treatment cannot be inferred from current mitigation milestones.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +265,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +275,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "STEM",
   "workId": "t0:STEM",
-  "generatedAt": "2026-09-21T20:20:02.949Z",
+  "generatedAt": "2026-09-21T20:28:51.599Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-12T00:00:00.000Z",
-    "end": "2026-09-21T19:22:17.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T19:22:17.000Z"
+    "end": "2026-09-21T20:26:45.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T20:26:45.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,33 +32,36 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/STEM-20260921T140443Z-earth-scout.json",
     "data/runtime/workgraph/evidence/STEM-20260921T150611Z-earth-scout.json",
     "data/runtime/workgraph/evidence/STEM-20260921T180758Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/STEM-20260921T192217Z-council-beta.json"
+    "data/runtime/workgraph/evidence/STEM-20260921T202645Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
-      "data/runtime/workgraph/evidence/STEM-20260921T170237Z-earth-scout.json"
+      "data/runtime/workgraph/evidence/STEM-20260921T170237Z-earth-scout.json",
+      "data/runtime/workgraph/evidence/STEM-20260921T192217Z-council-beta.json"
     ],
     "resolvedGateKinds": [],
     "activeEvidenceCount": 8,
-    "historicalEvidenceCount": 10
+    "historicalEvidenceCount": 12
   },
   "factorEvidence": {
     "names": [
@@ -71,18 +74,41 @@
       "financialOperatingMomentum",
       "catalystScore",
       "alignment2036",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "alignment2036",
+          "direction": "positive",
+          "basis": "Optimization can improve utilization of distributed storage/renewables."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Software mix reduces hardware exposure but transition credibility depends on recurring conversion and cash durability."
+        }
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "catalystScore",
         "alignment2036"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "financialOperatingMomentum",
+          "direction": "mixed",
+          "basis": "Margin/bookings improvement coexists with lower revenue and negative GAAP earnings."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "mixed",
+          "basis": "Adjusted profitability requires confirmation in GAAP/cash outcomes."
+        }
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness"
@@ -136,7 +162,8 @@
     "financialOperatingMomentum",
     "catalystScore",
     "alignment2036",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -159,6 +186,14 @@
       },
       {
         "risk": "Net loss remains negative despite adjusted EBITDA progress.",
+        "gating": false
+      },
+      {
+        "risk": "Hardware retreat without sufficient recurring software conversion can shrink scale and cash generation.",
+        "gating": false
+      },
+      {
+        "risk": "Liquidity/financing and competitive substitution can constrain the transition.",
         "gating": false
       }
     ]
@@ -183,6 +218,14 @@
     {
       "risk": "Net loss remains negative despite adjusted EBITDA progress.",
       "gating": false
+    },
+    {
+      "risk": "Hardware retreat without sufficient recurring software conversion can shrink scale and cash generation.",
+      "gating": false
+    },
+    {
+      "risk": "Liquidity/financing and competitive substitution can constrain the transition.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -196,10 +239,48 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "distributed storage/renewables growth",
+        "to": "optimization demand",
+        "mechanism": "more distributed assets increase dispatch and asset-management complexity",
+        "falsifier": "OEM-native/in-house controls displace third-party optimization or recurring demand fails to grow"
+      },
+      {
+        "from": "software controls",
+        "to": "asset utilization/reliability",
+        "mechanism": "forecasting and dispatch can improve operating outcomes",
+        "falsifier": "customer retention/conversion fails to validate economic value"
+      },
+      {
+        "from": "legacy hardware decline",
+        "to": "revenue/cash scale",
+        "mechanism": "shrinking legacy contribution must be replaced by recurring software economics",
+        "falsifier": "recurring software growth, retention and cash generation sustainably offset the decline"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "distributed storage/renewables growth",
+      "to": "optimization demand",
+      "mechanism": "more distributed assets increase dispatch and asset-management complexity",
+      "falsifier": "OEM-native/in-house controls displace third-party optimization or recurring demand fails to grow"
+    },
+    {
+      "from": "software controls",
+      "to": "asset utilization/reliability",
+      "mechanism": "forecasting and dispatch can improve operating outcomes",
+      "falsifier": "customer retention/conversion fails to validate economic value"
+    },
+    {
+      "from": "legacy hardware decline",
+      "to": "revenue/cash scale",
+      "mechanism": "shrinking legacy contribution must be replaced by recurring software economics",
+      "falsifier": "recurring software growth, retention and cash generation sustainably offset the decline"
+    }
+  ],
   "sourceLineage": {
     "rawSourceCount": 4,
     "uniqueSourceCount": 1,
@@ -227,6 +308,12 @@
     {
       "contradiction": "Improving margins, bookings and recurring software metrics coexist with declining total revenue.",
       "material": true
+    },
+    {
+      "claim": "Improving margins/bookings coexist with declining total revenue.",
+      "resolution": "Consistent with a mix transition, but remains a material execution test until recurring growth and cash durability are demonstrated.",
+      "resolved": true,
+      "gating": false
     }
   ],
   "contradictionDispositions": {
@@ -239,6 +326,12 @@
       {
         "contradiction": "Improving margins, bookings and recurring software metrics coexist with declining total revenue.",
         "material": true
+      },
+      {
+        "claim": "Improving margins/bookings coexist with declining total revenue.",
+        "resolution": "Consistent with a mix transition, but remains a material execution test until recurring growth and cash durability are demonstrated.",
+        "resolved": true,
+        "gating": false
       }
     ]
   },
@@ -264,26 +357,31 @@
     {
       "unknown": "Independent market-expectations benchmark for reaffirmed guidance is absent from cumulative Scout evidence.",
       "gating": false
+    },
+    {
+      "unknown": "Organic versus acquired ARR contribution and recurring backlog conversion economics.",
+      "gating": false
+    },
+    {
+      "unknown": "Backlog conversion timing, recurring margin, customer concentration and cash-flow durability.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 13
+    "nonGatingCount": 15
   },
   "gatingIssues": [],
-  "confidence": 78,
+  "confidence": 76,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -294,14 +392,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -318,10 +408,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-21T20:20:02.955Z",
+  "generatedAt": "2026-09-21T20:28:51.606Z",
   "canonicalWriteAuthority": false,
   "total": 181,
   "twins": [
@@ -13428,7 +13428,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "SO",
       "workId": "t0:SO",
-      "inputSignature": "2f79ec71b3ce36b4c16e8748",
+      "inputSignature": "a7452f7418a7f7e9ba1bfac8",
       "sourceState": "researching",
       "identity": {
         "ticker": "SO",
@@ -13451,19 +13451,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 2,
         "sourceLineage": {
-          "rawSourceCount": 7,
+          "rawSourceCount": 6,
           "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 5,
+          "duplicatesCollapsed": 4,
           "missingLineage": 0,
           "uniqueOrigins": [
             "southerncompany.com|financials|q2-2026-earnings|2026-08",
@@ -13472,8 +13472,8 @@
         },
         "evidenceWindow": {
           "start": "2026-07-23T00:00:00.000Z",
-          "end": "2026-09-21T19:22:17.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-21T19:22:17.000Z"
+          "end": "2026-09-21T20:26:45.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-21T20:26:45.000Z"
         },
         "preflightPassed": false
       },
@@ -13488,7 +13488,10 @@
         "catalystScore",
         "alignment2036",
         "scenarioRobustness",
-        "crossDivisionLeverage"
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "confidenceInflation",
+        "capitalIntensity"
       ],
       "constraintSignals": {
         "risks": [
@@ -13497,7 +13500,10 @@
           "earnings growth materially outpaced revenue growth, so durability depends on rate recovery, investment returns and non-revenue drivers",
           "large-load buildout remains capital intensive and subject to regulatory/customer-affordability execution",
           "Large-load infrastructure is capital intensive and regulatory/customer-affordability sensitive.",
-          "Project-specific capex, allowed returns and downside protections are not established by cumulative Scout evidence."
+          "Project-specific capex, allowed returns and downside protections are not established by cumulative Scout evidence.",
+          "Large-load capex can create affordability/regulatory pressure if cost allocation is inadequate.",
+          "Load forecasts may arrive late or below plan while capital is committed.",
+          "Affordability or regulatory disallowance can weaken returns."
         ],
         "unknowns": [
           "current load-growth split attributable to data centers versus other demand",
@@ -13505,30 +13511,49 @@
           "portion of forward load growth contractually committed versus prospective",
           "incremental capex and allowed-return economics tied specifically to large-load customers",
           "Share of forward large-load growth contractually committed versus prospective remains unknown.",
-          "Project-specific economics and enforceability of protections require underwriting."
+          "Project-specific economics and enforceability of protections require underwriting.",
+          "Share of forward large-load growth contractually committed and project-specific allowed-return economics.",
+          "Contracted versus prospective large-load mix and project-specific recovery protections."
         ],
         "contradictions": [
           "Historic load-growth narrative coexists with nearly flat Q2 operating revenue year over year; demand thesis should not be inferred from revenue alone.",
           "Strong earnings growth and load-growth narrative coexist with nearly flat reported quarterly revenue.",
-          "Demand-growth narrative is stronger than contemporaneous reported revenue growth."
+          "Demand-growth narrative is stronger than contemporaneous reported revenue growth.",
+          "Historic load-growth narrative versus nearly flat quarterly operating revenue."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
           "missing_data_confidence_evidence",
-          "missing_causal_mapping",
           "unresolved_material_contradiction"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "large-load/electrification demand",
+            "to": "regulated generation/grid investment",
+            "mechanism": "higher system load requires firm power and network capacity",
+            "falsifier": "forecast loads fail to contract/energize or regulators materially disallow recovery"
+          },
+          {
+            "from": "nuclear baseload",
+            "to": "firm power availability",
+            "mechanism": "dispatchable baseload supports reliability for high-load customers",
+            "falsifier": "reliability contribution is offset by material availability/cost failures"
+          },
+          {
+            "from": "forecast load conversion failure",
+            "to": "underutilized infrastructure",
+            "mechanism": "capital deployment precedes realized demand",
+            "falsifier": "firm contracts and energized load consistently match forecasts"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -13539,16 +13564,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -13572,11 +13587,6 @@
           "stance": "improvement-oriented"
         },
         {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
-        },
-        {
           "failure": "unresolved_material_contradiction",
           "question": "Which material contradiction must be reconciled before the representation can advance?",
           "stance": "improvement-oriented"
@@ -13594,7 +13604,10 @@
           "catalystScore",
           "alignment2036",
           "scenarioRobustness",
-          "crossDivisionLeverage"
+          "crossDivisionLeverage",
+          "bottleneckControl",
+          "confidenceInflation",
+          "capitalIntensity"
         ],
         "needOrConstraintCandidates": [
           "current load-growth split attributable to data centers versus other demand",
@@ -13603,12 +13616,17 @@
           "incremental capex and allowed-return economics tied specifically to large-load customers",
           "Share of forward large-load growth contractually committed versus prospective remains unknown.",
           "Project-specific economics and enforceability of protections require underwriting.",
+          "Share of forward large-load growth contractually committed and project-specific allowed-return economics.",
+          "Contracted versus prospective large-load mix and project-specific recovery protections.",
           "capital intensity and regulatory recovery remain material execution dependencies",
           "single official-source pass does not establish demand durability or valuation",
           "earnings growth materially outpaced revenue growth, so durability depends on rate recovery, investment returns and non-revenue drivers",
           "large-load buildout remains capital intensive and subject to regulatory/customer-affordability execution",
           "Large-load infrastructure is capital intensive and regulatory/customer-affordability sensitive.",
-          "Project-specific capex, allowed returns and downside protections are not established by cumulative Scout evidence."
+          "Project-specific capex, allowed returns and downside protections are not established by cumulative Scout evidence.",
+          "Large-load capex can create affordability/regulatory pressure if cost allocation is inadequate.",
+          "Load forecasts may arrive late or below plan while capital is committed.",
+          "Affordability or regulatory disallowance can weaken returns."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -16599,7 +16617,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "SQM",
       "workId": "t0:SQM",
-      "inputSignature": "21f4071f44f1a4777ad54f10",
+      "inputSignature": "f1f2afce870ae566f6a99956",
       "sourceState": "researching",
       "identity": {
         "ticker": "SQM",
@@ -16622,19 +16640,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 1,
         "sourceLineage": {
-          "rawSourceCount": 7,
+          "rawSourceCount": 6,
           "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 5,
+          "duplicatesCollapsed": 4,
           "missingLineage": 0,
           "uniqueOrigins": [
             "ir.sqm.com|2Q2026-earnings|2026-08-18",
@@ -16643,8 +16661,8 @@
         },
         "evidenceWindow": {
           "start": "2026-08-18T00:00:00.000Z",
-          "end": "2026-09-21T19:22:17.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-21T19:22:17.000Z"
+          "end": "2026-09-21T20:26:45.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-21T20:26:45.000Z"
         },
         "preflightPassed": false
       },
@@ -16659,7 +16677,9 @@
         "catalystScore",
         "alignment2036",
         "bottleneckControl",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "pricingPower"
       ],
       "constraintSignals": {
         "risks": [
@@ -16669,7 +16689,9 @@
           "Mt Holland expansion requires substantial multi-year capital before expected 2030 production",
           "BEV growth was slower than expected in the cited quarter",
           "Lithium earnings remain highly cyclical and price-sensitive.",
-          "Current earnings strength may overstate normalized cycle economics."
+          "Current earnings strength may overstate normalized cycle economics.",
+          "Capacity growth can outrun demand and compress lithium economics despite volume growth.",
+          "Commodity-cycle compression and capex/commissioning risk can reduce returns."
         ],
         "unknowns": [
           "incremental capacity and commissioning timetable",
@@ -16678,29 +16700,48 @@
           "normalized lithium price/margin through a full cycle",
           "execution economics and ramp profile for the Mt Holland expansion and Kwinana conversion chain",
           "Normalized lithium price and margin through a full cycle remain unknown.",
-          "Durability of the raised demand outlook if BESS growth slows remains unknown."
+          "Durability of the raised demand outlook if BESS growth slows remains unknown.",
+          "Normalized full-cycle lithium price/margin and project cost-curve position.",
+          "Project funding burden, normalized cost curve and BESS-demand durability."
         ],
         "contradictions": [
           "Very strong current lithium pricing/earnings coexist with management's need for flexible production and a slower BEV growth signal, so current margins should not be extrapolated mechanically.",
-          "Strong pricing and an expectations beat coexist with slower-than-expected BEV growth and management emphasis on production flexibility."
+          "Strong pricing and an expectations beat coexist with slower-than-expected BEV growth and management emphasis on production flexibility.",
+          "Strong realized pricing/earnings coexist with slower BEV growth and production-flexibility emphasis."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
           "missing_data_confidence_evidence",
-          "missing_causal_mapping",
           "unresolved_material_contradiction"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "electrification and BESS deployment",
+            "to": "lithium demand",
+            "mechanism": "battery deployment requires conversion-grade lithium",
+            "falsifier": "demand growth persistently trails supply growth below economic thresholds"
+          },
+          {
+            "from": "new global capacity",
+            "to": "lithium pricing",
+            "mechanism": "supply availability can pressure prices and margins",
+            "falsifier": "demand absorption keeps utilization and pricing structurally healthy"
+          },
+          {
+            "from": "industry capacity expansion",
+            "to": "SQM margins",
+            "mechanism": "supply growth can pressure realized lithium pricing",
+            "falsifier": "sustained demand absorbs new supply while SQM retains low-cost economics"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -16711,16 +16752,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -16744,11 +16775,6 @@
           "stance": "improvement-oriented"
         },
         {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
-        },
-        {
           "failure": "unresolved_material_contradiction",
           "question": "Which material contradiction must be reconciled before the representation can advance?",
           "stance": "improvement-oriented"
@@ -16766,7 +16792,9 @@
           "catalystScore",
           "alignment2036",
           "bottleneckControl",
-          "scenarioRobustness"
+          "scenarioRobustness",
+          "supplyChainResilience",
+          "pricingPower"
         ],
         "needOrConstraintCandidates": [
           "incremental capacity and commissioning timetable",
@@ -16776,13 +16804,17 @@
           "execution economics and ramp profile for the Mt Holland expansion and Kwinana conversion chain",
           "Normalized lithium price and margin through a full cycle remain unknown.",
           "Durability of the raised demand outlook if BESS growth slows remains unknown.",
+          "Normalized full-cycle lithium price/margin and project cost-curve position.",
+          "Project funding burden, normalized cost curve and BESS-demand durability.",
           "new lithium capacity can amplify commodity-cycle exposure if demand/pricing disappoints",
           "single release does not establish project economics, schedule or funding burden",
           "earnings remain highly exposed to lithium price cyclicality",
           "Mt Holland expansion requires substantial multi-year capital before expected 2030 production",
           "BEV growth was slower than expected in the cited quarter",
           "Lithium earnings remain highly cyclical and price-sensitive.",
-          "Current earnings strength may overstate normalized cycle economics."
+          "Current earnings strength may overstate normalized cycle economics.",
+          "Capacity growth can outrun demand and compress lithium economics despite volume growth.",
+          "Commodity-cycle compression and capex/commissioning risk can reduce returns."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -17521,7 +17553,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "STLD",
       "workId": "t0:STLD",
-      "inputSignature": "a2dbd8204a546579ea7928f0",
+      "inputSignature": "549ebb617d32724ae1dabdbc",
       "sourceState": "researching",
       "identity": {
         "ticker": "STLD",
@@ -17544,19 +17576,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 1,
         "sourceLineage": {
-          "rawSourceCount": 8,
+          "rawSourceCount": 7,
           "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 6,
+          "duplicatesCollapsed": 5,
           "missingLineage": 0,
           "uniqueOrigins": [
             "ir.steeldynamics.com|q2-2026-results|2026-07",
@@ -17565,8 +17597,8 @@
         },
         "evidenceWindow": {
           "start": "2026-07-20T00:00:00.000Z",
-          "end": "2026-09-21T19:22:17.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-21T19:22:17.000Z"
+          "end": "2026-09-21T20:26:45.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-21T20:26:45.000Z"
         },
         "preflightPassed": false
       },
@@ -17583,7 +17615,8 @@
         "bottleneckControl",
         "supplyChainResilience",
         "scenarioRobustness",
-        "pricingPower"
+        "pricingPower",
+        "crossDivisionLeverage"
       ],
       "constraintSignals": {
         "risks": [
@@ -17594,7 +17627,9 @@
           "construction and steel demand remain cyclical and policy-sensitive",
           "backlog quality depends on cancellation behavior and margin at conversion",
           "Steel and construction remain cyclical and policy-sensitive.",
-          "Peer strength does not establish STLD-specific backlog margin or cancellation quality."
+          "Peer strength does not establish STLD-specific backlog margin or cancellation quality.",
+          "Input-cost transmission can weaken fabrication economics even when backlog volume is strong.",
+          "Cyclicality, trade-policy sensitivity, backlog quality and aluminum startup execution can weaken returns."
         ],
         "unknowns": [
           "normalized aluminum profitability after ramp",
@@ -17603,30 +17638,49 @@
           "margin embedded in the expanded backlog",
           "share of backlog attributable specifically to data centers versus other end markets",
           "Margin embedded in STLD's expanded fabrication backlog remains unknown.",
-          "Share of backlog attributable specifically to data centers and its margin profile remain unknown."
+          "Share of backlog attributable specifically to data centers and its margin profile remain unknown.",
+          "Margin embedded in fabrication backlog and normalized aluminum economics.",
+          "Backlog cancellation/margin quality, data-center share and normalized aluminum profitability."
         ],
         "contradictions": [
           "Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.",
           "Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.",
-          "Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs."
+          "Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs.",
+          "Strong pricing/backlog coexist with fabrication margin pressure."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
           "missing_data_confidence_evidence",
-          "missing_causal_mapping",
           "unresolved_material_contradiction"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "infrastructure/manufacturing/data-center build",
+            "to": "fabricated steel demand",
+            "mechanism": "construction requires structural steel and fabrication",
+            "falsifier": "backlog cancels or converts at uneconomic margins"
+          },
+          {
+            "from": "recycling integration",
+            "to": "steel input resilience",
+            "mechanism": "scrap access can improve supply control",
+            "falsifier": "scrap/input spreads deteriorate enough to erase integration benefit"
+          },
+          {
+            "from": "higher steel/scrap input costs",
+            "to": "fabrication margins",
+            "mechanism": "cost inflation compresses contract economics unless repricing/pass-through compensates",
+            "falsifier": "sustained pass-through protects margins through input volatility"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -17637,16 +17691,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -17670,11 +17714,6 @@
           "stance": "improvement-oriented"
         },
         {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
-        },
-        {
           "failure": "unresolved_material_contradiction",
           "question": "Which material contradiction must be reconciled before the representation can advance?",
           "stance": "improvement-oriented"
@@ -17694,7 +17733,8 @@
           "bottleneckControl",
           "supplyChainResilience",
           "scenarioRobustness",
-          "pricingPower"
+          "pricingPower",
+          "crossDivisionLeverage"
         ],
         "needOrConstraintCandidates": [
           "normalized aluminum profitability after ramp",
@@ -17704,6 +17744,8 @@
           "share of backlog attributable specifically to data centers versus other end markets",
           "Margin embedded in STLD's expanded fabrication backlog remains unknown.",
           "Share of backlog attributable specifically to data centers and its margin profile remain unknown.",
+          "Margin embedded in fabrication backlog and normalized aluminum economics.",
+          "Backlog cancellation/margin quality, data-center share and normalized aluminum profitability.",
           "steel cycle and trade-policy sensitivity",
           "aluminum startup losses and qualification risk",
           "fabrication margin compression from higher steel inputs",
@@ -17711,7 +17753,9 @@
           "construction and steel demand remain cyclical and policy-sensitive",
           "backlog quality depends on cancellation behavior and margin at conversion",
           "Steel and construction remain cyclical and policy-sensitive.",
-          "Peer strength does not establish STLD-specific backlog margin or cancellation quality."
+          "Peer strength does not establish STLD-specific backlog margin or cancellation quality.",
+          "Input-cost transmission can weaken fabrication economics even when backlog volume is strong.",
+          "Cyclicality, trade-policy sensitivity, backlog quality and aluminum startup execution can weaken returns."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -19001,7 +19045,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "STEM",
       "workId": "t0:STEM",
-      "inputSignature": "067d869cfd75c51532bc1588",
+      "inputSignature": "aa23a213ed021dc932ceb76e",
       "sourceState": "researching",
       "identity": {
         "ticker": "STEM",
@@ -19024,13 +19068,13 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
+          "expectations-execution",
+          "structural-causal",
+          "adversarial-red-team"
         ],
         "missingPerspectives": [
           "source-integrity",
-          "company-underwriting",
-          "structural-causal",
-          "adversarial-red-team"
+          "company-underwriting"
         ],
         "primarySourceCount": 1,
         "sourceLineage": {
@@ -19044,8 +19088,8 @@
         },
         "evidenceWindow": {
           "start": "2026-08-12T00:00:00.000Z",
-          "end": "2026-09-21T19:22:17.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-21T19:22:17.000Z"
+          "end": "2026-09-21T20:26:45.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-21T20:26:45.000Z"
         },
         "preflightPassed": false
       },
@@ -19059,7 +19103,8 @@
         "financialOperatingMomentum",
         "catalystScore",
         "alignment2036",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "confidenceInflation"
       ],
       "constraintSignals": {
         "risks": [
@@ -19070,7 +19115,9 @@
           "cash balance of $38.4M leaves less room for execution error than larger peers",
           "reported net loss remains negative despite adjusted EBITDA progress",
           "Total revenue still contracted year over year and cash remains limited relative to larger peers.",
-          "Net loss remains negative despite adjusted EBITDA progress."
+          "Net loss remains negative despite adjusted EBITDA progress.",
+          "Hardware retreat without sufficient recurring software conversion can shrink scale and cash generation.",
+          "Liquidity/financing and competitive substitution can constrain the transition."
         ],
         "unknowns": [
           "organic versus acquired contribution to ARR",
@@ -19080,30 +19127,49 @@
           "conversion rate/timing of backlog into recurring high-margin revenue",
           "Backlog conversion timing and recurring-margin contribution remain unknown.",
           "Durability of positive operating cash flow across multiple quarters remains unknown.",
-          "Independent market-expectations benchmark for reaffirmed guidance is absent from cumulative Scout evidence."
+          "Independent market-expectations benchmark for reaffirmed guidance is absent from cumulative Scout evidence.",
+          "Organic versus acquired ARR contribution and recurring backlog conversion economics.",
+          "Backlog conversion timing, recurring margin, customer concentration and cash-flow durability."
         ],
         "contradictions": [
           "Growth narrative around software intelligence coexists with explicit 10-K warning that the strategic transition caused disruption and may fail to deliver anticipated benefits.",
           "Improving margins, bookings and recurring software metrics coexist with declining total revenue; turnaround quality depends on sustained software growth rather than hardware-mix contraction alone.",
-          "Improving margins, bookings and recurring software metrics coexist with declining total revenue."
+          "Improving margins, bookings and recurring software metrics coexist with declining total revenue.",
+          "Improving margins/bookings coexist with declining total revenue."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
           "missing_data_confidence_evidence",
-          "missing_causal_mapping",
           "unresolved_material_contradiction"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "distributed storage/renewables growth",
+            "to": "optimization demand",
+            "mechanism": "more distributed assets increase dispatch and asset-management complexity",
+            "falsifier": "OEM-native/in-house controls displace third-party optimization or recurring demand fails to grow"
+          },
+          {
+            "from": "software controls",
+            "to": "asset utilization/reliability",
+            "mechanism": "forecasting and dispatch can improve operating outcomes",
+            "falsifier": "customer retention/conversion fails to validate economic value"
+          },
+          {
+            "from": "legacy hardware decline",
+            "to": "revenue/cash scale",
+            "mechanism": "shrinking legacy contribution must be replaced by recurring software economics",
+            "falsifier": "recurring software growth, retention and cash generation sustainably offset the decline"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -19114,16 +19180,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -19147,11 +19203,6 @@
           "stance": "improvement-oriented"
         },
         {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
-        },
-        {
           "failure": "unresolved_material_contradiction",
           "question": "Which material contradiction must be reconciled before the representation can advance?",
           "stance": "improvement-oriented"
@@ -19168,7 +19219,8 @@
           "financialOperatingMomentum",
           "catalystScore",
           "alignment2036",
-          "scenarioRobustness"
+          "scenarioRobustness",
+          "confidenceInflation"
         ],
         "needOrConstraintCandidates": [
           "organic versus acquired contribution to ARR",
@@ -19179,6 +19231,8 @@
           "Backlog conversion timing and recurring-margin contribution remain unknown.",
           "Durability of positive operating cash flow across multiple quarters remains unknown.",
           "Independent market-expectations benchmark for reaffirmed guidance is absent from cumulative Scout evidence.",
+          "Organic versus acquired ARR contribution and recurring backlog conversion economics.",
+          "Backlog conversion timing, recurring margin, customer concentration and cash-flow durability.",
           "strategy-transition execution risk",
           "large accumulated deficit",
           "guidance remains non-GAAP-heavy and cash-flow range is near breakeven",
@@ -19186,7 +19240,9 @@
           "cash balance of $38.4M leaves less room for execution error than larger peers",
           "reported net loss remains negative despite adjusted EBITDA progress",
           "Total revenue still contracted year over year and cash remains limited relative to larger peers.",
-          "Net loss remains negative despite adjusted EBITDA progress."
+          "Net loss remains negative despite adjusted EBITDA progress.",
+          "Hardware retreat without sufficient recurring software conversion can shrink scale and cash generation.",
+          "Liquidity/financing and competitive substitution can constrain the transition."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

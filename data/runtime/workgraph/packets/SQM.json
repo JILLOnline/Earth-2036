@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SQM",
   "workId": "t0:SQM",
-  "generatedAt": "2026-09-21T20:20:02.948Z",
+  "generatedAt": "2026-09-21T20:28:51.598Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-18T00:00:00.000Z",
-    "end": "2026-09-21T19:22:17.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T19:22:17.000Z"
+    "end": "2026-09-21T20:26:45.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T20:26:45.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,33 +32,36 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/SQM-20260921T140443Z-earth-scout.json",
     "data/runtime/workgraph/evidence/SQM-20260921T150611Z-earth-scout.json",
     "data/runtime/workgraph/evidence/SQM-20260921T180758Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/SQM-20260921T192217Z-council-beta.json"
+    "data/runtime/workgraph/evidence/SQM-20260921T202645Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
-      "data/runtime/workgraph/evidence/SQM-20260921T170237Z-earth-scout.json"
+      "data/runtime/workgraph/evidence/SQM-20260921T170237Z-earth-scout.json",
+      "data/runtime/workgraph/evidence/SQM-20260921T192217Z-council-beta.json"
     ],
     "resolvedGateKinds": [],
     "activeEvidenceCount": 8,
-    "historicalEvidenceCount": 10
+    "historicalEvidenceCount": 12
   },
   "factorEvidence": {
     "names": [
@@ -72,19 +75,43 @@
       "catalystScore",
       "alignment2036",
       "bottleneckControl",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "supplyChainResilience",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "mixed",
+          "basis": "Resource access matters, while conversion economics and demand absorption become successor constraints."
+        },
+        {
+          "name": "supplyChainResilience",
+          "direction": "positive",
+          "basis": "Geographic diversification can reduce single-jurisdiction dependence if projects execute economically."
+        }
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "catalystScore",
         "alignment2036",
         "bottleneckControl"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "pricingPower",
+          "direction": "negative",
+          "basis": "Commodity supply/demand remains a major determinant of realized economics."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "BESS can diversify demand while oversupply and project execution remain material."
+        }
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -140,7 +167,9 @@
     "catalystScore",
     "alignment2036",
     "bottleneckControl",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "supplyChainResilience",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -161,6 +190,14 @@
       },
       {
         "risk": "Current earnings strength may overstate normalized cycle economics.",
+        "gating": false
+      },
+      {
+        "risk": "Capacity growth can outrun demand and compress lithium economics despite volume growth.",
+        "gating": false
+      },
+      {
+        "risk": "Commodity-cycle compression and capex/commissioning risk can reduce returns.",
         "gating": false
       }
     ]
@@ -183,6 +220,14 @@
     {
       "risk": "Current earnings strength may overstate normalized cycle economics.",
       "gating": false
+    },
+    {
+      "risk": "Capacity growth can outrun demand and compress lithium economics despite volume growth.",
+      "gating": false
+    },
+    {
+      "risk": "Commodity-cycle compression and capex/commissioning risk can reduce returns.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -196,14 +241,52 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "electrification and BESS deployment",
+        "to": "lithium demand",
+        "mechanism": "battery deployment requires conversion-grade lithium",
+        "falsifier": "demand growth persistently trails supply growth below economic thresholds"
+      },
+      {
+        "from": "new global capacity",
+        "to": "lithium pricing",
+        "mechanism": "supply availability can pressure prices and margins",
+        "falsifier": "demand absorption keeps utilization and pricing structurally healthy"
+      },
+      {
+        "from": "industry capacity expansion",
+        "to": "SQM margins",
+        "mechanism": "supply growth can pressure realized lithium pricing",
+        "falsifier": "sustained demand absorbs new supply while SQM retains low-cost economics"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "electrification and BESS deployment",
+      "to": "lithium demand",
+      "mechanism": "battery deployment requires conversion-grade lithium",
+      "falsifier": "demand growth persistently trails supply growth below economic thresholds"
+    },
+    {
+      "from": "new global capacity",
+      "to": "lithium pricing",
+      "mechanism": "supply availability can pressure prices and margins",
+      "falsifier": "demand absorption keeps utilization and pricing structurally healthy"
+    },
+    {
+      "from": "industry capacity expansion",
+      "to": "SQM margins",
+      "mechanism": "supply growth can pressure realized lithium pricing",
+      "falsifier": "sustained demand absorbs new supply while SQM retains low-cost economics"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 7,
+    "rawSourceCount": 6,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 5,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "ir.sqm.com|2Q2026-earnings|2026-08-18",
@@ -234,6 +317,12 @@
     {
       "contradiction": "Strong pricing and an expectations beat coexist with slower-than-expected BEV growth and management emphasis on production flexibility.",
       "material": true
+    },
+    {
+      "claim": "Strong realized pricing/earnings coexist with slower BEV growth and production-flexibility emphasis.",
+      "resolution": "This limits mechanical extrapolation but does not establish present impairment because BESS and other demand can offset mix changes.",
+      "resolved": true,
+      "gating": false
     }
   ],
   "contradictionDispositions": {
@@ -244,6 +333,12 @@
       {
         "contradiction": "Strong pricing and an expectations beat coexist with slower-than-expected BEV growth and management emphasis on production flexibility.",
         "material": true
+      },
+      {
+        "claim": "Strong realized pricing/earnings coexist with slower BEV growth and production-flexibility emphasis.",
+        "resolution": "This limits mechanical extrapolation but does not establish present impairment because BESS and other demand can offset mix changes.",
+        "resolved": true,
+        "gating": false
       }
     ]
   },
@@ -265,26 +360,31 @@
     {
       "unknown": "Durability of the raised demand outlook if BESS growth slows remains unknown.",
       "gating": false
+    },
+    {
+      "unknown": "Normalized full-cycle lithium price/margin and project cost-curve position.",
+      "gating": false
+    },
+    {
+      "unknown": "Project funding burden, normalized cost curve and BESS-demand durability.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 12
+    "nonGatingCount": 14
   },
   "gatingIssues": [],
-  "confidence": 90,
+  "confidence": 88,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -295,14 +395,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -319,10 +411,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MWA",
   "workId": "t0:MWA",
-  "generatedAt": "2026-09-21T17:15:46.365Z",
+  "generatedAt": "2026-09-21T17:26:08.810Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-05T00:00:00.000Z",
-    "end": "2026-09-21T05:04:30.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T05:04:30.000Z"
+    "end": "2026-09-21T17:23:31.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T17:23:31.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,63 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/MWA-20260921T050430Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/MWA-20260921T050430Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/MWA-20260921T172331Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "Water infrastructure renewal exposure",
-      "Margin execution"
+      "Margin execution",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "marginQuality",
+      "confidenceInflation",
+      "demandTimingRisk"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "Flow control and measurement are required physical components of water-network renewal."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "positive",
+          "basis": "Essential water infrastructure needs persist across economic scenarios, though municipal timing and housing exposure create cyclicality."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Qualified installed products can be sticky, but competing valve/hydrant/meter suppliers remain credible substitutes."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "Water infrastructure renewal exposure",
@@ -71,7 +96,23 @@
           "basis": "Water-management growth provides evidence of demand in essential distribution and measurement infrastructure."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "marginQuality",
+          "direction": "mixed",
+          "basis": "Profitability improved faster than sales, but refunds/pricing and lower volume complicate durability attribution."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "mixed",
+          "basis": "Strong margins should not be extrapolated as structurally permanent from one quarter with unusual tariff-refund benefit."
+        },
+        {
+          "name": "demandTimingRisk",
+          "direction": "negative",
+          "basis": "Residential construction and municipal project timing can offset secular infrastructure demand."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "Margin execution",
@@ -120,7 +161,13 @@
   },
   "factors": [
     "Water infrastructure renewal exposure",
-    "Margin execution"
+    "Margin execution",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "marginQuality",
+    "confidenceInflation",
+    "demandTimingRisk"
   ],
   "riskEvidence": {
     "present": true,
@@ -132,6 +179,18 @@
       {
         "risk": "Some margin benefit came from tariff refunds and pricing while physical volumes were slightly lower.",
         "gating": false
+      },
+      {
+        "risk": "Municipal timing, residential softness and competitive procurement can slow volume despite long-run renewal need.",
+        "gating": false
+      },
+      {
+        "risk": "Margins may normalize when tariff refunds fade or pricing moderates if volume does not improve.",
+        "gating": false
+      },
+      {
+        "risk": "Residential and municipal demand timing can produce weaker physical volumes despite essential long-run infrastructure needs.",
+        "gating": false
       }
     ]
   },
@@ -142,6 +201,18 @@
     },
     {
       "risk": "Some margin benefit came from tariff refunds and pricing while physical volumes were slightly lower.",
+      "gating": false
+    },
+    {
+      "risk": "Municipal timing, residential softness and competitive procurement can slow volume despite long-run renewal need.",
+      "gating": false
+    },
+    {
+      "risk": "Margins may normalize when tariff refunds fade or pricing moderates if volume does not improve.",
+      "gating": false
+    },
+    {
+      "risk": "Residential and municipal demand timing can produce weaker physical volumes despite essential long-run infrastructure needs.",
       "gating": false
     }
   ],
@@ -169,6 +240,24 @@
         "to": "margin expansion",
         "mechanism": "price realization and lower expense burden can offset inflation and softer volume",
         "falsifier": "margin reverses when tariff refunds normalize or pricing moderates"
+      },
+      {
+        "from": "aging/leaking water networks",
+        "to": "flow-control and measurement demand",
+        "mechanism": "network renewal requires valves, hydrants, metering and monitoring to deliver and manage water",
+        "falsifier": "municipal renewal spending weakens persistently or Mueller volumes contract despite system need"
+      },
+      {
+        "from": "Mueller installed products",
+        "to": "water-system reliability/management",
+        "mechanism": "physical control and measurement equipment enables distribution, isolation and usage visibility",
+        "falsifier": "share loss or alternative architectures materially displace Mueller products"
+      },
+      {
+        "from": "pricing/refunds and operating discipline",
+        "to": "reported margin expansion",
+        "mechanism": "price realization and temporary/refund benefits can raise margin despite softer volume",
+        "falsifier": "subsequent quarters sustain high margins on normalized refunds with improving physical volume"
       }
     ]
   },
@@ -184,12 +273,30 @@
       "to": "margin expansion",
       "mechanism": "price realization and lower expense burden can offset inflation and softer volume",
       "falsifier": "margin reverses when tariff refunds normalize or pricing moderates"
+    },
+    {
+      "from": "aging/leaking water networks",
+      "to": "flow-control and measurement demand",
+      "mechanism": "network renewal requires valves, hydrants, metering and monitoring to deliver and manage water",
+      "falsifier": "municipal renewal spending weakens persistently or Mueller volumes contract despite system need"
+    },
+    {
+      "from": "Mueller installed products",
+      "to": "water-system reliability/management",
+      "mechanism": "physical control and measurement equipment enables distribution, isolation and usage visibility",
+      "falsifier": "share loss or alternative architectures materially displace Mueller products"
+    },
+    {
+      "from": "pricing/refunds and operating discipline",
+      "to": "reported margin expansion",
+      "mechanism": "price realization and temporary/refund benefits can raise margin despite softer volume",
+      "falsifier": "subsequent quarters sustain high margins on normalized refunds with improving physical volume"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "sec:mwa:2026-08-05:q3-2026-ex99.1"
@@ -209,14 +316,26 @@
     {
       "claim": "Strong margin expansion occurred despite slightly lower aggregate volumes, making durability beyond pricing/refunds a key test.",
       "severity": "moderate"
+    },
+    {
+      "claim": "Strong margin expansion occurred despite slightly lower aggregate volumes.",
+      "resolution": "This is a material attribution question rather than an internal impossibility; durable normalized margin and volume evidence is needed to determine how much improvement is structural.",
+      "resolved": false,
+      "gating": true
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "claim": "Strong margin expansion occurred despite slightly lower aggregate volumes, making durability beyond pricing/refunds a key test.",
         "severity": "moderate"
+      },
+      {
+        "claim": "Strong margin expansion occurred despite slightly lower aggregate volumes.",
+        "resolution": "This is a material attribution question rather than an internal impossibility; durable normalized margin and volume evidence is needed to determine how much improvement is structural.",
+        "resolved": false,
+        "gating": true
       }
     ]
   },
@@ -228,25 +347,39 @@
     {
       "unknown": "Durable post-refund margin level is not established by one quarter.",
       "gating": false
+    },
+    {
+      "unknown": "Current evidence does not isolate the share of growth from secular renewal volume versus pricing/mix.",
+      "gating": false
+    },
+    {
+      "unknown": "Normalized post-refund margin and the volume contribution of infrastructure renewal are not established by the cited quarter.",
+      "gating": true
     }
   ],
   "unknownDisposition": {
-    "gatingCount": 0,
-    "nonGatingCount": 2
+    "gatingCount": 1,
+    "nonGatingCount": 3
   },
-  "gatingIssues": [],
+  "gatingIssues": [
+    {
+      "issue": "unresolved_material_contradiction",
+      "defect": "Margin improvement cannot yet be cleanly attributed between durable operating/pricing gains and temporary tariff-refund effects while aggregate volume was slightly lower.",
+      "nextLawfulEvidencePath": "Deep Resolver should compare subsequent primary quarterly results with normalized tariff/refund effects, price/mix and physical-volume disclosures to adjudicate durability."
+    }
+  ],
   "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
+      "unresolved_gating_issue",
+      "unresolved_gating_unknown",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -257,14 +390,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -281,6 +406,14 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
+      },
+      {
+        "failure": "unresolved_gating_issue",
+        "owner": "deep-resolver"
+      },
+      {
+        "failure": "unresolved_gating_unknown",
+        "owner": "deep-resolver"
       },
       {
         "failure": "unresolved_material_contradiction",

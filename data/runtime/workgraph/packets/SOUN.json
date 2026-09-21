@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SOUN",
   "workId": "t0:SOUN",
-  "generatedAt": "2026-09-21T17:15:46.359Z",
+  "generatedAt": "2026-09-21T17:26:08.802Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-05-07T00:00:00.000Z",
-    "end": "2026-09-21T13:07:34.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T13:07:34.000Z"
+    "end": "2026-09-21T17:23:31.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T17:23:31.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,65 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/SOUN-20260921T1307Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/SOUN-20260921T1307Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/SOUN-20260921T172331Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "enterprise agentic AI expansion",
       "organic core growth",
       "top-line execution",
-      "profitability conversion"
+      "profitability conversion",
+      "crossDivisionLeverage",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "financingRisk",
+      "integrationRisk",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "crossDivisionLeverage",
+          "direction": "positive",
+          "basis": "Voice/agent technology can span automotive, restaurant and enterprise interaction surfaces."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Automation demand is broad, but rapid model commoditization can shift value toward distribution and integration."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "negative",
+          "basis": "Foundation models, OEM-native assistants and competing platforms provide credible technical substitutes."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "enterprise agentic AI expansion",
@@ -78,7 +103,23 @@
           "basis": "Reported Q1 growth excluding acquisitions reduces, but does not eliminate, concern that expansion is acquisition-only."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "financingRisk",
+          "direction": "negative",
+          "basis": "Persistent operating losses leave profitability conversion and future capital needs relevant despite top-line growth."
+        },
+        {
+          "name": "integrationRisk",
+          "direction": "negative",
+          "basis": "Rapid product/acquisition expansion increases execution complexity and makes organic versus acquired contribution important."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "mixed",
+          "basis": "Record revenue and improved margins should not be conflated with sustainable profitability."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "top-line execution",
@@ -134,7 +175,13 @@
     "enterprise agentic AI expansion",
     "organic core growth",
     "top-line execution",
-    "profitability conversion"
+    "profitability conversion",
+    "crossDivisionLeverage",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "financingRisk",
+    "integrationRisk",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -146,6 +193,18 @@
       {
         "risk": "Growth must continue converting into sustainable cash economics; current profitability remains incomplete.",
         "gating": false
+      },
+      {
+        "risk": "Model capability can commoditize faster than SoundHound builds durable distribution, integration depth and renewal economics.",
+        "gating": false
+      },
+      {
+        "risk": "Growth may fail to convert into sustainable cash economics before competitive intensity increases.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition integration can dilute focus or obscure underlying unit economics.",
+        "gating": false
       }
     ]
   },
@@ -156,6 +215,18 @@
     },
     {
       "risk": "Growth must continue converting into sustainable cash economics; current profitability remains incomplete.",
+      "gating": false
+    },
+    {
+      "risk": "Model capability can commoditize faster than SoundHound builds durable distribution, integration depth and renewal economics.",
+      "gating": false
+    },
+    {
+      "risk": "Growth may fail to convert into sustainable cash economics before competitive intensity increases.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition integration can dilute focus or obscure underlying unit economics.",
       "gating": false
     }
   ],
@@ -170,14 +241,52 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "demand for automated natural-language interaction",
+        "to": "voice/agent platform demand",
+        "mechanism": "enterprises and OEMs use conversational interfaces to automate service and control workflows",
+        "falsifier": "customers prefer native hyperscaler/OEM assistants or alternative interfaces at materially better economics"
+      },
+      {
+        "from": "SoundHound integrations",
+        "to": "commercial automation",
+        "mechanism": "domain-tuned voice/agent software converts speech intent into business or vehicle actions",
+        "falsifier": "accuracy, latency, integration or renewal performance prevents durable deployment"
+      },
+      {
+        "from": "revenue/acquisition growth",
+        "to": "shareholder economics",
+        "mechanism": "growth creates durable value only if gross margin and operating leverage exceed integration and capital costs",
+        "falsifier": "sustained positive cash generation and improving consolidated margins demonstrate profitable conversion"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "demand for automated natural-language interaction",
+      "to": "voice/agent platform demand",
+      "mechanism": "enterprises and OEMs use conversational interfaces to automate service and control workflows",
+      "falsifier": "customers prefer native hyperscaler/OEM assistants or alternative interfaces at materially better economics"
+    },
+    {
+      "from": "SoundHound integrations",
+      "to": "commercial automation",
+      "mechanism": "domain-tuned voice/agent software converts speech intent into business or vehicle actions",
+      "falsifier": "accuracy, latency, integration or renewal performance prevents durable deployment"
+    },
+    {
+      "from": "revenue/acquisition growth",
+      "to": "shareholder economics",
+      "mechanism": "growth creates durable value only if gross margin and operating leverage exceed integration and capital costs",
+      "falsifier": "sustained positive cash generation and improving consolidated margins demonstrate profitable conversion"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "soundhound-ir:2026-08-05:q2-2026-results",
@@ -208,6 +317,12 @@
       "resolution": "The operating trend is improving but the evidence does not support representing the business as sustainably profitable yet.",
       "resolved": true,
       "gating": false
+    },
+    {
+      "claim": "Record growth coexists with continuing operating losses.",
+      "resolution": "This is a present execution tension, not thesis invalidation; profitability conversion remains an explicit test.",
+      "resolved": true,
+      "gating": false
     }
   ],
   "contradictionDispositions": {
@@ -216,6 +331,12 @@
       {
         "claim": "Record growth coexists with continuing operating losses.",
         "resolution": "The operating trend is improving but the evidence does not support representing the business as sustainably profitable yet.",
+        "resolved": true,
+        "gating": false
+      },
+      {
+        "claim": "Record growth coexists with continuing operating losses.",
+        "resolution": "This is a present execution tension, not thesis invalidation; profitability conversion remains an explicit test.",
         "resolved": true,
         "gating": false
       }
@@ -229,26 +350,31 @@
     {
       "unknown": "Scout does not assert a security-level valuation or entry recommendation.",
       "gating": false
+    },
+    {
+      "unknown": "Full-cycle renewal durability and margin profile of OASYS-led enterprise deployments remain unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Current packet evidence does not establish full-cycle customer retention or return on acquisition capital.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 92,
+  "confidence": 89,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -258,14 +384,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -282,10 +400,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

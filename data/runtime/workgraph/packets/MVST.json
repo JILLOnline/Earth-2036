@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MVST",
   "workId": "t0:MVST",
-  "generatedAt": "2026-09-21T17:15:46.363Z",
+  "generatedAt": "2026-09-21T17:26:08.806Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-10T00:00:00.000Z",
-    "end": "2026-09-21T05:04:30.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T05:04:30.000Z"
+    "end": "2026-09-21T17:23:31.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T17:23:31.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,63 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/MVST-20260921T050430Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/MVST-20260921T050430Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/MVST-20260921T172331Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "Localized battery capacity",
-      "Execution versus expansion thesis"
+      "Execution versus expansion thesis",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "capacityUtilizationRisk",
+      "financingRisk",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "mixed",
+          "basis": "Localized qualified battery capacity can be valuable, but current evidence does not establish scarce contracted utilization."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "negative",
+          "basis": "Weak first-half demand and customer delays show capacity economics are sensitive to platform timing and utilization."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Qualification can create persistence, while competing cell/pack suppliers and chemistry choices remain credible substitutes."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "Localized battery capacity",
@@ -71,7 +96,23 @@
           "basis": "Clarksville localization and Huzhou expansion can improve access to high-barrier commercial and transit demand if ramps execute."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "capacityUtilizationRisk",
+          "direction": "negative",
+          "basis": "Weak revenue/utilization while capacity expands can worsen fixed-cost absorption."
+        },
+        {
+          "name": "financingRisk",
+          "direction": "mixed",
+          "basis": "Expansion requires capital before utilization economics are demonstrated; cited evidence does not quantify a current dilution requirement."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "negative",
+          "basis": "Installed or planned GWh capacity should not be treated as demand, backlog or earnings without contracted utilization evidence."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "Execution versus expansion thesis",
@@ -120,7 +161,13 @@
   },
   "factors": [
     "Localized battery capacity",
-    "Execution versus expansion thesis"
+    "Execution versus expansion thesis",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "capacityUtilizationRisk",
+    "financingRisk",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -132,6 +179,18 @@
       {
         "risk": "Raw-material inflation, low utilization and customer-platform delays can impair returns on expansion capital.",
         "gating": false
+      },
+      {
+        "risk": "Capacity expansion can become a successor bottleneck if customer ramps do not fill plants fast enough to absorb fixed costs.",
+        "gating": false
+      },
+      {
+        "risk": "Customer-platform delays and low utilization can impair returns on new capacity.",
+        "gating": false
+      },
+      {
+        "risk": "Raw-material inflation and regulatory/geopolitical changes can pressure margins and market access.",
+        "gating": false
       }
     ]
   },
@@ -142,6 +201,18 @@
     },
     {
       "risk": "Raw-material inflation, low utilization and customer-platform delays can impair returns on expansion capital.",
+      "gating": false
+    },
+    {
+      "risk": "Capacity expansion can become a successor bottleneck if customer ramps do not fill plants fast enough to absorb fixed costs.",
+      "gating": false
+    },
+    {
+      "risk": "Customer-platform delays and low utilization can impair returns on new capacity.",
+      "gating": false
+    },
+    {
+      "risk": "Raw-material inflation and regulatory/geopolitical changes can pressure margins and market access.",
       "gating": false
     }
   ],
@@ -169,6 +240,24 @@
         "to": "gross-margin compression",
         "mechanism": "lower fixed-cost absorption and higher inputs reduce unit economics",
         "falsifier": "utilization rises and gross margin stabilizes despite expansion"
+      },
+      {
+        "from": "commercial/transit electrification demand",
+        "to": "qualified localized battery demand",
+        "mechanism": "fleet platforms require qualified cells/packs with reliable regional supply",
+        "falsifier": "OEM delays persist or competing suppliers/chemistries win the targeted platforms"
+      },
+      {
+        "from": "localized/expanded capacity",
+        "to": "battery economics",
+        "mechanism": "higher utilization can improve fixed-cost absorption and supply responsiveness",
+        "falsifier": "utilization remains weak and gross margins compress despite added capacity"
+      },
+      {
+        "from": "capacity expansion with delayed demand",
+        "to": "returns",
+        "mechanism": "underutilized assets increase fixed-cost burden and delay cash conversion",
+        "falsifier": "customer ramps lift utilization and gross margin while new capacity reaches productive scale"
       }
     ]
   },
@@ -184,12 +273,30 @@
       "to": "gross-margin compression",
       "mechanism": "lower fixed-cost absorption and higher inputs reduce unit economics",
       "falsifier": "utilization rises and gross margin stabilizes despite expansion"
+    },
+    {
+      "from": "commercial/transit electrification demand",
+      "to": "qualified localized battery demand",
+      "mechanism": "fleet platforms require qualified cells/packs with reliable regional supply",
+      "falsifier": "OEM delays persist or competing suppliers/chemistries win the targeted platforms"
+    },
+    {
+      "from": "localized/expanded capacity",
+      "to": "battery economics",
+      "mechanism": "higher utilization can improve fixed-cost absorption and supply responsiveness",
+      "falsifier": "utilization remains weak and gross margins compress despite added capacity"
+    },
+    {
+      "from": "capacity expansion with delayed demand",
+      "to": "returns",
+      "mechanism": "underutilized assets increase fixed-cost burden and delay cash conversion",
+      "falsifier": "customer ramps lift utilization and gross margin while new capacity reaches productive scale"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "microvast:2026-08-10:q2-2026"
@@ -209,14 +316,26 @@
     {
       "claim": "Long-term capacity expansion thesis coexists with materially weaker first-half revenue and adjusted EBITDA.",
       "severity": "material"
+    },
+    {
+      "claim": "Long-term capacity expansion thesis coexists with materially weaker first-half revenue and adjusted EBITDA.",
+      "resolution": "Material contradiction remains for Deep Resolver because the cited evidence does not yet demonstrate contracted utilization or timing sufficient to reconcile expansion with current weakness.",
+      "resolved": false,
+      "gating": true
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "claim": "Long-term capacity expansion thesis coexists with materially weaker first-half revenue and adjusted EBITDA.",
         "severity": "material"
+      },
+      {
+        "claim": "Long-term capacity expansion thesis coexists with materially weaker first-half revenue and adjusted EBITDA.",
+        "resolution": "Material contradiction remains for Deep Resolver because the cited evidence does not yet demonstrate contracted utilization or timing sufficient to reconcile expansion with current weakness.",
+        "resolved": false,
+        "gating": true
       }
     ]
   },
@@ -228,25 +347,39 @@
     {
       "unknown": "Timing and economics of customer ramp recovery remain uncertain.",
       "gating": false
+    },
+    {
+      "unknown": "Contracted utilization and customer mix for incremental Clarksville/Huzhou capacity are not established in cited evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Timing, contracted volume and economics of customer ramp recovery remain unresolved.",
+      "gating": true
     }
   ],
   "unknownDisposition": {
-    "gatingCount": 0,
-    "nonGatingCount": 2
+    "gatingCount": 1,
+    "nonGatingCount": 3
   },
-  "gatingIssues": [],
-  "confidence": 90,
+  "gatingIssues": [
+    {
+      "issue": "unresolved_material_contradiction",
+      "defect": "Capacity-expansion thesis lacks evidence reconciling incremental capacity with materially weaker first-half demand/utilization.",
+      "nextLawfulEvidencePath": "Deep Resolver should adjudicate using customer/OEM ramp evidence, contracted backlog/utilization disclosures, or subsequent primary operating results showing capacity absorption."
+    }
+  ],
+  "confidence": 89,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
+      "unresolved_gating_issue",
+      "unresolved_gating_unknown",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -257,14 +390,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -281,6 +406,14 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
+      },
+      {
+        "failure": "unresolved_gating_issue",
+        "owner": "deep-resolver"
+      },
+      {
+        "failure": "unresolved_gating_unknown",
+        "owner": "deep-resolver"
       },
       {
         "failure": "unresolved_material_contradiction",

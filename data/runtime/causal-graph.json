@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-21T19:36:53.280Z",
+  "updatedAt": "2026-09-21T20:19:28.586Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -854,6 +854,18 @@
       "type": "market",
       "label": "Spotify engagement and subscriber scale",
       "description": "catalog access plus personalization reduces search/discovery friction"
+    },
+    {
+      "id": "company:DUK",
+      "type": "company",
+      "label": "Duke Energy Corporation",
+      "description": "Duke's regulated grid, generation and storage build links rising electricity demand to transmission/distribution capacity, dispatchable generation and storage; the human need served is reliable, affordable electricity while large-load growth is conditioned on engineering studies and customer protections."
+    },
+    {
+      "id": "market:DUK-duk-structural-demand",
+      "type": "market",
+      "label": "DUK structural demand",
+      "description": "Duke's regulated grid, generation and storage build links rising electricity demand to transmission/distribution capacity, dispatchable generation and storage; the human need served is reliable, affordable electricity while large-load growth is conditioned on engineering studies and customer protections."
     }
   ],
   "edges": [
@@ -1991,6 +2003,21 @@
         "issuer:SPOT:2026Q2"
       ],
       "observedAt": "2026-09-21T18:27:49Z"
+    },
+    {
+      "id": "edge:DUK-structural-exposure",
+      "from": "company:DUK",
+      "to": "market:DUK-duk-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 74,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:DUK:2026-data-center-framework",
+        "issuer:DUK:2026-bess-allen"
+      ],
+      "observedAt": "2026-09-20T05:23:03Z"
     }
   ],
   "structuralSignals": [
@@ -3382,6 +3409,25 @@
       "observedAt": "2026-09-21T18:27:49Z",
       "thesis": "Spotify sits between global audio demand and concentrated rights-holder supply: scale, discovery and personalization can improve matching and monetization, but most streamed content remains licensed from third parties and major-label content represented about 72% of label-delivered audio streams in 2025.",
       "falsifier": "engagement or paid conversion weakens despite continued product expansion"
+    },
+    {
+      "id": "signal:DUK-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:DUK-duk-structural-demand",
+      "affectedNodeIds": [
+        "company:DUK"
+      ],
+      "direction": 1,
+      "magnitude": 74,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:DUK:2026-data-center-framework",
+        "issuer:DUK:2026-bess-allen"
+      ],
+      "observedAt": "2026-09-20T05:23:03Z",
+      "thesis": "Duke's regulated grid, generation and storage build links rising electricity demand to transmission/distribution capacity, dispatchable generation and storage; the human need served is reliable, affordable electricity while large-load growth is conditioned on engineering studies and customer protections.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],
   "roadmapMilestones": [

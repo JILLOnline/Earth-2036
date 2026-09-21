@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SDGR",
   "workId": "t0:SDGR",
-  "generatedAt": "2026-09-21T11:37:15.519Z",
+  "generatedAt": "2026-09-21T12:10:38.426Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T10:29:40.904Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-08-05T00:00:00.000Z",
+    "end": "2026-09-21T12:06:55.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T12:06:55.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,67 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/SDGR-20260921T120655Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "enterprise agentic-AI adoption",
+      "asset monetization model",
+      "platform-to-workflow conversion",
+      "capital efficiency"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "enterprise agentic-AI adoption",
+          "direction": "positive",
+          "basis": "BMS deployment is external validation of Bunsen within a major pharma R&D organization."
+        },
+        {
+          "name": "asset monetization model",
+          "direction": "positive",
+          "basis": "Tectora converts internal programs into equity, milestones, royalties and platform usage while external capital funds development."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "platform-to-workflow conversion",
+          "direction": "positive",
+          "basis": "Bunsen is moving into a named large-pharma research organization."
+        },
+        {
+          "name": "capital efficiency",
+          "direction": "positive",
+          "basis": "External Series A capital supports contributed programs while Schrödinger retains contingent economics."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +130,35 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "enterprise agentic-AI adoption",
+    "asset monetization model",
+    "platform-to-workflow conversion",
+    "capital efficiency"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Strategic collaborations validate interest but do not establish the magnitude or durability of software revenue or drug-program success.",
+        "gating": false
+      },
+      {
+        "risk": "Partner adoption and financing structures can fail to translate into material recurring software growth or successful clinical assets.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Strategic collaborations validate interest but do not establish the magnitude or durability of software revenue or drug-program success.",
+      "gating": false
+    },
+    {
+      "risk": "Partner adoption and financing structures can fail to translate into material recurring software growth or successful clinical assets.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +166,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +175,68 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "schrodinger-ir:2026-08-05:bms-bunsen",
+      "schrodinger-ir:2026-09-09:tectora"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Announces-Strategic-Collaboration-and-Software-Agreement-with-Bristol-Myers-Squibb-to-Deploy-AI-Co-Scientist-Bunsen-for-Agentic-Drug-Discovery/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-05",
+      "originFingerprint": "schrodinger-ir:2026-08-05:bms-bunsen",
+      "sourceId": null
+    },
+    {
+      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Announces-Licensing-and-Collaboration-Agreement-with-Tectora-Therapeutics-a-New-Biotechnology-Company-It-Co-founded-to-Advance-Immunology-and-Inflammation-Programs/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-09",
+      "originFingerprint": "schrodinger-ir:2026-09-09:tectora",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Commercial economics of the BMS Bunsen agreement were not disclosed in the cited release.",
+      "gating": false
+    },
+    {
+      "unknown": "No current security valuation or probability-adjusted drug value is asserted by Scout.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 94,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +250,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +260,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

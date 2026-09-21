@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "S",
   "workId": "t0:S",
-  "generatedAt": "2026-09-21T11:37:15.518Z",
+  "generatedAt": "2026-09-21T12:10:38.425Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T10:29:40.904Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-03-12T00:00:00.000Z",
+    "end": "2026-09-21T12:06:55.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T12:06:55.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,67 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/S-20260921T120655Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "AI security surface expansion",
+      "ecosystem leverage",
+      "scale conversion",
+      "competitive intensity"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "AI security surface expansion",
+          "direction": "positive",
+          "basis": "Primary announcements show product expansion across AI data, runtime, agents and sovereign/on-premise environments."
+        },
+        {
+          "name": "ecosystem leverage",
+          "direction": "positive",
+          "basis": "Google Cloud and AWS integrations can extend distribution and telemetry reach."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "scale conversion",
+          "direction": "positive",
+          "basis": "Revenue/ARR growth and operating-profitability progress provide execution evidence beyond product narrative."
+        },
+        {
+          "name": "competitive intensity",
+          "direction": "mixed",
+          "basis": "Endpoint, cloud, SIEM and AI security remain crowded with large incumbent and specialist competitors."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +130,35 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "AI security surface expansion",
+    "ecosystem leverage",
+    "scale conversion",
+    "competitive intensity"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Partnership breadth and product announcements do not by themselves prove durable monetization or competitive win rates.",
+        "gating": false
+      },
+      {
+        "risk": "Rapid category expansion can raise execution and integration complexity even as platform breadth improves.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Partnership breadth and product announcements do not by themselves prove durable monetization or competitive win rates.",
+      "gating": false
+    },
+    {
+      "risk": "Rapid category expansion can raise execution and integration complexity even as platform breadth improves.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +166,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 4
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +175,86 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 4,
     "duplicatesCollapsed": 0,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "sentinelone-ir:2026-03-25:google-cloud",
+      "sentinelone-ir:2026-03-23:onprem-sovereign",
+      "sentinelone-ir:2026-06-17:bedrock-agentcore",
+      "sentinelone-ir:2026-03-12:fy26-results"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://investors.sentinelone.com/press-releases/news-details/2026/SentinelOne-Expands-Strategic-Collaboration-with-Google-Cloud-to-Deliver-Autonomous-AI-Powered-Security-at-Global-Scale/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-03-25",
+      "originFingerprint": "sentinelone-ir:2026-03-25:google-cloud",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.sentinelone.com/press-releases/news-details/2026/SentinelOne-Brings-AI-Security-to-On-Premise-Regulated-Sovereign-Self-Hosted-and-Airgapped-Environments/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-03-23",
+      "originFingerprint": "sentinelone-ir:2026-03-23:onprem-sovereign",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.sentinelone.com/press-releases/news-details/2026/SentinelOne-Announces-AI-Security-Integration-with-Amazon-Bedrock-AgentCore-to-Deliver-Runtime-Guardrails-for-AI-Agents/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-06-17",
+      "originFingerprint": "sentinelone-ir:2026-06-17:bedrock-agentcore",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.sentinelone.com/press-releases/news-details/2026/SentinelOne-Announces-Fourth-Quarter-and-Fiscal-Year-2026-Financial-Results/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-03-12",
+      "originFingerprint": "sentinelone-ir:2026-03-12:fy26-results",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Incremental ARR attributable specifically to newer AI-security modules is not established by these releases.",
+      "gating": false
+    },
+    {
+      "unknown": "Scout does not infer current valuation or post-March financial performance without a fresher canonical financial source.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +268,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +278,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

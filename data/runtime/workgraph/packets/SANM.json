@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SANM",
   "workId": "t0:SANM",
-  "generatedAt": "2026-09-21T11:37:15.513Z",
+  "generatedAt": "2026-09-21T12:10:38.420Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T10:29:40.904Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2025-10-27T00:00:00.000Z",
+    "end": "2026-09-21T12:06:55.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T12:06:55.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,67 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/SANM-20260921T120655Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "AI infrastructure manufacturing exposure",
+      "vertical integration",
+      "guidance conversion",
+      "cash conversion"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "AI infrastructure manufacturing exposure",
+          "direction": "positive",
+          "basis": "ZT materially expands full-system integration and hyperscale infrastructure manufacturing capability."
+        },
+        {
+          "name": "vertical integration",
+          "direction": "positive",
+          "basis": "Management reported capacity expansion and synergy progress after the acquisition."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "guidance conversion",
+          "direction": "positive",
+          "basis": "Raised full-year revenue/margin/EPS outlook after Q3 outperformance."
+        },
+        {
+          "name": "cash conversion",
+          "direction": "mixed",
+          "basis": "Operating cash flow remained positive but Q3 free cash flow was only $24M amid investment."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +130,35 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "AI infrastructure manufacturing exposure",
+    "vertical integration",
+    "guidance conversion",
+    "cash conversion"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Cloud/AI infrastructure concentration and acquisition integration increase customer, cycle and execution sensitivity.",
+        "gating": false
+      },
+      {
+        "risk": "Forward demand claims remain exposed to hyperscaler capex, customer concentration, tariffs/trade policy and integration execution.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Cloud/AI infrastructure concentration and acquisition integration increase customer, cycle and execution sensitivity.",
+      "gating": false
+    },
+    {
+      "risk": "Forward demand claims remain exposed to hyperscaler capex, customer concentration, tariffs/trade policy and integration execution.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +166,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +175,68 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "sanmina-ir:2025-10-27:zt-close",
+      "sanmina-ir:2026-07-27:fq3-results"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://ir.sanmina.com/news/news-details/2025/SANMINA-COMPLETES-ACQUISITION-OF-ZT-SYSTEMS-DATA-CENTER-INFRASTRUCTURE-MANUFACTURING-BUSINESS-FROM-AMD/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2025-10-27",
+      "originFingerprint": "sanmina-ir:2025-10-27:zt-close",
+      "sourceId": null
+    },
+    {
+      "url": "https://ir.sanmina.com/news/news-details/2026/Sanmina-Reports-Third-Quarter-Fiscal-2026-Financial-Results/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-27",
+      "originFingerprint": "sanmina-ir:2026-07-27:fq3-results",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Long-run margin profile and customer concentration of the combined ZT business require deeper underwriting.",
+      "gating": false
+    },
+    {
+      "unknown": "Fiscal Q4 outcome is not yet available in the cited evidence window.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 94,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +250,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +260,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

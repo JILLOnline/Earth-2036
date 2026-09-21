@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SAIL",
   "workId": "t0:SAIL",
-  "generatedAt": "2026-09-21T11:37:15.518Z",
+  "generatedAt": "2026-09-21T12:10:38.424Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T10:29:40.904Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2025-09-09T00:00:00.000Z",
+    "end": "2026-09-21T12:06:55.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T12:06:55.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,67 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/SAIL-20260921T120655Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "agentic identity demand",
+      "AI product conversion",
+      "ARR execution",
+      "expectation sensitivity"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "agentic identity demand",
+          "direction": "positive",
+          "basis": "AI adoption increases non-human identity count and access-control complexity."
+        },
+        {
+          "name": "AI product conversion",
+          "direction": "positive",
+          "basis": "Reported new-ARR contribution suggests monetization of AI-driven capabilities."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "ARR execution",
+          "direction": "positive",
+          "basis": "ARR growth and raised guidance indicate recurring-demand resilience."
+        },
+        {
+          "name": "expectation sensitivity",
+          "direction": "mixed",
+          "basis": "A modest revenue miss accompanied otherwise strong recurring metrics and muted share reaction."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +130,35 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "agentic identity demand",
+    "AI product conversion",
+    "ARR execution",
+    "expectation sensitivity"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Latest AI new-ARR mix is supported here by an independent report; a same-period primary earnings release should be acquired by the root owner before numeric underwriting.",
+        "gating": false
+      },
+      {
+        "risk": "Current-period numeric underwriting should wait for direct primary filing/earnings materials rather than rely solely on press interpretation.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Latest AI new-ARR mix is supported here by an independent report; a same-period primary earnings release should be acquired by the root owner before numeric underwriting.",
+      "gating": false
+    },
+    {
+      "risk": "Current-period numeric underwriting should wait for direct primary filing/earnings materials rather than rely solely on press interpretation.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +166,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +175,91 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 3,
     "duplicatesCollapsed": 0,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "barrons:2026-09-16:sailpoint-q2-ai-arr",
+      "sailpoint-ir:2025-09-09:fq2-2026-results",
+      "barrons:2026-09-16:sailpoint-q2-expectations"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "url": "https://www.barrons.com/articles/sailpoint-earnings-stock-price-55b53b54",
+      "kind": "independent",
+      "primary": false,
+      "publishedAt": "2026-09-16",
+      "originFingerprint": "barrons:2026-09-16:sailpoint-q2-ai-arr",
+      "sourceId": null
+    },
+    {
+      "url": "https://investor.sailpoint.com/news-releases/news-release-details/sailpoint-announces-fiscal-second-quarter-2026-results",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2025-09-09",
+      "originFingerprint": "sailpoint-ir:2025-09-09:fq2-2026-results",
+      "sourceId": null
+    },
+    {
+      "url": "https://www.barrons.com/articles/sailpoint-earnings-stock-price-55b53b54",
+      "kind": "independent",
+      "primary": false,
+      "publishedAt": "2026-09-16",
+      "originFingerprint": "barrons:2026-09-16:sailpoint-q2-expectations",
+      "sourceId": null
+    }
+  ],
+  "contradictions": [
+    {
+      "claim": "Strong ARR/guidance versus slight revenue miss and weak market response",
+      "resolution": "Treat as mixed execution/expectations evidence; recurring demand appears strong but market expectations were already elevated.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Strong ARR/guidance versus slight revenue miss and weak market response",
+        "resolution": "Treat as mixed execution/expectations evidence; recurring demand appears strong but market expectations were already elevated.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "The newest primary-source fiscal-period detail was not located in this Scout pass; do not transpose older fiscal-2026 figures into current fiscal-2027 underwriting.",
+      "gating": false
+    },
+    {
+      "unknown": "Exact current-period primary reconciliation and GAAP/non-GAAP bridge remain for Alpha acquisition.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 76,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +273,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +283,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

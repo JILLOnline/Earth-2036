@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "QS",
   "workId": "t0:QS",
-  "generatedAt": "2026-09-21T10:30:24.348Z",
+  "generatedAt": "2026-09-21T11:05:06.687Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T10:29:40.904Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-07-22T00:00:00.000Z",
+    "end": "2026-09-21T11:02:38.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T11:02:38.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,55 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/QS-20260921T110238Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "technology option",
+      "execution verification"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "technology option",
+          "direction": "positive",
+          "basis": "Company continues active development and reporting around next-generation solid-state lithium-metal batteries."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "execution verification",
+          "direction": "mixed",
+          "basis": "Primary quarterly materials exist, but Scout does not infer manufacturing scale or economics beyond accessible evidence."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +118,33 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "technology option",
+    "execution verification"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Commercial-scale economics, yield and broad customer adoption remain execution dependencies.",
+        "gating": false
+      },
+      {
+        "risk": "Technology-development milestones may not convert to cost-competitive high-volume production.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Commercial-scale economics, yield and broad customer adoption remain execution dependencies.",
+      "gating": false
+    },
+    {
+      "risk": "Technology-development milestones may not convert to cost-competitive high-volume production.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +152,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +161,68 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
+    "rawSourceCount": 2,
+    "uniqueSourceCount": 2,
     "duplicatesCollapsed": 0,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "quantumscape:2026-q2-results",
+      "quantumscape:quarterly-results:2026-q2"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://ir.quantumscape.com/news-releases/news-release-details/quantumscape-reports-second-quarter-2026-business-and-financial",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-22",
+      "originFingerprint": "quantumscape:2026-q2-results",
+      "sourceId": null
+    },
+    {
+      "url": "https://ir.quantumscape.com/financial-information/quarterly-results",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-22",
+      "originFingerprint": "quantumscape:quarterly-results:2026-q2",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "The accessible release points to the shareholder letter but does not itself establish commercial-volume economics.",
+      "gating": false
+    },
+    {
+      "unknown": "Current customer qualification breadth, yield and unit economics require deeper primary-document extraction by root owners.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 80,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +236,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +246,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

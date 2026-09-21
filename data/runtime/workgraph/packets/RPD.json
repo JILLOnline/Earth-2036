@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "RPD",
   "workId": "t0:RPD",
-  "generatedAt": "2026-09-21T10:30:24.351Z",
+  "generatedAt": "2026-09-21T11:05:06.690Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T10:29:40.904Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-02-10T00:00:00.000Z",
+    "end": "2026-09-21T11:02:38.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T11:02:38.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,67 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/RPD-20260921T110238Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "platform expansion",
+      "integration risk",
+      "cash baseline",
+      "market need"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "platform expansion",
+          "direction": "positive",
+          "basis": "Kenzo and Cyber GRC broaden automation and control/governance surface area."
+        },
+        {
+          "name": "integration risk",
+          "direction": "mixed",
+          "basis": "Acquired agentic technology must integrate without eroding reliability or economics."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "cash baseline",
+          "direction": "positive",
+          "basis": "Positive operating and free cash flow support continued product investment."
+        },
+        {
+          "name": "market need",
+          "direction": "positive",
+          "basis": "Threat telemetry indicates shrinking remediation windows."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +130,35 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "platform expansion",
+    "integration risk",
+    "cash baseline",
+    "market need"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Vendor-reported AI productivity claims require independent validation before treating them as durable customer outcomes.",
+        "gating": false
+      },
+      {
+        "risk": "Industry threat intensity does not automatically translate into ARR growth or durable competitive advantage.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Vendor-reported AI productivity claims require independent validation before treating them as durable customer outcomes.",
+      "gating": false
+    },
+    {
+      "risk": "Industry threat intensity does not automatically translate into ARR growth or durable competitive advantage.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +166,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 4
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +175,82 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 4,
     "duplicatesCollapsed": 0,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "rapid7:2026-03-26:kenzo",
+      "rapid7:2026-07-28:cyber-grc",
+      "rapid7:fy2025-results",
+      "rapid7:2026-q2-threat-report"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://investors.rapid7.com/news/news-details/2026/Rapid7-Acquires-Kenzo-Security-to-Accelerate-Preemptive-AI-Powered-Security-Operations/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-03-26",
+      "originFingerprint": "rapid7:2026-03-26:kenzo",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.rapid7.com/news/news-details/2026/Rapid7-Becomes-First-Major-Security-Operations-Platform-to-Unite-SecOps-and-GRC/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-28",
+      "originFingerprint": "rapid7:2026-07-28:cyber-grc",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.rapid7.com/news/news-details/2026/Rapid7-Announces-Fourth-Quarter-and-Full-Year-2025-Financial-Results/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-10",
+      "originFingerprint": "rapid7:fy2025-results",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.rapid7.com/news/news-details/2026/Rapid7-Finds-Nearly-Two-Thirds-of-Vulnerabilities-Exploited-in-Q2-2026-Required-No-User-Interaction-to-Initiate/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-18",
+      "originFingerprint": "rapid7:2026-q2-threat-report",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Current 2026 ARR growth and retention need root-owner underwriting from the latest financial filing.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 1
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +264,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +274,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

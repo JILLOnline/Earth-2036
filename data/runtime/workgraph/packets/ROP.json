@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ROP",
   "workId": "t0:ROP",
-  "generatedAt": "2026-09-21T10:30:24.353Z",
+  "generatedAt": "2026-09-21T11:05:06.692Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T10:29:40.904Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-07-23T00:00:00.000Z",
+    "end": "2026-09-21T11:02:38.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T11:02:38.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,67 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/ROP-20260921T110238Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "portfolio breadth",
+      "acquisition contribution",
+      "cash execution",
+      "capital deployment"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "portfolio breadth",
+          "direction": "positive",
+          "basis": "Primary filing shows growth across all three operating segments."
+        },
+        {
+          "name": "acquisition contribution",
+          "direction": "mixed",
+          "basis": "Acquisitions add growth but complicate organic quality and capital-allocation assessment."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "cash execution",
+          "direction": "positive",
+          "basis": "Cash-flow growth provides execution evidence beyond accounting earnings."
+        },
+        {
+          "name": "capital deployment",
+          "direction": "mixed",
+          "basis": "Large repurchases can add per-share value but compete with acquisition capacity and require valuation context outside Scout authority."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +130,35 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "portfolio breadth",
+    "acquisition contribution",
+    "cash execution",
+    "capital deployment"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Network Software operating margin fell to 41.0% from 43.9%, partly reflecting acquired-business profiles.",
+        "gating": false
+      },
+      {
+        "risk": "Interest expense increased because of higher average debt and rates, a counterweight to portfolio cash generation.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Network Software operating margin fell to 41.0% from 43.9%, partly reflecting acquired-business profiles.",
+      "gating": false
+    },
+    {
+      "risk": "Interest expense increased because of higher average debt and rates, a counterweight to portfolio cash generation.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +166,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +175,64 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
+    "rawSourceCount": 2,
+    "uniqueSourceCount": 2,
     "duplicatesCollapsed": 0,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "roper:2026-q2:10-q",
+      "roper:2026-07-23:q2-8k"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://investors.ropertech.com/node/19211/html",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-23",
+      "originFingerprint": "roper:2026-q2:10-q",
+      "sourceId": null
+    },
+    {
+      "url": "https://investors.ropertech.com/static-files/f9566851-9047-4800-b27f-4bd2a60aa5a9",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-23",
+      "originFingerprint": "roper:2026-07-23:q2-8k",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Scout does not judge repurchase attractiveness without canonical valuation inputs.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 1
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 95,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +246,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +256,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

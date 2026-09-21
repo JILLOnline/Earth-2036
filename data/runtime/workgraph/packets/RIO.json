@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "RIO",
   "workId": "t0:RIO",
-  "generatedAt": "2026-09-21T10:30:24.347Z",
+  "generatedAt": "2026-09-21T11:05:06.686Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T10:29:40.904Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-05-29T00:00:00.000Z",
+    "end": "2026-09-21T11:02:38.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T11:02:38.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,67 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/RIO-20260921T110238Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "critical-mineral diversification",
+      "project social license",
+      "productivity conversion",
+      "capacity ramp"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "critical-mineral diversification",
+          "direction": "positive",
+          "basis": "Primary results show non-iron-ore commodities above half of underlying EBITDA."
+        },
+        {
+          "name": "project social license",
+          "direction": "positive",
+          "basis": "Winu project agreement provides concrete consent/governance evidence."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "productivity conversion",
+          "direction": "positive",
+          "basis": "Benefits are partly realized rather than solely targeted."
+        },
+        {
+          "name": "capacity ramp",
+          "direction": "mixed",
+          "basis": "Commissioning is underway but completion remains prospective."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +130,35 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "critical-mineral diversification",
+    "project social license",
+    "productivity conversion",
+    "capacity ramp"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Commodity prices and major-project execution can materially alter cash generation.",
+        "gating": false
+      },
+      {
+        "risk": "Commissioning schedules and commodity margins can diverge from targets.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Commodity prices and major-project execution can materially alter cash generation.",
+      "gating": false
+    },
+    {
+      "risk": "Commissioning schedules and commodity margins can diverge from targets.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +166,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 3
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +175,77 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "rio:2026-h1-results",
+      "rio:2026-09-10:winu-agreement",
+      "rio:2026-05-29:ap60-commissioning"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://www.riotinto.com/en/news/releases/2026/rio-tinto-step-change-in-performance-delivering-higher-shareholder-returns",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-29",
+      "originFingerprint": "rio:2026-h1-results",
+      "sourceId": null
+    },
+    {
+      "url": "https://www.riotinto.com/en/news/releases/2026/nyangumarta-warrarn-aboriginal-corporation-and-rio-tinto-sign-milestone-agreement-for-winu-project",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-10",
+      "originFingerprint": "rio:2026-09-10:winu-agreement",
+      "sourceId": null
+    },
+    {
+      "url": "https://www.riotinto.com/en/news/releases/2026/rio-tinto-commissions-1-5-billion-ap60-smelter-expansion-in-quebec",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-29",
+      "originFingerprint": "rio:2026-05-29:ap60-commissioning",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Winu remains proposed; final economics and development timing are not established here.",
+      "gating": false
+    },
+    {
+      "unknown": "Year-end productivity run-rate and full AP60 ramp are future checkpoints.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 94,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +259,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +269,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

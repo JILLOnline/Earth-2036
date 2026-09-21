@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "QRVO",
   "workId": "t0:QRVO",
-  "generatedAt": "2026-09-21T10:30:24.344Z",
+  "generatedAt": "2026-09-21T11:05:06.683Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T10:29:40.904Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2025-10-28T00:00:00.000Z",
+    "end": "2026-09-21T11:02:38.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T11:02:38.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,67 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/QRVO-20260921T110238Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "mix quality",
+      "corporate transition",
+      "cash conversion",
+      "expectation visibility"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "mix quality",
+          "direction": "positive",
+          "basis": "Primary 10-K shows substantial gross-margin improvement despite slightly lower revenue."
+        },
+        {
+          "name": "corporate transition",
+          "direction": "mixed",
+          "basis": "Pending merger can add scale but makes standalone expectations less durable."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "cash conversion",
+          "direction": "positive",
+          "basis": "Primary filings show stronger operating cash generation."
+        },
+        {
+          "name": "expectation visibility",
+          "direction": "negative",
+          "basis": "Forward guidance discontinued during pending transaction."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +130,35 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "mix quality",
+    "corporate transition",
+    "cash conversion",
+    "expectation visibility"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Merger approvals and closing conditions remain external dependencies.",
+        "gating": false
+      },
+      {
+        "risk": "Standalone forecasts are unusually uncertain while merger closing remains pending.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Merger approvals and closing conditions remain external dependencies.",
+      "gating": false
+    },
+    {
+      "risk": "Standalone forecasts are unusually uncertain while merger closing remains pending.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +166,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 3
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +175,77 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "qorvo:10-k:fy2026",
+      "qorvo-skyworks:merger-announcement",
+      "qorvo:2026-07-15:fq1-event"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://ir.qorvo.com/static-files/d147c42c-62f7-4b18-a57a-8436708d0f5e",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-06-01",
+      "originFingerprint": "qorvo:10-k:fy2026",
+      "sourceId": null
+    },
+    {
+      "url": "https://ir.qorvo.com/node/25121",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2025-10-28",
+      "originFingerprint": "qorvo-skyworks:merger-announcement",
+      "sourceId": null
+    },
+    {
+      "url": "https://ir.qorvo.com/news-releases/news-release-details/qorvor-distribute-quarterly-earnings-july-28-2026",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-15",
+      "originFingerprint": "qorvo:2026-07-15:fq1-event",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Post-merger product rationalization and synergy realization are not yet observable.",
+      "gating": false
+    },
+    {
+      "unknown": "No Scout valuation conclusion is asserted.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +259,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +269,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

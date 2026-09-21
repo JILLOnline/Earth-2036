@@ -1,9 +1,9 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-21T00:17:51.093Z",
+  "generatedAt": "2026-09-21T00:29:33.563Z",
   "canonicalWriteAuthority": false,
-  "total": 201,
+  "total": 200,
   "twins": [
     {
       "version": 1,
@@ -3040,7 +3040,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "POWL",
       "workId": "t0:POWL",
-      "inputSignature": "aa734675020758db59dc3476",
+      "inputSignature": "77c3679e342ae54cfbd6d9ca",
       "sourceState": "researching",
       "identity": {
         "ticker": "POWL",
@@ -3063,19 +3063,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 1,
         "sourceLineage": {
-          "rawSourceCount": 2,
+          "rawSourceCount": 4,
           "uniqueSourceCount": 1,
-          "duplicatesCollapsed": 1,
+          "duplicatesCollapsed": 3,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:POWL:FY26Q3:GlobeNewswire"
@@ -3083,8 +3083,8 @@
         },
         "evidenceWindow": {
           "start": "2026-08-03T00:00:00.000Z",
-          "end": "2026-09-19T05:06:57.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T05:06:57.000Z"
+          "end": "2026-09-21T00:24:18.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-21T00:24:18.000Z"
         },
         "preflightPassed": false
       },
@@ -3095,34 +3095,52 @@
         "bottleneckControl",
         "pricingPower",
         "scenarioRobustness",
-        "supplyChainResilience"
+        "supplyChainResilience",
+        "thesisQuality"
       ],
       "constraintSignals": {
         "risks": [
           "Large project awards create timing, concentration and execution risk; backlog is not equivalent to realized revenue.",
-          "Project-based revenue can be lumpy and backlog can be delayed, modified or cancelled."
+          "Project-based revenue can be lumpy and backlog can be delayed, modified or cancelled.",
+          "Mega-order concentration and manufacturing throughput can turn a strong demand bottleneck into schedule or margin risk.",
+          "Project concentration, lumpiness and capacity expansion create execution and margin sensitivity even with strong bookings."
         ],
         "unknowns": [
           "Customer identity and margin profile of the >$400M data-center order are not disclosed here.",
-          "Incremental capacity utilization and gross margin on the newest mega-orders remain unknown."
+          "Incremental capacity utilization and gross margin on the newest mega-orders remain unknown.",
+          "Customer concentration and incremental margin on the largest data-center award remain undisclosed.",
+          "The evidence does not disclose the margin profile or customer identity of the >$400M data-center order."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "company:POWL",
+            "to": "infrastructure:electrical-distribution",
+            "relationship": "supplies_project_equipment"
+          },
+          {
+            "from": "infrastructure:electrical-distribution",
+            "to": "need:reliable-industrial-and-datacenter-power",
+            "relationship": "enables_power_delivery"
+          },
+          {
+            "from": "resource:manufacturing-capacity",
+            "to": "company:POWL",
+            "relationship": "constrains_backlog_conversion"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -3133,16 +3151,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -3164,11 +3172,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -3179,13 +3182,18 @@
           "bottleneckControl",
           "pricingPower",
           "scenarioRobustness",
-          "supplyChainResilience"
+          "supplyChainResilience",
+          "thesisQuality"
         ],
         "needOrConstraintCandidates": [
           "Customer identity and margin profile of the >$400M data-center order are not disclosed here.",
           "Incremental capacity utilization and gross margin on the newest mega-orders remain unknown.",
+          "Customer concentration and incremental margin on the largest data-center award remain undisclosed.",
+          "The evidence does not disclose the margin profile or customer identity of the >$400M data-center order.",
           "Large project awards create timing, concentration and execution risk; backlog is not equivalent to realized revenue.",
-          "Project-based revenue can be lumpy and backlog can be delayed, modified or cancelled."
+          "Project-based revenue can be lumpy and backlog can be delayed, modified or cancelled.",
+          "Mega-order concentration and manufacturing throughput can turn a strong demand bottleneck into schedule or margin risk.",
+          "Project concentration, lumpiness and capacity expansion create execution and margin sensitivity even with strong bookings."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -4975,7 +4983,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "MSFT",
       "workId": "t0:MSFT",
-      "inputSignature": "57d5d4cdf78d1d7ebdcfd4ca",
+      "inputSignature": "fdb51cfac477bbcdb213704b",
       "sourceState": "researching",
       "identity": {
         "ticker": "MSFT",
@@ -4998,19 +5006,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 2,
         "sourceLineage": {
-          "rawSourceCount": 4,
+          "rawSourceCount": 8,
           "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 2,
+          "duplicatesCollapsed": 6,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:MSFT:FY26Q4",
@@ -5019,8 +5027,8 @@
         },
         "evidenceWindow": {
           "start": "2026-07-29T00:00:00.000Z",
-          "end": "2026-09-18T18:06:00.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-18T18:06:00.000Z"
+          "end": "2026-09-21T00:24:18.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-21T00:24:18.000Z"
         },
         "preflightPassed": false
       },
@@ -5031,34 +5039,54 @@
         "bottleneckControl",
         "catalystScore",
         "marketValuationOpportunity",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "substitutionResilience",
+        "thesisQuality",
+        "pricingPower"
       ],
       "constraintSignals": {
         "risks": [
           "AI infrastructure intensity is depressing cloud gross margin and free cash flow conversion relative to operating cash flow.",
-          "Capex intensity and concentration of AI infrastructure commitments can pressure near-term returns if demand conversion slows."
+          "Capex intensity and concentration of AI infrastructure commitments can pressure near-term returns if demand conversion slows.",
+          "Successor bottlenecks include power, datacenter capacity and return conversion on AI infrastructure; high demand can coexist with weaker economics if capital intensity outruns monetization.",
+          "Capital intensity and infrastructure concentration can reduce returns if AI demand converts more slowly or competitively priced substitutes compress economics."
         ],
         "unknowns": [
           "Return on the current AI infrastructure investment wave is not yet separable from broader Azure economics.",
-          "Current artifact does not establish a market valuation entry point."
+          "Current artifact does not establish a market valuation entry point.",
+          "Current evidence does not isolate returns on AI infrastructure from broader Azure economics.",
+          "Incremental AI workload margins and stand-alone returns on the current infrastructure build are not disclosed in the reused evidence."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "company:MSFT",
+            "to": "technology:hyperscale-ai-cloud",
+            "relationship": "provides_compute_and_platform_capacity"
+          },
+          {
+            "from": "technology:hyperscale-ai-cloud",
+            "to": "need:enterprise-digital-productivity",
+            "relationship": "enables_ai_and_cloud_workloads"
+          },
+          {
+            "from": "resource:ai-infrastructure-capital",
+            "to": "company:MSFT",
+            "relationship": "constrains_return_conversion"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -5069,16 +5097,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -5100,11 +5118,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -5115,13 +5128,20 @@
           "bottleneckControl",
           "catalystScore",
           "marketValuationOpportunity",
-          "scenarioRobustness"
+          "scenarioRobustness",
+          "substitutionResilience",
+          "thesisQuality",
+          "pricingPower"
         ],
         "needOrConstraintCandidates": [
           "Return on the current AI infrastructure investment wave is not yet separable from broader Azure economics.",
           "Current artifact does not establish a market valuation entry point.",
+          "Current evidence does not isolate returns on AI infrastructure from broader Azure economics.",
+          "Incremental AI workload margins and stand-alone returns on the current infrastructure build are not disclosed in the reused evidence.",
           "AI infrastructure intensity is depressing cloud gross margin and free cash flow conversion relative to operating cash flow.",
-          "Capex intensity and concentration of AI infrastructure commitments can pressure near-term returns if demand conversion slows."
+          "Capex intensity and concentration of AI infrastructure commitments can pressure near-term returns if demand conversion slows.",
+          "Successor bottlenecks include power, datacenter capacity and return conversion on AI infrastructure; high demand can coexist with weaker economics if capital intensity outruns monetization.",
+          "Capital intensity and infrastructure concentration can reduce returns if AI demand converts more slowly or competitively priced substitutes compress economics."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -7712,7 +7732,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "QCOM",
       "workId": "t0:QCOM",
-      "inputSignature": "c196882a012bad652713ebe1",
+      "inputSignature": "774f9b9f2b73e02586a30589",
       "sourceState": "researching",
       "identity": {
         "ticker": "QCOM",
@@ -7735,19 +7755,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 1,
         "sourceLineage": {
-          "rawSourceCount": 2,
+          "rawSourceCount": 4,
           "uniqueSourceCount": 1,
-          "duplicatesCollapsed": 1,
+          "duplicatesCollapsed": 3,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:QCOM:FY26Q3"
@@ -7755,8 +7775,8 @@
         },
         "evidenceWindow": {
           "start": "2026-07-29T00:00:00.000Z",
-          "end": "2026-09-18T18:07:00.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-18T18:07:00.000Z"
+          "end": "2026-09-21T00:24:18.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-21T00:24:18.000Z"
         },
         "preflightPassed": false
       },
@@ -7766,34 +7786,53 @@
         "crossDivisionLeverage",
         "catalystScore",
         "scenarioRobustness",
-        "substitutionResilience"
+        "substitutionResilience",
+        "bottleneckControl",
+        "thesisQuality"
       ],
       "constraintSignals": {
         "risks": [
           "Memory/supply constraints and continued handset exposure can offset diversification gains.",
-          "Diversification targets can disappoint if custom silicon or automotive programs slip while handset concentration remains material."
+          "Diversification targets can disappoint if custom silicon or automotive programs slip while handset concentration remains material.",
+          "Diversification can be slowed by handset concentration, memory/supply constraints and customer substitution toward competing or in-house silicon.",
+          "Customer in-house silicon, competing architectures, handset concentration and supply constraints can reduce diversification value capture."
         ],
         "unknowns": [
           "The durability and margin profile of the new data-center/custom-silicon ramp remains unproven in this artifact.",
-          "Current valuation and segment-level incremental margins are not established here."
+          "Current valuation and segment-level incremental margins are not established here.",
+          "Durability and incremental margin of the new data-center/custom-silicon ramp remain unproven in current evidence.",
+          "Segment-level incremental margins and durable data-center shipment economics are not established in reused evidence."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "company:QCOM",
+            "to": "technology:edge-ai-and-connectivity-silicon",
+            "relationship": "supplies_compute_connectivity_platforms"
+          },
+          {
+            "from": "technology:edge-ai-and-connectivity-silicon",
+            "to": "need:distributed-intelligent-devices",
+            "relationship": "enables_local_compute_and_connectivity"
+          },
+          {
+            "from": "technology:alternative-custom-silicon",
+            "to": "company:QCOM",
+            "relationship": "substitution_pressure"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -7804,16 +7843,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -7835,11 +7864,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -7849,13 +7873,19 @@
           "crossDivisionLeverage",
           "catalystScore",
           "scenarioRobustness",
-          "substitutionResilience"
+          "substitutionResilience",
+          "bottleneckControl",
+          "thesisQuality"
         ],
         "needOrConstraintCandidates": [
           "The durability and margin profile of the new data-center/custom-silicon ramp remains unproven in this artifact.",
           "Current valuation and segment-level incremental margins are not established here.",
+          "Durability and incremental margin of the new data-center/custom-silicon ramp remain unproven in current evidence.",
+          "Segment-level incremental margins and durable data-center shipment economics are not established in reused evidence.",
           "Memory/supply constraints and continued handset exposure can offset diversification gains.",
-          "Diversification targets can disappoint if custom silicon or automotive programs slip while handset concentration remains material."
+          "Diversification targets can disappoint if custom silicon or automotive programs slip while handset concentration remains material.",
+          "Diversification can be slowed by handset concentration, memory/supply constraints and customer substitution toward competing or in-house silicon.",
+          "Customer in-house silicon, competing architectures, handset concentration and supply constraints can reduce diversification value capture."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -7871,7 +7901,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "TXN",
       "workId": "t0:TXN",
-      "inputSignature": "d0ba7c855858f4b32f3c98fd",
+      "inputSignature": "46ba53c494189aa814127b79",
       "sourceState": "researching",
       "identity": {
         "ticker": "TXN",
@@ -7894,19 +7924,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 1,
         "sourceLineage": {
-          "rawSourceCount": 2,
+          "rawSourceCount": 4,
           "uniqueSourceCount": 1,
-          "duplicatesCollapsed": 1,
+          "duplicatesCollapsed": 3,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:TXN:2026Q2"
@@ -7914,8 +7944,8 @@
         },
         "evidenceWindow": {
           "start": "2026-07-22T00:00:00.000Z",
-          "end": "2026-09-18T18:11:00.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-18T18:11:00.000Z"
+          "end": "2026-09-21T00:24:18.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-21T00:24:18.000Z"
         },
         "preflightPassed": false
       },
@@ -7925,34 +7955,53 @@
         "supplyChainResilience",
         "pricingPower",
         "scenarioRobustness",
-        "catalystScore"
+        "catalystScore",
+        "substitutionResilience",
+        "thesisQuality"
       ],
       "constraintSignals": {
         "risks": [
           "Analog demand remains cyclical and capacity investment can depress returns if industrial/automotive recovery stalls.",
-          "A demand relapse would leave new manufacturing capacity underutilized."
+          "A demand relapse would leave new manufacturing capacity underutilized.",
+          "Large manufacturing investment can become an underutilized fixed-cost burden if broad industrial and automotive demand recovery reverses.",
+          "Cyclical demand relapse can expose fixed-cost underutilization and depress returns on the 300mm capacity build."
         ],
         "unknowns": [
           "Current utilization and incremental returns on new 300mm capacity are not quantified here.",
-          "Current valuation and peer-relative utilization remain for Alpha underwriting."
+          "Current valuation and peer-relative utilization remain for Alpha underwriting.",
+          "Current utilization and incremental returns on new 300mm capacity are not quantified in the reused evidence.",
+          "Peer-relative utilization, current valuation and incremental fab returns remain outside Beta's evidence and belong to underwriting where applicable."
         ],
         "contradictions": [],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "missing_causal_mapping"
+          "missing_data_confidence_evidence"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "company:TXN",
+            "to": "technology:analog-and-embedded-semiconductors",
+            "relationship": "supplies_control_and_power_components"
+          },
+          {
+            "from": "technology:analog-and-embedded-semiconductors",
+            "to": "need:physical-system-sensing-power-control",
+            "relationship": "enables_real_world_electronics"
+          },
+          {
+            "from": "resource:300mm-fab-capacity",
+            "to": "company:TXN",
+            "relationship": "creates_cost_and_supply_leverage_if_utilized"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -7963,16 +8012,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -7994,11 +8033,6 @@
           "failure": "missing_data_confidence_evidence",
           "question": "Which evidence-quality dimensions remain insufficiently supported?",
           "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
         }
       ],
       "bridgeInputs": {
@@ -8008,13 +8042,19 @@
           "supplyChainResilience",
           "pricingPower",
           "scenarioRobustness",
-          "catalystScore"
+          "catalystScore",
+          "substitutionResilience",
+          "thesisQuality"
         ],
         "needOrConstraintCandidates": [
           "Current utilization and incremental returns on new 300mm capacity are not quantified here.",
           "Current valuation and peer-relative utilization remain for Alpha underwriting.",
+          "Current utilization and incremental returns on new 300mm capacity are not quantified in the reused evidence.",
+          "Peer-relative utilization, current valuation and incremental fab returns remain outside Beta's evidence and belong to underwriting where applicable.",
           "Analog demand remains cyclical and capacity investment can depress returns if industrial/automotive recovery stalls.",
-          "A demand relapse would leave new manufacturing capacity underutilized."
+          "A demand relapse would leave new manufacturing capacity underutilized.",
+          "Large manufacturing investment can become an underutilized fixed-cost burden if broad industrial and automotive demand recovery reverses.",
+          "Cyclical demand relapse can expose fixed-cost underutilization and depress returns on the 300mm capacity build."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -31235,159 +31275,6 @@
           "Successor bottleneck can move upstream to raw materials/supply or downstream to customer capex availability, limiting benefit from internal execution.",
           "Raised guidance increases sensitivity to a second-half industrial slowdown.",
           "Portfolio breadth reduces but does not eliminate correlated macro/capex exposure."
-        ],
-        "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
-      },
-      "doctrine": {
-        "recommendationStyle": "facts + interpretation + options; never coercion",
-        "representationIsNotRanking": true,
-        "uncertaintyVisible": true
-      }
-    },
-    {
-      "version": 1,
-      "contract": "earth2036-company-digital-twin-shadow-v1",
-      "canonicalWriteAuthority": false,
-      "ticker": "CMI",
-      "workId": "t0:CMI",
-      "inputSignature": "06bc4a4d03fb8ce1c5a88ca5",
-      "sourceState": "chief_ready",
-      "identity": {
-        "ticker": "CMI",
-        "company": "Cummins",
-        "cik": "0000026172",
-        "exchange": "NYSE",
-        "exchangeName": "Cummins Inc. Common Stock",
-        "identityStatus": "validated",
-        "tradabilityStatus": "validated",
-        "validatedAt": "2026-09-20T23:57:51.001Z"
-      },
-      "representationQuality": {
-        "requiredPerspectives": [
-          "source-integrity",
-          "company-underwriting",
-          "structural-causal",
-          "discovery-weak-signals",
-          "adversarial-red-team",
-          "expectations-execution"
-        ],
-        "presentPerspectives": [
-          "discovery-weak-signals",
-          "expectations-execution",
-          "structural-causal",
-          "adversarial-red-team",
-          "source-integrity",
-          "company-underwriting"
-        ],
-        "missingPerspectives": [],
-        "primarySourceCount": 6,
-        "sourceLineage": {
-          "rawSourceCount": 17,
-          "uniqueSourceCount": 8,
-          "duplicatesCollapsed": 9,
-          "missingLineage": 0,
-          "uniqueOrigins": [
-            "issuer:CMI:2026Q2:20260806",
-            "sec:CMI:2026Q2:earnings:20260806",
-            "sec:CMI:2024:10K:20241231",
-            "sec:CMI:2026Q2:10Q:20260630",
-            "sec:CMI:2026:DEF14A:20260402",
-            "independent:companiesmarketcap:CMI:202609",
-            "independent:companiesmarketcap:CMI:PE:202609",
-            "sec:CMI:2025:10K:20251231"
-          ]
-        },
-        "evidenceWindow": {
-          "start": "2025-02-11T00:00:00.000Z",
-          "end": "2026-09-21T00:16:25.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-21T00:16:25.000Z"
-        },
-        "preflightPassed": true
-      },
-      "capabilitySignals": [
-        "thesisQuality",
-        "alignment2036",
-        "crossDivisionLeverage",
-        "bottleneckControl",
-        "financialOperatingMomentum",
-        "catalystScore",
-        "scenarioRobustness",
-        "pricingPower",
-        "substitutionResilience",
-        "supplyChainResilience",
-        "governancePower",
-        "marketValuationOpportunity"
-      ],
-      "constraintSignals": {
-        "risks": [
-          "Data-center power strength coexists with cyclical on-highway exposure and does not establish valuation attractiveness by itself.",
-          "Q2 EBITDA margin of 17.5% remained below the prior-year quarter's 18.4%, so revenue acceleration has not translated into year-over-year margin expansion in this quarter.",
-          "Data-center power growth can be strong while truck/off-highway cycles weaken other Cummins segments.",
-          "Open-order cancellability makes some demand less durable than headline backlog language may imply.",
-          "Zero-emissions investments remain loss-making and require disciplined pacing.",
-          "Issuer and SEC earnings materials share company-origin facts and are not treated as independent corroboration of issuer claims.",
-          "Truck/off-highway cyclicality can offset data-center power strength; Accelera losses and cancellable open orders reduce demand-quality certainty.",
-          "Valuation around 27x trailing earnings embeds substantial execution and growth expectations."
-        ],
-        "unknowns": [
-          "Issuer release does not isolate data-center revenue, backlog, customer concentration or incremental margin contribution.",
-          "Durability of data-center demand and second-half truck recovery beyond current guidance remains unverified.",
-          "Current disclosures do not isolate data-center backlog economics or customer concentration.",
-          "Incremental margins and concentration of data-center power-generation demand are not separately disclosed.",
-          "Current disclosures do not isolate data-center customer concentration or incremental margin contribution.",
-          "Data-center customer concentration, backlog economics and incremental margins are not separately disclosed."
-        ],
-        "contradictions": [
-          "Record revenue and raised outlook coexist with lower year-over-year Q2 EBITDA margin.",
-          "Record/strong revenue growth coexists with lower consolidated year-over-year EBITDA margin and continued Accelera losses.",
-          "Record revenue and raised guidance coexist with lower year-over-year Q2 EBITDA margin."
-        ],
-        "gatingIssues": [],
-        "preflightFailures": []
-      },
-      "causalContext": {
-        "mapped": true,
-        "edges": [
-          "AI/data-center buildout -> critical power demand",
-          "critical power demand -> generator/system demand",
-          "multi-technology portfolio -> transition optionality",
-          "grid/permitting/supply constraints -> deployment bottlenecks",
-          "data-center demand -> Power Systems growth",
-          "open purchase orders -> cancellation risk",
-          "Accelera investment -> near-term EBITDA drag -> transition optionality"
-        ]
-      },
-      "improvementWindows": [],
-      "bridgeInputs": {
-        "capabilityCandidates": [
-          "thesisQuality",
-          "alignment2036",
-          "crossDivisionLeverage",
-          "bottleneckControl",
-          "financialOperatingMomentum",
-          "catalystScore",
-          "scenarioRobustness",
-          "pricingPower",
-          "substitutionResilience",
-          "supplyChainResilience",
-          "governancePower",
-          "marketValuationOpportunity"
-        ],
-        "needOrConstraintCandidates": [
-          "Issuer release does not isolate data-center revenue, backlog, customer concentration or incremental margin contribution.",
-          "Durability of data-center demand and second-half truck recovery beyond current guidance remains unverified.",
-          "Current disclosures do not isolate data-center backlog economics or customer concentration.",
-          "Incremental margins and concentration of data-center power-generation demand are not separately disclosed.",
-          "Current disclosures do not isolate data-center customer concentration or incremental margin contribution.",
-          "Data-center customer concentration, backlog economics and incremental margins are not separately disclosed.",
-          "Data-center power strength coexists with cyclical on-highway exposure and does not establish valuation attractiveness by itself.",
-          "Q2 EBITDA margin of 17.5% remained below the prior-year quarter's 18.4%, so revenue acceleration has not translated into year-over-year margin expansion in this quarter.",
-          "Data-center power growth can be strong while truck/off-highway cycles weaken other Cummins segments.",
-          "Open-order cancellability makes some demand less durable than headline backlog language may imply.",
-          "Zero-emissions investments remain loss-making and require disciplined pacing.",
-          "Issuer and SEC earnings materials share company-origin facts and are not treated as independent corroboration of issuer claims.",
-          "Truck/off-highway cyclicality can offset data-center power strength; Accelera losses and cancellable open orders reduce demand-quality certainty.",
-          "Valuation around 27x trailing earnings embeds substantial execution and growth expectations."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

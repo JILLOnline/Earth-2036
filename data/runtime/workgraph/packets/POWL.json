@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "POWL",
   "workId": "t0:POWL",
-  "generatedAt": "2026-09-21T00:17:51.087Z",
+  "generatedAt": "2026-09-21T00:29:33.553Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-03T00:00:00.000Z",
-    "end": "2026-09-19T05:06:57.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T05:06:57.000Z"
+    "end": "2026-09-21T00:24:18.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T00:24:18.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/POWL-20260919T050657Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/POWL-20260919T050657Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/POWL-20260921T002418Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -63,12 +66,19 @@
       "bottleneckControl",
       "pricingPower",
       "scenarioRobustness",
-      "supplyChainResilience"
+      "supplyChainResilience",
+      "thesisQuality"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "pricingPower"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -76,7 +86,12 @@
         "bottleneckControl",
         "pricingPower"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "pricingPower",
@@ -130,7 +145,8 @@
     "bottleneckControl",
     "pricingPower",
     "scenarioRobustness",
-    "supplyChainResilience"
+    "supplyChainResilience",
+    "thesisQuality"
   ],
   "riskEvidence": {
     "present": true,
@@ -142,6 +158,14 @@
       {
         "risk": "Project-based revenue can be lumpy and backlog can be delayed, modified or cancelled.",
         "gating": false
+      },
+      {
+        "risk": "Mega-order concentration and manufacturing throughput can turn a strong demand bottleneck into schedule or margin risk.",
+        "gating": false
+      },
+      {
+        "risk": "Project concentration, lumpiness and capacity expansion create execution and margin sensitivity even with strong bookings.",
+        "gating": false
       }
     ]
   },
@@ -152,6 +176,14 @@
     },
     {
       "risk": "Project-based revenue can be lumpy and backlog can be delayed, modified or cancelled.",
+      "gating": false
+    },
+    {
+      "risk": "Mega-order concentration and manufacturing throughput can turn a strong demand bottleneck into schedule or margin risk.",
+      "gating": false
+    },
+    {
+      "risk": "Project concentration, lumpiness and capacity expansion create execution and margin sensitivity even with strong bookings.",
       "gating": false
     }
   ],
@@ -166,14 +198,46 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "company:POWL",
+        "to": "infrastructure:electrical-distribution",
+        "relationship": "supplies_project_equipment"
+      },
+      {
+        "from": "infrastructure:electrical-distribution",
+        "to": "need:reliable-industrial-and-datacenter-power",
+        "relationship": "enables_power_delivery"
+      },
+      {
+        "from": "resource:manufacturing-capacity",
+        "to": "company:POWL",
+        "relationship": "constrains_backlog_conversion"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "company:POWL",
+      "to": "infrastructure:electrical-distribution",
+      "relationship": "supplies_project_equipment"
+    },
+    {
+      "from": "infrastructure:electrical-distribution",
+      "to": "need:reliable-industrial-and-datacenter-power",
+      "relationship": "enables_power_delivery"
+    },
+    {
+      "from": "resource:manufacturing-capacity",
+      "to": "company:POWL",
+      "relationship": "constrains_backlog_conversion"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:POWL:FY26Q3:GlobeNewswire"
@@ -202,26 +266,31 @@
     {
       "unknown": "Incremental capacity utilization and gross margin on the newest mega-orders remain unknown.",
       "gating": false
+    },
+    {
+      "unknown": "Customer concentration and incremental margin on the largest data-center award remain undisclosed.",
+      "gating": false
+    },
+    {
+      "unknown": "The evidence does not disclose the margin profile or customer identity of the >$400M data-center order.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -231,14 +300,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -255,10 +316,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

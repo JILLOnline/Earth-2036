@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MSFT",
   "workId": "t0:MSFT",
-  "generatedAt": "2026-09-21T00:17:51.087Z",
+  "generatedAt": "2026-09-21T00:29:33.553Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-29T00:00:00.000Z",
-    "end": "2026-09-18T18:06:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-18T18:06:00.000Z"
+    "end": "2026-09-21T00:24:18.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T00:24:18.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/MSFT-20260918T1600Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/MSFT-20260918T1600Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/MSFT-20260921T002418Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -63,12 +66,21 @@
       "bottleneckControl",
       "catalystScore",
       "marketValuationOpportunity",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "substitutionResilience",
+      "thesisQuality",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "alignment2036",
@@ -76,7 +88,12 @@
         "bottleneckControl",
         "catalystScore"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "scenarioRobustness",
+        "pricingPower",
+        "bottleneckControl"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "marketValuationOpportunity",
@@ -129,7 +146,10 @@
     "bottleneckControl",
     "catalystScore",
     "marketValuationOpportunity",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "substitutionResilience",
+    "thesisQuality",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -141,6 +161,14 @@
       {
         "risk": "Capex intensity and concentration of AI infrastructure commitments can pressure near-term returns if demand conversion slows.",
         "gating": false
+      },
+      {
+        "risk": "Successor bottlenecks include power, datacenter capacity and return conversion on AI infrastructure; high demand can coexist with weaker economics if capital intensity outruns monetization.",
+        "gating": false
+      },
+      {
+        "risk": "Capital intensity and infrastructure concentration can reduce returns if AI demand converts more slowly or competitively priced substitutes compress economics.",
+        "gating": false
       }
     ]
   },
@@ -151,6 +179,14 @@
     },
     {
       "risk": "Capex intensity and concentration of AI infrastructure commitments can pressure near-term returns if demand conversion slows.",
+      "gating": false
+    },
+    {
+      "risk": "Successor bottlenecks include power, datacenter capacity and return conversion on AI infrastructure; high demand can coexist with weaker economics if capital intensity outruns monetization.",
+      "gating": false
+    },
+    {
+      "risk": "Capital intensity and infrastructure concentration can reduce returns if AI demand converts more slowly or competitively priced substitutes compress economics.",
       "gating": false
     }
   ],
@@ -165,14 +201,46 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "company:MSFT",
+        "to": "technology:hyperscale-ai-cloud",
+        "relationship": "provides_compute_and_platform_capacity"
+      },
+      {
+        "from": "technology:hyperscale-ai-cloud",
+        "to": "need:enterprise-digital-productivity",
+        "relationship": "enables_ai_and_cloud_workloads"
+      },
+      {
+        "from": "resource:ai-infrastructure-capital",
+        "to": "company:MSFT",
+        "relationship": "constrains_return_conversion"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "company:MSFT",
+      "to": "technology:hyperscale-ai-cloud",
+      "relationship": "provides_compute_and_platform_capacity"
+    },
+    {
+      "from": "technology:hyperscale-ai-cloud",
+      "to": "need:enterprise-digital-productivity",
+      "relationship": "enables_ai_and_cloud_workloads"
+    },
+    {
+      "from": "resource:ai-infrastructure-capital",
+      "to": "company:MSFT",
+      "relationship": "constrains_return_conversion"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 8,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:MSFT:FY26Q4",
@@ -210,26 +278,31 @@
     {
       "unknown": "Current artifact does not establish a market valuation entry point.",
       "gating": false
+    },
+    {
+      "unknown": "Current evidence does not isolate returns on AI infrastructure from broader Azure economics.",
+      "gating": false
+    },
+    {
+      "unknown": "Incremental AI workload margins and stand-alone returns on the current infrastructure build are not disclosed in the reused evidence.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 91,
+  "confidence": 89,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -239,14 +312,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -263,10 +328,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

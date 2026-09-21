@@ -26,7 +26,7 @@ function isActive(pathname: string, href: string) {
 export default function EarthShell({ cycleKey, phase, lastCycleAt, children }: Props) {
   const pathname = usePathname();
   return (
-    <div className="earthShell">
+    <div id="earth-top" className="earthShell">
       <header className="earthHeader">
         <div className="earthHeaderInner">
           <Link className="earthBrand" href="/" aria-label="Earth 2036 command">

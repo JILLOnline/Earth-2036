@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "REGN",
   "workId": "t0:REGN",
-  "generatedAt": "2026-09-21T09:26:33.170Z",
+  "generatedAt": "2026-09-21T10:09:34.469Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T06:31:43.015Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-04-13T00:00:00.000Z",
+    "end": "2026-09-21T10:07:39.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T10:07:39.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,67 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/REGN-20260921T1007Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "commercial diversification",
+      "pipeline modality expansion",
+      "commercial execution",
+      "regulatory event exposure"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "commercial diversification",
+          "direction": "positive",
+          "basis": "Multiple major products delivered strong growth rather than a single disclosed growth engine."
+        },
+        {
+          "name": "pipeline modality expansion",
+          "direction": "mixed",
+          "basis": "New platform collaborations broaden optionality but add development and capital-allocation risk before clinical validation."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "commercial execution",
+          "direction": "positive",
+          "basis": "Broad product growth and updated margin guidance support current operating execution."
+        },
+        {
+          "name": "regulatory event exposure",
+          "direction": "mixed",
+          "basis": "Cemdisiran provides a defined catalyst but approval must remain unknown until the FDA acts."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +130,35 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "commercial diversification",
+    "pipeline modality expansion",
+    "commercial execution",
+    "regulatory event exposure"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Drug-development attrition, regulatory outcomes, reimbursement and competitive pressure remain material across the pipeline and marketed portfolio.",
+        "gating": false
+      },
+      {
+        "risk": "EYLEA legacy sales face competitive pressure even as EYLEA HD grows, and regulatory outcomes remain binary/uncertain.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Drug-development attrition, regulatory outcomes, reimbursement and competitive pressure remain material across the pipeline and marketed portfolio.",
+      "gating": false
+    },
+    {
+      "risk": "EYLEA legacy sales face competitive pressure even as EYLEA HD grows, and regulatory outcomes remain binary/uncertain.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +166,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 3
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +175,91 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "regeneron-ir:2026-07-30:q2-2026",
+      "regeneron-ir:2026-04-13:telix-radiopharma",
+      "regeneron-ir:2026-05-18:parabilis-helicon"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "url": "https://investor.regeneron.com/news-releases/news-release-details/regeneron-reports-second-quarter-2026-financial-and-operating",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-30",
+      "originFingerprint": "regeneron-ir:2026-07-30:q2-2026",
+      "sourceId": null
+    },
+    {
+      "url": "https://investor.regeneron.com/news-releases/news-release-details/regeneron-and-telix-announce-strategic-radiopharma-collaboration",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-04-13",
+      "originFingerprint": "regeneron-ir:2026-04-13:telix-radiopharma",
+      "sourceId": null
+    },
+    {
+      "url": "https://investor.regeneron.com/news-releases/news-release-details/regeneron-announces-strategic-collaboration-parabilis-medicines",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-18",
+      "originFingerprint": "regeneron-ir:2026-05-18:parabilis-helicon",
+      "sourceId": null
+    }
+  ],
+  "contradictions": [
+    {
+      "claim": "EYLEA HD growth versus legacy EYLEA pressure",
+      "resolution": "Both are disclosed: franchise transition supports HD growth while competitive pressure and migration reduce legacy EYLEA demand.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "EYLEA HD growth versus legacy EYLEA pressure",
+        "resolution": "Both are disclosed: franchise transition supports HD growth while competitive pressure and migration reduce legacy EYLEA demand.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Economic contribution from newer collaboration modalities remains contingent on future development success.",
+      "gating": false
+    },
+    {
+      "unknown": "The November 2026 cemdisiran FDA decision is unresolved and is not forecast as certain.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 96,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +273,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +283,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

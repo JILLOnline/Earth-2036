@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-21T11:05:06.693Z",
+  "generatedAt": "2026-09-21T11:15:41.162Z",
   "canonicalWriteAuthority": false,
   "total": 191,
   "twins": [
@@ -31203,8 +31203,8 @@
       "canonicalWriteAuthority": false,
       "ticker": "CTVA",
       "workId": "t0:CTVA",
-      "inputSignature": "9199b9c4da9345a8abb283e0",
-      "sourceState": "researching",
+      "inputSignature": "7e6c45fc2ede8be24aa6190a",
+      "sourceState": "chief_ready",
       "identity": {
         "ticker": "CTVA",
         "company": "Corteva",
@@ -31228,30 +31228,31 @@
           "discovery-weak-signals",
           "expectations-execution",
           "structural-causal",
-          "adversarial-red-team"
-        ],
-        "missingPerspectives": [
+          "adversarial-red-team",
           "source-integrity",
           "company-underwriting"
         ],
-        "primarySourceCount": 3,
+        "missingPerspectives": [],
+        "primarySourceCount": 4,
         "sourceLineage": {
-          "rawSourceCount": 9,
-          "uniqueSourceCount": 3,
-          "duplicatesCollapsed": 6,
+          "rawSourceCount": 18,
+          "uniqueSourceCount": 5,
+          "duplicatesCollapsed": 13,
           "missingLineage": 0,
           "uniqueOrigins": [
             "sec:CIK30554:8K:20260914:VylorDistribution",
             "issuer:CTVA:GlobachemJV:20260909",
-            "sec:CIK30554:8K:20260910:NC-PFAS-settlement"
+            "sec:CIK30554:8K:20260910:NC-PFAS-settlement",
+            "sec:CIK1755672:10Q:20260630",
+            "market:companiesmarketcap:CTVA:20260921"
           ]
         },
         "evidenceWindow": {
-          "start": "2026-09-09T00:00:00.000Z",
-          "end": "2026-09-20T03:24:31.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-20T03:24:31.000Z"
+          "start": "2026-08-06T00:00:00.000Z",
+          "end": "2026-09-21T11:13:42.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-21T11:13:42.000Z"
         },
-        "preflightPassed": false
+        "preflightPassed": true
       },
       "capabilitySignals": [
         "catalystScore",
@@ -31261,7 +31262,11 @@
         "governancePower",
         "scenarioRobustness",
         "bottleneckControl",
-        "substitutionResilience"
+        "substitutionResilience",
+        "financialOperatingMomentum",
+        "marketValuationOpportunity",
+        "pricingPower",
+        "supplyChainResilience"
       ],
       "constraintSignals": {
         "risks": [
@@ -31269,24 +31274,23 @@
           "PFAS litigation/settlement obligations and attempts to impede the separation could alter timing, cash requirements or transaction economics.",
           "Specialization may improve focus but removes some portfolio diversification and shared operating optionality; resilience depends on each standalone business retaining sufficient capital and commercial scale.",
           "PFAS liabilities or legal challenges could consume capital or complicate separation economics/timing.",
-          "Portfolio separation can expose each business more directly to category-specific cycles and execution errors."
+          "Portfolio separation can expose each business more directly to category-specific cycles and execution errors.",
+          "Current market valuation input is independent but non-canonical market data and should be refreshed on aging.",
+          "PFAS liabilities and separation execution can consume capital or impair transaction economics.",
+          "Debt increased materially during 1H26 while cash declined from year-end, reducing balance-sheet slack despite ample credit access."
         ],
         "unknowns": [
           "Post-separation capital structures and market valuations require dedicated underwriting after regular-way trading begins.",
           "Ultimate aggregate PFAS liability and whether legal challenges alter the October 1 separation timetable remain unknown.",
           "Standalone Vylor capital structure, post-separation cross-company dependencies and realized dis-synergies are not established by current evidence.",
-          "Aggregate PFAS liability and final post-spin stranded costs remain unresolved but are not present evidence of a locked-methodology contradiction."
+          "Aggregate PFAS liability and final post-spin stranded costs remain unresolved but are not present evidence of a locked-methodology contradiction.",
+          "Post-separation Vylor regular-way valuation is not yet observable before distribution/trading.",
+          "Post-separation capital structures and regular-way valuations are not yet established.",
+          "Ultimate aggregate PFAS liability remains uncertain."
         ],
         "contradictions": [],
         "gatingIssues": [],
-        "preflightFailures": [
-          "missing_specialist_perspective:source-integrity",
-          "missing_specialist_perspective:company-underwriting",
-          "missing_factor_evidence",
-          "missing_numeric_score_record",
-          "missing_score_risk_evidence",
-          "missing_data_confidence_evidence"
-        ]
+        "preflightFailures": []
       },
       "causalContext": {
         "mapped": true,
@@ -31296,38 +31300,7 @@
           "portfolio separation -> specialized capital allocation -> execution focus"
         ]
       },
-      "improvementWindows": [
-        {
-          "failure": "missing_specialist_perspective:source-integrity",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:source-integrity?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:company-underwriting",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_factor_evidence",
-          "question": "Which required methodology factor still lacks source-addressed evidence?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_numeric_score_record",
-          "question": "Which source-addressed factor assessments are still required before a reproducible score can be constructed?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_score_risk_evidence",
-          "question": "Which material risks require source-addressed quantitative treatment?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_data_confidence_evidence",
-          "question": "Which evidence-quality dimensions remain insufficiently supported?",
-          "stance": "improvement-oriented"
-        }
-      ],
+      "improvementWindows": [],
       "bridgeInputs": {
         "capabilityCandidates": [
           "catalystScore",
@@ -31337,18 +31310,28 @@
           "governancePower",
           "scenarioRobustness",
           "bottleneckControl",
-          "substitutionResilience"
+          "substitutionResilience",
+          "financialOperatingMomentum",
+          "marketValuationOpportunity",
+          "pricingPower",
+          "supplyChainResilience"
         ],
         "needOrConstraintCandidates": [
           "Post-separation capital structures and market valuations require dedicated underwriting after regular-way trading begins.",
           "Ultimate aggregate PFAS liability and whether legal challenges alter the October 1 separation timetable remain unknown.",
           "Standalone Vylor capital structure, post-separation cross-company dependencies and realized dis-synergies are not established by current evidence.",
           "Aggregate PFAS liability and final post-spin stranded costs remain unresolved but are not present evidence of a locked-methodology contradiction.",
+          "Post-separation Vylor regular-way valuation is not yet observable before distribution/trading.",
+          "Post-separation capital structures and regular-way valuations are not yet established.",
+          "Ultimate aggregate PFAS liability remains uncertain.",
           "The separation creates execution, stranded-cost and post-spin valuation uncertainty for both businesses.",
           "PFAS litigation/settlement obligations and attempts to impede the separation could alter timing, cash requirements or transaction economics.",
           "Specialization may improve focus but removes some portfolio diversification and shared operating optionality; resilience depends on each standalone business retaining sufficient capital and commercial scale.",
           "PFAS liabilities or legal challenges could consume capital or complicate separation economics/timing.",
-          "Portfolio separation can expose each business more directly to category-specific cycles and execution errors."
+          "Portfolio separation can expose each business more directly to category-specific cycles and execution errors.",
+          "Current market valuation input is independent but non-canonical market data and should be refreshed on aging.",
+          "PFAS liabilities and separation execution can consume capital or impair transaction economics.",
+          "Debt increased materially during 1H26 while cash declined from year-end, reducing balance-sheet slack despite ample credit access."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "PYPL",
   "workId": "t0:PYPL",
-  "generatedAt": "2026-09-21T08:27:06.525Z",
+  "generatedAt": "2026-09-21T09:09:59.669Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T06:31:43.015Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-07-28T00:00:00.000Z",
+    "end": "2026-09-21T09:07:18.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T09:07:18.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,54 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/PYPL-20260921T090718Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "financialOperatingMomentum",
+      "catalystScore",
+      "bottleneckControl",
+      "executionQuality",
+      "scenarioRobustness"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "financialOperatingMomentum",
+        "catalystScore",
+        "bottleneckControl"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "executionQuality",
+        "financialOperatingMomentum",
+        "scenarioRobustness"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +117,36 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "financialOperatingMomentum",
+    "catalystScore",
+    "bottleneckControl",
+    "executionQuality",
+    "scenarioRobustness"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Payments competition and mix shifts can pressure transaction economics even as TPV grows.",
+        "gating": false
+      },
+      {
+        "risk": "Adjusted EPS growth remains modest relative to TPV and cash-flow expansion, making transaction-margin execution a key watch item.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Payments competition and mix shifts can pressure transaction economics even as TPV grows.",
+      "gating": false
+    },
+    {
+      "risk": "Adjusted EPS growth remains modest relative to TPV and cash-flow expansion, making transaction-margin execution a key watch item.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +154,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +163,68 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "issuer:PYPL:Q2:20260728",
+      "zacks:PYPL:Q2:20260728"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "issuer:PYPL:Q2-2026",
+      "url": "https://newsroom.paypal-corp.com/2026-07-28-PayPal-Reports-Second-Quarter-2026-Results",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-28",
+      "originFingerprint": "issuer:PYPL:Q2:20260728"
+    },
+    {
+      "sourceId": "independent:PYPL:Q2-2026:Zacks",
+      "url": "https://www.zacks.com/stock/news/2962488/paypals-q2-earnings-beat-estimates-on-tpv-revenue-growth",
+      "kind": "independent",
+      "primary": false,
+      "publishedAt": "2026-07-28",
+      "originFingerprint": "zacks:PYPL:Q2:20260728"
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Durability of engagement gains and monetization across newer Venmo/BNPL products requires continued observation.",
+      "gating": false
+    },
+    {
+      "unknown": "How much of the cash-flow improvement is structurally repeatable versus working-capital/timing effects requires Alpha review.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +238,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +248,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

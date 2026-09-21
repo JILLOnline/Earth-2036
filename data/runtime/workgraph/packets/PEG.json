@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "PEG",
   "workId": "t0:PEG",
-  "generatedAt": "2026-09-21T10:17:52.488Z",
+  "generatedAt": "2026-09-21T10:27:43.105Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-04T00:00:00.000Z",
-    "end": "2026-09-21T09:07:18.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T09:07:18.000Z"
+    "end": "2026-09-21T10:25:44.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T10:25:44.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/PEG-20260921T090718Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/PEG-20260921T090718Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/PEG-20260921T102544Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -63,19 +66,34 @@
       "catalystScore",
       "financialOperatingMomentum",
       "scenarioRobustness",
-      "executionQuality"
+      "executionQuality",
+      "thesisQuality",
+      "governancePower",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "thesisQuality"
+      ],
       "discovery-weak-signals": [
         "alignment2036",
         "bottleneckControl",
         "supplyChainResilience",
         "catalystScore"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "governancePower",
+        "pricingPower",
+        "thesisQuality"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -127,7 +145,10 @@
     "catalystScore",
     "financialOperatingMomentum",
     "scenarioRobustness",
-    "executionQuality"
+    "executionQuality",
+    "thesisQuality",
+    "governancePower",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -139,6 +160,22 @@
       {
         "risk": "Higher depreciation and interest expense accompany incremental investment.",
         "gating": false
+      },
+      {
+        "risk": "Large capital needs shift the bottleneck toward financing, regulatory recovery and execution quality.",
+        "gating": false
+      },
+      {
+        "risk": "Financing costs and depreciation can dilute benefits from incremental rate-base growth.",
+        "gating": false
+      },
+      {
+        "risk": "Regulatory recovery and customer affordability can constrain realized returns.",
+        "gating": false
+      },
+      {
+        "risk": "Nuclear operational or contracting setbacks can reduce the value of firm-generation exposure.",
+        "gating": false
       }
     ]
   },
@@ -149,6 +186,22 @@
     },
     {
       "risk": "Higher depreciation and interest expense accompany incremental investment.",
+      "gating": false
+    },
+    {
+      "risk": "Large capital needs shift the bottleneck toward financing, regulatory recovery and execution quality.",
+      "gating": false
+    },
+    {
+      "risk": "Financing costs and depreciation can dilute benefits from incremental rate-base growth.",
+      "gating": false
+    },
+    {
+      "risk": "Regulatory recovery and customer affordability can constrain realized returns.",
+      "gating": false
+    },
+    {
+      "risk": "Nuclear operational or contracting setbacks can reduce the value of firm-generation exposure.",
       "gating": false
     }
   ],
@@ -163,14 +216,56 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "peak electricity demand",
+        "to": "grid capacity requirement",
+        "direction": "positive"
+      },
+      {
+        "from": "firm nuclear generation",
+        "to": "carbon-free baseload availability",
+        "direction": "positive"
+      },
+      {
+        "from": "grid capital investment",
+        "to": "reliability and load-serving capability",
+        "direction": "positive"
+      },
+      {
+        "from": "financing and regulatory constraints",
+        "to": "capital-program realized value",
+        "direction": "negative"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "peak electricity demand",
+      "to": "grid capacity requirement",
+      "direction": "positive"
+    },
+    {
+      "from": "firm nuclear generation",
+      "to": "carbon-free baseload availability",
+      "direction": "positive"
+    },
+    {
+      "from": "grid capital investment",
+      "to": "reliability and load-serving capability",
+      "direction": "positive"
+    },
+    {
+      "from": "financing and regulatory constraints",
+      "to": "capital-program realized value",
+      "direction": "negative"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:PEG:Q2:20260804"
@@ -199,26 +294,31 @@
     {
       "unknown": "Future rate-case recovery and financing mix for the expanded capex plan require Alpha underwriting.",
       "gating": false
+    },
+    {
+      "unknown": "Timing and economics of prospective multi-year nuclear output contracts remain unresolved.",
+      "gating": false
+    },
+    {
+      "unknown": "Current evidence does not establish final financing mix, future rate-case outcomes or nuclear contract pricing.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 95,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -228,14 +328,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -252,10 +344,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "PCAR",
   "workId": "t0:PCAR",
-  "generatedAt": "2026-09-21T10:17:52.491Z",
+  "generatedAt": "2026-09-21T10:27:43.107Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-28T00:00:00.000Z",
-    "end": "2026-09-21T08:04:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T08:04:00.000Z"
+    "end": "2026-09-21T10:25:44.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T10:25:44.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,58 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/PCAR-20260921T0804Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/PCAR-20260921T0804Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/PCAR-20260921T102544Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "aftermarket resilience",
       "powertrain transition optionality",
       "cyclical execution",
-      "capital discipline"
+      "capital discipline",
+      "thesisQuality",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "alignment2036",
+      "financialOperatingMomentum",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "alignment2036"
+      ],
       "discovery-weak-signals": [
         {
           "name": "aftermarket resilience",
@@ -78,7 +96,13 @@
           "basis": "Investment across multiple propulsion paths preserves optionality but requires capital and technology execution."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "pricingPower",
+        "thesisQuality"
+      ],
       "expectations-execution": [
         {
           "name": "cyclical execution",
@@ -134,7 +158,15 @@
     "aftermarket resilience",
     "powertrain transition optionality",
     "cyclical execution",
-    "capital discipline"
+    "capital discipline",
+    "thesisQuality",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "alignment2036",
+    "financialOperatingMomentum",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -146,6 +178,18 @@
       {
         "risk": "Improved freight conditions can reverse; current build-rate strength should not be extrapolated indefinitely.",
         "gating": false
+      },
+      {
+        "risk": "A cyclical truck downturn can reduce new-vehicle absorption even while aftermarket activity cushions the installed-base economics.",
+        "gating": false
+      },
+      {
+        "risk": "Cycle strength can reverse with freight-rate, replacement or macro deterioration.",
+        "gating": false
+      },
+      {
+        "risk": "Parallel investment in multiple propulsion technologies can dilute capital efficiency if adoption remains fragmented.",
+        "gating": false
       }
     ]
   },
@@ -156,6 +200,18 @@
     },
     {
       "risk": "Improved freight conditions can reverse; current build-rate strength should not be extrapolated indefinitely.",
+      "gating": false
+    },
+    {
+      "risk": "A cyclical truck downturn can reduce new-vehicle absorption even while aftermarket activity cushions the installed-base economics.",
+      "gating": false
+    },
+    {
+      "risk": "Cycle strength can reverse with freight-rate, replacement or macro deterioration.",
+      "gating": false
+    },
+    {
+      "risk": "Parallel investment in multiple propulsion technologies can dilute capital efficiency if adoption remains fragmented.",
       "gating": false
     }
   ],
@@ -170,14 +226,56 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "freight transport demand",
+        "to": "heavy-duty fleet utilization and replacement",
+        "direction": "positive"
+      },
+      {
+        "from": "installed truck base",
+        "to": "aftermarket parts demand",
+        "direction": "positive"
+      },
+      {
+        "from": "multi-path powertrain investment",
+        "to": "transition optionality",
+        "direction": "positive"
+      },
+      {
+        "from": "electrification transition",
+        "to": "battery charging and grid bottlenecks",
+        "direction": "positive"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "freight transport demand",
+      "to": "heavy-duty fleet utilization and replacement",
+      "direction": "positive"
+    },
+    {
+      "from": "installed truck base",
+      "to": "aftermarket parts demand",
+      "direction": "positive"
+    },
+    {
+      "from": "multi-path powertrain investment",
+      "to": "transition optionality",
+      "direction": "positive"
+    },
+    {
+      "from": "electrification transition",
+      "to": "battery charging and grid bottlenecks",
+      "direction": "positive"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "paccar-ir:2026-07-28:q2-results"
@@ -206,26 +304,31 @@
     {
       "unknown": "Scout does not convert current truck-cycle evidence into a valuation or numeric score.",
       "gating": false
+    },
+    {
+      "unknown": "The cited evidence does not quantify returns by powertrain pathway or the share of future profit protected by transition optionality.",
+      "gating": false
+    },
+    {
+      "unknown": "This evidence does not establish customer concentration, technology-specific margins, dilution exposure or competitive share changes.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 91,
+  "confidence": 89,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -235,14 +338,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -259,10 +354,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

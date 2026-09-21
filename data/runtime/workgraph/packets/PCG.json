@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "PCG",
   "workId": "t0:PCG",
-  "generatedAt": "2026-09-21T10:17:52.489Z",
+  "generatedAt": "2026-09-21T10:27:43.105Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-05-01T00:00:00.000Z",
-    "end": "2026-09-21T08:04:20.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T08:04:20.000Z"
+    "end": "2026-09-21T10:25:44.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T10:25:44.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/PCG-20260921T0804Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/PCG-20260921T0804Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/PCG-20260921T102544Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -61,12 +64,26 @@
       "grid intelligence",
       "financial execution",
       "wildfire mitigation delivery",
-      "regulatory/capital burden"
+      "regulatory/capital burden",
+      "alignment2036",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "supplyChainResilience",
+      "thesisQuality",
+      "governancePower",
+      "financialOperatingMomentum",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "thesisQuality"
+      ],
       "discovery-weak-signals": [
         {
           "name": "AI/data-center load growth",
@@ -79,7 +96,13 @@
           "basis": "Sensor and ML deployment has company-reported operational outcomes in ignition and outage avoidance."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "governancePower",
+        "scenarioRobustness",
+        "financialOperatingMomentum",
+        "pricingPower",
+        "thesisQuality"
+      ],
       "expectations-execution": [
         {
           "name": "financial execution",
@@ -141,7 +164,15 @@
     "grid intelligence",
     "financial execution",
     "wildfire mitigation delivery",
-    "regulatory/capital burden"
+    "regulatory/capital burden",
+    "alignment2036",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "supplyChainResilience",
+    "thesisQuality",
+    "governancePower",
+    "financialOperatingMomentum",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -156,6 +187,22 @@
       },
       {
         "risk": "Wildfire Fund expense, regulatory outcomes and financing costs remain material to realized shareholder economics.",
+        "gating": false
+      },
+      {
+        "risk": "Wildfire exposure is a persistent physical-system externality that can overwhelm financial benefits if mitigation fails.",
+        "gating": false
+      },
+      {
+        "risk": "Wildfire liabilities and extreme-event severity remain high-impact tail risks.",
+        "gating": false
+      },
+      {
+        "risk": "Regulatory recovery and financing costs can erode returns from required grid investment.",
+        "gating": false
+      },
+      {
+        "risk": "Pipeline headline size can overstate realized demand if projects are delayed, resized or cancelled.",
         "gating": false
       }
     ]
@@ -172,6 +219,22 @@
     {
       "risk": "Wildfire Fund expense, regulatory outcomes and financing costs remain material to realized shareholder economics.",
       "gating": false
+    },
+    {
+      "risk": "Wildfire exposure is a persistent physical-system externality that can overwhelm financial benefits if mitigation fails.",
+      "gating": false
+    },
+    {
+      "risk": "Wildfire liabilities and extreme-event severity remain high-impact tail risks.",
+      "gating": false
+    },
+    {
+      "risk": "Regulatory recovery and financing costs can erode returns from required grid investment.",
+      "gating": false
+    },
+    {
+      "risk": "Pipeline headline size can overstate realized demand if projects are delayed, resized or cancelled.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -185,14 +248,56 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "data-center and electrification load growth",
+        "to": "grid capacity demand",
+        "direction": "positive"
+      },
+      {
+        "from": "grid investment",
+        "to": "reliable electricity delivery capacity",
+        "direction": "positive"
+      },
+      {
+        "from": "sensors plus machine learning",
+        "to": "ignition and outage prevention",
+        "direction": "positive"
+      },
+      {
+        "from": "interconnection permitting and affordability constraints",
+        "to": "pipeline conversion",
+        "direction": "negative"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "data-center and electrification load growth",
+      "to": "grid capacity demand",
+      "direction": "positive"
+    },
+    {
+      "from": "grid investment",
+      "to": "reliable electricity delivery capacity",
+      "direction": "positive"
+    },
+    {
+      "from": "sensors plus machine learning",
+      "to": "ignition and outage prevention",
+      "direction": "positive"
+    },
+    {
+      "from": "interconnection permitting and affordability constraints",
+      "to": "pipeline conversion",
+      "direction": "negative"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "pcg-ir:2026-07-23:q2-results",
@@ -230,26 +335,31 @@
     {
       "unknown": "Future wildfire frequency/severity and regulatory treatment cannot be inferred from current mitigation milestones.",
       "gating": false
+    },
+    {
+      "unknown": "Firm contractual status, timing and realized economics of the >12 GW pipeline remain unestablished in cited evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Current sources do not establish future wildfire-loss distribution, final tariff treatment, financing mix or contracted pipeline conversion.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 92,
+  "confidence": 89,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -259,14 +369,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -283,10 +385,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

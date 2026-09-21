@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-21T00:17:53.885Z",
+  "updatedAt": "2026-09-21T04:43:38.445Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -638,6 +638,42 @@
       "type": "market",
       "label": "CMI structural demand",
       "description": "Cummins bridges electricity/fuel inputs to reliable distributed and standby power for data centers while retaining engine, component and zero-emissions pathways; this multi-technology position provides resilience if the pace of powertrain transition differs across end markets."
+    },
+    {
+      "id": "company:COHR",
+      "type": "company",
+      "label": "Coherent Corp.",
+      "description": "Coherent sits in the AI infrastructure chain at the optical-connectivity layer, where bandwidth and power constraints can force more optical content as clusters scale."
+    },
+    {
+      "id": "market:COHR-bandwidth-and-power-pressure",
+      "type": "market",
+      "label": "bandwidth and power pressure",
+      "description": "larger clusters increase interconnect throughput and energy constraints"
+    },
+    {
+      "id": "company:COIN",
+      "type": "company",
+      "label": "Coinbase Global, Inc.",
+      "description": "Coinbase's Everything Exchange strategy links crypto market infrastructure and custody/trading rails to user demand for broader onchain and derivatives access; Deribit extends the institutional derivatives layer, but the structural thesis depends on regulatory durability and continued liquidity concentration on Coinbase-controlled venues."
+    },
+    {
+      "id": "market:COIN-coin-structural-demand",
+      "type": "market",
+      "label": "COIN structural demand",
+      "description": "Coinbase's Everything Exchange strategy links crypto market infrastructure and custody/trading rails to user demand for broader onchain and derivatives access; Deribit extends the institutional derivatives layer, but the structural thesis depends on regulatory durability and continued liquidity concentration on Coinbase-controlled venues."
+    },
+    {
+      "id": "company:MA",
+      "type": "company",
+      "label": "Mastercard",
+      "description": "Mastercard's durable structural role is an interoperability, trust and routing layer connecting consumers, issuers, merchants and digital partners; current wallet and agentic-commerce launches extend that coordination layer rather than proving a new standalone profit pool."
+    },
+    {
+      "id": "market:MA-interoperable-payment-acceptance-and-routing",
+      "type": "market",
+      "label": "interoperable payment acceptance and routing",
+      "description": "buyers and sellers require common trust, identity, settlement and dispute primitives"
     }
   ],
   "edges": [
@@ -1504,6 +1540,51 @@
         "sec:CMI:2025:10K"
       ],
       "observedAt": "2026-09-19T22:26:17Z"
+    },
+    {
+      "id": "edge:COHR-structural-exposure",
+      "from": "company:COHR",
+      "to": "market:COHR-bandwidth-and-power-pressure",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 78,
+      "confidence": 89,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "coherent:2026-08-12:fy26-q4"
+      ],
+      "observedAt": "2026-09-19T08:22:12Z"
+    },
+    {
+      "id": "edge:COIN-structural-exposure",
+      "from": "company:COIN",
+      "to": "market:COIN-coin-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 70,
+      "confidence": 84,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:COIN:2026Q2",
+        "issuer:COIN:DeribitClose"
+      ],
+      "observedAt": "2026-09-19T23:27:41Z"
+    },
+    {
+      "id": "edge:MA-structural-exposure",
+      "from": "company:MA",
+      "to": "market:MA-interoperable-payment-acceptance-and-routing",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 88,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "ma-scout-wallet-pay-20260909",
+        "ma-scout-agent-connect-20260909",
+        "ma-annual-letter-2025"
+      ],
+      "observedAt": "2026-09-21T03:25:30Z"
     }
   ],
   "structuralSignals": [
@@ -2551,6 +2632,63 @@
       ],
       "observedAt": "2026-09-19T22:26:17Z",
       "thesis": "Cummins bridges electricity/fuel inputs to reliable distributed and standby power for data centers while retaining engine, component and zero-emissions pathways; this multi-technology position provides resilience if the pace of powertrain transition differs across end markets.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:COHR-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:COHR-bandwidth-and-power-pressure",
+      "affectedNodeIds": [
+        "company:COHR"
+      ],
+      "direction": 1,
+      "magnitude": 78,
+      "confidence": 89,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "coherent:2026-08-12:fy26-q4"
+      ],
+      "observedAt": "2026-09-19T08:22:12Z",
+      "thesis": "Coherent sits in the AI infrastructure chain at the optical-connectivity layer, where bandwidth and power constraints can force more optical content as clusters scale.",
+      "falsifier": "cluster scaling no longer increases optical requirements"
+    },
+    {
+      "id": "signal:COIN-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:COIN-coin-structural-demand",
+      "affectedNodeIds": [
+        "company:COIN"
+      ],
+      "direction": 1,
+      "magnitude": 70,
+      "confidence": 84,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:COIN:2026Q2",
+        "issuer:COIN:DeribitClose"
+      ],
+      "observedAt": "2026-09-19T23:27:41Z",
+      "thesis": "Coinbase's Everything Exchange strategy links crypto market infrastructure and custody/trading rails to user demand for broader onchain and derivatives access; Deribit extends the institutional derivatives layer, but the structural thesis depends on regulatory durability and continued liquidity concentration on Coinbase-controlled venues.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:MA-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:MA-interoperable-payment-acceptance-and-routing",
+      "affectedNodeIds": [
+        "company:MA"
+      ],
+      "direction": 1,
+      "magnitude": 88,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "ma-scout-wallet-pay-20260909",
+        "ma-scout-agent-connect-20260909",
+        "ma-annual-letter-2025"
+      ],
+      "observedAt": "2026-09-21T03:25:30Z",
+      "thesis": "Mastercard's durable structural role is an interoperability, trust and routing layer connecting consumers, issuers, merchants and digital partners; current wallet and agentic-commerce launches extend that coordination layer rather than proving a new standalone profit pool.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

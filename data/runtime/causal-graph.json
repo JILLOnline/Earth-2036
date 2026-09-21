@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-21T12:19:37.580Z",
+  "updatedAt": "2026-09-21T14:20:36.016Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -770,6 +770,30 @@
       "type": "market",
       "label": "CW structural demand",
       "description": "Curtiss-Wright occupies engineered control/sensing and high-specification component nodes linking defense and nuclear infrastructure to safety, threat detection and reliable power-system operation; the Cheswick expansion is direct capacity investment at those physical bottlenecks."
+    },
+    {
+      "id": "company:CWCO",
+      "type": "company",
+      "label": "Consolidated Water Co. Ltd.",
+      "description": "Consolidated Water links desalination engineering/operations to freshwater scarcity, with long-duration concessions and new plants converting seawater-treatment capability into municipal/island water resilience."
+    },
+    {
+      "id": "market:CWCO-cwco-structural-demand",
+      "type": "market",
+      "label": "CWCO structural demand",
+      "description": "Consolidated Water links desalination engineering/operations to freshwater scarcity, with long-duration concessions and new plants converting seawater-treatment capability into municipal/island water resilience."
+    },
+    {
+      "id": "company:DDOG",
+      "type": "company",
+      "label": "Datadog, Inc.",
+      "description": "Datadog's observability/security platform sits between increasingly complex cloud/AI software and the human need for reliable digital services: telemetry and automated incident investigation reduce the visibility/response bottleneck created as software systems become more distributed and autonomous."
+    },
+    {
+      "id": "market:DDOG-ddog-structural-demand",
+      "type": "market",
+      "label": "DDOG structural demand",
+      "description": "Datadog's observability/security platform sits between increasingly complex cloud/AI software and the human need for reliable digital services: telemetry and automated incident investigation reduce the visibility/response bottleneck created as software systems become more distributed and autonomous."
     }
   ],
   "edges": [
@@ -1801,6 +1825,34 @@
       "sourceIds": [
         "issuer:CW:ITDS:20260901",
         "issuer:CW:CheswickExpansion:2026"
+      ],
+      "observedAt": "2026-09-20T03:24:31Z"
+    },
+    {
+      "id": "edge:CWCO-structural-exposure",
+      "from": "company:CWCO",
+      "to": "market:CWCO-cwco-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 65,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:CWCO:8K:2026Q2results"
+      ],
+      "observedAt": "2026-09-20T03:24:31Z"
+    },
+    {
+      "id": "edge:DDOG-structural-exposure",
+      "from": "company:DDOG",
+      "to": "market:DDOG-ddog-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 66,
+      "confidence": 89,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:DDOG:2026Q2results"
       ],
       "observedAt": "2026-09-20T03:24:31Z"
     }
@@ -3061,6 +3113,42 @@
       ],
       "observedAt": "2026-09-20T03:24:31Z",
       "thesis": "Curtiss-Wright occupies engineered control/sensing and high-specification component nodes linking defense and nuclear infrastructure to safety, threat detection and reliable power-system operation; the Cheswick expansion is direct capacity investment at those physical bottlenecks.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:CWCO-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:CWCO-cwco-structural-demand",
+      "affectedNodeIds": [
+        "company:CWCO"
+      ],
+      "direction": 1,
+      "magnitude": 65,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:CWCO:8K:2026Q2results"
+      ],
+      "observedAt": "2026-09-20T03:24:31Z",
+      "thesis": "Consolidated Water links desalination engineering/operations to freshwater scarcity, with long-duration concessions and new plants converting seawater-treatment capability into municipal/island water resilience.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:DDOG-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:DDOG-ddog-structural-demand",
+      "affectedNodeIds": [
+        "company:DDOG"
+      ],
+      "direction": 1,
+      "magnitude": 66,
+      "confidence": 89,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:DDOG:2026Q2results"
+      ],
+      "observedAt": "2026-09-20T03:24:31Z",
+      "thesis": "Datadog's observability/security platform sits between increasingly complex cloud/AI software and the human need for reliable digital services: telemetry and automated incident investigation reduce the visibility/response bottleneck created as software systems become more distributed and autonomous.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

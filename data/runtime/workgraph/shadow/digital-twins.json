@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-21T18:10:25.781Z",
+  "generatedAt": "2026-09-21T18:19:13.944Z",
   "canonicalWriteAuthority": false,
   "total": 184,
   "twins": [
@@ -30149,8 +30149,8 @@
       "canonicalWriteAuthority": false,
       "ticker": "DOV",
       "workId": "t0:DOV",
-      "inputSignature": "690f4ae800137dd38681ceae",
-      "sourceState": "researching",
+      "inputSignature": "53be1175c7e0da4483b2f144",
+      "sourceState": "chief_ready",
       "identity": {
         "ticker": "DOV",
         "company": "Dover",
@@ -30174,32 +30174,32 @@
           "discovery-weak-signals",
           "expectations-execution",
           "structural-causal",
-          "adversarial-red-team"
-        ],
-        "missingPerspectives": [
+          "adversarial-red-team",
           "source-integrity",
           "company-underwriting"
         ],
+        "missingPerspectives": [],
         "primarySourceCount": 5,
         "sourceLineage": {
-          "rawSourceCount": 6,
-          "uniqueSourceCount": 5,
-          "duplicatesCollapsed": 1,
+          "rawSourceCount": 15,
+          "uniqueSourceCount": 6,
+          "duplicatesCollapsed": 9,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:DOV:10Q:20260723:92847cda",
             "issuer:DOV:8K:20260723:df0d9a27",
             "issuer:DOV:CPC:EverisDC:20260722",
             "issuer:DOV:SWEP:capacity:20260513",
-            "issuer:DOV:Q2results:20260723"
+            "issuer:DOV:Q2results:20260723",
+            "market:DOV:companiesmarketcap:20260920"
           ]
         },
         "evidenceWindow": {
           "start": "2026-05-13T00:00:00.000Z",
-          "end": "2026-09-20T04:24:36.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-20T04:24:36.000Z"
+          "end": "2026-09-21T18:17:06.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-21T18:17:06.000Z"
         },
-        "preflightPassed": false
+        "preflightPassed": true
       },
       "capabilitySignals": [
         "thesisQuality",
@@ -30211,7 +30211,10 @@
         "scenarioRobustness",
         "pricingPower",
         "substitutionResilience",
-        "supplyChainResilience"
+        "supplyChainResilience",
+        "marketValuationOpportunity",
+        "dataConfidence",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
@@ -30219,23 +30222,20 @@
           "Segment mix and acquisition effects require normalization before translating reported growth into a score.",
           "Dover captures only component-level economics and can face design substitution, OEM insourcing or pricing pressure.",
           "AI-cooling contribution can be overstated because Dover does not separately disclose its revenue/margin contribution in the retrieved reporting.",
-          "Acquisition mix can obscure organic economics and creates integration/valuation risk."
+          "Acquisition mix can obscure organic economics and creates integration/valuation risk.",
+          "Independent corroboration remains thinner than issuer-origin coverage; valuation evidence is market-cap level rather than a full forward multiple set.",
+          "AI-cooling contribution can be overstated because Dover does not separately disclose its revenue/margin contribution; acquisition mix, competition, supply chain and OEM substitution can reduce value capture."
         ],
         "unknowns": [
           "Exact data-center cooling backlog and customer concentration are not disclosed in the retrieved filing excerpt.",
           "Exact AI/data-center revenue and backlog contribution remains undisclosed at the Dover consolidated level.",
-          "Customer concentration and share position for Dover's liquid-cooling products remain unquantified in current evidence."
+          "Customer concentration and share position for Dover's liquid-cooling products remain unquantified in current evidence.",
+          "Exact AI/data-center revenue and customer concentration remain undisclosed.",
+          "Exact AI/data-center revenue, backlog, customer concentration and product share remain undisclosed."
         ],
         "contradictions": [],
         "gatingIssues": [],
-        "preflightFailures": [
-          "missing_specialist_perspective:source-integrity",
-          "missing_specialist_perspective:company-underwriting",
-          "missing_factor_evidence",
-          "missing_numeric_score_record",
-          "missing_score_risk_evidence",
-          "missing_data_confidence_evidence"
-        ]
+        "preflightFailures": []
       },
       "causalContext": {
         "mapped": true,
@@ -30260,38 +30260,7 @@
           }
         ]
       },
-      "improvementWindows": [
-        {
-          "failure": "missing_specialist_perspective:source-integrity",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:source-integrity?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:company-underwriting",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_factor_evidence",
-          "question": "Which required methodology factor still lacks source-addressed evidence?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_numeric_score_record",
-          "question": "Which source-addressed factor assessments are still required before a reproducible score can be constructed?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_score_risk_evidence",
-          "question": "Which material risks require source-addressed quantitative treatment?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_data_confidence_evidence",
-          "question": "Which evidence-quality dimensions remain insufficiently supported?",
-          "stance": "improvement-oriented"
-        }
-      ],
+      "improvementWindows": [],
       "bridgeInputs": {
         "capabilityCandidates": [
           "thesisQuality",
@@ -30303,17 +30272,24 @@
           "scenarioRobustness",
           "pricingPower",
           "substitutionResilience",
-          "supplyChainResilience"
+          "supplyChainResilience",
+          "marketValuationOpportunity",
+          "dataConfidence",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "Exact data-center cooling backlog and customer concentration are not disclosed in the retrieved filing excerpt.",
           "Exact AI/data-center revenue and backlog contribution remains undisclosed at the Dover consolidated level.",
           "Customer concentration and share position for Dover's liquid-cooling products remain unquantified in current evidence.",
+          "Exact AI/data-center revenue and customer concentration remain undisclosed.",
+          "Exact AI/data-center revenue, backlog, customer concentration and product share remain undisclosed.",
           "Data-center cooling is one contributor inside a diversified segment; the filing does not isolate its revenue or margin contribution.",
           "Segment mix and acquisition effects require normalization before translating reported growth into a score.",
           "Dover captures only component-level economics and can face design substitution, OEM insourcing or pricing pressure.",
           "AI-cooling contribution can be overstated because Dover does not separately disclose its revenue/margin contribution in the retrieved reporting.",
-          "Acquisition mix can obscure organic economics and creates integration/valuation risk."
+          "Acquisition mix can obscure organic economics and creates integration/valuation risk.",
+          "Independent corroboration remains thinner than issuer-origin coverage; valuation evidence is market-cap level rather than a full forward multiple set.",
+          "AI-cooling contribution can be overstated because Dover does not separately disclose its revenue/margin contribution; acquisition mix, competition, supply chain and OEM substitution can reduce value capture."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

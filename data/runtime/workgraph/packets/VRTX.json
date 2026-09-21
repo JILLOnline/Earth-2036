@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "VRTX",
   "workId": "t0:VRTX",
-  "generatedAt": "2026-09-21T22:14:47.234Z",
+  "generatedAt": "2026-09-21T22:28:00.570Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-12T00:00:00.000Z",
-    "end": "2026-09-21T22:02:46.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T22:02:46.000Z"
+    "end": "2026-09-21T22:26:26.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T22:26:26.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,47 +32,62 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/VRTX-20260921T220246Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/VRTX-20260921T220246Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/council-beta-20260921T222626Z-batch.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "alignment2036",
       "financialOperatingMomentum",
       "catalystScore",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "crossDivisionLeverage",
+      "substitutionResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "scenarioRobustness",
+        "crossDivisionLeverage",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         "alignment2036",
         "financialOperatingMomentum",
         "catalystScore",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "governancePower",
+        "financialOperatingMomentum"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -121,7 +136,10 @@
     "alignment2036",
     "financialOperatingMomentum",
     "catalystScore",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "crossDivisionLeverage",
+    "substitutionResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -133,6 +151,18 @@
       {
         "risk": "Failure of newer products to reach the stated non-CF contribution would leave diversification behind expectations.",
         "gating": false
+      },
+      {
+        "risk": "Pipeline breadth improves option value but increases integration, trial and regulatory execution dependencies.",
+        "gating": false
+      },
+      {
+        "risk": "Clinical failure, delayed approvals or weak commercial uptake can impair the diversification thesis despite strategic fit.",
+        "gating": false
+      },
+      {
+        "risk": "Issuer sources establish strategy and transaction terms but do not independently validate future integration or pipeline outcomes.",
+        "gating": false
       }
     ]
   },
@@ -143,6 +173,18 @@
     },
     {
       "risk": "Failure of newer products to reach the stated non-CF contribution would leave diversification behind expectations.",
+      "gating": false
+    },
+    {
+      "risk": "Pipeline breadth improves option value but increases integration, trial and regulatory execution dependencies.",
+      "gating": false
+    },
+    {
+      "risk": "Clinical failure, delayed approvals or weak commercial uptake can impair the diversification thesis despite strategic fit.",
+      "gating": false
+    },
+    {
+      "risk": "Issuer sources establish strategy and transaction terms but do not independently validate future integration or pipeline outcomes.",
       "gating": false
     }
   ],
@@ -157,14 +199,24 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "unmet chronic-disease burden -> therapeutic demand",
+      "R&D/platform capability -> clinical candidates -> regulatory approval -> patient access",
+      "Crinetics acquisition -> endocrine pipeline breadth -> diversification potential",
+      "clinical/regulatory failure or superior substitutes -> diversification shortfall"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "unmet chronic-disease burden -> therapeutic demand",
+    "R&D/platform capability -> clinical candidates -> regulatory approval -> patient access",
+    "Crinetics acquisition -> endocrine pipeline breadth -> diversification potential",
+    "clinical/regulatory failure or superior substitutes -> diversification shortfall"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:VRTX:FY2025:results-guidance",
@@ -202,26 +254,31 @@
     {
       "unknown": "Year-to-date 2026 non-CF revenue versus the $500M threshold requires current quarterly evidence.",
       "gating": false
+    },
+    {
+      "unknown": "Realized post-close integration economics and current non-CF contribution are not established by the cited sources.",
+      "gating": false
+    },
+    {
+      "unknown": "Post-announcement closing/integration status and current non-CF revenue progression require fresher evidence.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 86,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -231,14 +288,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -255,10 +304,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "WMB",
   "workId": "t0:WMB",
-  "generatedAt": "2026-09-21T22:14:47.235Z",
+  "generatedAt": "2026-09-21T22:28:00.571Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-13T00:00:00.000Z",
-    "end": "2026-09-21T22:02:46.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T22:02:46.000Z"
+    "end": "2026-09-21T22:26:26.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T22:26:26.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/WMB-20260921T220246Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/WMB-20260921T220246Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/council-beta-20260921T222626Z-batch.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,19 +65,29 @@
       "bottleneckControl",
       "catalystScore",
       "scenarioRobustness",
-      "supplyChainResilience"
+      "supplyChainResilience",
+      "substitutionResilience"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "alignment2036",
         "bottleneckControl",
         "catalystScore"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "financialOperatingMomentum"
+      ],
       "expectations-execution": [
         "catalystScore",
         "scenarioRobustness",
@@ -125,7 +138,8 @@
     "bottleneckControl",
     "catalystScore",
     "scenarioRobustness",
-    "supplyChainResilience"
+    "supplyChainResilience",
+    "substitutionResilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -137,6 +151,18 @@
       {
         "risk": "Power-project economics depend on timely construction, customer demand and gas/power infrastructure execution across a large capital program.",
         "gating": false
+      },
+      {
+        "risk": "Infrastructure value depends on timely construction, contracted demand and persistence of gas-fired generation needs.",
+        "gating": false
+      },
+      {
+        "risk": "Rapid acquisition/project expansion can compound financing and execution exposure even when individual assets have contracted revenue.",
+        "gating": false
+      },
+      {
+        "risk": "Issuer materials may emphasize demand commitments without fully resolving lifecycle substitution and stranded-capital risk.",
+        "gating": false
       }
     ]
   },
@@ -147,6 +173,18 @@
     },
     {
       "risk": "Power-project economics depend on timely construction, customer demand and gas/power infrastructure execution across a large capital program.",
+      "gating": false
+    },
+    {
+      "risk": "Infrastructure value depends on timely construction, contracted demand and persistence of gas-fired generation needs.",
+      "gating": false
+    },
+    {
+      "risk": "Rapid acquisition/project expansion can compound financing and execution exposure even when individual assets have contracted revenue.",
+      "gating": false
+    },
+    {
+      "risk": "Issuer materials may emphasize demand commitments without fully resolving lifecycle substitution and stranded-capital risk.",
       "gating": false
     }
   ],
@@ -161,14 +199,24 @@
     "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "power-demand growth -> dispatchable generation need",
+      "gas supply -> pipeline transport -> gas-fired generation -> electricity reliability",
+      "large capital program -> capacity expansion -> contracted cash-flow opportunity",
+      "storage/transmission/alternative generation -> substitution pressure -> long-run gas-demand uncertainty"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "power-demand growth -> dispatchable generation need",
+    "gas supply -> pipeline transport -> gas-fired generation -> electricity reliability",
+    "large capital program -> capacity expansion -> contracted cash-flow opportunity",
+    "storage/transmission/alternative generation -> substitution pressure -> long-run gas-demand uncertainty"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 8,
     "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:WMB:2026Q2:results-momentum",
@@ -215,26 +263,31 @@
     {
       "unknown": "Phase-two Socrates completion and early operating economics remain future checkpoints.",
       "gating": false
+    },
+    {
+      "unknown": "Long-run demand resilience under faster power-sector substitution scenarios is not quantified by current issuer evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Post-close Momentum synergies and phase-two Socrates economics remain future verification points.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 97,
+  "confidence": 86,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -244,14 +297,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -268,10 +313,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

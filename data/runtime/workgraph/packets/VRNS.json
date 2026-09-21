@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "VRNS",
   "workId": "t0:VRNS",
-  "generatedAt": "2026-09-21T22:14:47.234Z",
+  "generatedAt": "2026-09-21T22:28:00.569Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2025-11-12T00:00:00.000Z",
-    "end": "2026-09-21T22:02:46.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T22:02:46.000Z"
+    "end": "2026-09-21T22:26:26.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T22:26:26.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,46 +32,60 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/VRNS-20260921T220246Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/VRNS-20260921T220246Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/council-beta-20260921T222626Z-batch.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "alignment2036",
       "bottleneckControl",
       "scenarioRobustness",
-      "catalystScore"
+      "catalystScore",
+      "substitutionResilience",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         "alignment2036",
         "bottleneckControl",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "substitutionResilience",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "catalystScore",
         "scenarioRobustness"
@@ -119,7 +133,9 @@
     "alignment2036",
     "bottleneckControl",
     "scenarioRobustness",
-    "catalystScore"
+    "catalystScore",
+    "substitutionResilience",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -131,6 +147,18 @@
       {
         "risk": "Execution quality depends on completing migrations without material customer disruption while legacy support is withdrawn.",
         "gating": false
+      },
+      {
+        "risk": "Concentrating delivery on SaaS improves architectural focus but raises transition fragility if remaining self-hosted customers do not migrate cleanly.",
+        "gating": false
+      },
+      {
+        "risk": "Forced migration can expose retention, pricing and implementation friction that an issuer strategy announcement cannot resolve.",
+        "gating": false
+      },
+      {
+        "risk": "Single-source dependence on issuer transition messaging limits independent verification of customer outcomes.",
+        "gating": false
       }
     ]
   },
@@ -141,6 +169,18 @@
     },
     {
       "risk": "Execution quality depends on completing migrations without material customer disruption while legacy support is withdrawn.",
+      "gating": false
+    },
+    {
+      "risk": "Concentrating delivery on SaaS improves architectural focus but raises transition fragility if remaining self-hosted customers do not migrate cleanly.",
+      "gating": false
+    },
+    {
+      "risk": "Forced migration can expose retention, pricing and implementation friction that an issuer strategy announcement cannot resolve.",
+      "gating": false
+    },
+    {
+      "risk": "Single-source dependence on issuer transition messaging limits independent verification of customer outcomes.",
       "gating": false
     }
   ],
@@ -155,14 +195,24 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "enterprise sensitive-data growth -> continuous data-security need",
+      "SaaS control plane -> autonomous monitoring/remediation capability",
+      "legacy self-hosted EOL -> migration dependency -> retention/execution risk",
+      "competing cloud-native security stacks -> substitution pressure -> bottleneck-control uncertainty"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "enterprise sensitive-data growth -> continuous data-security need",
+    "SaaS control plane -> autonomous monitoring/remediation capability",
+    "legacy self-hosted EOL -> migration dependency -> retention/execution risk",
+    "competing cloud-native security stacks -> substitution pressure -> bottleneck-control uncertainty"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:VRNS:saas-transition:EOL-2026-12-31"
@@ -191,26 +241,31 @@
     {
       "unknown": "Current migration completion and renewal outcomes are not established by this source.",
       "gating": false
+    },
+    {
+      "unknown": "Remaining self-hosted exposure, migration churn and comparative autonomous-remediation efficacy are not quantified by the current source.",
+      "gating": false
+    },
+    {
+      "unknown": "Current renewal/churn, migration completion and competitive win/loss data remain unestablished.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 86,
+  "confidence": 80,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -220,14 +275,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -244,10 +291,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

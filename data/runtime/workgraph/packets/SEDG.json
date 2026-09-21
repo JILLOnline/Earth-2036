@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SEDG",
   "workId": "t0:SEDG",
-  "generatedAt": "2026-09-21T16:19:35.048Z",
+  "generatedAt": "2026-09-21T16:29:53.462Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-18T00:00:00.000Z",
-    "end": "2026-09-21T13:07:30.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T13:07:30.000Z"
+    "end": "2026-09-21T16:27:41.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T16:27:41.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,64 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/SEDG-20260921T1307Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/SEDG-20260921T1307Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/SEDG-20260921T162741Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "recovery breadth",
       "AI data-center adjacency",
       "execution conversion",
-      "new-market execution"
+      "new-market execution",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "bottleneckControl",
+      "turnaround durability",
+      "adjacency confidence"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Core solar/storage recovery provides the present base while data-center power is optionality, not required proof of current recovery."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Module-level and inverter architectures compete with alternative string/central inverter and storage-control designs."
+        },
+        {
+          "name": "bottleneckControl",
+          "direction": "mixed",
+          "basis": "Power electronics are necessary infrastructure, but SolarEdge does not uniquely control the solar or data-center power bottleneck."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "recovery breadth",
@@ -78,7 +102,18 @@
           "basis": "Management has identified AI data-center power as a high-growth adjacency, creating optionality beyond residential/commercial solar."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "turnaround durability",
+          "direction": "mixed",
+          "basis": "Six consecutive quarters of year-over-year margin expansion strengthen the recovery case, while GAAP profitability and full-cycle durability remain incomplete."
+        },
+        {
+          "name": "adjacency confidence",
+          "direction": "negative",
+          "basis": "Data-center power should not be capitalized as an established growth engine before customer and revenue evidence exists."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "execution conversion",
@@ -134,7 +169,12 @@
     "recovery breadth",
     "AI data-center adjacency",
     "execution conversion",
-    "new-market execution"
+    "new-market execution",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "bottleneckControl",
+    "turnaround durability",
+    "adjacency confidence"
   ],
   "riskEvidence": {
     "present": true,
@@ -146,6 +186,18 @@
       {
         "risk": "GAAP net loss persisted in Q2, so the turnaround should not be represented as fully complete.",
         "gating": false
+      },
+      {
+        "risk": "A successor bottleneck can shift from inverter availability to end-market financing, grid interconnection, storage economics or customer acquisition.",
+        "gating": false
+      },
+      {
+        "risk": "Solar demand cyclicality and inventory corrections can reverse operating leverage.",
+        "gating": false
+      },
+      {
+        "risk": "Competitive power-electronics alternatives can constrain pricing and share recovery.",
+        "gating": false
       }
     ]
   },
@@ -156,6 +208,18 @@
     },
     {
       "risk": "GAAP net loss persisted in Q2, so the turnaround should not be represented as fully complete.",
+      "gating": false
+    },
+    {
+      "risk": "A successor bottleneck can shift from inverter availability to end-market financing, grid interconnection, storage economics or customer acquisition.",
+      "gating": false
+    },
+    {
+      "risk": "Solar demand cyclicality and inventory corrections can reverse operating leverage.",
+      "gating": false
+    },
+    {
+      "risk": "Competitive power-electronics alternatives can constrain pricing and share recovery.",
       "gating": false
     }
   ],
@@ -170,14 +234,52 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "distributed solar and storage deployment",
+        "to": "demand for power conversion and control",
+        "mechanism": "generation/storage assets require inverter and energy-management infrastructure",
+        "confidence": 0.9
+      },
+      {
+        "from": "operational recovery",
+        "to": "improved economic resilience",
+        "mechanism": "higher revenue and gross margin reduce the fragility created by the prior downturn",
+        "confidence": 0.82
+      },
+      {
+        "from": "power-electronics capability",
+        "to": "data-center power adjacency",
+        "mechanism": "high-growth compute infrastructure also requires efficient power conversion/control",
+        "confidence": 0.55
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "distributed solar and storage deployment",
+      "to": "demand for power conversion and control",
+      "mechanism": "generation/storage assets require inverter and energy-management infrastructure",
+      "confidence": 0.9
+    },
+    {
+      "from": "operational recovery",
+      "to": "improved economic resilience",
+      "mechanism": "higher revenue and gross margin reduce the fragility created by the prior downturn",
+      "confidence": 0.82
+    },
+    {
+      "from": "power-electronics capability",
+      "to": "data-center power adjacency",
+      "mechanism": "high-growth compute infrastructure also requires efficient power conversion/control",
+      "confidence": 0.55
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 8,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "solaredge-ir:2026-08-05:q2-2026-results",
@@ -215,26 +317,31 @@
     {
       "unknown": "No Scout valuation or entry-price conclusion is asserted.",
       "gating": false
+    },
+    {
+      "unknown": "Durability of recovery through a full demand/inventory cycle and commercial traction in data-center power remain unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Current evidence does not quantify data-center pipeline, customer wins or margins.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 92,
+  "confidence": 87,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -244,14 +351,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -268,10 +367,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

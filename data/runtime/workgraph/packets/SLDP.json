@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SLDP",
   "workId": "t0:SLDP",
-  "generatedAt": "2026-09-21T16:19:35.048Z",
+  "generatedAt": "2026-09-21T16:29:53.462Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-01T00:00:00.000Z",
-    "end": "2026-09-21T13:07:32.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T13:07:32.000Z"
+    "end": "2026-09-21T16:27:43.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T16:27:43.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/SLDP-20260921T1307Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/SLDP-20260921T1307Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/SLDP-20260921T162743Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -61,12 +64,34 @@
       "commercialization optionality",
       "technical milestone execution",
       "commercial revenue maturity",
-      "liquidity runway"
+      "liquidity runway",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "financing resilience",
+      "commercial maturity",
+      "confidence inflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "mixed",
+          "basis": "Electrolyte know-how can be a critical enabling layer, but partners control much of cell manufacturing, vehicle integration and volume adoption."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Multiple strategic partners and a potential electrolyte JV diversify commercialization routes while all routes remain pre-scale."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "negative",
+          "basis": "Competing solid-state chemistries and improving conventional lithium-ion architectures can satisfy overlapping performance needs."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "strategic partner validation",
@@ -79,7 +104,23 @@
           "basis": "Potential Korean electrolyte JV could move the model toward scalable materials production if executed."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "financing resilience",
+          "direction": "positive",
+          "basis": "$419.3M June liquidity provides meaningful development runway under current evidence."
+        },
+        {
+          "name": "commercial maturity",
+          "direction": "negative",
+          "basis": "Revenue is small, milestone-accounting dependent and far below operating expense."
+        },
+        {
+          "name": "confidence inflation",
+          "direction": "negative",
+          "basis": "Strategic partner engagement should not be treated as equivalent to production nomination, recurring volume revenue or profitable unit economics."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "technical milestone execution",
@@ -141,7 +182,13 @@
     "commercialization optionality",
     "technical milestone execution",
     "commercial revenue maturity",
-    "liquidity runway"
+    "liquidity runway",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "financing resilience",
+    "commercial maturity",
+    "confidence inflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -153,6 +200,18 @@
       {
         "risk": "Commercialization timing, scale and unit economics remain unproven; cash resources can decline materially before volume adoption.",
         "gating": false
+      },
+      {
+        "risk": "Successor bottleneck is scale, yield, cost and OEM qualification rather than continued partner interest alone.",
+        "gating": false
+      },
+      {
+        "risk": "Extended commercialization timelines can consume substantial liquidity before recurring revenue emerges.",
+        "gating": false
+      },
+      {
+        "risk": "Competing battery technologies may improve faster or scale earlier, reducing the value of current partner validation.",
+        "gating": false
       }
     ]
   },
@@ -163,6 +222,18 @@
     },
     {
       "risk": "Commercialization timing, scale and unit economics remain unproven; cash resources can decline materially before volume adoption.",
+      "gating": false
+    },
+    {
+      "risk": "Successor bottleneck is scale, yield, cost and OEM qualification rather than continued partner interest alone.",
+      "gating": false
+    },
+    {
+      "risk": "Extended commercialization timelines can consume substantial liquidity before recurring revenue emerges.",
+      "gating": false
+    },
+    {
+      "risk": "Competing battery technologies may improve faster or scale earlier, reducing the value of current partner validation.",
       "gating": false
     }
   ],
@@ -177,14 +248,52 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "solid electrolyte performance",
+        "to": "partner cell validation",
+        "mechanism": "improved material performance must meet OEM/cell-maker technical requirements",
+        "confidence": 0.86
+      },
+      {
+        "from": "partner validation",
+        "to": "commercial-scale adoption",
+        "mechanism": "successful evaluation can support licensing, electrolyte supply or JV scale-up",
+        "confidence": 0.61
+      },
+      {
+        "from": "manufacturing scale and yield",
+        "to": "economic viability",
+        "mechanism": "repeatable high-volume production determines whether technical performance converts into competitive unit economics",
+        "confidence": 0.94
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "solid electrolyte performance",
+      "to": "partner cell validation",
+      "mechanism": "improved material performance must meet OEM/cell-maker technical requirements",
+      "confidence": 0.86
+    },
+    {
+      "from": "partner validation",
+      "to": "commercial-scale adoption",
+      "mechanism": "successful evaluation can support licensing, electrolyte supply or JV scale-up",
+      "confidence": 0.61
+    },
+    {
+      "from": "manufacturing scale and yield",
+      "to": "economic viability",
+      "mechanism": "repeatable high-volume production determines whether technical performance converts into competitive unit economics",
+      "confidence": 0.94
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "solidpower-ir:2026-08-04:q2-2026-results",
@@ -215,6 +324,12 @@
       "resolution": "The company remains a pre-scale technology commercialization case; liquidity supports runway but does not prove market conversion.",
       "resolved": true,
       "gating": false
+    },
+    {
+      "claim": "Strong liquidity and partner milestones coexist with negligible current revenue.",
+      "resolution": "Runway supports experimentation and scale-up but does not itself validate commercial demand or economics.",
+      "resolved": true,
+      "gating": false
     }
   ],
   "contradictionDispositions": {
@@ -223,6 +338,12 @@
       {
         "claim": "Strong liquidity and partner milestones coexist with negligible current revenue.",
         "resolution": "The company remains a pre-scale technology commercialization case; liquidity supports runway but does not prove market conversion.",
+        "resolved": true,
+        "gating": false
+      },
+      {
+        "claim": "Strong liquidity and partner milestones coexist with negligible current revenue.",
+        "resolution": "Runway supports experimentation and scale-up but does not itself validate commercial demand or economics.",
         "resolved": true,
         "gating": false
       }
@@ -236,26 +357,31 @@
     {
       "unknown": "Whether current partner programs convert into recurring commercial electrolyte/cell revenue remains unknown.",
       "gating": false
+    },
+    {
+      "unknown": "Commercial JV terms, volume economics, manufacturing yield and timing of recurring revenue remain unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "No current evidence establishes production-scale yield, cost parity, committed commercial volumes or durable pricing power.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 93,
+  "confidence": 89,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -265,14 +391,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -289,10 +407,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

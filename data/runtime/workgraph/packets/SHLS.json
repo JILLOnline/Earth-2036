@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SHLS",
   "workId": "t0:SHLS",
-  "generatedAt": "2026-09-21T16:19:35.048Z",
+  "generatedAt": "2026-09-21T16:29:53.462Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-06-25T00:00:00.000Z",
-    "end": "2026-09-21T13:07:31.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T13:07:31.000Z"
+    "end": "2026-09-21T16:27:42.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T16:27:42.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/SHLS-20260921T1307Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/SHLS-20260921T1307Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/SHLS-20260921T162742Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -61,12 +64,33 @@
       "adjacent electrification markets",
       "IP defensibility",
       "growth execution",
-      "manufacturing execution"
+      "manufacturing execution",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "backlog quality",
+      "IP durability"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "Electrical balance-of-system components are required infrastructure and protected IP can improve differentiation, though alternatives remain."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Solar backlog plus storage/data-center adjacency broadens demand paths, but conversion economics depend on manufacturing normalization."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "ITC enforcement supports defensibility, while competing architectures and suppliers remain plausible substitutes."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "demand visibility",
@@ -84,7 +108,23 @@
           "basis": "ITC victory provides external legal validation of protected technology."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "backlog quality",
+          "direction": "mixed",
+          "basis": "Record backlog improves visibility but does not guarantee timing, cancellation behavior, mix or margin."
+        },
+        {
+          "name": "manufacturing execution",
+          "direction": "negative",
+          "basis": "Q2 margin pressure explicitly included facility ramp inefficiency, rework/corrective actions and material inefficiencies."
+        },
+        {
+          "name": "IP durability",
+          "direction": "positive",
+          "basis": "ITC action externally validates enforceability against a named infringing product set, while it does not eliminate all substitutes."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "growth execution",
@@ -141,7 +181,12 @@
     "adjacent electrification markets",
     "IP defensibility",
     "growth execution",
-    "manufacturing execution"
+    "manufacturing execution",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "backlog quality",
+    "IP durability"
   ],
   "riskEvidence": {
     "present": true,
@@ -153,6 +198,18 @@
       {
         "risk": "Operational inefficiency and quality corrective actions could delay margin conversion despite strong demand.",
         "gating": false
+      },
+      {
+        "risk": "Successor bottleneck is manufacturing quality/throughput and project conversion rather than demand visibility alone.",
+        "gating": false
+      },
+      {
+        "risk": "Persistent quality/rework costs could delay or reduce conversion of backlog into expected EBITDA.",
+        "gating": false
+      },
+      {
+        "risk": "Backlog can be overinterpreted as guaranteed revenue and margin.",
+        "gating": false
       }
     ]
   },
@@ -163,6 +220,18 @@
     },
     {
       "risk": "Operational inefficiency and quality corrective actions could delay margin conversion despite strong demand.",
+      "gating": false
+    },
+    {
+      "risk": "Successor bottleneck is manufacturing quality/throughput and project conversion rather than demand visibility alone.",
+      "gating": false
+    },
+    {
+      "risk": "Persistent quality/rework costs could delay or reduce conversion of backlog into expected EBITDA.",
+      "gating": false
+    },
+    {
+      "risk": "Backlog can be overinterpreted as guaranteed revenue and margin.",
       "gating": false
     }
   ],
@@ -177,14 +246,52 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "utility solar and storage buildout",
+        "to": "electrical balance-of-system demand",
+        "mechanism": "large projects require reliable collection and power-distribution infrastructure",
+        "confidence": 0.92
+      },
+      {
+        "from": "protected EBOS designs",
+        "to": "commercial differentiation",
+        "mechanism": "enforceable IP can constrain direct copying and preserve product differentiation",
+        "confidence": 0.78
+      },
+      {
+        "from": "manufacturing execution",
+        "to": "backlog value capture",
+        "mechanism": "facility efficiency and product quality determine whether awarded demand converts at acceptable margins",
+        "confidence": 0.94
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "utility solar and storage buildout",
+      "to": "electrical balance-of-system demand",
+      "mechanism": "large projects require reliable collection and power-distribution infrastructure",
+      "confidence": 0.92
+    },
+    {
+      "from": "protected EBOS designs",
+      "to": "commercial differentiation",
+      "mechanism": "enforceable IP can constrain direct copying and preserve product differentiation",
+      "confidence": 0.78
+    },
+    {
+      "from": "manufacturing execution",
+      "to": "backlog value capture",
+      "mechanism": "facility efficiency and product quality determine whether awarded demand converts at acceptable margins",
+      "confidence": 0.94
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "shoals-ir:2026-08-04:q2-2026-results",
@@ -215,6 +322,12 @@
       "resolution": "Demand strength and manufacturing efficiency are separate dimensions; backlog supports demand while facility/quality costs weaken near-term conversion economics.",
       "resolved": true,
       "gating": false
+    },
+    {
+      "claim": "Record backlog coexists with lower gross margin.",
+      "resolution": "Demand and conversion efficiency are distinct; the evidence supports strong demand while simultaneously showing manufacturing drag.",
+      "resolved": true,
+      "gating": false
     }
   ],
   "contradictionDispositions": {
@@ -223,6 +336,12 @@
       {
         "claim": "Record backlog coexists with lower gross margin.",
         "resolution": "Demand strength and manufacturing efficiency are separate dimensions; backlog supports demand while facility/quality costs weaken near-term conversion economics.",
+        "resolved": true,
+        "gating": false
+      },
+      {
+        "claim": "Record backlog coexists with lower gross margin.",
+        "resolution": "Demand and conversion efficiency are distinct; the evidence supports strong demand while simultaneously showing manufacturing drag.",
         "resolved": true,
         "gating": false
       }
@@ -236,26 +355,31 @@
     {
       "unknown": "Timing and magnitude of margin recovery after facility stabilization remain unknown.",
       "gating": false
+    },
+    {
+      "unknown": "Long-run economics of storage/data-center adjacencies and timing of facility normalization remain unquantified.",
+      "gating": false
+    },
+    {
+      "unknown": "Evidence does not yet show the pace or completeness of corrective-action normalization.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -265,14 +389,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -289,10 +405,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

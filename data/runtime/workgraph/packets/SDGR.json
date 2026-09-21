@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SDGR",
   "workId": "t0:SDGR",
-  "generatedAt": "2026-09-21T16:19:35.052Z",
+  "generatedAt": "2026-09-21T16:29:53.466Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-05T00:00:00.000Z",
-    "end": "2026-09-21T12:06:55.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T12:06:55.000Z"
+    "end": "2026-09-21T16:27:40.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T16:27:40.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,64 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/SDGR-20260921T120655Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/SDGR-20260921T120655Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/SDGR-20260921T162740Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "enterprise agentic-AI adoption",
       "asset monetization model",
       "platform-to-workflow conversion",
-      "capital efficiency"
+      "capital efficiency",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "confidence inflation",
+      "source dependence"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "mixed",
+          "basis": "Workflow integration can increase influence over computational discovery, but pharma customers retain alternative software, internal tools and experimental validation paths."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Software plus asset-monetization creates two economic paths, while both remain dependent on partner conversion and scientific outcomes."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Embedded workflows and proprietary physics/ML can create switching friction, but competing AI/drug-design stacks and internal pharma capabilities remain substitutes."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "enterprise agentic-AI adoption",
@@ -78,7 +102,18 @@
           "basis": "Tectora converts internal programs into equity, milestones, royalties and platform usage while external capital funds development."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "confidence inflation",
+          "direction": "negative",
+          "basis": "Named pharma adoption can be overread as proof of economics or scientific superiority when disclosed evidence establishes deployment, not magnitude of value capture."
+        },
+        {
+          "name": "source dependence",
+          "direction": "mixed",
+          "basis": "Current Beta lineage is company-primary; the named counterparties and financing structure are concrete, but independent outcome evidence remains limited."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "platform-to-workflow conversion",
@@ -134,7 +169,12 @@
     "enterprise agentic-AI adoption",
     "asset monetization model",
     "platform-to-workflow conversion",
-    "capital efficiency"
+    "capital efficiency",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "confidence inflation",
+    "source dependence"
   ],
   "riskEvidence": {
     "present": true,
@@ -146,6 +186,18 @@
       {
         "risk": "Partner adoption and financing structures can fail to translate into material recurring software growth or successful clinical assets.",
         "gating": false
+      },
+      {
+        "risk": "Successor bottleneck shifts from computational design to experimental validation, clinical development and partner commercialization.",
+        "gating": false
+      },
+      {
+        "risk": "Competing AI discovery platforms and internal pharma capabilities can limit pricing power or differentiation.",
+        "gating": false
+      },
+      {
+        "risk": "Tectora transfers development burden but also leaves value realization contingent on externally controlled execution and scientific success.",
+        "gating": false
       }
     ]
   },
@@ -156,6 +208,18 @@
     },
     {
       "risk": "Partner adoption and financing structures can fail to translate into material recurring software growth or successful clinical assets.",
+      "gating": false
+    },
+    {
+      "risk": "Successor bottleneck shifts from computational design to experimental validation, clinical development and partner commercialization.",
+      "gating": false
+    },
+    {
+      "risk": "Competing AI discovery platforms and internal pharma capabilities can limit pricing power or differentiation.",
+      "gating": false
+    },
+    {
+      "risk": "Tectora transfers development burden but also leaves value realization contingent on externally controlled execution and scientific success.",
       "gating": false
     }
   ],
@@ -170,14 +234,52 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "computational and agentic drug-discovery tools",
+        "to": "pharma research workflow productivity",
+        "mechanism": "software-assisted hypothesis generation and molecular design",
+        "confidence": 0.82
+      },
+      {
+        "from": "pharma workflow adoption",
+        "to": "software and collaboration economics",
+        "mechanism": "embedded use can support recurring or expanded commercial relationships",
+        "confidence": 0.66
+      },
+      {
+        "from": "externally financed asset vehicles",
+        "to": "Schrodinger capital efficiency",
+        "mechanism": "partners fund development while Schrodinger retains equity and contingent economics",
+        "confidence": 0.79
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "computational and agentic drug-discovery tools",
+      "to": "pharma research workflow productivity",
+      "mechanism": "software-assisted hypothesis generation and molecular design",
+      "confidence": 0.82
+    },
+    {
+      "from": "pharma workflow adoption",
+      "to": "software and collaboration economics",
+      "mechanism": "embedded use can support recurring or expanded commercial relationships",
+      "confidence": 0.66
+    },
+    {
+      "from": "externally financed asset vehicles",
+      "to": "Schrodinger capital efficiency",
+      "mechanism": "partners fund development while Schrodinger retains equity and contingent economics",
+      "confidence": 0.79
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 8,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "schrodinger-ir:2026-08-05:bms-bunsen",
@@ -215,26 +317,31 @@
     {
       "unknown": "No current security valuation or probability-adjusted drug value is asserted by Scout.",
       "gating": false
+    },
+    {
+      "unknown": "Magnitude and durability of Bunsen economics and measurable research productivity uplift are undisclosed in cited evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "No independent evidence in current lineage quantifies Bunsen productivity advantage, renewal behavior or downstream clinical hit-rate improvement.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 84,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -244,14 +351,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -268,10 +367,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

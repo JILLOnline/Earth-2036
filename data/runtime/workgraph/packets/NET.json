@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "NET",
   "workId": "t0:NET",
-  "generatedAt": "2026-09-21T04:43:38.092Z",
+  "generatedAt": "2026-09-21T05:06:28.432Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T04:42:56.624Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-02-23T00:00:00.000Z",
+    "end": "2026-09-21T05:04:30.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T05:04:30.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,55 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/NET-20260921T050430Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "Developer-to-network platform convergence",
+      "Growth versus cost reset"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "Developer-to-network platform convergence",
+          "direction": "positive",
+          "basis": "Owning widely used build tooling can reduce friction from development through deployment while security capabilities broaden enterprise relevance."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "Growth versus cost reset",
+          "direction": "mixed",
+          "basis": "Demand indicators remain strong while margin compression and restructuring make the quality/cost of growth a live execution question."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +118,33 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "Developer-to-network platform convergence",
+    "Growth versus cost reset"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Platform breadth does not guarantee monetization and integration can increase operating complexity.",
+        "gating": false
+      },
+      {
+        "risk": "Gross-margin compression and restructuring can offset strong top-line growth if efficiency gains do not materialize.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Platform breadth does not guarantee monetization and integration can increase operating complexity.",
+      "gating": false
+    },
+    {
+      "risk": "Gross-margin compression and restructuring can offset strong top-line growth if efficiency gains do not materialize.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,62 +152,122 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "AI-native development and security complexity",
+        "to": "integrated edge/developer platform demand",
+        "mechanism": "integrated tooling and network security can reduce deployment and protection friction",
+        "falsifier": "developers/customers prefer independent tooling or integration fails to improve adoption"
+      },
+      {
+        "from": "large-customer/product adoption",
+        "to": "revenue and RPO growth",
+        "mechanism": "expanding contracted workloads raise current and future revenue",
+        "falsifier": "RPO/revenue decelerate without corresponding margin improvement"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "AI-native development and security complexity",
+      "to": "integrated edge/developer platform demand",
+      "mechanism": "integrated tooling and network security can reduce deployment and protection friction",
+      "falsifier": "developers/customers prefer independent tooling or integration fails to improve adoption"
+    },
+    {
+      "from": "large-customer/product adoption",
+      "to": "revenue and RPO growth",
+      "mechanism": "expanding contracted workloads raise current and future revenue",
+      "falsifier": "RPO/revenue decelerate without corresponding margin improvement"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 3,
     "duplicatesCollapsed": 0,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "cloudflare:2026-06-04:voidzero-vite",
+      "cloudflare:2026-02-23:pq-sase",
+      "cloudflare:2026-08-06:q2-2026"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "url": "https://www.cloudflare.net/news/news-details/2026/Cloudflare-Acquires-VoidZero-to-Build-the-Future-of-the-AI-Native-Web/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-06-04",
+      "originFingerprint": "cloudflare:2026-06-04:voidzero-vite",
+      "sourceId": null
+    },
+    {
+      "url": "https://www.cloudflare.net/news/news-details/2026/Cloudflare-Becomes-the-First-and-Only-SASE-Platform-to-Support-Modern-Post-Quantum-Encryption/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-23",
+      "originFingerprint": "cloudflare:2026-02-23:pq-sase",
+      "sourceId": null
+    },
+    {
+      "url": "https://www.cloudflare.net/news/news-details/2026/Cloudflare-Announces-Second-Quarter-2026-Financial-Results/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "cloudflare:2026-08-06:q2-2026",
+      "sourceId": null
+    }
+  ],
+  "contradictions": [
+    {
+      "claim": "36% revenue growth and stronger cash generation coexist with lower gross margin and a materially larger GAAP operating loss due in part to restructuring.",
+      "severity": "material"
+    }
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 1,
+    "items": [
+      {
+        "claim": "36% revenue growth and stronger cash generation coexist with lower gross margin and a materially larger GAAP operating loss due in part to restructuring.",
+        "severity": "material"
+      }
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Incremental revenue attributable to VoidZero/Vite integration is not yet established.",
+      "gating": false
+    },
+    {
+      "unknown": "Durable post-restructuring headcount productivity and margin trajectory remain unproven.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +281,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -199,10 +293,6 @@
         "owner": "council-alpha"
       },
       {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
-      },
-      {
         "failure": "missing_score_risk_evidence",
         "owner": "council-alpha"
       },
@@ -211,8 +301,8 @@
         "owner": "council-alpha"
       },
       {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "NEE",
   "workId": "t0:NEE",
-  "generatedAt": "2026-09-21T04:43:38.088Z",
+  "generatedAt": "2026-09-21T05:06:28.427Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T04:42:56.624Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-05-18T00:00:00.000Z",
+    "end": "2026-09-21T05:04:30.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T05:04:30.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,55 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/NEE-20260921T050430Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "Scaled regulated power platform",
+      "Capital deployment execution"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "Scaled regulated power platform",
+          "direction": "positive",
+          "basis": "The proposed combination broadens regulated customer and generation scale during accelerating power-demand investment."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "Capital deployment execution",
+          "direction": "positive",
+          "basis": "Earnings growth, regulated capital growth and new backlog indicate continued conversion of power-demand investment into operating scale."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +118,33 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "Scaled regulated power platform",
+    "Capital deployment execution"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Merger approvals, integration and promised customer affordability benefits create execution and regulatory risk.",
+        "gating": false
+      },
+      {
+        "risk": "Large capital needs and merger execution can increase financing and regulatory sensitivity.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Merger approvals, integration and promised customer affordability benefits create execution and regulatory risk.",
+      "gating": false
+    },
+    {
+      "risk": "Large capital needs and merger execution can increase financing and regulatory sensitivity.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,62 +152,102 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "rising electricity demand and grid investment",
+        "to": "value of scaled regulated infrastructure",
+        "mechanism": "larger regulated asset/customer base can spread operating and capital capabilities across more investment needs",
+        "falsifier": "regulators block/materially alter the deal or integration fails to deliver efficiencies"
+      },
+      {
+        "from": "regulated capital growth and renewables/storage origination",
+        "to": "adjusted earnings growth",
+        "mechanism": "deployed regulated assets and contracted projects expand earnings base",
+        "falsifier": "financing/regulatory costs outrun asset earnings growth"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "rising electricity demand and grid investment",
+      "to": "value of scaled regulated infrastructure",
+      "mechanism": "larger regulated asset/customer base can spread operating and capital capabilities across more investment needs",
+      "falsifier": "regulators block/materially alter the deal or integration fails to deliver efficiencies"
+    },
+    {
+      "from": "regulated capital growth and renewables/storage origination",
+      "to": "adjusted earnings growth",
+      "mechanism": "deployed regulated assets and contracted projects expand earnings base",
+      "falsifier": "financing/regulatory costs outrun asset earnings growth"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
+    "rawSourceCount": 2,
+    "uniqueSourceCount": 2,
     "duplicatesCollapsed": 0,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "nextera:2026-05-18:dominion-combination",
+      "nextera:2026-07-24:q2-2026"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://www.investor.nexteraenergy.com/news-and-events/news-releases/2026/05-18-2026-123054903",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-18",
+      "originFingerprint": "nextera:2026-05-18:dominion-combination",
+      "sourceId": null
+    },
+    {
+      "url": "https://www.investor.nexteraenergy.com/~/media/Files/N/NEE-IR/reports-and-fillings/quarterly-earnings/2026/Q2%202026/2026-0724%20NEEQ22026News%20Release%20vFINAL.pdf",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-24",
+      "originFingerprint": "nextera:2026-07-24:q2-2026",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Final regulatory conditions and realized synergies remain unknown before close.",
+      "gating": false
+    },
+    {
+      "unknown": "Artifact does not quantify post-merger financing structure or final approval conditions.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 93,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +261,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -199,20 +273,12 @@
         "owner": "council-alpha"
       },
       {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
-      },
-      {
         "failure": "missing_score_risk_evidence",
         "owner": "council-alpha"
       },
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

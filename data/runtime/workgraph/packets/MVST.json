@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MVST",
   "workId": "t0:MVST",
-  "generatedAt": "2026-09-21T04:43:38.090Z",
+  "generatedAt": "2026-09-21T05:06:28.429Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T04:42:56.624Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-08-10T00:00:00.000Z",
+    "end": "2026-09-21T05:04:30.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T05:04:30.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,55 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/MVST-20260921T050430Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "Localized battery capacity",
+      "Execution versus expansion thesis"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "Localized battery capacity",
+          "direction": "positive",
+          "basis": "Clarksville localization and Huzhou expansion can improve access to high-barrier commercial and transit demand if ramps execute."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "Execution versus expansion thesis",
+          "direction": "negative",
+          "basis": "Current revenue and margin performance weakened while capacity expansion continues."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +118,33 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "Localized battery capacity",
+    "Execution versus expansion thesis"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Capacity additions can worsen fixed-cost absorption if customer ramps remain delayed.",
+        "gating": false
+      },
+      {
+        "risk": "Raw-material inflation, low utilization and customer-platform delays can impair returns on expansion capital.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Capacity additions can worsen fixed-cost absorption if customer ramps remain delayed.",
+      "gating": false
+    },
+    {
+      "risk": "Raw-material inflation, low utilization and customer-platform delays can impair returns on expansion capital.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,62 +152,104 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "commercial/transit electrification demand",
+        "to": "localized battery capacity utilization",
+        "mechanism": "qualified local pack capacity can shorten supply paths and serve high-barrier fleet platforms",
+        "falsifier": "OEM delays persist or utilization fails to rise after localization"
+      },
+      {
+        "from": "lower utilization and raw-material pressure",
+        "to": "gross-margin compression",
+        "mechanism": "lower fixed-cost absorption and higher inputs reduce unit economics",
+        "falsifier": "utilization rises and gross margin stabilizes despite expansion"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "commercial/transit electrification demand",
+      "to": "localized battery capacity utilization",
+      "mechanism": "qualified local pack capacity can shorten supply paths and serve high-barrier fleet platforms",
+      "falsifier": "OEM delays persist or utilization fails to rise after localization"
+    },
+    {
+      "from": "lower utilization and raw-material pressure",
+      "to": "gross-margin compression",
+      "mechanism": "lower fixed-cost absorption and higher inputs reduce unit economics",
+      "falsifier": "utilization rises and gross margin stabilizes despite expansion"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 2,
+    "uniqueSourceCount": 1,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "microvast:2026-08-10:q2-2026"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "url": "https://ir.microvast.com/news-releases/news-release-details/microvast-reports-second-quarter-2026-financial-results",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-10",
+      "originFingerprint": "microvast:2026-08-10:q2-2026",
+      "sourceId": null
+    }
+  ],
+  "contradictions": [
+    {
+      "claim": "Long-term capacity expansion thesis coexists with materially weaker first-half revenue and adjusted EBITDA.",
+      "severity": "material"
+    }
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 1,
+    "items": [
+      {
+        "claim": "Long-term capacity expansion thesis coexists with materially weaker first-half revenue and adjusted EBITDA.",
+        "severity": "material"
+      }
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "No evidence here establishes contracted utilization for the incremental capacity.",
+      "gating": false
+    },
+    {
+      "unknown": "Timing and economics of customer ramp recovery remain uncertain.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +263,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -199,10 +275,6 @@
         "owner": "council-alpha"
       },
       {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
-      },
-      {
         "failure": "missing_score_risk_evidence",
         "owner": "council-alpha"
       },
@@ -211,8 +283,8 @@
         "owner": "council-alpha"
       },
       {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "NFLX",
   "workId": "t0:NFLX",
-  "generatedAt": "2026-09-21T04:43:38.095Z",
+  "generatedAt": "2026-09-21T05:06:28.434Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T04:42:56.624Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-01-20T00:00:00.000Z",
+    "end": "2026-09-21T05:04:30.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T05:04:30.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,55 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/NFLX-20260921T050430Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "Content/IP scale expansion",
+      "Core operating execution"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "Content/IP scale expansion",
+          "direction": "positive",
+          "basis": "Warner Bros. assets could broaden owned franchises and production capability if the transaction closes and integrates successfully."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "Core operating execution",
+          "direction": "positive",
+          "basis": "Double-digit revenue growth and a high operating margin indicate strong current operating leverage while the company pursues a large acquisition."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +118,33 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "Content/IP scale expansion",
+    "Core operating execution"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Large-scale media acquisition introduces regulatory, financing and integration risk and can reduce strategic flexibility.",
+        "gating": false
+      },
+      {
+        "risk": "Current strong standalone execution could be diluted by acquisition financing/integration burden.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Large-scale media acquisition introduces regulatory, financing and integration risk and can reduce strategic flexibility.",
+      "gating": false
+    },
+    {
+      "risk": "Current strong standalone execution could be diluted by acquisition financing/integration burden.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,62 +152,102 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "expanded owned content/IP",
+        "to": "member engagement and monetization options",
+        "mechanism": "broader franchises can support programming, licensing and retention across markets",
+        "falsifier": "deal fails to close or acquired content fails to improve engagement/economics"
+      },
+      {
+        "from": "revenue growth and operating leverage",
+        "to": "financial capacity for strategic expansion",
+        "mechanism": "higher operating profit and cash generation can support investment and transaction obligations",
+        "falsifier": "margin falls materially as acquisition/integration costs rise"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "expanded owned content/IP",
+      "to": "member engagement and monetization options",
+      "mechanism": "broader franchises can support programming, licensing and retention across markets",
+      "falsifier": "deal fails to close or acquired content fails to improve engagement/economics"
+    },
+    {
+      "from": "revenue growth and operating leverage",
+      "to": "financial capacity for strategic expansion",
+      "mechanism": "higher operating profit and cash generation can support investment and transaction obligations",
+      "falsifier": "margin falls materially as acquisition/integration costs rise"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
+    "rawSourceCount": 2,
+    "uniqueSourceCount": 2,
     "duplicatesCollapsed": 0,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "netflix:2026-01-20:wbd-all-cash",
+      "stockstofind:2026-07-16:nflx-q2-2026-summary"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "url": "https://ir.netflix.net/investor-news-and-events/financial-releases/press-release-details/2026/Netflix-and-Warner-Bros--Discovery-Amend-Agreement-to-All-Cash-Transaction/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-01-20",
+      "originFingerprint": "netflix:2026-01-20:wbd-all-cash",
+      "sourceId": null
+    },
+    {
+      "url": "https://stockstofind.com/news/netflix-reports-12-6b-in-q2-2026-revenue-raises-full-year-guidance-to-51-0-51-4b",
+      "kind": "independent",
+      "primary": false,
+      "publishedAt": "2026-07-16",
+      "originFingerprint": "stockstofind:2026-07-16:nflx-q2-2026-summary",
+      "sourceId": null
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Final regulatory outcome, integration costs and realized content synergies remain unknown.",
+      "gating": false
+    },
+    {
+      "unknown": "Primary Q2 shareholder-letter lineage was not acquired in this run; root owner should corroborate the independent summary before numeric underwriting.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 78,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +261,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -199,20 +273,12 @@
         "owner": "council-alpha"
       },
       {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
-      },
-      {
         "failure": "missing_score_risk_evidence",
         "owner": "council-alpha"
       },
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

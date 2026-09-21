@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MWA",
   "workId": "t0:MWA",
-  "generatedAt": "2026-09-21T04:43:38.094Z",
+  "generatedAt": "2026-09-21T05:06:28.433Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T04:42:56.624Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-08-05T00:00:00.000Z",
+    "end": "2026-09-21T05:04:30.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T05:04:30.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,55 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/MWA-20260921T050430Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "Water infrastructure renewal exposure",
+      "Margin execution"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "Water infrastructure renewal exposure",
+          "direction": "positive",
+          "basis": "Water-management growth provides evidence of demand in essential distribution and measurement infrastructure."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "Margin execution",
+          "direction": "positive",
+          "basis": "Operating and adjusted operating profitability improved faster than sales."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +118,33 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "Water infrastructure renewal exposure",
+    "Margin execution"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "Residential construction softness and tariff/inflation pressure can offset infrastructure demand.",
+        "gating": false
+      },
+      {
+        "risk": "Some margin benefit came from tariff refunds and pricing while physical volumes were slightly lower.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "Residential construction softness and tariff/inflation pressure can offset infrastructure demand.",
+      "gating": false
+    },
+    {
+      "risk": "Some margin benefit came from tariff refunds and pricing while physical volumes were slightly lower.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,62 +152,104 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "aging water networks and infrastructure spending",
+        "to": "valve/hydrant/measurement demand",
+        "mechanism": "network renewal requires physical flow-control and management products",
+        "falsifier": "municipal spending weakens or product volumes contract despite renewal needs"
+      },
+      {
+        "from": "pricing and operating discipline",
+        "to": "margin expansion",
+        "mechanism": "price realization and lower expense burden can offset inflation and softer volume",
+        "falsifier": "margin reverses when tariff refunds normalize or pricing moderates"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "aging water networks and infrastructure spending",
+      "to": "valve/hydrant/measurement demand",
+      "mechanism": "network renewal requires physical flow-control and management products",
+      "falsifier": "municipal spending weakens or product volumes contract despite renewal needs"
+    },
+    {
+      "from": "pricing and operating discipline",
+      "to": "margin expansion",
+      "mechanism": "price realization and lower expense burden can offset inflation and softer volume",
+      "falsifier": "margin reverses when tariff refunds normalize or pricing moderates"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 2,
+    "uniqueSourceCount": 1,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "sec:mwa:2026-08-05:q3-2026-ex99.1"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1350593/000135059326000034/exhibit991pressreleasefy26.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-05",
+      "originFingerprint": "sec:mwa:2026-08-05:q3-2026-ex99.1",
+      "sourceId": null
+    }
+  ],
+  "contradictions": [
+    {
+      "claim": "Strong margin expansion occurred despite slightly lower aggregate volumes, making durability beyond pricing/refunds a key test.",
+      "severity": "moderate"
+    }
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 1,
+    "items": [
+      {
+        "claim": "Strong margin expansion occurred despite slightly lower aggregate volumes, making durability beyond pricing/refunds a key test.",
+        "severity": "moderate"
+      }
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "The share of growth directly attributable to secular infrastructure renewal versus pricing is not fully isolated.",
+      "gating": false
+    },
+    {
+      "unknown": "Durable post-refund margin level is not established by one quarter.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +263,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -199,10 +275,6 @@
         "owner": "council-alpha"
       },
       {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
-      },
-      {
         "failure": "missing_score_risk_evidence",
         "owner": "council-alpha"
       },
@@ -211,8 +283,8 @@
         "owner": "council-alpha"
       },
       {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

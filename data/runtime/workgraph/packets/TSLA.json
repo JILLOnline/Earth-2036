@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "TSLA",
   "workId": "t0:TSLA",
-  "generatedAt": "2026-09-21T18:38:42.850Z",
+  "generatedAt": "2026-09-21T19:07:08.813Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T16:51:50.432Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-06-26T00:00:00.000Z",
+    "end": "2026-09-21T19:03:56.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T19:03:56.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,56 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/TSLA-20260921T190355Z-earth-scout-discovery.json",
+    "data/runtime/workgraph/evidence/TSLA-20260921T190356Z-earth-scout-execution.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "vehicle delivery scale",
+      "energy-storage deployment growth",
+      "manufacturing throughput",
+      "delivery execution versus expectations",
+      "energy-storage execution",
+      "inventory conversion"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "vehicle delivery scale",
+        "energy-storage deployment growth",
+        "manufacturing throughput"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "delivery execution versus expectations",
+        "energy-storage execution",
+        "inventory conversion"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +119,29 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "vehicle delivery scale",
+    "energy-storage deployment growth",
+    "manufacturing throughput",
+    "delivery execution versus expectations",
+    "energy-storage execution",
+    "inventory conversion"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "deliveries exceeding production can reflect inventory drawdown and should not be extrapolated mechanically",
+      "vehicle and energy businesses have different margin and capital profiles",
+      "one-quarter delivery outperformance may include timing and inventory effects",
+      "company-compiled consensus is not company guidance and should not be treated as such"
+    ]
   },
-  "risks": [],
+  "risks": [
+    "deliveries exceeding production can reflect inventory drawdown and should not be extrapolated mechanically",
+    "vehicle and energy businesses have different margin and capital profiles",
+    "one-quarter delivery outperformance may include timing and inventory effects",
+    "company-compiled consensus is not company guidance and should not be treated as such"
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +149,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +158,71 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "ir.tesla.com|TSLA|Q2-2026-deliveries|2026-07-02",
+      "ir.tesla.com|TSLA|Q2-2026-consensus|2026-06-26"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "sourceId": "TSLA-Q2-2026-deliveries",
+      "origin": "Tesla Q2 2026 production, deliveries and deployments",
+      "url": "https://ir.tesla.com/press-release/tesla-second-quarter-2026-production-deliveries-and-deployments",
+      "publishedAt": "2026-07-02T00:00:00Z",
+      "primary": true,
+      "originFingerprint": "ir.tesla.com|TSLA|Q2-2026-deliveries|2026-07-02"
+    },
+    {
+      "sourceId": "TSLA-Q2-2026-consensus",
+      "origin": "Tesla company-compiled Q2 2026 delivery consensus",
+      "url": "https://ir.tesla.com/press-release/delivery-consensus-second-quarter-2026",
+      "publishedAt": "2026-06-26T00:00:00Z",
+      "primary": true,
+      "originFingerprint": "ir.tesla.com|TSLA|Q2-2026-consensus|2026-06-26"
+    }
+  ],
+  "contradictions": [
+    "Q2 vehicle deliveries exceeded production by roughly 28,000 units, a favorable near-term inventory signal that also means delivery growth must be separated from current-quarter production growth.",
+    "Vehicle deliveries substantially beat compiled expectations while storage was roughly in line; execution strength was therefore uneven across operating vectors rather than uniformly above expectations."
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 2,
+    "items": [
+      "Q2 vehicle deliveries exceeded production by roughly 28,000 units, a favorable near-term inventory signal that also means delivery growth must be separated from current-quarter production growth.",
+      "Vehicle deliveries substantially beat compiled expectations while storage was roughly in line; execution strength was therefore uneven across operating vectors rather than uniformly above expectations."
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    "margin contribution of Q2 delivery mix",
+    "durability of energy-storage deployment growth",
+    "how much of the vehicle beat came from timing/incentives versus durable demand",
+    "profitability of incremental deliveries"
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_causal_mapping",
+      "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +236,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +246,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",
@@ -213,6 +258,10 @@
       {
         "failure": "missing_causal_mapping",
         "owner": "council-beta"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

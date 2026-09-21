@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "TECK",
   "workId": "t0:TECK",
-  "generatedAt": "2026-09-21T18:38:42.849Z",
+  "generatedAt": "2026-09-21T19:07:08.812Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T16:51:50.432Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2025-10-07T00:00:00.000Z",
+    "end": "2026-09-21T19:03:50.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T19:03:50.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,56 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/TECK-20260921T190349Z-earth-scout-discovery.json",
+    "data/runtime/workgraph/evidence/TECK-20260921T190350Z-earth-scout-execution.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "QB operating stabilization",
+      "copper price exposure",
+      "critical-minerals scale",
+      "QB recovery versus reset guidance",
+      "TMF execution",
+      "cash generation"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "QB operating stabilization",
+        "copper price exposure",
+        "critical-minerals scale"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "QB recovery versus reset guidance",
+        "TMF execution",
+        "cash generation"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +119,31 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "QB operating stabilization",
+    "copper price exposure",
+    "critical-minerals scale",
+    "QB recovery versus reset guidance",
+    "TMF execution",
+    "cash generation"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "commodity-price sensitivity",
+      "QB tailings-management execution remains operationally material",
+      "planned Anglo American merger adds regulatory and integration dependency",
+      "2026 guidance was reset materially lower after 2025 problems",
+      "future TMF or recovery shortfalls could again constrain production"
+    ]
   },
-  "risks": [],
+  "risks": [
+    "commodity-price sensitivity",
+    "QB tailings-management execution remains operationally material",
+    "planned Anglo American merger adds regulatory and integration dependency",
+    "2026 guidance was reset materially lower after 2025 problems",
+    "future TMF or recovery shortfalls could again constrain production"
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +151,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +160,71 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "teck.com|TECK|Q2-2026|2026-07",
+      "teck.com|TECK|operational-review|2025-10-07"
+    ]
   },
-  "sources": [],
-  "contradictions": [],
+  "sources": [
+    {
+      "sourceId": "TECK-Q2-2026",
+      "origin": "Teck Q2 2026 results",
+      "url": "https://www.teck.com/news/news-releases/2026/teck-reports-unaudited-second-quarter-results-for-2026",
+      "publishedAt": "2026-07-23T00:00:00Z",
+      "primary": true,
+      "originFingerprint": "teck.com|TECK|Q2-2026|2026-07"
+    },
+    {
+      "sourceId": "TECK-2025-review",
+      "origin": "Teck operational review and updated outlook",
+      "url": "https://www.teck.com/news/news-releases/2025/teck-announces-completion-of-comprehensive-operational-review-and-updated-outlook",
+      "publishedAt": "2025-10-07T00:00:00Z",
+      "primary": true,
+      "originFingerprint": "teck.com|TECK|operational-review|2025-10-07"
+    }
+  ],
+  "contradictions": [
+    "Current QB stability is materially better than 2025 disruption, but the historical TMF constraint remains relevant until sustained through a longer operating window.",
+    "Three stable quarters support recovery, but the company explicitly warned in 2025 that TMF and recovery execution could impair 2026-27 output; both facts should remain live."
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 2,
+    "items": [
+      "Current QB stability is materially better than 2025 disruption, but the historical TMF constraint remains relevant until sustained through a longer operating window.",
+      "Three stable quarters support recovery, but the company explicitly warned in 2025 that TMF and recovery execution could impair 2026-27 output; both facts should remain live."
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    "durability of QB recovery and throughput improvements",
+    "final merger approvals and integration timetable",
+    "whether QB exits 2026 at sustainable design-rate economics",
+    "whether current copper prices normalize before operating improvements fully mature"
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_causal_mapping",
+      "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +238,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +248,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",
@@ -213,6 +260,10 @@
       {
         "failure": "missing_causal_mapping",
         "owner": "council-beta"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-21T05:15:47.473Z",
+  "updatedAt": "2026-09-21T06:21:49.141Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -686,6 +686,18 @@
       "type": "market",
       "label": "CRM structural demand",
       "description": "Salesforce is positioning its CRM/data estate as an enterprise coordination layer for agentic software: customer data and workflow context feed Agentforce, while acquisitions extend data and agent capabilities. The human need served is lower-friction sales/service/operations work, but value depends on reliable data integration and measurable workflow outcomes rather than agent deployment counts alone."
+    },
+    {
+      "id": "company:CRS",
+      "type": "company",
+      "label": "Carpenter Technology Corporation",
+      "description": "Carpenter Technology sits in the specialty-alloy bottleneck between demanding aerospace/defense applications and qualified high-performance material supply. The human/infrastructure need is reliable aircraft, defense and energy hardware; resilience derives from metallurgical know-how, qualification cycles and capacity, while substitution can occur through alternative alloys, additive-process redesign or competing qualified mills."
+    },
+    {
+      "id": "market:CRS-crs-structural-demand",
+      "type": "market",
+      "label": "CRS structural demand",
+      "description": "Carpenter Technology sits in the specialty-alloy bottleneck between demanding aerospace/defense applications and qualified high-performance material supply. The human/infrastructure need is reliable aircraft, defense and energy hardware; resilience derives from metallurgical know-how, qualification cycles and capacity, while substitution can occur through alternative alloys, additive-process redesign or competing qualified mills."
     }
   ],
   "edges": [
@@ -1610,6 +1622,20 @@
       "sourceIds": [
         "issuer:CRM:FY27Q2",
         "issuer:CRM:FinClose"
+      ],
+      "observedAt": "2026-09-19T23:27:41Z"
+    },
+    {
+      "id": "edge:CRS-structural-exposure",
+      "from": "company:CRS",
+      "to": "market:CRS-crs-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 78,
+      "confidence": 84,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:CRS:FY2026"
       ],
       "observedAt": "2026-09-19T23:27:41Z"
     }
@@ -2735,6 +2761,24 @@
       ],
       "observedAt": "2026-09-19T23:27:41Z",
       "thesis": "Salesforce is positioning its CRM/data estate as an enterprise coordination layer for agentic software: customer data and workflow context feed Agentforce, while acquisitions extend data and agent capabilities. The human need served is lower-friction sales/service/operations work, but value depends on reliable data integration and measurable workflow outcomes rather than agent deployment counts alone.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:CRS-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:CRS-crs-structural-demand",
+      "affectedNodeIds": [
+        "company:CRS"
+      ],
+      "direction": 1,
+      "magnitude": 78,
+      "confidence": 84,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:CRS:FY2026"
+      ],
+      "observedAt": "2026-09-19T23:27:41Z",
+      "thesis": "Carpenter Technology sits in the specialty-alloy bottleneck between demanding aerospace/defense applications and qualified high-performance material supply. The human/infrastructure need is reliable aircraft, defense and energy hardware; resilience derives from metallurgical know-how, qualification cycles and capacity, while substitution can occur through alternative alloys, additive-process redesign or competing qualified mills.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

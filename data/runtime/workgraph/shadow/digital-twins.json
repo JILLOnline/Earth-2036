@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-21T07:08:57.582Z",
+  "generatedAt": "2026-09-21T07:17:56.547Z",
   "canonicalWriteAuthority": false,
   "total": 195,
   "twins": [
@@ -28765,8 +28765,8 @@
       "canonicalWriteAuthority": false,
       "ticker": "CRSP",
       "workId": "t0:CRSP",
-      "inputSignature": "f34d8be32e1f03bf6b7e7bd3",
-      "sourceState": "researching",
+      "inputSignature": "d803455e58a3ab9a7b26081e",
+      "sourceState": "chief_ready",
       "identity": {
         "ticker": "CRSP",
         "company": "CRISPR Therapeutics",
@@ -28790,29 +28790,30 @@
           "discovery-weak-signals",
           "expectations-execution",
           "structural-causal",
-          "adversarial-red-team"
-        ],
-        "missingPerspectives": [
+          "adversarial-red-team",
           "source-integrity",
           "company-underwriting"
         ],
-        "primarySourceCount": 2,
+        "missingPerspectives": [],
+        "primarySourceCount": 3,
         "sourceLineage": {
-          "rawSourceCount": 6,
-          "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 4,
+          "rawSourceCount": 13,
+          "uniqueSourceCount": 4,
+          "duplicatesCollapsed": 9,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:CRSP:CTX310-ESC:20260828",
-            "issuer:CRSP:2026Q2:20260803"
+            "issuer:CRSP:2026Q2:20260803",
+            "sec:1674416:10Q:20260630",
+            "stockanalysis:CRSP:20260918"
           ]
         },
         "evidenceWindow": {
           "start": "2026-08-03T00:00:00.000Z",
-          "end": "2026-09-19T23:27:41.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T23:27:41.000Z"
+          "end": "2026-09-21T07:15:54.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-21T07:15:54.000Z"
         },
-        "preflightPassed": false
+        "preflightPassed": true
       },
       "capabilitySignals": [
         "thesisQuality",
@@ -28821,7 +28822,12 @@
         "scenarioRobustness",
         "financialOperatingMomentum",
         "crossDivisionLeverage",
-        "substitutionResilience"
+        "substitutionResilience",
+        "marketValuationOpportunity",
+        "governancePower",
+        "bottleneckControl",
+        "supplyChainResilience",
+        "pricingPower"
       ],
       "constraintSignals": {
         "risks": [
@@ -28829,24 +28835,23 @@
           "Broad clinical pipeline increases trial, regulatory and capital-allocation execution burden.",
           "Early clinical signals may not persist in larger or longer studies, shifting the causal chain before commercialization.",
           "Small early-stage cohorts can overstate durable efficacy or underrepresent safety events.",
-          "Broad pipeline breadth can increase cash-burn and capital-allocation complexity before multiple assets are de-risked."
+          "Broad pipeline breadth can increase cash-burn and capital-allocation complexity before multiple assets are de-risked.",
+          "Most pipeline assets remain early-stage; larger trials can reverse early efficacy/safety signals.",
+          "Persistent losses, convertible debt and historical share-count growth create financing/dilution risk despite strong liquidity.",
+          "CASGEVY commercialization depends materially on Vertex, reimbursement, treatment-center throughput and complex patient access."
         ],
         "unknowns": [
           "Phase 1b efficacy, safety and regulatory path remain unresolved.",
           "Commercial CASGEVY economics and pipeline cash-burn durability require full financial underwriting.",
           "Phase 1b durability, safety and regulatory path remain unresolved.",
-          "Commercial CASGEVY economics and pipeline cash-burn durability require Alpha financial underwriting."
+          "Commercial CASGEVY economics and pipeline cash-burn durability require Alpha financial underwriting.",
+          "No independent source in this run independently validates issuer clinical efficacy claims; those claims remain issuer/primary-source facts rather than independent corroboration.",
+          "Long-run CASGEVY net economics to CRISPR and mature pricing power remain incompletely disclosed.",
+          "Pipeline probability-adjusted values remain highly uncertain before later-stage data."
         ],
         "contradictions": [],
         "gatingIssues": [],
-        "preflightFailures": [
-          "missing_specialist_perspective:source-integrity",
-          "missing_specialist_perspective:company-underwriting",
-          "missing_factor_evidence",
-          "missing_numeric_score_record",
-          "missing_score_risk_evidence",
-          "missing_data_confidence_evidence"
-        ]
+        "preflightFailures": []
       },
       "causalContext": {
         "mapped": true,
@@ -28856,38 +28861,7 @@
           "successful editing -> successor bottlenecks in manufacturing/reimbursement/access -> realized population impact"
         ]
       },
-      "improvementWindows": [
-        {
-          "failure": "missing_specialist_perspective:source-integrity",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:source-integrity?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:company-underwriting",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_factor_evidence",
-          "question": "Which required methodology factor still lacks source-addressed evidence?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_numeric_score_record",
-          "question": "Which source-addressed factor assessments are still required before a reproducible score can be constructed?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_score_risk_evidence",
-          "question": "Which material risks require source-addressed quantitative treatment?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_data_confidence_evidence",
-          "question": "Which evidence-quality dimensions remain insufficiently supported?",
-          "stance": "improvement-oriented"
-        }
-      ],
+      "improvementWindows": [],
       "bridgeInputs": {
         "capabilityCandidates": [
           "thesisQuality",
@@ -28896,18 +28870,29 @@
           "scenarioRobustness",
           "financialOperatingMomentum",
           "crossDivisionLeverage",
-          "substitutionResilience"
+          "substitutionResilience",
+          "marketValuationOpportunity",
+          "governancePower",
+          "bottleneckControl",
+          "supplyChainResilience",
+          "pricingPower"
         ],
         "needOrConstraintCandidates": [
           "Phase 1b efficacy, safety and regulatory path remain unresolved.",
           "Commercial CASGEVY economics and pipeline cash-burn durability require full financial underwriting.",
           "Phase 1b durability, safety and regulatory path remain unresolved.",
           "Commercial CASGEVY economics and pipeline cash-burn durability require Alpha financial underwriting.",
+          "No independent source in this run independently validates issuer clinical efficacy claims; those claims remain issuer/primary-source facts rather than independent corroboration.",
+          "Long-run CASGEVY net economics to CRISPR and mature pricing power remain incompletely disclosed.",
+          "Pipeline probability-adjusted values remain highly uncertain before later-stage data.",
           "Phase 1a involved only 15 participants and early efficacy/safety cannot establish registrational success.",
           "Broad clinical pipeline increases trial, regulatory and capital-allocation execution burden.",
           "Early clinical signals may not persist in larger or longer studies, shifting the causal chain before commercialization.",
           "Small early-stage cohorts can overstate durable efficacy or underrepresent safety events.",
-          "Broad pipeline breadth can increase cash-burn and capital-allocation complexity before multiple assets are de-risked."
+          "Broad pipeline breadth can increase cash-burn and capital-allocation complexity before multiple assets are de-risked.",
+          "Most pipeline assets remain early-stage; larger trials can reverse early efficacy/safety signals.",
+          "Persistent losses, convertible debt and historical share-count growth create financing/dilution risk despite strong liquidity.",
+          "CASGEVY commercialization depends materially on Vertex, reimbursement, treatment-center throughput and complex patient access."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

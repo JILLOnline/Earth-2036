@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "NEE",
   "workId": "t0:NEE",
-  "generatedAt": "2026-09-21T05:15:44.845Z",
+  "generatedAt": "2026-09-21T05:25:38.624Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-05-18T00:00:00.000Z",
-    "end": "2026-09-21T05:04:30.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T05:04:30.000Z"
+    "end": "2026-09-21T05:24:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T05:24:00.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,63 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/NEE-20260921T050430Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/NEE-20260921T050430Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/NEE-20260921T052400Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "Scaled regulated power platform",
-      "Capital deployment execution"
+      "Capital deployment execution",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "financingSensitivity",
+      "regulatoryConcentration",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "Regulated utility infrastructure and contracted generation/storage directly serve rising electricity demand."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Demand growth supports investment across scenarios, while merger/regulatory and financing outcomes can materially change realized returns."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "positive",
+          "basis": "Generation technologies can substitute for one another, but grid delivery and dependable electricity service remain necessary human/infrastructure needs."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "Scaled regulated power platform",
@@ -71,7 +96,23 @@
           "basis": "The proposed combination broadens regulated customer and generation scale during accelerating power-demand investment."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "financingSensitivity",
+          "direction": "mixed",
+          "basis": "Large capital programs and a major combination increase sensitivity to cost of capital and allowed returns."
+        },
+        {
+          "name": "regulatoryConcentration",
+          "direction": "mixed",
+          "basis": "Regulated economics depend on multiple commissions and approval/rate outcomes."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "mixed",
+          "basis": "Scale and backlog should not be treated as realized synergies or returns before approval, construction and operation."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "Capital deployment execution",
@@ -120,7 +161,13 @@
   },
   "factors": [
     "Scaled regulated power platform",
-    "Capital deployment execution"
+    "Capital deployment execution",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "financingSensitivity",
+    "regulatoryConcentration",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -132,6 +179,22 @@
       {
         "risk": "Large capital needs and merger execution can increase financing and regulatory sensitivity.",
         "gating": false
+      },
+      {
+        "risk": "Regulatory conditions, financing costs or integration friction can absorb scale benefits and pressure customer-affordability commitments.",
+        "gating": false
+      },
+      {
+        "risk": "Merger approval conditions or customer-affordability commitments could reduce expected economics.",
+        "gating": false
+      },
+      {
+        "risk": "Higher financing costs can weaken returns on capital-intensive regulated and contracted assets.",
+        "gating": false
+      },
+      {
+        "risk": "Integration complexity can delay or dilute expected efficiencies.",
+        "gating": false
       }
     ]
   },
@@ -142,6 +205,22 @@
     },
     {
       "risk": "Large capital needs and merger execution can increase financing and regulatory sensitivity.",
+      "gating": false
+    },
+    {
+      "risk": "Regulatory conditions, financing costs or integration friction can absorb scale benefits and pressure customer-affordability commitments.",
+      "gating": false
+    },
+    {
+      "risk": "Merger approval conditions or customer-affordability commitments could reduce expected economics.",
+      "gating": false
+    },
+    {
+      "risk": "Higher financing costs can weaken returns on capital-intensive regulated and contracted assets.",
+      "gating": false
+    },
+    {
+      "risk": "Integration complexity can delay or dilute expected efficiencies.",
       "gating": false
     }
   ],
@@ -169,6 +248,24 @@
         "to": "adjusted earnings growth",
         "mechanism": "deployed regulated assets and contracted projects expand earnings base",
         "falsifier": "financing/regulatory costs outrun asset earnings growth"
+      },
+      {
+        "from": "electricity demand growth",
+        "to": "regulated grid and generation investment",
+        "mechanism": "more load requires dependable generation, transmission/distribution and storage capacity",
+        "falsifier": "load growth fails to materialize or regulators disallow required investment economics"
+      },
+      {
+        "from": "larger regulated platform",
+        "to": "operating/capital scale benefits",
+        "mechanism": "shared capabilities can spread across more customers and investment needs",
+        "falsifier": "approval conditions or integration costs exceed realized efficiencies"
+      },
+      {
+        "from": "capital intensity plus financing cost",
+        "to": "realized investment returns",
+        "mechanism": "higher funding cost narrows spread between allowed/contracted returns and capital cost",
+        "falsifier": "allowed returns, project pricing and operating efficiencies consistently offset financing pressure"
       }
     ]
   },
@@ -184,12 +281,30 @@
       "to": "adjusted earnings growth",
       "mechanism": "deployed regulated assets and contracted projects expand earnings base",
       "falsifier": "financing/regulatory costs outrun asset earnings growth"
+    },
+    {
+      "from": "electricity demand growth",
+      "to": "regulated grid and generation investment",
+      "mechanism": "more load requires dependable generation, transmission/distribution and storage capacity",
+      "falsifier": "load growth fails to materialize or regulators disallow required investment economics"
+    },
+    {
+      "from": "larger regulated platform",
+      "to": "operating/capital scale benefits",
+      "mechanism": "shared capabilities can spread across more customers and investment needs",
+      "falsifier": "approval conditions or integration costs exceed realized efficiencies"
+    },
+    {
+      "from": "capital intensity plus financing cost",
+      "to": "realized investment returns",
+      "mechanism": "higher funding cost narrows spread between allowed/contracted returns and capital cost",
+      "falsifier": "allowed returns, project pricing and operating efficiencies consistently offset financing pressure"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 6,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 0,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "nextera:2026-05-18:dominion-combination",
@@ -214,10 +329,24 @@
       "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Scale expansion versus affordability/regulatory burden",
+      "resolution": "Both can coexist; scale may improve capability while regulatory conditions determine whether benefits accrue economically.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Scale expansion versus affordability/regulatory burden",
+        "resolution": "Both can coexist; scale may improve capability while regulatory conditions determine whether benefits accrue economically.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
   "unknowns": [
     {
@@ -227,21 +356,27 @@
     {
       "unknown": "Artifact does not quantify post-merger financing structure or final approval conditions.",
       "gating": false
+    },
+    {
+      "unknown": "Final merger approval conditions, realized synergies and post-combination financing structure remain unobserved.",
+      "gating": false
+    },
+    {
+      "unknown": "Evidence does not yet quantify final merger conditions or realized integration economics.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 93,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -255,14 +390,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",

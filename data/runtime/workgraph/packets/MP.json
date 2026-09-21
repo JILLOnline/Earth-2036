@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MP",
   "workId": "t0:MP",
-  "generatedAt": "2026-09-21T05:15:44.846Z",
+  "generatedAt": "2026-09-21T05:25:38.625Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-06T00:00:00.000Z",
-    "end": "2026-09-21T04:03:23.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T04:03:23.000Z"
+    "end": "2026-09-21T05:24:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T05:24:00.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,69 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/MP-20260921T040323Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/MP-20260921T040323Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/MP-20260921T052400Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "domestic rare-earth vertical integration",
-      "execution conversion"
+      "execution conversion",
+      "bottleneckControl",
+      "supplyChainResilience",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "policyDependence",
+      "executionConcentration",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "Domestic mine-to-separated-product-to-magnet capability addresses multiple stages of a concentrated rare-earth supply chain."
+        },
+        {
+          "name": "supplyChainResilience",
+          "direction": "positive",
+          "basis": "Domestic downstream conversion can diversify strategic magnet supply if ramp and qualification succeed."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Strategic demand is broad, while economics remain sensitive to ramp execution, policy support and rare-earth pricing."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "NdFeB magnets are performance-critical in many applications, but motor redesign, recycling and alternative magnet chemistries can reduce intensity in some uses."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "domestic rare-earth vertical integration",
@@ -71,7 +102,23 @@
           "basis": "Rising separated-product output, magnetics revenue and new defense/offtake programs broaden evidence of downstream conversion."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "policyDependence",
+          "direction": "mixed",
+          "basis": "Government support can de-risk strategic capacity while obscuring unsupported market economics."
+        },
+        {
+          "name": "executionConcentration",
+          "direction": "negative",
+          "basis": "Multiple large ramp programs create correlated schedule and qualification exposure."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "mixed",
+          "basis": "Commercial milestones are real, but future 10X utilization and economics are not yet achieved facts."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "execution conversion",
@@ -120,7 +167,14 @@
   },
   "factors": [
     "domestic rare-earth vertical integration",
-    "execution conversion"
+    "execution conversion",
+    "bottleneckControl",
+    "supplyChainResilience",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "policyDependence",
+    "executionConcentration",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -132,6 +186,22 @@
       {
         "risk": "Large simultaneous expansion programs create construction, commissioning, customer qualification and capital-allocation risk.",
         "gating": false
+      },
+      {
+        "risk": "Commissioning, qualification and utilization can become binding constraints after upstream resource availability is solved.",
+        "gating": false
+      },
+      {
+        "risk": "Policy/contract support may be necessary for economics that are not yet demonstrated on a fully standalone basis.",
+        "gating": false
+      },
+      {
+        "risk": "Construction, commissioning and customer qualification delays can strand or underutilize capital.",
+        "gating": false
+      },
+      {
+        "risk": "Competitive response, recycling or alternative motor designs can reduce expected rare-earth intensity over time.",
+        "gating": false
       }
     ]
   },
@@ -142,6 +212,22 @@
     },
     {
       "risk": "Large simultaneous expansion programs create construction, commissioning, customer qualification and capital-allocation risk.",
+      "gating": false
+    },
+    {
+      "risk": "Commissioning, qualification and utilization can become binding constraints after upstream resource availability is solved.",
+      "gating": false
+    },
+    {
+      "risk": "Policy/contract support may be necessary for economics that are not yet demonstrated on a fully standalone basis.",
+      "gating": false
+    },
+    {
+      "risk": "Construction, commissioning and customer qualification delays can strand or underutilize capital.",
+      "gating": false
+    },
+    {
+      "risk": "Competitive response, recycling or alternative motor designs can reduce expected rare-earth intensity over time.",
       "gating": false
     }
   ],
@@ -156,14 +242,52 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "electrification/automation/defense demand",
+        "to": "high-performance magnet demand",
+        "mechanism": "motors and strategic systems require compact high-strength magnetic materials",
+        "falsifier": "alternative motor/magnet designs materially reduce NdFeB intensity across major end uses"
+      },
+      {
+        "from": "domestic mine-to-magnet integration",
+        "to": "supply resilience",
+        "mechanism": "domestic processing and magnet capacity reduce reliance on concentrated foreign conversion stages",
+        "falsifier": "ramp, qualification or cost failures prevent competitive domestic volume"
+      },
+      {
+        "from": "policy support and strategic offtake",
+        "to": "capacity economics",
+        "mechanism": "price floors/commitments can stabilize investment returns during domestic scale-up",
+        "falsifier": "new capacity demonstrates durable competitive economics after support rolls off or becomes non-material"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "electrification/automation/defense demand",
+      "to": "high-performance magnet demand",
+      "mechanism": "motors and strategic systems require compact high-strength magnetic materials",
+      "falsifier": "alternative motor/magnet designs materially reduce NdFeB intensity across major end uses"
+    },
+    {
+      "from": "domestic mine-to-magnet integration",
+      "to": "supply resilience",
+      "mechanism": "domestic processing and magnet capacity reduce reliance on concentrated foreign conversion stages",
+      "falsifier": "ramp, qualification or cost failures prevent competitive domestic volume"
+    },
+    {
+      "from": "policy support and strategic offtake",
+      "to": "capacity economics",
+      "mechanism": "price floors/commitments can stabilize investment returns during domestic scale-up",
+      "falsifier": "new capacity demonstrates durable competitive economics after support rolls off or becomes non-material"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "mp-ir:2026-q2-results"
@@ -179,10 +303,24 @@
       "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Strategic supply-chain value versus policy-supported economics",
+      "resolution": "Both can be true; resilience value may justify support while standalone commercial durability remains an open economic question.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Strategic supply-chain value versus policy-supported economics",
+        "resolution": "Both can be true; resilience value may justify support while standalone commercial durability remains an open economic question.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
   "unknowns": [
     {
@@ -192,26 +330,31 @@
     {
       "unknown": "10X commissioning is future-dated and its realized utilization/economics cannot yet be treated as achieved.",
       "gating": false
+    },
+    {
+      "unknown": "Long-run standalone economics without government support and realized utilization of new capacity remain unknown.",
+      "gating": false
+    },
+    {
+      "unknown": "Exact unsupported long-run unit economics and realized 10X utilization are not established by current evidence.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 95,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -221,14 +364,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -245,10 +380,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

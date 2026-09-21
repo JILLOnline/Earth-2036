@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MOS",
   "workId": "t0:MOS",
-  "generatedAt": "2026-09-21T05:15:44.846Z",
+  "generatedAt": "2026-09-21T05:25:38.625Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-21T00:00:00.000Z",
-    "end": "2026-09-21T04:03:23.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T04:03:23.000Z"
+    "end": "2026-09-21T05:24:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T05:24:00.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,69 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/MOS-20260921T040323Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/MOS-20260921T040323Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/MOS-20260921T052400Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "crop-nutrient essentiality versus input-cost pressure",
-      "operational discipline"
+      "operational discipline",
+      "alignment2036",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "inputCostExposure",
+      "commodityCyclicality",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "alignment2036",
+          "direction": "positive",
+          "basis": "Phosphate and potash replenish crop nutrients that support agricultural output."
+        },
+        {
+          "name": "bottleneckControl",
+          "direction": "mixed",
+          "basis": "Mosaic controls meaningful nutrient production assets, but sulfur/input economics can become the binding constraint."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Food production need is durable while fertilizer affordability, crop economics and input costs remain cyclical."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Farmers can optimize rates and nutrient sources, but phosphorus and potassium requirements cannot be eliminated indefinitely without yield/soil tradeoffs."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "crop-nutrient essentiality versus input-cost pressure",
@@ -71,7 +102,23 @@
           "basis": "The business supplies essential potash/phosphate inputs, but sulfur-cost inflation was severe enough to curtail SSP production in Brazil."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "inputCostExposure",
+          "direction": "negative",
+          "basis": "Sulfur inflation was severe enough to extend production curtailments."
+        },
+        {
+          "name": "commodityCyclicality",
+          "direction": "mixed",
+          "basis": "Nutrient need persists, but realized margins depend on fertilizer prices, crop economics, supply response and feedstock costs."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "mixed",
+          "basis": "Product essentiality and a dividend should not be extrapolated into durable margin resilience."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "operational discipline",
@@ -120,7 +167,14 @@
   },
   "factors": [
     "crop-nutrient essentiality versus input-cost pressure",
-    "operational discipline"
+    "operational discipline",
+    "alignment2036",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "inputCostExposure",
+    "commodityCyclicality",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -132,6 +186,18 @@
       {
         "risk": "Persistent sulfur inflation could keep assets curtailed or pressure margins after restart.",
         "gating": false
+      },
+      {
+        "risk": "Input-cost inflation can make nutrient production uneconomic even when end-market need remains intact.",
+        "gating": false
+      },
+      {
+        "risk": "Persistent sulfur/input inflation can keep capacity curtailed or compress margins after restart.",
+        "gating": false
+      },
+      {
+        "risk": "Commodity supply response and farmer affordability can weaken realized pricing despite long-run nutrient need.",
+        "gating": false
       }
     ]
   },
@@ -142,6 +208,18 @@
     },
     {
       "risk": "Persistent sulfur inflation could keep assets curtailed or pressure margins after restart.",
+      "gating": false
+    },
+    {
+      "risk": "Input-cost inflation can make nutrient production uneconomic even when end-market need remains intact.",
+      "gating": false
+    },
+    {
+      "risk": "Persistent sulfur/input inflation can keep capacity curtailed or compress margins after restart.",
+      "gating": false
+    },
+    {
+      "risk": "Commodity supply response and farmer affordability can weaken realized pricing despite long-run nutrient need.",
       "gating": false
     }
   ],
@@ -156,14 +234,52 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "crop nutrient depletion and food demand",
+        "to": "phosphate/potash demand",
+        "mechanism": "harvested crops remove nutrients that must be replenished to sustain productive yields",
+        "falsifier": "agronomic substitution or efficiency materially reduces required purchased nutrient intensity without yield loss"
+      },
+      {
+        "from": "sulfur/input inflation",
+        "to": "phosphate utilization and economics",
+        "mechanism": "higher conversion costs can push production below acceptable margins and trigger curtailment",
+        "falsifier": "pricing, process efficiency or input normalization restores durable economic utilization"
+      },
+      {
+        "from": "input-cost shock",
+        "to": "asset curtailment",
+        "mechanism": "variable cost can exceed economic production threshold",
+        "falsifier": "sustained restart at acceptable margins despite elevated input costs"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "crop nutrient depletion and food demand",
+      "to": "phosphate/potash demand",
+      "mechanism": "harvested crops remove nutrients that must be replenished to sustain productive yields",
+      "falsifier": "agronomic substitution or efficiency materially reduces required purchased nutrient intensity without yield loss"
+    },
+    {
+      "from": "sulfur/input inflation",
+      "to": "phosphate utilization and economics",
+      "mechanism": "higher conversion costs can push production below acceptable margins and trigger curtailment",
+      "falsifier": "pricing, process efficiency or input normalization restores durable economic utilization"
+    },
+    {
+      "from": "input-cost shock",
+      "to": "asset curtailment",
+      "mechanism": "variable cost can exceed economic production threshold",
+      "falsifier": "sustained restart at acceptable margins despite elevated input costs"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "mos-ir:2026-08-27:dividend",
@@ -188,10 +304,24 @@
       "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Structurally essential products versus curtailed production",
+      "resolution": "Resolved as an economics distinction: essential end use does not guarantee every production route is profitable at every input-price point.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Structurally essential products versus curtailed production",
+        "resolution": "Resolved as an economics distinction: essential end use does not guarantee every production route is profitable at every input-price point.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
   "unknowns": [
     {
@@ -201,11 +331,19 @@
     {
       "unknown": "Restart timing and realized post-curtailment economics are not established here.",
       "gating": false
+    },
+    {
+      "unknown": "Current fertilizer pricing, realized volumes and post-curtailment economics are not established by the reused evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Evidence does not establish current restart status or full-quarter profitability.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 84,
@@ -214,13 +352,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -230,14 +365,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -254,10 +381,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "NFLX",
   "workId": "t0:NFLX",
-  "generatedAt": "2026-09-21T05:15:44.852Z",
+  "generatedAt": "2026-09-21T05:25:38.630Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-20T00:00:00.000Z",
-    "end": "2026-09-21T05:04:30.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T05:04:30.000Z"
+    "end": "2026-09-21T05:24:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T05:24:00.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,63 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/NFLX-20260921T050430Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/NFLX-20260921T050430Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/NFLX-20260921T052400Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "Content/IP scale expansion",
-      "Core operating execution"
+      "Core operating execution",
+      "crossDivisionLeverage",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "financingIntegrationRisk",
+      "competitiveResponse",
+      "sourceDependence"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "crossDivisionLeverage",
+          "direction": "positive",
+          "basis": "A broader owned-IP library can be reused across streaming, licensing and franchise extensions if integration succeeds."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Entertainment demand is durable, but consumer attention can migrate among streaming, social video, gaming and other formats."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Netflix distribution is scalable, yet attention has many substitutes and content differentiation must be continually renewed."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "Content/IP scale expansion",
@@ -71,7 +96,23 @@
           "basis": "Warner Bros. assets could broaden owned franchises and production capability if the transaction closes and integrates successfully."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "financingIntegrationRisk",
+          "direction": "negative",
+          "basis": "An all-cash acquisition can reduce strategic flexibility and add integration burden."
+        },
+        {
+          "name": "competitiveResponse",
+          "direction": "mixed",
+          "basis": "Streaming competes with other streamers plus gaming, social video and broader leisure attention."
+        },
+        {
+          "name": "sourceDependence",
+          "direction": "mixed",
+          "basis": "Current operating numbers in the packet rely partly on an independent summary pending primary corroboration."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "Core operating execution",
@@ -120,7 +161,13 @@
   },
   "factors": [
     "Content/IP scale expansion",
-    "Core operating execution"
+    "Core operating execution",
+    "crossDivisionLeverage",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "financingIntegrationRisk",
+    "competitiveResponse",
+    "sourceDependence"
   ],
   "riskEvidence": {
     "present": true,
@@ -132,6 +179,22 @@
       {
         "risk": "Current strong standalone execution could be diluted by acquisition financing/integration burden.",
         "gating": false
+      },
+      {
+        "risk": "A larger content asset base can raise integration and capital-allocation complexity without guaranteeing incremental engagement.",
+        "gating": false
+      },
+      {
+        "risk": "Financing and integration costs can dilute otherwise strong standalone economics.",
+        "gating": false
+      },
+      {
+        "risk": "Acquired IP can underperform expectations if consumer attention shifts or franchise value is overestimated.",
+        "gating": false
+      },
+      {
+        "risk": "Exact current operating metrics require primary-source corroboration before numeric underwriting.",
+        "gating": false
       }
     ]
   },
@@ -142,6 +205,22 @@
     },
     {
       "risk": "Current strong standalone execution could be diluted by acquisition financing/integration burden.",
+      "gating": false
+    },
+    {
+      "risk": "A larger content asset base can raise integration and capital-allocation complexity without guaranteeing incremental engagement.",
+      "gating": false
+    },
+    {
+      "risk": "Financing and integration costs can dilute otherwise strong standalone economics.",
+      "gating": false
+    },
+    {
+      "risk": "Acquired IP can underperform expectations if consumer attention shifts or franchise value is overestimated.",
+      "gating": false
+    },
+    {
+      "risk": "Exact current operating metrics require primary-source corroboration before numeric underwriting.",
       "gating": false
     }
   ],
@@ -169,6 +248,24 @@
         "to": "financial capacity for strategic expansion",
         "mechanism": "higher operating profit and cash generation can support investment and transaction obligations",
         "falsifier": "margin falls materially as acquisition/integration costs rise"
+      },
+      {
+        "from": "owned content/IP breadth",
+        "to": "engagement and monetization options",
+        "mechanism": "distinctive franchises can support viewing, retention, licensing and extensions",
+        "falsifier": "incremental IP fails to improve engagement or economics after integration"
+      },
+      {
+        "from": "consumer attention competition",
+        "to": "content investment requirement",
+        "mechanism": "substitute entertainment formats force continued differentiation and product investment",
+        "falsifier": "Netflix sustains engagement and pricing power with structurally lower incremental content intensity"
+      },
+      {
+        "from": "large all-cash acquisition",
+        "to": "financial and operating flexibility",
+        "mechanism": "cash/debt commitments plus integration consume resources that could otherwise fund core investment",
+        "falsifier": "post-close cash generation and synergies offset financing/integration burden without weakening core execution"
       }
     ]
   },
@@ -184,12 +281,30 @@
       "to": "financial capacity for strategic expansion",
       "mechanism": "higher operating profit and cash generation can support investment and transaction obligations",
       "falsifier": "margin falls materially as acquisition/integration costs rise"
+    },
+    {
+      "from": "owned content/IP breadth",
+      "to": "engagement and monetization options",
+      "mechanism": "distinctive franchises can support viewing, retention, licensing and extensions",
+      "falsifier": "incremental IP fails to improve engagement or economics after integration"
+    },
+    {
+      "from": "consumer attention competition",
+      "to": "content investment requirement",
+      "mechanism": "substitute entertainment formats force continued differentiation and product investment",
+      "falsifier": "Netflix sustains engagement and pricing power with structurally lower incremental content intensity"
+    },
+    {
+      "from": "large all-cash acquisition",
+      "to": "financial and operating flexibility",
+      "mechanism": "cash/debt commitments plus integration consume resources that could otherwise fund core investment",
+      "falsifier": "post-close cash generation and synergies offset financing/integration burden without weakening core execution"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 6,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 0,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "netflix:2026-01-20:wbd-all-cash",
@@ -214,10 +329,24 @@
       "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Strong current core execution versus transaction burden",
+      "resolution": "Not contradictory; current performance can coexist with forward financing/integration risk.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Strong current core execution versus transaction burden",
+        "resolution": "Not contradictory; current performance can coexist with forward financing/integration risk.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
   "unknowns": [
     {
@@ -227,11 +356,19 @@
     {
       "unknown": "Primary Q2 shareholder-letter lineage was not acquired in this run; root owner should corroborate the independent summary before numeric underwriting.",
       "gating": false
+    },
+    {
+      "unknown": "Final regulatory outcome, integration cost and realized cross-IP engagement effects remain unknown.",
+      "gating": false
+    },
+    {
+      "unknown": "Primary Q2 shareholder-letter lineage is still absent from the reused packet evidence.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 78,
@@ -240,8 +377,6 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -255,14 +390,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",

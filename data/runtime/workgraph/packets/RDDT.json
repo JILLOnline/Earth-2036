@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "RDDT",
   "workId": "t0:RDDT",
-  "generatedAt": "2026-09-21T12:19:34.790Z",
+  "generatedAt": "2026-09-21T12:31:44.708Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-30T00:00:00.000Z",
-    "end": "2026-09-21T10:07:39.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T10:07:39.000Z"
+    "end": "2026-09-21T12:28:31.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T12:28:31.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -31,32 +31,43 @@
       "expectations-execution"
     ],
     "present": [
+      "structural-causal",
+      "adversarial-red-team",
       "discovery-weak-signals",
       "expectations-execution"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
+    "structural-causal",
+    "adversarial-red-team",
     "discovery-weak-signals",
     "expectations-execution"
   ],
   "evidencePaths": [
+    "data/runtime/workgraph/evidence/BETA-20260921T122831Z-council-beta.json",
     "data/runtime/workgraph/evidence/RDDT-20260921T1007Z-earth-scout.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
+      "alignment2036",
+      "bottleneckControl",
+      "crossDivisionLeverage",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "pricingPower",
+      "thesisQuality",
+      "financialOperatingMomentum",
       "community monetization",
       "index inclusion",
       "growth-to-cash conversion"
@@ -64,7 +75,14 @@
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "pricingPower"
+      ],
       "discovery-weak-signals": [
         {
           "name": "community monetization",
@@ -77,7 +95,12 @@
           "basis": "S&P 500 inclusion broadens institutional/index exposure but is not fundamental evidence by itself."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower"
+      ],
       "expectations-execution": [
         {
           "name": "growth-to-cash conversion",
@@ -125,6 +148,14 @@
     }
   },
   "factors": [
+    "alignment2036",
+    "bottleneckControl",
+    "crossDivisionLeverage",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "pricingPower",
+    "thesisQuality",
+    "financialOperatingMomentum",
     "community monetization",
     "index inclusion",
     "growth-to-cash conversion"
@@ -132,6 +163,18 @@
   "riskEvidence": {
     "present": true,
     "items": [
+      {
+        "risk": "The structural asset depends on sustained voluntary community participation; substitute social/search/AI interfaces can capture discovery without reproducing Reddit's community economics.",
+        "gating": false
+      },
+      {
+        "risk": "Advertising concentration creates macro and customer-demand sensitivity.",
+        "gating": false
+      },
+      {
+        "risk": "Strong recent growth raises expectations; monetization or engagement deceleration could widen an expectations gap.",
+        "gating": false
+      },
       {
         "risk": "Advertising remains the dominant revenue source, exposing results to ad-market cycles and platform demand concentration.",
         "gating": false
@@ -143,6 +186,18 @@
     ]
   },
   "risks": [
+    {
+      "risk": "The structural asset depends on sustained voluntary community participation; substitute social/search/AI interfaces can capture discovery without reproducing Reddit's community economics.",
+      "gating": false
+    },
+    {
+      "risk": "Advertising concentration creates macro and customer-demand sensitivity.",
+      "gating": false
+    },
+    {
+      "risk": "Strong recent growth raises expectations; monetization or engagement deceleration could widen an expectations gap.",
+      "gating": false
+    },
     {
       "risk": "Advertising remains the dominant revenue source, exposing results to ad-market cycles and platform demand concentration.",
       "gating": false
@@ -163,14 +218,20 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "community participation -> differentiated discussion corpus -> user attention/intent -> advertiser demand -> revenue",
+      "human need for peer information/community -> engagement -> monetizable inventory"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "community participation -> differentiated discussion corpus -> user attention/intent -> advertiser demand -> revenue",
+    "human need for peer information/community -> engagement -> monetizable inventory"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 6,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "reddit-ir:2026-07-30:q2-2026",
@@ -179,20 +240,20 @@
   },
   "sources": [
     {
+      "sourceId": "reddit-ir:2026-07-30:q2-2026",
       "url": "https://investor.redditinc.com/news-events/news-releases/news-details/2026/Reddit-Reports-Second-Quarter-2026-Results/default.aspx",
       "kind": "primary",
       "primary": true,
       "publishedAt": "2026-07-30",
-      "originFingerprint": "reddit-ir:2026-07-30:q2-2026",
-      "sourceId": null
+      "originFingerprint": "reddit-ir:2026-07-30:q2-2026"
     },
     {
+      "sourceId": "reddit-ir:2026-08-14:sp500",
       "url": "https://investor.redditinc.com/news-events/news-releases/news-details/2026/Reddit-Will-Be-Added-to-the-SP-500/default.aspx",
       "kind": "primary",
       "primary": true,
       "publishedAt": "2026-08-14",
-      "originFingerprint": "reddit-ir:2026-08-14:sp500",
-      "sourceId": null
+      "originFingerprint": "reddit-ir:2026-08-14:sp500"
     }
   ],
   "contradictions": [],
@@ -201,6 +262,14 @@
     "items": []
   },
   "unknowns": [
+    {
+      "unknown": "Durability of current monetization growth versus engagement growth cannot be inferred beyond disclosed periods.",
+      "gating": false
+    },
+    {
+      "unknown": "No live valuation conclusion is established by current Beta evidence.",
+      "gating": false
+    },
     {
       "unknown": "Durability of >60% revenue growth cannot be inferred beyond disclosed periods.",
       "gating": false
@@ -212,22 +281,19 @@
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 96,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -237,14 +303,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -261,10 +319,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "QS",
   "workId": "t0:QS",
-  "generatedAt": "2026-09-21T12:19:34.784Z",
+  "generatedAt": "2026-09-21T12:31:44.702Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-22T00:00:00.000Z",
-    "end": "2026-09-21T11:02:38.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T11:02:38.000Z"
+    "end": "2026-09-21T12:28:31.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T12:28:31.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -31,39 +31,55 @@
       "expectations-execution"
     ],
     "present": [
+      "structural-causal",
+      "adversarial-red-team",
       "discovery-weak-signals",
       "expectations-execution"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
+    "structural-causal",
+    "adversarial-red-team",
     "discovery-weak-signals",
     "expectations-execution"
   ],
   "evidencePaths": [
+    "data/runtime/workgraph/evidence/BETA-20260921T122831Z-council-beta.json",
     "data/runtime/workgraph/evidence/QS-20260921T110238Z-earth-scout.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
+      "alignment2036",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "thesisQuality",
+      "financialOperatingMomentum",
       "technology option",
       "execution verification"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         {
           "name": "technology option",
@@ -71,7 +87,12 @@
           "basis": "Company continues active development and reporting around next-generation solid-state lithium-metal batteries."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "substitutionResilience"
+      ],
       "expectations-execution": [
         {
           "name": "execution verification",
@@ -119,12 +140,31 @@
     }
   },
   "factors": [
+    "alignment2036",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "thesisQuality",
+    "financialOperatingMomentum",
     "technology option",
     "execution verification"
   ],
   "riskEvidence": {
     "present": true,
     "items": [
+      {
+        "risk": "The causal benefit is conditional on manufacturable yield, cost and customer qualification; technology merit alone does not close the scale bottleneck.",
+        "gating": false
+      },
+      {
+        "risk": "Alternative battery chemistries and incumbent lithium-ion manufacturing can improve while QS scales, raising the commercial performance threshold.",
+        "gating": false
+      },
+      {
+        "risk": "Financing needs can rise if industrialization takes longer than planned; current packet does not quantify future dilution.",
+        "gating": false
+      },
       {
         "risk": "Commercial-scale economics, yield and broad customer adoption remain execution dependencies.",
         "gating": false
@@ -136,6 +176,18 @@
     ]
   },
   "risks": [
+    {
+      "risk": "The causal benefit is conditional on manufacturable yield, cost and customer qualification; technology merit alone does not close the scale bottleneck.",
+      "gating": false
+    },
+    {
+      "risk": "Alternative battery chemistries and incumbent lithium-ion manufacturing can improve while QS scales, raising the commercial performance threshold.",
+      "gating": false
+    },
+    {
+      "risk": "Financing needs can rise if industrialization takes longer than planned; current packet does not quantify future dilution.",
+      "gating": false
+    },
     {
       "risk": "Commercial-scale economics, yield and broad customer adoption remain execution dependencies.",
       "gating": false
@@ -156,14 +208,20 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "solid-state lithium-metal cell -> higher energy-density/fast-charge option -> EV usability -> mobility need",
+      "cell technology -> manufacturing yield/cost -> commercial scale -> customer adoption"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "solid-state lithium-metal cell -> higher energy-density/fast-charge option -> EV usability -> mobility need",
+    "cell technology -> manufacturing yield/cost -> commercial scale -> customer adoption"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 0,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
     "uniqueOrigins": [
       "quantumscape:2026-q2-results",
@@ -172,20 +230,20 @@
   },
   "sources": [
     {
+      "sourceId": "quantumscape:2026-q2-results",
       "url": "https://ir.quantumscape.com/news-releases/news-release-details/quantumscape-reports-second-quarter-2026-business-and-financial",
       "kind": "primary",
       "primary": true,
       "publishedAt": "2026-07-22",
-      "originFingerprint": "quantumscape:2026-q2-results",
-      "sourceId": null
+      "originFingerprint": "quantumscape:2026-q2-results"
     },
     {
+      "sourceId": "quantumscape:quarterly-results:2026-q2",
       "url": "https://ir.quantumscape.com/financial-information/quarterly-results",
       "kind": "primary",
       "primary": true,
       "publishedAt": "2026-07-22",
-      "originFingerprint": "quantumscape:quarterly-results:2026-q2",
-      "sourceId": null
+      "originFingerprint": "quantumscape:quarterly-results:2026-q2"
     }
   ],
   "contradictions": [],
@@ -194,6 +252,14 @@
     "items": []
   },
   "unknowns": [
+    {
+      "unknown": "Commercial-volume yield, unit economics and customer qualification breadth are not established by the accessible source.",
+      "gating": false
+    },
+    {
+      "unknown": "Current burn runway, future financing need and dilution path require Alpha financial evidence rather than Beta inference.",
+      "gating": false
+    },
     {
       "unknown": "The accessible release points to the shareholder letter but does not itself establish commercial-volume economics.",
       "gating": false
@@ -205,7 +271,7 @@
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 80,
@@ -214,13 +280,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -230,14 +293,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -254,10 +309,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

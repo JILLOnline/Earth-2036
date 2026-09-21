@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "RBRK",
   "workId": "t0:RBRK",
-  "generatedAt": "2026-09-21T12:19:34.787Z",
+  "generatedAt": "2026-09-21T12:31:44.705Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-27T00:00:00.000Z",
-    "end": "2026-09-21T10:07:39.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T10:07:39.000Z"
+    "end": "2026-09-21T12:28:31.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T12:28:31.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -31,32 +31,43 @@
       "expectations-execution"
     ],
     "present": [
+      "structural-causal",
+      "adversarial-red-team",
       "discovery-weak-signals",
       "expectations-execution"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
+    "structural-causal",
+    "adversarial-red-team",
     "discovery-weak-signals",
     "expectations-execution"
   ],
   "evidencePaths": [
+    "data/runtime/workgraph/evidence/BETA-20260921T122831Z-council-beta.json",
     "data/runtime/workgraph/evidence/RBRK-20260921T1007Z-earth-scout.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
+      "alignment2036",
+      "crossDivisionLeverage",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "thesisQuality",
+      "financialOperatingMomentum",
+      "pricingPower",
       "cyber resilience demand",
       "AI/data platform adjacency",
       "operating leverage"
@@ -64,7 +75,13 @@
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         {
           "name": "cyber resilience demand",
@@ -77,7 +94,12 @@
           "basis": "New Iceberg protection expands the addressable resilience surface around AI-ready enterprise data."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower"
+      ],
       "expectations-execution": [
         {
           "name": "operating leverage",
@@ -125,6 +147,14 @@
     }
   },
   "factors": [
+    "alignment2036",
+    "crossDivisionLeverage",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "thesisQuality",
+    "financialOperatingMomentum",
+    "pricingPower",
     "cyber resilience demand",
     "AI/data platform adjacency",
     "operating leverage"
@@ -132,6 +162,18 @@
   "riskEvidence": {
     "present": true,
     "items": [
+      {
+        "risk": "Cloud-native provider features and competing resilience platforms can reduce Rubrik's control if integrated alternatives become sufficient.",
+        "gating": false
+      },
+      {
+        "risk": "High growth expectations increase sensitivity to ARR deceleration or weaker cloud expansion.",
+        "gating": false
+      },
+      {
+        "risk": "Product breadth can add integration and go-to-market complexity before newer surfaces prove material economics.",
+        "gating": false
+      },
       {
         "risk": "GAAP loss persists and rapid product expansion raises integration/execution complexity.",
         "gating": false
@@ -143,6 +185,18 @@
     ]
   },
   "risks": [
+    {
+      "risk": "Cloud-native provider features and competing resilience platforms can reduce Rubrik's control if integrated alternatives become sufficient.",
+      "gating": false
+    },
+    {
+      "risk": "High growth expectations increase sensitivity to ARR deceleration or weaker cloud expansion.",
+      "gating": false
+    },
+    {
+      "risk": "Product breadth can add integration and go-to-market complexity before newer surfaces prove material economics.",
+      "gating": false
+    },
     {
       "risk": "GAAP loss persists and rapid product expansion raises integration/execution complexity.",
       "gating": false
@@ -163,36 +217,42 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "enterprise/AI data -> resilience protection -> recoverability after disruption -> operational continuity",
+      "Iceberg/AWS data growth -> protection surface expansion -> cyber-resilience demand"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "enterprise/AI data -> resilience protection -> recoverability after disruption -> operational continuity",
+    "Iceberg/AWS data growth -> protection surface expansion -> cyber-resilience demand"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 5,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "rubrik-ir:2026-08-27:q2-fy2027",
-      "rubrik-ir:2026-09-08:iceberg-aws"
+      "rubrik-ir:2026-09-08:iceberg-aws",
+      "rubrik-ir:2026-08-27:q2-fy2027"
     ]
   },
   "sources": [
     {
-      "url": "https://ir.rubrik.com/news-events/press-releases/news-details/2026/Rubrik-Reports-Second-Quarter-Fiscal-Year-2027-Financial-Results/default.aspx",
-      "kind": "primary",
-      "primary": true,
-      "publishedAt": "2026-08-27",
-      "originFingerprint": "rubrik-ir:2026-08-27:q2-fy2027",
-      "sourceId": null
-    },
-    {
+      "sourceId": "rubrik-ir:2026-09-08:iceberg-aws",
       "url": "https://ir.rubrik.com/news-events/press-releases/news-details/2026/Rubrik-Launches-Lakehouse-Protection-with-Apache-Iceberg-Data-on-AWS/default.aspx",
       "kind": "primary",
       "primary": true,
       "publishedAt": "2026-09-08",
-      "originFingerprint": "rubrik-ir:2026-09-08:iceberg-aws",
-      "sourceId": null
+      "originFingerprint": "rubrik-ir:2026-09-08:iceberg-aws"
+    },
+    {
+      "sourceId": "rubrik-ir:2026-08-27:q2-fy2027",
+      "url": "https://ir.rubrik.com/news-events/press-releases/news-details/2026/Rubrik-Reports-Second-Quarter-Fiscal-Year-2027-Financial-Results/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-27",
+      "originFingerprint": "rubrik-ir:2026-08-27:q2-fy2027"
     }
   ],
   "contradictions": [],
@@ -201,6 +261,14 @@
     "items": []
   },
   "unknowns": [
+    {
+      "unknown": "Incremental revenue and retention attributable specifically to Iceberg/AI protection are not separately disclosed.",
+      "gating": false
+    },
+    {
+      "unknown": "The packet does not isolate economics of newer AI/Iceberg products or establish a canonical valuation conclusion.",
+      "gating": false
+    },
     {
       "unknown": "Incremental revenue attributable to newer agentic/AI and Iceberg products is not separately disclosed.",
       "gating": false
@@ -212,22 +280,19 @@
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 96,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -237,14 +302,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -261,10 +318,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

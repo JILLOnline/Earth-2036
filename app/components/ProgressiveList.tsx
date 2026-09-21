@@ -26,12 +26,9 @@ export default function ProgressiveList({
     ? Math.min(secondBatch, items.length)
     : items.length;
 
-  function handleControl() {
-    if (hasMore) {
-      setVisibleLimit(nextLimit);
-      return;
-    }
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  function handleShowMore() {
+    if (!hasMore) return;
+    setVisibleLimit(nextLimit);
   }
 
   return (
@@ -39,9 +36,11 @@ export default function ProgressiveList({
       <div className={className}>{visible}</div>
       {needsControl && (
         <div className="universeLoadRail">
-          <button type="button" className="universeLoadButton" onClick={handleControl}>
-            {hasMore ? "SHOW MORE" : "BACK TO TOP"}
-          </button>
+          {hasMore ? (
+            <button type="button" className="universeLoadButton" onClick={handleShowMore}>SHOW MORE</button>
+          ) : (
+            <a className="universeLoadButton" href="#earth-top">BACK TO TOP</a>
+          )}
           <span className="universeLoadCount">
             {hasMore ? `SHOWING ${visible.length}–${items.length}` : "SHOWING ALL"}
           </span>

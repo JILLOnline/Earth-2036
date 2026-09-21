@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-21T11:15:44.411Z",
+  "updatedAt": "2026-09-21T12:19:37.580Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -758,6 +758,18 @@
       "type": "market",
       "label": "CTVA structural demand",
       "description": "Corteva's dated Vylor distribution separates seed/genetics from the remaining crop-protection platform, creating two more specialized control points in agricultural productivity: genetic yield/trait technology and chemical/biological crop protection."
+    },
+    {
+      "id": "company:CW",
+      "type": "company",
+      "label": "Curtiss-Wright Corporation",
+      "description": "Curtiss-Wright occupies engineered control/sensing and high-specification component nodes linking defense and nuclear infrastructure to safety, threat detection and reliable power-system operation; the Cheswick expansion is direct capacity investment at those physical bottlenecks."
+    },
+    {
+      "id": "market:CW-cw-structural-demand",
+      "type": "market",
+      "label": "CW structural demand",
+      "description": "Curtiss-Wright occupies engineered control/sensing and high-specification component nodes linking defense and nuclear infrastructure to safety, threat detection and reliable power-system operation; the Cheswick expansion is direct capacity investment at those physical bottlenecks."
     }
   ],
   "edges": [
@@ -1774,6 +1786,21 @@
       "sourceIds": [
         "sec:CTVA:8K:20260914:Vylor",
         "issuer:CTVA:GlobachemJV:20260909"
+      ],
+      "observedAt": "2026-09-20T03:24:31Z"
+    },
+    {
+      "id": "edge:CW-structural-exposure",
+      "from": "company:CW",
+      "to": "market:CW-cw-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 78,
+      "confidence": 90,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:CW:ITDS:20260901",
+        "issuer:CW:CheswickExpansion:2026"
       ],
       "observedAt": "2026-09-20T03:24:31Z"
     }
@@ -3015,6 +3042,25 @@
       ],
       "observedAt": "2026-09-20T03:24:31Z",
       "thesis": "Corteva's dated Vylor distribution separates seed/genetics from the remaining crop-protection platform, creating two more specialized control points in agricultural productivity: genetic yield/trait technology and chemical/biological crop protection.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:CW-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:CW-cw-structural-demand",
+      "affectedNodeIds": [
+        "company:CW"
+      ],
+      "direction": 1,
+      "magnitude": 78,
+      "confidence": 90,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:CW:ITDS:20260901",
+        "issuer:CW:CheswickExpansion:2026"
+      ],
+      "observedAt": "2026-09-20T03:24:31Z",
+      "thesis": "Curtiss-Wright occupies engineered control/sensing and high-specification component nodes linking defense and nuclear infrastructure to safety, threat detection and reliable power-system operation; the Cheswick expansion is direct capacity investment at those physical bottlenecks.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

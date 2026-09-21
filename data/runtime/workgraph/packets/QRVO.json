@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "QRVO",
   "workId": "t0:QRVO",
-  "generatedAt": "2026-09-21T11:15:41.157Z",
+  "generatedAt": "2026-09-21T11:37:15.512Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2025-10-28T00:00:00.000Z",
-    "end": "2026-09-21T11:02:38.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T11:02:38.000Z"
+    "end": "2026-09-21T11:24:03.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T11:24:03.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,57 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/QRVO-20260921T110238Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/QRVO-20260921T110238Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/QRVO-20260921T112403Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "mix quality",
       "corporate transition",
       "cash conversion",
-      "expectation visibility"
+      "expectation visibility",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "crossDivisionLeverage",
+      "supplyChainResilience",
+      "thesisQuality",
+      "financialOperatingMomentum",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "crossDivisionLeverage",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         {
           "name": "mix quality",
@@ -78,7 +95,12 @@
           "basis": "Pending merger can add scale but makes standalone expectations less durable."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "governancePower"
+      ],
       "expectations-execution": [
         {
           "name": "cash conversion",
@@ -134,7 +156,15 @@
     "mix quality",
     "corporate transition",
     "cash conversion",
-    "expectation visibility"
+    "expectation visibility",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "crossDivisionLeverage",
+    "supplyChainResilience",
+    "thesisQuality",
+    "financialOperatingMomentum",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -146,6 +176,18 @@
       {
         "risk": "Standalone forecasts are unusually uncertain while merger closing remains pending.",
         "gating": false
+      },
+      {
+        "risk": "Merger transition can delay standalone strategic feedback and create integration/product-overlap uncertainty.",
+        "gating": false
+      },
+      {
+        "risk": "Regulatory/closing conditions and integration execution can impair expected combination benefits.",
+        "gating": false
+      },
+      {
+        "risk": "Discontinued forward guidance weakens normal expectation visibility during the transition.",
+        "gating": false
       }
     ]
   },
@@ -156,6 +198,18 @@
     },
     {
       "risk": "Standalone forecasts are unusually uncertain while merger closing remains pending.",
+      "gating": false
+    },
+    {
+      "risk": "Merger transition can delay standalone strategic feedback and create integration/product-overlap uncertainty.",
+      "gating": false
+    },
+    {
+      "risk": "Regulatory/closing conditions and integration execution can impair expected combination benefits.",
+      "gating": false
+    },
+    {
+      "risk": "Discontinued forward guidance weakens normal expectation visibility during the transition.",
       "gating": false
     }
   ],
@@ -170,14 +224,46 @@
     "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "wireless/connectivity demand",
+        "to": "RF and power component demand",
+        "relation": "drives"
+      },
+      {
+        "from": "exit of lower-margin mass-market exposure",
+        "to": "gross-margin mix",
+        "relation": "supports"
+      },
+      {
+        "from": "pending Skyworks combination",
+        "to": "integration and portfolio-rationalization dependency",
+        "relation": "creates"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "wireless/connectivity demand",
+      "to": "RF and power component demand",
+      "relation": "drives"
+    },
+    {
+      "from": "exit of lower-margin mass-market exposure",
+      "to": "gross-margin mix",
+      "relation": "supports"
+    },
+    {
+      "from": "pending Skyworks combination",
+      "to": "integration and portfolio-rationalization dependency",
+      "relation": "creates"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 9,
     "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "qorvo:10-k:fy2026",
@@ -224,26 +310,31 @@
     {
       "unknown": "No Scout valuation conclusion is asserted.",
       "gating": false
+    },
+    {
+      "unknown": "Post-merger product rationalization, synergy capture and customer response are not yet observable.",
+      "gating": false
+    },
+    {
+      "unknown": "Standalone forward operating trajectory cannot be cleanly separated from transaction effects using current evidence.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 91,
+  "confidence": 88,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -253,14 +344,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -277,10 +360,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

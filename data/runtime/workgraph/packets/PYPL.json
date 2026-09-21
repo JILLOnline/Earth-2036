@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "PYPL",
   "workId": "t0:PYPL",
-  "generatedAt": "2026-09-21T11:15:41.162Z",
+  "generatedAt": "2026-09-21T11:37:15.520Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-28T00:00:00.000Z",
-    "end": "2026-09-21T09:07:18.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T09:07:18.000Z"
+    "end": "2026-09-21T11:24:01.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T11:24:01.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/PYPL-20260921T090718Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/PYPL-20260921T090718Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/PYPL-20260921T112401Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -61,18 +64,33 @@
       "catalystScore",
       "bottleneckControl",
       "executionQuality",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "substitutionResilience",
+      "pricingPower",
+      "crossDivisionLeverage",
+      "thesisQuality"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "pricingPower",
+        "crossDivisionLeverage"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "catalystScore",
         "bottleneckControl"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "executionQuality",
         "financialOperatingMomentum",
@@ -122,7 +140,11 @@
     "catalystScore",
     "bottleneckControl",
     "executionQuality",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "substitutionResilience",
+    "pricingPower",
+    "crossDivisionLeverage",
+    "thesisQuality"
   ],
   "riskEvidence": {
     "present": true,
@@ -134,6 +156,18 @@
       {
         "risk": "Adjusted EPS growth remains modest relative to TPV and cash-flow expansion, making transaction-margin execution a key watch item.",
         "gating": false
+      },
+      {
+        "risk": "Volume growth can coexist with weaker economics if mix shifts toward lower-monetization channels or competitive pricing intensifies.",
+        "gating": false
+      },
+      {
+        "risk": "Competition, channel mix and merchant bargaining can pressure transaction economics despite higher TPV.",
+        "gating": false
+      },
+      {
+        "risk": "Cash-flow improvement may include timing effects that require Alpha underwriting before being treated as structural.",
+        "gating": false
       }
     ]
   },
@@ -144,6 +178,18 @@
     },
     {
       "risk": "Adjusted EPS growth remains modest relative to TPV and cash-flow expansion, making transaction-margin execution a key watch item.",
+      "gating": false
+    },
+    {
+      "risk": "Volume growth can coexist with weaker economics if mix shifts toward lower-monetization channels or competitive pricing intensifies.",
+      "gating": false
+    },
+    {
+      "risk": "Competition, channel mix and merchant bargaining can pressure transaction economics despite higher TPV.",
+      "gating": false
+    },
+    {
+      "risk": "Cash-flow improvement may include timing effects that require Alpha underwriting before being treated as structural.",
       "gating": false
     }
   ],
@@ -158,14 +204,46 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "digital commerce and money-movement need",
+        "to": "payment acceptance and wallet usage",
+        "relation": "drives"
+      },
+      {
+        "from": "Venmo/BNPL engagement",
+        "to": "ecosystem touchpoints",
+        "relation": "expands"
+      },
+      {
+        "from": "competitive payment rails",
+        "to": "transaction economics",
+        "relation": "pressures"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "digital commerce and money-movement need",
+      "to": "payment acceptance and wallet usage",
+      "relation": "drives"
+    },
+    {
+      "from": "Venmo/BNPL engagement",
+      "to": "ecosystem touchpoints",
+      "relation": "expands"
+    },
+    {
+      "from": "competitive payment rails",
+      "to": "transaction economics",
+      "relation": "pressures"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 8,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:PYPL:Q2:20260728",
@@ -203,26 +281,31 @@
     {
       "unknown": "How much of the cash-flow improvement is structurally repeatable versus working-capital/timing effects requires Alpha review.",
       "gating": false
+    },
+    {
+      "unknown": "Durability of monetization from newer Venmo and BNPL engagement remains unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Structural versus timing contribution to current cash-flow improvement is not resolved by the reused sources.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 91,
+  "confidence": 87,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -232,14 +315,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -256,10 +331,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

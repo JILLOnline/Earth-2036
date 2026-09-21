@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "QLYS",
   "workId": "t0:QLYS",
-  "generatedAt": "2026-09-21T11:15:41.161Z",
+  "generatedAt": "2026-09-21T11:37:15.518Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-05-05T00:00:00.000Z",
-    "end": "2026-09-21T10:07:39.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T10:07:39.000Z"
+    "end": "2026-09-21T11:24:02.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T11:24:02.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,51 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/QLYS-20260921T1007Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/QLYS-20260921T1007Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/QLYS-20260921T112402Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "cybersecurity demand and guidance",
-      "execution against outlook"
+      "execution against outlook",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "pricingPower",
+      "thesisQuality"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "pricingPower"
+      ],
       "discovery-weak-signals": [
         {
           "name": "cybersecurity demand and guidance",
@@ -71,7 +84,12 @@
           "basis": "Primary Q2 results show double-digit growth and a raised full-year revenue range."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "pricingPower"
+      ],
       "expectations-execution": [
         {
           "name": "execution against outlook",
@@ -120,7 +138,12 @@
   },
   "factors": [
     "cybersecurity demand and guidance",
-    "execution against outlook"
+    "execution against outlook",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "pricingPower",
+    "thesisQuality"
   ],
   "riskEvidence": {
     "present": true,
@@ -132,6 +155,18 @@
       {
         "risk": "Raised guidance can still be missed; no forward result is assumed.",
         "gating": false
+      },
+      {
+        "risk": "Broader security suites can absorb exposure-management functions, reducing standalone differentiation if integration and remediation value do not keep pace.",
+        "gating": false
+      },
+      {
+        "risk": "Growth is moderate relative to faster-growing security peers, increasing the importance of retention, cross-sell and competitive differentiation evidence.",
+        "gating": false
+      },
+      {
+        "risk": "Guidance raises are execution evidence but can still reverse; forward achievement is not assumed.",
+        "gating": false
       }
     ]
   },
@@ -142,6 +177,18 @@
     },
     {
       "risk": "Raised guidance can still be missed; no forward result is assumed.",
+      "gating": false
+    },
+    {
+      "risk": "Broader security suites can absorb exposure-management functions, reducing standalone differentiation if integration and remediation value do not keep pace.",
+      "gating": false
+    },
+    {
+      "risk": "Growth is moderate relative to faster-growing security peers, increasing the importance of retention, cross-sell and competitive differentiation evidence.",
+      "gating": false
+    },
+    {
+      "risk": "Guidance raises are execution evidence but can still reverse; forward achievement is not assumed.",
       "gating": false
     }
   ],
@@ -156,14 +203,46 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "expanding enterprise attack surface",
+        "to": "exposure visibility/remediation need",
+        "relation": "drives"
+      },
+      {
+        "from": "platform integration depth",
+        "to": "workflow stickiness",
+        "relation": "supports"
+      },
+      {
+        "from": "security-platform consolidation",
+        "to": "standalone-tool substitution pressure",
+        "relation": "increases"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "expanding enterprise attack surface",
+      "to": "exposure visibility/remediation need",
+      "relation": "drives"
+    },
+    {
+      "from": "platform integration depth",
+      "to": "workflow stickiness",
+      "relation": "supports"
+    },
+    {
+      "from": "security-platform consolidation",
+      "to": "standalone-tool substitution pressure",
+      "relation": "increases"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "qualys-ir:2026-08-04:q2-2026-results",
@@ -201,26 +280,31 @@
     {
       "unknown": "No canonical live valuation or entry signal is asserted by Scout.",
       "gating": false
+    },
+    {
+      "unknown": "Current sources do not establish customer retention or module-level cross-sell durability.",
+      "gating": false
+    },
+    {
+      "unknown": "Retention, billings quality and competitive win/loss data are not established by the current reused sources.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 84,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -230,14 +314,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -254,10 +330,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

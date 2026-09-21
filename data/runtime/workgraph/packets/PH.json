@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "PH",
   "workId": "t0:PH",
-  "generatedAt": "2026-09-21T11:15:41.161Z",
+  "generatedAt": "2026-09-21T11:37:15.519Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-06T00:00:00.000Z",
-    "end": "2026-09-21T09:07:18.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T09:07:18.000Z"
+    "end": "2026-09-21T11:24:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T11:24:00.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/PH-20260921T090718Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/PH-20260921T090718Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/PH-20260921T112400Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,19 +65,34 @@
       "catalystScore",
       "supplyChainResilience",
       "executionQuality",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "substitutionResilience",
+      "crossDivisionLeverage",
+      "thesisQuality",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "crossDivisionLeverage"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "bottleneckControl",
         "catalystScore",
         "supplyChainResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "governancePower",
+        "scenarioRobustness",
+        "substitutionResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "executionQuality",
@@ -125,7 +143,11 @@
     "catalystScore",
     "supplyChainResilience",
     "executionQuality",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "substitutionResilience",
+    "crossDivisionLeverage",
+    "thesisQuality",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -137,6 +159,18 @@
       {
         "risk": "Margin target depends on sustained organic growth and successful integration/continuous-improvement execution.",
         "gating": false
+      },
+      {
+        "risk": "Portfolio breadth creates integration and execution dependencies; resilience improves only if acquired capabilities translate into durable customer/application leverage.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition integration, portfolio complexity and customer alternatives can reduce expected synergy and pricing benefits.",
+        "gating": false
+      },
+      {
+        "risk": "FY31 margin ambition is a forward benchmark, not present evidence of achievement.",
+        "gating": false
       }
     ]
   },
@@ -147,6 +181,18 @@
     },
     {
       "risk": "Margin target depends on sustained organic growth and successful integration/continuous-improvement execution.",
+      "gating": false
+    },
+    {
+      "risk": "Portfolio breadth creates integration and execution dependencies; resilience improves only if acquired capabilities translate into durable customer/application leverage.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition integration, portfolio complexity and customer alternatives can reduce expected synergy and pricing benefits.",
+      "gating": false
+    },
+    {
+      "risk": "FY31 margin ambition is a forward benchmark, not present evidence of achievement.",
       "gating": false
     }
   ],
@@ -161,14 +207,46 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "industrial/aerospace reliability need",
+        "to": "motion-control and filtration demand",
+        "relation": "drives"
+      },
+      {
+        "from": "filtration capability breadth",
+        "to": "critical-application and aftermarket exposure",
+        "relation": "supports"
+      },
+      {
+        "from": "integration complexity",
+        "to": "synergy realization",
+        "relation": "can constrain"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "industrial/aerospace reliability need",
+      "to": "motion-control and filtration demand",
+      "relation": "drives"
+    },
+    {
+      "from": "filtration capability breadth",
+      "to": "critical-application and aftermarket exposure",
+      "relation": "supports"
+    },
+    {
+      "from": "integration complexity",
+      "to": "synergy realization",
+      "relation": "can constrain"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:PH:FY26:20260806",
@@ -206,26 +284,31 @@
     {
       "unknown": "Contribution split between organic improvement and acquired businesses to FY31 margin target requires underwriting.",
       "gating": false
+    },
+    {
+      "unknown": "Post-close filtration synergy realization and exact cross-selling contribution remain unobserved.",
+      "gating": false
+    },
+    {
+      "unknown": "Financing and acquisition-accounting effects require Alpha underwriting and are not inferred here.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 96,
+  "confidence": 89,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -235,14 +318,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -259,10 +334,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

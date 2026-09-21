@@ -1,6 +1,6 @@
 "use client";
 
-import { Children, type ReactNode, useMemo, useRef, useState } from "react";
+import { Children, type ReactNode, useMemo, useState } from "react";
 
 const FIRST_BATCH = 10;
 const SECOND_BATCH = 50;
@@ -18,8 +18,6 @@ export default function ProgressiveList({
 }) {
   const items = useMemo(() => Children.toArray(children), [children]);
   const [visibleLimit, setVisibleLimit] = useState(firstBatch);
-  const rootRef = useRef<HTMLDivElement | null>(null);
-  const listRef = useRef<HTMLDivElement | null>(null);
 
   const visible = items.slice(0, visibleLimit);
   const hasMore = visible.length < items.length;
@@ -33,17 +31,12 @@ export default function ProgressiveList({
       setVisibleLimit(nextLimit);
       return;
     }
-    const target = listRef.current ?? rootRef.current;
-    if (!target) return;
-    const header = document.querySelector<HTMLElement>(".earthHeader");
-    const headerOffset = (header?.offsetHeight ?? 0) + 12;
-    const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - headerOffset);
-    window.scrollTo({ top, behavior: "smooth" });
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }
 
   return (
-    <div ref={rootRef} className="progressiveList">
-      <div ref={listRef} className={className}>{visible}</div>
+    <div className="progressiveList">
+      <div className={className}>{visible}</div>
       {needsControl && (
         <div className="universeLoadRail">
           <button type="button" className="universeLoadButton" onClick={handleControl}>

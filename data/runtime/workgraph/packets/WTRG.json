@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "WTRG",
   "workId": "t0:WTRG",
-  "generatedAt": "2026-09-21T21:25:40.458Z",
+  "generatedAt": "2026-09-21T22:05:00.499Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T20:52:26.016Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-05-08T00:00:00.000Z",
+    "end": "2026-09-21T22:02:46.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T22:02:46.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -26,34 +30,56 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/WTRG-20260921T220246Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "financialOperatingMomentum",
+      "alignment2036",
+      "catalystScore",
+      "scenarioRobustness",
+      "supplyChainResilience"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "financialOperatingMomentum",
+        "alignment2036",
+        "catalystScore",
+        "scenarioRobustness"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "alignment2036",
+        "catalystScore",
+        "scenarioRobustness",
+        "supplyChainResilience"
+      ]
     }
   },
   "scoreRecord": null,
@@ -93,12 +119,36 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "financialOperatingMomentum",
+    "alignment2036",
+    "catalystScore",
+    "scenarioRobustness",
+    "supplyChainResilience"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "The merger remains subject to remaining approvals and closing conditions; integration could alter standalone execution priorities.",
+        "gating": false
+      },
+      {
+        "risk": "Large regulated infrastructure programs face permitting, rate-recovery, construction-cost and merger-integration execution risks.",
+        "gating": false
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "The merger remains subject to remaining approvals and closing conditions; integration could alter standalone execution priorities.",
+      "gating": false
+    },
+    {
+      "risk": "Large regulated infrastructure programs face permitting, rate-recovery, construction-cost and merger-integration execution risks.",
+      "gating": false
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -106,8 +156,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 3
   },
   "causalMapping": {
     "present": false,
@@ -115,53 +165,77 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "issuer:WTRG:2026Q2:IR-summary",
+      "issuer:WTRG:AWK-merger:HSR-expired",
+      "issuer:WTRG:water-2026:capex-compliance-PFAS"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "issuer:WTRG:IR-2026Q2",
+      "url": "https://www.essential.co/investor-relations",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-04",
+      "originFingerprint": "issuer:WTRG:2026Q2:IR-summary"
+    },
+    {
+      "sourceId": "issuer:WTRG:merger-HSR",
+      "url": "https://www.essential.co/investor-relations",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-17",
+      "originFingerprint": "issuer:WTRG:AWK-merger:HSR-expired"
+    },
+    {
+      "sourceId": "issuer:WTRG:water-week-2026",
+      "url": "https://www.essential.co/node/29461",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-08",
+      "originFingerprint": "issuer:WTRG:water-2026:capex-compliance-PFAS"
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Remaining state approvals and exact closing timing are not established by the IR summary used here.",
+      "gating": false
+    },
+    {
+      "unknown": "Current year-to-date capex versus the $1.7B target requires the full Q2 filing/result detail.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 94,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -175,20 +249,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -197,10 +259,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

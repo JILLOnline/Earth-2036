@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "LHX",
   "workId": "t0:LHX",
-  "generatedAt": "2026-09-21T01:14:27.627Z",
+  "generatedAt": "2026-09-21T01:27:38.016Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-13T00:00:00.000Z",
-    "end": "2026-09-20T16:02:08.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-20T16:02:08.000Z"
+    "end": "2026-09-21T01:25:22.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T01:25:22.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,19 +32,21 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/LHX-20260920T000629Z-earth-scout.json",
@@ -60,13 +62,14 @@
     "data/runtime/workgraph/evidence/LHX-20260920T130801Z-earth-scout.json",
     "data/runtime/workgraph/evidence/LHX-20260920T140914Z-earth-scout.json",
     "data/runtime/workgraph/evidence/LHX-20260920T150516Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/LHX-20260920T160208Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/LHX-20260920T160208Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/LHX-20260921T012522Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 28,
-    "historicalEvidenceCount": 28
+    "activeEvidenceCount": 30,
+    "historicalEvidenceCount": 30
   },
   "factorEvidence": {
     "names": [
@@ -88,18 +91,34 @@
       "capacity expansion",
       "proximity sensor capacity expansion",
       "Viper Shield initial production completion",
-      "233 Viper Shield systems on order"
+      "233 Viper Shield systems on order",
+      "scenario robustness",
+      "supply-chain resilience"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "defense production demand",
+        "capacity expansion",
+        "Viper Shield production ramp",
+        "multi-year PAC-3 propulsion award",
+        "scenario robustness",
+        "supply-chain resilience"
+      ],
       "discovery-weak-signals": [
         "defense production demand",
         "capacity expansion",
         "Viper Shield initial production completion"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "defense production demand",
+        "capacity expansion",
+        "Viper Shield production ramp",
+        "multi-year PAC-3 propulsion award",
+        "scenario robustness",
+        "supply-chain resilience"
+      ],
       "expectations-execution": [
         "defense production demand",
         "capacity expansion",
@@ -163,7 +182,9 @@
     "capacity expansion",
     "proximity sensor capacity expansion",
     "Viper Shield initial production completion",
-    "233 Viper Shield systems on order"
+    "233 Viper Shield systems on order",
+    "scenario robustness",
+    "supply-chain resilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -281,7 +302,12 @@
       "production ramp execution",
       "supply-chain constraints",
       "contract economics",
-      "government customer concentration"
+      "government customer concentration",
+      "capacity schedule/cost",
+      "appropriation timing",
+      "undefinitized/fixed contract economics",
+      "government-customer concentration",
+      "multi-program supply-chain execution"
     ]
   },
   "risks": [
@@ -398,7 +424,12 @@
     "production ramp execution",
     "supply-chain constraints",
     "contract economics",
-    "government customer concentration"
+    "government customer concentration",
+    "capacity schedule/cost",
+    "appropriation timing",
+    "undefinitized/fixed contract economics",
+    "government-customer concentration",
+    "multi-program supply-chain execution"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -411,14 +442,22 @@
     "count": 0
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "defense threat/replenishment demand -> appropriations/contracts -> propulsion/sensor production -> fielded defense capacity -> protection/deterrence need",
+      "capacity investment -> throughput -> backlog conversion",
+      "supplier/labor availability -> production ramp -> delivery reliability"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "defense threat/replenishment demand -> appropriations/contracts -> propulsion/sensor production -> fielded defense capacity -> protection/deterrence need",
+    "capacity investment -> throughput -> backlog conversion",
+    "supplier/labor availability -> production ramp -> delivery reliability"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 64,
+    "rawSourceCount": 68,
     "uniqueSourceCount": 10,
-    "duplicatesCollapsed": 54,
+    "duplicatesCollapsed": 58,
     "missingLineage": 0,
     "uniqueOrigins": [
       "l3harris.com|pac3-mse-4.7b|2026-09-08",
@@ -607,27 +646,27 @@
     "working-capital intensity",
     "incremental margin on ramped production",
     "full-rate production timing",
-    "working-capital intensity"
+    "working-capital intensity",
+    "margin profile on newly awarded production",
+    "capacity utilization after expansions",
+    "supplier constraint severity across propulsion/sensor programs"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 82
+    "nonGatingCount": 85
   },
   "gatingIssues": [],
-  "confidence": 90,
+  "confidence": 85,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -637,14 +676,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_primary_source",
@@ -665,10 +696,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

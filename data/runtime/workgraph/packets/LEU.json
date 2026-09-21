@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "LEU",
   "workId": "t0:LEU",
-  "generatedAt": "2026-09-21T01:14:27.625Z",
+  "generatedAt": "2026-09-21T01:27:38.014Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-01T00:00:00.000Z",
-    "end": "2026-09-20T16:02:08.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-20T16:02:08.000Z"
+    "end": "2026-09-21T01:25:22.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T01:25:22.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,19 +32,21 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/LEU-20260920T000629Z-earth-scout.json",
@@ -60,13 +62,14 @@
     "data/runtime/workgraph/evidence/LEU-20260920T130801Z-earth-scout.json",
     "data/runtime/workgraph/evidence/LEU-20260920T140914Z-earth-scout.json",
     "data/runtime/workgraph/evidence/LEU-20260920T150516Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/LEU-20260920T160208Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/LEU-20260920T160208Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/LEU-20260921T012522Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 28,
-    "historicalEvidenceCount": 28
+    "activeEvidenceCount": 30,
+    "historicalEvidenceCount": 30
   },
   "factorEvidence": {
     "names": [
@@ -82,18 +85,34 @@
       "domestic nuclear-fuel demand",
       "binding HALEU customer additions",
       "domestic enrichment scale-up",
-      "DOE-supported capacity expansion"
+      "DOE-supported capacity expansion",
+      "scenario robustness",
+      "substitution resilience"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "commercial HALEU backlog",
+        "DOE-backed enrichment scale-up",
+        "customer prepayment financing",
+        "domestic nuclear-fuel strategic demand",
+        "scenario robustness",
+        "substitution resilience"
+      ],
       "discovery-weak-signals": [
         "binding HALEU customer additions",
         "customer prepayments",
         "domestic enrichment scale-up"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "commercial HALEU backlog",
+        "DOE-backed enrichment scale-up",
+        "customer prepayment financing",
+        "domestic nuclear-fuel strategic demand",
+        "scenario robustness",
+        "substitution resilience"
+      ],
       "expectations-execution": [
         "binding HALEU customer additions",
         "customer prepayments",
@@ -151,7 +170,9 @@
     "domestic nuclear-fuel demand",
     "binding HALEU customer additions",
     "domestic enrichment scale-up",
-    "DOE-supported capacity expansion"
+    "DOE-supported capacity expansion",
+    "scenario robustness",
+    "substitution resilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -265,7 +286,12 @@
       "capacity ramp timing",
       "capital intensity",
       "customer/project timing",
-      "financing dilution"
+      "financing dilution",
+      "capacity build-out execution",
+      "equity/warrant dilution",
+      "delivery schedule risk",
+      "federal-policy dependence",
+      "reactor-customer concentration/timing"
     ]
   },
   "risks": [
@@ -378,7 +404,12 @@
     "capacity ramp timing",
     "capital intensity",
     "customer/project timing",
-    "financing dilution"
+    "financing dilution",
+    "capacity build-out execution",
+    "equity/warrant dilution",
+    "delivery schedule risk",
+    "federal-policy dependence",
+    "reactor-customer concentration/timing"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -391,14 +422,22 @@
     "count": 0
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "uranium feed -> enrichment capacity -> HALEU -> advanced reactors/microreactors -> reliable low-carbon and defense energy needs",
+      "DOE/customer funding -> cascade expansion -> commercial supply capacity",
+      "commercial delivery performance -> customer confidence -> backlog conversion"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "uranium feed -> enrichment capacity -> HALEU -> advanced reactors/microreactors -> reliable low-carbon and defense energy needs",
+    "DOE/customer funding -> cascade expansion -> commercial supply capacity",
+    "commercial delivery performance -> customer confidence -> backlog conversion"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 70,
+    "rawSourceCount": 74,
     "uniqueSourceCount": 8,
-    "duplicatesCollapsed": 62,
+    "duplicatesCollapsed": 66,
     "missingLineage": 0,
     "uniqueOrigins": [
       "centrusenergy.com|doe-900m-commercial-haleu|2026-07-01",
@@ -568,27 +607,27 @@
     "commercial-scale unit economics",
     "Antares contracted volume and pricing",
     "aggregate committed HALEU volume versus planned capacity",
-    "commercial-scale unit economics"
+    "commercial-scale unit economics",
+    "commercial-scale unit economics",
+    "final capacity ramp timing",
+    "customer delivery conversion cadence"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 82
+    "nonGatingCount": 85
   },
   "gatingIssues": [],
-  "confidence": 88,
+  "confidence": 84,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -598,14 +637,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_primary_source",
@@ -626,10 +657,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

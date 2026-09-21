@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "LAC",
   "workId": "t0:LAC",
-  "generatedAt": "2026-09-21T01:14:27.625Z",
+  "generatedAt": "2026-09-21T01:27:38.015Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-20T00:00:00.000Z",
-    "end": "2026-09-20T16:02:08.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-20T16:02:08.000Z"
+    "end": "2026-09-21T01:25:22.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T01:25:22.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,19 +32,21 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/LAC-20260920T000629Z-earth-scout.json",
@@ -60,13 +62,14 @@
     "data/runtime/workgraph/evidence/LAC-20260920T130801Z-earth-scout.json",
     "data/runtime/workgraph/evidence/LAC-20260920T140914Z-earth-scout.json",
     "data/runtime/workgraph/evidence/LAC-20260920T150516Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/LAC-20260920T160208Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/LAC-20260920T160208Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/LAC-20260921T012522Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 28,
-    "historicalEvidenceCount": 28
+    "activeEvidenceCount": 30,
+    "historicalEvidenceCount": 30
   },
   "factorEvidence": {
     "names": [
@@ -78,19 +81,35 @@
       "domestic lithium strategic demand",
       "DOE/GM/Orion financing stack",
       "40ktpa designed capacity",
-      "multi-channel financing"
+      "multi-channel financing",
+      "scenario robustness",
+      "substitution resilience"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "domestic lithium supply",
+        "Thacker Pass construction progress",
+        "multi-channel financing",
+        "40ktpa designed capacity",
+        "scenario robustness",
+        "substitution resilience"
+      ],
       "discovery-weak-signals": [
         "Thacker Pass construction progress",
         "domestic lithium strategic demand",
         "multi-channel financing",
         "40ktpa designed capacity"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "domestic lithium supply",
+        "Thacker Pass construction progress",
+        "multi-channel financing",
+        "40ktpa designed capacity",
+        "scenario robustness",
+        "substitution resilience"
+      ],
       "expectations-execution": [
         "Thacker Pass construction progress",
         "domestic lithium strategic demand",
@@ -145,7 +164,9 @@
     "domestic lithium strategic demand",
     "DOE/GM/Orion financing stack",
     "40ktpa designed capacity",
-    "multi-channel financing"
+    "multi-channel financing",
+    "scenario robustness",
+    "substitution resilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -259,7 +280,12 @@
       "construction cost/schedule",
       "convertible dilution",
       "lithium-price weakness",
-      "commissioning and qualification risk"
+      "commissioning and qualification risk",
+      "construction cost/schedule",
+      "convertible dilution and balance-sheet complexity",
+      "lithium-price weakness",
+      "commissioning/qualification risk",
+      "counterparty and concentration dependence"
     ]
   },
   "risks": [
@@ -372,7 +398,12 @@
     "construction cost/schedule",
     "convertible dilution",
     "lithium-price weakness",
-    "commissioning and qualification risk"
+    "commissioning and qualification risk",
+    "construction cost/schedule",
+    "convertible dilution and balance-sheet complexity",
+    "lithium-price weakness",
+    "commissioning/qualification risk",
+    "counterparty and concentration dependence"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -385,14 +416,22 @@
     "count": 0
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "Thacker Pass resource -> processing/construction capacity -> qualified lithium carbonate -> domestic battery supply -> transport/energy-storage needs",
+      "strategic financing -> construction continuity -> commissioning opportunity",
+      "lithium price + commissioning performance -> project economics -> durable supply contribution"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "Thacker Pass resource -> processing/construction capacity -> qualified lithium carbonate -> domestic battery supply -> transport/energy-storage needs",
+    "strategic financing -> construction continuity -> commissioning opportunity",
+    "lithium price + commissioning performance -> project economics -> durable supply contribution"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 30,
+    "rawSourceCount": 32,
     "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 27,
+    "duplicatesCollapsed": 29,
     "missingLineage": 0,
     "uniqueOrigins": [
       "lithiumamericas.com|q1-2026-thacker-pass|2026",
@@ -514,11 +553,14 @@
     "commissioning curve and realized operating cost",
     "current construction completion percentage",
     "remaining contingency versus total project cost",
+    "commissioning curve and realized operating cost",
+    "current construction completion percentage",
+    "remaining contingency versus total project cost",
     "commissioning curve and realized operating cost"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 82
+    "nonGatingCount": 85
   },
   "gatingIssues": [],
   "confidence": 82,
@@ -527,14 +569,11 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -544,14 +583,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_primary_source",
@@ -572,10 +603,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

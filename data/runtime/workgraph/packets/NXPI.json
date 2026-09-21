@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "NXPI",
   "workId": "t0:NXPI",
-  "generatedAt": "2026-09-21T08:19:09.926Z",
+  "generatedAt": "2026-09-21T08:26:27.728Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-21T06:31:43.015Z"
   },
   "evidenceWindow": {
-    "start": "2026-07-28T00:00:00.000Z",
-    "end": "2026-09-21T07:06:30.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T07:06:30.000Z"
+    "start": "2026-01-01T00:00:00.000Z",
+    "end": "2026-09-21T08:24:26.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T08:24:26.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,65 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/NXPI-20260921T070630Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/NXPI-20260921T070630Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/NXPI-20260921T082426Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "physical-AI exposure",
       "data-center adjacency",
       "operating execution",
-      "expectation bar"
+      "expectation bar",
+      "crossDivisionLeverage",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "concentrationRisk",
+      "confidenceInflation",
+      "cyclicality"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "crossDivisionLeverage",
+          "direction": "positive",
+          "basis": "Processing, connectivity, security and power functions combine across automotive and industrial edge systems."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Embedded qualification can create persistence, but competing MCUs/processors/connectivity and customer-designed silicon remain substitutes."
+        },
+        {
+          "name": "supplyChainResilience",
+          "direction": "mixed",
+          "basis": "Diversified raw-material sourcing helps, while just-in-time inputs and semiconductor manufacturing remain interruption-sensitive."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "physical-AI exposure",
@@ -78,7 +103,23 @@
           "basis": "Management now identifies Data Center as an additional growth engine, broadening beyond traditional automotive/industrial exposure."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "concentrationRisk",
+          "direction": "positive",
+          "basis": "No direct customer exceeded 10% of 2025 revenue."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "mixed",
+          "basis": "Theme labels lack separately quantified revenue contribution."
+        },
+        {
+          "name": "cyclicality",
+          "direction": "negative",
+          "basis": "Automotive/industrial demand and inventory cycles can overwhelm newer growth themes."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "operating execution",
@@ -134,7 +175,13 @@
     "physical-AI exposure",
     "data-center adjacency",
     "operating execution",
-    "expectation bar"
+    "expectation bar",
+    "crossDivisionLeverage",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "concentrationRisk",
+    "confidenceInflation",
+    "cyclicality"
   ],
   "riskEvidence": {
     "present": true,
@@ -145,6 +192,18 @@
       },
       {
         "risk": "Semiconductor demand remains cyclical and guidance can be affected by automotive/industrial inventory, macro demand and customer concentration.",
+        "gating": false
+      },
+      {
+        "risk": "Theme growth can be real without becoming large enough to offset automotive/industrial semiconductor cyclicality.",
+        "gating": false
+      },
+      {
+        "risk": "Automotive/industrial inventory and macro cycles can reverse growth despite secular edge-intelligence demand.",
+        "gating": false
+      },
+      {
+        "risk": "Just-in-time material sourcing and geographically distributed semiconductor production remain disruption-sensitive.",
         "gating": false
       }
     ]
@@ -157,6 +216,18 @@
     {
       "risk": "Semiconductor demand remains cyclical and guidance can be affected by automotive/industrial inventory, macro demand and customer concentration.",
       "gating": false
+    },
+    {
+      "risk": "Theme growth can be real without becoming large enough to offset automotive/industrial semiconductor cyclicality.",
+      "gating": false
+    },
+    {
+      "risk": "Automotive/industrial inventory and macro cycles can reverse growth despite secular edge-intelligence demand.",
+      "gating": false
+    },
+    {
+      "risk": "Just-in-time material sourcing and geographically distributed semiconductor production remain disruption-sensitive.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -167,20 +238,59 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "software-defined vehicles/physical AI",
+        "to": "edge compute/connectivity/security demand",
+        "mechanism": "more sensing, local inference and software-defined functions require embedded semiconductor content",
+        "falsifier": "system consolidation, customer silicon or competing architectures materially reduce NXP content/value per system"
+      },
+      {
+        "from": "NXP embedded portfolio",
+        "to": "safer/intelligent physical systems",
+        "mechanism": "qualified processing/connectivity/security components enable sensing, decision and control",
+        "falsifier": "qualification/share losses prevent theme growth from converting to revenue"
+      },
+      {
+        "from": "theme narrative",
+        "to": "confidence",
+        "mechanism": "unquantified adjacency can cause investors/research systems to over-attribute current growth to emerging themes",
+        "falsifier": "future segment/product disclosures show material sustained revenue and margin contribution from those themes"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "software-defined vehicles/physical AI",
+      "to": "edge compute/connectivity/security demand",
+      "mechanism": "more sensing, local inference and software-defined functions require embedded semiconductor content",
+      "falsifier": "system consolidation, customer silicon or competing architectures materially reduce NXP content/value per system"
+    },
+    {
+      "from": "NXP embedded portfolio",
+      "to": "safer/intelligent physical systems",
+      "mechanism": "qualified processing/connectivity/security components enable sensing, decision and control",
+      "falsifier": "qualification/share losses prevent theme growth from converting to revenue"
+    },
+    {
+      "from": "theme narrative",
+      "to": "confidence",
+      "mechanism": "unquantified adjacency can cause investors/research systems to over-attribute current growth to emerging themes",
+      "falsifier": "future segment/product disclosures show material sustained revenue and margin contribution from those themes"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "nxp-ir:2026-07-28:q2-2026"
+      "nxp-ir:2026-07-28:q2-2026",
+      "sec:nxpi:2025-10k"
     ]
   },
   "sources": [
@@ -190,6 +300,14 @@
       "primary": true,
       "publishedAt": "2026-07-28",
       "originFingerprint": "nxp-ir:2026-07-28:q2-2026",
+      "sourceId": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1413447/000141344726000027/nxp10-k2025.pdf",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026",
+      "originFingerprint": "sec:nxpi:2025-10k",
       "sourceId": null
     }
   ],
@@ -206,26 +324,31 @@
     {
       "unknown": "Q3 actual results are not yet available and guidance must not be treated as achieved.",
       "gating": false
+    },
+    {
+      "unknown": "Physical AI and Data Center revenue contribution is not separately quantified.",
+      "gating": false
+    },
+    {
+      "unknown": "Current evidence does not quantify revenue/margin from Physical AI or Data Center separately.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -235,14 +358,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -259,10 +374,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

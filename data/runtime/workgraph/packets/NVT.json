@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "NVT",
   "workId": "t0:NVT",
-  "generatedAt": "2026-09-21T08:19:09.928Z",
+  "generatedAt": "2026-09-21T08:26:27.730Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-01T00:00:00.000Z",
-    "end": "2026-09-21T07:06:30.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T07:06:30.000Z"
+    "end": "2026-09-21T08:24:26.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T08:24:26.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,64 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/NVT-20260921T070630Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/NVT-20260921T070630Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/NVT-20260921T082426Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "AI thermal bottleneck exposure",
       "ecosystem embedding",
       "physical execution",
-      "forward ramp burden"
+      "forward ramp burden",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "capitalAllocation",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "Cooling and electrical-protection products address physical constraints that rise with rack density."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Electrification and data-center density support demand, but economics remain sensitive to hyperscale capex and capacity utilization."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Thermal management is structurally required, but vendor and architecture substitution remains credible."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "AI thermal bottleneck exposure",
@@ -78,7 +102,18 @@
           "basis": "Reference-architecture collaboration links nVent cooling capability to broader AI-factory deployment design."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "capitalAllocation",
+          "direction": "mixed",
+          "basis": "The 2025 Electrical Products Group acquisition was approximately $1.0B and capacity expansion adds integration/utilization burden."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "mixed",
+          "basis": "Installed cooling and growth validate participation, not durable share or returns."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "physical execution",
@@ -134,7 +169,12 @@
     "AI thermal bottleneck exposure",
     "ecosystem embedding",
     "physical execution",
-    "forward ramp burden"
+    "forward ramp burden",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "capitalAllocation",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -145,6 +185,18 @@
       },
       {
         "risk": "AI infrastructure demand is strong but cyclical capital-spending concentration can create order volatility.",
+        "gating": false
+      },
+      {
+        "risk": "Capacity can outrun realized data-center demand or shift toward competing cooling designs/vendors.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition integration, inflation/tariffs and capacity utilization can dilute returns even if end-market demand grows.",
+        "gating": false
+      },
+      {
+        "risk": "Cooling vendor/architecture competition can reduce pricing power.",
         "gating": false
       }
     ]
@@ -157,6 +209,18 @@
     {
       "risk": "AI infrastructure demand is strong but cyclical capital-spending concentration can create order volatility.",
       "gating": false
+    },
+    {
+      "risk": "Capacity can outrun realized data-center demand or shift toward competing cooling designs/vendors.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition integration, inflation/tariffs and capacity utilization can dilute returns even if end-market demand grows.",
+      "gating": false
+    },
+    {
+      "risk": "Cooling vendor/architecture competition can reduce pricing power.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -167,21 +231,60 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "AI compute density",
+        "to": "thermal/electrical infrastructure demand",
+        "mechanism": "higher rack power density raises heat-removal and protected-power requirements",
+        "falsifier": "compute efficiency or architecture changes materially reduce facility cooling/power intensity"
+      },
+      {
+        "from": "nVent cooling/electrical capacity",
+        "to": "deployable AI infrastructure",
+        "mechanism": "manufactured cooling and connection/protection systems enable dense compute deployment",
+        "falsifier": "capacity fails qualification, commissioning, utilization or loses share to substitutes"
+      },
+      {
+        "from": "capacity/acquisition expansion",
+        "to": "returns",
+        "mechanism": "growth creates operating leverage only if demand, integration and utilization convert into profitable sales",
+        "falsifier": "sustained high utilization and margins demonstrate attractive incremental returns"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "AI compute density",
+      "to": "thermal/electrical infrastructure demand",
+      "mechanism": "higher rack power density raises heat-removal and protected-power requirements",
+      "falsifier": "compute efficiency or architecture changes materially reduce facility cooling/power intensity"
+    },
+    {
+      "from": "nVent cooling/electrical capacity",
+      "to": "deployable AI infrastructure",
+      "mechanism": "manufactured cooling and connection/protection systems enable dense compute deployment",
+      "falsifier": "capacity fails qualification, commissioning, utilization or loses share to substitutes"
+    },
+    {
+      "from": "capacity/acquisition expansion",
+      "to": "returns",
+      "mechanism": "growth creates operating leverage only if demand, integration and utilization convert into profitable sales",
+      "falsifier": "sustained high utilization and margins demonstrate attractive incremental returns"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "nvent-ir:2026-07-31:liquid-cooling-capacity",
-      "nvent-ir:2026:siemens-nvidia-reference-architecture"
+      "nvent-ir:2026:siemens-nvidia-reference-architecture",
+      "sec:nvt:2025-annual-report"
     ]
   },
   "sources": [
@@ -200,6 +303,14 @@
       "publishedAt": "2026",
       "originFingerprint": "nvent-ir:2026:siemens-nvidia-reference-architecture",
       "sourceId": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1720635/000110465926037785/tm267209d3_ars.pdf",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026",
+      "originFingerprint": "sec:nvt:2025-annual-report",
+      "sourceId": null
     }
   ],
   "contradictions": [],
@@ -215,26 +326,31 @@
     {
       "unknown": "No canonical security-level valuation or order-backlog conclusion is asserted by Scout.",
       "gating": false
+    },
+    {
+      "unknown": "Customer concentration and contracted utilization of newly added liquid-cooling capacity remain undisclosed in cited evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Incremental return on the newest cooling capacity is not established by current evidence.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 92,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -244,14 +360,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -268,10 +376,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

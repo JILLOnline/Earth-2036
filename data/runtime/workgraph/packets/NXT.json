@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "NXT",
   "workId": "t0:NXT",
-  "generatedAt": "2026-09-21T08:19:09.932Z",
+  "generatedAt": "2026-09-21T08:26:27.732Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-21T06:31:43.015Z"
   },
   "evidenceWindow": {
-    "start": "2026-01-01T00:00:00.000Z",
-    "end": "2026-09-21T07:06:30.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T07:06:30.000Z"
+    "start": "2025-01-01T00:00:00.000Z",
+    "end": "2026-09-21T08:24:26.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T08:24:26.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,65 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/NXT-20260921T070630Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/NXT-20260921T070630Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/NXT-20260921T082426Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "platform expansion",
       "AI power bottleneck adjacency",
       "current operating execution",
-      "M&A-dependent expectations"
+      "M&A-dependent expectations",
+      "crossDivisionLeverage",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "executionRisk",
+      "tradePolicyRisk",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "crossDivisionLeverage",
+          "direction": "positive",
+          "basis": "Tracking, eBOS, power conversion and storage can address multiple layers of utility-scale power deployment."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Electricity demand supports the platform while solar/project policy, tariffs and acquisition execution can change economics."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "System integration can add stickiness, but trackers, inverters and BESS remain competitive markets."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "platform expansion",
@@ -78,7 +103,23 @@
           "basis": "Prevalon's Hybrid Power Stabilizer and BESS position Nextpower toward power-quality/storage constraints in AI data centers."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "executionRisk",
+          "direction": "mixed",
+          "basis": "Transaction close is complete, but integration and conversion of acquired backlog remain future execution tasks."
+        },
+        {
+          "name": "tradePolicyRisk",
+          "direction": "negative",
+          "basis": "Steel and component tariffs can increase costs and reduce project viability."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "mixed",
+          "basis": "Large backlog should not be treated as equivalent to realized profitable revenue."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "current operating execution",
@@ -134,7 +175,13 @@
     "platform expansion",
     "AI power bottleneck adjacency",
     "current operating execution",
-    "M&A-dependent expectations"
+    "M&A-dependent expectations",
+    "crossDivisionLeverage",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "executionRisk",
+    "tradePolicyRisk",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -145,6 +192,22 @@
       },
       {
         "risk": "Solar/project timing, policy incentives, tariffs and acquisition execution can create volatility around the raised outlook.",
+        "gating": false
+      },
+      {
+        "risk": "Platform breadth creates integration complexity and does not guarantee cross-selling or superior economics.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition integration and capital allocation can dilute platform benefits.",
+        "gating": false
+      },
+      {
+        "risk": "Tariffs and policy shifts can compress margins or delay customer projects.",
+        "gating": false
+      },
+      {
+        "risk": "Backlog can overstate near-term economic realization if schedules slip or project economics weaken.",
         "gating": false
       }
     ]
@@ -157,6 +220,22 @@
     {
       "risk": "Solar/project timing, policy incentives, tariffs and acquisition execution can create volatility around the raised outlook.",
       "gating": false
+    },
+    {
+      "risk": "Platform breadth creates integration complexity and does not guarantee cross-selling or superior economics.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition integration and capital allocation can dilute platform benefits.",
+      "gating": false
+    },
+    {
+      "risk": "Tariffs and policy shifts can compress margins or delay customer projects.",
+      "gating": false
+    },
+    {
+      "risk": "Backlog can overstate near-term economic realization if schedules slip or project economics weaken.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -167,21 +246,61 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 4
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "power demand/renewable deployment",
+        "to": "tracking, conversion and storage demand",
+        "mechanism": "new generation requires physical optimization, conversion, balancing and controls",
+        "falsifier": "project economics/policy or competing architectures materially reduce deployment"
+      },
+      {
+        "from": "Nextpower integrated platform",
+        "to": "deployable resilient power",
+        "mechanism": "combined tracker/eBOS/inverter/storage capabilities can reduce system friction and address power quality",
+        "falsifier": "integration fails or customers prefer best-of-breed alternatives without platform premium"
+      },
+      {
+        "from": "backlog/acquired platform",
+        "to": "future earnings",
+        "mechanism": "orders and acquired capabilities must convert through delivery, integration and margin realization",
+        "falsifier": "sustained conversion, margins and customer retention demonstrate economic execution"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "power demand/renewable deployment",
+      "to": "tracking, conversion and storage demand",
+      "mechanism": "new generation requires physical optimization, conversion, balancing and controls",
+      "falsifier": "project economics/policy or competing architectures materially reduce deployment"
+    },
+    {
+      "from": "Nextpower integrated platform",
+      "to": "deployable resilient power",
+      "mechanism": "combined tracker/eBOS/inverter/storage capabilities can reduce system friction and address power quality",
+      "falsifier": "integration fails or customers prefer best-of-breed alternatives without platform premium"
+    },
+    {
+      "from": "backlog/acquired platform",
+      "to": "future earnings",
+      "mechanism": "orders and acquired capabilities must convert through delivery, integration and margin realization",
+      "falsifier": "sustained conversion, margins and customer retention demonstrate economic execution"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "nextpower-ir:2026-07-30:q1-fy27",
-      "nextpower-ir:2026:prevalon-definitive"
+      "nextpower-ir:2026:prevalon-definitive",
+      "sec:nxt:2026:q1-fy27-results",
+      "sec:nxt:2025:10k-risk"
     ]
   },
   "sources": [
@@ -200,12 +319,42 @@
       "publishedAt": "2026",
       "originFingerprint": "nextpower-ir:2026:prevalon-definitive",
       "sourceId": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213126000045/ex991_q127.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026",
+      "originFingerprint": "sec:nxt:2026:q1-fy27-results",
+      "sourceId": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213125000050/nxt-20250627.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2025",
+      "originFingerprint": "sec:nxt:2025:10k-risk",
+      "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Scout listed Prevalon closing status as unknown; later Q1 FY2027 filing states it closed in July 2026.",
+      "resolution": "Resolved by newer primary SEC-filed evidence; integration performance remains non-gating unknown.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Scout listed Prevalon closing status as unknown; later Q1 FY2027 filing states it closed in July 2026.",
+        "resolution": "Resolved by newer primary SEC-filed evidence; integration performance remains non-gating unknown.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
   "unknowns": [
     {
@@ -215,26 +364,31 @@
     {
       "unknown": "No canonical valuation/entry recommendation is asserted by Scout.",
       "gating": false
+    },
+    {
+      "unknown": "Long-run margins and cross-selling economics of the acquired storage/power-conversion platform are not yet established.",
+      "gating": false
+    },
+    {
+      "unknown": "Post-close Prevalon margin, retention and return on invested capital are not yet established.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 93,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -244,14 +398,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -268,10 +414,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

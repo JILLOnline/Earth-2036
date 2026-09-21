@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "NXE",
   "workId": "t0:NXE",
-  "generatedAt": "2026-09-21T08:19:09.930Z",
+  "generatedAt": "2026-09-21T08:26:27.731Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-21T06:31:43.015Z"
   },
   "evidenceWindow": {
-    "start": "2026-01-22T00:00:00.000Z",
-    "end": "2026-09-21T07:06:30.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T07:06:30.000Z"
+    "start": "2025-01-01T00:00:00.000Z",
+    "end": "2026-09-21T08:24:26.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T08:24:26.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,40 +32,65 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/NXE-20260921T070630Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/NXE-20260921T070630Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/NXE-20260921T082426Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "regulatory de-risking",
       "regional infrastructure readiness",
       "milestone conversion",
-      "construction conversion risk"
+      "construction conversion risk",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "supplyChainResilience",
+      "financingRisk",
+      "costInflation",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "A large high-grade uranium project can add material primary supply if built and licensed to operate."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Updated economics remain uranium-price sensitive and pre-production capital rose materially from the original feasibility estimate."
+        },
+        {
+          "name": "supplyChainResilience",
+          "direction": "positive",
+          "basis": "Canadian uranium supply diversifies fuel sourcing in a politically stable jurisdiction."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "regulatory de-risking",
@@ -78,7 +103,23 @@
           "basis": "Community-linked accommodation investment is consistent with preparation for a construction workforce and longer-lived local activity."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "financingRisk",
+          "direction": "negative",
+          "basis": "Large remaining construction funding needs can introduce debt, prepayment or equity dilution/partnering tradeoffs."
+        },
+        {
+          "name": "costInflation",
+          "direction": "negative",
+          "basis": "Updated capital and operating costs materially exceeded the earlier feasibility basis."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "mixed",
+          "basis": "Regulatory success should not be conflated with completed construction or production."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "milestone conversion",
@@ -134,7 +175,13 @@
     "regulatory de-risking",
     "regional infrastructure readiness",
     "milestone conversion",
-    "construction conversion risk"
+    "construction conversion risk",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "supplyChainResilience",
+    "financingRisk",
+    "costInflation",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -145,6 +192,18 @@
       },
       {
         "risk": "Mine development has long lead times and can suffer inflation, contractor, workforce, infrastructure and commissioning slippage.",
+        "gating": false
+      },
+      {
+        "risk": "Construction, financing and operating-licence conversion remain necessary before resource quality becomes productive supply.",
+        "gating": false
+      },
+      {
+        "risk": "Further cost escalation or schedule slippage could increase financing needs and dilution/debt burden.",
+        "gating": false
+      },
+      {
+        "risk": "Project economics remain sensitive to uranium prices despite high-grade resource quality.",
         "gating": false
       }
     ]
@@ -157,6 +216,18 @@
     {
       "risk": "Mine development has long lead times and can suffer inflation, contractor, workforce, infrastructure and commissioning slippage.",
       "gating": false
+    },
+    {
+      "risk": "Construction, financing and operating-licence conversion remain necessary before resource quality becomes productive supply.",
+      "gating": false
+    },
+    {
+      "risk": "Further cost escalation or schedule slippage could increase financing needs and dilution/debt burden.",
+      "gating": false
+    },
+    {
+      "risk": "Project economics remain sensitive to uranium prices despite high-grade resource quality.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -167,21 +238,61 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "nuclear generation growth/energy security",
+        "to": "uranium demand",
+        "mechanism": "reactor operation requires reliable fuel supply",
+        "falsifier": "reactor retirements, demand destruction or alternative fuel supply materially eliminate the projected primary-supply need"
+      },
+      {
+        "from": "Rook I licensed construction",
+        "to": "future uranium supply",
+        "mechanism": "mine/mill construction can convert reserves into production",
+        "falsifier": "financing, cost, schedule, technical or operating-licence failure prevents economic production"
+      },
+      {
+        "from": "construction cost/financing requirement",
+        "to": "shareholder/project economics",
+        "mechanism": "higher capital needs raise financing burden and delay cash generation",
+        "falsifier": "secured funding plus on-budget milestones materially reduce the remaining capital gap"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "nuclear generation growth/energy security",
+      "to": "uranium demand",
+      "mechanism": "reactor operation requires reliable fuel supply",
+      "falsifier": "reactor retirements, demand destruction or alternative fuel supply materially eliminate the projected primary-supply need"
+    },
+    {
+      "from": "Rook I licensed construction",
+      "to": "future uranium supply",
+      "mechanism": "mine/mill construction can convert reserves into production",
+      "falsifier": "financing, cost, schedule, technical or operating-licence failure prevents economic production"
+    },
+    {
+      "from": "construction cost/financing requirement",
+      "to": "shareholder/project economics",
+      "mechanism": "higher capital needs raise financing burden and delay cash generation",
+      "falsifier": "secured funding plus on-budget milestones materially reduce the remaining capital gap"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "nxe:2026-03-05:rook1-federal-approval",
-      "nxe:2026-01-22:la-loche-hotel"
+      "nxe:2026-01-22:la-loche-hotel",
+      "sec:nxe:2025:updated-cost-economics",
+      "reuters:2026-08-17:nxe-financing"
     ]
   },
   "sources": [
@@ -200,12 +311,42 @@
       "publishedAt": "2026-01-22",
       "originFingerprint": "nxe:2026-01-22:la-loche-hotel",
       "sourceId": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1698535/000106299325016514/exhibit99-2.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2025",
+      "originFingerprint": "sec:nxe:2025:updated-cost-economics",
+      "sourceId": null
+    },
+    {
+      "url": "https://www.reuters.com/business/energy/canadian-miner-nexgen-energy-holds-talks-with-bhp-it-seeks-1-billion-uranium-2026-08-17/",
+      "kind": "independent",
+      "primary": false,
+      "publishedAt": "2026-08-17",
+      "originFingerprint": "reuters:2026-08-17:nxe-financing",
+      "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Final construction approval versus unresolved funding/execution burden",
+      "resolution": "No contradiction: permission is a completed milestone while financing and buildout are successor gates.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Final construction approval versus unresolved funding/execution burden",
+        "resolution": "No contradiction: permission is a completed milestone while financing and buildout are successor gates.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
   "unknowns": [
     {
@@ -215,26 +356,31 @@
     {
       "unknown": "No Scout claim is made about project NPV, uranium-price assumptions or security valuation.",
       "gating": false
+    },
+    {
+      "unknown": "Final construction cost, financing mix and achieved production start remain uncertain.",
+      "gating": false
+    },
+    {
+      "unknown": "Ultimate financing mix and resulting dilution/debt economics are not fixed in current evidence.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -244,14 +390,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -268,10 +406,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

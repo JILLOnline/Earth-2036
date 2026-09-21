@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "role": "council-beta",
+  "generatedAt": "2026-09-21T19:22:17Z",
+  "ticker": "SO",
+  "entity": "Southern Company",
+  "workId": "t0:SO",
+  "sourceCycleKey": "2026-09-21T19:18:03.457Z",
+  "perspectives": ["structural-causal", "adversarial-red-team"],
+  "lineage": {
+    "packetPath": "data/runtime/workgraph/packets/SO.json",
+    "reusedEvidencePaths": ["data/runtime/workgraph/evidence/SO-20260921T140443Z-earth-scout.json", "data/runtime/workgraph/evidence/SO-20260921T150611Z-earth-scout.json", "data/runtime/workgraph/evidence/SO-20260921T180758Z-earth-scout.json"],
+    "supersedes": null
+  },
+  "sources": [
+    {"sourceId":"issuer:SO:2026Q2","url":"https://www.southerncompany.com/newsroom/financials/southern-company-reports-second-quarter-2026-earnings.html","originFingerprint":"southerncompany.com|financials|q2-2026-earnings|2026-08"},
+    {"sourceId":"issuer:SO:ratepayer-protection","url":"https://www.southerncompany.com/newsroom/business-leadership/southern-company-joins-president-trumps-ratepayer-protection-pledge-reinforcing-customer-first-approach-to-powering-growth.html","originFingerprint":"southerncompany.com|ratepayer-protection|2026-07-23"}
+  ],
+  "structuralCausal": {
+    "claims": [
+      "SO links regulated generation and grid infrastructure to rising electricity demand; nuclear baseload and regulated investment can support reliability as large-load demand expands.",
+      "The causal bridge is conditional: large-load growth creates durable shareholder value only when incremental infrastructure is recoverable on acceptable terms and customer-affordability protections prevent adverse cost shifting.",
+      "Flexible-load contracting can improve utilization and resilience, but prospective demand is not equivalent to contracted load."
+    ],
+    "causalEdges": [
+      "AI/data-center and broader electrification demand -> higher system load -> generation/grid investment need -> regulated capital deployment -> potential earnings growth",
+      "nuclear baseload capacity -> firm power availability -> grid reliability for high-load customers -> infrastructure utility",
+      "large-load capex without adequate cost allocation -> customer affordability pressure -> regulatory resistance -> slower/less-profitable investment recovery"
+    ],
+    "substitutes": ["distributed generation and storage", "competing regional generation/interconnection", "demand response and efficiency reducing incremental peak build"],
+    "successorBottlenecks": ["interconnection and transmission buildout", "regulatory recovery", "customer affordability", "contracted-load conversion"],
+    "counterfactuals": ["If large-load demand fails to contract or materialize, the incremental grid-build thesis weakens even if baseline regulated utility demand remains.", "If cost-allocation protections work and load becomes firm, current revenue flatness need not falsify the longer-duration infrastructure thesis."],
+    "falsifiers": ["persistent failure of forecast large loads to become contracted/energized", "regulatory denial or material disallowance of incremental investment recovery", "affordability impacts causing material project cancellations or adverse rate treatment"]
+  },
+  "adversarialRedTeam": {
+    "observedWeaknesses": ["Q2 earnings growth materially outpaced nearly flat operating revenue, so earnings momentum cannot by itself validate durable demand growth.", "Large-load infrastructure is capital intensive and depends on regulatory recovery and customer protections."],
+    "risks": ["capital intensity", "regulatory recovery", "load-forecast conversion", "customer affordability", "source dependence on issuer disclosures for current causal claims"],
+    "contradictions": ["Historic load-growth narrative coexists with nearly flat quarterly operating revenue; this is material but not a present falsification because regulated earnings and load timing can diverge from quarterly revenue."],
+    "unknowns": ["share of forward large-load growth contractually committed", "incremental capex and allowed-return economics specifically tied to large-load customers"],
+    "improvementPath": "Verify contracted-versus-prospective load and project-specific recovery/cost-allocation terms before increasing causal confidence.",
+    "failureAnalogs": ["utility overbuild against demand forecasts that arrive late", "rate-base expansion constrained by affordability or regulatory disallowance"]
+  },
+  "affectedFactors": ["alignment2036", "scenarioRobustness", "crossDivisionLeverage", "bottleneckControl", "substitutionResilience", "supplyChainResilience"],
+  "gatingStatus": {"betaOwnedGatesClosed": ["missing_specialist_perspective:structural-causal", "missing_specialist_perspective:adversarial-red-team", "missing_causal_mapping"], "remainingBetaBlocker": null},
+  "confidence": 0.82,
+  "recommendedNextState": "researching",
+  "recommendedNextOwner": "council-alpha/deep-resolver",
+  "learning": {"strategy":"cumulative evidence synthesis with explicit conditional causal bridge", "uncertaintyReduced":"separated present quarterly revenue contradiction from long-duration load/capex thesis and identified exact verification path"}
+}

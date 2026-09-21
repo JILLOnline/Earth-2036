@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-21T14:20:36.016Z",
+  "updatedAt": "2026-09-21T15:17:20.202Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -794,6 +794,18 @@
       "type": "market",
       "label": "DDOG structural demand",
       "description": "Datadog's observability/security platform sits between increasingly complex cloud/AI software and the human need for reliable digital services: telemetry and automated incident investigation reduce the visibility/response bottleneck created as software systems become more distributed and autonomous."
+    },
+    {
+      "id": "company:DE",
+      "type": "company",
+      "label": "Deere & Company",
+      "description": "Deere's precision-ag stack connects cameras/ML, targeted application and Operations Center data to the farmer need for lower chemical/input intensity and labor/productivity gains; this is a real technology-to-human-need bridge rather than a pure equipment-cycle claim."
+    },
+    {
+      "id": "market:DE-lower-herbicide-input-intensity",
+      "type": "market",
+      "label": "lower herbicide/input intensity",
+      "description": "real-time weed identification and nozzle-level application"
     }
   ],
   "edges": [
@@ -1855,6 +1867,21 @@
         "issuer:DDOG:2026Q2results"
       ],
       "observedAt": "2026-09-20T03:24:31Z"
+    },
+    {
+      "id": "edge:DE-structural-exposure",
+      "from": "company:DE",
+      "to": "market:DE-lower-herbicide-input-intensity",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 67,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:DE:2026Q3:10Q",
+        "deere:SeeSpray:2025usage"
+      ],
+      "observedAt": "2026-09-20T04:24:36Z"
     }
   ],
   "structuralSignals": [
@@ -3149,6 +3176,25 @@
       ],
       "observedAt": "2026-09-20T03:24:31Z",
       "thesis": "Datadog's observability/security platform sits between increasingly complex cloud/AI software and the human need for reliable digital services: telemetry and automated incident investigation reduce the visibility/response bottleneck created as software systems become more distributed and autonomous.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:DE-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:DE-lower-herbicide-input-intensity",
+      "affectedNodeIds": [
+        "company:DE"
+      ],
+      "direction": 1,
+      "magnitude": 67,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:DE:2026Q3:10Q",
+        "deere:SeeSpray:2025usage"
+      ],
+      "observedAt": "2026-09-20T04:24:36Z",
+      "thesis": "Deere's precision-ag stack connects cameras/ML, targeted application and Operations Center data to the farmer need for lower chemical/input intensity and labor/productivity gains; this is a real technology-to-human-need bridge rather than a pure equipment-cycle claim.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

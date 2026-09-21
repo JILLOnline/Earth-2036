@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-21T08:19:13.474Z",
+  "updatedAt": "2026-09-21T10:30:24.735Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -722,6 +722,30 @@
       "type": "market",
       "label": "machine/runtime attack surface",
       "description": "CrowdStrike's structural role is moving from endpoint detection toward a shared security control plane for endpoints, cloud workloads, identity and AI-agent runtime. The causal chain is enterprise digitization and autonomous-agent adoption -> larger machine-identity and runtime attack surface -> demand for unified telemetry, policy and response -> Falcon platform/module adoption; the key bottleneck is trusted, low-latency security telemetry plus enforcement across heterogeneous environments."
+    },
+    {
+      "id": "company:CSCO",
+      "type": "company",
+      "label": "Cisco Systems",
+      "description": "Cisco's AI-infrastructure path connects Silicon One networking/optics and secure networking to GPU compute, cooling and enterprise/sovereign deployment through NVIDIA and Supermicro; the human/infrastructure need is reliable, secure and power-efficient movement and operation of AI workloads rather than ownership of the accelerator bottleneck itself."
+    },
+    {
+      "id": "market:CSCO-high-bandwidth-secure-networking-and-optics-demand",
+      "type": "market",
+      "label": "high-bandwidth secure networking and optics demand",
+      "description": "larger distributed accelerator clusters require low-latency interconnect and observability/security"
+    },
+    {
+      "id": "company:CSTM",
+      "type": "company",
+      "label": "Constellium SE",
+      "description": "Constellium occupies a conversion-and-recycling layer between primary/recycled aluminum supply and aerospace, automotive and packaging demand; its recycling footprint can reduce dependence on energy-intensive primary metal while specialized rolled/extruded alloys retain qualification and manufacturing know-how friction."
+    },
+    {
+      "id": "market:CSTM-cstm-structural-demand",
+      "type": "market",
+      "label": "CSTM structural demand",
+      "description": "Constellium occupies a conversion-and-recycling layer between primary/recycled aluminum supply and aerospace, automotive and packaging demand; its recycling footprint can reduce dependence on energy-intensive primary metal while specialized rolled/extruded alloys retain qualification and manufacturing know-how friction."
     }
   ],
   "edges": [
@@ -1693,6 +1717,38 @@
         "issuer:CRWD:Guardian:20260901"
       ],
       "observedAt": "2026-09-20T00:23:06Z"
+    },
+    {
+      "id": "edge:CSCO-structural-exposure",
+      "from": "company:CSCO",
+      "to": "market:CSCO-high-bandwidth-secure-networking-and-optics-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 68,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:CSCO:SecureAIFactory:20260825",
+        "issuer:CSCO:FY2026:20260812",
+        "sec:CSCO:10K:20260725"
+      ],
+      "observedAt": "2026-09-20T01:25:16Z"
+    },
+    {
+      "id": "edge:CSTM-structural-exposure",
+      "from": "company:CSTM",
+      "to": "market:CSTM-cstm-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 60,
+      "confidence": 87,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:CSTM:2026Q2results",
+        "issuer:CSTM:2025sustainability",
+        "issuer:CSTM:recycling"
+      ],
+      "observedAt": "2026-09-20T02:23:10Z"
     }
   ],
   "structuralSignals": [
@@ -2873,6 +2929,46 @@
       ],
       "observedAt": "2026-09-20T00:23:06Z",
       "thesis": "CrowdStrike's structural role is moving from endpoint detection toward a shared security control plane for endpoints, cloud workloads, identity and AI-agent runtime. The causal chain is enterprise digitization and autonomous-agent adoption -> larger machine-identity and runtime attack surface -> demand for unified telemetry, policy and response -> Falcon platform/module adoption; the key bottleneck is trusted, low-latency security telemetry plus enforcement across heterogeneous environments.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:CSCO-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:CSCO-high-bandwidth-secure-networking-and-optics-demand",
+      "affectedNodeIds": [
+        "company:CSCO"
+      ],
+      "direction": 1,
+      "magnitude": 68,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:CSCO:SecureAIFactory:20260825",
+        "issuer:CSCO:FY2026:20260812",
+        "sec:CSCO:10K:20260725"
+      ],
+      "observedAt": "2026-09-20T01:25:16Z",
+      "thesis": "Cisco's AI-infrastructure path connects Silicon One networking/optics and secure networking to GPU compute, cooling and enterprise/sovereign deployment through NVIDIA and Supermicro; the human/infrastructure need is reliable, secure and power-efficient movement and operation of AI workloads rather than ownership of the accelerator bottleneck itself.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:CSTM-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:CSTM-cstm-structural-demand",
+      "affectedNodeIds": [
+        "company:CSTM"
+      ],
+      "direction": 1,
+      "magnitude": 60,
+      "confidence": 87,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:CSTM:2026Q2results",
+        "issuer:CSTM:2025sustainability",
+        "issuer:CSTM:recycling"
+      ],
+      "observedAt": "2026-09-20T02:23:10Z",
+      "thesis": "Constellium occupies a conversion-and-recycling layer between primary/recycled aluminum supply and aerospace, automotive and packaging demand; its recycling footprint can reduce dependence on energy-intensive primary metal while specialized rolled/extruded alloys retain qualification and manufacturing know-how friction.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

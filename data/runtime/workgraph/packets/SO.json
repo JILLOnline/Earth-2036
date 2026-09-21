@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SO",
   "workId": "t0:SO",
-  "generatedAt": "2026-09-21T13:39:08.842Z",
+  "generatedAt": "2026-09-21T14:06:29.247Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T10:29:40.904Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-09-21T14:04:43.000Z",
+    "end": "2026-09-21T14:04:43.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T14:04:43.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -38,15 +42,21 @@
     "complete": false
   },
   "perspectives": [],
-  "evidencePaths": [],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/SO-20260921T140443Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "regulated utility earnings growth",
+      "nuclear baseload capacity",
+      "historic electricity-demand buildout"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
@@ -93,12 +103,26 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "regulated utility earnings growth",
+    "nuclear baseload capacity",
+    "historic electricity-demand buildout"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "capital intensity and regulatory recovery remain material execution dependencies",
+      "single official-source pass does not establish demand durability or valuation",
+      "capital intensity and regulatory recovery remain material execution dependencies",
+      "single official-source pass does not establish demand durability or valuation"
+    ]
   },
-  "risks": [],
+  "risks": [
+    "capital intensity and regulatory recovery remain material execution dependencies",
+    "single official-source pass does not establish demand durability or valuation",
+    "capital intensity and regulatory recovery remain material execution dependencies",
+    "single official-source pass does not establish demand durability or valuation"
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -127,18 +151,21 @@
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    "current load-growth split attributable to data centers versus other demand",
+    "forward capex/recovery schedule and customer affordability effects",
+    "current load-growth split attributable to data centers versus other demand",
+    "forward capex/recovery schedule and customer affordability effects"
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": null,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
@@ -148,20 +175,11 @@
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -197,10 +215,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "STLD",
   "workId": "t0:STLD",
-  "generatedAt": "2026-09-21T13:39:08.843Z",
+  "generatedAt": "2026-09-21T14:06:29.249Z",
   "sourceState": "observed",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -16,7 +16,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-09-21T10:29:40.904Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-09-21T14:04:43.000Z",
+    "end": "2026-09-21T14:04:43.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T14:04:43.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -38,15 +42,22 @@
     "complete": false
   },
   "perspectives": [],
-  "evidencePaths": [],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/STLD-20260921T140443Z-earth-scout.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "domestic steel pricing and shipment recovery",
+      "onshoring/infrastructure demand",
+      "aluminum diversification ramp",
+      "data-center-linked fabrication demand"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
@@ -93,12 +104,31 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "domestic steel pricing and shipment recovery",
+    "onshoring/infrastructure demand",
+    "aluminum diversification ramp",
+    "data-center-linked fabrication demand"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      "steel cycle and trade-policy sensitivity",
+      "aluminum startup losses and qualification risk",
+      "fabrication margin compression from higher steel inputs",
+      "steel cycle and trade-policy sensitivity",
+      "aluminum startup losses and qualification risk",
+      "fabrication margin compression from higher steel inputs"
+    ]
   },
-  "risks": [],
+  "risks": [
+    "steel cycle and trade-policy sensitivity",
+    "aluminum startup losses and qualification risk",
+    "fabrication margin compression from higher steel inputs",
+    "steel cycle and trade-policy sensitivity",
+    "aluminum startup losses and qualification risk",
+    "fabrication margin compression from higher steel inputs"
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "factors": [],
@@ -122,23 +152,34 @@
     "uniqueOrigins": []
   },
   "sources": [],
-  "contradictions": [],
+  "contradictions": [
+    "Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.",
+    "Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup."
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 2,
+    "items": [
+      "Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.",
+      "Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup."
+    ]
   },
-  "unknowns": [],
+  "unknowns": [
+    "normalized aluminum profitability after ramp",
+    "durability of steel spreads if scrap/input costs rise",
+    "share of backlog directly attributable to data centers",
+    "normalized aluminum profitability after ramp",
+    "durability of steel spreads if scrap/input costs rise",
+    "share of backlog directly attributable to data centers"
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
   "confidence": null,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
@@ -148,20 +189,12 @@
       "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_causal_mapping",
+      "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -199,10 +232,6 @@
         "owner": "council-alpha"
       },
       {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
-      },
-      {
         "failure": "missing_score_risk_evidence",
         "owner": "council-alpha"
       },
@@ -213,6 +242,10 @@
       {
         "failure": "missing_causal_mapping",
         "owner": "council-beta"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

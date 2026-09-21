@@ -5,6 +5,7 @@ import discoveryPoolJson from "../../data/runtime/discovery-pool.json";
 import runtimeJson from "../../data/runtime/system-state.json";
 import { runtimeTime } from "../../lib/dashboard-runtime";
 import { Bubble, Deck, DeckHeader, Screen, ScreenHeader } from "../components/Display";
+import ProgressiveList from "../components/ProgressiveList";
 
 type DiscoveryItem = { ticker?: string; companyName?: string; company?: string; status?: string; exchange?: string; listingStage?: string; division?: string; lane?: string; discoveredAt?: string; firstDetectedAt?: string; dataConfidence?: number; evidenceNote?: string; notes?: string; primarySourceUrls?: string[]; independentSourceUrls?: string[]; sourceUrl?: string; admissionEligible?: boolean };
 const pool = discoveryPoolJson as unknown as { updatedAt?: string | null; items: DiscoveryItem[] };
@@ -38,7 +39,7 @@ export default function DiscoveryPage() {
       <ScreenHeader eyebrow="DISCOVERY" title={<>{pool.items.length} <em>OUTSIDE</em></>} stats={[{ label: "THIS CYCLE", value: runtime.newDiscoveries }, { label: "MACHINE", value: runtime.machineDiscoveryComplete ? "YES" : "NO" }, { label: "FULL", value: runtime.discoveryScanCompleted ? "YES" : "NO" }]} />
       <Deck>
         <DeckHeader eyebrow={runtimeTime(pool.updatedAt)} title="CHALLENGERS" />
-        {pool.items.length ? <div className="ledgerList discoveryLedger">
+        {pool.items.length ? <ProgressiveList className="ledgerList discoveryLedger">
           {pool.items.map((item, index) => {
             const note = evidence(item);
             return <article key={`${item.ticker ?? "unknown"}-${index}`} className="ledgerRow discoveryLedgerRow">
@@ -50,7 +51,7 @@ export default function DiscoveryPage() {
               <button type="button" className="miniAction ledgerAction" onClick={() => setSelected(item)}>DETAILS</button>
             </article>;
           })}
-        </div> : <div className="emptyState">NO OUTSIDE CHALLENGERS</div>}
+        </ProgressiveList> : <div className="emptyState">NO OUTSIDE CHALLENGERS</div>}
       </Deck>
 
       {selected && <div className="modalBackdrop" role="presentation" onMouseDown={(event) => { if (event.currentTarget === event.target) setSelected(null); }}>

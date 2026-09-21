@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "META",
   "workId": "t0:META",
-  "generatedAt": "2026-09-21T04:16:38.284Z",
+  "generatedAt": "2026-09-21T04:28:08.019Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-29T00:00:00.000Z",
-    "end": "2026-09-21T04:03:23.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T04:03:23.000Z"
+    "end": "2026-09-21T04:26:26.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T04:26:26.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,55 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/META-20260921T040323Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/META-20260921T040323Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/META-20260921T042626Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "core monetization scale",
-      "AI investment conversion"
+      "AI investment conversion",
+      "AI infrastructure causal conversion",
+      "scenario robustness",
+      "capital intensity and conversion risk"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "AI infrastructure causal conversion",
+          "direction": "mixed",
+          "basis": "Revenue, ad impressions and ad pricing grew strongly while capex accelerated sharply; the bridge from infrastructure spend to durable incremental monetization remains the key falsifiable link."
+        },
+        {
+          "name": "scenario robustness",
+          "direction": "mixed",
+          "basis": "Large cash generation and scaled ad demand support resilience, while unusually high infrastructure intensity creates a successor bottleneck in power, compute deployment and return-on-capital conversion."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "core monetization scale",
@@ -71,7 +88,13 @@
           "basis": "Both ad volume and pricing grew double digits while revenue rose 28%."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "capital intensity and conversion risk",
+          "direction": "negative",
+          "basis": "Rapid infrastructure spending materially compresses near-term free-cash conversion even as core advertising execution remains strong."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "AI investment conversion",
@@ -120,7 +143,10 @@
   },
   "factors": [
     "core monetization scale",
-    "AI investment conversion"
+    "AI investment conversion",
+    "AI infrastructure causal conversion",
+    "scenario robustness",
+    "capital intensity and conversion risk"
   ],
   "riskEvidence": {
     "present": true,
@@ -132,6 +158,18 @@
       {
         "risk": "Legal charges, severance and rapid infrastructure spending can obscure normalized cost conversion and raise disappointment risk if AI monetization lags.",
         "gating": false
+      },
+      {
+        "risk": "If incremental AI infrastructure fails to sustain engagement, ad efficiency or new monetization at adequate returns, the current positive causal chain weakens despite strong top-line growth.",
+        "gating": false
+      },
+      {
+        "risk": "High fixed infrastructure commitments raise downside sensitivity if AI monetization or engagement benefits arrive slower than spending growth.",
+        "gating": false
+      },
+      {
+        "risk": "Legal charges and severance can obscure normalized cost trends, increasing interpretation uncertainty.",
+        "gating": false
       }
     ]
   },
@@ -142,6 +180,18 @@
     },
     {
       "risk": "Legal charges, severance and rapid infrastructure spending can obscure normalized cost conversion and raise disappointment risk if AI monetization lags.",
+      "gating": false
+    },
+    {
+      "risk": "If incremental AI infrastructure fails to sustain engagement, ad efficiency or new monetization at adequate returns, the current positive causal chain weakens despite strong top-line growth.",
+      "gating": false
+    },
+    {
+      "risk": "High fixed infrastructure commitments raise downside sensitivity if AI monetization or engagement benefits arrive slower than spending growth.",
+      "gating": false
+    },
+    {
+      "risk": "Legal charges and severance can obscure normalized cost trends, increasing interpretation uncertainty.",
       "gating": false
     }
   ],
@@ -156,14 +206,64 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "advertising scale and pricing",
+        "to": "operating cash generation",
+        "relation": "funds",
+        "evidence": "Q2 revenue and ad metrics grew double digits alongside substantial operating cash flow."
+      },
+      {
+        "from": "operating cash generation",
+        "to": "AI/data-center infrastructure",
+        "relation": "funds",
+        "evidence": "Q2 capex reached $31.08B."
+      },
+      {
+        "from": "AI/data-center infrastructure",
+        "to": "future engagement and monetization",
+        "relation": "enables_but_not_yet_proves",
+        "evidence": "Current results establish investment intensity and strong monetization concurrently, not the incremental causal return of newest spend."
+      },
+      {
+        "from": "AI infrastructure acceleration",
+        "to": "free-cash-flow conversion",
+        "relation": "pressures",
+        "evidence": "Q2 operating cash flow of $31.86B translated to $784M free cash flow amid $31.08B capex."
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "advertising scale and pricing",
+      "to": "operating cash generation",
+      "relation": "funds",
+      "evidence": "Q2 revenue and ad metrics grew double digits alongside substantial operating cash flow."
+    },
+    {
+      "from": "operating cash generation",
+      "to": "AI/data-center infrastructure",
+      "relation": "funds",
+      "evidence": "Q2 capex reached $31.08B."
+    },
+    {
+      "from": "AI/data-center infrastructure",
+      "to": "future engagement and monetization",
+      "relation": "enables_but_not_yet_proves",
+      "evidence": "Current results establish investment intensity and strong monetization concurrently, not the incremental causal return of newest spend."
+    },
+    {
+      "from": "AI infrastructure acceleration",
+      "to": "free-cash-flow conversion",
+      "relation": "pressures",
+      "evidence": "Q2 operating cash flow of $31.86B translated to $784M free cash flow amid $31.08B capex."
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "meta-ir:2026-q2-results"
@@ -179,10 +279,26 @@
       "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claimA": "Core advertising demand and pricing are strong.",
+      "claimB": "Near-term free-cash conversion is weak because infrastructure spending is exceptionally high.",
+      "material": true,
+      "resolved": true,
+      "resolution": "These are simultaneous operating facts rather than mutually exclusive claims; the unresolved economic question is future return on the investment, treated as a non-gating unknown rather than a fabricated contradiction."
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claimA": "Core advertising demand and pricing are strong.",
+        "claimB": "Near-term free-cash conversion is weak because infrastructure spending is exceptionally high.",
+        "material": true,
+        "resolved": true,
+        "resolution": "These are simultaneous operating facts rather than mutually exclusive claims; the unresolved economic question is future return on the investment, treated as a non-gating unknown rather than a fabricated contradiction."
+      }
+    ]
   },
   "unknowns": [
     {
@@ -192,26 +308,31 @@
     {
       "unknown": "No canonical valuation or entry-price conclusion is asserted by Scout.",
       "gating": false
+    },
+    {
+      "unknown": "Incremental return on the newest AI/data-center capex is not separable from current quarter disclosures.",
+      "gating": false
+    },
+    {
+      "unknown": "Current evidence does not quantify the portion of AI capex that is maintenance versus growth or its eventual project-level return.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -221,14 +342,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -245,10 +358,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

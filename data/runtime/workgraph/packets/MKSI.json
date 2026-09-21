@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MKSI",
   "workId": "t0:MKSI",
-  "generatedAt": "2026-09-21T04:16:38.285Z",
+  "generatedAt": "2026-09-21T04:28:08.020Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-05-06T00:00:00.000Z",
-    "end": "2026-09-21T04:03:23.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T04:03:23.000Z"
+    "end": "2026-09-21T04:26:26.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T04:26:26.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,38 +32,55 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/MKSI-20260921T040323Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/MKSI-20260921T040323Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/MKSI-20260921T042626Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "AI manufacturing picks-and-shovels exposure",
-      "execution versus guidance"
+      "execution versus guidance",
+      "manufacturing-complexity bottleneck exposure",
+      "scenario robustness",
+      "cycle and attribution risk"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "manufacturing-complexity bottleneck exposure",
+          "direction": "positive",
+          "basis": "Primary Q1 results connect broad-based demand strength to semiconductor and advanced circuit-board manufacturing complexity serving AI data centers."
+        },
+        {
+          "name": "scenario robustness",
+          "direction": "mixed",
+          "basis": "Exposure spans enabling manufacturing technologies, but demand remains dependent on cyclical customer capital spending and technology-node investment."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "AI manufacturing picks-and-shovels exposure",
@@ -71,7 +88,13 @@
           "basis": "Primary results connect stronger bookings/revenue to semiconductor and advanced circuit-board manufacturing complexity serving AI data centers."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "cycle and attribution risk",
+          "direction": "negative",
+          "basis": "Current evidence supports strong execution but does not quantify customer-level AI concentration or separate secular AI demand from cyclical equipment recovery."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "execution versus guidance",
@@ -120,7 +143,10 @@
   },
   "factors": [
     "AI manufacturing picks-and-shovels exposure",
-    "execution versus guidance"
+    "execution versus guidance",
+    "manufacturing-complexity bottleneck exposure",
+    "scenario robustness",
+    "cycle and attribution risk"
   ],
   "riskEvidence": {
     "present": true,
@@ -132,6 +158,18 @@
       {
         "risk": "Non-GAAP outperformance does not by itself establish long-run margin durability or valuation support.",
         "gating": false
+      },
+      {
+        "risk": "A slowdown in semiconductor/electronics capital spending can interrupt the AI-complexity-to-revenue bridge even if long-run compute demand remains intact.",
+        "gating": false
+      },
+      {
+        "risk": "Semiconductor capital-equipment cyclicality can amplify downside if customer expansion pauses.",
+        "gating": false
+      },
+      {
+        "risk": "Reliance on non-GAAP outperformance can overstate durable economics if acquisition-related, restructuring or other excluded costs remain persistent; current source is insufficient to make that a present contradiction.",
+        "gating": false
       }
     ]
   },
@@ -142,6 +180,18 @@
     },
     {
       "risk": "Non-GAAP outperformance does not by itself establish long-run margin durability or valuation support.",
+      "gating": false
+    },
+    {
+      "risk": "A slowdown in semiconductor/electronics capital spending can interrupt the AI-complexity-to-revenue bridge even if long-run compute demand remains intact.",
+      "gating": false
+    },
+    {
+      "risk": "Semiconductor capital-equipment cyclicality can amplify downside if customer expansion pauses.",
+      "gating": false
+    },
+    {
+      "risk": "Reliance on non-GAAP outperformance can overstate durable economics if acquisition-related, restructuring or other excluded costs remain persistent; current source is insufficient to make that a present contradiction.",
       "gating": false
     }
   ],
@@ -156,14 +206,52 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "AI compute demand",
+        "to": "semiconductor and advanced electronics manufacturing complexity",
+        "relation": "increases",
+        "evidence": "Company links accelerating demand to AI-related semiconductor and advanced circuit-board applications."
+      },
+      {
+        "from": "manufacturing complexity",
+        "to": "MKS process and manufacturing solutions demand",
+        "relation": "supports",
+        "evidence": "Q1 revenue reached the high end of guidance alongside broad-based demand and stronger bookings."
+      },
+      {
+        "from": "customer capital-spending cycle",
+        "to": "MKS demand",
+        "relation": "amplifies_or_reduces",
+        "evidence": "Business exposure remains tied to semiconductor and electronics manufacturing investment."
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "AI compute demand",
+      "to": "semiconductor and advanced electronics manufacturing complexity",
+      "relation": "increases",
+      "evidence": "Company links accelerating demand to AI-related semiconductor and advanced circuit-board applications."
+    },
+    {
+      "from": "manufacturing complexity",
+      "to": "MKS process and manufacturing solutions demand",
+      "relation": "supports",
+      "evidence": "Q1 revenue reached the high end of guidance alongside broad-based demand and stronger bookings."
+    },
+    {
+      "from": "customer capital-spending cycle",
+      "to": "MKS demand",
+      "relation": "amplifies_or_reduces",
+      "evidence": "Business exposure remains tied to semiconductor and electronics manufacturing investment."
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "mksi-ir:2026-q1-results"
@@ -192,26 +280,31 @@
     {
       "unknown": "Scout has not established current valuation or a canonical forward earnings path.",
       "gating": false
+    },
+    {
+      "unknown": "Customer-level AI revenue concentration and durability are not quantified in the cited disclosure.",
+      "gating": false
+    },
+    {
+      "unknown": "The cited source does not establish long-run margin durability, customer-level concentration of AI demand, or a canonical valuation conclusion.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 92,
+  "confidence": 88,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -221,14 +314,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -245,10 +330,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-21T21:19:19.376Z",
+  "updatedAt": "2026-09-21T22:14:50.805Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -878,6 +878,18 @@
       "type": "market",
       "label": "DVN structural demand",
       "description": "Devon's post-Coterra structure links Delaware Basin hydrocarbon resources to owned/partner midstream infrastructure and downstream demand centers; Solitude explicitly targets a Permian gas egress bottleneck with phased capacity from 2029."
+    },
+    {
+      "id": "company:ECL",
+      "type": "company",
+      "label": "Ecolab Inc.",
+      "description": "CoolIT extends Ecolab's water/chemistry/service position into direct-to-chip liquid cooling, linking semiconductor and AI compute growth to heat-removal, water and power-efficiency bottlenecks in high-density data centers."
+    },
+    {
+      "id": "market:ECL-ecl-structural-demand",
+      "type": "market",
+      "label": "ECL structural demand",
+      "description": "CoolIT extends Ecolab's water/chemistry/service position into direct-to-chip liquid cooling, linking semiconductor and AI compute growth to heat-removal, water and power-efficiency bottlenecks in high-density data centers."
     }
   ],
   "edges": [
@@ -2043,6 +2055,20 @@
       "sourceIds": [
         "issuer:DVN:merger-close:20260507",
         "issuer:DVN:solitude-fid:20260817"
+      ],
+      "observedAt": "2026-09-20T05:23:03Z"
+    },
+    {
+      "id": "edge:ECL-structural-exposure",
+      "from": "company:ECL",
+      "to": "market:ECL-ecl-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 68,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:ECL:CoolIT-close:20260702"
       ],
       "observedAt": "2026-09-20T05:23:03Z"
     }
@@ -3473,6 +3499,24 @@
       ],
       "observedAt": "2026-09-20T05:23:03Z",
       "thesis": "Devon's post-Coterra structure links Delaware Basin hydrocarbon resources to owned/partner midstream infrastructure and downstream demand centers; Solitude explicitly targets a Permian gas egress bottleneck with phased capacity from 2029.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:ECL-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:ECL-ecl-structural-demand",
+      "affectedNodeIds": [
+        "company:ECL"
+      ],
+      "direction": 1,
+      "magnitude": 68,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:ECL:CoolIT-close:20260702"
+      ],
+      "observedAt": "2026-09-20T05:23:03Z",
+      "thesis": "CoolIT extends Ecolab's water/chemistry/service position into direct-to-chip liquid cooling, linking semiconductor and AI compute growth to heat-removal, water and power-efficiency bottlenecks in high-density data centers.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

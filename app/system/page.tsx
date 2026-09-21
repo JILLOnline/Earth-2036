@@ -9,6 +9,7 @@ import registryJson from "../../data/runtime/supervisors/registry.json";
 import { runtimeTime } from "../../lib/dashboard-runtime";
 import CouncilOperations from "../components/CouncilOperations";
 import { Bubble, Deck, DeckHeader, Screen, ScreenHeader, Stat, StatRail } from "../components/Display";
+import ProgressiveList from "../components/ProgressiveList";
 
 type MachineSource = { id?: string; name?: string; authority?: string; cadence?: string; status?: string; lastSuccess?: string | null; latencyMs?: number | null; coverage?: number; note?: string };
 type AutomatedSource = { id?: string; name?: string; status?: string; observedAt?: string; latencyMs?: number | null; observationMode?: string; eventDataAvailable?: boolean; latestCalendarDay?: string; datasetLastUpdated?: string; datasetTimestamp?: string; note?: string };
@@ -185,7 +186,7 @@ export default function SystemPage() {
       <Deck className={queue.items.length ? "" : "compactDeck"}>
         <DeckHeader eyebrow={queue.unresolved} title="EVIDENCE QUEUE" action={<Link href="/ledger" className="textAction">OPEN LEDGER ↗</Link>} />
         {queue.items.length ? (
-          <div className="queueMatrix">
+          <ProgressiveList className="queueMatrix">
             {queue.items.map((item, index) => (
               <div key={item.id ?? index}>
                 <b>{item.ticker ?? "—"}</b>
@@ -195,7 +196,7 @@ export default function SystemPage() {
                 {item.sourceUrl ? <a className="earthBubble" href={item.sourceUrl} target="_blank" rel="noreferrer">SOURCE ↗</a> : <span>—</span>}
               </div>
             ))}
-          </div>
+          </ProgressiveList>
         ) : (
           <div className="queueClear"><span>NO UNRESOLVED EVIDENCE</span><b>QUEUE CLEAR</b></div>
         )}

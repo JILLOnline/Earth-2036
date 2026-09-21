@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "STM",
   "workId": "t0:STM",
-  "generatedAt": "2026-09-21T21:19:15.953Z",
+  "generatedAt": "2026-09-21T21:25:40.448Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-23T00:00:00.000Z",
-    "end": "2026-09-21T18:07:58.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T18:07:58.000Z"
+    "end": "2026-09-21T21:23:46.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T21:23:46.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,32 +32,35 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/STM-20260921T140443Z-earth-scout.json",
     "data/runtime/workgraph/evidence/STM-20260921T150611Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/STM-20260921T180758Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/STM-20260921T180758Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/STM-20260921T212346Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
       "data/runtime/workgraph/evidence/STM-20260921T170237Z-earth-scout.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 6,
-    "historicalEvidenceCount": 8
+    "activeEvidenceCount": 8,
+    "historicalEvidenceCount": 10
   },
   "factorEvidence": {
     "names": [
@@ -72,19 +75,32 @@
       "catalystScore",
       "alignment2036",
       "bottleneckControl",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "substitutionResilience",
+      "supplyChainResilience"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "catalystScore",
         "alignment2036",
         "bottleneckControl"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "bottleneckControl",
+        "substitutionResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -141,7 +157,9 @@
     "catalystScore",
     "alignment2036",
     "bottleneckControl",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "substitutionResilience",
+    "supplyChainResilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -164,6 +182,14 @@
       },
       {
         "risk": "2027 AI targets depend on engaged programs converting as expected while current profitability remains modest.",
+        "gating": false
+      },
+      {
+        "risk": "Cyclical utilization and concentrated optical AI exposure can weaken returns if program conversion or demand mix disappoints.",
+        "gating": false
+      },
+      {
+        "risk": "High capex, utilization sensitivity, restructuring execution and optical-program concentration are present risks.",
         "gating": false
       }
     ]
@@ -188,6 +214,14 @@
     {
       "risk": "2027 AI targets depend on engaged programs converting as expected while current profitability remains modest.",
       "gating": false
+    },
+    {
+      "risk": "Cyclical utilization and concentrated optical AI exposure can weaken returns if program conversion or demand mix disappoints.",
+      "gating": false
+    },
+    {
+      "risk": "High capex, utilization sensitivity, restructuring execution and optical-program concentration are present risks.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -201,14 +235,26 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "semiconductor process/manufacturing capacity -> power/control/connectivity components -> electrification and digital infrastructure",
+      "optical connectivity programs -> datacenter interconnect capacity -> AI infrastructure throughput",
+      "high capex + underutilization -> margin pressure -> weaker reinvestment resilience",
+      "revenue recovery -> durable value only if utilization/margins recover",
+      "AI engagement -> revenue only if programs convert and customer concentration is manageable"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "semiconductor process/manufacturing capacity -> power/control/connectivity components -> electrification and digital infrastructure",
+    "optical connectivity programs -> datacenter interconnect capacity -> AI infrastructure throughput",
+    "high capex + underutilization -> margin pressure -> weaker reinvestment resilience",
+    "revenue recovery -> durable value only if utilization/margins recover",
+    "AI engagement -> revenue only if programs convert and customer concentration is manageable"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 8,
     "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 0,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "investors.st.com|q2-2026-financial-results|2026-07-23",
@@ -250,10 +296,18 @@
     {
       "contradiction": "Strong revenue recovery and raised AI ambitions coexist with a material Q2 EBITDA expectations miss.",
       "material": true
+    },
+    {
+      "contradiction": "Revenue recovery and AI ambition coexist with modest operating margin and restructuring pressure.",
+      "material": true
+    },
+    {
+      "contradiction": "Raised AI ambitions and demand recovery coexist with a material profitability miss and low GAAP operating margin.",
+      "material": true
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 5,
+    "unresolvedMaterialCount": 7,
     "items": [
       "Strong Q2 revenue growth coexists with a continuing footprint/cost-base restructuring program, indicating recovery does not eliminate structural efficiency pressure.",
       "Strong Q2 revenue growth coexists with a continuing footprint/cost-base restructuring program, indicating recovery does not eliminate structural efficiency pressure.",
@@ -261,6 +315,14 @@
       "Strong revenue recovery and bookings coexist with still-modest GAAP operating margin and unused-capacity charges in Q3 outlook.",
       {
         "contradiction": "Strong revenue recovery and raised AI ambitions coexist with a material Q2 EBITDA expectations miss.",
+        "material": true
+      },
+      {
+        "contradiction": "Revenue recovery and AI ambition coexist with modest operating margin and restructuring pressure.",
+        "material": true
+      },
+      {
+        "contradiction": "Raised AI ambitions and demand recovery coexist with a material profitability miss and low GAAP operating margin.",
         "material": true
       }
     ]
@@ -283,26 +345,31 @@
     {
       "unknown": "Margin profile of the AI connectivity mix versus legacy products remains unknown.",
       "gating": false
+    },
+    {
+      "unknown": "Program/customer concentration and normalized margin of AI optical revenue remain unquantified.",
+      "gating": false
+    },
+    {
+      "unknown": "Customer concentration and margin profile inside AI connectivity remain unknown.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 12
+    "nonGatingCount": 14
   },
   "gatingIssues": [],
-  "confidence": 93,
+  "confidence": 88,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -313,14 +380,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -337,10 +396,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

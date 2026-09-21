@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "T",
   "workId": "t0:T",
-  "generatedAt": "2026-09-21T21:19:15.962Z",
+  "generatedAt": "2026-09-21T21:25:40.458Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-22T00:00:00.000Z",
-    "end": "2026-09-21T19:03:46.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T19:03:46.000Z"
+    "end": "2026-09-21T21:23:46.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T21:23:46.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,30 +32,33 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/T-20260921T160604Z-earth-scout.json",
     "data/runtime/workgraph/evidence/T-20260921T190345Z-earth-scout-discovery.json",
-    "data/runtime/workgraph/evidence/T-20260921T190346Z-earth-scout-execution.json"
+    "data/runtime/workgraph/evidence/T-20260921T190346Z-earth-scout-execution.json",
+    "data/runtime/workgraph/evidence/T-20260921T212346Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -67,18 +70,37 @@
       "Lumen fiber asset integration",
       "Advanced Connectivity service revenue execution",
       "convergence retention economics",
-      "capital return and leverage discipline"
+      "capital return and leverage discipline",
+      "alignment2036",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "crossDivisionLeverage",
+      "financialOperatingMomentum",
+      "governancePower",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "crossDivisionLeverage"
+      ],
       "discovery-weak-signals": [
         "fiber and wireless convergence",
         "legacy copper retirement",
         "Lumen fiber asset integration"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "governancePower",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "Advanced Connectivity service revenue execution",
         "convergence retention economics",
@@ -132,7 +154,15 @@
     "Lumen fiber asset integration",
     "Advanced Connectivity service revenue execution",
     "convergence retention economics",
-    "capital return and leverage discipline"
+    "capital return and leverage discipline",
+    "alignment2036",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "crossDivisionLeverage",
+    "financialOperatingMomentum",
+    "governancePower",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -147,7 +177,15 @@
       "fiber acquisition integration and network investment remain capital intensive",
       "near-term fiber ARPU pressure",
       "higher leverage following spectrum acquisition",
-      "capital returns compete with deleveraging and network investment"
+      "capital returns compete with deleveraging and network investment",
+      {
+        "risk": "Capital intensity and credible access substitutes constrain bottleneck power; legacy runoff must be replaced economically.",
+        "gating": false
+      },
+      {
+        "risk": "Leverage, fiber integration, capital intensity and legacy contraction can reduce flexibility if free cash flow weakens.",
+        "gating": false
+      }
     ]
   },
   "risks": [
@@ -161,7 +199,15 @@
     "fiber acquisition integration and network investment remain capital intensive",
     "near-term fiber ARPU pressure",
     "higher leverage following spectrum acquisition",
-    "capital returns compete with deleveraging and network investment"
+    "capital returns compete with deleveraging and network investment",
+    {
+      "risk": "Capital intensity and credible access substitutes constrain bottleneck power; legacy runoff must be replaced economically.",
+      "gating": false
+    },
+    {
+      "risk": "Leverage, fiber integration, capital intensity and legacy contraction can reduce flexibility if free cash flow weakens.",
+      "gating": false
+    }
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -174,14 +220,26 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "fiber access + wireless network -> converged connectivity -> household/enterprise communications",
+      "copper retirement -> lower legacy burden + migration -> advanced connectivity mix",
+      "capital intensity -> required cash generation -> network expansion resilience",
+      "convergence discounts -> retention benefit only if lifetime value exceeds ARPU concession",
+      "buybacks + higher leverage -> capital allocation pressure -> dependence on FCF durability"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "fiber access + wireless network -> converged connectivity -> household/enterprise communications",
+    "copper retirement -> lower legacy burden + migration -> advanced connectivity mix",
+    "capital intensity -> required cash generation -> network expansion resilience",
+    "convergence discounts -> retention benefit only if lifetime value exceeds ARPU concession",
+    "buybacks + higher leverage -> capital allocation pressure -> dependence on FCF durability"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 6,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 0,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "investors.att.com|T|2Q26-earnings|2026-07-22",
@@ -210,15 +268,31 @@
     "Advanced connectivity is growing while transitional/legacy service continues to contract, so consolidated growth depends on the new platform outpacing deliberate legacy runoff.",
     "Advanced connectivity is growing while transitional/legacy service continues to contract, so consolidated growth depends on the new platform outpacing deliberate legacy runoff.",
     "Consolidated growth is positive while a large legacy revenue pool is intentionally shrinking; execution must be judged on replacement economics rather than headline growth alone.",
-    "Management is accelerating buybacks while also preparing for higher post-transaction leverage; both can be rational only if free-cash-flow durability holds."
+    "Management is accelerating buybacks while also preparing for higher post-transaction leverage; both can be rational only if free-cash-flow durability holds.",
+    {
+      "contradiction": "Advanced connectivity growth coexists with deliberate legacy contraction, so consolidated growth can obscure replacement economics.",
+      "material": true
+    },
+    {
+      "contradiction": "Capital returns are accelerating while leverage is expected to rise; sustainability depends on free-cash-flow durability.",
+      "material": true
+    }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 4,
+    "unresolvedMaterialCount": 6,
     "items": [
       "Advanced connectivity is growing while transitional/legacy service continues to contract, so consolidated growth depends on the new platform outpacing deliberate legacy runoff.",
       "Advanced connectivity is growing while transitional/legacy service continues to contract, so consolidated growth depends on the new platform outpacing deliberate legacy runoff.",
       "Consolidated growth is positive while a large legacy revenue pool is intentionally shrinking; execution must be judged on replacement economics rather than headline growth alone.",
-      "Management is accelerating buybacks while also preparing for higher post-transaction leverage; both can be rational only if free-cash-flow durability holds."
+      "Management is accelerating buybacks while also preparing for higher post-transaction leverage; both can be rational only if free-cash-flow durability holds.",
+      {
+        "contradiction": "Advanced connectivity growth coexists with deliberate legacy contraction, so consolidated growth can obscure replacement economics.",
+        "material": true
+      },
+      {
+        "contradiction": "Capital returns are accelerating while leverage is expected to rise; sustainability depends on free-cash-flow durability.",
+        "material": true
+      }
     ]
   },
   "unknowns": [
@@ -229,11 +303,19 @@
     "incremental ROIC of acquired Lumen fiber assets",
     "long-run churn and household economics of converged customers",
     "realized post-EchoStar leverage trajectory",
-    "whether convergence lifetime value offsets ARPU discounts"
+    "whether convergence lifetime value offsets ARPU discounts",
+    {
+      "unknown": "Incremental ROIC and retention economics of the expanded/acquired fiber footprint remain unknown.",
+      "gating": false
+    },
+    {
+      "unknown": "Long-run converged-customer lifetime value and acquired-fiber ROIC are not established in current evidence.",
+      "gating": false
+    }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 8
+    "nonGatingCount": 10
   },
   "gatingIssues": [],
   "confidence": 84,
@@ -242,13 +324,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -259,14 +338,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -283,10 +354,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

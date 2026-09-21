@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "TXT",
   "workId": "t0:TXT",
-  "generatedAt": "2026-09-21T21:19:15.960Z",
+  "generatedAt": "2026-09-21T21:25:40.456Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-04-30T00:00:00.000Z",
-    "end": "2026-09-21T21:03:05.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T21:03:05.000Z"
+    "end": "2026-09-21T21:23:46.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T21:23:46.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,30 +32,33 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/TXT-20260921T210305Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/TXT-20260921T210305Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/TXT-20260921T212346Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
       "data/runtime/workgraph/evidence/TXT-20260921T200323Z-earth-scout.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -64,19 +67,33 @@
       "bottleneckControl",
       "scenarioRobustness",
       "financialOperatingMomentum",
-      "supplyChainResilience"
+      "supplyChainResilience",
+      "substitutionResilience",
+      "crossDivisionLeverage",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "crossDivisionLeverage"
+      ],
       "discovery-weak-signals": [
         "catalystScore",
         "alignment2036",
         "bottleneckControl",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "financialOperatingMomentum",
+        "governancePower",
+        "supplyChainResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -128,7 +145,10 @@
     "bottleneckControl",
     "scenarioRobustness",
     "financialOperatingMomentum",
-    "supplyChainResilience"
+    "supplyChainResilience",
+    "substitutionResilience",
+    "crossDivisionLeverage",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -140,6 +160,14 @@
       {
         "risk": "Manufacturing operating cash flow weakened year over year in Q2 and Industrial separation value/timing remain uncertain.",
         "gating": false
+      },
+      {
+        "risk": "Program schedules and option exercise remain government-dependent; focus after Industrial separation reduces diversification.",
+        "gating": false
+      },
+      {
+        "risk": "Defense concentration, government schedule dependence, weaker manufacturing cash flow and separation execution are present risks rather than automatic blockers.",
+        "gating": false
       }
     ]
   },
@@ -150,6 +178,14 @@
     },
     {
       "risk": "Manufacturing operating cash flow weakened year over year in Q2 and Industrial separation value/timing remain uncertain.",
+      "gating": false
+    },
+    {
+      "risk": "Program schedules and option exercise remain government-dependent; focus after Industrial separation reduces diversification.",
+      "gating": false
+    },
+    {
+      "risk": "Defense concentration, government schedule dependence, weaker manufacturing cash flow and separation execution are present risks rather than automatic blockers.",
       "gating": false
     }
   ],
@@ -164,14 +200,26 @@
     "count": 4
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "specialized rotorcraft engineering/production -> deployable defense mobility",
+      "installed H-1 fleet -> modernization/sustainment demand -> Bell program continuity",
+      "Industrial separation -> higher aerospace/defense focus -> higher sector concentration",
+      "program backlog -> deliveries only if schedule/options/execution convert",
+      "Industrial separation -> strategic focus but lower diversification"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "specialized rotorcraft engineering/production -> deployable defense mobility",
+    "installed H-1 fleet -> modernization/sustainment demand -> Bell program continuity",
+    "Industrial separation -> higher aerospace/defense focus -> higher sector concentration",
+    "program backlog -> deliveries only if schedule/options/execution convert",
+    "Industrial separation -> strategic focus but lower diversification"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 9,
     "uniqueSourceCount": 4,
-    "duplicatesCollapsed": 0,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:TXT:bell-ah1z-nigeria:20260916",
@@ -227,26 +275,31 @@
     {
       "unknown": "Final Industrial transaction structure, timing and realized value remain unknown.",
       "gating": false
+    },
+    {
+      "unknown": "Long-run economics and margin contribution of the cited defense programs are not quantified in current Beta lineage.",
+      "gating": false
+    },
+    {
+      "unknown": "Final Industrial transaction value and post-separation capital structure remain unknown.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -256,14 +309,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -280,10 +325,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "TDG",
   "workId": "t0:TDG",
-  "generatedAt": "2026-09-21T21:19:15.960Z",
+  "generatedAt": "2026-09-21T21:25:40.457Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-04T00:00:00.000Z",
-    "end": "2026-09-21T19:03:48.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T19:03:48.000Z"
+    "end": "2026-09-21T21:23:46.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T21:23:46.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,30 +32,33 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/TDG-20260921T160604Z-earth-scout.json",
     "data/runtime/workgraph/evidence/TDG-20260921T190347Z-earth-scout-discovery.json",
-    "data/runtime/workgraph/evidence/TDG-20260921T190348Z-earth-scout-execution.json"
+    "data/runtime/workgraph/evidence/TDG-20260921T190348Z-earth-scout-execution.json",
+    "data/runtime/workgraph/evidence/TDG-20260921T212346Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -67,18 +70,36 @@
       "acquisition-driven portfolio expansion",
       "guidance execution",
       "booking conversion",
-      "acquisition integration"
+      "acquisition integration",
+      "bottleneckControl",
+      "pricingPower",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "crossDivisionLeverage",
+      "financialOperatingMomentum",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "pricingPower",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "crossDivisionLeverage"
+      ],
       "discovery-weak-signals": [
         "aerospace aftermarket and OEM demand",
         "high-value engineered component portfolio",
         "acquisition-driven portfolio expansion"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "governancePower",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "guidance execution",
         "booking conversion",
@@ -132,7 +153,14 @@
     "acquisition-driven portfolio expansion",
     "guidance execution",
     "booking conversion",
-    "acquisition integration"
+    "acquisition integration",
+    "bottleneckControl",
+    "pricingPower",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "crossDivisionLeverage",
+    "financialOperatingMomentum",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -147,7 +175,15 @@
       "higher interest expense offsets operating growth",
       "leveraged acquisition model increases financing sensitivity",
       "higher selling and administrative expense and interest expense offset part of sales growth",
-      "pending acquisition contribution is excluded from current guidance and introduces execution uncertainty"
+      "pending acquisition contribution is excluded from current guidance and introduces execution uncertainty",
+      {
+        "risk": "Fleet utilization, qualified substitution and acquisition mix can weaken aftermarket economics.",
+        "gating": false
+      },
+      {
+        "risk": "Leverage, integration costs, acquisition dilution and aerospace-cycle sensitivity can impair resilience.",
+        "gating": false
+      }
     ]
   },
   "risks": [
@@ -161,7 +197,15 @@
     "higher interest expense offsets operating growth",
     "leveraged acquisition model increases financing sensitivity",
     "higher selling and administrative expense and interest expense offset part of sales growth",
-    "pending acquisition contribution is excluded from current guidance and introduces execution uncertainty"
+    "pending acquisition contribution is excluded from current guidance and introduces execution uncertainty",
+    {
+      "risk": "Fleet utilization, qualified substitution and acquisition mix can weaken aftermarket economics.",
+      "gating": false
+    },
+    {
+      "risk": "Leverage, integration costs, acquisition dilution and aerospace-cycle sensitivity can impair resilience.",
+      "gating": false
+    }
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -174,14 +218,26 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "certified engineered component -> installed aircraft base -> replacement/aftermarket demand -> aircraft uptime",
+      "acquisition expansion -> broader component portfolio -> more installed-base exposure",
+      "fleet utilization/retirement -> aftermarket demand intensity",
+      "acquisition growth -> value only if integration preserves margins/cash generation",
+      "leverage -> interest burden -> reduced flexibility under weaker aerospace demand"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "certified engineered component -> installed aircraft base -> replacement/aftermarket demand -> aircraft uptime",
+    "acquisition expansion -> broader component portfolio -> more installed-base exposure",
+    "fleet utilization/retirement -> aftermarket demand intensity",
+    "acquisition growth -> value only if integration preserves margins/cash generation",
+    "leverage -> interest burden -> reduced flexibility under weaker aerospace demand"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "transdigmgroupinc.gcs-web.com|TDG|FQ3-2026|2026-08-04"
@@ -201,15 +257,31 @@
     "Gross profit and net income grew with stable gross margin, but acquisition effects and 37.2% higher selling/admin expense create an execution burden that should not be hidden by top-line scale.",
     "Gross profit and net income grew with stable gross margin, but acquisition effects and 37.2% higher selling/admin expense create an execution burden that should not be hidden by top-line scale.",
     "Sales and EBITDA are growing strongly while year-to-date EBITDA As Defined margin of 52.6% is below 53.8% a year earlier, so growth quality requires mix and acquisition-dilution monitoring.",
-    "Raised guidance supports momentum, but EBITDA growth trails sales growth and margin is modestly lower year over year, so integration quality is a key falsifier."
+    "Raised guidance supports momentum, but EBITDA growth trails sales growth and margin is modestly lower year over year, so integration quality is a key falsifier.",
+    {
+      "contradiction": "Strong sales/EBITDA growth coexists with modest year-over-year margin compression, so scale does not automatically prove stronger unit economics.",
+      "material": true
+    },
+    {
+      "contradiction": "Raised guidance and strong growth coexist with margin compression and higher interest/administrative burden.",
+      "material": true
+    }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 4,
+    "unresolvedMaterialCount": 6,
     "items": [
       "Gross profit and net income grew with stable gross margin, but acquisition effects and 37.2% higher selling/admin expense create an execution burden that should not be hidden by top-line scale.",
       "Gross profit and net income grew with stable gross margin, but acquisition effects and 37.2% higher selling/admin expense create an execution burden that should not be hidden by top-line scale.",
       "Sales and EBITDA are growing strongly while year-to-date EBITDA As Defined margin of 52.6% is below 53.8% a year earlier, so growth quality requires mix and acquisition-dilution monitoring.",
-      "Raised guidance supports momentum, but EBITDA growth trails sales growth and margin is modestly lower year over year, so integration quality is a key falsifier."
+      "Raised guidance supports momentum, but EBITDA growth trails sales growth and margin is modestly lower year over year, so integration quality is a key falsifier.",
+      {
+        "contradiction": "Strong sales/EBITDA growth coexists with modest year-over-year margin compression, so scale does not automatically prove stronger unit economics.",
+        "material": true
+      },
+      {
+        "contradiction": "Raised guidance and strong growth coexist with margin compression and higher interest/administrative burden.",
+        "material": true
+      }
     ]
   },
   "unknowns": [
@@ -220,26 +292,31 @@
     "duration of booking strength across commercial and defense channels",
     "normalized margin of recent acquisitions after integration",
     "conversion timing of above-plan bookings",
-    "post-integration economics of pending and recent acquisitions"
+    "post-integration economics of pending and recent acquisitions",
+    {
+      "unknown": "Organic versus acquisition contribution and normalized margins of recent acquisitions remain unresolved.",
+      "gating": false
+    },
+    {
+      "unknown": "Normalized post-integration economics and organic growth contribution remain unknown.",
+      "gating": false
+    }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 8
+    "nonGatingCount": 10
   },
   "gatingIssues": [],
-  "confidence": 87,
+  "confidence": 84,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -250,14 +327,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -274,10 +343,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

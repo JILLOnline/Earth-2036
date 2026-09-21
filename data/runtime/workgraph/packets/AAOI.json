@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "AAOI",
   "workId": "t0:AAOI",
-  "generatedAt": "2026-09-21T18:19:13.936Z",
+  "generatedAt": "2026-09-21T18:30:49.116Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-06T00:00:00.000Z",
-    "end": "2026-09-19T07:36:23.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T07:36:23.000Z"
+    "end": "2026-09-21T18:27:49.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T18:27:49.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,31 +32,34 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/AAOI-20260919T050657Z-earth-scout.json",
     "data/runtime/workgraph/evidence/AAOI-20260919T053229Z-deep-resolver.json",
     "data/runtime/workgraph/evidence/AAOI-20260919T063451Z-deep-resolver.json",
-    "data/runtime/workgraph/evidence/AAOI-20260919T073623Z-deep-resolver.json"
+    "data/runtime/workgraph/evidence/AAOI-20260919T073623Z-deep-resolver.json",
+    "data/runtime/workgraph/evidence/BETA-BATCH-20260921T182749Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 5,
-    "historicalEvidenceCount": 5
+    "activeEvidenceCount": 7,
+    "historicalEvidenceCount": 7
   },
   "factorEvidence": {
     "names": [
@@ -66,12 +69,21 @@
       "pricingPower",
       "catalystScore",
       "scenarioRobustness",
-      "supplyChainResilience"
+      "supplyChainResilience",
+      "thesisQuality",
+      "risk",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "alignment2036",
@@ -79,7 +91,13 @@
         "pricingPower",
         "catalystScore"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "risk",
+        "financialOperatingMomentum",
+        "governancePower",
+        "scenarioRobustness",
+        "supplyChainResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -132,7 +150,10 @@
     "pricingPower",
     "catalystScore",
     "scenarioRobustness",
-    "supplyChainResilience"
+    "supplyChainResilience",
+    "thesisQuality",
+    "risk",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -143,6 +164,18 @@
       },
       {
         "risk": "GAAP net loss widened to $22.8M and GAAP gross margin fell to 27.7%, so revenue scale has not yet translated into GAAP profitability.",
+        "gating": false
+      },
+      {
+        "risk": "Capacity expansion can become underutilized if customer timing or optical architecture changes before new facilities ramp.",
+        "gating": false
+      },
+      {
+        "risk": "Rapid fixed-capacity buildout increases downside if forecast demand or qualification schedules slip.",
+        "gating": false
+      },
+      {
+        "risk": "GAAP profitability and gross-margin durability remain weaker than headline revenue growth/non-GAAP profitability.",
         "gating": false
       }
     ]
@@ -155,6 +188,18 @@
     {
       "risk": "GAAP net loss widened to $22.8M and GAAP gross margin fell to 27.7%, so revenue scale has not yet translated into GAAP profitability.",
       "gating": false
+    },
+    {
+      "risk": "Capacity expansion can become underutilized if customer timing or optical architecture changes before new facilities ramp.",
+      "gating": false
+    },
+    {
+      "risk": "Rapid fixed-capacity buildout increases downside if forecast demand or qualification schedules slip.",
+      "gating": false
+    },
+    {
+      "risk": "GAAP profitability and gross-margin durability remain weaker than headline revenue growth/non-GAAP profitability.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -165,22 +210,51 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 4
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "AI cluster bandwidth growth",
+        "to": "800G/1.6T optical transceiver demand",
+        "mechanism": "higher compute scale requires higher-bandwidth interconnects",
+        "falsifier": "customer deployments shift materially to alternative architectures or AAOI demand weakens despite AI infrastructure growth"
+      },
+      {
+        "from": "manufacturing capacity and yield",
+        "to": "AAOI revenue/margin conversion",
+        "mechanism": "available qualified output determines ability to fulfill demand economically",
+        "falsifier": "capacity expands but utilization, yield or gross margin fails to improve"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "AI cluster bandwidth growth",
+      "to": "800G/1.6T optical transceiver demand",
+      "mechanism": "higher compute scale requires higher-bandwidth interconnects",
+      "falsifier": "customer deployments shift materially to alternative architectures or AAOI demand weakens despite AI infrastructure growth"
+    },
+    {
+      "from": "manufacturing capacity and yield",
+      "to": "AAOI revenue/margin conversion",
+      "mechanism": "available qualified output determines ability to fulfill demand economically",
+      "falsifier": "capacity expands but utilization, yield or gross margin fails to improve"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 7,
-    "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 4,
+    "rawSourceCount": 12,
+    "uniqueSourceCount": 6,
+    "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:AAOI:2026Q2:8K-EX99.1",
       "resolver:AAOI:active",
-      "resolver:AAOI:prior"
+      "resolver:AAOI:prior",
+      "sec.gov|AAOI|2026Q2-10Q|2026-08-06",
+      "sec.gov|AAOI|2026Q2-results|2026-08-06",
+      "sec.gov|AAOI|Houston-leases|2026-08-31"
     ]
   },
   "sources": [
@@ -203,19 +277,51 @@
       "path": "data/runtime/workgraph/evidence/AAOI-20260919T063451Z-deep-resolver.json",
       "kind": "structured_evidence",
       "primary": false
+    },
+    {
+      "sourceId": "sec:AAOI:2026Q2-10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1158114/000143774926026278/aaoi20260630_10q.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "sec.gov|AAOI|2026Q2-10Q|2026-08-06"
+    },
+    {
+      "sourceId": "sec:AAOI:2026Q2-results",
+      "url": "https://www.sec.gov/Archives/edgar/data/1158114/000168316826006055/aaoi_ex9901.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "sec.gov|AAOI|2026Q2-results|2026-08-06"
+    },
+    {
+      "sourceId": "sec:AAOI:2026-08-31-leases",
+      "url": "https://www.sec.gov/Archives/edgar/data/1158114/000168316826006862/aaoi_8k.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-31",
+      "originFingerprint": "sec.gov|AAOI|Houston-leases|2026-08-31"
     }
   ],
   "contradictions": [
     {
       "contradiction": "Record revenue and non-GAAP profitability coexist with a larger GAAP net loss and lower GAAP gross margin.",
       "material": true
+    },
+    {
+      "contradiction": "Record revenue and non-GAAP profitability coexist with weaker GAAP profitability/margin evidence.",
+      "material": true
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "contradiction": "Record revenue and non-GAAP profitability coexist with a larger GAAP net loss and lower GAAP gross margin.",
+        "material": true
+      },
+      {
+        "contradiction": "Record revenue and non-GAAP profitability coexist with weaker GAAP profitability/margin evidence.",
         "material": true
       }
     ]
@@ -228,26 +334,31 @@
     {
       "unknown": "Actual September production rate and progress toward the year-end 650,000-unit target are not established here.",
       "gating": false
+    },
+    {
+      "unknown": "Customer-level committed demand through mid-2027 and qualified yield trajectory are not fully disclosed.",
+      "gating": false
+    },
+    {
+      "unknown": "Customer concentration and firm versus forecast demand supporting capacity plans remain incompletely quantified.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 96,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -258,14 +369,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -282,10 +385,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

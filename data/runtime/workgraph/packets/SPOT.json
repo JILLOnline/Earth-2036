@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SPOT",
   "workId": "t0:SPOT",
-  "generatedAt": "2026-09-21T18:19:13.943Z",
+  "generatedAt": "2026-09-21T18:30:49.127Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-21T16:51:50.432Z"
   },
   "evidenceWindow": {
-    "start": "2026-08-04T00:00:00.000Z",
-    "end": "2026-09-21T18:07:58.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T18:07:58.000Z"
+    "start": "2026-02-10T00:00:00.000Z",
+    "end": "2026-09-21T18:27:49.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T18:27:49.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -31,22 +31,25 @@
       "expectations-execution"
     ],
     "present": [
+      "structural-causal",
+      "adversarial-red-team",
       "discovery-weak-signals",
       "expectations-execution"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
+    "structural-causal",
+    "adversarial-red-team",
     "discovery-weak-signals",
     "expectations-execution"
   ],
   "evidencePaths": [
+    "data/runtime/workgraph/evidence/BETA-BATCH-20260921T182749Z-council-beta.json",
     "data/runtime/workgraph/evidence/SPOT-20260921T150611Z-earth-scout.json",
     "data/runtime/workgraph/evidence/SPOT-20260921T180758Z-earth-scout.json"
   ],
@@ -55,31 +58,48 @@
       "data/runtime/workgraph/evidence/SPOT-20260921T170237Z-earth-scout.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 6
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 8
   },
   "factorEvidence": {
     "names": [
+      "thesisQuality",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "pricingPower",
+      "risk",
+      "governancePower",
       "global user/subscriber scale",
       "margin expansion and positive operating leverage",
       "product velocity can deepen engagement and monetization optionality",
       "financialOperatingMomentum",
       "catalystScore",
-      "alignment2036",
-      "pricingPower",
-      "scenarioRobustness"
+      "alignment2036"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "pricingPower"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "catalystScore",
         "alignment2036",
         "pricingPower"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "risk",
+        "governancePower",
+        "scenarioRobustness",
+        "pricingPower",
+        "substitutionResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -125,18 +145,35 @@
     }
   },
   "factors": [
+    "thesisQuality",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "pricingPower",
+    "risk",
+    "governancePower",
     "global user/subscriber scale",
     "margin expansion and positive operating leverage",
     "product velocity can deepen engagement and monetization optionality",
     "financialOperatingMomentum",
     "catalystScore",
-    "alignment2036",
-    "pricingPower",
-    "scenarioRobustness"
+    "alignment2036"
   ],
   "riskEvidence": {
     "present": true,
     "items": [
+      {
+        "risk": "Rights-holder concentration and minimum content commitments constrain bargaining power and operating flexibility.",
+        "gating": false
+      },
+      {
+        "risk": "Content-provider concentration can transfer economics back to licensors even while Spotify grows users.",
+        "gating": false
+      },
+      {
+        "risk": "Royalty/legal outcomes can create material cash costs and complicate reported margin durability.",
+        "gating": false
+      },
       "platform economics remain exposed to content/licensing relationships and competitive attention markets",
       "new AI/personalization features require evidence of durable monetization rather than engagement alone",
       "single issuer source does not establish independent expectations or valuation",
@@ -154,6 +191,18 @@
     ]
   },
   "risks": [
+    {
+      "risk": "Rights-holder concentration and minimum content commitments constrain bargaining power and operating flexibility.",
+      "gating": false
+    },
+    {
+      "risk": "Content-provider concentration can transfer economics back to licensors even while Spotify grows users.",
+      "gating": false
+    },
+    {
+      "risk": "Royalty/legal outcomes can create material cash costs and complicate reported margin durability.",
+      "gating": false
+    },
     "platform economics remain exposed to content/licensing relationships and competitive attention markets",
     "new AI/personalization features require evidence of durable monetization rather than engagement alone",
     "single issuer source does not establish independent expectations or valuation",
@@ -177,23 +226,67 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "global audio discovery and creator distribution need",
+        "to": "Spotify engagement and subscriber scale",
+        "mechanism": "catalog access plus personalization reduces search/discovery friction",
+        "falsifier": "engagement or paid conversion weakens despite continued product expansion"
+      },
+      {
+        "from": "concentrated third-party rights supply",
+        "to": "Spotify gross-margin ceiling and operating flexibility",
+        "mechanism": "licenses, minimum guarantees and royalty terms constrain value capture",
+        "falsifier": "rights costs structurally decouple from usage/revenue without loss of catalog competitiveness"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "global audio discovery and creator distribution need",
+      "to": "Spotify engagement and subscriber scale",
+      "mechanism": "catalog access plus personalization reduces search/discovery friction",
+      "falsifier": "engagement or paid conversion weakens despite continued product expansion"
+    },
+    {
+      "from": "concentrated third-party rights supply",
+      "to": "Spotify gross-margin ceiling and operating flexibility",
+      "mechanism": "licenses, minimum guarantees and royalty terms constrain value capture",
+      "falsifier": "rights costs structurally decouple from usage/revenue without loss of catalog competitiveness"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
+      "sec.gov|SPOT|2025-20F|2026-02-10",
+      "sec.gov|SPOT|2026Q1-6K|2026-04-28",
       "newsroom.spotify.com|q2-2026-earnings|2026-08-04"
     ]
   },
   "sources": [
+    {
+      "sourceId": "sec:SPOT:2025-20F",
+      "url": "https://www.sec.gov/Archives/edgar/data/1639920/000162828026006874/ck0001639920-20251231.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-10",
+      "originFingerprint": "sec.gov|SPOT|2025-20F|2026-02-10"
+    },
+    {
+      "sourceId": "sec:SPOT:2026Q1-6K",
+      "url": "https://www.sec.gov/Archives/edgar/data/1639920/000162828026027951/spot-20260331x6xk.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-04-28",
+      "originFingerprint": "sec.gov|SPOT|2026Q1-6K|2026-04-28"
+    },
     {
       "sourceId": "issuer:SPOT:2026Q2",
       "url": "https://newsroom.spotify.com/2026-08-04/spotify-q2-2026-earnings/",
@@ -209,6 +302,14 @@
     "items": []
   },
   "unknowns": [
+    {
+      "unknown": "Incremental economics attributable specifically to AI/personalization and newer content formats remain unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Future renewal economics with major labels and publishers are not knowable from current filings.",
+      "gating": false
+    },
     "incremental monetization attributable to newer AI/personalization products",
     "forward content-cost trajectory and creator payout economics",
     "independent evidence on market expectations versus reported execution",
@@ -226,7 +327,7 @@
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 8
+    "nonGatingCount": 10
   },
   "gatingIssues": [],
   "confidence": 84,
@@ -235,13 +336,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -251,14 +349,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -275,10 +365,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

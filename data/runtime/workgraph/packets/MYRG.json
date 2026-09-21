@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MYRG",
   "workId": "t0:MYRG",
-  "generatedAt": "2026-09-21T18:19:13.936Z",
+  "generatedAt": "2026-09-21T18:30:49.117Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-29T00:00:00.000Z",
-    "end": "2026-09-21T05:04:30.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T05:04:30.000Z"
+    "end": "2026-09-21T18:27:49.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T18:27:49.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -31,39 +31,56 @@
       "expectations-execution"
     ],
     "present": [
+      "structural-causal",
+      "adversarial-red-team",
       "discovery-weak-signals",
       "expectations-execution"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
+    "structural-causal",
+    "adversarial-red-team",
     "discovery-weak-signals",
     "expectations-execution"
   ],
   "evidencePaths": [
+    "data/runtime/workgraph/evidence/BETA-BATCH-20260921T182749Z-council-beta.json",
     "data/runtime/workgraph/evidence/MYRG-20260921T050430Z-earth-scout.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
+      "thesisQuality",
+      "alignment2036",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "risk",
+      "financialOperatingMomentum",
+      "dataConfidence",
       "Grid and electrification buildout",
       "Operating execution"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         {
           "name": "Grid and electrification buildout",
@@ -71,7 +88,12 @@
           "basis": "Record backlog and demand across transmission/distribution and commercial-industrial electrical work indicate durable infrastructure workload."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "risk",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "dataConfidence"
+      ],
       "expectations-execution": [
         {
           "name": "Operating execution",
@@ -119,12 +141,32 @@
     }
   },
   "factors": [
+    "thesisQuality",
+    "alignment2036",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "risk",
+    "financialOperatingMomentum",
+    "dataConfidence",
     "Grid and electrification buildout",
     "Operating execution"
   ],
   "riskEvidence": {
     "present": true,
     "items": [
+      {
+        "risk": "Backlog is not equivalent to guaranteed revenue; some master-service work can be canceled for convenience and timing/mix can move reported backlog.",
+        "gating": false
+      },
+      {
+        "risk": "Fixed-price execution errors, labor/material cost movement and project estimate revisions can reverse margin gains.",
+        "gating": false
+      },
+      {
+        "risk": "Backlog interpretation can overstate certainty if cancelable/master-service components are treated as firm contracted revenue.",
+        "gating": false
+      },
       {
         "risk": "Fixed-price project mix exposes margins to estimation and execution errors.",
         "gating": false
@@ -136,6 +178,18 @@
     ]
   },
   "risks": [
+    {
+      "risk": "Backlog is not equivalent to guaranteed revenue; some master-service work can be canceled for convenience and timing/mix can move reported backlog.",
+      "gating": false
+    },
+    {
+      "risk": "Fixed-price execution errors, labor/material cost movement and project estimate revisions can reverse margin gains.",
+      "gating": false
+    },
+    {
+      "risk": "Backlog interpretation can overstate certainty if cancelable/master-service components are treated as firm contracted revenue.",
+      "gating": false
+    },
     {
       "risk": "Fixed-price project mix exposes margins to estimation and execution errors.",
       "gating": false
@@ -153,11 +207,23 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 2
   },
   "causalMapping": {
     "present": true,
     "edges": [
+      {
+        "from": "grid modernization, electrification and power-intensive infrastructure",
+        "to": "specialized electrical construction demand",
+        "mechanism": "new transmission, distribution and C&I assets require design/build/upgrade labor and project execution",
+        "falsifier": "MYR backlog and awards contract while underlying infrastructure investment remains strong"
+      },
+      {
+        "from": "project execution quality",
+        "to": "MYR margin and cash conversion",
+        "mechanism": "fixed-price estimating, productivity and closeouts determine realized economics",
+        "falsifier": "sustained margin expansion persists without favorable estimate changes and despite adverse project mix"
+      },
       {
         "from": "electrification and grid investment",
         "to": "electrical contracting backlog",
@@ -174,6 +240,18 @@
   },
   "causalEdges": [
     {
+      "from": "grid modernization, electrification and power-intensive infrastructure",
+      "to": "specialized electrical construction demand",
+      "mechanism": "new transmission, distribution and C&I assets require design/build/upgrade labor and project execution",
+      "falsifier": "MYR backlog and awards contract while underlying infrastructure investment remains strong"
+    },
+    {
+      "from": "project execution quality",
+      "to": "MYR margin and cash conversion",
+      "mechanism": "fixed-price estimating, productivity and closeouts determine realized economics",
+      "falsifier": "sustained margin expansion persists without favorable estimate changes and despite adverse project mix"
+    },
+    {
       "from": "electrification and grid investment",
       "to": "electrical contracting backlog",
       "mechanism": "new and upgraded power infrastructure requires specialized construction capacity",
@@ -187,15 +265,24 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
     "uniqueOrigins": [
+      "sec.gov|MYRG|2026Q2-10Q|2026-07-29",
       "myrgroup:2026-07-29:q2-2026"
     ]
   },
   "sources": [
+    {
+      "sourceId": "sec:MYRG:2026Q2-10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/700923/000070092326000042/myrg-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-29",
+      "originFingerprint": "sec.gov|MYRG|2026Q2-10Q|2026-07-29"
+    },
     {
       "url": "https://investor.myrgroup.com/news-releases/news-release-details/myr-group-inc-announces-second-quarter-and-first-half-2026",
       "kind": "primary",
@@ -207,13 +294,21 @@
   ],
   "contradictions": [
     {
+      "contradiction": "Record profitability partly reflects estimate/closeout effects that may not recur; this tempers but does not negate strong revenue/backlog evidence.",
+      "material": true
+    },
+    {
       "claim": "Record profitability is partly supported by favorable project estimate changes, so normalized margin durability remains to be tested.",
       "severity": "moderate"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
+      {
+        "contradiction": "Record profitability partly reflects estimate/closeout effects that may not recur; this tempers but does not negate strong revenue/backlog evidence.",
+        "material": true
+      },
       {
         "claim": "Record profitability is partly supported by favorable project estimate changes, so normalized margin durability remains to be tested.",
         "severity": "moderate"
@@ -221,6 +316,14 @@
     ]
   },
   "unknowns": [
+    {
+      "unknown": "Long-run scarcity premium attributable specifically to MYR versus competing contractors is not established.",
+      "gating": false
+    },
+    {
+      "unknown": "Normalized margin excluding estimate changes remains an Alpha/Resolver quantification question.",
+      "gating": false
+    },
     {
       "unknown": "Backlog duration and customer concentration are not quantified in this artifact.",
       "gating": false
@@ -232,17 +335,15 @@
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 93,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -257,14 +358,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",

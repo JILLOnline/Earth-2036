@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "NET",
   "workId": "t0:NET",
-  "generatedAt": "2026-09-21T18:19:13.940Z",
+  "generatedAt": "2026-09-21T18:30:49.122Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-23T00:00:00.000Z",
-    "end": "2026-09-21T05:04:30.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T05:04:30.000Z"
+    "end": "2026-09-21T18:27:49.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T18:27:49.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -31,39 +31,57 @@
       "expectations-execution"
     ],
     "present": [
+      "structural-causal",
+      "adversarial-red-team",
       "discovery-weak-signals",
       "expectations-execution"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
+    "structural-causal",
+    "adversarial-red-team",
     "discovery-weak-signals",
     "expectations-execution"
   ],
   "evidencePaths": [
+    "data/runtime/workgraph/evidence/BETA-BATCH-20260921T182749Z-council-beta.json",
     "data/runtime/workgraph/evidence/NET-20260921T050430Z-earth-scout.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
+      "thesisQuality",
+      "crossDivisionLeverage",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "risk",
+      "financialOperatingMomentum",
+      "governancePower",
+      "dataConfidence",
       "Developer-to-network platform convergence",
       "Growth versus cost reset"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         {
           "name": "Developer-to-network platform convergence",
@@ -71,7 +89,13 @@
           "basis": "Owning widely used build tooling can reduce friction from development through deployment while security capabilities broaden enterprise relevance."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "risk",
+        "financialOperatingMomentum",
+        "governancePower",
+        "scenarioRobustness",
+        "dataConfidence"
+      ],
       "expectations-execution": [
         {
           "name": "Growth versus cost reset",
@@ -119,12 +143,33 @@
     }
   },
   "factors": [
+    "thesisQuality",
+    "crossDivisionLeverage",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "risk",
+    "financialOperatingMomentum",
+    "governancePower",
+    "dataConfidence",
     "Developer-to-network platform convergence",
     "Growth versus cost reset"
   ],
   "riskEvidence": {
     "present": true,
     "items": [
+      {
+        "risk": "Developer/network platform convergence is substitutable by hyperscaler-native stacks and specialist security/developer vendors.",
+        "gating": false
+      },
+      {
+        "risk": "Post-restructuring margin improvement may fail to offset infrastructure and platform-integration costs.",
+        "gating": false
+      },
+      {
+        "risk": "Convertible financing can create future dilution and raises the bar for productive capital deployment.",
+        "gating": false
+      },
       {
         "risk": "Platform breadth does not guarantee monetization and integration can increase operating complexity.",
         "gating": false
@@ -136,6 +181,18 @@
     ]
   },
   "risks": [
+    {
+      "risk": "Developer/network platform convergence is substitutable by hyperscaler-native stacks and specialist security/developer vendors.",
+      "gating": false
+    },
+    {
+      "risk": "Post-restructuring margin improvement may fail to offset infrastructure and platform-integration costs.",
+      "gating": false
+    },
+    {
+      "risk": "Convertible financing can create future dilution and raises the bar for productive capital deployment.",
+      "gating": false
+    },
     {
       "risk": "Platform breadth does not guarantee monetization and integration can increase operating complexity.",
       "gating": false
@@ -153,11 +210,23 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 3
+    "count": 6
   },
   "causalMapping": {
     "present": true,
     "edges": [
+      {
+        "from": "AI-native application and security complexity",
+        "to": "integrated edge/network/developer demand",
+        "mechanism": "one distributed platform can reduce deployment, latency and security coordination friction",
+        "falsifier": "customers continue preferring best-of-breed point products or platform expansion fails to increase contracted workloads"
+      },
+      {
+        "from": "platform breadth and network scale",
+        "to": "revenue/RPO growth",
+        "mechanism": "more workloads and products per customer expand contracted spend",
+        "falsifier": "RPO/revenue decelerate while integration costs remain elevated"
+      },
       {
         "from": "AI-native development and security complexity",
         "to": "integrated edge/developer platform demand",
@@ -174,6 +243,18 @@
   },
   "causalEdges": [
     {
+      "from": "AI-native application and security complexity",
+      "to": "integrated edge/network/developer demand",
+      "mechanism": "one distributed platform can reduce deployment, latency and security coordination friction",
+      "falsifier": "customers continue preferring best-of-breed point products or platform expansion fails to increase contracted workloads"
+    },
+    {
+      "from": "platform breadth and network scale",
+      "to": "revenue/RPO growth",
+      "mechanism": "more workloads and products per customer expand contracted spend",
+      "falsifier": "RPO/revenue decelerate while integration costs remain elevated"
+    },
+    {
       "from": "AI-native development and security complexity",
       "to": "integrated edge/developer platform demand",
       "mechanism": "integrated tooling and network security can reduce deployment and protection friction",
@@ -187,17 +268,44 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 6,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
     "uniqueOrigins": [
+      "sec.gov|NET|2026Q2-10Q|2026-08-06",
+      "cloudflare|2026Q2|2026-08-06",
+      "sec.gov|NET|convertible-notes|2026-08-10",
       "cloudflare:2026-06-04:voidzero-vite",
       "cloudflare:2026-02-23:pq-sase",
       "cloudflare:2026-08-06:q2-2026"
     ]
   },
   "sources": [
+    {
+      "sourceId": "sec:NET:2026Q2-10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1477333/000147733326000054/cloud-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "sec.gov|NET|2026Q2-10Q|2026-08-06"
+    },
+    {
+      "sourceId": "issuer:NET:2026Q2",
+      "url": "https://www.cloudflare.net/news/news-details/2026/Cloudflare-Announces-Second-Quarter-2026-Financial-Results/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "cloudflare|2026Q2|2026-08-06"
+    },
+    {
+      "sourceId": "sec:NET:2026-08-10-8K",
+      "url": "https://www.sec.gov/Archives/edgar/data/1477333/000095010326012340/dp251721_8k.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-10",
+      "originFingerprint": "sec.gov|NET|convertible-notes|2026-08-10"
+    },
     {
       "url": "https://www.cloudflare.net/news/news-details/2026/Cloudflare-Acquires-VoidZero-to-Build-the-Future-of-the-AI-Native-Web/default.aspx",
       "kind": "primary",
@@ -225,13 +333,21 @@
   ],
   "contradictions": [
     {
+      "contradiction": "Rapid revenue growth and stronger cash generation coexist with gross-margin pressure and a larger GAAP operating loss.",
+      "material": true
+    },
+    {
       "claim": "36% revenue growth and stronger cash generation coexist with lower gross margin and a materially larger GAAP operating loss due in part to restructuring.",
       "severity": "material"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
+      {
+        "contradiction": "Rapid revenue growth and stronger cash generation coexist with gross-margin pressure and a larger GAAP operating loss.",
+        "material": true
+      },
       {
         "claim": "36% revenue growth and stronger cash generation coexist with lower gross margin and a materially larger GAAP operating loss due in part to restructuring.",
         "severity": "material"
@@ -239,6 +355,14 @@
     ]
   },
   "unknowns": [
+    {
+      "unknown": "Incremental monetization from VoidZero/Vite and post-quantum differentiation remains unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Ultimate dilution from the 2031 converts depends on future share price and settlement choices.",
+      "gating": false
+    },
     {
       "unknown": "Incremental revenue attributable to VoidZero/Vite integration is not yet established.",
       "gating": false
@@ -250,17 +374,15 @@
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 90,
+  "confidence": 89,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -275,14 +397,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",

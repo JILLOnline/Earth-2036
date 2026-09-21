@@ -4,7 +4,7 @@ import path from "node:path";
 import test from "node:test";
 import { parseNasdaqListed, parseOtherListed } from "../scripts/earth2036-engine.mjs";
 import { buildUniverse, normalizeTicker, parseExpansionContenders } from "../scripts/lib/universe-parser.mjs";
-import { baselineGate, confidenceAdjustedBoundaryScore, isPublishableScoreRecord, qualifiesTick, rankRecords } from "../scripts/lib/runtime-gates.mjs";
+import { baselineGate, calculateCanonicalEarthScoreBreakdown, confidenceAdjustedBoundaryScore, isPublishableScoreRecord, normalizeCanonicalScoreRecord, qualifiesTick, rankRecords, SCORE_CONTRACT_VERSION, SCORE_FORMULA_HASH } from "../scripts/lib/runtime-gates.mjs";
 
 const completeComponents = {
   thesisQuality: 70,
@@ -88,6 +88,30 @@ test("universe parser rejects duplicate tickers", () => {
 test("publishable score requires complete sourced causal record", () => {
   assert.equal(isPublishableScoreRecord({ methodologyVersion: "1.0.0", earthScore: 80, risk: 30, dataConfidence: 75, components: completeComponents, primarySourceUrls: ["https://example.com/primary"], causalMapped: true }), true);
   assert.equal(isPublishableScoreRecord({ methodologyVersion: "1.0.0", earthScore: 80, risk: 30, dataConfidence: 75, components: completeComponents, primarySourceUrls: [], causalMapped: true }), false);
+});
+
+test("canonical scorer deterministically folds confidence and risk into Earth Score", () => {
+  const breakdown = calculateCanonicalEarthScoreBreakdown({ ...completeComponents, dataConfidence: 90, risk: 20 });
+  assert.equal(breakdown.valid, true);
+  assert.equal(breakdown.rawWeightedScore, 70);
+  assert.equal(breakdown.confidenceMultiplier, 0.98);
+  assert.equal(breakdown.riskPenalty, 3.2);
+  assert.equal(breakdown.earthScore, 65.4);
+});
+
+test("legacy authored score is normalized without erasing its original value", () => {
+  const normalized = normalizeCanonicalScoreRecord({
+    methodologyVersion: "1.0.0",
+    earthScore: 70,
+    risk: 20,
+    dataConfidence: 90,
+    components: completeComponents,
+  });
+  assert.equal(normalized.earthScore, 65.4);
+  assert.equal(normalized.scoreContract.version, SCORE_CONTRACT_VERSION);
+  assert.equal(normalized.scoreContract.formulaHash, SCORE_FORMULA_HASH);
+  assert.equal(normalized.scoreContract.sourceAuthoredEarthScore, 70);
+  assert.equal(normalized.scoreContract.normalized, true);
 });
 
 test("ranking tie-breaks match canonical methodology", () => {

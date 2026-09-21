@@ -1,3 +1,4 @@
+import { normalizeCanonicalScoreRecord } from "./runtime-gates.mjs";
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -31,13 +32,17 @@ export async function loadBaselineEvidence(root) {
 
   for (const file of files) {
     try {
-      const record = await readJson(file);
-      if (!record?.ticker || record?.methodologyVersion !== "1.0.0") continue;
-      const ticker = String(record.ticker).trim().toUpperCase();
-      const existing = candidates[ticker];
-      const existingTime = Date.parse(existing?.updatedAt ?? 0) || 0;
-      const nextTime = Date.parse(record.updatedAt ?? 0) || 0;
-      if (!existing || nextTime >= existingTime) candidates[ticker] = record;
+      const payload = await readJson(file);
+      const records = Array.isArray(payload?.records) ? payload.records : [payload];
+      for (const sourceRecord of records) {
+        if (!sourceRecord?.ticker || sourceRecord?.methodologyVersion !== "1.0.0") continue;
+        const record = normalizeCanonicalScoreRecord(sourceRecord);
+        const ticker = String(record.ticker).trim().toUpperCase();
+        const existing = candidates[ticker];
+        const existingTime = Date.parse(existing?.updatedAt ?? 0) || 0;
+        const nextTime = Date.parse(record.updatedAt ?? 0) || 0;
+        if (!existing || nextTime >= existingTime) candidates[ticker] = record;
+      }
     } catch (error) {
       errors.push({ file: path.relative(root, file), error: String(error?.message ?? error) });
     }

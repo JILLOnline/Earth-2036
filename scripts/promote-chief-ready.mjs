@@ -1,7 +1,7 @@
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { auditScoreRecord } from "../engine/beast-integrity.mjs";
-import { isPublishableScoreRecord, rankRecords, METHODOLOGY_VERSION, MIN_PUBLISHABLE_DATA_CONFIDENCE } from "./lib/runtime-gates.mjs";
+import { calculateCanonicalEarthScoreBreakdown, isPublishableScoreRecord, rankRecords, METHODOLOGY_VERSION, MIN_PUBLISHABLE_DATA_CONFIDENCE, SCORE_CONTRACT_VERSION, SCORE_FORMULA_HASH } from "./lib/runtime-gates.mjs";
 import { computeWorkgraphMetrics, loadRoleRuns, loadStructuredEvidence, writeWorkgraphArtifacts } from "./lib/workgraph-v2.mjs";
 
 const ROOT = process.cwd();
@@ -91,7 +91,8 @@ export function materializeCausalProof(graph, ticker, company, structuralRow, sc
   }
 
   const edgeId = `edge:${ticker}-structural-exposure`;
-  const strength = Math.max(1, Math.min(100, Number(scoreRecord?.components?.bottleneckControl ?? 70)));
+  const explicitStrength = Number(firstEdge?.strength ?? structuralRow?.causalStrength ?? structuralRow?.strength);
+  const strength = Number.isFinite(explicitStrength) ? Math.max(1, Math.min(100, explicitStrength)) : 50;
   const confidence = Math.max(1, Math.min(100, Number(structuralRow.confidence)));
   const edge = {
     id: edgeId,
@@ -132,18 +133,47 @@ function buildCanonicalRecord(packet, underwriting) {
   const factorEvidence = normalizeEvidenceTree(underwriting?.factorEvidence ?? underwriting?.scoreRecord?.factorEvidence, "factor");
   const riskEvidence = normalizeEvidenceTree(underwriting?.riskEvidence ?? underwriting?.scoreRecord?.riskEvidence, "risk");
   const dataConfidenceEvidence = normalizeEvidenceTree(underwriting?.dataConfidenceEvidence ?? underwriting?.scoreRecord?.dataConfidenceEvidence, "confidence");
+  const deterministic = calculateCanonicalEarthScoreBreakdown({
+    ...(score?.components || {}),
+    risk: score?.risk,
+    dataConfidence: score?.dataConfidence,
+  });
+  const authoredEarthScore = Number.isFinite(Number(score?.earthScore)) ? Number(score.earthScore) : null;
   return {
     ...score,
     ticker: packet.ticker,
     company: score.company || packet.identityTradability?.company || packet.ticker,
     methodologyVersion: METHODOLOGY,
     updatedAt: underwriting?.generatedAt || packet.generatedAt,
+    earthScore: deterministic.valid ? deterministic.earthScore : null,
+    scoreBreakdown: deterministic.valid ? {
+      methodologyVersion: deterministic.methodologyVersion,
+      rawWeightedScore: deterministic.rawWeightedScore,
+      confidenceMultiplier: deterministic.confidenceMultiplier,
+      riskPenalty: deterministic.riskPenalty,
+      earthScore: deterministic.earthScore,
+      publishable: deterministic.publishable,
+    } : { valid: false, reasons: deterministic.reasons },
+    scoreContract: {
+      version: SCORE_CONTRACT_VERSION,
+      formulaHash: SCORE_FORMULA_HASH,
+      sourceAuthoredEarthScore: authoredEarthScore,
+      normalized: deterministic.valid && authoredEarthScore !== null
+        ? Math.abs(authoredEarthScore - deterministic.earthScore) > 0.051
+        : false,
+    },
     components: score.components,
     factorEvidence,
     riskEvidence,
     dataConfidenceEvidence,
     primarySourceUrls: score.primarySourceUrls,
     independentSourceUrls: Array.isArray(score.independentSourceUrls) ? score.independentSourceUrls : [],
+    sourceLineage: packet.sourceLineage || null,
+    temporalLineage: {
+      evidenceWindow: packet.evidenceWindow || null,
+      packetCompiledAt: packet.generatedAt || null,
+      underwritingKnownAt: underwriting?.generatedAt || null,
+    },
     causalMapped: true,
     evidenceTier: "Iron",
     canonicalLineage: {

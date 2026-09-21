@@ -9,6 +9,7 @@ import calibrationJson from "../../data/runtime/workgraph/shadow/calibration.jso
 import dependenciesJson from "../../data/runtime/workgraph/shadow/dependencies.json";
 import allocationJson from "../../data/runtime/workgraph/shadow/value-allocation.json";
 import learningJson from "../../data/runtime/workgraph/learning-state.json";
+import integrityJson from "../../data/runtime/intelligence-integrity.json";
 import { runtimeTime } from "../../lib/dashboard-runtime";
 import { Bubble, Deck, DeckHeader, Screen, ScreenHeader, Stat, StatRail } from "../components/Display";
 
@@ -41,6 +42,18 @@ type Allocation = {
 };
 type Learning = { activeLessons:Array<{signature:string;symptom:string;correctiveAction:string;successSignal:string}> };
 type Metrics = { generatedAt?:string;healthy:boolean;counts:Record<string,number>;healthAlerts?:string[];canonicalProgressAgeHours?:number|null };
+type Integrity = {
+  checkedAt?: string;
+  mathematicalIntegrity?: {
+    passed?: boolean;
+    audited?: number;
+    passedRecords?: number;
+    contractVersion?: string;
+    formulaHash?: string;
+    maxAbsoluteDelta?: number;
+    mismatches?: Array<{ ticker:string; storedEarthScore:number|null; expectedEarthScore:number|null; delta:number|null; reasons:string[] }>;
+  };
+};
 
 const doctrine = doctrineJson as typeof doctrineJson;
 const engines = enginesJson as unknown as EngineRegistry;
@@ -52,6 +65,7 @@ const calibration = calibrationJson as unknown as Calibration;
 const dependencies = dependenciesJson as unknown as Dependencies;
 const allocation = allocationJson as unknown as Allocation;
 const learning = learningJson as unknown as Learning;
+const integrity = integrityJson as unknown as Integrity;
 const pct = (v:number) => `${Math.round(v*100)}%`;
 
 export default function LedgerPage() {
@@ -75,6 +89,7 @@ export default function LedgerPage() {
         <Stat label="CHIEF READY" value={chiefReady} detail="ZERO-DEFECT PATH" />
         <Stat label="ASSISTS" value={assist.active} detail={`${assist.queued ?? 0} QUEUED · ${assist.dormant} DORMANT`} />
         <Stat label="CALIBRATION" value={`${calibration.canonicalRecordsPassingContract}/${calibration.canonicalRecordsAudited}`} detail="CANONICAL AUDIT" />
+        <Stat label="SCORE CONTRACT" value={integrity.mathematicalIntegrity?.passed ? "PASS" : integrity.mathematicalIntegrity ? "LOCKED" : "PENDING"} detail={integrity.mathematicalIntegrity ? `${integrity.mathematicalIntegrity.passedRecords ?? 0}/${integrity.mathematicalIntegrity.audited ?? 0} REPRODUCIBLE` : "NEXT BEAST AUDIT"} />
         <Stat label="DEPENDENCIES" value={dependencies.healthy ? "CLEAR" : "ATTENTION"} detail={`${dependencies.roleCycles.length} CYCLES · ${dependencies.deadlocks.length} DEADLOCKS`} />
       </StatRail>
 
@@ -100,6 +115,31 @@ export default function LedgerPage() {
           </div>
         </Deck>
       </section>
+
+      <Deck>
+        <DeckHeader
+          eyebrow={integrity.mathematicalIntegrity?.contractVersion ?? "EARTH SCORE CONTRACT"}
+          title="DETERMINISTIC SCORE CONTRACT"
+          action={<Bubble active={integrity.mathematicalIntegrity?.passed === true}>{integrity.mathematicalIntegrity?.passed ? "PASS" : integrity.mathematicalIntegrity ? "LOCKED" : "PENDING"}</Bubble>}
+        />
+        <div className="readoutList">
+          <div><span>REPRODUCIBLE RECORDS</span><b>{integrity.mathematicalIntegrity ? `${integrity.mathematicalIntegrity.passedRecords ?? 0}/${integrity.mathematicalIntegrity.audited ?? 0}` : "NEXT AUDIT"}</b></div>
+          <div><span>MAX SCORE DELTA</span><b>{integrity.mathematicalIntegrity?.maxAbsoluteDelta == null ? "—" : Number(integrity.mathematicalIntegrity.maxAbsoluteDelta).toFixed(3)}</b></div>
+          <div><span>FORMULA HASH</span><b>{integrity.mathematicalIntegrity?.formulaHash ? integrity.mathematicalIntegrity.formulaHash.slice(0,16).toUpperCase() : "—"}</b></div>
+          <div><span>POLICY</span><b>WORKERS SUPPLY EVIDENCE · CORE COMPUTES SCORE</b></div>
+        </div>
+        {(integrity.mathematicalIntegrity?.mismatches?.length ?? 0) > 0 && (
+          <div className="ledgerMiniList">
+            {integrity.mathematicalIntegrity?.mismatches?.slice(0,8).map((row) => (
+              <div key={row.ticker}>
+                <b>{row.ticker}</b>
+                <span>{row.storedEarthScore ?? "—"} → {row.expectedEarthScore ?? "—"}</span>
+                <small>{row.reasons.join(" · ").replaceAll("_"," ")}</small>
+              </div>
+            ))}
+          </div>
+        )}
+      </Deck>
 
       <Deck>
         <DeckHeader eyebrow={coreEngines.length} title="EARTH CORE" action={<Bubble active>CANONICAL AUTHORITY</Bubble>} />

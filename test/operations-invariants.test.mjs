@@ -131,6 +131,23 @@ test("Methodology 1.0 has one machine-readable authority and shadow systems cann
   assert.equal(promote.includes("calibration-engine"), false);
 });
 
+test("canonical score math is deterministic, independently audited and causal proof does not borrow score authority", async () => {
+  const gates = await source("scripts/lib/runtime-gates.mjs");
+  const loader = await source("scripts/lib/baseline-evidence-loader.mjs");
+  const promote = await source("scripts/promote-chief-ready.mjs");
+  const beast = await source("engine/beast-integrity.mjs");
+
+  assert.ok(gates.includes("calculateCanonicalEarthScoreBreakdown"));
+  assert.ok(gates.includes("SCORE_FORMULA_HASH"));
+  assert.ok(loader.includes("normalizeCanonicalScoreRecord"));
+  assert.ok(promote.includes("calculateCanonicalEarthScoreBreakdown"));
+  assert.ok(promote.includes("sourceAuthoredEarthScore"));
+  assert.equal(promote.includes("scoreRecord?.components?.bottleneckControl"), false);
+  assert.ok(beast.includes("score_math_mismatch"));
+  assert.ok(beast.includes("score_formula_hash_mismatch"));
+  assert.ok(beast.includes("mathematicalIntegrity"));
+});
+
 test("Earth doctrine protects agency, evidence, improvement and anti-pay-to-rank", async () => {
   const doctrine = JSON.parse(await source("config/earth-doctrine.json"));
   assert.equal(doctrine.status, "constitutional");

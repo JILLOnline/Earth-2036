@@ -11,6 +11,7 @@ import {
   applyCorrection,
 } from '../engine/evidence-fusion.mjs';
 import { auditScoreRecord, auditSourceMesh, auditSystem } from '../engine/beast-integrity.mjs';
+import { calculateCanonicalEarthScoreBreakdown, SCORE_CONTRACT_VERSION, SCORE_FORMULA_HASH } from '../scripts/lib/runtime-gates.mjs';
 
 const NOW = '2026-09-13T04:00:00Z';
 const base = {
@@ -36,9 +37,17 @@ test('external-only evidence cannot qualify a decision bundle',()=>{ const rows=
 test('independent-origin minimum blocks citation volume theater',()=>{ const rows=[primary('sec',{originId:'same'}),vendor('vendor-a','same'),vendor('vendor-b','same')]; const result=assessEvidenceBundle(rows,{now:NOW,minIndependentOrigins:2}); assert.equal(result.passed,false); assert.ok(result.reasons.includes('insufficient_independent_origins')); });
 test('single vendor stays below 49 when diversified evidence dominates',()=>{ const rows=[primary('sec1',{magnitude:1}),primary('sec2',{magnitude:1}),primary('doe',{magnitude:1}),vendor('vendor-a','a',{magnitude:.5}),vendor('vendor-b','b',{magnitude:.5})]; const result=assessProviderDependency(rows,new Date(NOW)); assert.equal(result.passed,true); assert.ok(result.maxExternalProviderShare<=.49); });
 
+const goodComponents = {
+  thesisQuality:70, financialOperatingMomentum:70, marketValuationOpportunity:70, catalystScore:70,
+  governancePower:70, alignment2036:70, crossDivisionLeverage:70, bottleneckControl:70,
+  scenarioRobustness:70, substitutionResilience:70, supplyChainResilience:70, pricingPower:70,
+};
+const goodBreakdown = calculateCanonicalEarthScoreBreakdown({ ...goodComponents, dataConfidence:90, risk:20 });
 const goodGraph = { nodes:[{id:'company:TEST'}], edges:[{from:'company:TEST',to:'market:x',strength:80,confidence:80,sourceIds:['s1']}], structuralSignals:[{subjectNodeId:'market:x',affectedNodeIds:['company:TEST'],sourceIds:['s1'],falsifier:'Demand reverses materially.'}] };
 const goodScore = {
-  ticker:'TEST', updatedAt:'2026-09-13T03:00:00Z', causalMapped:true, evidenceTier:'Iron',
+  ticker:'TEST', updatedAt:'2026-09-13T03:00:00Z', methodologyVersion:'1.0.0', causalMapped:true, evidenceTier:'Iron',
+  earthScore:goodBreakdown.earthScore, risk:20, dataConfidence:90, components:goodComponents,
+  scoreBreakdown:goodBreakdown, scoreContract:{version:SCORE_CONTRACT_VERSION,formulaHash:SCORE_FORMULA_HASH},
   primarySourceUrls:['https://www.sec.gov/Archives/test'], independentSourceUrls:['https://www.reuters.com/test'],
   factorEvidence:{ thesisQuality:{ a:{value:80,sourceIds:['s1'],note:'supported'} } },
   riskEvidence:{ risk:{value:20,sourceIds:['s1'],note:'supported'} },
@@ -49,6 +58,7 @@ test('causalMapped boolean cannot bypass missing graph proof',()=>{ const r=audi
 test('causal edge without source ids fails provenance',()=>{ const graph={nodes:[{id:'company:TEST'}],edges:[{from:'company:TEST',to:'market:x',strength:80,confidence:80,sourceIds:[]}]}; const r=auditScoreRecord(goodScore,graph,{now:NOW}); assert.equal(r.passed,false); assert.ok(r.reasons.includes('causal_edges_without_provenance')); });
 test('factor leaf without source ids fails provenance',()=>{ const bad={...goodScore,factorEvidence:{thesisQuality:{a:{value:80,sourceIds:[],note:'x'}}}}; const r=auditScoreRecord(bad,goodGraph,{now:NOW}); assert.equal(r.passed,false); assert.ok(r.reasons.includes('incomplete_factor_provenance')); });
 test('well-sourced record with graph proof passes integrity',()=>{ const r=auditScoreRecord(goodScore,goodGraph,{now:NOW}); assert.equal(r.passed,true); assert.ok(r.sovereignShare>=.51); });
+test('score contract mismatch fails closed even when provenance is valid',()=>{ const bad={...goodScore,earthScore:goodScore.earthScore+5}; const r=auditScoreRecord(bad,goodGraph,{now:NOW}); assert.equal(r.passed,false); assert.ok(r.reasons.includes('score_math_mismatch')); });
 test('stale required machine source fails source mesh',()=>{ const health={sources:[{id:'sec',requiredForTick:true,status:'healthy',coverage:1,cadence:'hourly',authority:'primary',lastSuccess:'2026-09-12T20:00:00Z'}]}; const r=auditSourceMesh(health,null,{now:NOW}); assert.equal(r.passed,false); });
 test('fresh required machine source passes source mesh',()=>{ const health={sources:[{id:'sec',requiredForTick:true,status:'healthy',coverage:1,cadence:'hourly',authority:'primary',lastSuccess:'2026-09-13T03:55:00Z'}]}; const r=auditSourceMesh(health,{coverageRatio:1,sources:[{id:'fda',requiredForCoverage:true,status:'healthy'}]},{now:NOW}); assert.equal(r.passed,true); });
 test('system audit combines score proof and source mesh',()=>{ const health={sources:[{id:'sec',requiredForTick:true,status:'healthy',coverage:1,cadence:'hourly',authority:'primary',lastSuccess:'2026-09-13T03:55:00Z'}]}; const r=auditSystem({scoreState:{candidates:{TEST:goodScore}},graph:goodGraph,sourceHealth:health,automatedSourceHealth:null,evidenceQueue:{unresolved:0}},{now:NOW}); assert.equal(r.passed,true); assert.equal(r.scoreRecordsPassed,1); });

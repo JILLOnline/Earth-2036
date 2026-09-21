@@ -1,4 +1,73 @@
+import { createHash } from "node:crypto";
+import { createRequire } from "node:module";
 import { assessEvidenceBundle, sourceHealthScore, CONTROL_DOMAIN } from './evidence-fusion.mjs';
+
+const require = createRequire(import.meta.url);
+const METHODOLOGY = require("../config/methodology-1.0.json");
+const SCORE_CONTRACT_VERSION = "earth-score-contract-v1";
+const SCORE_FORMULA_HASH = createHash("sha256").update(JSON.stringify({
+  methodologyVersion: METHODOLOGY.version,
+  scoreWeights: METHODOLOGY.scoreWeights,
+  riskPenaltyWeight: METHODOLOGY.riskPenaltyWeight,
+  confidenceFloorMultiplier: METHODOLOGY.confidenceFloorMultiplier,
+})).digest("hex");
+
+function clamp100(value) {
+  if (!Number.isFinite(Number(value))) return null;
+  return Math.max(0, Math.min(100, Number(value)));
+}
+function round1(value) {
+  return Math.round(value * 10) / 10;
+}
+
+export function auditScoreMath(record, tolerance = 0.051) {
+  const reasons = [];
+  if (record?.methodologyVersion !== METHODOLOGY.version) reasons.push("score_methodology_mismatch");
+  const missing = METHODOLOGY.requiredScoreComponents.filter((key) => clamp100(record?.components?.[key]) === null);
+  if (missing.length) reasons.push(...missing.map((key) => `score_missing_component:${key}`));
+  const risk = clamp100(record?.risk);
+  const dataConfidence = clamp100(record?.dataConfidence);
+  if (risk === null) reasons.push("score_missing_risk");
+  if (dataConfidence === null) reasons.push("score_missing_data_confidence");
+
+  let expectedEarthScore = null;
+  let rawWeightedScore = null;
+  let confidenceMultiplier = null;
+  let riskPenalty = null;
+  if (reasons.length === 0) {
+    rawWeightedScore = METHODOLOGY.requiredScoreComponents.reduce(
+      (sum, key) => sum + clamp100(record.components[key]) * Number(METHODOLOGY.scoreWeights[key] || 0),
+      0,
+    );
+    confidenceMultiplier =
+      METHODOLOGY.confidenceFloorMultiplier +
+      (1 - METHODOLOGY.confidenceFloorMultiplier) * (dataConfidence / 100);
+    riskPenalty = risk * METHODOLOGY.riskPenaltyWeight;
+    expectedEarthScore = round1(Math.max(0, Math.min(100, rawWeightedScore * confidenceMultiplier - riskPenalty)));
+  }
+
+  const storedEarthScore = Number(record?.earthScore);
+  const delta = expectedEarthScore !== null && Number.isFinite(storedEarthScore)
+    ? storedEarthScore - expectedEarthScore
+    : null;
+  if (!Number.isFinite(storedEarthScore)) reasons.push("score_missing_earth_score");
+  else if (expectedEarthScore !== null && Math.abs(delta) > tolerance) reasons.push("score_math_mismatch");
+  if (record?.scoreContract?.version !== SCORE_CONTRACT_VERSION) reasons.push("score_contract_version_mismatch");
+  if (record?.scoreContract?.formulaHash !== SCORE_FORMULA_HASH) reasons.push("score_formula_hash_mismatch");
+
+  return {
+    passed: reasons.length === 0,
+    reasons: [...new Set(reasons)],
+    contractVersion: SCORE_CONTRACT_VERSION,
+    formulaHash: SCORE_FORMULA_HASH,
+    storedEarthScore: Number.isFinite(storedEarthScore) ? storedEarthScore : null,
+    expectedEarthScore,
+    delta: delta === null ? null : Math.round(delta * 1000) / 1000,
+    rawWeightedScore: rawWeightedScore === null ? null : round1(rawWeightedScore),
+    confidenceMultiplier: confidenceMultiplier === null ? null : Math.round(confidenceMultiplier * 1000) / 1000,
+    riskPenalty: riskPenalty === null ? null : round1(riskPenalty),
+  };
+}
 
 const isFiniteNumber = (value) => Number.isFinite(Number(value));
 
@@ -65,6 +134,8 @@ export function auditScoreRecord(record, graph, options = {}) {
   const reasons = [];
   if (!ticker) reasons.push('missing_ticker');
   if (!Array.isArray(record?.primarySourceUrls) || record.primarySourceUrls.length === 0) reasons.push('missing_primary_sources');
+  const scoreMath = auditScoreMath(record || {});
+  if (!scoreMath.passed) reasons.push(...scoreMath.reasons);
 
   const leaves = evidenceLeaves(record || {});
   const invalidLeaves = leaves.filter((leaf) => !isFiniteNumber(leaf.value) || !Array.isArray(leaf.sourceIds) || leaf.sourceIds.length === 0 || !String(leaf.note || '').trim());
@@ -106,6 +177,8 @@ export function auditScoreRecord(record, graph, options = {}) {
     independentOrigins: sovereignty.independentOrigins,
     structuralSignals: structuralSignals.length,
     invalidStructuralSignals: invalidSignals.length,
+    scoreMathPassed: scoreMath.passed,
+    scoreMath,
   };
 }
 
@@ -150,6 +223,7 @@ export function auditSystem({ scoreState, graph, sourceHealth, automatedSourceHe
   const unresolved = Number(evidenceQueue?.unresolved || 0);
   const reasons = [];
   if (scores.some((row) => !row.passed)) reasons.push('score_provenance_failure');
+  if (scores.some((row) => !row.scoreMathPassed)) reasons.push('score_math_failure');
   if (!sourceMesh.passed) reasons.push('source_mesh_failure');
   return {
     version: 1,
@@ -159,6 +233,23 @@ export function auditSystem({ scoreState, graph, sourceHealth, automatedSourceHe
     reasons,
     scoreRecordsAudited: scores.length,
     scoreRecordsPassed: scores.filter((row) => row.passed).length,
+    mathematicalIntegrity: {
+      passed: scores.every((row) => row.scoreMathPassed),
+      audited: scores.length,
+      passedRecords: scores.filter((row) => row.scoreMathPassed).length,
+      contractVersion: SCORE_CONTRACT_VERSION,
+      formulaHash: SCORE_FORMULA_HASH,
+      maxAbsoluteDelta: Math.max(0, ...scores.map((row) => Math.abs(Number(row?.scoreMath?.delta || 0)))),
+      mismatches: scores
+        .filter((row) => !row.scoreMathPassed)
+        .map((row) => ({
+          ticker: row.ticker,
+          storedEarthScore: row.scoreMath?.storedEarthScore ?? null,
+          expectedEarthScore: row.scoreMath?.expectedEarthScore ?? null,
+          delta: row.scoreMath?.delta ?? null,
+          reasons: row.scoreMath?.reasons || [],
+        })),
+    },
     unresolvedEvidence: unresolved,
     scores,
     sourceMesh,

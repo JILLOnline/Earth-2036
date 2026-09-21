@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "WTS",
   "workId": "t0:WTS",
-  "generatedAt": "2026-09-21T23:23:33.296Z",
+  "generatedAt": "2026-09-21T23:25:23.349Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-01T00:00:00.000Z",
-    "end": "2026-09-21T22:02:46.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T22:02:46.000Z"
+    "end": "2026-09-21T23:24:30.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T23:24:30.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,45 +32,67 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/WTS-20260921T220246Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/WTS-20260921T220246Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/WTS-20260921T232430Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "alignment2036",
       "scenarioRobustness",
-      "supplyChainResilience"
+      "supplyChainResilience",
+      "bottleneckControl",
+      "substitutionResilience",
+      "crossDivisionLeverage",
+      "thesisQuality",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "crossDivisionLeverage"
+      ],
       "discovery-weak-signals": [
         "alignment2036",
         "scenarioRobustness",
         "supplyChainResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "governancePower",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "expectations-execution": [
         "alignment2036",
         "scenarioRobustness"
@@ -117,7 +139,12 @@
   "factors": [
     "alignment2036",
     "scenarioRobustness",
-    "supplyChainResilience"
+    "supplyChainResilience",
+    "bottleneckControl",
+    "substitutionResilience",
+    "crossDivisionLeverage",
+    "thesisQuality",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -128,6 +155,26 @@
       },
       {
         "risk": "The source does not quantify the exact goal baselines or economic impact, limiting underwriting reuse.",
+        "gating": false
+      },
+      {
+        "risk": "Code-driven demand is not exclusive to Watts; qualified competitors can substitute, so regulation supports category durability more strongly than monopoly-like bottleneck control.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition-led breadth adds integration and capital-allocation dependencies even when it improves end-market diversification.",
+        "gating": false
+      },
+      {
+        "risk": "Tariffs can raise input costs and pricing responses may not fully preserve volume or margin.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition-led growth can create goodwill/intangible and integration risk if acquired economics underperform.",
+        "gating": false
+      },
+      {
+        "risk": "Regulated products remain competitively substitutable by other compliant manufacturers; confidence should not be inflated from code exposure alone.",
         "gating": false
       }
     ]
@@ -140,6 +187,26 @@
     {
       "risk": "The source does not quantify the exact goal baselines or economic impact, limiting underwriting reuse.",
       "gating": false
+    },
+    {
+      "risk": "Code-driven demand is not exclusive to Watts; qualified competitors can substitute, so regulation supports category durability more strongly than monopoly-like bottleneck control.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition-led breadth adds integration and capital-allocation dependencies even when it improves end-market diversification.",
+      "gating": false
+    },
+    {
+      "risk": "Tariffs can raise input costs and pricing responses may not fully preserve volume or margin.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition-led growth can create goodwill/intangible and integration risk if acquired economics underperform.",
+      "gating": false
+    },
+    {
+      "risk": "Regulated products remain competitively substitutable by other compliant manufacturers; confidence should not be inflated from code exposure alone.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -150,20 +217,94 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "water safety/conservation and building-code requirements",
+        "to": "demand for compliant flow-control and water-quality equipment",
+        "relation": "reinforces"
+      },
+      {
+        "from": "testing/manufacturing capability for code-compliant products",
+        "to": "qualification and substitution friction",
+        "relation": "supports"
+      },
+      {
+        "from": "repair/replacement plus institutional/industrial/data-center activity",
+        "to": "multi-end-market demand resilience",
+        "relation": "diversifies"
+      },
+      {
+        "from": "tariffs, construction weakness and channel conditions",
+        "to": "volume/margin resilience",
+        "relation": "constrains"
+      },
+      {
+        "from": "wholesale-distributor dependence",
+        "to": "route-to-market concentration risk",
+        "relation": "increases"
+      },
+      {
+        "from": "tariffs and weak construction/geographic demand",
+        "to": "margin and volume pressure",
+        "relation": "can_reduce"
+      },
+      {
+        "from": "acquisition spending",
+        "to": "portfolio breadth and integration risk",
+        "relation": "creates_tradeoff"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "water safety/conservation and building-code requirements",
+      "to": "demand for compliant flow-control and water-quality equipment",
+      "relation": "reinforces"
+    },
+    {
+      "from": "testing/manufacturing capability for code-compliant products",
+      "to": "qualification and substitution friction",
+      "relation": "supports"
+    },
+    {
+      "from": "repair/replacement plus institutional/industrial/data-center activity",
+      "to": "multi-end-market demand resilience",
+      "relation": "diversifies"
+    },
+    {
+      "from": "tariffs, construction weakness and channel conditions",
+      "to": "volume/margin resilience",
+      "relation": "constrains"
+    },
+    {
+      "from": "wholesale-distributor dependence",
+      "to": "route-to-market concentration risk",
+      "relation": "increases"
+    },
+    {
+      "from": "tariffs and weak construction/geographic demand",
+      "to": "margin and volume pressure",
+      "relation": "can_reduce"
+    },
+    {
+      "from": "acquisition spending",
+      "to": "portfolio breadth and integration risk",
+      "relation": "creates_tradeoff"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:WTS:greenest-2026:water-energy-resilience"
+      "issuer:WTS:greenest-2026:water-energy-resilience",
+      "sec.gov|WTS|2025-10K|795403",
+      "sec.gov|WTS|2026Q2-10Q|795403"
     ]
   },
   "sources": [
@@ -174,6 +315,22 @@
       "primary": true,
       "publishedAt": "2026",
       "originFingerprint": "issuer:WTS:greenest-2026:water-energy-resilience"
+    },
+    {
+      "sourceId": "sec:WTS:2025-10K",
+      "url": "https://www.sec.gov/Archives/edgar/data/795403/000110465926018541/wts-20251231x10k.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02",
+      "originFingerprint": "sec.gov|WTS|2025-10K|795403"
+    },
+    {
+      "sourceId": "sec:WTS:2026Q2-10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/795403/000110465926091726/wts-20260628x10q.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "sec.gov|WTS|2026Q2-10Q|795403"
     }
   ],
   "contradictions": [],
@@ -189,11 +346,23 @@
     {
       "unknown": "Exact target definitions, measured reductions and current financial execution need primary filings/results.",
       "gating": false
+    },
+    {
+      "unknown": "Current evidence does not quantify switching costs or share by regulated product niche, limiting confidence in the strength of bottleneck control.",
+      "gating": false
+    },
+    {
+      "unknown": "Current filing evidence does not isolate organic return on recent acquisitions from portfolio-wide results.",
+      "gating": false
+    },
+    {
+      "unknown": "Distributor inventory conditions and niche-level competitive shares are not sufficiently quantified here.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
   "confidence": 74,
@@ -202,13 +371,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
-      "missing_causal_mapping"
+      "missing_data_confidence_evidence"
     ],
     "routing": [
       {
@@ -218,14 +384,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -242,10 +400,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       }
     ]
   }

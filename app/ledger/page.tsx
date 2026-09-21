@@ -12,6 +12,7 @@ import learningJson from "../../data/runtime/workgraph/learning-state.json";
 import integrityJson from "../../data/runtime/intelligence-integrity.json";
 import { runtimeTime } from "../../lib/dashboard-runtime";
 import { Bubble, Deck, DeckHeader, Screen, ScreenHeader, Stat, StatRail } from "../components/Display";
+import ProgressiveList from "../components/ProgressiveList";
 
 type EngineRegistry = {
   canonicalAuthority: string;
@@ -129,15 +130,15 @@ export default function LedgerPage() {
           <div><span>POLICY</span><b>WORKERS SUPPLY EVIDENCE · CORE COMPUTES SCORE</b></div>
         </div>
         {(integrity.mathematicalIntegrity?.mismatches?.length ?? 0) > 0 && (
-          <div className="ledgerMiniList">
-            {integrity.mathematicalIntegrity?.mismatches?.slice(0,8).map((row) => (
+          <ProgressiveList className="ledgerMiniList">
+            {integrity.mathematicalIntegrity?.mismatches?.map((row) => (
               <div key={row.ticker}>
                 <b>{row.ticker}</b>
                 <span>{row.storedEarthScore ?? "—"} → {row.expectedEarthScore ?? "—"}</span>
                 <small>{row.reasons.join(" · ").replaceAll("_"," ")}</small>
               </div>
             ))}
-          </div>
+          </ProgressiveList>
         )}
       </Deck>
 
@@ -174,11 +175,11 @@ export default function LedgerPage() {
             <div><span>CAPACITY QUEUED</span><b>{assist.queued ?? 0}</b></div>
             <div><span>DORMANT</span><b>{assist.dormant}</b></div>
           </div>
-          <div className="ledgerMiniList">
-            {assist.requests.filter((r) => r.status === "active").slice(0,8).map((request) => (
+          <ProgressiveList className="ledgerMiniList">
+            {assist.requests.filter((r) => r.status === "active").map((request) => (
               <div key={request.requestId}><b>{request.ticker}</b><span>{request.rootOwner.replaceAll("-"," ")} → {request.helperRole.replaceAll("-"," ")}</span><small>{request.capability.replaceAll("-"," ")}</small></div>
             ))}
-          </div>
+          </ProgressiveList>
         </Deck>
 
         <Deck>
@@ -189,22 +190,22 @@ export default function LedgerPage() {
             <div><span>FUTURE / LEARNING</span><b>{pct(allocation.capacityPlan.futureLearning)}</b></div>
           </div>
           <p className="ledgerNote">{allocation.capacityPlan.rule}</p>
-          <div className="ledgerMiniList">
-            {allocation.top.slice(0,8).map((row) => (
+          <ProgressiveList className="ledgerMiniList">
+            {allocation.top.map((row) => (
               <div key={row.ticker}><b>{row.ticker}</b><span>{row.state.replaceAll("_"," ")}</span><small>ATTENTION {row.priority.toFixed(1)} · {row.failures.length} OPEN GATES</small></div>
             ))}
-          </div>
+          </ProgressiveList>
         </Deck>
       </section>
 
       <section className="systemPair">
         <Deck>
           <DeckHeader eyebrow={calibration.calibrationVersion} title="CALIBRATION SHADOW" action={<Bubble active={calibration.canonicalRecordsPassingContract === calibration.canonicalRecordsAudited}>{calibration.canonicalRecordsPassingContract}/{calibration.canonicalRecordsAudited}</Bubble>} />
-          <div className="ledgerMiniList">
+          <ProgressiveList className="ledgerMiniList">
             {calibration.frontierGuidance.map((row) => (
               <div key={row.ticker}><b>{row.ticker}</b><span>FRONTIER GUIDANCE</span><small>{row.missingComponents.length} SOURCE-ADDRESSED COMPONENTS STILL REQUIRED</small></div>
             ))}
-          </div>
+          </ProgressiveList>
         </Deck>
 
         <Deck>
@@ -213,7 +214,7 @@ export default function LedgerPage() {
             <div><span>ROLE CYCLES</span><b>{dependencies.roleCycles.length}</b></div>
             <div><span>DORMANT DEADLOCKS</span><b>{dependencies.deadlocks.length}</b></div>
           </div>
-          {dependencies.deadlocks.length > 0 && <div className="ledgerMiniList">{dependencies.deadlocks.slice(0,6).map((item) => <div key={item.requestId}><b>{item.ticker}</b><span>{item.reason.replaceAll("_"," ")}</span><small>{item.unlockCondition}</small></div>)}</div>}
+          {dependencies.deadlocks.length > 0 && <ProgressiveList className="ledgerMiniList">{dependencies.deadlocks.map((item) => <div key={item.requestId}><b>{item.ticker}</b><span>{item.reason.replaceAll("_"," ")}</span><small>{item.unlockCondition}</small></div>)}</ProgressiveList>}
         </Deck>
       </section>
 

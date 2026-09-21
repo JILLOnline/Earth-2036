@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SO",
   "workId": "t0:SO",
-  "generatedAt": "2026-09-21T17:36:18.180Z",
+  "generatedAt": "2026-09-21T18:10:25.772Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-21T16:51:50.432Z"
   },
   "evidenceWindow": {
-    "start": "2026-09-21T14:04:43.000Z",
-    "end": "2026-09-21T17:02:37.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T17:02:37.000Z"
+    "start": "2026-07-23T00:00:00.000Z",
+    "end": "2026-09-21T18:07:58.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T18:07:58.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -30,28 +30,34 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/SO-20260921T140443Z-earth-scout.json",
     "data/runtime/workgraph/evidence/SO-20260921T150611Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/SO-20260921T170237Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/SO-20260921T180758Z-earth-scout.json"
   ],
   "evidenceResolution": {
-    "supersededPaths": [],
+    "supersededPaths": [
+      "data/runtime/workgraph/evidence/SO-20260921T170237Z-earth-scout.json"
+    ],
     "resolvedGateKinds": [],
     "activeEvidenceCount": 6,
-    "historicalEvidenceCount": 6
+    "historicalEvidenceCount": 8
   },
   "factorEvidence": {
     "names": [
@@ -61,16 +67,28 @@
       "regulated utility investment and customer growth",
       "AI/data-center load can create durable demand if cost-allocation agreements protect existing customers",
       "flexible-load contracts may improve grid utilization",
-      "large-load AI demand can support durable rate-base growth when customer-specific cost allocation is enforceable",
-      "flexible-load agreements can improve grid utilization"
+      "financialOperatingMomentum",
+      "catalystScore",
+      "alignment2036",
+      "scenarioRobustness",
+      "crossDivisionLeverage"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "financialOperatingMomentum",
+        "catalystScore",
+        "alignment2036",
+        "scenarioRobustness"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "scenarioRobustness",
+        "alignment2036",
+        "crossDivisionLeverage"
+      ]
     }
   },
   "scoreRecord": null,
@@ -117,8 +135,11 @@
     "regulated utility investment and customer growth",
     "AI/data-center load can create durable demand if cost-allocation agreements protect existing customers",
     "flexible-load contracts may improve grid utilization",
-    "large-load AI demand can support durable rate-base growth when customer-specific cost allocation is enforceable",
-    "flexible-load agreements can improve grid utilization"
+    "financialOperatingMomentum",
+    "catalystScore",
+    "alignment2036",
+    "scenarioRobustness",
+    "crossDivisionLeverage"
   ],
   "riskEvidence": {
     "present": true,
@@ -131,10 +152,14 @@
       "large-load buildout remains capital intensive and subject to regulatory/customer-affordability execution",
       "earnings growth materially outpaced revenue growth, so durability depends on rate recovery, investment returns and non-revenue drivers",
       "large-load buildout remains capital intensive and subject to regulatory/customer-affordability execution",
-      "earnings growth materially outpaced revenue growth, requiring careful decomposition by Alpha",
-      "large-load infrastructure is capital intensive and regulatory/customer-affordability sensitive",
-      "earnings growth materially outpaced revenue growth, requiring careful decomposition by Alpha",
-      "large-load infrastructure is capital intensive and regulatory/customer-affordability sensitive"
+      {
+        "risk": "Large-load infrastructure is capital intensive and regulatory/customer-affordability sensitive.",
+        "gating": false
+      },
+      {
+        "risk": "Project-specific capex, allowed returns and downside protections are not established by cumulative Scout evidence.",
+        "gating": false
+      }
     ]
   },
   "risks": [
@@ -146,10 +171,14 @@
     "large-load buildout remains capital intensive and subject to regulatory/customer-affordability execution",
     "earnings growth materially outpaced revenue growth, so durability depends on rate recovery, investment returns and non-revenue drivers",
     "large-load buildout remains capital intensive and subject to regulatory/customer-affordability execution",
-    "earnings growth materially outpaced revenue growth, requiring careful decomposition by Alpha",
-    "large-load infrastructure is capital intensive and regulatory/customer-affordability sensitive",
-    "earnings growth materially outpaced revenue growth, requiring careful decomposition by Alpha",
-    "large-load infrastructure is capital intensive and regulatory/customer-affordability sensitive"
+    {
+      "risk": "Large-load infrastructure is capital intensive and regulatory/customer-affordability sensitive.",
+      "gating": false
+    },
+    {
+      "risk": "Project-specific capex, allowed returns and downside protections are not established by cumulative Scout evidence.",
+      "gating": false
+    }
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -158,8 +187,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 2
   },
   "causalMapping": {
     "present": false,
@@ -167,26 +196,58 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 3,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 1,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "southerncompany.com|financials|q2-2026-earnings|2026-08",
+      "southerncompany.com|ratepayer-protection|2026-07-23"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "issuer:SO:2026Q2",
+      "url": "https://www.southerncompany.com/newsroom/financials/southern-company-reports-second-quarter-2026-earnings.html",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-01",
+      "originFingerprint": "southerncompany.com|financials|q2-2026-earnings|2026-08"
+    },
+    {
+      "sourceId": "issuer:SO:ratepayer-protection",
+      "url": "https://www.southerncompany.com/newsroom/business-leadership/southern-company-joins-president-trumps-ratepayer-protection-pledge-reinforcing-customer-first-approach-to-powering-growth.html",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-23",
+      "originFingerprint": "southerncompany.com|ratepayer-protection|2026-07-23"
+    }
+  ],
   "contradictions": [
     "Historic load-growth narrative coexists with nearly flat Q2 operating revenue year over year; demand thesis should not be inferred from revenue alone.",
     "Historic load-growth narrative coexists with nearly flat Q2 operating revenue year over year; demand thesis should not be inferred from revenue alone.",
-    "Strong earnings growth and load-growth narrative coexist with nearly flat reported quarterly revenue; demand should not be inferred from revenue alone.",
-    "Strong earnings growth and load-growth narrative coexist with nearly flat reported quarterly revenue; demand should not be inferred from revenue alone."
+    {
+      "contradiction": "Strong earnings growth and load-growth narrative coexist with nearly flat reported quarterly revenue.",
+      "material": true
+    },
+    {
+      "contradiction": "Demand-growth narrative is stronger than contemporaneous reported revenue growth.",
+      "material": true
+    }
   ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 4,
     "items": [
       "Historic load-growth narrative coexists with nearly flat Q2 operating revenue year over year; demand thesis should not be inferred from revenue alone.",
       "Historic load-growth narrative coexists with nearly flat Q2 operating revenue year over year; demand thesis should not be inferred from revenue alone.",
-      "Strong earnings growth and load-growth narrative coexist with nearly flat reported quarterly revenue; demand should not be inferred from revenue alone.",
-      "Strong earnings growth and load-growth narrative coexist with nearly flat reported quarterly revenue; demand should not be inferred from revenue alone."
+      {
+        "contradiction": "Strong earnings growth and load-growth narrative coexist with nearly flat reported quarterly revenue.",
+        "material": true
+      },
+      {
+        "contradiction": "Demand-growth narrative is stronger than contemporaneous reported revenue growth.",
+        "material": true
+      }
     ]
   },
   "unknowns": [
@@ -198,27 +259,28 @@
     "incremental capex and allowed-return economics tied specifically to large-load customers",
     "portion of forward load growth contractually committed versus prospective",
     "incremental capex and allowed-return economics tied specifically to large-load customers",
-    "share of forward large-load growth contractually committed versus prospective",
-    "project-specific capex, allowed returns and downside protections for large-load customers",
-    "share of forward large-load growth contractually committed versus prospective",
-    "project-specific capex, allowed returns and downside protections for large-load customers"
+    {
+      "unknown": "Share of forward large-load growth contractually committed versus prospective remains unknown.",
+      "gating": false
+    },
+    {
+      "unknown": "Project-specific economics and enforceability of protections require underwriting.",
+      "gating": false
+    }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 12
+    "nonGatingCount": 10
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 82,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -240,20 +302,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",

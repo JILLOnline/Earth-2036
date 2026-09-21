@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "STLD",
   "workId": "t0:STLD",
-  "generatedAt": "2026-09-21T17:36:18.182Z",
+  "generatedAt": "2026-09-21T18:10:25.774Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-21T16:51:50.432Z"
   },
   "evidenceWindow": {
-    "start": "2026-09-21T14:04:43.000Z",
-    "end": "2026-09-21T17:02:37.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T17:02:37.000Z"
+    "start": "2026-07-20T00:00:00.000Z",
+    "end": "2026-09-21T18:07:58.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-21T18:07:58.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -30,28 +30,34 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/STLD-20260921T140443Z-earth-scout.json",
     "data/runtime/workgraph/evidence/STLD-20260921T150611Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/STLD-20260921T170237Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/STLD-20260921T180758Z-earth-scout.json"
   ],
   "evidenceResolution": {
-    "supersededPaths": [],
+    "supersededPaths": [
+      "data/runtime/workgraph/evidence/STLD-20260921T170237Z-earth-scout.json"
+    ],
     "resolvedGateKinds": [],
     "activeEvidenceCount": 6,
-    "historicalEvidenceCount": 6
+    "historicalEvidenceCount": 8
   },
   "factorEvidence": {
     "names": [
@@ -62,17 +68,29 @@
       "large and extended fabrication backlog",
       "data-center/manufacturing construction demand",
       "vertical exposure to steel, recycling and fabrication can capture multiple points in the value chain",
-      "record steel shipments and expanded metal spread",
-      "large fabrication backlog across construction/data-center/manufacturing end markets",
-      "independent peer evidence supports a broader U.S. steel pricing/demand cycle"
+      "financialOperatingMomentum",
+      "catalystScore",
+      "bottleneckControl",
+      "supplyChainResilience",
+      "scenarioRobustness",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        "financialOperatingMomentum",
+        "catalystScore",
+        "bottleneckControl",
+        "supplyChainResilience"
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower"
+      ]
     }
   },
   "scoreRecord": null,
@@ -120,9 +138,12 @@
     "large and extended fabrication backlog",
     "data-center/manufacturing construction demand",
     "vertical exposure to steel, recycling and fabrication can capture multiple points in the value chain",
-    "record steel shipments and expanded metal spread",
-    "large fabrication backlog across construction/data-center/manufacturing end markets",
-    "independent peer evidence supports a broader U.S. steel pricing/demand cycle"
+    "financialOperatingMomentum",
+    "catalystScore",
+    "bottleneckControl",
+    "supplyChainResilience",
+    "scenarioRobustness",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -139,12 +160,14 @@
       "higher steel input costs compressed fabrication operating income despite shipment growth",
       "construction and steel demand remain cyclical and policy-sensitive",
       "backlog quality depends on cancellation behavior and margin at conversion",
-      "higher steel input costs already compressed fabrication income despite shipment growth",
-      "steel and construction remain cyclical and policy-sensitive",
-      "peer strength does not establish STLD-specific backlog margin or cancellation quality",
-      "higher steel input costs already compressed fabrication income despite shipment growth",
-      "steel and construction remain cyclical and policy-sensitive",
-      "peer strength does not establish STLD-specific backlog margin or cancellation quality"
+      {
+        "risk": "Steel and construction remain cyclical and policy-sensitive.",
+        "gating": false
+      },
+      {
+        "risk": "Peer strength does not establish STLD-specific backlog margin or cancellation quality.",
+        "gating": false
+      }
     ]
   },
   "risks": [
@@ -160,12 +183,14 @@
     "higher steel input costs compressed fabrication operating income despite shipment growth",
     "construction and steel demand remain cyclical and policy-sensitive",
     "backlog quality depends on cancellation behavior and margin at conversion",
-    "higher steel input costs already compressed fabrication income despite shipment growth",
-    "steel and construction remain cyclical and policy-sensitive",
-    "peer strength does not establish STLD-specific backlog margin or cancellation quality",
-    "higher steel input costs already compressed fabrication income despite shipment growth",
-    "steel and construction remain cyclical and policy-sensitive",
-    "peer strength does not establish STLD-specific backlog margin or cancellation quality"
+    {
+      "risk": "Steel and construction remain cyclical and policy-sensitive.",
+      "gating": false
+    },
+    {
+      "risk": "Peer strength does not establish STLD-specific backlog margin or cancellation quality.",
+      "gating": false
+    }
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -174,8 +199,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
     "present": false,
@@ -183,30 +208,54 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "ir.steeldynamics.com|q2-2026-results|2026-07",
+      "reuters.com|nucor-q2-strong-pricing-demand|2026-07-27"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "issuer:STLD:2026Q2",
+      "url": "https://ir.steeldynamics.com/steel-dynamics-reports-second-quarter-2026-results/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-20",
+      "originFingerprint": "ir.steeldynamics.com|q2-2026-results|2026-07"
+    },
+    {
+      "sourceId": "reuters:steel:20260727",
+      "url": "https://www.reuters.com/business/nucor-beats-quarterly-results-strong-pricing-demand-2026-07-27/",
+      "kind": "independent",
+      "primary": false,
+      "publishedAt": "2026-07-27",
+      "originFingerprint": "reuters.com|nucor-q2-strong-pricing-demand|2026-07-27"
+    }
+  ],
   "contradictions": [
     "Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.",
     "Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.",
     "Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.",
     "Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.",
-    "Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs.",
-    "Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs."
+    {
+      "contradiction": "Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs.",
+      "material": true
+    }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 6,
+    "unresolvedMaterialCount": 5,
     "items": [
       "Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.",
       "Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.",
       "Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.",
       "Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.",
-      "Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs.",
-      "Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs."
+      {
+        "contradiction": "Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs.",
+        "material": true
+      }
     ]
   },
   "unknowns": [
@@ -220,29 +269,28 @@
     "share of backlog attributable specifically to data centers versus other end markets",
     "margin embedded in the expanded backlog",
     "share of backlog attributable specifically to data centers versus other end markets",
-    "margin embedded in STLD's expanded fabrication backlog",
-    "share of backlog attributable specifically to data centers",
-    "durability of policy-supported steel pricing through a weaker macro cycle",
-    "margin embedded in STLD's expanded fabrication backlog",
-    "share of backlog attributable specifically to data centers",
-    "durability of policy-supported steel pricing through a weaker macro cycle"
+    {
+      "unknown": "Margin embedded in STLD's expanded fabrication backlog remains unknown.",
+      "gating": false
+    },
+    {
+      "unknown": "Share of backlog attributable specifically to data centers and its margin profile remain unknown.",
+      "gating": false
+    }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 16
+    "nonGatingCount": 12
   },
   "gatingIssues": [],
-  "confidence": null,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -264,20 +312,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",

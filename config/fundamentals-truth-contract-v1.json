@@ -11,7 +11,9 @@
     "bulkScalePath": "https://www.sec.gov/Archives/edgar/daily-index/xbrl/companyfacts.zip",
     "authenticationRequired": false,
     "sourceClass": "primary-regulatory",
-    "customTaxonomyPolicy": "Company Facts exposes standard taxonomy facts only. Extension-only disclosures remain absent/unknown rather than inferred."
+    "customTaxonomyPolicy": "Company Facts exposes standard taxonomy facts only. Extension-only disclosures remain absent/unknown rather than inferred.",
+    "aggregationScope": "SEC XBRL APIs aggregate non-custom standard-taxonomy facts that apply to the entire filing entity.",
+    "absencePolicy": "A fact missing from Company Facts means not observed in this source. It does not prove the economic fact is zero, absent from the filing, or undisclosed; custom-extension and dimensional/segment facts can be outside API scope."
   },
   "pointInTime": {
     "required": true,
@@ -19,7 +21,8 @@
     "rule": "A fact is eligible only when its SEC filed date is available by the requested asOf cutoff.",
     "preserveAllEligibleVersions": true,
     "sameDayPolicy": "conservative-end-of-UTC-day",
-    "note": "Company Facts exposes filing date rather than precise acceptance timestamp for each fact; eligibility is delayed until UTC filing-date end to avoid same-day leakage."
+    "note": "Company Facts exposes filing date rather than precise acceptance timestamp for each fact; eligibility is delayed until UTC filing-date end to avoid same-day leakage.",
+    "sameDayVersionPolicy": "If multiple competing versions share the same SEC filed date, keep all latest-date versions jointly current; do not infer intraday supersession from accession ordering."
   },
   "rawTruth": {
     "learnerAuthority": "allEligibleStandardFacts",

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "PNR",
   "workId": "t0:PNR",
-  "generatedAt": "2026-09-22T09:19:15.892Z",
+  "generatedAt": "2026-09-22T09:27:55.778Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-28T00:00:00.000Z",
-    "end": "2026-09-21T09:07:18.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T09:07:18.000Z"
+    "end": "2026-09-22T09:26:01.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T09:26:01.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/PNR-20260921T090718Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/PNR-20260921T090718Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/PNR-20260922T092601Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -61,19 +64,40 @@
       "catalystScore",
       "financialOperatingMomentum",
       "scenarioRobustness",
-      "executionQuality"
+      "executionQuality",
+      "bottleneckControl",
+      "crossDivisionLeverage",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "governancePower",
+      "pricingPower",
+      "dataConfidence"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "alignment2036",
         "catalystScore",
         "financialOperatingMomentum",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "governancePower",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower",
+        "substitutionResilience",
+        "dataConfidence"
+      ],
       "expectations-execution": [
         "executionQuality",
         "financialOperatingMomentum",
@@ -123,7 +147,14 @@
     "catalystScore",
     "financialOperatingMomentum",
     "scenarioRobustness",
-    "executionQuality"
+    "executionQuality",
+    "bottleneckControl",
+    "crossDivisionLeverage",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "governancePower",
+    "pricingPower",
+    "dataConfidence"
   ],
   "riskEvidence": {
     "present": true,
@@ -134,6 +165,26 @@
       },
       {
         "risk": "Guidance depends on successful inventory normalization and excludes the anticipated Taco acquisition.",
+        "gating": false
+      },
+      {
+        "risk": "Successor bottleneck can shift from product breadth to integration execution, channel adoption, skilled installation and customer capex timing.",
+        "gating": false
+      },
+      {
+        "risk": "Pool/housing sensitivity reduces scenario robustness if channel normalization fails to reveal healthy end demand.",
+        "gating": false
+      },
+      {
+        "risk": "Financing and integration risk rise together because the acquisition is debt-funded while management targets deleveraging below 1.5x within two years.",
+        "gating": false
+      },
+      {
+        "risk": "Synergy/TAM language can overstate realized economics if cross-sell, purchasing efficiencies or data-center demand arrive slower than expected.",
+        "gating": false
+      },
+      {
+        "risk": "Residential/Pool channel and housing/rate sensitivity remain concentration-like end-market exposures even as Taco broadens commercial/industrial mix.",
         "gating": false
       }
     ]
@@ -146,6 +197,26 @@
     {
       "risk": "Guidance depends on successful inventory normalization and excludes the anticipated Taco acquisition.",
       "gating": false
+    },
+    {
+      "risk": "Successor bottleneck can shift from product breadth to integration execution, channel adoption, skilled installation and customer capex timing.",
+      "gating": false
+    },
+    {
+      "risk": "Pool/housing sensitivity reduces scenario robustness if channel normalization fails to reveal healthy end demand.",
+      "gating": false
+    },
+    {
+      "risk": "Financing and integration risk rise together because the acquisition is debt-funded while management targets deleveraging below 1.5x within two years.",
+      "gating": false
+    },
+    {
+      "risk": "Synergy/TAM language can overstate realized economics if cross-sell, purchasing efficiencies or data-center demand arrive slower than expected.",
+      "gating": false
+    },
+    {
+      "risk": "Residential/Pool channel and housing/rate sensitivity remain concentration-like end-market exposures even as Taco broadens commercial/industrial mix.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -156,20 +227,85 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 4
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "water scarcity / infrastructure modernization / thermal-management need",
+        "to": "water and hydronic system investment",
+        "mechanism": "need for reliable movement, treatment, circulation and heat exchange"
+      },
+      {
+        "from": "Pentair + Taco pumps/valves/controls/heat exchangers",
+        "to": "building, industrial and data-center water infrastructure",
+        "mechanism": "equipment converts water-management demand into installed system capability"
+      },
+      {
+        "from": "installed base and complementary channels",
+        "to": "aftermarket/cross-sell opportunity",
+        "mechanism": "replacement, maintenance, upgrades and broader distribution access"
+      },
+      {
+        "from": "Pool channel destocking",
+        "to": "reported sales contraction",
+        "mechanism": "distributors reduce inventory independent of final-use demand"
+      },
+      {
+        "from": "Taco acquisition debt funding",
+        "to": "higher post-close leverage",
+        "mechanism": "$1.4B term-loan capacity intended to fund acquisition/refinance Taco debt"
+      },
+      {
+        "from": "integration and synergy execution",
+        "to": "transaction accretion/deleveraging",
+        "mechanism": "expected cost synergies, cash generation and cross-sell support economics"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "water scarcity / infrastructure modernization / thermal-management need",
+      "to": "water and hydronic system investment",
+      "mechanism": "need for reliable movement, treatment, circulation and heat exchange"
+    },
+    {
+      "from": "Pentair + Taco pumps/valves/controls/heat exchangers",
+      "to": "building, industrial and data-center water infrastructure",
+      "mechanism": "equipment converts water-management demand into installed system capability"
+    },
+    {
+      "from": "installed base and complementary channels",
+      "to": "aftermarket/cross-sell opportunity",
+      "mechanism": "replacement, maintenance, upgrades and broader distribution access"
+    },
+    {
+      "from": "Pool channel destocking",
+      "to": "reported sales contraction",
+      "mechanism": "distributors reduce inventory independent of final-use demand"
+    },
+    {
+      "from": "Taco acquisition debt funding",
+      "to": "higher post-close leverage",
+      "mechanism": "$1.4B term-loan capacity intended to fund acquisition/refinance Taco debt"
+    },
+    {
+      "from": "integration and synergy execution",
+      "to": "transaction accretion/deleveraging",
+      "mechanism": "expected cost synergies, cash generation and cross-sell support economics"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "sec:PNR:20260728:Q2release"
+      "sec:PNR:20260728:Q2release",
+      "sec:PNR:20260728:10Q",
+      "pnr:20260728:taco-announcement",
+      "pnr:20260902:8k-term-loans"
     ]
   },
   "sources": [
@@ -180,20 +316,64 @@
       "primary": true,
       "publishedAt": "2026-07-28",
       "originFingerprint": "sec:PNR:20260728:Q2release"
+    },
+    {
+      "sourceId": "sec:PNR:Q2-2026",
+      "url": "https://www.sec.gov/Archives/edgar/data/77360/000007736026000045/pnr-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-28",
+      "originFingerprint": "sec:PNR:20260728:10Q"
+    },
+    {
+      "sourceId": "pnr:Taco-20260728",
+      "url": "https://investors.pentair.com/news-releases/news-release-details/pentair-acquire-taco-group-holdings-accelerating-growth-and",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-28",
+      "originFingerprint": "pnr:20260728:taco-announcement"
+    },
+    {
+      "sourceId": "pnr:8K-20260902-termloans",
+      "url": "https://investors.pentair.com/static-files/18a84a7f-c929-41f5-a115-ae7e6a60e877",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-02",
+      "originFingerprint": "pnr:20260902:8k-term-loans"
     }
   ],
   "contradictions": [
     {
       "contradiction": "Strategic water-platform expansion is occurring during a sharp reported-sales contraction driven by channel reset.",
       "material": true
+    },
+    {
+      "contradiction": "Platform expansion and strong cash generation coexist with a large Pool channel reset; this is a present operating tension, not by itself proof the structural thesis failed.",
+      "material": true,
+      "resolution": "Treat normalized sell-through and post-close Taco integration as observable falsifiers rather than assuming either rebound or failure."
+    },
+    {
+      "contradiction": "Management is increasing acquisition leverage while current reported sales are being depressed by Pool destocking.",
+      "material": true,
+      "resolution": "Primary filings show strong cash generation and explicit deleveraging intent, but the tension remains decision-useful and should be monitored rather than treated as an unresolved Beta gate."
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 3,
     "items": [
       {
         "contradiction": "Strategic water-platform expansion is occurring during a sharp reported-sales contraction driven by channel reset.",
         "material": true
+      },
+      {
+        "contradiction": "Platform expansion and strong cash generation coexist with a large Pool channel reset; this is a present operating tension, not by itself proof the structural thesis failed.",
+        "material": true,
+        "resolution": "Treat normalized sell-through and post-close Taco integration as observable falsifiers rather than assuming either rebound or failure."
+      },
+      {
+        "contradiction": "Management is increasing acquisition leverage while current reported sales are being depressed by Pool destocking.",
+        "material": true,
+        "resolution": "Primary filings show strong cash generation and explicit deleveraging intent, but the tension remains decision-useful and should be monitored rather than treated as an unresolved Beta gate."
       }
     ]
   },
@@ -205,26 +385,39 @@
     {
       "unknown": "2027 rebound magnitude after channel reset is prospective.",
       "gating": false
+    },
+    {
+      "unknown": "Post-destocking Pool sell-through trajectory and the degree to which reported contraction is temporary versus demand-led.",
+      "gating": false
+    },
+    {
+      "unknown": "Realized Taco revenue synergies and integration costs after close.",
+      "gating": false
+    },
+    {
+      "unknown": "Final borrowing cost and realized post-close leverage after permanent financing and transaction adjustments.",
+      "gating": false
+    },
+    {
+      "unknown": "Whether Taco's projected synergies and 2027 accretion are realized on schedule.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": 97,
+  "confidence": 94,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -235,14 +428,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -259,10 +444,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

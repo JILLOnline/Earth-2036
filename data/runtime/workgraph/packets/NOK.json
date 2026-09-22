@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "NOK",
   "workId": "t0:NOK",
-  "generatedAt": "2026-09-22T07:17:22.710Z",
+  "generatedAt": "2026-09-22T07:29:19.123Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-23T00:00:00.000Z",
-    "end": "2026-09-21T06:10:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T06:10:00.000Z"
+    "end": "2026-09-22T07:27:18.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T07:27:18.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/NOK-20260921T061000Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/NOK-20260921T061000Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/NOK-20260922T072718Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,19 +65,37 @@
       "crossDivisionLeverage",
       "thesisQuality",
       "financialOperatingMomentum",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "supplyChainResilience",
+      "substitutionResilience",
+      "pricingPower",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         "alignment2036",
         "bottleneckControl",
         "crossDivisionLeverage",
         "thesisQuality"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "pricingPower",
+        "governancePower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness"
@@ -124,7 +145,11 @@
     "crossDivisionLeverage",
     "thesisQuality",
     "financialOperatingMomentum",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "supplyChainResilience",
+    "substitutionResilience",
+    "pricingPower",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -136,6 +161,22 @@
       {
         "risk": "Reported operating margin was negative due to accelerated restructuring, creating a meaningful comparable-versus-reported earnings distinction.",
         "gating": false
+      },
+      {
+        "risk": "Capacity additions can arrive after demand normalizes, shifting a current shortage into utilization risk.",
+        "gating": false
+      },
+      {
+        "risk": "Restructuring creates real near-term cash costs even where comparable profitability improves.",
+        "gating": false
+      },
+      {
+        "risk": "Longer-term customer orders formed during component scarcity may expose Nokia to timing, mix or demand-normalization risk.",
+        "gating": false
+      },
+      {
+        "risk": "Manufacturing expansion intended to relieve optical bottlenecks increases execution and future utilization exposure.",
+        "gating": false
       }
     ]
   },
@@ -146,6 +187,22 @@
     },
     {
       "risk": "Reported operating margin was negative due to accelerated restructuring, creating a meaningful comparable-versus-reported earnings distinction.",
+      "gating": false
+    },
+    {
+      "risk": "Capacity additions can arrive after demand normalizes, shifting a current shortage into utilization risk.",
+      "gating": false
+    },
+    {
+      "risk": "Restructuring creates real near-term cash costs even where comparable profitability improves.",
+      "gating": false
+    },
+    {
+      "risk": "Longer-term customer orders formed during component scarcity may expose Nokia to timing, mix or demand-normalization risk.",
+      "gating": false
+    },
+    {
+      "risk": "Manufacturing expansion intended to relieve optical bottlenecks increases execution and future utilization exposure.",
       "gating": false
     }
   ],
@@ -160,14 +217,24 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "AI-compute-growth->east-west-network-traffic",
+      "network-traffic->optical-and-IP-capacity-demand",
+      "optical-component-supply->revenue-conversion-rate",
+      "manufacturing-and-packaging-expansion->future-optical-capacity"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "AI-compute-growth->east-west-network-traffic",
+    "network-traffic->optical-and-IP-capacity-demand",
+    "optical-component-supply->revenue-conversion-rate",
+    "manufacturing-and-packaging-expansion->future-optical-capacity"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:NOK:2026Q2:20260723"
@@ -186,13 +253,23 @@
   "contradictions": [
     {
       "contradiction": "Comparable operating margin improved to 9.0% while reported operating margin declined to -1.0% because restructuring accelerated; underwriting should preserve both views."
+    },
+    {
+      "contradiction": "Underlying comparable profitability improved while reported profitability was negative because restructuring was accelerated.",
+      "material": true,
+      "disposition": "reconcilable accounting/economic distinction; preserve both views rather than treat as unresolved fraud or deterioration"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "contradiction": "Comparable operating margin improved to 9.0% while reported operating margin declined to -1.0% because restructuring accelerated; underwriting should preserve both views."
+      },
+      {
+        "contradiction": "Underlying comparable profitability improved while reported profitability was negative because restructuring was accelerated.",
+        "material": true,
+        "disposition": "reconcilable accounting/economic distinction; preserve both views rather than treat as unresolved fraud or deterioration"
       }
     ]
   },
@@ -204,11 +281,19 @@
     {
       "unknown": "Restructuring benefits and cash costs need longitudinal validation.",
       "gating": false
+    },
+    {
+      "unknown": "How much current AI/cloud order growth is durable beyond the present capacity-constrained build cycle remains unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Realized margins on the current AI/cloud order wave and post-restructuring cost savings require longitudinal confirmation.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 90,
@@ -217,13 +302,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -234,14 +316,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -258,10 +332,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

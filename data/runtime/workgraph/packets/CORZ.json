@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CORZ",
   "workId": "t0:CORZ",
-  "generatedAt": "2026-09-22T07:17:22.704Z",
+  "generatedAt": "2026-09-22T07:29:19.117Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-28T00:00:00.000Z",
-    "end": "2026-09-19T11:08:32.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T11:08:32.000Z"
+    "end": "2026-09-22T07:27:18.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T07:27:18.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/CORZ-20260919T110832Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/CORZ-20260919T110832Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/CORZ-20260922T072718Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -63,12 +66,24 @@
       "bottleneckControl",
       "scenarioRobustness",
       "financialOperatingMomentum",
-      "catalystScore"
+      "catalystScore",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "pricingPower",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
@@ -76,7 +91,13 @@
         "bottleneckControl",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower",
+        "supplyChainResilience",
+        "governancePower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -129,7 +150,11 @@
     "bottleneckControl",
     "scenarioRobustness",
     "financialOperatingMomentum",
-    "catalystScore"
+    "catalystScore",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "pricingPower",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -140,6 +165,22 @@
       },
       {
         "risk": "Q2 CapEx was $797.5M and GAAP net loss was $1.16B, although the loss was primarily driven by warrant fair-value changes; execution is capital intensive.",
+        "gating": false
+      },
+      {
+        "risk": "Successor bottlenecks shift from power access to construction, cooling/electrical equipment, financing and customer credit as capacity scales.",
+        "gating": false
+      },
+      {
+        "risk": "High customer concentration can transmit counterparty stress directly into liquidity and cash flow.",
+        "gating": false
+      },
+      {
+        "risk": "Large prospective capacity/revenue figures should not be treated as equivalent to delivered capacity or realized economics.",
+        "gating": false
+      },
+      {
+        "risk": "Secured debt and external financing increase fixed obligations while expansion remains construction-intensive.",
         "gating": false
       }
     ]
@@ -152,6 +193,22 @@
     {
       "risk": "Q2 CapEx was $797.5M and GAAP net loss was $1.16B, although the loss was primarily driven by warrant fair-value changes; execution is capital intensive.",
       "gating": false
+    },
+    {
+      "risk": "Successor bottlenecks shift from power access to construction, cooling/electrical equipment, financing and customer credit as capacity scales.",
+      "gating": false
+    },
+    {
+      "risk": "High customer concentration can transmit counterparty stress directly into liquidity and cash flow.",
+      "gating": false
+    },
+    {
+      "risk": "Large prospective capacity/revenue figures should not be treated as equivalent to delivered capacity or realized economics.",
+      "gating": false
+    },
+    {
+      "risk": "Secured debt and external financing increase fixed obligations while expansion remains construction-intensive.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -162,20 +219,31 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "energized-grid-capacity->high-density-data-center-capacity",
+      "high-density-data-center-capacity->AI-compute-availability",
+      "customer-prepayments-and-financing->site-conversion-speed",
+      "site-delivery-execution->contracted-colocation-revenue"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "energized-grid-capacity->high-density-data-center-capacity",
+    "high-density-data-center-capacity->AI-compute-availability",
+    "customer-prepayments-and-financing->site-conversion-speed",
+    "site-delivery-execution->contracted-colocation-revenue"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:CORZ:2026Q2:20260728"
+      "issuer:CORZ:2026Q2:20260728",
+      "sec:1839341:2026Q2:10Q"
     ]
   },
   "sources": [
@@ -186,20 +254,38 @@
       "primary": true,
       "publishedAt": "2026-07-28",
       "originFingerprint": "issuer:CORZ:2026Q2:20260728"
+    },
+    {
+      "sourceId": "sec:CORZ:2026Q2:10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1839341/000183934126000014/core-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-28",
+      "originFingerprint": "sec:1839341:2026Q2:10Q"
     }
   ],
   "contradictions": [
     {
       "contradiction": "Rapid colocation revenue and capacity growth coexist with very high capital intensity and a large GAAP net loss.",
       "material": true
+    },
+    {
+      "contradiction": "Rapid colocation growth and improving gross profit coexist with unusually high capital requirements and concentrated customer exposure.",
+      "material": true,
+      "disposition": "real tradeoff, not thesis falsification; preserve for Deep/Alpha treatment"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "contradiction": "Rapid colocation revenue and capacity growth coexist with very high capital intensity and a large GAAP net loss.",
         "material": true
+      },
+      {
+        "contradiction": "Rapid colocation growth and improving gross profit coexist with unusually high capital requirements and concentrated customer exposure.",
+        "material": true,
+        "disposition": "real tradeoff, not thesis falsification; preserve for Deep/Alpha treatment"
       }
     ]
   },
@@ -211,11 +297,19 @@
     {
       "unknown": "Future financing cost, customer concentration, build timing and stabilized return on invested capital remain unverified.",
       "gating": false
+    },
+    {
+      "unknown": "Stabilized returns and economics for capacity beyond contracted/anchored deployments remain unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Future customer diversification, financing cost and stabilized ROIC remain unverified.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 91,
@@ -224,13 +318,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -241,14 +332,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -265,10 +348,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

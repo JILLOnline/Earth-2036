@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-22T07:17:22.712Z",
+  "generatedAt": "2026-09-22T07:29:19.124Z",
   "canonicalWriteAuthority": false,
   "total": 173,
   "twins": [
@@ -3865,7 +3865,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "FLY",
       "workId": "t0:FLY",
-      "inputSignature": "5480c7f8fae496f7571f7e19",
+      "inputSignature": "269927b49ca306b95d94bba5",
       "sourceState": "researching",
       "identity": {
         "ticker": "FLY",
@@ -3888,31 +3888,33 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 4,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 6,
         "sourceLineage": {
-          "rawSourceCount": 5,
-          "uniqueSourceCount": 4,
-          "duplicatesCollapsed": 1,
+          "rawSourceCount": 9,
+          "uniqueSourceCount": 6,
+          "duplicatesCollapsed": 3,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:FLY:2026Q2",
             "issuer:FLY:2026-08-11:lockheed",
             "issuer:FLY:2026-06-30:clps",
-            "issuer:FLY:2026-03-11:alpha7"
+            "issuer:FLY:2026-03-11:alpha7",
+            "issuer:FLY:2026-01-13:blockII",
+            "sec:1860160:2026Q2:10Q"
           ]
         },
         "evidenceWindow": {
-          "start": "2026-03-11T00:00:00.000Z",
-          "end": "2026-09-18T20:03:18.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-18T20:03:18.000Z"
+          "start": "2026-01-13T00:00:00.000Z",
+          "end": "2026-09-22T07:27:18.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-22T07:27:18.000Z"
         },
         "preflightPassed": false
       },
@@ -3922,37 +3924,51 @@
         "catalystScore",
         "crossDivisionLeverage",
         "scenarioRobustness",
-        "governancePower"
+        "governancePower",
+        "thesisQuality",
+        "bottleneckControl",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "pricingPower"
       ],
       "constraintSignals": {
         "risks": [
           "Launch reliability, mission schedule and capital intensity remain material despite strong revenue growth and contract momentum.",
-          "A launch failure or major mission delay could impair customer confidence and revenue timing."
+          "A launch failure or major mission delay could impair customer confidence and revenue timing.",
+          "Successor bottlenecks include launch-site/regulatory availability, engine/vehicle production and simultaneous execution across multiple programs.",
+          "Equity financing demonstrates available capital but also creates dilution exposure while operating cash flow remains negative.",
+          "Government program concentration exposes schedules and demand to appropriations and regulatory timing.",
+          "A launch failure or Eclipse delay can propagate across customer confidence and revenue timing."
         ],
         "unknowns": [
           "Current backlog conversion, gross margin trajectory and free-cash-flow profile require Alpha underwriting.",
-          "Whether Block II can sustain the flight rate implied by the extended manifest is not yet demonstrated."
+          "Whether Block II can sustain the flight rate implied by the extended manifest is not yet demonstrated.",
+          "Block II's sustainable flight rate is not yet demonstrated in service.",
+          "Backlog conversion margins and long-run free-cash-flow economics remain Alpha-owned underwriting gaps."
         ],
         "contradictions": [
-          "Rapid top-line expansion and contract wins coexist with a still-maturing launch cadence and significant program execution risk."
+          "Rapid top-line expansion and contract wins coexist with a still-maturing launch cadence and significant program execution risk.",
+          "Rapid revenue growth and a broader manifest coexist with continuing losses and an unproven high-cadence launch configuration."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
           "missing_data_confidence_evidence",
-          "missing_causal_mapping",
           "unresolved_material_contradiction"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "shared-flight-technology->cross-program-learning",
+          "repeatable-launch-reliability->customer-confidence-and-cadence",
+          "manufacturing-capacity->mission-throughput",
+          "responsive-launch-and-lunar-orbital-services->civil-defense-commercial-space-access"
+        ]
       },
       "improvementWindows": [
         {
@@ -3963,16 +3979,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -3996,11 +4002,6 @@
           "stance": "improvement-oriented"
         },
         {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
-        },
-        {
           "failure": "unresolved_material_contradiction",
           "question": "Which material contradiction must be reconciled before the representation can advance?",
           "stance": "improvement-oriented"
@@ -4013,13 +4014,24 @@
           "catalystScore",
           "crossDivisionLeverage",
           "scenarioRobustness",
-          "governancePower"
+          "governancePower",
+          "thesisQuality",
+          "bottleneckControl",
+          "substitutionResilience",
+          "supplyChainResilience",
+          "pricingPower"
         ],
         "needOrConstraintCandidates": [
           "Current backlog conversion, gross margin trajectory and free-cash-flow profile require Alpha underwriting.",
           "Whether Block II can sustain the flight rate implied by the extended manifest is not yet demonstrated.",
+          "Block II's sustainable flight rate is not yet demonstrated in service.",
+          "Backlog conversion margins and long-run free-cash-flow economics remain Alpha-owned underwriting gaps.",
           "Launch reliability, mission schedule and capital intensity remain material despite strong revenue growth and contract momentum.",
-          "A launch failure or major mission delay could impair customer confidence and revenue timing."
+          "A launch failure or major mission delay could impair customer confidence and revenue timing.",
+          "Successor bottlenecks include launch-site/regulatory availability, engine/vehicle production and simultaneous execution across multiple programs.",
+          "Equity financing demonstrates available capital but also creates dilution exposure while operating cash flow remains negative.",
+          "Government program concentration exposes schedules and demand to appropriations and regulatory timing.",
+          "A launch failure or Eclipse delay can propagate across customer confidence and revenue timing."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -4373,7 +4385,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "INFQ",
       "workId": "t0:INFQ",
-      "inputSignature": "a1837825d8236b3063091e9e",
+      "inputSignature": "feb3c60280421690f932d5bd",
       "sourceState": "researching",
       "identity": {
         "ticker": "INFQ",
@@ -4396,30 +4408,32 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 3,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 5,
         "sourceLineage": {
-          "rawSourceCount": 4,
-          "uniqueSourceCount": 3,
-          "duplicatesCollapsed": 1,
+          "rawSourceCount": 8,
+          "uniqueSourceCount": 5,
+          "duplicatesCollapsed": 3,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:INFQ:2026Q2",
             "issuer:INFQ:2026-09-14:cuda-q",
-            "issuer:INFQ:2026-09-10:cisco"
+            "issuer:INFQ:2026-09-10:cisco",
+            "issuer:INFQ:2026Q2:updated",
+            "sec:2007825:2026Q2:10Q"
           ]
         },
         "evidenceWindow": {
           "start": "2026-08-17T00:00:00.000Z",
-          "end": "2026-09-18T20:03:18.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-18T20:03:18.000Z"
+          "end": "2026-09-22T07:27:18.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-22T07:27:18.000Z"
         },
         "preflightPassed": false
       },
@@ -4428,37 +4442,51 @@
         "financialOperatingMomentum",
         "catalystScore",
         "crossDivisionLeverage",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "thesisQuality",
+        "bottleneckControl",
+        "substitutionResilience",
+        "governancePower",
+        "dataConfidence"
       ],
       "constraintSignals": {
         "risks": [
           "Revenue remains small and quantum roadmaps remain technically uncertain despite strong liquidity and growth.",
-          "Partner integrations can remain demonstrations rather than scalable revenue unless customer deployments follow."
+          "Partner integrations can remain demonstrations rather than scalable revenue unless customer deployments follow.",
+          "Successor bottlenecks include error correction, control fidelity, system scaling and evidence that customer workloads outperform classical alternatives economically.",
+          "Technical milestones may not translate into economic quantum advantage or scalable commercial deployments.",
+          "Government awards and proposed funding can be conditional and should not be equated with realized recurring revenue.",
+          "Revenue recognition required an update, increasing the importance of cash and contract-level corroboration."
         ],
         "unknowns": [
           "Customer concentration, gross margin and cash-burn durability require Alpha underwriting.",
-          "Independent verification of the 30-logical-qubit 2026 milestone and economics of Sqale deployments remain open."
+          "Independent verification of the 30-logical-qubit 2026 milestone and economics of Sqale deployments remain open.",
+          "Independent verification and customer economics of the targeted 30 logical qubits remain open.",
+          "Customer concentration, normalized gross margins and post-working-capital cash burn remain Alpha-owned underwriting gaps."
         ],
         "contradictions": [
-          "Commercialization metrics are improving quickly, but utility-scale fault-tolerant execution is still a forward technical objective."
+          "Commercialization metrics are improving quickly, but utility-scale fault-tolerant execution is still a forward technical objective.",
+          "Fast revenue growth and strong liquidity coexist with operating losses that substantially exceed quarterly revenue and commercialization milestones that remain technically forward-looking."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
           "missing_data_confidence_evidence",
-          "missing_causal_mapping",
           "unresolved_material_contradiction"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "neutral-atom-control->quantum-compute-and-sensing-platform",
+          "precision-timing-and-sensing->resilient-navigation-and-critical-infrastructure",
+          "verified-logical-qubits->fault-tolerant-customer-utility",
+          "government-deployments->technical-validation-and-commercial-reference"
+        ]
       },
       "improvementWindows": [
         {
@@ -4469,16 +4497,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -4502,11 +4520,6 @@
           "stance": "improvement-oriented"
         },
         {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
-        },
-        {
           "failure": "unresolved_material_contradiction",
           "question": "Which material contradiction must be reconciled before the representation can advance?",
           "stance": "improvement-oriented"
@@ -4518,13 +4531,24 @@
           "financialOperatingMomentum",
           "catalystScore",
           "crossDivisionLeverage",
-          "scenarioRobustness"
+          "scenarioRobustness",
+          "thesisQuality",
+          "bottleneckControl",
+          "substitutionResilience",
+          "governancePower",
+          "dataConfidence"
         ],
         "needOrConstraintCandidates": [
           "Customer concentration, gross margin and cash-burn durability require Alpha underwriting.",
           "Independent verification of the 30-logical-qubit 2026 milestone and economics of Sqale deployments remain open.",
+          "Independent verification and customer economics of the targeted 30 logical qubits remain open.",
+          "Customer concentration, normalized gross margins and post-working-capital cash burn remain Alpha-owned underwriting gaps.",
           "Revenue remains small and quantum roadmaps remain technically uncertain despite strong liquidity and growth.",
-          "Partner integrations can remain demonstrations rather than scalable revenue unless customer deployments follow."
+          "Partner integrations can remain demonstrations rather than scalable revenue unless customer deployments follow.",
+          "Successor bottlenecks include error correction, control fidelity, system scaling and evidence that customer workloads outperform classical alternatives economically.",
+          "Technical milestones may not translate into economic quantum advantage or scalable commercial deployments.",
+          "Government awards and proposed funding can be conditional and should not be equated with realized recurring revenue.",
+          "Revenue recognition required an update, increasing the importance of cash and contract-level corroboration."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -11095,7 +11119,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "CORZ",
       "workId": "t0:CORZ",
-      "inputSignature": "dfff77f35b452c033727b6ea",
+      "inputSignature": "945d35226188bd0c0df05590",
       "sourceState": "researching",
       "identity": {
         "ticker": "CORZ",
@@ -11118,28 +11142,29 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 1,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 2,
         "sourceLineage": {
-          "rawSourceCount": 2,
-          "uniqueSourceCount": 1,
-          "duplicatesCollapsed": 1,
+          "rawSourceCount": 6,
+          "uniqueSourceCount": 2,
+          "duplicatesCollapsed": 4,
           "missingLineage": 0,
           "uniqueOrigins": [
-            "issuer:CORZ:2026Q2:20260728"
+            "issuer:CORZ:2026Q2:20260728",
+            "sec:1839341:2026Q2:10Q"
           ]
         },
         "evidenceWindow": {
           "start": "2026-07-28T00:00:00.000Z",
-          "end": "2026-09-19T11:08:32.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T11:08:32.000Z"
+          "end": "2026-09-22T07:27:18.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-22T07:27:18.000Z"
         },
         "preflightPassed": false
       },
@@ -11150,37 +11175,50 @@
         "bottleneckControl",
         "scenarioRobustness",
         "financialOperatingMomentum",
-        "catalystScore"
+        "catalystScore",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "pricingPower",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
           "Large prospective capacity and contracted-revenue figures require substantial capital deployment and successful site delivery.",
-          "Q2 CapEx was $797.5M and GAAP net loss was $1.16B, although the loss was primarily driven by warrant fair-value changes; execution is capital intensive."
+          "Q2 CapEx was $797.5M and GAAP net loss was $1.16B, although the loss was primarily driven by warrant fair-value changes; execution is capital intensive.",
+          "Successor bottlenecks shift from power access to construction, cooling/electrical equipment, financing and customer credit as capacity scales.",
+          "High customer concentration can transmit counterparty stress directly into liquidity and cash flow.",
+          "Large prospective capacity/revenue figures should not be treated as equivalent to delivered capacity or realized economics.",
+          "Secured debt and external financing increase fixed obligations while expansion remains construction-intensive."
         ],
         "unknowns": [
           "Economics of the full prospective 2.5 GW beyond the anchored 530 MW are not yet contracted or proven.",
-          "Future financing cost, customer concentration, build timing and stabilized return on invested capital remain unverified."
+          "Future financing cost, customer concentration, build timing and stabilized return on invested capital remain unverified.",
+          "Stabilized returns and economics for capacity beyond contracted/anchored deployments remain unproven.",
+          "Future customer diversification, financing cost and stabilized ROIC remain unverified."
         ],
         "contradictions": [
-          "Rapid colocation revenue and capacity growth coexist with very high capital intensity and a large GAAP net loss."
+          "Rapid colocation revenue and capacity growth coexist with very high capital intensity and a large GAAP net loss.",
+          "Rapid colocation growth and improving gross profit coexist with unusually high capital requirements and concentrated customer exposure."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
           "missing_data_confidence_evidence",
-          "missing_causal_mapping",
           "unresolved_material_contradiction"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "energized-grid-capacity->high-density-data-center-capacity",
+          "high-density-data-center-capacity->AI-compute-availability",
+          "customer-prepayments-and-financing->site-conversion-speed",
+          "site-delivery-execution->contracted-colocation-revenue"
+        ]
       },
       "improvementWindows": [
         {
@@ -11191,16 +11229,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -11224,11 +11252,6 @@
           "stance": "improvement-oriented"
         },
         {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
-        },
-        {
           "failure": "unresolved_material_contradiction",
           "question": "Which material contradiction must be reconciled before the representation can advance?",
           "stance": "improvement-oriented"
@@ -11242,13 +11265,23 @@
           "bottleneckControl",
           "scenarioRobustness",
           "financialOperatingMomentum",
-          "catalystScore"
+          "catalystScore",
+          "substitutionResilience",
+          "supplyChainResilience",
+          "pricingPower",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "Economics of the full prospective 2.5 GW beyond the anchored 530 MW are not yet contracted or proven.",
           "Future financing cost, customer concentration, build timing and stabilized return on invested capital remain unverified.",
+          "Stabilized returns and economics for capacity beyond contracted/anchored deployments remain unproven.",
+          "Future customer diversification, financing cost and stabilized ROIC remain unverified.",
           "Large prospective capacity and contracted-revenue figures require substantial capital deployment and successful site delivery.",
-          "Q2 CapEx was $797.5M and GAAP net loss was $1.16B, although the loss was primarily driven by warrant fair-value changes; execution is capital intensive."
+          "Q2 CapEx was $797.5M and GAAP net loss was $1.16B, although the loss was primarily driven by warrant fair-value changes; execution is capital intensive.",
+          "Successor bottlenecks shift from power access to construction, cooling/electrical equipment, financing and customer credit as capacity scales.",
+          "High customer concentration can transmit counterparty stress directly into liquidity and cash flow.",
+          "Large prospective capacity/revenue figures should not be treated as equivalent to delivered capacity or realized economics.",
+          "Secured debt and external financing increase fixed obligations while expansion remains construction-intensive."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -28393,7 +28426,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "NOK",
       "workId": "t0:NOK",
-      "inputSignature": "b3164b11956a652624437611",
+      "inputSignature": "a1f988e1580286703d33cd02",
       "sourceState": "researching",
       "identity": {
         "ticker": "NOK",
@@ -28416,19 +28449,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 1,
         "sourceLineage": {
-          "rawSourceCount": 2,
+          "rawSourceCount": 4,
           "uniqueSourceCount": 1,
-          "duplicatesCollapsed": 1,
+          "duplicatesCollapsed": 3,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:NOK:2026Q2:20260723"
@@ -28436,8 +28469,8 @@
         },
         "evidenceWindow": {
           "start": "2026-07-23T00:00:00.000Z",
-          "end": "2026-09-21T06:10:00.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-21T06:10:00.000Z"
+          "end": "2026-09-22T07:27:18.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-22T07:27:18.000Z"
         },
         "preflightPassed": false
       },
@@ -28447,37 +28480,50 @@
         "crossDivisionLeverage",
         "thesisQuality",
         "financialOperatingMomentum",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "substitutionResilience",
+        "pricingPower",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
           "AI/cloud order growth can be constrained by optical-component supply and order-to-revenue timing.",
-          "Reported operating margin was negative due to accelerated restructuring, creating a meaningful comparable-versus-reported earnings distinction."
+          "Reported operating margin was negative due to accelerated restructuring, creating a meaningful comparable-versus-reported earnings distinction.",
+          "Capacity additions can arrive after demand normalizes, shifting a current shortage into utilization risk.",
+          "Restructuring creates real near-term cash costs even where comparable profitability improves.",
+          "Longer-term customer orders formed during component scarcity may expose Nokia to timing, mix or demand-normalization risk.",
+          "Manufacturing expansion intended to relieve optical bottlenecks increases execution and future utilization exposure."
         ],
         "unknowns": [
           "Durability of triple-digit AI & Cloud growth beyond current capacity expansion remains unproven.",
-          "Restructuring benefits and cash costs need longitudinal validation."
+          "Restructuring benefits and cash costs need longitudinal validation.",
+          "How much current AI/cloud order growth is durable beyond the present capacity-constrained build cycle remains unproven.",
+          "Realized margins on the current AI/cloud order wave and post-restructuring cost savings require longitudinal confirmation."
         ],
         "contradictions": [
-          "Comparable operating margin improved to 9.0% while reported operating margin declined to -1.0% because restructuring accelerated; underwriting should preserve both views."
+          "Comparable operating margin improved to 9.0% while reported operating margin declined to -1.0% because restructuring accelerated; underwriting should preserve both views.",
+          "Underlying comparable profitability improved while reported profitability was negative because restructuring was accelerated."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
           "missing_data_confidence_evidence",
-          "missing_causal_mapping",
           "unresolved_material_contradiction"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "AI-compute-growth->east-west-network-traffic",
+          "network-traffic->optical-and-IP-capacity-demand",
+          "optical-component-supply->revenue-conversion-rate",
+          "manufacturing-and-packaging-expansion->future-optical-capacity"
+        ]
       },
       "improvementWindows": [
         {
@@ -28488,16 +28534,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -28521,11 +28557,6 @@
           "stance": "improvement-oriented"
         },
         {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
-        },
-        {
           "failure": "unresolved_material_contradiction",
           "question": "Which material contradiction must be reconciled before the representation can advance?",
           "stance": "improvement-oriented"
@@ -28538,13 +28569,23 @@
           "crossDivisionLeverage",
           "thesisQuality",
           "financialOperatingMomentum",
-          "scenarioRobustness"
+          "scenarioRobustness",
+          "supplyChainResilience",
+          "substitutionResilience",
+          "pricingPower",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "Durability of triple-digit AI & Cloud growth beyond current capacity expansion remains unproven.",
           "Restructuring benefits and cash costs need longitudinal validation.",
+          "How much current AI/cloud order growth is durable beyond the present capacity-constrained build cycle remains unproven.",
+          "Realized margins on the current AI/cloud order wave and post-restructuring cost savings require longitudinal confirmation.",
           "AI/cloud order growth can be constrained by optical-component supply and order-to-revenue timing.",
-          "Reported operating margin was negative due to accelerated restructuring, creating a meaningful comparable-versus-reported earnings distinction."
+          "Reported operating margin was negative due to accelerated restructuring, creating a meaningful comparable-versus-reported earnings distinction.",
+          "Capacity additions can arrive after demand normalizes, shifting a current shortage into utilization risk.",
+          "Restructuring creates real near-term cash costs even where comparable profitability improves.",
+          "Longer-term customer orders formed during component scarcity may expose Nokia to timing, mix or demand-normalization risk.",
+          "Manufacturing expansion intended to relieve optical bottlenecks increases execution and future utilization exposure."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

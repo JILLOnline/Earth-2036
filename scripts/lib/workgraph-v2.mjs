@@ -218,7 +218,12 @@ function resolverStatusClosesGate(value) {
 
 function resolverGateFailure(obj) {
   if (obj?.gateKind) return String(obj.gateKind);
-  const impact = String(obj?.gateImpact || "").toLowerCase();
+  const impact = String(
+    obj?.gateImpact ||
+    obj?.adjudication?.gateImpact ||
+    obj?.resolution?.gateImpact ||
+    ""
+  ).toLowerCase();
   for (const failure of [
     "unresolved_gating_issue",
     "unresolved_gating_unknown",
@@ -252,7 +257,13 @@ function normalizeEvidenceObject(obj, filePath) {
         }))
     : [];
   const resolverFailure = resolverGateFailure(obj);
-  const resolverOutcome = obj?.result ?? obj?.contradictionStatus ?? obj?.resolution?.status ?? null;
+  const resolverOutcome =
+    obj?.result ??
+    obj?.status ??
+    obj?.contradictionStatus ??
+    obj?.adjudication?.contradictionStatus ??
+    obj?.resolution?.status ??
+    null;
   const resolverItems = Array.isArray(obj?.items)
     ? obj.items.map((item) =>
         resolverStatusClosesGate(item?.status) ? { ...item, status: "resolved" } : item

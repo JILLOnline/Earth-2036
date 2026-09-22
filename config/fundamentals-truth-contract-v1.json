@@ -127,7 +127,15 @@
     "trialSnapshots": "small manifests reference existing factStateHash values",
     "unchangedFactStateReusedAcrossTicks": true,
     "normalizedProjection": "recomputable/non-authoritative; never required to duplicate raw truth per tick",
-    "scaleRule": "T1000 integration must reference content-addressed truth objects rather than write 250 full Company Facts histories on every tick"
+    "scaleRule": "T1000 integration must reference content-addressed truth objects rather than write 250 full Company Facts histories on every tick",
+    "auditReadOnlyByDefault": true,
+    "bulkRawMaterializationGuard": "Explicit --write required; >10 companies additionally requires --allow-bulk-raw.",
+    "auditObservedCurrentUniverse": {
+      "companies": 250,
+      "rawFactCount": 4655417,
+      "approximateUncompressedRawJsonBytes": 1181270233,
+      "observation": "A full raw-state copy is too large for per-tick Git persistence. T1000 must reference immutable fact-state identities/deltas rather than duplicate complete histories."
+    }
   },
   "auditRequirements": {
     "diversifiedIssuerCanaryRequired": true,

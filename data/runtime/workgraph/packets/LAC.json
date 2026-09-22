@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "LAC",
   "workId": "t0:LAC",
-  "generatedAt": "2026-09-22T17:34:43.782Z",
+  "generatedAt": "2026-09-22T18:08:22.539Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-20T00:00:00.000Z",
-    "end": "2026-09-21T01:25:22.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T01:25:22.000Z"
+    "end": "2026-09-22T18:05:13.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T18:05:13.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -63,13 +63,14 @@
     "data/runtime/workgraph/evidence/LAC-20260920T140914Z-earth-scout.json",
     "data/runtime/workgraph/evidence/LAC-20260920T150516Z-earth-scout.json",
     "data/runtime/workgraph/evidence/LAC-20260920T160208Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/LAC-20260921T012522Z-council-beta.json"
+    "data/runtime/workgraph/evidence/LAC-20260921T012522Z-council-beta.json",
+    "data/runtime/workgraph/evidence/LAC-20260922T180513Z-earth-scout.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 30,
-    "historicalEvidenceCount": 30
+    "activeEvidenceCount": 32,
+    "historicalEvidenceCount": 32
   },
   "factorEvidence": {
     "names": [
@@ -83,7 +84,12 @@
       "40ktpa designed capacity",
       "multi-channel financing",
       "scenario robustness",
-      "substitution resilience"
+      "substitution resilience",
+      "executionCapability",
+      "catalystScore",
+      "bottleneckControl",
+      "financialOperatingMomentum",
+      "scenarioRobustness"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -100,7 +106,10 @@
         "Thacker Pass construction progress",
         "domestic lithium strategic demand",
         "multi-channel financing",
-        "40ktpa designed capacity"
+        "40ktpa designed capacity",
+        "executionCapability",
+        "catalystScore",
+        "bottleneckControl"
       ],
       "adversarial-red-team": [
         "domestic lithium supply",
@@ -114,7 +123,10 @@
         "Thacker Pass construction progress",
         "domestic lithium strategic demand",
         "multi-channel financing",
-        "40ktpa designed capacity"
+        "40ktpa designed capacity",
+        "financialOperatingMomentum",
+        "executionCapability",
+        "scenarioRobustness"
       ]
     }
   },
@@ -166,7 +178,12 @@
     "40ktpa designed capacity",
     "multi-channel financing",
     "scenario robustness",
-    "substitution resilience"
+    "substitution resilience",
+    "executionCapability",
+    "catalystScore",
+    "bottleneckControl",
+    "financialOperatingMomentum",
+    "scenarioRobustness"
   ],
   "riskEvidence": {
     "present": true,
@@ -285,7 +302,15 @@
       "convertible dilution and balance-sheet complexity",
       "lithium-price weakness",
       "commissioning/qualification risk",
-      "counterparty and concentration dependence"
+      "counterparty and concentration dependence",
+      {
+        "risk": "Construction remains exposed to logistics, skilled-labor, inflation and tariff pressures.",
+        "gating": false
+      },
+      {
+        "risk": "Tariffs, fabrication capacity, logistics and labor inflation can raise remaining project cost above prior assumptions.",
+        "gating": false
+      }
     ]
   },
   "risks": [
@@ -403,7 +428,15 @@
     "convertible dilution and balance-sheet complexity",
     "lithium-price weakness",
     "commissioning/qualification risk",
-    "counterparty and concentration dependence"
+    "counterparty and concentration dependence",
+    {
+      "risk": "Construction remains exposed to logistics, skilled-labor, inflation and tariff pressures.",
+      "gating": false
+    },
+    {
+      "risk": "Tariffs, fabrication capacity, logistics and labor inflation can raise remaining project cost above prior assumptions.",
+      "gating": false
+    }
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -412,8 +445,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
     "present": true,
@@ -429,14 +462,15 @@
     "lithium price + commissioning performance -> project economics -> durable supply contribution"
   ],
   "sourceLineage": {
-    "rawSourceCount": 32,
-    "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 29,
+    "rawSourceCount": 34,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 30,
     "missingLineage": 0,
     "uniqueOrigins": [
       "lithiumamericas.com|q1-2026-thacker-pass|2026",
       "lithiumamericas.com|thacker-pass-2026-capex-update|2026",
-      "lithiumamericas.com|175m-financing-thacker-pass|2026-08-06"
+      "lithiumamericas.com|175m-financing-thacker-pass|2026-08-06",
+      "lithiumamericas.com|q2-2026-results|2026-08-13"
     ]
   },
   "sources": [
@@ -464,6 +498,14 @@
       "use": "construction-stage and financing evidence",
       "sourceId": null,
       "primary": false
+    },
+    {
+      "sourceId": "lac:q2-2026-results",
+      "url": "https://lithiumamericas.com/news/news-details/2026/Lithium-Americas-Reports-Second-Quarter-2026-Results/default.aspx",
+      "kind": "issuer-primary",
+      "primary": true,
+      "publishedAt": "2026-08-13",
+      "originFingerprint": "lithiumamericas.com|q2-2026-results|2026-08-13"
     }
   ],
   "contradictions": [],
@@ -556,11 +598,19 @@
     "commissioning curve and realized operating cost",
     "current construction completion percentage",
     "remaining contingency versus total project cost",
-    "commissioning curve and realized operating cost"
+    "commissioning curve and realized operating cost",
+    {
+      "unknown": "A definitive updated capital estimate was still targeted for completion after Q2 and is not established here.",
+      "gating": false
+    },
+    {
+      "unknown": "Remaining funding sufficiency should be assessed against the forthcoming definitive capital estimate, not inferred from cash alone.",
+      "gating": false
+    }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 85
+    "nonGatingCount": 87
   },
   "gatingIssues": [],
   "confidence": 82,
@@ -569,7 +619,6 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -582,10 +631,6 @@
       },
       {
         "failure": "missing_specialist_perspective:company-underwriting",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_primary_source",
         "owner": "council-alpha"
       },
       {

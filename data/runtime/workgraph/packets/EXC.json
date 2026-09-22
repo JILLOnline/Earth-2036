@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "EXC",
   "workId": "t0:EXC",
-  "generatedAt": "2026-09-22T17:34:43.781Z",
+  "generatedAt": "2026-09-22T18:08:22.538Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-05-06T00:00:00.000Z",
-    "end": "2026-09-21T02:25:37.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T02:25:37.000Z"
+    "end": "2026-09-22T18:05:13.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T18:05:13.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -50,13 +50,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/EXC-20260919T180212Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/EXC-20260921T022537Z-council-beta.json"
+    "data/runtime/workgraph/evidence/EXC-20260921T022537Z-council-beta.json",
+    "data/runtime/workgraph/evidence/EXC-20260922T180513Z-earth-scout.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -64,7 +65,8 @@
       "scenarioRobustness",
       "executionCapability",
       "substitutionResilience",
-      "pricingPower"
+      "pricingPower",
+      "financialOperatingMomentum"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -78,7 +80,10 @@
       "discovery-weak-signals": [
         "bottleneckControl",
         "scenarioRobustness",
-        "executionCapability"
+        "executionCapability",
+        "financialOperatingMomentum",
+        "executionCapability",
+        "scenarioRobustness"
       ],
       "adversarial-red-team": [
         "scenarioRobustness",
@@ -87,7 +92,9 @@
       ],
       "expectations-execution": [
         "executionCapability",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "executionCapability",
+        "financialOperatingMomentum"
       ]
     }
   },
@@ -133,7 +140,8 @@
     "scenarioRobustness",
     "executionCapability",
     "substitutionResilience",
-    "pricingPower"
+    "pricingPower",
+    "financialOperatingMomentum"
   ],
   "riskEvidence": {
     "present": true,
@@ -152,7 +160,15 @@
       "headline TAM/queue inflation",
       "regulatory recovery lag",
       "customer concentration in large-load growth",
-      "generation availability"
+      "generation availability",
+      {
+        "risk": "Regulatory recovery, affordability pressure and financing costs can alter the timing and return profile of utility investment.",
+        "gating": false
+      },
+      {
+        "risk": "Debt execution does not remove regulatory and capital-market sensitivity.",
+        "gating": false
+      }
     ]
   },
   "risks": [
@@ -170,7 +186,15 @@
     "headline TAM/queue inflation",
     "regulatory recovery lag",
     "customer concentration in large-load growth",
-    "generation availability"
+    "generation availability",
+    {
+      "risk": "Regulatory recovery, affordability pressure and financing costs can alter the timing and return profile of utility investment.",
+      "gating": false
+    },
+    {
+      "risk": "Debt execution does not remove regulatory and capital-market sensitivity.",
+      "gating": false
+    }
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -179,8 +203,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
     "present": true,
@@ -196,13 +220,14 @@
     "affordability/regulatory constraint -> capital-plan moderation -> slower rate-base conversion"
   ],
   "sourceLineage": {
-    "rawSourceCount": 7,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 5,
+    "rawSourceCount": 9,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "reuters:exelon:q1-2026:data-center-capex",
-      "marketbeat:exelon:q2-2026:call"
+      "marketbeat:exelon:q2-2026:call",
+      "exeloncorp.com|q2-2026-results|2026-07-30"
     ]
   },
   "sources": [
@@ -221,6 +246,14 @@
       "primary": false,
       "publishedAt": "2026-07-30",
       "originFingerprint": "marketbeat:exelon:q2-2026:call"
+    },
+    {
+      "sourceId": "exelon:q2-2026-results",
+      "url": "https://www.exeloncorp.com/newsroom/exelon-reports-second-quarter-2026-results",
+      "kind": "issuer-primary",
+      "primary": true,
+      "publishedAt": "2026-07-30",
+      "originFingerprint": "exeloncorp.com|q2-2026-results|2026-07-30"
     }
   ],
   "contradictions": [],
@@ -240,11 +273,19 @@
     "timing and realized returns for individual large-load projects",
     "current primary-source confirmation of Q2 load figures",
     "project-by-project collateral durability",
-    "incremental capital funding and allowed-return timing"
+    "incremental capital funding and allowed-return timing",
+    {
+      "unknown": "Alpha must source-address valuation and complete numeric underwriting; this Scout artifact does not score the company.",
+      "gating": false
+    },
+    {
+      "unknown": "Project-level returns from incremental large-load infrastructure remain unverified here.",
+      "gating": false
+    }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 6
+    "nonGatingCount": 8
   },
   "gatingIssues": [],
   "confidence": 78,
@@ -253,7 +294,6 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -266,10 +306,6 @@
       },
       {
         "failure": "missing_specialist_perspective:company-underwriting",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_primary_source",
         "owner": "council-alpha"
       },
       {

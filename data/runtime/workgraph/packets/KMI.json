@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "KMI",
   "workId": "t0:KMI",
-  "generatedAt": "2026-09-22T17:34:43.785Z",
+  "generatedAt": "2026-09-22T18:08:22.545Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-22T16:43:39.370Z"
   },
   "evidenceWindow": {
-    "start": "2026-07-15T00:00:00.000Z",
-    "end": "2026-09-21T02:25:37.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T02:25:37.000Z"
+    "start": "2026-04-22T00:00:00.000Z",
+    "end": "2026-09-22T18:05:13.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T18:05:13.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -62,13 +62,14 @@
     "data/runtime/workgraph/evidence/KMI-20260920T140914Z-earth-scout.json",
     "data/runtime/workgraph/evidence/KMI-20260920T150516Z-earth-scout.json",
     "data/runtime/workgraph/evidence/KMI-20260920T160208Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/KMI-20260921T022537Z-council-beta.json"
+    "data/runtime/workgraph/evidence/KMI-20260921T022537Z-council-beta.json",
+    "data/runtime/workgraph/evidence/KMI-20260922T180513Z-earth-scout.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 28,
-    "historicalEvidenceCount": 28
+    "activeEvidenceCount": 30,
+    "historicalEvidenceCount": 30
   },
   "factorEvidence": {
     "names": [
@@ -88,7 +89,9 @@
       "substitutionResilience",
       "supplyChainResilience",
       "pricingPower",
-      "governancePower"
+      "governancePower",
+      "financialOperatingMomentum",
+      "executionCapability"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -102,7 +105,10 @@
       "discovery-weak-signals": [
         "Western Gateway FID",
         "existing SFPP asset contribution",
-        "230kbpd design capacity"
+        "230kbpd design capacity",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "pricingPower"
       ],
       "adversarial-red-team": [
         "scenarioRobustness",
@@ -113,7 +119,10 @@
       "expectations-execution": [
         "Western Gateway FID",
         "existing SFPP asset contribution",
-        "230kbpd design capacity"
+        "230kbpd design capacity",
+        "financialOperatingMomentum",
+        "executionCapability",
+        "scenarioRobustness"
       ]
     }
   },
@@ -171,7 +180,9 @@
     "substitutionResilience",
     "supplyChainResilience",
     "pricingPower",
-    "governancePower"
+    "governancePower",
+    "financialOperatingMomentum",
+    "executionCapability"
   ],
   "riskEvidence": {
     "present": true,
@@ -278,7 +289,15 @@
       "backlog/FID conversion risk",
       "joint-venture execution",
       "long-lived gas/refined-products demand transition",
-      "capital-return uncertainty"
+      "capital-return uncertainty",
+      {
+        "risk": "Backlog realization depends on permits, construction execution and customer demand persisting through in-service dates.",
+        "gating": false
+      },
+      {
+        "risk": "Weather contributed to Q1 outperformance and should not be extrapolated as structural growth without normalization.",
+        "gating": false
+      }
     ]
   },
   "risks": [
@@ -384,7 +403,15 @@
     "backlog/FID conversion risk",
     "joint-venture execution",
     "long-lived gas/refined-products demand transition",
-    "capital-return uncertainty"
+    "capital-return uncertainty",
+    {
+      "risk": "Backlog realization depends on permits, construction execution and customer demand persisting through in-service dates.",
+      "gating": false
+    },
+    {
+      "risk": "Weather contributed to Q1 outperformance and should not be extrapolated as structural growth without normalization.",
+      "gating": false
+    }
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -393,8 +420,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
     "present": true,
@@ -410,13 +437,14 @@
     "permitting/construction delay -> capacity in-service delay -> deferred cash-flow realization"
   ],
   "sourceLineage": {
-    "rawSourceCount": 30,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 28,
+    "rawSourceCount": 32,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 29,
     "missingLineage": 0,
     "uniqueOrigins": [
       "ir.kindermorgan.com|q2-2026-results-backlog|2026-07",
-      "kindermorgan.com|western-gateway-fid|2026-08-11"
+      "kindermorgan.com|western-gateway-fid|2026-08-11",
+      "ir.kindermorgan.com|q1-2026-results|2026-04-22"
     ]
   },
   "sources": [
@@ -436,6 +464,14 @@
       "use": "project FID, ownership and design-capacity evidence",
       "sourceId": null,
       "primary": false
+    },
+    {
+      "sourceId": "kmi:q1-2026-results",
+      "url": "https://ir.kindermorgan.com/news/news-details/2026/Kinder-Morgan-Reports-First-Quarter-2026-Financial-Results/default.aspx",
+      "kind": "issuer-primary",
+      "primary": true,
+      "publishedAt": "2026-04-22",
+      "originFingerprint": "ir.kindermorgan.com|q1-2026-results|2026-04-22"
     }
   ],
   "contradictions": [],
@@ -518,11 +554,19 @@
     "durability of incremental data-center gas demand",
     "KMI net capital commitment to Western Gateway",
     "contracted throughput and return profile",
-    "project-level leverage/funding mix"
+    "project-level leverage/funding mix",
+    {
+      "unknown": "This source is Q1; Alpha should prefer Q2 filing/results for current numeric underwriting where available.",
+      "gating": false
+    },
+    {
+      "unknown": "Current Q2 leverage and backlog changes are not established by this artifact.",
+      "gating": false
+    }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 75
+    "nonGatingCount": 77
   },
   "gatingIssues": [],
   "confidence": 84,
@@ -531,7 +575,6 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
@@ -544,10 +587,6 @@
       },
       {
         "failure": "missing_specialist_perspective:company-underwriting",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_primary_source",
         "owner": "council-alpha"
       },
       {

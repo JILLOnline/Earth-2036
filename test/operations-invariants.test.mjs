@@ -232,6 +232,15 @@ test("scheduler is hourly/manual only so code pushes cannot collide with minion 
   assert.equal(/\n\s*push:\s*\n/.test(text), false);
 });
 
+test("watchdog checks twice per hour and recovers an idle stale machine before a second missed cycle", async () => {
+  const text = await source(".github/workflows/earth2036-watchdog.yml");
+  assert.ok(text.includes('cron: "22,42 * * * *"'));
+  assert.ok(text.includes("age>3900"));
+  assert.ok(text.includes('status == "in_progress" or .status == "queued"'));
+  assert.ok(text.includes("gh workflow run earth2036-scheduler.yml"));
+});
+
+
 test("GitHub workflows use Node-24-compatible checkout/setup actions", async () => {
   for (const path of [
     ".github/workflows/earth2036-scheduler.yml",

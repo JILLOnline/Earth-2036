@@ -23,6 +23,16 @@ function statePriority(state) {
     state === "researching" ? 70 : 40;
 }
 
+function failurePriority(failures) {
+  if (failures.includes("missing_primary_source")) return 40;
+  if (failures.includes("missing_source_lineage")) return 32;
+  if (failures.includes("missing_factor_evidence")) return 22;
+  if (failures.includes("missing_numeric_score_record")) return 18;
+  if (failures.includes("missing_score_risk_evidence")) return 14;
+  if (failures.includes("missing_data_confidence_evidence")) return 12;
+  return 0;
+}
+
 function requestFor(packet, row, helperRole, capability, rootOwner, failures, nowIso) {
   const requestId = `assist:${packet.ticker}:${rootOwner}:${helperRole}:${capability}`;
   const inputSignature = hash({
@@ -37,7 +47,9 @@ function requestFor(packet, row, helperRole, capability, rootOwner, failures, no
     ? "Acquire materially new primary or independent evidence reusable by the root owner to close source-addressed underwriting gaps."
     : capability === "causal-source-support"
       ? "Acquire evidence that can strengthen or falsify the causal mechanism without taking over the root owner's causal judgment."
-      : "Provide bounded support without assuming the root owner's authority.";
+      : capability === "risk-source-support"
+        ? "Acquire source-addressed downside, execution-risk and falsifier evidence Alpha can reuse without setting Alpha's numeric risk or score."
+        : "Provide bounded support without assuming the root owner's authority.";
   return {
     version: 1,
     requestId,
@@ -59,6 +71,7 @@ function requestFor(packet, row, helperRole, capability, rootOwner, failures, no
       "An unchanged failed input becomes dormant instead of being retried indefinitely."
     ],
     priority: statePriority(row?.state || packet.sourceState) +
+      failurePriority(failures) +
       Math.min(12, Number(packet?.specialistCoverage?.present?.length || 0) * 2) +
       Math.min(8, Number(row?.attempts || 0) * 2),
     generatedAt: nowIso,
@@ -72,26 +85,31 @@ export function buildAssistRequests(graph, packets, roleRuns = [], nowIso = new 
     if (!row || !["researching","evidence_complete","packet_ready","chief_ready"].includes(row.state)) continue;
     const failures = packet?.preflight?.failures || [];
     const isFrontier = ["packet_ready","chief_ready"].includes(row.state);
-    const attempts = Number(row.attempts || 0);
-    const perspectiveCount = Number(packet?.specialistCoverage?.present?.length || 0);
-    const nearClosureResearch = row.state === "researching" && attempts >= 3 && perspectiveCount >= 4;
+    const evidenceStarted = Number(packet?.evidencePaths?.length || 0) > 0;
+    const researchAssistEligible = row.state === "researching" && evidenceStarted;
+    const assistEligible = isFrontier || researchAssistEligible;
 
     const alphaSourceFailures = failures.filter((failure) => [
       "missing_primary_source","missing_source_lineage","missing_factor_evidence",
       "missing_numeric_score_record","missing_score_risk_evidence","missing_data_confidence_evidence"
     ].includes(failure));
-    if (alphaSourceFailures.length && (isFrontier || nearClosureResearch)) {
+    if (alphaSourceFailures.length && assistEligible) {
       requests.push(requestFor(packet, row, "earth-scout", "source-acquisition", "council-alpha", alphaSourceFailures, nowIso));
     }
 
+    const alphaRiskFailures = failures.filter((failure) => failure === "missing_score_risk_evidence");
+    if (alphaRiskFailures.length && assistEligible) {
+      requests.push(requestFor(packet, row, "council-beta", "risk-source-support", "council-alpha", alphaRiskFailures, nowIso));
+    }
+
     const betaSourceFailures = failures.filter((failure) => failure === "missing_causal_mapping");
-    if (betaSourceFailures.length && (isFrontier || nearClosureResearch)) {
+    if (betaSourceFailures.length && assistEligible) {
       requests.push(requestFor(packet, row, "earth-scout", "causal-source-support", "council-beta", betaSourceFailures, nowIso));
     }
   }
 
   const capacityByHelper = {
-    "earth-scout": 8,
+    "earth-scout": 6,
     "council-alpha": 4,
     "council-beta": 4,
     "deep-resolver": 3,

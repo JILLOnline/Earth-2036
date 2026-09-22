@@ -252,7 +252,7 @@ function deriveBinary(name, leftMetric, rightMetric, op) {
 
   for (const [key, a] of left) {
     const b = right.get(key);
-    if (!b || a.unit !== b.unit) continue;
+    if (!b || a.unit !== b.unit || !a.accn || a.accn !== b.accn) continue;
     const av = Number(a.val);
     const bv = Number(b.val);
     if (!Number.isFinite(av) || !Number.isFinite(bv)) continue;
@@ -297,7 +297,7 @@ function deriveTotalDebt(currentDebt, noncurrentDebt) {
 
   const observations = [];
   for (const [key, row] of byEnd) {
-    if (!row.current || !row.noncurrent || row.current.unit !== row.noncurrent.unit) continue;
+    if (!row.current || !row.noncurrent || row.current.unit !== row.noncurrent.unit || !row.current.accn || row.current.accn !== row.noncurrent.accn) continue;
     const a = Number(row.current.val);
     const b = Number(row.noncurrent.val);
     if (!Number.isFinite(a) || !Number.isFinite(b)) continue;

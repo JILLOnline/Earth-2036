@@ -10,7 +10,7 @@ import {
 } from "../scripts/lib/trajectory-engine.mjs";
 
 async function json(relativePath) {
-  return JSON.parse(await readFile(new URL(\`../\${relativePath}\`, import.meta.url), "utf8"));
+  return JSON.parse(await readFile(new URL(`../${relativePath}`, import.meta.url), "utf8"));
 }
 
 function syntheticRecord(overrides = {}) {

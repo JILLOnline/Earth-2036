@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "XEL",
   "workId": "t0:XEL",
-  "generatedAt": "2026-09-22T14:29:41.580Z",
+  "generatedAt": "2026-09-22T14:31:05.515Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-03T00:00:00.000Z",
-    "end": "2026-09-21T23:07:07.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T23:07:07.000Z"
+    "end": "2026-09-22T14:27:43.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T14:27:43.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/XEL-20260921T230707Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/XEL-20260921T230707Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/XEL-20260922T142743Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,12 +65,22 @@
       "alignment2036",
       "supplyChainResilience",
       "scenarioRobustness",
-      "pricingPower"
+      "pricingPower",
+      "bottleneckControl",
+      "thesisQuality",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "pricingPower",
+        "thesisQuality"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -75,7 +88,13 @@
         "supplyChainResilience",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "governancePower",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -127,7 +146,10 @@
     "alignment2036",
     "supplyChainResilience",
     "scenarioRobustness",
-    "pricingPower"
+    "pricingPower",
+    "bottleneckControl",
+    "thesisQuality",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -138,6 +160,22 @@
       },
       {
         "risk": "Higher debt and interest expense can dilute benefits from rate-base growth; regulatory outcomes determine recovery timing and returns.",
+        "gating": false
+      },
+      {
+        "risk": "The causal bridge from announced large loads to durable earnings remains approval- and construction-dependent.",
+        "gating": false
+      },
+      {
+        "risk": "Debt-funded capital growth can be value-dilutive if regulatory recovery lags financing costs or projects are delayed.",
+        "gating": false
+      },
+      {
+        "risk": "Wildfire liability is asymmetric because extreme outcomes may exceed insurance and mitigation cannot reduce ignition probability to zero.",
+        "gating": false
+      },
+      {
+        "risk": "Large-load customers can improve utilization but create concentration and build-ahead risk if expected demand is delayed or cancelled.",
         "gating": false
       }
     ]
@@ -150,6 +188,22 @@
     {
       "risk": "Higher debt and interest expense can dilute benefits from rate-base growth; regulatory outcomes determine recovery timing and returns.",
       "gating": false
+    },
+    {
+      "risk": "The causal bridge from announced large loads to durable earnings remains approval- and construction-dependent.",
+      "gating": false
+    },
+    {
+      "risk": "Debt-funded capital growth can be value-dilutive if regulatory recovery lags financing costs or projects are delayed.",
+      "gating": false
+    },
+    {
+      "risk": "Wildfire liability is asymmetric because extreme outcomes may exceed insurance and mitigation cannot reduce ignition probability to zero.",
+      "gating": false
+    },
+    {
+      "risk": "Large-load customers can improve utilization but create concentration and build-ahead risk if expected demand is delayed or cancelled.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -160,22 +214,33 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 3
+    "count": 4
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "data-center/industrial load growth -> electricity demand -> generation+transmission investment need",
+      "reserved generation equipment -> reduced equipment lead-time risk -> improved buildout optionality",
+      "regulated capital investment -> rate-base recovery -> earnings/cash support subject to commission approval",
+      "wildfire hardening+operational mitigation -> grid resilience -> public safety and service continuity"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "data-center/industrial load growth -> electricity demand -> generation+transmission investment need",
+    "reserved generation equipment -> reduced equipment lead-time risk -> improved buildout optionality",
+    "regulated capital investment -> rate-base recovery -> earnings/cash support subject to commission approval",
+    "wildfire hardening+operational mitigation -> grid resilience -> public safety and service continuity"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
-    "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 9,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:XEL:2026Q2:20260730",
       "issuer:XEL:GoogleMN:20260224",
-      "issuer:XEL:GEV:20260203"
+      "issuer:XEL:GEV:20260203",
+      "issuer:XEL:Texas:WMP:20260804"
     ]
   },
   "sources": [
@@ -202,19 +267,43 @@
       "primary": true,
       "publishedAt": "2026-02-03",
       "originFingerprint": "issuer:XEL:GEV:20260203"
+    },
+    {
+      "sourceId": "issuer:XEL:TexasWMP",
+      "url": "https://newsroom.xcelenergy.com/news/xcel-energy-outlines-plan-to-reduce-wildfire-risk-and-enhance-public-safety-across-the-texas-panhandle-and-south-plains",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-04",
+      "originFingerprint": "issuer:XEL:Texas:WMP:20260804"
     }
   ],
   "contradictions": [
     {
       "contradiction": "Infrastructure recovery is lifting earnings while the debt used to fund expansion is simultaneously increasing financing costs.",
       "material": true
+    },
+    {
+      "contradiction": "Demand growth strengthens the need for infrastructure while simultaneously increasing capital, financing and reliability obligations.",
+      "material": false
+    },
+    {
+      "contradiction": "Infrastructure recovery is lifting earnings while debt, interest expense and equity financing simultaneously consume part of that benefit; both effects are presently observable and should remain separate.",
+      "material": true
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "contradiction": "Infrastructure recovery is lifting earnings while the debt used to fund expansion is simultaneously increasing financing costs.",
+        "material": true
+      },
+      {
+        "contradiction": "Demand growth strengthens the need for infrastructure while simultaneously increasing capital, financing and reliability obligations.",
+        "material": false
+      },
+      {
+        "contradiction": "Infrastructure recovery is lifting earnings while debt, interest expense and equity financing simultaneously consume part of that benefit; both effects are presently observable and should remain separate.",
         "material": true
       }
     ]
@@ -227,11 +316,23 @@
     {
       "unknown": "Final regulatory outcomes and realized returns on pending large-load investments are not yet known.",
       "gating": false
+    },
+    {
+      "unknown": "Final resource mix, approval timing and realized customer benefit from the Minnesota large-load program remain prospective.",
+      "gating": false
+    },
+    {
+      "unknown": "Upper-bound Smokehouse Creek liability remains not reasonably estimable.",
+      "gating": false
+    },
+    {
+      "unknown": "Whether future wildfire mitigation materially changes loss frequency/severity has not yet been demonstrated over time.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
   "confidence": 94,
@@ -240,13 +341,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -257,14 +355,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -281,10 +371,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

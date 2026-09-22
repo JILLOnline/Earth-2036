@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ZBRA",
   "workId": "t0:ZBRA",
-  "generatedAt": "2026-09-22T14:29:41.583Z",
+  "generatedAt": "2026-09-22T14:31:05.517Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-22T14:29:03.664Z"
   },
   "evidenceWindow": {
-    "start": "2026-08-04T00:00:00.000Z",
-    "end": "2026-09-21T23:07:07.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T23:07:07.000Z"
+    "start": "2024-12-30T00:00:00.000Z",
+    "end": "2026-09-22T14:27:43.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T14:27:43.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/ZBRA-20260921T230707Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ZBRA-20260921T230707Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ZBRA-20260922T142743Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -64,12 +67,22 @@
       "bottleneckControl",
       "scenarioRobustness",
       "supplyChainResilience",
-      "pricingPower"
+      "pricingPower",
+      "substitutionResilience",
+      "thesisQuality",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "thesisQuality"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -77,7 +90,14 @@
         "crossDivisionLeverage",
         "bottleneckControl"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "pricingPower",
+        "governancePower",
+        "substitutionResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -131,7 +151,10 @@
     "bottleneckControl",
     "scenarioRobustness",
     "supplyChainResilience",
-    "pricingPower"
+    "pricingPower",
+    "substitutionResilience",
+    "thesisQuality",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -142,6 +165,22 @@
       },
       {
         "risk": "Tariff recoveries and favorable FX contributed to margin expansion, while debt and acquisition integration remain execution sensitivities.",
+        "gating": false
+      },
+      {
+        "risk": "General-purpose cameras, mobile devices and competing machine-vision stacks can substitute for portions of the portfolio, so integration/workflow depth matters to resilience.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition integration and intangible amortization can obscure underlying operating improvement and consume management capacity.",
+        "gating": false
+      },
+      {
+        "risk": "Global hardware exposure creates tariff, FX, component availability and supplier disruption sensitivity.",
+        "gating": false
+      },
+      {
+        "risk": "Rapid AI/machine-vision evolution creates competitive response and obsolescence risk even as it expands the market.",
         "gating": false
       }
     ]
@@ -154,6 +193,22 @@
     {
       "risk": "Tariff recoveries and favorable FX contributed to margin expansion, while debt and acquisition integration remain execution sensitivities.",
       "gating": false
+    },
+    {
+      "risk": "General-purpose cameras, mobile devices and competing machine-vision stacks can substitute for portions of the portfolio, so integration/workflow depth matters to resilience.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition integration and intangible amortization can obscure underlying operating improvement and consume management capacity.",
+      "gating": false
+    },
+    {
+      "risk": "Global hardware exposure creates tariff, FX, component availability and supplier disruption sensitivity.",
+      "gating": false
+    },
+    {
+      "risk": "Rapid AI/machine-vision evolution creates competitive response and obsolescence risk even as it expands the market.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -164,20 +219,32 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "physical asset/workflow -> capture/identity data -> operational visibility -> labor+inventory efficiency",
+      "3D machine vision -> robotic perception -> automated picking/inspection -> manufacturing/logistics productivity",
+      "frontline device installed base -> software/services integration -> workflow switching costs and lifecycle demand",
+      "AI decisioning + sensors -> faster local decisions -> intelligent operations"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "physical asset/workflow -> capture/identity data -> operational visibility -> labor+inventory efficiency",
+    "3D machine vision -> robotic perception -> automated picking/inspection -> manufacturing/logistics productivity",
+    "frontline device installed base -> software/services integration -> workflow switching costs and lifecycle demand",
+    "AI decisioning + sensors -> faster local decisions -> intelligent operations"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "sec:CIK877212:2026Q2:EX99.1:20260804"
+      "sec:CIK877212:2026Q2:EX99.1:20260804",
+      "issuer:ZBRA:Photoneo:acquisition",
+      "issuer:ZBRA:2026Q1:results"
     ]
   },
   "sources": [
@@ -188,19 +255,51 @@
       "primary": true,
       "publishedAt": "2026-08-04",
       "originFingerprint": "sec:CIK877212:2026Q2:EX99.1:20260804"
+    },
+    {
+      "sourceId": "issuer:ZBRA:Photoneo",
+      "url": "https://www.zebra.com/us/en/about-zebra/newsroom/press-releases/2024/zebra-technologies-to-acquire-photoneo-expanding-its-portfolio-of-3d-machine-vision-solutions.html",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2024-12-30",
+      "originFingerprint": "issuer:ZBRA:Photoneo:acquisition"
+    },
+    {
+      "sourceId": "issuer:ZBRA:2026Q1",
+      "url": "https://www.zebra.com/us/en/about-zebra/newsroom/press-releases/2026/zebra-technologies-announces-first-quarter-2026-results.html",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-12",
+      "originFingerprint": "issuer:ZBRA:2026Q1:results"
     }
   ],
   "contradictions": [
     {
       "contradiction": "Record margins include $73M of IEEPA tariff recoveries, so the full magnitude of margin expansion should not be treated as purely underlying operating improvement.",
       "material": true
+    },
+    {
+      "contradiction": "Acquisitions expand the technology stack but can make reported growth look stronger than organic adoption; strategic breadth and organic traction must remain separate.",
+      "material": false
+    },
+    {
+      "contradiction": "Record adjusted profitability is directionally supported by growth and productivity but its magnitude is temporarily amplified by tariff recoveries and FX; the underlying improvement is therefore positive but smaller than the headline expansion.",
+      "material": true
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "contradiction": "Record margins include $73M of IEEPA tariff recoveries, so the full magnitude of margin expansion should not be treated as purely underlying operating improvement.",
+        "material": true
+      },
+      {
+        "contradiction": "Acquisitions expand the technology stack but can make reported growth look stronger than organic adoption; strategic breadth and organic traction must remain separate.",
+        "material": false
+      },
+      {
+        "contradiction": "Record adjusted profitability is directionally supported by growth and productivity but its magnitude is temporarily amplified by tariff recoveries and FX; the underlying improvement is therefore positive but smaller than the headline expansion.",
         "material": true
       }
     ]
@@ -213,26 +312,31 @@
     {
       "unknown": "Sustainability of margin gains after tariff-recovery effects normalize remains uncertain.",
       "gating": false
+    },
+    {
+      "unknown": "The incremental recurring software/service economics from newer machine-vision assets are not separately established in the current evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Normalized EBITDA margin after tariff-recovery effects and acquisition mix stabilize remains uncertain.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 97,
+  "confidence": 93,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -243,14 +347,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -267,10 +363,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

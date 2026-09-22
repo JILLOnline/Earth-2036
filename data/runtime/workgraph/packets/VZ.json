@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "VZ",
   "workId": "t0:VZ",
-  "generatedAt": "2026-09-22T14:29:41.586Z",
+  "generatedAt": "2026-09-22T14:31:05.520Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-22T14:29:03.664Z"
   },
   "evidenceWindow": {
-    "start": "2026-07-24T00:00:00.000Z",
-    "end": "2026-09-21T22:02:46.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T22:02:46.000Z"
+    "start": "2026-01-15T00:00:00.000Z",
+    "end": "2026-09-22T14:27:43.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T14:27:43.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,46 +32,68 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/VZ-20260921T220246Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/VZ-20260921T220246Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/VZ-20260922T142743Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "financialOperatingMomentum",
       "bottleneckControl",
       "scenarioRobustness",
-      "catalystScore"
+      "catalystScore",
+      "thesisQuality",
+      "crossDivisionLeverage",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "governancePower",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "bottleneckControl",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "bottleneckControl",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "governancePower",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "pricingPower",
+        "financialOperatingMomentum"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -120,7 +142,13 @@
     "financialOperatingMomentum",
     "bottleneckControl",
     "scenarioRobustness",
-    "catalystScore"
+    "catalystScore",
+    "thesisQuality",
+    "crossDivisionLeverage",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "governancePower",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -131,6 +159,22 @@
       },
       {
         "risk": "Acceleration to the Q4 service-revenue target depends on continued subscriber and account momentum amid intense telecom competition.",
+        "gating": false
+      },
+      {
+        "risk": "Cable, AT&T, T-Mobile, MVNOs and other fixed/wireless substitutes constrain pricing and make network quality plus convergence execution necessary rather than sufficient.",
+        "gating": false
+      },
+      {
+        "risk": "Large absolute debt makes the convergence strategy sensitive to integration execution, rates and sustained free-cash-flow delivery.",
+        "gating": false
+      },
+      {
+        "risk": "Intense telecom competition and promotional response can absorb network advantages into customer incentives rather than durable pricing power.",
+        "gating": false
+      },
+      {
+        "risk": "Network outages, cyber events and supplier disruptions are direct failure modes because reliability is itself part of the product.",
         "gating": false
       }
     ]
@@ -143,6 +187,22 @@
     {
       "risk": "Acceleration to the Q4 service-revenue target depends on continued subscriber and account momentum amid intense telecom competition.",
       "gating": false
+    },
+    {
+      "risk": "Cable, AT&T, T-Mobile, MVNOs and other fixed/wireless substitutes constrain pricing and make network quality plus convergence execution necessary rather than sufficient.",
+      "gating": false
+    },
+    {
+      "risk": "Large absolute debt makes the convergence strategy sensitive to integration execution, rates and sustained free-cash-flow delivery.",
+      "gating": false
+    },
+    {
+      "risk": "Intense telecom competition and promotional response can absorb network advantages into customer incentives rather than durable pricing power.",
+      "gating": false
+    },
+    {
+      "risk": "Network outages, cyber events and supplier disruptions are direct failure modes because reliability is itself part of the product.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -153,21 +213,35 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 6
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "spectrum+5G network -> mobile connectivity capacity -> consumer/enterprise communications need",
+      "fiber footprint -> fixed broadband capacity -> home/business connectivity need",
+      "fiber+mobile convergence -> bundled distribution/customer economics -> retention and recurring service demand",
+      "network capital+debt capacity -> infrastructure expansion -> future service reach"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "spectrum+5G network -> mobile connectivity capacity -> consumer/enterprise communications need",
+    "fiber footprint -> fixed broadband capacity -> home/business connectivity need",
+    "fiber+mobile convergence -> bundled distribution/customer economics -> retention and recurring service demand",
+    "network capital+debt capacity -> infrastructure expansion -> future service reach"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 9,
+    "uniqueSourceCount": 6,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:VZ:2026Q2:results",
-      "issuer:VZ:2026Q3:dividend-0.7075"
+      "issuer:VZ:2026Q3:dividend-0.7075",
+      "issuer:VZ:2026Q1:results",
+      "issuer:VZ:Frontier:regulatory-close",
+      "issuer:VZ:2025:10K",
+      "issuer:VZ:2026:debt-redemption-202809"
     ]
   },
   "sources": [
@@ -186,19 +260,67 @@
       "primary": true,
       "publishedAt": "2026-09-09",
       "originFingerprint": "issuer:VZ:2026Q3:dividend-0.7075"
+    },
+    {
+      "sourceId": "issuer:VZ:2026Q1",
+      "url": "https://www.verizon.com/about/news/verizons-transformation-actions-deliver-growth-profitability-1q26-company-raises-adjusted-eps",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-04-27",
+      "originFingerprint": "issuer:VZ:2026Q1:results"
+    },
+    {
+      "sourceId": "issuer:VZ:Frontier-close",
+      "url": "https://www.verizon.com/about/news/feed/verizon-and-frontier-regulatory-approval",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-01-15",
+      "originFingerprint": "issuer:VZ:Frontier:regulatory-close"
+    },
+    {
+      "sourceId": "issuer:VZ:2025-10K",
+      "url": "https://www.verizon.com/about/sites/default/files/2025-Annual-Report-on-Form-10k.pdf",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-17",
+      "originFingerprint": "issuer:VZ:2025:10K"
+    },
+    {
+      "sourceId": "issuer:VZ:2026-redemption",
+      "url": "https://www.verizon.com/about/news/verizon-redeems-debt-securities-september-2026",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-20",
+      "originFingerprint": "issuer:VZ:2026:debt-redemption-202809"
     }
   ],
   "contradictions": [
     {
       "contradiction": "Improving service growth and subscriber additions coexist with lower total operating revenue due to equipment weakness.",
       "material": true
+    },
+    {
+      "contradiction": "Lower equipment revenue can coexist with improving service economics; this weakens total-revenue optics but does not by itself falsify the service-network causal thesis.",
+      "material": false
+    },
+    {
+      "contradiction": "Capital returns and network investment are being pursued alongside elevated post-acquisition debt; cash generation currently supports both, but deterioration would force a sharper allocation tradeoff.",
+      "material": true
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "contradiction": "Improving service growth and subscriber additions coexist with lower total operating revenue due to equipment weakness.",
+        "material": true
+      },
+      {
+        "contradiction": "Lower equipment revenue can coexist with improving service economics; this weakens total-revenue optics but does not by itself falsify the service-network causal thesis.",
+        "material": false
+      },
+      {
+        "contradiction": "Capital returns and network investment are being pursued alongside elevated post-acquisition debt; cash generation currently supports both, but deterioration would force a sharper allocation tradeoff.",
         "material": true
       }
     ]
@@ -211,26 +333,31 @@
     {
       "unknown": "No Q3 operating result is present here to establish progress toward the Q4 ~4% target.",
       "gating": false
+    },
+    {
+      "unknown": "The durable incremental retention and ARPA benefit attributable specifically to Frontier-enabled convergence is not yet established.",
+      "gating": false
+    },
+    {
+      "unknown": "Full Frontier synergy realization and post-integration churn economics remain unproven over a complete operating cycle.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 96,
+  "confidence": 93,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -241,14 +368,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -265,10 +384,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

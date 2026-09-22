@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "XYL",
   "workId": "t0:XYL",
-  "generatedAt": "2026-09-22T14:29:41.585Z",
+  "generatedAt": "2026-09-22T14:31:05.519Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-22T14:29:03.664Z"
   },
   "evidenceWindow": {
-    "start": "2026-07-24T00:00:00.000Z",
-    "end": "2026-09-21T23:07:07.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T23:07:07.000Z"
+    "start": "2026-02-25T00:00:00.000Z",
+    "end": "2026-09-22T14:27:43.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T14:27:43.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/XYL-20260921T230707Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/XYL-20260921T230707Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/XYL-20260922T142743Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -63,12 +66,22 @@
       "bottleneckControl",
       "crossDivisionLeverage",
       "scenarioRobustness",
-      "pricingPower"
+      "pricingPower",
+      "substitutionResilience",
+      "thesisQuality",
+      "supplyChainResilience"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "thesisQuality"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -76,7 +89,14 @@
         "bottleneckControl",
         "crossDivisionLeverage"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "pricingPower",
+        "crossDivisionLeverage"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -129,7 +149,10 @@
     "bottleneckControl",
     "crossDivisionLeverage",
     "scenarioRobustness",
-    "pricingPower"
+    "pricingPower",
+    "substitutionResilience",
+    "thesisQuality",
+    "supplyChainResilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -140,6 +163,22 @@
       },
       {
         "risk": "Lower volumes and project timing can delay conversion even as margin execution remains strong.",
+        "gating": false
+      },
+      {
+        "risk": "Water scarcity can create demand for efficiency solutions but can also constrain project siting and customer expansion, so scarcity is not uniformly beneficial.",
+        "gating": false
+      },
+      {
+        "risk": "Backlog/order conversion can slip because large projects depend on customer budgets, schedules, performance requirements and supply availability.",
+        "gating": false
+      },
+      {
+        "risk": "The Evoqua integration broadens capability but creates continuing synergy/integration execution risk.",
+        "gating": false
+      },
+      {
+        "risk": "Connected measurement/control products increase cyber and technology-obsolescence exposure alongside their efficiency benefits.",
         "gating": false
       }
     ]
@@ -152,6 +191,22 @@
     {
       "risk": "Lower volumes and project timing can delay conversion even as margin execution remains strong.",
       "gating": false
+    },
+    {
+      "risk": "Water scarcity can create demand for efficiency solutions but can also constrain project siting and customer expansion, so scarcity is not uniformly beneficial.",
+      "gating": false
+    },
+    {
+      "risk": "Backlog/order conversion can slip because large projects depend on customer budgets, schedules, performance requirements and supply availability.",
+      "gating": false
+    },
+    {
+      "risk": "The Evoqua integration broadens capability but creates continuing synergy/integration execution risk.",
+      "gating": false
+    },
+    {
+      "risk": "Connected measurement/control products increase cyber and technology-obsolescence exposure alongside their efficiency benefits.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -162,20 +217,32 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "population+industrial activity -> water quantity/quality need -> treatment+transport infrastructure demand",
+      "AI/data-center growth -> electricity/semiconductor expansion -> cooling/process water need -> industrial water solutions demand",
+      "measurement/control -> leak/process visibility -> resource efficiency -> lower waste and improved reliability",
+      "installed water infrastructure -> lifecycle service need -> recurring monitoring/treatment opportunity"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "population+industrial activity -> water quantity/quality need -> treatment+transport infrastructure demand",
+    "AI/data-center growth -> electricity/semiconductor expansion -> cooling/process water need -> industrial water solutions demand",
+    "measurement/control -> leak/process visibility -> resource efficiency -> lower waste and improved reliability",
+    "installed water infrastructure -> lifecycle service need -> recurring monitoring/treatment opportunity"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:XYL:2026Q2:20260724"
+      "issuer:XYL:2026Q2:20260724",
+      "issuer:XYL:AI-water:20260312",
+      "issuer:XYL:2025:10K"
     ]
   },
   "sources": [
@@ -186,19 +253,51 @@
       "primary": true,
       "publishedAt": "2026-07-24",
       "originFingerprint": "issuer:XYL:2026Q2:20260724"
+    },
+    {
+      "sourceId": "issuer:XYL:AI-water",
+      "url": "https://www.xylem.com/en-us/resources/blog-posts/making-waves/how-water-secures-reliability-in-the-ai-driven-energy-transition/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-03-12",
+      "originFingerprint": "issuer:XYL:AI-water:20260312"
+    },
+    {
+      "sourceId": "issuer:XYL:2025-10K",
+      "url": "https://www.xylem.com/siteassets/investors/2025-annual-report-on-form-10-k.pdf",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-25",
+      "originFingerprint": "issuer:XYL:2025:10K"
     }
   ],
   "contradictions": [
     {
       "contradiction": "Orders accelerated sharply while near-term revenue growth stayed low and full-year revenue guidance was narrowed.",
       "material": true
+    },
+    {
+      "contradiction": "Very strong orders indicate future demand but current revenue conversion remains modest; structural demand and near-term realization must not be conflated.",
+      "material": false
+    },
+    {
+      "contradiction": "The order/revenue gap is real but not inherently adverse: it supports future demand visibility while simultaneously increasing the importance of conversion timing and mix. Treating orders as current revenue would inflate confidence.",
+      "material": true
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "contradiction": "Orders accelerated sharply while near-term revenue growth stayed low and full-year revenue guidance was narrowed.",
+        "material": true
+      },
+      {
+        "contradiction": "Very strong orders indicate future demand but current revenue conversion remains modest; structural demand and near-term realization must not be conflated.",
+        "material": false
+      },
+      {
+        "contradiction": "The order/revenue gap is real but not inherently adverse: it supports future demand visibility while simultaneously increasing the importance of conversion timing and mix. Treating orders as current revenue would inflate confidence.",
         "material": true
       }
     ]
@@ -211,26 +310,31 @@
     {
       "unknown": "How much of current orders converts within 2026 versus later periods remains uncertain.",
       "gating": false
+    },
+    {
+      "unknown": "The share of the current order surge specifically attributable to AI infrastructure versus other industrial/municipal demand is not established.",
+      "gating": false
+    },
+    {
+      "unknown": "Duration, cancellation protection and margin profile of the incremental order surge are not fully established by the current source set.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 96,
+  "confidence": 94,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -241,14 +345,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -265,10 +361,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

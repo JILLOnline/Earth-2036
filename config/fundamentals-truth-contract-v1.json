@@ -19,7 +19,9 @@
     "preserveAllEligibleVersions": true,
     "latestContextVersionIsMechanical": true,
     "availabilityPrecision": "SEC Company Facts exposes filed date, not acceptance timestamp, for each fact.",
-    "sameDayPolicy": "Conservative: a fact with only a filing date becomes eligible after the end of that UTC filing date."
+    "sameDayPolicy": "Conservative: a fact with only a filing date becomes eligible after the end of that UTC filing date.",
+    "economicContextIdentity": "taxonomy + tag + unit + start/end; fy/fp are filing metadata and do not create a new economic fact.",
+    "periodClassification": "Periodic form is authoritative for annual vs interim classification; duration is secondary within interim filings."
   },
   "metrics": [
     "revenue",
@@ -29,16 +31,17 @@
     "operating_cash_flow",
     "capital_expenditures",
     "cash_and_equivalents",
-    "debt_current",
-    "debt_noncurrent",
+    "long_term_debt_current",
+    "long_term_debt_noncurrent",
+    "borrowings_current_ifrs",
+    "borrowings_noncurrent_ifrs",
     "shares_outstanding"
   ],
   "derivedMetrics": [
     "free_cash_flow",
     "gross_margin",
     "operating_margin",
-    "net_margin",
-    "total_debt"
+    "net_margin"
   ],
   "derivedPolicy": {
     "rule": "Derived values are mechanical transformations of selected source facts only.",
@@ -48,7 +51,8 @@
     "ambiguousInputsYieldUnknown": true,
     "missingInputsYieldUnknown": true,
     "sameFilingAccessionRequired": true,
-    "note": "A later amendment to one input cannot be combined with a stale value from another filing; incompatible inputs yield unknown."
+    "note": "A later amendment to one input cannot be combined with a stale value from another filing; incompatible inputs yield unknown.",
+    "debtPolicy": "No total-debt synthesis in v1; debt/borrowings concepts remain separate until semantic component coverage is audited."
   },
   "ambiguityPolicy": {
     "conflictingStandardConcepts": "unknown",

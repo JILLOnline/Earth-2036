@@ -211,15 +211,18 @@ function classifyDuration(fact) {
   return "other_duration";
 }
 
-export function extractMetricFacts(companyFacts, metricName, asOf) {
+export function extractMetricFactsFromRaw(rawFacts, metricName) {
   const spec = FUNDAMENTAL_METRICS[metricName];
   if (!spec) throw new Error("Unknown fundamental metric: " + metricName);
-  const all = extractAllStandardFacts(companyFacts, asOf);
   const conceptKeys = new Set(spec.concepts.map(([taxonomy, tag]) => taxonomy + ":" + tag));
-  return all.filter((fact) =>
+  return (Array.isArray(rawFacts) ? rawFacts : []).filter((fact) =>
     conceptKeys.has(fact.taxonomy + ":" + fact.tag) &&
     NORMALIZED_FORMS.has(String(fact.form ?? ""))
   );
+}
+
+export function extractMetricFacts(companyFacts, metricName, asOf) {
+  return extractMetricFactsFromRaw(extractAllStandardFacts(companyFacts, asOf), metricName);
 }
 
 function resolvePeriodBucket(facts) {
@@ -273,9 +276,10 @@ function freshness(currentFacts, asOf) {
   };
 }
 
-export function normalizeMetric(companyFacts, metricName, asOf) {
+export function normalizeMetricFromRaw(rawFacts, metricName, asOf) {
   const spec = FUNDAMENTAL_METRICS[metricName];
-  const eligible = extractMetricFacts(companyFacts, metricName, asOf);
+  if (!spec) throw new Error("Unknown fundamental metric: " + metricName);
+  const eligible = extractMetricFactsFromRaw(rawFacts, metricName);
   const { current, superseded } = latestContextVersions(eligible);
 
   const buckets = new Map();
@@ -316,6 +320,10 @@ export function normalizeMetric(companyFacts, metricName, asOf) {
     freshness: freshness(current, asOf),
     factsHash: truthHash(eligible),
   };
+}
+
+export function normalizeMetric(companyFacts, metricName, asOf) {
+  return normalizeMetricFromRaw(extractAllStandardFacts(companyFacts, asOf), metricName, asOf);
 }
 
 function selectedPeriods(metric) {
@@ -369,7 +377,7 @@ export function buildFundamentalsTruth(companyFacts, options = {}) {
 
   const metrics = {};
   for (const name of Object.keys(FUNDAMENTAL_METRICS)) {
-    metrics[name] = normalizeMetric(companyFacts, name, asOf);
+    metrics[name] = normalizeMetricFromRaw(rawFacts, name, asOf);
   }
 
   const derived = {

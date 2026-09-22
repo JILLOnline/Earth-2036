@@ -753,3 +753,46 @@ test("assist bus caps helper capacity instead of flooding one minion", () => {
   assert.equal(bus.queued, 4);
   assert.equal(bus.byHelper["earth-scout"], 8);
 });
+
+
+test("loader consumes explicit Resolver gateImpact closures without weakening other gates", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "earth2036-workgraph-resolver-gateimpact-"));
+  try {
+    const dir = path.join(root, "data", "runtime", "workgraph", "evidence");
+    await mkdir(dir, { recursive: true });
+    const base = completeEvidence();
+    const beta = base.find((row) => row.perspective === "adversarial-red-team");
+    beta.contradictions = [{ contradiction: "material tension", material: true }];
+    await writeFile(path.join(dir, "AAA-base.json"), JSON.stringify(base), "utf8");
+    await writeFile(path.join(dir, "AAA-resolver-gateimpact.json"), JSON.stringify({
+      version: 2,
+      contract: "workgraph-v2-deep-resolver-evidence",
+      ticker: "AAA",
+      workId: "t0:AAA",
+      role: "deep-resolver",
+      generatedAt: "2026-09-22T12:36:08Z",
+      result: "resolved",
+      contradictionStatus: "resolved",
+      gateImpact: "close_unresolved_material_contradiction_on_reconcile",
+      recommendedNextState: "researching",
+      confidence: 99
+    }), "utf8");
+
+    const loaded = await loadStructuredEvidence(root);
+    const resolver = loaded.find((row) => row.role === "deep-resolver");
+    assert.equal(resolver.items[0].status, "resolved");
+    assert.ok(resolver.items[0].itemId.includes("unresolved_material_contradiction"));
+
+    const packet = compilePromotionPacket(
+      "AAA",
+      loaded,
+      { ticker:"AAA", state:"researching", workId:"t0:AAA" },
+      { registryEntry, methodologyVersion:"1.0.0" },
+    );
+    assert.equal(packet.preflight.failures.includes("unresolved_material_contradiction"), false);
+    assert.ok(packet.evidenceResolution.resolvedGateKinds.includes("material_contradiction"));
+    assert.equal(packet.preflight.failures.includes("missing_numeric_score_record"), false);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});

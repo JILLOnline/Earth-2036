@@ -2,7 +2,7 @@ name: Earth 2036 Scheduler Watchdog
 
 on:
   schedule:
-    - cron: "22 * * * *"
+    - cron: "22,42 * * * *"
   workflow_dispatch:
   push:
     branches: [main]
@@ -45,7 +45,7 @@ jobs:
               observed=dt.datetime.fromisoformat(stamp.replace('Z','+00:00'))
               age=max(0,int((dt.datetime.now(dt.timezone.utc)-observed).total_seconds()))
               print(f'machine_age_seconds={age}')
-              print(f'machine_stale={str(age>5400).lower()}')
+              print(f'machine_stale={str(age>3900).lower()}')
               print(f'last_cycle_at={stamp}')
           print(f'workgraph_healthy={str(bool(metrics.get("healthy"))).lower()}')
           print(f'workgraph_alert_count={len(metrics.get("healthAlerts") or [])}')

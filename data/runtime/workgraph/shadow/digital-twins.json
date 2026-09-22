@@ -1,9 +1,9 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-22T05:15:56.086Z",
+  "generatedAt": "2026-09-22T05:28:46.542Z",
   "canonicalWriteAuthority": false,
-  "total": 174,
+  "total": 173,
   "twins": [
     {
       "version": 1,
@@ -5067,7 +5067,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "AMZN",
       "workId": "t0:AMZN",
-      "inputSignature": "7160a8e5a20a81b6696fcad4",
+      "inputSignature": "f2a66d239d180ab980746bc1",
       "sourceState": "researching",
       "identity": {
         "ticker": "AMZN",
@@ -5090,19 +5090,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 1,
         "sourceLineage": {
-          "rawSourceCount": 2,
+          "rawSourceCount": 4,
           "uniqueSourceCount": 1,
-          "duplicatesCollapsed": 1,
+          "duplicatesCollapsed": 3,
           "missingLineage": 0,
           "uniqueOrigins": [
             "sec:1018724:2026Q2:000101872426000024:ex99.1"
@@ -5110,8 +5110,8 @@
         },
         "evidenceWindow": {
           "start": "2026-07-30T00:00:00.000Z",
-          "end": "2026-09-19T08:06:13.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T08:06:13.000Z"
+          "end": "2026-09-22T05:26:08.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-22T05:26:08.000Z"
         },
         "preflightPassed": false
       },
@@ -5124,16 +5124,28 @@
         "financialOperatingMomentum",
         "catalystScore",
         "scenarioRobustness",
-        "supplyChainResilience"
+        "supplyChainResilience",
+        "substitutionResilience",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
           "AI infrastructure expansion is exceptionally capital intensive and may compress free cash flow despite strong demand.",
-          "Free-cash-flow deterioration creates an execution burden: rapid AI growth must ultimately earn adequate returns on sharply higher infrastructure spending."
+          "Free-cash-flow deterioration creates an execution burden: rapid AI growth must ultimately earn adequate returns on sharply higher infrastructure spending.",
+          "capital intensity",
+          "power/chip capacity constraints",
+          "cloud competition",
+          "return-on-invested-capital uncertainty",
+          "free-cash-flow compression",
+          "overbuild/utilization risk",
+          "supplier/power concentration",
+          "regulatory/competitive response"
         ],
         "unknowns": [
           "Long-run returns on the current AI infrastructure investment wave are not yet observable.",
-          "Timing of normalization in AI capex intensity and free cash flow remains unknown."
+          "Timing of normalization in AI capex intensity and free cash flow remains unknown.",
+          "long-run returns on current AI infrastructure investment",
+          "timing of capex-intensity and free-cash-flow normalization"
         ],
         "contradictions": [
           "Strong operating-income and AWS growth coexist with negative TTM free cash flow because AI capex accelerated materially."
@@ -5142,19 +5154,20 @@
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
           "missing_data_confidence_evidence",
-          "missing_causal_mapping",
           "unresolved_material_contradiction"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "AI/application demand -> AWS compute demand -> chips/power/data-center capacity -> infrastructure capex",
+          "infrastructure buildout -> service capacity -> enterprise digital/AI workloads",
+          "capex intensity -> lower near-term free cash flow -> higher required future returns"
+        ]
       },
       "improvementWindows": [
         {
@@ -5165,16 +5178,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -5198,11 +5201,6 @@
           "stance": "improvement-oriented"
         },
         {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
-        },
-        {
           "failure": "unresolved_material_contradiction",
           "question": "Which material contradiction must be reconciled before the representation can advance?",
           "stance": "improvement-oriented"
@@ -5218,13 +5216,25 @@
           "financialOperatingMomentum",
           "catalystScore",
           "scenarioRobustness",
-          "supplyChainResilience"
+          "supplyChainResilience",
+          "substitutionResilience",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "Long-run returns on the current AI infrastructure investment wave are not yet observable.",
           "Timing of normalization in AI capex intensity and free cash flow remains unknown.",
+          "long-run returns on current AI infrastructure investment",
+          "timing of capex-intensity and free-cash-flow normalization",
           "AI infrastructure expansion is exceptionally capital intensive and may compress free cash flow despite strong demand.",
-          "Free-cash-flow deterioration creates an execution burden: rapid AI growth must ultimately earn adequate returns on sharply higher infrastructure spending."
+          "Free-cash-flow deterioration creates an execution burden: rapid AI growth must ultimately earn adequate returns on sharply higher infrastructure spending.",
+          "capital intensity",
+          "power/chip capacity constraints",
+          "cloud competition",
+          "return-on-invested-capital uncertainty",
+          "free-cash-flow compression",
+          "overbuild/utilization risk",
+          "supplier/power concentration",
+          "regulatory/competitive response"
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -6346,7 +6356,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "AI",
       "workId": "t0:AI",
-      "inputSignature": "78fbb279054d7b729b9c854f",
+      "inputSignature": "1dbf1bc30c7ec48fd24cb3ee",
       "sourceState": "researching",
       "identity": {
         "ticker": "AI",
@@ -6369,19 +6379,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 2,
         "sourceLineage": {
-          "rawSourceCount": 4,
+          "rawSourceCount": 8,
           "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 2,
+          "duplicatesCollapsed": 6,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:AI:FY2026prelim:20260518",
@@ -6390,8 +6400,8 @@
         },
         "evidenceWindow": {
           "start": "2026-02-25T00:00:00.000Z",
-          "end": "2026-09-19T07:06:15.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T07:06:15.000Z"
+          "end": "2026-09-22T05:26:08.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-22T05:26:08.000Z"
         },
         "preflightPassed": false
       },
@@ -6403,17 +6413,30 @@
         "bottleneckControl",
         "financialOperatingMomentum",
         "scenarioRobustness",
-        "pricingPower"
+        "pricingPower",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
           "Bookings were lower than expected, so agreement counts may not translate into durable revenue growth or attractive unit economics.",
           "Enterprise AI remains highly competitive and substitution resilience is not established by these disclosures.",
-          "Large operating losses and cash burn make successful restructuring and renewed bookings growth central to execution quality."
+          "Large operating losses and cash burn make successful restructuring and renewed bookings growth central to execution quality.",
+          "platform substitution",
+          "implementation complexity",
+          "customer ROI proof",
+          "cash burn",
+          "bookings weakness",
+          "hyperscaler/model-provider competition",
+          "restructuring execution",
+          "confidence inflation from agreement counts"
         ],
         "unknowns": [
           "Durability, contract value and production expansion rate of the newly signed agreements are not established in the retrieved releases.",
-          "Realized restructuring savings and post-FY2026 bookings trajectory require later-period primary evidence."
+          "Realized restructuring savings and post-FY2026 bookings trajectory require later-period primary evidence.",
+          "durability and value of newly signed agreements",
+          "realized restructuring savings and post-FY2026 bookings trajectory"
         ],
         "contradictions": [
           "Management cites accelerating market opportunity while reporting bookings below expectations.",
@@ -6423,19 +6446,20 @@
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
           "missing_data_confidence_evidence",
-          "missing_causal_mapping",
           "unresolved_material_contradiction"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "AI compute/models -> enterprise application platform -> deployed workflows -> productivity/decision support",
+          "partner ecosystem -> distribution/integration -> customer adoption",
+          "weak bookings -> lower future deployment base -> weaker operating leverage"
+        ]
       },
       "improvementWindows": [
         {
@@ -6446,16 +6470,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -6479,11 +6493,6 @@
           "stance": "improvement-oriented"
         },
         {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
-        },
-        {
           "failure": "unresolved_material_contradiction",
           "question": "Which material contradiction must be reconciled before the representation can advance?",
           "stance": "improvement-oriented"
@@ -6498,14 +6507,27 @@
           "bottleneckControl",
           "financialOperatingMomentum",
           "scenarioRobustness",
-          "pricingPower"
+          "pricingPower",
+          "substitutionResilience",
+          "supplyChainResilience",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "Durability, contract value and production expansion rate of the newly signed agreements are not established in the retrieved releases.",
           "Realized restructuring savings and post-FY2026 bookings trajectory require later-period primary evidence.",
+          "durability and value of newly signed agreements",
+          "realized restructuring savings and post-FY2026 bookings trajectory",
           "Bookings were lower than expected, so agreement counts may not translate into durable revenue growth or attractive unit economics.",
           "Enterprise AI remains highly competitive and substitution resilience is not established by these disclosures.",
-          "Large operating losses and cash burn make successful restructuring and renewed bookings growth central to execution quality."
+          "Large operating losses and cash burn make successful restructuring and renewed bookings growth central to execution quality.",
+          "platform substitution",
+          "implementation complexity",
+          "customer ROI proof",
+          "cash burn",
+          "bookings weakness",
+          "hyperscaler/model-provider competition",
+          "restructuring execution",
+          "confidence inflation from agreement counts"
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -15666,7 +15688,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "ALB",
       "workId": "t0:ALB",
-      "inputSignature": "ac1ad680814b1e703bf720c2",
+      "inputSignature": "0fdfa8e619403b78bc2d6a92",
       "sourceState": "researching",
       "identity": {
         "ticker": "ALB",
@@ -15689,19 +15711,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 3,
         "sourceLineage": {
-          "rawSourceCount": 4,
+          "rawSourceCount": 10,
           "uniqueSourceCount": 3,
-          "duplicatesCollapsed": 1,
+          "duplicatesCollapsed": 7,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:ALB:FY2025:20260211",
@@ -15711,8 +15733,8 @@
         },
         "evidenceWindow": {
           "start": "2026-02-11T00:00:00.000Z",
-          "end": "2026-09-19T07:06:15.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T07:06:15.000Z"
+          "end": "2026-09-22T05:26:08.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-22T05:26:08.000Z"
         },
         "preflightPassed": false
       },
@@ -15722,17 +15744,28 @@
         "bottleneckControl",
         "supplyChainResilience",
         "scenarioRobustness",
-        "financialOperatingMomentum"
+        "financialOperatingMomentum",
+        "substitutionResilience",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
           "Lithium price volatility can overwhelm volume growth and impair conversion economics.",
           "Idling Kemerton reduces Western conversion footprint and highlights cost disadvantages in part of the supply chain.",
-          "Cash flow remains sensitive to lithium pricing and prior-period operating cash flow included a one-time customer prepayment."
+          "Cash flow remains sensitive to lithium pricing and prior-period operating cash flow included a one-time customer prepayment.",
+          "commodity cyclicality",
+          "conversion cost disadvantage",
+          "geographic asset concentration",
+          "commodity-price sensitivity",
+          "asset impairment/idling",
+          "cash-flow quality",
+          "capital allocation under cycle stress"
         ],
         "unknowns": [
           "Long-run restart economics and timing for Kemerton remain uncertain.",
-          "Full-year 2026 free cash flow depends on lithium price scenarios and is not a fixed outcome."
+          "Full-year 2026 free cash flow depends on lithium price scenarios and is not a fixed outcome.",
+          "long-run Kemerton restart economics",
+          "full-year free cash flow across lithium-price scenarios"
         ],
         "contradictions": [
           "Lithium conditions improved, yet Kemerton economics remained insufficient to keep Train 1 operating.",
@@ -15742,19 +15775,20 @@
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
           "missing_data_confidence_evidence",
-          "missing_causal_mapping",
           "unresolved_material_contradiction"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "electrification/battery demand -> lithium chemical demand -> resource extraction/conversion -> battery supply",
+          "resource scale -> potential cost/supply resilience -> customer availability",
+          "high conversion cost -> plant idling -> reduced downstream footprint"
+        ]
       },
       "improvementWindows": [
         {
@@ -15765,16 +15799,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -15798,11 +15822,6 @@
           "stance": "improvement-oriented"
         },
         {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
-        },
-        {
           "failure": "unresolved_material_contradiction",
           "question": "Which material contradiction must be reconciled before the representation can advance?",
           "stance": "improvement-oriented"
@@ -15815,14 +15834,25 @@
           "bottleneckControl",
           "supplyChainResilience",
           "scenarioRobustness",
-          "financialOperatingMomentum"
+          "financialOperatingMomentum",
+          "substitutionResilience",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "Long-run restart economics and timing for Kemerton remain uncertain.",
           "Full-year 2026 free cash flow depends on lithium price scenarios and is not a fixed outcome.",
+          "long-run Kemerton restart economics",
+          "full-year free cash flow across lithium-price scenarios",
           "Lithium price volatility can overwhelm volume growth and impair conversion economics.",
           "Idling Kemerton reduces Western conversion footprint and highlights cost disadvantages in part of the supply chain.",
-          "Cash flow remains sensitive to lithium pricing and prior-period operating cash flow included a one-time customer prepayment."
+          "Cash flow remains sensitive to lithium pricing and prior-period operating cash flow included a one-time customer prepayment.",
+          "commodity cyclicality",
+          "conversion cost disadvantage",
+          "geographic asset concentration",
+          "commodity-price sensitivity",
+          "asset impairment/idling",
+          "cash-flow quality",
+          "capital allocation under cycle stress"
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -17524,181 +17554,6 @@
           "Successor bottleneck is scale, yield, cost and OEM qualification rather than continued partner interest alone.",
           "Extended commercialization timelines can consume substantial liquidity before recurring revenue emerges.",
           "Competing battery technologies may improve faster or scale earlier, reducing the value of current partner validation."
-        ],
-        "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
-      },
-      "doctrine": {
-        "recommendationStyle": "facts + interpretation + options; never coercion",
-        "representationIsNotRanking": true,
-        "uncertaintyVisible": true
-      }
-    },
-    {
-      "version": 1,
-      "contract": "earth2036-company-digital-twin-shadow-v1",
-      "canonicalWriteAuthority": false,
-      "ticker": "ENVX",
-      "workId": "t0:ENVX",
-      "inputSignature": "18c0961342f8cb88a25e1660",
-      "sourceState": "chief_ready",
-      "identity": {
-        "ticker": "ENVX",
-        "company": "Enovix",
-        "cik": "0001828318",
-        "exchange": "NASDAQ",
-        "exchangeName": "Enovix Corporation - Common Stock",
-        "identityStatus": "validated",
-        "tradabilityStatus": "validated",
-        "validatedAt": "2026-09-22T04:03:09.925Z"
-      },
-      "representationQuality": {
-        "requiredPerspectives": [
-          "source-integrity",
-          "company-underwriting",
-          "structural-causal",
-          "discovery-weak-signals",
-          "adversarial-red-team",
-          "expectations-execution"
-        ],
-        "presentPerspectives": [
-          "discovery-weak-signals",
-          "expectations-execution",
-          "structural-causal",
-          "adversarial-red-team",
-          "source-integrity",
-          "company-underwriting"
-        ],
-        "missingPerspectives": [],
-        "primarySourceCount": 3,
-        "sourceLineage": {
-          "rawSourceCount": 15,
-          "uniqueSourceCount": 4,
-          "duplicatesCollapsed": 11,
-          "missingLineage": 0,
-          "uniqueOrigins": [
-            "enovix:2026-08-12:q2-results",
-            "sec:1828318:2026Q2:10-Q",
-            "enovix:2025-09-05:warrant-completion",
-            "companiesmarketcap:ENVX:2026-09-20"
-          ]
-        },
-        "evidenceWindow": {
-          "start": "2026-09-19T16:07:49.000Z",
-          "end": "2026-09-22T05:14:30.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-22T05:14:30.000Z"
-        },
-        "preflightPassed": true
-      },
-      "capabilitySignals": [
-        "technologyCriticality",
-        "executionCapability",
-        "financialOperatingMomentum",
-        "scenarioRobustness",
-        "thesisQuality",
-        "bottleneckControl",
-        "substitutionResilience",
-        "supplyChainResilience",
-        "governancePower",
-        "marketValuationOpportunity",
-        "catalystScore",
-        "alignment2036",
-        "crossDivisionLeverage",
-        "pricingPower"
-      ],
-      "constraintSignals": {
-        "risks": [
-          "Commercial revenue remains small relative to the scale implied by smartphone and drone opportunity claims, and final smartphone qualification was not complete at the reporting date.",
-          "Qualification delays, yield/manufacturing scale-up or customer program changes could prevent pipeline conversion despite technical milestones.",
-          "The present bottleneck may migrate from dicing to another process, customer qualification, demand conversion or cost after Zone 1 improves; successor bottlenecks are not yet demonstrated away.",
-          "Competing silicon-doped, silicon-anode or other battery architectures can reduce Enovix's relative advantage if they reach acceptable energy density, cycle life, safety and manufacturability sooner or cheaper.",
-          "Pipeline/TAM language can overstate near-term economic proof if customer identities, firm commitments, qualification completion and conversion timing remain undisclosed.",
-          "Further capital requirements could create additional dilution or financing costs if manufacturing scale-up consumes cash faster than commercial revenue matures.",
-          "A qualification failure, delayed production award or persistent Zone 1 constraint would falsify the near-term transition-to-scale thesis even if laboratory performance remains attractive.",
-          "Issuer sources dominate operating evidence; independent market data corroborates valuation/tradability but not manufacturing claims.",
-          "Qualification, manufacturing yield, conversion and dilution can overwhelm the technology opportunity before scaled economics are proven."
-        ],
-        "unknowns": [
-          "Customer identities, firm purchase commitments and conversion timing for much of the opportunity pipeline remain undisclosed.",
-          "The source does not establish high-volume manufacturing yield or smartphone production award economics.",
-          "Independent evidence does not yet establish sustained high-volume Fab2 yield, cost per cell, or production economics at smartphone scale.",
-          "The magnitude and durability of Enovix's energy-density advantage versus future substitute architectures is not established by the current evidence set.",
-          "Customer concentration and binding economics for major smartphone/drone opportunities are not disclosed in the reused/current evidence set.",
-          "Current evidence does not quantify long-run unit cost competitiveness after the hybrid dicing transition.",
-          "Independent third-party evidence of sustained Fab2 high-volume yield and unit economics remains unavailable in the active lineage.",
-          "Binding economics and customer concentration for major smartphone/drone opportunities are undisclosed.",
-          "Long-run high-volume unit cost and yield after hybrid dicing are unproven."
-        ],
-        "contradictions": [],
-        "gatingIssues": [],
-        "preflightFailures": []
-      },
-      "causalContext": {
-        "mapped": true,
-        "edges": [
-          {
-            "from": "silicon-anode cell architecture",
-            "to": "higher energy density in space-constrained devices",
-            "relation": "enables"
-          },
-          {
-            "from": "higher energy density",
-            "to": "smartphone/smart-eyewear/drone runtime and capability",
-            "relation": "supports human/device need"
-          },
-          {
-            "from": "Fab2 Zone 1 dicing yield/throughput",
-            "to": "commercial scale and unit economics",
-            "relation": "constrains"
-          },
-          {
-            "from": "hybrid laser/mechanical dicing",
-            "to": "Zone 1 throughput constraint",
-            "relation": "intended mitigation"
-          },
-          {
-            "from": "customer qualification",
-            "to": "scaled smartphone adoption",
-            "relation": "gates"
-          }
-        ]
-      },
-      "improvementWindows": [],
-      "bridgeInputs": {
-        "capabilityCandidates": [
-          "technologyCriticality",
-          "executionCapability",
-          "financialOperatingMomentum",
-          "scenarioRobustness",
-          "thesisQuality",
-          "bottleneckControl",
-          "substitutionResilience",
-          "supplyChainResilience",
-          "governancePower",
-          "marketValuationOpportunity",
-          "catalystScore",
-          "alignment2036",
-          "crossDivisionLeverage",
-          "pricingPower"
-        ],
-        "needOrConstraintCandidates": [
-          "Customer identities, firm purchase commitments and conversion timing for much of the opportunity pipeline remain undisclosed.",
-          "The source does not establish high-volume manufacturing yield or smartphone production award economics.",
-          "Independent evidence does not yet establish sustained high-volume Fab2 yield, cost per cell, or production economics at smartphone scale.",
-          "The magnitude and durability of Enovix's energy-density advantage versus future substitute architectures is not established by the current evidence set.",
-          "Customer concentration and binding economics for major smartphone/drone opportunities are not disclosed in the reused/current evidence set.",
-          "Current evidence does not quantify long-run unit cost competitiveness after the hybrid dicing transition.",
-          "Independent third-party evidence of sustained Fab2 high-volume yield and unit economics remains unavailable in the active lineage.",
-          "Binding economics and customer concentration for major smartphone/drone opportunities are undisclosed.",
-          "Long-run high-volume unit cost and yield after hybrid dicing are unproven.",
-          "Commercial revenue remains small relative to the scale implied by smartphone and drone opportunity claims, and final smartphone qualification was not complete at the reporting date.",
-          "Qualification delays, yield/manufacturing scale-up or customer program changes could prevent pipeline conversion despite technical milestones.",
-          "The present bottleneck may migrate from dicing to another process, customer qualification, demand conversion or cost after Zone 1 improves; successor bottlenecks are not yet demonstrated away.",
-          "Competing silicon-doped, silicon-anode or other battery architectures can reduce Enovix's relative advantage if they reach acceptable energy density, cycle life, safety and manufacturability sooner or cheaper.",
-          "Pipeline/TAM language can overstate near-term economic proof if customer identities, firm commitments, qualification completion and conversion timing remain undisclosed.",
-          "Further capital requirements could create additional dilution or financing costs if manufacturing scale-up consumes cash faster than commercial revenue matures.",
-          "A qualification failure, delayed production award or persistent Zone 1 constraint would falsify the near-term transition-to-scale thesis even if laboratory performance remains attractive.",
-          "Issuer sources dominate operating evidence; independent market data corroborates valuation/tradability but not manufacturing claims.",
-          "Qualification, manufacturing yield, conversion and dilution can overwhelm the technology opportunity before scaled economics are proven."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -20502,7 +20357,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "AEVA",
       "workId": "t0:AEVA",
-      "inputSignature": "ccfb94b2b7bbe6423856c789",
+      "inputSignature": "8e82ee6954e8e4dc8fc7a33f",
       "sourceState": "researching",
       "identity": {
         "ticker": "AEVA",
@@ -20525,19 +20380,19 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
         "primarySourceCount": 3,
         "sourceLineage": {
-          "rawSourceCount": 5,
+          "rawSourceCount": 11,
           "uniqueSourceCount": 3,
-          "duplicatesCollapsed": 2,
+          "duplicatesCollapsed": 8,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:AEVA:DaimlerCsample:20260506",
@@ -20547,8 +20402,8 @@
         },
         "evidenceWindow": {
           "start": "2026-05-06T00:00:00.000Z",
-          "end": "2026-09-19T06:06:41.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T06:06:41.000Z"
+          "end": "2026-09-22T05:26:08.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-22T05:26:08.000Z"
         },
         "preflightPassed": false
       },
@@ -20560,16 +20415,27 @@
         "bottleneckControl",
         "financialOperatingMomentum",
         "scenarioRobustness",
-        "supplyChainResilience"
+        "supplyChainResilience",
+        "substitutionResilience",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
           "Most large automotive/commercial programs are still development or pre-series-production opportunities, leaving volume conversion risk.",
-          "Capital needs and dilution remain meaningful until production programs generate material recurring cash flow."
+          "Capital needs and dilution remain meaningful until production programs generate material recurring cash flow.",
+          "series-production conversion",
+          "substitution by alternative lidar/camera-radar stacks",
+          "manufacturing scale",
+          "dilution/financing dependence",
+          "customer/program concentration",
+          "substitute sensing architectures",
+          "confidence inflation from design wins"
         ],
         "unknowns": [
           "Unit economics, committed production volumes and timing across major awards remain incompletely disclosed.",
-          "Timing to material positive cash generation from series-production awards remains uncertain."
+          "Timing to material positive cash generation from series-production awards remains uncertain.",
+          "unit economics and committed volumes across awards",
+          "timing to material positive cash generation"
         ],
         "contradictions": [
           "Commercial-design-win momentum is broadening faster than disclosed scaled production economics are becoming visible."
@@ -20578,19 +20444,20 @@
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
           "missing_data_confidence_evidence",
-          "missing_causal_mapping",
           "unresolved_material_contradiction"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          "4D LiDAR capability -> reliable long-range perception -> autonomous/active-safety systems -> safer freight mobility",
+          "photonics platform reuse -> optical-connectivity/industrial opportunities -> broader infrastructure relevance",
+          "pre-series awards -> production qualification and volume conversion -> recurring economics"
+        ]
       },
       "improvementWindows": [
         {
@@ -20601,16 +20468,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -20634,11 +20491,6 @@
           "stance": "improvement-oriented"
         },
         {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
-        },
-        {
           "failure": "unresolved_material_contradiction",
           "question": "Which material contradiction must be reconciled before the representation can advance?",
           "stance": "improvement-oriented"
@@ -20653,13 +20505,24 @@
           "bottleneckControl",
           "financialOperatingMomentum",
           "scenarioRobustness",
-          "supplyChainResilience"
+          "supplyChainResilience",
+          "substitutionResilience",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "Unit economics, committed production volumes and timing across major awards remain incompletely disclosed.",
           "Timing to material positive cash generation from series-production awards remains uncertain.",
+          "unit economics and committed volumes across awards",
+          "timing to material positive cash generation",
           "Most large automotive/commercial programs are still development or pre-series-production opportunities, leaving volume conversion risk.",
-          "Capital needs and dilution remain meaningful until production programs generate material recurring cash flow."
+          "Capital needs and dilution remain meaningful until production programs generate material recurring cash flow.",
+          "series-production conversion",
+          "substitution by alternative lidar/camera-radar stacks",
+          "manufacturing scale",
+          "dilution/financing dependence",
+          "customer/program concentration",
+          "substitute sensing architectures",
+          "confidence inflation from design wins"
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

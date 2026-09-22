@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ALB",
   "workId": "t0:ALB",
-  "generatedAt": "2026-09-22T05:15:56.080Z",
+  "generatedAt": "2026-09-22T05:28:46.539Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-11T00:00:00.000Z",
-    "end": "2026-09-19T07:06:15.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T07:06:15.000Z"
+    "end": "2026-09-22T05:26:08.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T05:26:08.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/ALB-20260919T070615Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ALB-20260919T070615Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ALB-20260922T052608Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,12 +65,20 @@
       "bottleneckControl",
       "supplyChainResilience",
       "scenarioRobustness",
-      "financialOperatingMomentum"
+      "financialOperatingMomentum",
+      "substitutionResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "alignment2036"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
@@ -75,7 +86,12 @@
         "supplyChainResilience",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "financialOperatingMomentum",
+        "governancePower",
+        "substitutionResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -127,7 +143,9 @@
     "bottleneckControl",
     "supplyChainResilience",
     "scenarioRobustness",
-    "financialOperatingMomentum"
+    "financialOperatingMomentum",
+    "substitutionResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -143,7 +161,14 @@
       {
         "risk": "Cash flow remains sensitive to lithium pricing and prior-period operating cash flow included a one-time customer prepayment.",
         "gating": false
-      }
+      },
+      "commodity cyclicality",
+      "conversion cost disadvantage",
+      "geographic asset concentration",
+      "commodity-price sensitivity",
+      "asset impairment/idling",
+      "cash-flow quality",
+      "capital allocation under cycle stress"
     ]
   },
   "risks": [
@@ -158,7 +183,14 @@
     {
       "risk": "Cash flow remains sensitive to lithium pricing and prior-period operating cash flow included a one-time customer prepayment.",
       "gating": false
-    }
+    },
+    "commodity cyclicality",
+    "conversion cost disadvantage",
+    "geographic asset concentration",
+    "commodity-price sensitivity",
+    "asset impairment/idling",
+    "cash-flow quality",
+    "capital allocation under cycle stress"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -171,14 +203,22 @@
     "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "electrification/battery demand -> lithium chemical demand -> resource extraction/conversion -> battery supply",
+      "resource scale -> potential cost/supply resilience -> customer availability",
+      "high conversion cost -> plant idling -> reduced downstream footprint"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "electrification/battery demand -> lithium chemical demand -> resource extraction/conversion -> battery supply",
+    "resource scale -> potential cost/supply resilience -> customer availability",
+    "high conversion cost -> plant idling -> reduced downstream footprint"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 10,
     "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 7,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:ALB:FY2025:20260211",
@@ -222,10 +262,15 @@
       "contradiction": "Strong cost and balance-sheet execution coexists with ongoing asset rationalization caused by weak conversion economics.",
       "material": false,
       "disposition": "Treat as disciplined adaptation rather than resolve away."
+    },
+    {
+      "contradiction": "Lithium conditions improved, yet Kemerton economics remained insufficient to keep Train 1 operating.",
+      "material": true,
+      "nextOwner": "deep-resolver"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "contradiction": "Lithium conditions improved, yet Kemerton economics remained insufficient to keep Train 1 operating.",
@@ -236,6 +281,11 @@
         "contradiction": "Strong cost and balance-sheet execution coexists with ongoing asset rationalization caused by weak conversion economics.",
         "material": false,
         "disposition": "Treat as disciplined adaptation rather than resolve away."
+      },
+      {
+        "contradiction": "Lithium conditions improved, yet Kemerton economics remained insufficient to keep Train 1 operating.",
+        "material": true,
+        "nextOwner": "deep-resolver"
       }
     ]
   },
@@ -247,11 +297,15 @@
     {
       "unknown": "Full-year 2026 free cash flow depends on lithium price scenarios and is not a fixed outcome.",
       "gating": false
-    }
+    },
+    "long-run Kemerton restart economics",
+    "full-year free cash flow across lithium-price scenarios",
+    "long-run Kemerton restart economics",
+    "full-year free cash flow across lithium-price scenarios"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
   "confidence": 91,
@@ -260,13 +314,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -277,14 +328,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -301,10 +344,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

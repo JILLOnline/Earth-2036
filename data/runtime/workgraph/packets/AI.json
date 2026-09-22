@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "AI",
   "workId": "t0:AI",
-  "generatedAt": "2026-09-22T05:15:56.074Z",
+  "generatedAt": "2026-09-22T05:28:46.537Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-25T00:00:00.000Z",
-    "end": "2026-09-19T07:06:15.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T07:06:15.000Z"
+    "end": "2026-09-22T05:26:08.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T05:26:08.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/AI-20260919T070615Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/AI-20260919T070615Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/AI-20260922T052608Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -64,12 +67,21 @@
       "bottleneckControl",
       "financialOperatingMomentum",
       "scenarioRobustness",
-      "pricingPower"
+      "pricingPower",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "alignment2036"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "catalystScore",
@@ -77,7 +89,12 @@
         "crossDivisionLeverage",
         "bottleneckControl"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "financialOperatingMomentum",
+        "governancePower",
+        "substitutionResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -131,7 +148,10 @@
     "bottleneckControl",
     "financialOperatingMomentum",
     "scenarioRobustness",
-    "pricingPower"
+    "pricingPower",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -147,7 +167,15 @@
       {
         "risk": "Large operating losses and cash burn make successful restructuring and renewed bookings growth central to execution quality.",
         "gating": false
-      }
+      },
+      "platform substitution",
+      "implementation complexity",
+      "customer ROI proof",
+      "cash burn",
+      "bookings weakness",
+      "hyperscaler/model-provider competition",
+      "restructuring execution",
+      "confidence inflation from agreement counts"
     ]
   },
   "risks": [
@@ -162,7 +190,15 @@
     {
       "risk": "Large operating losses and cash burn make successful restructuring and renewed bookings growth central to execution quality.",
       "gating": false
-    }
+    },
+    "platform substitution",
+    "implementation complexity",
+    "customer ROI proof",
+    "cash burn",
+    "bookings weakness",
+    "hyperscaler/model-provider competition",
+    "restructuring execution",
+    "confidence inflation from agreement counts"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -175,14 +211,22 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "AI compute/models -> enterprise application platform -> deployed workflows -> productivity/decision support",
+      "partner ecosystem -> distribution/integration -> customer adoption",
+      "weak bookings -> lower future deployment base -> weaker operating leverage"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "AI compute/models -> enterprise application platform -> deployed workflows -> productivity/decision support",
+    "partner ecosystem -> distribution/integration -> customer adoption",
+    "weak bookings -> lower future deployment base -> weaker operating leverage"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 8,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 2,
+    "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:AI:FY2026prelim:20260518",
@@ -217,10 +261,20 @@
       "contradiction": "Revenue landed within guidance, but bookings underperformed and operating losses remained substantial.",
       "material": true,
       "disposition": "Treat guidance delivery as partial execution evidence, not proof of profitable scaling."
+    },
+    {
+      "contradiction": "Management cites accelerating market opportunity while reporting bookings below expectations.",
+      "material": true,
+      "nextOwner": "deep-resolver"
+    },
+    {
+      "contradiction": "Revenue landed within guidance, but bookings underperformed and operating losses remained substantial.",
+      "material": true,
+      "nextOwner": "deep-resolver"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 4,
     "items": [
       {
         "contradiction": "Management cites accelerating market opportunity while reporting bookings below expectations.",
@@ -231,6 +285,16 @@
         "contradiction": "Revenue landed within guidance, but bookings underperformed and operating losses remained substantial.",
         "material": true,
         "disposition": "Treat guidance delivery as partial execution evidence, not proof of profitable scaling."
+      },
+      {
+        "contradiction": "Management cites accelerating market opportunity while reporting bookings below expectations.",
+        "material": true,
+        "nextOwner": "deep-resolver"
+      },
+      {
+        "contradiction": "Revenue landed within guidance, but bookings underperformed and operating losses remained substantial.",
+        "material": true,
+        "nextOwner": "deep-resolver"
       }
     ]
   },
@@ -242,11 +306,15 @@
     {
       "unknown": "Realized restructuring savings and post-FY2026 bookings trajectory require later-period primary evidence.",
       "gating": false
-    }
+    },
+    "durability and value of newly signed agreements",
+    "realized restructuring savings and post-FY2026 bookings trajectory",
+    "durability and value of newly signed agreements",
+    "realized restructuring savings and post-FY2026 bookings trajectory"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
   "confidence": 82,
@@ -255,13 +323,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -272,14 +337,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -296,10 +353,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

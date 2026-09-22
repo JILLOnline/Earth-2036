@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "AMZN",
   "workId": "t0:AMZN",
-  "generatedAt": "2026-09-22T05:15:56.074Z",
+  "generatedAt": "2026-09-22T05:28:46.537Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-30T00:00:00.000Z",
-    "end": "2026-09-19T08:06:13.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T08:06:13.000Z"
+    "end": "2026-09-22T05:26:08.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T05:26:08.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/AMZN-20260919T080613Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/AMZN-20260919T080613Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/AMZN-20260922T052608Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -65,12 +68,20 @@
       "financialOperatingMomentum",
       "catalystScore",
       "scenarioRobustness",
-      "supplyChainResilience"
+      "supplyChainResilience",
+      "substitutionResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "alignment2036"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
@@ -78,7 +89,12 @@
         "bottleneckControl",
         "pricingPower"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "financialOperatingMomentum",
+        "governancePower",
+        "substitutionResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -133,7 +149,9 @@
     "financialOperatingMomentum",
     "catalystScore",
     "scenarioRobustness",
-    "supplyChainResilience"
+    "supplyChainResilience",
+    "substitutionResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -145,7 +163,15 @@
       {
         "risk": "Free-cash-flow deterioration creates an execution burden: rapid AI growth must ultimately earn adequate returns on sharply higher infrastructure spending.",
         "gating": false
-      }
+      },
+      "capital intensity",
+      "power/chip capacity constraints",
+      "cloud competition",
+      "return-on-invested-capital uncertainty",
+      "free-cash-flow compression",
+      "overbuild/utilization risk",
+      "supplier/power concentration",
+      "regulatory/competitive response"
     ]
   },
   "risks": [
@@ -156,7 +182,15 @@
     {
       "risk": "Free-cash-flow deterioration creates an execution burden: rapid AI growth must ultimately earn adequate returns on sharply higher infrastructure spending.",
       "gating": false
-    }
+    },
+    "capital intensity",
+    "power/chip capacity constraints",
+    "cloud competition",
+    "return-on-invested-capital uncertainty",
+    "free-cash-flow compression",
+    "overbuild/utilization risk",
+    "supplier/power concentration",
+    "regulatory/competitive response"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -169,14 +203,22 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "AI/application demand -> AWS compute demand -> chips/power/data-center capacity -> infrastructure capex",
+      "infrastructure buildout -> service capacity -> enterprise digital/AI workloads",
+      "capex intensity -> lower near-term free cash flow -> higher required future returns"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "AI/application demand -> AWS compute demand -> chips/power/data-center capacity -> infrastructure capex",
+    "infrastructure buildout -> service capacity -> enterprise digital/AI workloads",
+    "capex intensity -> lower near-term free cash flow -> higher required future returns"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
+    "rawSourceCount": 4,
     "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "sec:1018724:2026Q2:000101872426000024:ex99.1"
@@ -197,15 +239,25 @@
       "contradiction": "Strong operating-income and AWS growth coexist with negative TTM free cash flow because AI capex accelerated materially.",
       "material": true,
       "disposition": "retain_for_underwriting"
+    },
+    {
+      "contradiction": "Strong operating-income and AWS growth coexist with negative TTM free cash flow because AI capex accelerated materially.",
+      "material": true,
+      "nextOwner": "deep-resolver"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "contradiction": "Strong operating-income and AWS growth coexist with negative TTM free cash flow because AI capex accelerated materially.",
         "material": true,
         "disposition": "retain_for_underwriting"
+      },
+      {
+        "contradiction": "Strong operating-income and AWS growth coexist with negative TTM free cash flow because AI capex accelerated materially.",
+        "material": true,
+        "nextOwner": "deep-resolver"
       }
     ]
   },
@@ -217,11 +269,15 @@
     {
       "unknown": "Timing of normalization in AI capex intensity and free cash flow remains unknown.",
       "gating": false
-    }
+    },
+    "long-run returns on current AI infrastructure investment",
+    "timing of capex-intensity and free-cash-flow normalization",
+    "long-run returns on current AI infrastructure investment",
+    "timing of capex-intensity and free-cash-flow normalization"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
   "confidence": 94,
@@ -230,13 +286,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -247,14 +300,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -271,10 +316,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

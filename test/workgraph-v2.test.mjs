@@ -753,3 +753,148 @@ test("assist bus caps helper capacity instead of flooding one minion", () => {
   assert.equal(bus.queued, 4);
   assert.equal(bus.byHelper["earth-scout"], 8);
 });
+
+
+test("loader consumes explicit Resolver gateImpact closures without weakening other gates", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "earth2036-workgraph-resolver-gateimpact-"));
+  try {
+    const dir = path.join(root, "data", "runtime", "workgraph", "evidence");
+    await mkdir(dir, { recursive: true });
+    const base = completeEvidence();
+    const beta = base.find((row) => row.perspective === "adversarial-red-team");
+    beta.contradictions = [{ contradiction: "material tension", material: true }];
+    await writeFile(path.join(dir, "AAA-base.json"), JSON.stringify(base), "utf8");
+    await writeFile(path.join(dir, "AAA-resolver-gateimpact.json"), JSON.stringify({
+      version: 2,
+      contract: "workgraph-v2-deep-resolver-evidence",
+      ticker: "AAA",
+      workId: "t0:AAA",
+      role: "deep-resolver",
+      generatedAt: "2026-09-22T12:36:08Z",
+      result: "resolved",
+      contradictionStatus: "resolved",
+      gateImpact: "close_unresolved_material_contradiction_on_reconcile",
+      recommendedNextState: "researching",
+      confidence: 99
+    }), "utf8");
+
+    const loaded = await loadStructuredEvidence(root);
+    const resolver = loaded.find((row) => row.role === "deep-resolver");
+    assert.equal(resolver.items[0].status, "resolved");
+    assert.ok(resolver.items[0].itemId.includes("unresolved_material_contradiction"));
+
+    const packet = compilePromotionPacket(
+      "AAA",
+      loaded,
+      { ticker:"AAA", state:"researching", workId:"t0:AAA" },
+      { registryEntry, methodologyVersion:"1.0.0" },
+    );
+    assert.equal(packet.preflight.failures.includes("unresolved_material_contradiction"), false);
+    assert.ok(packet.evidenceResolution.resolvedGateKinds.includes("material_contradiction"));
+    assert.equal(packet.preflight.failures.includes("missing_numeric_score_record"), false);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+
+test("assist bus uses idle Scout capacity before three failed Alpha attempts", () => {
+  const graph = {
+    companies: {
+      AAA: { ticker: "AAA", state: "researching", workId: "t0:AAA", attempts: 0 },
+    },
+  };
+  const packets = [{
+    ticker: "AAA",
+    workId: "t0:AAA",
+    sourceState: "researching",
+    evidencePaths: ["evidence/scout.json", "evidence/beta.json"],
+    specialistCoverage: { present: [
+      "discovery-weak-signals",
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
+    ] },
+    gatingIssues: [],
+    unknowns: [],
+    preflight: {
+      failures: ["missing_primary_source", "missing_factor_evidence", "missing_numeric_score_record"],
+    },
+  }];
+  const bus = buildAssistRequests(graph, packets, [], "2026-09-22T16:30:00Z");
+  assert.equal(bus.active, 1);
+  assert.equal(bus.requests[0].helperRole, "earth-scout");
+  assert.equal(bus.requests[0].rootOwner, "council-alpha");
+  assert.equal(bus.requests[0].capability, "source-acquisition");
+});
+
+
+test("newer contradictory evidence reopens a gate after an older Resolver closure", () => {
+  const evidence = completeEvidence();
+  const beta = evidence.find((row) => row.perspective === "adversarial-red-team");
+  beta.generatedAt = "2026-09-22T13:00:00Z";
+  beta.contradictions = [{ contradiction: "new material tension", material: true }];
+
+  evidence.push({
+    version: 2,
+    contract: "workgraph-v2-deep-resolver-evidence",
+    ticker: "AAA",
+    workId: "t0:AAA",
+    role: "deep-resolver",
+    perspective: null,
+    generatedAt: "2026-09-22T12:00:00Z",
+    claims: [],
+    sources: [],
+    factors: [],
+    risks: [],
+    causalEdges: [],
+    contradictions: [],
+    unknowns: [],
+    gatingIssues: [],
+    items: [{ itemId: "t0:AAA:unresolved_material_contradiction", status: "resolved" }],
+    confidence: 95,
+    path: "data/runtime/workgraph/evidence/AAA-old-resolver.json",
+  });
+
+  const packet = compilePromotionPacket(
+    "AAA",
+    evidence,
+    { ticker:"AAA", state:"researching", workId:"t0:AAA" },
+    { registryEntry, methodologyVersion:"1.0.0" },
+  );
+  assert.equal(packet.preflight.failures.includes("unresolved_material_contradiction"), true);
+  assert.equal(packet.evidenceResolution.resolvedGateKinds.includes("material_contradiction"), false);
+});
+
+
+test("assist bus routes bounded Beta risk-source support to Alpha without transferring scoring authority", () => {
+  const graph = {
+    companies: {
+      AAA: { ticker: "AAA", state: "researching", workId: "t0:AAA", attempts: 0 },
+    },
+  };
+  const packets = [{
+    ticker: "AAA",
+    workId: "t0:AAA",
+    sourceState: "researching",
+    evidencePaths: ["evidence/scout.json", "evidence/beta.json"],
+    specialistCoverage: { present: [
+      "discovery-weak-signals",
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
+    ] },
+    gatingIssues: [],
+    unknowns: [],
+    preflight: {
+      failures: ["missing_score_risk_evidence"],
+    },
+  }];
+  const bus = buildAssistRequests(graph, packets, [], "2026-09-22T16:35:00Z");
+  const beta = bus.requests.find((request) => request.helperRole === "council-beta");
+  assert.ok(beta);
+  assert.equal(beta.rootOwner, "council-alpha");
+  assert.equal(beta.capability, "risk-source-support");
+  assert.ok(beta.exactQuestion.includes("without creating Alpha's numeric risk score"));
+  assert.equal(bus.policy.rootOwnerRetainsAuthority, true);
+});

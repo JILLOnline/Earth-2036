@@ -222,11 +222,23 @@ function normalizeEvidenceObject(obj, filePath) {
           sourceId: item.sourceId || item.originFingerprint || item.source,
         }))
     : [];
+  const inferredResolverGateKind =
+    obj?.role === "deep-resolver" &&
+    obj?.result === "resolved" &&
+    obj?.gateImpact === "close_unresolved_material_contradiction_on_reconcile"
+      ? "unresolved_material_contradiction"
+      : null;
   const resolverItems = Array.isArray(obj?.items)
     ? obj.items
     : obj?.role === "deep-resolver" && obj?.result && obj?.gateKind
       ? [{ itemId: `${obj?.workId || obj?.ticker || "resolver"}:${obj.gateKind}`, status: obj.result }]
-      : [];
+      : inferredResolverGateKind
+        ? [{
+            itemId: `${obj?.workId || obj?.ticker || "resolver"}:${inferredResolverGateKind}`,
+            status: "resolved",
+            dispositionSource: "explicit_gateImpact",
+          }]
+        : [];
   const rawConfidence = Number.isFinite(obj?.confidence)
     ? obj.confidence
     : Number.isFinite(obj?.resolution?.confidence)
@@ -334,16 +346,55 @@ export function compilePromotionPacket(ticker, evidenceRows, graphRow, options =
   const activeRelevant = allRelevant.filter((row) => !supersededPaths.has(row.path));
   const resolverRows = activeRelevant.filter((row) => row.role === "deep-resolver");
   const resolvedGateKinds = new Set();
+  const resolvedGateAt = new Map();
+  const markResolvedGate = (kind, row) => {
+    resolvedGateKinds.add(kind);
+    const at = Date.parse(row?.generatedAt || 0);
+    if (!Number.isFinite(at)) return;
+    const prior = resolvedGateAt.get(kind);
+    if (!Number.isFinite(prior) || at > prior) resolvedGateAt.set(kind, at);
+  };
   for (const row of resolverRows) {
     for (const item of row.items || []) {
       if (item?.status !== "resolved") continue;
       const id = String(item?.itemId || "");
-      if (id.includes("unresolved_gating_issue")) resolvedGateKinds.add("gating_issue");
-      if (id.includes("unresolved_gating_unknown")) resolvedGateKinds.add("gating_unknown");
-      if (id.includes("unresolved_material_contradiction")) resolvedGateKinds.add("material_contradiction");
+      if (id.includes("unresolved_gating_issue")) markResolvedGate("gating_issue", row);
+      if (id.includes("unresolved_gating_unknown")) markResolvedGate("gating_unknown", row);
+      if (id.includes("unresolved_material_contradiction")) markResolvedGate("material_contradiction", row);
     }
   }
   const relevant = activeRelevant;
+
+  // Resolver dispositions close only the evidence state they actually adjudicated.
+  // Newer contradictory/gating evidence must reopen the corresponding gate rather
+  // than being hidden by an older immutable Resolver closure.
+  const hasNewerEvidenceAfterResolution = (kind, predicate) => {
+    const resolvedAt = resolvedGateAt.get(kind);
+    if (!Number.isFinite(resolvedAt)) return false;
+    return relevant.some((row) => {
+      if (row.role === "deep-resolver") return false;
+      const generatedAt = Date.parse(row.generatedAt || 0);
+      return Number.isFinite(generatedAt) && generatedAt > resolvedAt && predicate(row);
+    });
+  };
+  if (
+    resolvedGateKinds.has("material_contradiction") &&
+    hasNewerEvidenceAfterResolution("material_contradiction", (row) =>
+      (row.contradictions || []).some((c) => {
+        if (!c || typeof c !== "object") return true;
+        const disposition = String(c.disposition || c.resolutionStatus || "").toLowerCase();
+        return c.resolved !== true && c.gating !== false && c.material !== false && !disposition.startsWith("resolved");
+      })
+    )
+  ) resolvedGateKinds.delete("material_contradiction");
+  if (
+    resolvedGateKinds.has("gating_issue") &&
+    hasNewerEvidenceAfterResolution("gating_issue", (row) => (row.gatingIssues || []).length > 0)
+  ) resolvedGateKinds.delete("gating_issue");
+  if (
+    resolvedGateKinds.has("gating_unknown") &&
+    hasNewerEvidenceAfterResolution("gating_unknown", (row) => (row.unknowns || []).some((u) => u?.gating === true))
+  ) resolvedGateKinds.delete("gating_unknown");
   const rawSources = relevant.flatMap((r) => r.sources);
   const sourceLineage = dedupeSources(rawSources);
   const sources = sourceLineage.unique;

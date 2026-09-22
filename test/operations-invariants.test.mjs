@@ -260,3 +260,11 @@ test("canonical causal promotion refreshes graph-level freshness metadata", asyn
   const write = promote.indexOf('writeJson(path.join(RUNTIME, "causal-graph.json"), prospectiveGraph)');
   assert.ok(refresh >= 0 && write >= 0 && refresh < write);
 });
+
+
+test("watchdog backstops delayed hourly source refresh before two-hour staleness", async () => {
+  const text = await source(".github/workflows/earth2036-watchdog.yml");
+  assert.ok(text.includes('cron: "12,42 * * * *"'));
+  assert.ok(text.includes("age>4200"));
+  assert.ok(text.includes("Dispatch machine scheduler when stale and idle"));
+});

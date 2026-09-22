@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "contract": "earth2036-fundamentals-truth-v1",
   "status": "lab-audit",
   "system": "lab",
@@ -11,7 +11,9 @@
     "bulkScalePath": "https://www.sec.gov/Archives/edgar/daily-index/xbrl/companyfacts.zip",
     "authenticationRequired": false,
     "sourceClass": "primary-regulatory",
-    "customTaxonomyPolicy": "Company Facts exposes standard taxonomy facts only. Extension-only disclosures remain absent/unknown rather than inferred."
+    "customTaxonomyPolicy": "Company Facts exposes standard taxonomy facts only. Extension-only disclosures remain absent/unknown rather than inferred.",
+    "aggregationScope": "SEC XBRL APIs aggregate non-custom standard-taxonomy facts that apply to the entire filing entity.",
+    "absencePolicy": "A fact missing from Company Facts means not observed in this source. It does not prove the economic fact is zero, absent from the filing, or undisclosed; custom-extension and dimensional/segment facts can be outside API scope."
   },
   "pointInTime": {
     "required": true,
@@ -19,7 +21,13 @@
     "rule": "A fact is eligible only when its SEC filed date is available by the requested asOf cutoff.",
     "preserveAllEligibleVersions": true,
     "sameDayPolicy": "conservative-end-of-UTC-day",
-    "note": "Company Facts exposes filing date, not EDGAR acceptance timestamp; same-day eligibility is therefore delayed until UTC day end."
+    "note": "Company Facts exposes filing date rather than precise acceptance timestamp for each fact; eligibility is delayed until UTC filing-date end to avoid same-day leakage.",
+    "sameDayVersionPolicy": "If multiple competing versions share the same SEC filed date, keep all latest-date versions jointly current; do not infer intraday supersession from accession ordering.",
+    "captureModes": {
+      "live-captured": "Forward observation captured from SEC Company Facts at/near the snapshot time. This is the preferred evidentiary mode for T1000.",
+      "historical-reconstructed": "Filed-date-filtered reconstruction from a later SEC Company Facts payload. It is useful for backtests but cannot prove the exact historical API representation if SEC later reprocessed old metadata."
+    },
+    "historicalBackfillLimitation": "Historical reconstruction establishes which currently-represented SEC facts have filed dates eligible by the cutoff. It must not be described as an exact archived copy of what the API returned on that historical date."
   },
   "rawTruth": {
     "learnerAuthority": "allEligibleStandardFacts",
@@ -48,8 +56,10 @@
       "fp",
       "frame"
     ],
-    "payloadHashRequired": true,
-    "rawFactsHashRequired": true
+    "payloadHashRequired": false,
+    "rawFactsHashRequired": true,
+    "currentTaxonomyLabelsLearningEligible": false,
+    "truthIdentity": "CIK + eligible raw facts hash only; ticker, entity name, retrieval metadata and normalized projections cannot change fact-state truth."
   },
   "normalizedProjection": {
     "learningAuthority": false,
@@ -92,7 +102,9 @@
       "8-K/A"
     ],
     "derivedSameAccessionRequired": true,
-    "noTotalDebtSynthesisV1": true
+    "noTotalDebtSynthesisV1": true,
+    "hashSeparatedFromTruth": true,
+    "provenanceRule": "A value shared by multiple candidate facts from different accessions remains provenance-ambiguous; no accession is selected merely by lexical order."
   },
   "amendmentPolicy": {
     "historyImmutable": true,
@@ -114,5 +126,30 @@
     "mayAffectT0Qualification": false,
     "mayTrainTrajectoryDirectlyBeforeAudit": false,
     "promotionRequires": "separate audit and explicit governance change"
+  },
+  "storagePolicy": {
+    "fullRawTruthCopyPerTrialTickForbidden": true,
+    "rawObjects": "content-addressed by factStateHash and written immutably",
+    "trialSnapshots": "small manifests reference existing factStateHash values",
+    "unchangedFactStateReusedAcrossTicks": true,
+    "normalizedProjection": "recomputable/non-authoritative; never required to duplicate raw truth per tick",
+    "scaleRule": "T1000 integration must reference content-addressed truth objects rather than write 250 full Company Facts histories on every tick",
+    "auditReadOnlyByDefault": true,
+    "bulkRawMaterializationGuard": "Explicit --write required; >10 companies additionally requires --allow-bulk-raw.",
+    "auditObservedCurrentUniverse": {
+      "companies": 250,
+      "rawFactCount": 4655417,
+      "approximateUncompressedRawJsonBytes": 1181270233,
+      "observation": "A full raw-state copy is too large for per-tick Git persistence. T1000 must reference immutable fact-state identities/deltas rather than duplicate complete histories."
+    }
+  },
+  "auditRequirements": {
+    "diversifiedIssuerCanaryRequired": true,
+    "historicalFutureAdditionInvarianceRequired": true,
+    "taxonomyMetadataLeakageTestRequired": true,
+    "identityMetadataLeakageTestRequired": true,
+    "storageDeduplicationTestRequired": true,
+    "historicalBackfillModeDistinguished": true,
+    "projectionRawObjectAliasingForbidden": true
   }
 }

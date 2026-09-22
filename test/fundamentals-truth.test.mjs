@@ -204,13 +204,16 @@ test("future additions to a modern Company Facts payload cannot alter an earlier
   assert.notEqual(reconstructed.identity.ticker,historical.identity.ticker);
 });
 
-test("our normalized projection can change without redefining source truth",()=>{
+test("our normalized projection can change without redefining or mutating source truth",()=>{
   const truth=buildFundamentalsTruth(payload(),{ticker:"TEST",asOf:"2026-04-01T00:00:00Z"});
   const originalFactStateHash=truth.factStateHash;
+  const originalRawFacts=structuredClone(truth.rawTruth.facts);
   truth.normalizedProjection.metrics.revenue.latest.annual.selected.val=123456;
   const errors=validateFundamentalsTruth(truth);
+  assert.deepEqual(truth.rawTruth.facts,originalRawFacts);
   assert.equal(truth.factStateHash,originalFactStateHash);
   assert.ok(errors.includes("projection hash mismatch"));
+  assert.equal(errors.includes("raw facts hash mismatch"),false);
   assert.equal(errors.includes("fact-state hash mismatch"),false);
 });
 

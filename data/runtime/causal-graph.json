@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-22T11:15:16.333Z",
+  "updatedAt": "2026-09-22T14:29:42.038Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1034,6 +1034,30 @@
       "type": "market",
       "label": "copper concentrate availability",
       "description": "Freeport's copper system links long-lived mine resources to concentrator and smelter infrastructure serving electrification and industrial copper demand; in Indonesia the present binding constraint is safe Grasberg Block Cave recovery and concentrate flow rather than installed smelter capability."
+    },
+    {
+      "id": "company:FIX",
+      "type": "company",
+      "label": "Comfort Systems USA",
+      "description": "Comfort Systems sits in a physical deployment bottleneck between high-density compute demand and usable data-center capacity: electrical, modular and mechanical execution must convert power, cooling and site designs into operating infrastructure. Q2 2026 same-store backlog growth was concentrated in technology projects, especially Texas electrical and modular operations, while revenue and operating cash flow also expanded, supporting observed company-level exposure rather than a purely thematic link."
+    },
+    {
+      "id": "market:FIX-infrastructure-data-center-power-cooling",
+      "type": "market",
+      "label": "infrastructure:data-center-power-cooling",
+      "description": "Comfort Systems sits in a physical deployment bottleneck between high-density compute demand and usable data-center capacity: electrical, modular and mechanical execution must convert power, cooling and site designs into operating infrastructure. Q2 2026 same-store backlog growth was concentrated in technology projects, especially Texas electrical and modular operations, while revenue and operating cash flow also expanded, supporting observed company-level exposure rather than a purely thematic link."
+    },
+    {
+      "id": "company:FLEX",
+      "type": "company",
+      "label": "Flex Ltd.",
+      "description": "Flex's CPI/Axiom path links AI compute demand to a physical power-and-thermal bottleneck: higher rack density requires power conversion, grid stabilization, backup power, cooling and scalable manufacturing; Flex's 800 VDC rack and proposed EPC Power acquisition extend its exposure from manufacturing into system-level power conversion."
+    },
+    {
+      "id": "market:FLEX-infrastructure-high-density-power-conversion",
+      "type": "market",
+      "label": "infrastructure:high-density-power-conversion",
+      "description": "Flex's CPI/Axiom path links AI compute demand to a physical power-and-thermal bottleneck: higher rack density requires power conversion, grid stabilization, backup power, cooling and scalable manufacturing; Flex's 800 VDC rack and proposed EPC Power acquisition extend its exposure from manufacturing into system-level power conversion."
     }
   ],
   "edges": [
@@ -2399,6 +2423,37 @@
         "fcx-manyar-copper-mark-2026-07-27"
       ],
       "observedAt": "2026-09-20T12:26:41Z"
+    },
+    {
+      "id": "edge:FIX-structural-exposure",
+      "from": "company:FIX",
+      "to": "market:FIX-infrastructure-data-center-power-cooling",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "fix:q2-2026:10q",
+        "fix:q2-2026:results"
+      ],
+      "observedAt": "2026-09-20T13:26:36Z"
+    },
+    {
+      "id": "edge:FLEX-structural-exposure",
+      "from": "company:FLEX",
+      "to": "market:FLEX-infrastructure-high-density-power-conversion",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 90,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "flex:epc-power:2026-09-03",
+        "flex:800v-rack:2026-03-16",
+        "flex:axiom-form10:2026-09-15"
+      ],
+      "observedAt": "2026-09-20T13:26:36Z"
     }
   ],
   "structuralSignals": [
@@ -4077,6 +4132,45 @@
       ],
       "observedAt": "2026-09-20T12:26:41Z",
       "thesis": "Freeport's copper system links long-lived mine resources to concentrator and smelter infrastructure serving electrification and industrial copper demand; in Indonesia the present binding constraint is safe Grasberg Block Cave recovery and concentrate flow rather than installed smelter capability.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:FIX-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:FIX-infrastructure-data-center-power-cooling",
+      "affectedNodeIds": [
+        "company:FIX"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "fix:q2-2026:10q",
+        "fix:q2-2026:results"
+      ],
+      "observedAt": "2026-09-20T13:26:36Z",
+      "thesis": "Comfort Systems sits in a physical deployment bottleneck between high-density compute demand and usable data-center capacity: electrical, modular and mechanical execution must convert power, cooling and site designs into operating infrastructure. Q2 2026 same-store backlog growth was concentrated in technology projects, especially Texas electrical and modular operations, while revenue and operating cash flow also expanded, supporting observed company-level exposure rather than a purely thematic link.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:FLEX-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:FLEX-infrastructure-high-density-power-conversion",
+      "affectedNodeIds": [
+        "company:FLEX"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 90,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "flex:epc-power:2026-09-03",
+        "flex:800v-rack:2026-03-16",
+        "flex:axiom-form10:2026-09-15"
+      ],
+      "observedAt": "2026-09-20T13:26:36Z",
+      "thesis": "Flex's CPI/Axiom path links AI compute demand to a physical power-and-thermal bottleneck: higher rack density requires power conversion, grid stabilization, backup power, cooling and scalable manufacturing; Flex's 800 VDC rack and proposed EPC Power acquisition extend its exposure from manufacturing into system-level power conversion.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

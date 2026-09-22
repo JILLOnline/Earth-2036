@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "EDIT",
   "workId": "t0:EDIT",
-  "generatedAt": "2026-09-22T18:17:49.764Z",
+  "generatedAt": "2026-09-22T18:25:16.461Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-22T16:43:39.370Z"
   },
   "evidenceWindow": {
-    "start": "2026-09-19T15:07:19.000Z",
-    "end": "2026-09-19T15:07:19.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T15:07:19.000Z"
+    "start": "2026-08-05T00:00:00.000Z",
+    "end": "2026-09-22T18:23:11.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T18:23:11.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,44 +32,84 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/EDIT-20260919T150719Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/EDIT-20260919T150719Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/EDIT-20260922T182311Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "catalystScore",
       "alignment2036",
-      "thesisQuality"
+      "thesisQuality",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "financingResilience",
+      "dilutionRisk",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "alignment2036",
+          "direction": "positive",
+          "basis": "A durable one-time therapy could address chronic cardiovascular risk and treatment adherence burden if human benefit and safety are validated."
+        },
+        {
+          "name": "bottleneckControl",
+          "direction": "mixed",
+          "basis": "Proprietary editing/delivery capability can create differentiation, but regulatory clearance, human safety/efficacy and scalable manufacturing remain external/clinical bottlenecks."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Large cardiovascular need is durable, but value is highly sensitive to translation from NHP biology to human outcomes."
+        }
+      ],
       "discovery-weak-signals": [
         "catalystScore",
         "alignment2036"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "financingResilience",
+          "direction": "positive",
+          "basis": "Company reported recent financing supporting runway into the second half of 2028."
+        },
+        {
+          "name": "dilutionRisk",
+          "direction": "negative",
+          "basis": "Runway improvement followed equity financing, so capital access and dilution remain part of owner economics."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "negative",
+          "basis": "~90% NHP biomarker reductions are preclinical and cannot lawfully substitute for human safety/efficacy evidence."
+        }
+      ],
       "expectations-execution": [
         "thesisQuality",
         "catalystScore"
@@ -116,7 +156,12 @@
   "factors": [
     "catalystScore",
     "alignment2036",
-    "thesisQuality"
+    "thesisQuality",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "financingResilience",
+    "dilutionRisk",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -127,6 +172,14 @@
       },
       {
         "risk": "Treating 2025 milestone plans as current 2026 execution would manufacture certainty; current disclosures must replace them.",
+        "gating": false
+      },
+      {
+        "risk": "Translation from NHP biomarker effects to safe, durable human editing and clinically meaningful cardiovascular benefit is the key successor bottleneck.",
+        "gating": false
+      },
+      {
+        "risk": "Clinical translation, regulatory acceptance, off-target/safety findings, financing dilution and timeline slippage remain material.",
         "gating": false
       }
     ]
@@ -139,6 +192,14 @@
     {
       "risk": "Treating 2025 milestone plans as current 2026 execution would manufacture certainty; current disclosures must replace them.",
       "gating": false
+    },
+    {
+      "risk": "Translation from NHP biomarker effects to safe, durable human editing and clinically meaningful cardiovascular benefit is the key successor bottleneck.",
+      "gating": false
+    },
+    {
+      "risk": "Clinical translation, regulatory acceptance, off-target/safety findings, financing dilution and timeline slippage remain material.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -149,20 +210,53 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "EDIT-401 editing payload/delivery",
+        "to": "hepatic target editing",
+        "mechanism": "in-vivo gene editing is intended to alter targets governing atherogenic lipoproteins"
+      },
+      {
+        "from": "hepatic target editing",
+        "to": "LDL-C/Lp(a)/ApoB reduction",
+        "mechanism": "target modification changes lipoprotein production/clearance biology"
+      },
+      {
+        "from": "durable lipoprotein reduction",
+        "to": "human cardiovascular benefit",
+        "mechanism": "hypothesized reduction in atherogenic exposure; clinical outcome benefit remains to be demonstrated"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "EDIT-401 editing payload/delivery",
+      "to": "hepatic target editing",
+      "mechanism": "in-vivo gene editing is intended to alter targets governing atherogenic lipoproteins"
+    },
+    {
+      "from": "hepatic target editing",
+      "to": "LDL-C/Lp(a)/ApoB reduction",
+      "mechanism": "target modification changes lipoprotein production/clearance biology"
+    },
+    {
+      "from": "durable lipoprotein reduction",
+      "to": "human cardiovascular benefit",
+      "mechanism": "hypothesized reduction in atherogenic exposure; clinical outcome benefit remains to be demonstrated"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "editas:2026:ir-index"
+      "editas:2026:ir-index",
+      "sec/editas|q2-2026-results|2026-08-05"
     ]
   },
   "sources": [
@@ -172,12 +266,35 @@
       "kind": "primary",
       "primary": true,
       "originFingerprint": "editas:2026:ir-index"
+    },
+    {
+      "origin": "Editas Medicine Q2 2026 results filed with SEC",
+      "url": "https://www.sec.gov/Archives/edgar/data/1650664/000165066426000082/editasmedicinepressrelease.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-05",
+      "originFingerprint": "sec/editas|q2-2026-results|2026-08-05",
+      "sourceId": null
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "claim": "Prior packet said current runway and regulatory status required direct Q2 evidence.",
+      "resolution": "August 5 2026 SEC-filed Q2 release supplies current runway and planned CTN/data timing; human proof remains unknown, not a contradiction.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
-    "items": []
+    "items": [
+      {
+        "claim": "Prior packet said current runway and regulatory status required direct Q2 evidence.",
+        "resolution": "August 5 2026 SEC-filed Q2 release supplies current runway and planned CTN/data timing; human proof remains unknown, not a contradiction.",
+        "resolved": true,
+        "gating": false
+      }
+    ]
   },
   "unknowns": [
     {
@@ -187,11 +304,19 @@
     {
       "unknown": "Current cash runway, IND/CTA status and human proof-of-concept timing require direct Q2 2026 evidence.",
       "gating": true
+    },
+    {
+      "unknown": "Human dose-response, editing durability, off-target profile and clinical outcome relevance remain unknown until clinical data mature.",
+      "gating": false
+    },
+    {
+      "unknown": "Whether CTN submission/acceptance occurred after the August 5 statement and the resulting human trial status require subsequent primary confirmation.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 2,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [
     {
@@ -211,13 +336,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_gating_issue",
       "unresolved_gating_unknown"
     ],
@@ -229,14 +351,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -253,10 +367,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_gating_issue",

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MCHP",
   "workId": "t0:MCHP",
-  "generatedAt": "2026-09-22T18:17:49.760Z",
+  "generatedAt": "2026-09-22T18:25:16.455Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-06T00:00:00.000Z",
-    "end": "2026-09-21T03:05:27.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T03:05:27.000Z"
+    "end": "2026-09-22T18:23:09.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T18:23:09.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,33 +32,36 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/MCHP-20260920T170404Z-earth-scout.json",
     "data/runtime/workgraph/evidence/MCHP-20260920T180805Z-earth-scout.json",
     "data/runtime/workgraph/evidence/MCHP-20260920T190405Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/MCHP-20260921T030527Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/MCHP-20260921T030527Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/MCHP-20260922T182309Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
       "data/runtime/workgraph/evidence/MCHP-20260920T200616Z-earth-scout.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 8,
-    "historicalEvidenceCount": 10
+    "activeEvidenceCount": 10,
+    "historicalEvidenceCount": 12
   },
   "factorEvidence": {
     "names": [
@@ -69,12 +72,33 @@
       "PCIe Gen6 design-win momentum",
       "sales recovery",
       "PCIe Gen6 design wins",
-      "cycle execution"
+      "cycle execution",
+      "bottleneckControl",
+      "supplyChainResilience",
+      "scenarioRobustness",
+      "financingResilience",
+      "cycleRisk"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "mixed",
+          "basis": "Broad embedded portfolio and internal manufacturing/assembly capacity provide control, while external foundry/raw-material and demand dependencies remain."
+        },
+        {
+          "name": "supplyChainResilience",
+          "direction": "mixed",
+          "basis": "Microchip operates internal assembly/test in Thailand and the Philippines and also uses outsourced capacity; diversification adds flexibility but creates geographic and supplier dependencies."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "mixed",
+          "basis": "Embedded control is pervasive across physical infrastructure, but semiconductor cycles and inventory corrections can overwhelm secular demand for periods."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "sales recovery",
@@ -87,7 +111,18 @@
           "basis": "Company reported improving inventory conditions and book-to-bill above 1."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "financingResilience",
+          "direction": "negative",
+          "basis": "June 30 2026 debt totaled about $5.4B and the company expects to refinance near-term maturities using debt, converts, revolver, commercial paper or other instruments."
+        },
+        {
+          "name": "cycleRisk",
+          "direction": "mixed",
+          "basis": "Inventory days improved, but absolute inventory was roughly flat and demand normalization is not yet proven."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "cycle execution",
@@ -142,7 +177,12 @@
     "PCIe Gen6 design-win momentum",
     "sales recovery",
     "PCIe Gen6 design wins",
-    "cycle execution"
+    "cycle execution",
+    "bottleneckControl",
+    "supplyChainResilience",
+    "scenarioRobustness",
+    "financingResilience",
+    "cycleRisk"
   ],
   "riskEvidence": {
     "present": true,
@@ -179,6 +219,14 @@
       },
       {
         "risk": "Semiconductor cyclicality, inventory reaccumulation and debt can weaken recovery conversion.",
+        "gating": false
+      },
+      {
+        "risk": "Inventory normalization can reverse if channel/customer demand weakens or production is ramped ahead of durable consumption.",
+        "gating": false
+      },
+      {
+        "risk": "Debt refinancing, preferred-capital claims, semiconductor cyclicality and inventory reaccumulation can reduce recovery conversion.",
         "gating": false
       }
     ]
@@ -217,6 +265,14 @@
     {
       "risk": "Semiconductor cyclicality, inventory reaccumulation and debt can weaken recovery conversion.",
       "gating": false
+    },
+    {
+      "risk": "Inventory normalization can reverse if channel/customer demand weakens or production is ramped ahead of durable consumption.",
+      "gating": false
+    },
+    {
+      "risk": "Debt refinancing, preferred-capital claims, semiconductor cyclicality and inventory reaccumulation can reduce recovery conversion.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -226,22 +282,55 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "embedded-control design requirements",
+        "to": "Microchip MCU/analog/connectivity products",
+        "mechanism": "qualified components provide sensing, control, connectivity and power-management functions"
+      },
+      {
+        "from": "wafer/assembly/test capacity",
+        "to": "customer production",
+        "mechanism": "semiconductor manufacturing and packaging convert designs into deployable components"
+      },
+      {
+        "from": "customer qualification/design wins",
+        "to": "industrial/automotive/device infrastructure",
+        "mechanism": "qualified silicon enters long-lived production platforms"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "embedded-control design requirements",
+      "to": "Microchip MCU/analog/connectivity products",
+      "mechanism": "qualified components provide sensing, control, connectivity and power-management functions"
+    },
+    {
+      "from": "wafer/assembly/test capacity",
+      "to": "customer production",
+      "mechanism": "semiconductor manufacturing and packaging convert designs into deployable components"
+    },
+    {
+      "from": "customer qualification/design wins",
+      "to": "industrial/automotive/device infrastructure",
+      "mechanism": "qualified silicon enters long-lived production platforms"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 15,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 13,
+    "rawSourceCount": 17,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 14,
     "missingLineage": 0,
     "uniqueOrigins": [
       "ir.microchip.com|fq1-2027-results|2026-08-06",
-      "ir.microchip.com|8k-ex99.1-fq1-2027|2026-08-06"
+      "ir.microchip.com|8k-ex99.1-fq1-2027|2026-08-06",
+      "sec/mchp|10-q-2026-06-30|2026-08-06"
     ]
   },
   "sources": [
@@ -262,6 +351,15 @@
       "use": "filing-backed financial detail",
       "sourceId": null,
       "primary": false
+    },
+    {
+      "origin": "Microchip Technology Form 10-Q",
+      "url": "https://ir.microchip.com/sec-filings/all-sec-filings/content/0000827054-26-000038/mchp-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "sec/mchp|10-q-2026-06-30|2026-08-06",
+      "sourceId": null
     }
   ],
   "contradictions": [
@@ -274,6 +372,12 @@
     {
       "claim": "Strong year-over-year growth follows a depressed base.",
       "resolution": "Treat recovery as visible but not proof of normalized cycle strength.",
+      "resolved": true,
+      "gating": false
+    },
+    {
+      "claim": "Strong year-over-year growth versus uncertain normalized demand",
+      "resolution": "Recovery is observed; normalized cycle strength remains unproven rather than contradicted.",
       "resolved": true,
       "gating": false
     }
@@ -290,6 +394,12 @@
       {
         "claim": "Strong year-over-year growth follows a depressed base.",
         "resolution": "Treat recovery as visible but not proof of normalized cycle strength.",
+        "resolved": true,
+        "gating": false
+      },
+      {
+        "claim": "Strong year-over-year growth versus uncertain normalized demand",
+        "resolution": "Recovery is observed; normalized cycle strength remains unproven rather than contradicted.",
         "resolved": true,
         "gating": false
       }
@@ -327,11 +437,19 @@
     {
       "unknown": "Deleveraging pace and normalized utilization remain unknown.",
       "gating": false
+    },
+    {
+      "unknown": "Duration of the current recovery and timing of design-win conversion remain uncertain.",
+      "gating": false
+    },
+    {
+      "unknown": "Future refinancing mix/rates and normalized utilization remain uncertain.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 26
+    "nonGatingCount": 28
   },
   "gatingIssues": [],
   "confidence": 90,
@@ -340,14 +458,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -357,18 +471,6 @@
       },
       {
         "failure": "missing_specialist_perspective:company-underwriting",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_primary_source",
         "owner": "council-alpha"
       },
       {
@@ -386,10 +488,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

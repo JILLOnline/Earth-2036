@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MDB",
   "workId": "t0:MDB",
-  "generatedAt": "2026-09-22T18:17:49.760Z",
+  "generatedAt": "2026-09-22T18:25:16.455Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-01T00:00:00.000Z",
-    "end": "2026-09-21T03:05:28.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T03:05:28.000Z"
+    "end": "2026-09-22T18:23:10.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T18:23:10.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,33 +32,36 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/MDB-20260920T170405Z-earth-scout.json",
     "data/runtime/workgraph/evidence/MDB-20260920T180801Z-earth-scout.json",
     "data/runtime/workgraph/evidence/MDB-20260920T190406Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/MDB-20260921T030528Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/MDB-20260921T030528Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/MDB-20260922T182310Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
       "data/runtime/workgraph/evidence/MDB-20260920T200617Z-earth-scout.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 8,
-    "historicalEvidenceCount": 10
+    "activeEvidenceCount": 10,
+    "historicalEvidenceCount": 12
   },
   "factorEvidence": {
     "names": [
@@ -69,12 +72,33 @@
       "AI workload optionality",
       "revenue growth",
       "Atlas growth",
-      "guidance execution"
+      "guidance execution",
+      "bottleneckControl",
+      "substitutionResilience",
+      "scenarioRobustness",
+      "dilutionRisk",
+      "confidenceInflation"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "mixed",
+          "basis": "Developer mindshare and a managed data platform can control an application-layer bottleneck, but underlying cloud infrastructure remains outside MongoDB's control."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Document-model/developer fit supports persistence, while hyperscaler databases, relational/open-source alternatives and new AI-oriented data architectures remain substitutes."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "positive",
+          "basis": "Database demand spans conventional and AI applications, although consumption growth varies with customer workloads."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "revenue growth",
@@ -87,7 +111,18 @@
           "basis": "Atlas growth near 29% supports cloud consumption execution."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "dilutionRisk",
+          "direction": "negative",
+          "basis": "Q2 FY2027 stock-based compensation was about $148.9M and six-month SBC about $286.8M."
+        },
+        {
+          "name": "confidenceInflation",
+          "direction": "negative",
+          "basis": "AI optionality should not be counted as realized monetization without measured incremental Atlas consumption."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "guidance execution",
@@ -142,7 +177,12 @@
     "AI workload optionality",
     "revenue growth",
     "Atlas growth",
-    "guidance execution"
+    "guidance execution",
+    "bottleneckControl",
+    "substitutionResilience",
+    "scenarioRobustness",
+    "dilutionRisk",
+    "confidenceInflation"
   ],
   "riskEvidence": {
     "present": true,
@@ -179,6 +219,14 @@
       },
       {
         "risk": "AI narrative can outrun measurable consumption contribution.",
+        "gating": false
+      },
+      {
+        "risk": "Cloud dependence and substitute databases can shift bargaining power or reduce workload capture even if application data volumes grow.",
+        "gating": false
+      },
+      {
+        "risk": "SBC dilution, hyperscaler/native database competition, cloud consumption variability and narrative expectations can weaken per-share conversion of operating growth.",
         "gating": false
       }
     ]
@@ -217,6 +265,14 @@
     {
       "risk": "AI narrative can outrun measurable consumption contribution.",
       "gating": false
+    },
+    {
+      "risk": "Cloud dependence and substitute databases can shift bargaining power or reduce workload capture even if application data volumes grow.",
+      "gating": false
+    },
+    {
+      "risk": "SBC dilution, hyperscaler/native database competition, cloud consumption variability and narrative expectations can weaken per-share conversion of operating growth.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -226,25 +282,58 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "application/developer data requirements",
+        "to": "MongoDB/Atlas",
+        "mechanism": "document database and managed services reduce application data-model and operations friction"
+      },
+      {
+        "from": "hyperscaler compute/storage/network",
+        "to": "Atlas service delivery",
+        "mechanism": "Atlas depends on cloud infrastructure to run managed database workloads"
+      },
+      {
+        "from": "Atlas reliability/developer adoption",
+        "to": "enterprise software and AI applications",
+        "mechanism": "operational data services support application state and retrieval"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "application/developer data requirements",
+      "to": "MongoDB/Atlas",
+      "mechanism": "document database and managed services reduce application data-model and operations friction"
+    },
+    {
+      "from": "hyperscaler compute/storage/network",
+      "to": "Atlas service delivery",
+      "mechanism": "Atlas depends on cloud infrastructure to run managed database workloads"
+    },
+    {
+      "from": "Atlas reliability/developer adoption",
+      "to": "enterprise software and AI applications",
+      "mechanism": "operational data services support application state and retrieval"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 15,
-    "uniqueSourceCount": 5,
-    "duplicatesCollapsed": 10,
+    "rawSourceCount": 19,
+    "uniqueSourceCount": 6,
+    "duplicatesCollapsed": 13,
     "missingLineage": 0,
     "uniqueOrigins": [
       "investors.mongodb.com|q2-fy2027-results|2026-09-01",
       "investors.mongodb.com|investor-day-notice|2026-09-11",
       "investors.mongodb.com|news-index-through-2026-09-11",
       "marketwatch.com|mongodb-atlas-expectations-q2fy27",
-      "investors.mongodb.com|investor-day-announcement|2026-09-11"
+      "investors.mongodb.com|investor-day-announcement|2026-09-11",
+      "sec/mongodb|10-q-q2fy27|2026-09-01"
     ]
   },
   "sources": [
@@ -292,6 +381,15 @@
       "use": "primary future catalyst timing only",
       "sourceId": null,
       "primary": false
+    },
+    {
+      "origin": "MongoDB Q2 FY2027 Form 10-Q",
+      "url": "https://investors.mongodb.com/static-files/46322fb3-5234-4e5c-961a-dc9058be1ffc",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-01",
+      "originFingerprint": "sec/mongodb|10-q-q2fy27|2026-09-01",
+      "sourceId": null
     }
   ],
   "contradictions": [
@@ -302,6 +400,12 @@
     {
       "claim": "Strong total growth coexists with uncertainty over Atlas acceleration.",
       "resolution": "Treat current growth as realized while leaving future acceleration unproven.",
+      "resolved": true,
+      "gating": false
+    },
+    {
+      "claim": "Strong total growth versus uncertain Atlas acceleration",
+      "resolution": "Current growth is observed; future acceleration and AI contribution remain unproven rather than assumed.",
       "resolved": true,
       "gating": false
     }
@@ -316,6 +420,12 @@
       {
         "claim": "Strong total growth coexists with uncertainty over Atlas acceleration.",
         "resolution": "Treat current growth as realized while leaving future acceleration unproven.",
+        "resolved": true,
+        "gating": false
+      },
+      {
+        "claim": "Strong total growth versus uncertain Atlas acceleration",
+        "resolution": "Current growth is observed; future acceleration and AI contribution remain unproven rather than assumed.",
         "resolved": true,
         "gating": false
       }
@@ -349,27 +459,31 @@
     {
       "unknown": "Durability of growth and measurable AI contribution remain unknown.",
       "gating": false
+    },
+    {
+      "unknown": "Measurable AI-driven Atlas consumption contribution remains unproven ahead of future disclosures.",
+      "gating": false
+    },
+    {
+      "unknown": "Future SBC trajectory, net-new versus expansion contribution and measurable AI workload contribution remain uncertain.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 22
+    "nonGatingCount": 24
   },
   "gatingIssues": [],
-  "confidence": 92,
+  "confidence": 89,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -379,18 +493,6 @@
       },
       {
         "failure": "missing_specialist_perspective:company-underwriting",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_primary_source",
         "owner": "council-alpha"
       },
       {
@@ -408,10 +510,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

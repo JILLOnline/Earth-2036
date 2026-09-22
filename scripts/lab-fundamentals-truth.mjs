@@ -16,6 +16,7 @@ const limit=Math.max(1,Number(argValue("--limit","5"))||5);
 const asOf=argValue("--as-of",new Date().toISOString());
 const writeMode=!args.includes("--no-write");
 const auditDetails=args.includes("--audit-details");
+const summaryOnly=args.includes("--summary-only");
 const outputDir=argValue("--output-dir",path.join("data","lab","truth","fundamentals"));
 
 async function readJson(file){ return JSON.parse(await readFile(file,"utf8")); }
@@ -152,9 +153,32 @@ if(writeMode){
 }
 
 const failed=results.filter(r=>r.errors.length);
+const aggregate={
+  companies:results.length,
+  failed:failed.length,
+  totalRawFactCount:results.reduce((sum,row)=>sum+row.rawFactCount,0),
+  totalRawTruthBytes:results.reduce((sum,row)=>sum+row.rawTruthBytes,0),
+  zeroRawFactCompanies:results.filter((row)=>row.rawFactCount===0).map((row)=>row.ticker),
+  normalizedCoverage:{
+    min:results.length?Math.min(...results.map((row)=>row.normalizedObservedMetricCount)):0,
+    max:results.length?Math.max(...results.map((row)=>row.normalizedObservedMetricCount)):0,
+    average:results.length?Math.round(results.reduce((sum,row)=>sum+row.normalizedObservedMetricCount,0)/results.length*100)/100:0
+  },
+  highAmbiguity:results.filter((row)=>row.normalizedAmbiguousPeriodCount>=20)
+    .map((row)=>({ticker:row.ticker,count:row.normalizedAmbiguousPeriodCount})),
+  lowNormalizedCoverage:results.filter((row)=>row.normalizedObservedMetricCount<=6)
+    .map((row)=>({ticker:row.ticker,count:row.normalizedObservedMetricCount,missing:row.normalizedMissingMetrics})),
+  largestRawStates:[...results].sort((a,b)=>b.rawTruthBytes-a.rawTruthBytes).slice(0,10)
+    .map((row)=>({ticker:row.ticker,bytes:row.rawTruthBytes,facts:row.rawFactCount})),
+  failures:failed.map((row)=>({ticker:row.ticker,errors:row.errors}))
+};
 console.log(JSON.stringify({
   contract:"earth2036-fundamentals-truth-v1",
   source:"SEC XBRL Company Facts",
-  asOf,writeMode,manifestWrite,companies:results.length,failed:failed.length,results
+  asOf,writeMode,manifestWrite,
+  aggregate,
+  results:summaryOnly?results.filter((row)=>
+    row.errors.length||row.rawFactCount===0||row.normalizedObservedMetricCount<=6||row.normalizedAmbiguousPeriodCount>=20
+  ):results
 },null,2));
 if(failed.length) process.exitCode=1;

@@ -215,10 +215,14 @@ export function extractMetricFactsFromRaw(rawFacts, metricName) {
   const spec = FUNDAMENTAL_METRICS[metricName];
   if (!spec) throw new Error("Unknown fundamental metric: " + metricName);
   const conceptKeys = new Set(spec.concepts.map(([taxonomy, tag]) => taxonomy + ":" + tag));
-  return (Array.isArray(rawFacts) ? rawFacts : []).filter((fact) =>
-    conceptKeys.has(fact.taxonomy + ":" + fact.tag) &&
-    NORMALIZED_FORMS.has(String(fact.form ?? ""))
-  );
+  return (Array.isArray(rawFacts) ? rawFacts : [])
+    .filter((fact) =>
+      conceptKeys.has(fact.taxonomy + ":" + fact.tag) &&
+      NORMALIZED_FORMS.has(String(fact.form ?? ""))
+    )
+    // Projection objects must never alias the authoritative raw-fact objects.
+    // A projection can be changed/rebuilt without mutating source truth.
+    .map((fact) => ({ ...fact }));
 }
 
 export function extractMetricFacts(companyFacts, metricName, asOf) {

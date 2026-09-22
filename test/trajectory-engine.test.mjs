@@ -109,3 +109,17 @@ test("Current publishable ranking can be represented by the T1000 feature schema
   assert.equal(snapshot.completeRecords, ranking.rankings.length);
   assert.deepEqual(validateTrajectorySnapshot(snapshot), []);
 });
+
+
+test("Trajectory is wired into T0/T1000 capture but cannot become a qualification gate", async () => {
+  const finalizer = await readFile(new URL("../scripts/finalize-qualified-tick.mjs", import.meta.url), "utf8");
+  const sync = await readFile(new URL("../scripts/workgraph-sync.mjs", import.meta.url), "utf8");
+  assert.ok(finalizer.includes("buildTrajectorySnapshot"));
+  assert.ok(finalizer.includes('captureRole: "t0-origin"'));
+  assert.ok(finalizer.includes('captureRole: "qualified-trial-tick"'));
+  assert.ok(finalizer.includes("trajectoryValidationPassed"));
+  assert.equal(finalizer.includes("if (trajectoryErrors"), false);
+  assert.equal(finalizer.includes("if (t0TrajectoryErrors"), false);
+  assert.ok(sync.includes('"trajectory.json"'));
+  assert.ok(sync.includes('mode: "pre-t0-and-live-dry-run"'));
+});

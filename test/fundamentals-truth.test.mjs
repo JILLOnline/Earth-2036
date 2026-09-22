@@ -222,3 +222,13 @@ test("US-GAAP ProfitLoss is not silently treated as NetIncomeLoss", () => {
   assert.equal(metric.latest.annual.selected.val, 12);
   assert.equal(metric.allEligibleFacts.some((fact) => fact.tag === "ProfitLoss"), false);
 });
+
+
+test("metric freshness is mechanical age metadata, not an imputed value or verdict", () => {
+  const metric = normalizeMetric(payload(), "cash_and_equivalents", "2026-04-01T12:00:00Z");
+  assert.equal(metric.freshness.latestPeriodEnd, "2025-12-31");
+  assert.equal(metric.freshness.periodEndAgeDays, 91);
+  assert.equal(metric.freshness.latestFiledDate, "2026-02-01");
+  assert.equal(metric.freshness.filedAgeDays, 59);
+  assert.equal("stale" in metric.freshness, false);
+});

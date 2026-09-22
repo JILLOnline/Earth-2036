@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-22T03:14:54.792Z",
+  "generatedAt": "2026-09-22T03:27:37.382Z",
   "canonicalWriteAuthority": false,
   "total": 176,
   "twins": [
@@ -8798,7 +8798,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "ACLS",
       "workId": "t0:ACLS",
-      "inputSignature": "008417cb62ad5aed4ecdb10e",
+      "inputSignature": "9ec0b78ae18054a6463644fd",
       "sourceState": "researching",
       "identity": {
         "ticker": "ACLS",
@@ -8821,28 +8821,34 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 1,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 7,
         "sourceLineage": {
-          "rawSourceCount": 2,
-          "uniqueSourceCount": 1,
-          "duplicatesCollapsed": 1,
+          "rawSourceCount": 10,
+          "uniqueSourceCount": 7,
+          "duplicatesCollapsed": 3,
           "missingLineage": 0,
           "uniqueOrigins": [
-            "issuer:ACLS:2026Q2:20260806"
+            "issuer:ACLS:2026Q2:20260806",
+            "issuer:ACLS:XEmax-eval:20260728",
+            "issuer:ACLS:GE-JDP:20250820",
+            "issuer:ACLS:VECO-merger:20251001",
+            "sec:ACLS:2026Q2:10Q",
+            "sec:ACLS:2025:10K",
+            "issuer:ACLS:VECO-vote:20260206"
           ]
         },
         "evidenceWindow": {
-          "start": "2026-08-06T00:00:00.000Z",
-          "end": "2026-09-19T06:06:41.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T06:06:41.000Z"
+          "start": "2025-08-20T00:00:00.000Z",
+          "end": "2026-09-22T03:25:45.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-22T03:25:45.000Z"
         },
         "preflightPassed": false
       },
@@ -8852,37 +8858,70 @@
         "alignment2036",
         "bottleneckControl",
         "pricingPower",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "thesisQuality",
+        "substitutionResilience",
+        "crossDivisionLeverage",
+        "governancePower",
+        "supplyChainResilience"
       ],
       "constraintSignals": {
         "risks": [
           "Semiconductor capital equipment remains cyclical and the pending Veeco merger introduces transaction/integration risk.",
-          "Revenue recovery has not yet translated into year-over-year margin expansion."
+          "Revenue recovery has not yet translated into year-over-year margin expansion.",
+          "Semiconductor-capex cyclicality can weaken equipment demand even when the underlying implantation step remains necessary.",
+          "A broader post-merger portfolio may improve resilience but creates integration and execution dependencies before claimed cross-platform benefits are proven.",
+          "Customer concentration makes demand changes at a small number of fabs disproportionately important; top-ten customers represented 68.5% of first-half 2026 revenue.",
+          "International/Asia exposure creates export-control, regulatory and geopolitical sensitivity; 2025 international sales were 83.7% of revenue and Asia represented 76.0% of system revenue.",
+          "Merger benefits are management expectations rather than realized evidence until regulatory close and integration; treat TAM/cross-selling claims as hypotheses, not present causal proof."
         ],
         "unknowns": [
           "Durability and mix of the 2027 demand recovery remain unproven.",
-          "Post-merger economics and achievable combined-company margin structure remain unknown until the Veeco transaction closes and integrates."
+          "Post-merger economics and achievable combined-company margin structure remain unknown until the Veeco transaction closes and integrates.",
+          "Independent quantitative evidence of customer switching costs and Purion share by implant segment is not established in this evidence set.",
+          "Veeco cross-selling and R&D synergies are prospective until post-close operating evidence exists.",
+          "Current customer-by-customer concentration and China revenue mix are not disclosed at sufficient granularity here to stress a single-customer/export-control shock.",
+          "Realized Veeco integration costs, retention, cross-selling and synergy capture remain unknown before completion/integration."
         ],
         "contradictions": [
-          "Top-line execution is improving while profitability percentages remain below the prior-year quarter."
+          "Top-line execution is improving while profitability percentages remain below the prior-year quarter.",
+          "Revenue recovery coexists with weaker year-over-year margin percentages; this narrows the thesis to recovery-with-profitability-to-be-proven rather than a fully demonstrated operating recovery."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
           "missing_data_confidence_evidence",
-          "missing_causal_mapping",
           "unresolved_material_contradiction"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "advanced semiconductor and power-device performance needs",
+            "to": "precision ion implantation demand",
+            "mechanism": "device structures require controlled dopant depth/concentration and production throughput"
+          },
+          {
+            "from": "Purion high-energy/high-current implant capability",
+            "to": "fab qualification and production adoption",
+            "mechanism": "process capability, yield/productivity and cost-of-ownership must satisfy customer manufacturing requirements"
+          },
+          {
+            "from": "qualified installed base",
+            "to": "aftermarket/service demand and switching friction",
+            "mechanism": "installed production tools require lifecycle support, parts and process continuity"
+          },
+          {
+            "from": "Veeco combination if completed",
+            "to": "broader semiconductor-process portfolio",
+            "mechanism": "complementary process technologies may expand customer touchpoints and R&D scale; synergy remains unverified"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -8893,16 +8932,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -8926,11 +8955,6 @@
           "stance": "improvement-oriented"
         },
         {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
-        },
-        {
           "failure": "unresolved_material_contradiction",
           "question": "Which material contradiction must be reconciled before the representation can advance?",
           "stance": "improvement-oriented"
@@ -8943,13 +8967,27 @@
           "alignment2036",
           "bottleneckControl",
           "pricingPower",
-          "scenarioRobustness"
+          "scenarioRobustness",
+          "thesisQuality",
+          "substitutionResilience",
+          "crossDivisionLeverage",
+          "governancePower",
+          "supplyChainResilience"
         ],
         "needOrConstraintCandidates": [
           "Durability and mix of the 2027 demand recovery remain unproven.",
           "Post-merger economics and achievable combined-company margin structure remain unknown until the Veeco transaction closes and integrates.",
+          "Independent quantitative evidence of customer switching costs and Purion share by implant segment is not established in this evidence set.",
+          "Veeco cross-selling and R&D synergies are prospective until post-close operating evidence exists.",
+          "Current customer-by-customer concentration and China revenue mix are not disclosed at sufficient granularity here to stress a single-customer/export-control shock.",
+          "Realized Veeco integration costs, retention, cross-selling and synergy capture remain unknown before completion/integration.",
           "Semiconductor capital equipment remains cyclical and the pending Veeco merger introduces transaction/integration risk.",
-          "Revenue recovery has not yet translated into year-over-year margin expansion."
+          "Revenue recovery has not yet translated into year-over-year margin expansion.",
+          "Semiconductor-capex cyclicality can weaken equipment demand even when the underlying implantation step remains necessary.",
+          "A broader post-merger portfolio may improve resilience but creates integration and execution dependencies before claimed cross-platform benefits are proven.",
+          "Customer concentration makes demand changes at a small number of fabs disproportionately important; top-ten customers represented 68.5% of first-half 2026 revenue.",
+          "International/Asia exposure creates export-control, regulatory and geopolitical sensitivity; 2025 international sales were 83.7% of revenue and Asia represented 76.0% of system revenue.",
+          "Merger benefits are management expectations rather than realized evidence until regulatory close and integration; treat TAM/cross-selling claims as hypotheses, not present causal proof."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

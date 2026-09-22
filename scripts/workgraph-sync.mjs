@@ -238,7 +238,7 @@ const trajectoryShadowBase = buildTrajectorySnapshot({
   asOf: trajectoryAsOf,
   generatedAt: now.toISOString(),
   methodologyVersion: rankingState?.methodologyVersion || methodologyVersion,
-  universeVersion: registry?.version || registry?.universeVersion || "u1-250",
+  universeVersion: rankingState?.universeVersion || "u1-250",
   trialTickNumber: null,
 });
 const trajectoryErrors = validateTrajectorySnapshot(trajectoryShadowBase);

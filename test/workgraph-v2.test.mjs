@@ -865,3 +865,36 @@ test("newer contradictory evidence reopens a gate after an older Resolver closur
   assert.equal(packet.preflight.failures.includes("unresolved_material_contradiction"), true);
   assert.equal(packet.evidenceResolution.resolvedGateKinds.includes("material_contradiction"), false);
 });
+
+
+test("assist bus routes bounded Beta risk-source support to Alpha without transferring scoring authority", () => {
+  const graph = {
+    companies: {
+      AAA: { ticker: "AAA", state: "researching", workId: "t0:AAA", attempts: 0 },
+    },
+  };
+  const packets = [{
+    ticker: "AAA",
+    workId: "t0:AAA",
+    sourceState: "researching",
+    evidencePaths: ["evidence/scout.json", "evidence/beta.json"],
+    specialistCoverage: { present: [
+      "discovery-weak-signals",
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
+    ] },
+    gatingIssues: [],
+    unknowns: [],
+    preflight: {
+      failures: ["missing_score_risk_evidence"],
+    },
+  }];
+  const bus = buildAssistRequests(graph, packets, [], "2026-09-22T16:35:00Z");
+  const beta = bus.requests.find((request) => request.helperRole === "council-beta");
+  assert.ok(beta);
+  assert.equal(beta.rootOwner, "council-alpha");
+  assert.equal(beta.capability, "risk-source-support");
+  assert.ok(beta.exactQuestion.includes("without creating Alpha's numeric risk score"));
+  assert.equal(bus.policy.rootOwnerRetainsAuthority, true);
+});

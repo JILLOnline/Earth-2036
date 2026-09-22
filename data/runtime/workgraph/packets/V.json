@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "V",
   "workId": "t0:V",
-  "generatedAt": "2026-09-22T11:15:12.693Z",
+  "generatedAt": "2026-09-22T11:29:07.471Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-28T00:00:00.000Z",
-    "end": "2026-09-21T21:03:08.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T21:03:08.000Z"
+    "end": "2026-09-22T11:27:55.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T11:27:55.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,30 +32,33 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/V-20260921T210308Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/V-20260921T210308Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/V-20260922T112755Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
       "data/runtime/workgraph/evidence/V-20260921T200323Z-earth-scout.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -63,19 +66,34 @@
       "bottleneckControl",
       "substitutionResilience",
       "scenarioRobustness",
-      "pricingPower"
+      "pricingPower",
+      "crossDivisionLeverage",
+      "alignment2036",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "crossDivisionLeverage",
+        "alignment2036"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "bottleneckControl",
         "substitutionResilience",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "substitutionResilience",
+        "pricingPower",
+        "financialOperatingMomentum",
+        "governancePower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "pricingPower",
@@ -126,7 +144,10 @@
     "bottleneckControl",
     "substitutionResilience",
     "scenarioRobustness",
-    "pricingPower"
+    "pricingPower",
+    "crossDivisionLeverage",
+    "alignment2036",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -138,6 +159,22 @@
       {
         "risk": "Expense restructuring and payment-network regulatory exposure remain execution variables.",
         "gating": false
+      },
+      {
+        "risk": "Successor payment rails can shift value away from card-network economics even if aggregate digital-payment activity continues growing.",
+        "gating": false
+      },
+      {
+        "risk": "Regulation can alter the economics of network rules and fees without eliminating the underlying human need for trusted payments.",
+        "gating": false
+      },
+      {
+        "risk": "Confidence inflation risk: current volume and revenue growth may be mistaken for evidence that Visa's future take-rate and routing power are structurally unchanged.",
+        "gating": false
+      },
+      {
+        "risk": "Regulatory exposure and technology substitution can pressure economics before they visibly pressure transaction counts.",
+        "gating": false
       }
     ]
   },
@@ -148,6 +185,22 @@
     },
     {
       "risk": "Expense restructuring and payment-network regulatory exposure remain execution variables.",
+      "gating": false
+    },
+    {
+      "risk": "Successor payment rails can shift value away from card-network economics even if aggregate digital-payment activity continues growing.",
+      "gating": false
+    },
+    {
+      "risk": "Regulation can alter the economics of network rules and fees without eliminating the underlying human need for trusted payments.",
+      "gating": false
+    },
+    {
+      "risk": "Confidence inflation risk: current volume and revenue growth may be mistaken for evidence that Visa's future take-rate and routing power are structurally unchanged.",
+      "gating": false
+    },
+    {
+      "risk": "Regulatory exposure and technology substitution can pressure economics before they visibly pressure transaction counts.",
       "gating": false
     }
   ],
@@ -162,14 +215,86 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "consumer-and-business-digital-commerce",
+        "to": "trusted-payment-authorization-routing-settlement",
+        "relation": "creates demand for"
+      },
+      {
+        "from": "Visa-network-and-acceptance-footprint",
+        "to": "trusted-payment-authorization-routing-settlement",
+        "relation": "supplies coordination infrastructure for"
+      },
+      {
+        "from": "agentic-commerce-and-stablecoin-rails",
+        "to": "Visa-network-economics",
+        "relation": "can complement or substitute depending on routing and value capture"
+      },
+      {
+        "from": "regulatory-intervention",
+        "to": "Visa-network-economics",
+        "relation": "can constrain pricing or network rules"
+      },
+      {
+        "from": "alternative-payment-rails",
+        "to": "Visa-pricing-and-routing-power",
+        "relation": "potentially erodes"
+      },
+      {
+        "from": "regulatory-action",
+        "to": "Visa-pricing-and-network-rules",
+        "relation": "can constrain"
+      },
+      {
+        "from": "cost-restructuring",
+        "to": "operating-leverage-and-execution",
+        "relation": "can improve efficiency but signals adaptation burden"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "consumer-and-business-digital-commerce",
+      "to": "trusted-payment-authorization-routing-settlement",
+      "relation": "creates demand for"
+    },
+    {
+      "from": "Visa-network-and-acceptance-footprint",
+      "to": "trusted-payment-authorization-routing-settlement",
+      "relation": "supplies coordination infrastructure for"
+    },
+    {
+      "from": "agentic-commerce-and-stablecoin-rails",
+      "to": "Visa-network-economics",
+      "relation": "can complement or substitute depending on routing and value capture"
+    },
+    {
+      "from": "regulatory-intervention",
+      "to": "Visa-network-economics",
+      "relation": "can constrain pricing or network rules"
+    },
+    {
+      "from": "alternative-payment-rails",
+      "to": "Visa-pricing-and-routing-power",
+      "relation": "potentially erodes"
+    },
+    {
+      "from": "regulatory-action",
+      "to": "Visa-pricing-and-network-rules",
+      "relation": "can constrain"
+    },
+    {
+      "from": "cost-restructuring",
+      "to": "operating-leverage-and-execution",
+      "relation": "can improve efficiency but signals adaptation burden"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "sec:V:2026Q3:20260728",
@@ -198,6 +323,16 @@
     {
       "contradiction": "Strong volume and revenue growth coexist with cost restructuring and rapid technology change in payments.",
       "material": true
+    },
+    {
+      "contradiction": "Current network activity is strong while the architecture of future payment rails is changing quickly; growth therefore supports present relevance but does not by itself prove long-run bottleneck control.",
+      "material": true,
+      "disposition": "resolved_as_scenario_risk_not_present_gate"
+    },
+    {
+      "contradiction": "Strong present operating momentum coexists with restructuring and rapid payment-technology change.",
+      "material": true,
+      "disposition": "resolved_as_real_but_nonblocking_tension; monitor economics and routing share rather than treating it as a present methodology gate"
     }
   ],
   "contradictionDispositions": {
@@ -206,6 +341,16 @@
       {
         "contradiction": "Strong volume and revenue growth coexist with cost restructuring and rapid technology change in payments.",
         "material": true
+      },
+      {
+        "contradiction": "Current network activity is strong while the architecture of future payment rails is changing quickly; growth therefore supports present relevance but does not by itself prove long-run bottleneck control.",
+        "material": true,
+        "disposition": "resolved_as_scenario_risk_not_present_gate"
+      },
+      {
+        "contradiction": "Strong present operating momentum coexists with restructuring and rapid payment-technology change.",
+        "material": true,
+        "disposition": "resolved_as_real_but_nonblocking_tension; monitor economics and routing share rather than treating it as a present methodology gate"
       }
     ]
   },
@@ -217,26 +362,35 @@
     {
       "unknown": "Durability of cross-border growth after travel/event effects normalize remains uncertain.",
       "gating": false
+    },
+    {
+      "unknown": "What share of future agentic/stablecoin commerce will remain Visa-routed or Visa-monetized is not yet observable.",
+      "gating": false
+    },
+    {
+      "unknown": "No current evidence here quantifies future Visa take-rate under stablecoin or agentic-payment adoption.",
+      "gating": false
+    },
+    {
+      "unknown": "Durability of cross-border growth after travel/event normalization remains uncertain.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
-  "confidence": 95,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -247,14 +401,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -271,10 +417,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

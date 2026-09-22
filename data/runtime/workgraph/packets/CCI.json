@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CCI",
   "workId": "t0:CCI",
-  "generatedAt": "2026-09-22T06:16:20.813Z",
+  "generatedAt": "2026-09-22T06:28:53.966Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-22T04:03:09.925Z"
   },
   "evidenceWindow": {
-    "start": "2026-05-01T00:00:00.000Z",
-    "end": "2026-09-19T10:05:03.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T10:05:03.000Z"
+    "start": "2026-02-04T00:00:00.000Z",
+    "end": "2026-09-22T06:26:03.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T06:26:03.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/CCI-20260919T100503Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/CCI-20260919T100503Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/CCI-20260922T062603Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,19 +65,38 @@
       "scenarioRobustness",
       "bottleneckControl",
       "financialOperatingMomentum",
-      "marketValuationOpportunity"
+      "marketValuationOpportunity",
+      "alignment2036",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "governancePower",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "crossDivisionLeverage",
         "scenarioRobustness",
         "bottleneckControl"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "governancePower",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "pricingPower",
+        "marketValuationOpportunity"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "marketValuationOpportunity",
@@ -125,7 +147,12 @@
     "scenarioRobustness",
     "bottleneckControl",
     "financialOperatingMomentum",
-    "marketValuationOpportunity"
+    "marketValuationOpportunity",
+    "alignment2036",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "governancePower",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -136,6 +163,26 @@
       },
       {
         "risk": "Full-year site-rental revenue midpoint remains below 2025 actual, reflecting churn/cancellation pressure despite balance-sheet repair.",
+        "gating": false
+      },
+      {
+        "risk": "Pure-play focus increases exposure to U.S. carrier capital cycles and tenant concentration.",
+        "gating": false
+      },
+      {
+        "risk": "Alternative architectures can shift incremental network spend toward small cells, fiber, satellite or other infrastructure even if macro towers remain necessary.",
+        "gating": false
+      },
+      {
+        "risk": "Carrier/tenant concentration creates discontinuous revenue loss when a major network exits or consolidates.",
+        "gating": false
+      },
+      {
+        "risk": "A pure-play tower portfolio sacrifices fiber/small-cell diversification and makes capital allocation dependent on tower organic growth, debt discipline and shareholder returns.",
+        "gating": false
+      },
+      {
+        "risk": "Cost reductions can improve AFFO but cannot substitute indefinitely for leasing growth.",
         "gating": false
       }
     ]
@@ -148,6 +195,26 @@
     {
       "risk": "Full-year site-rental revenue midpoint remains below 2025 actual, reflecting churn/cancellation pressure despite balance-sheet repair.",
       "gating": false
+    },
+    {
+      "risk": "Pure-play focus increases exposure to U.S. carrier capital cycles and tenant concentration.",
+      "gating": false
+    },
+    {
+      "risk": "Alternative architectures can shift incremental network spend toward small cells, fiber, satellite or other infrastructure even if macro towers remain necessary.",
+      "gating": false
+    },
+    {
+      "risk": "Carrier/tenant concentration creates discontinuous revenue loss when a major network exits or consolidates.",
+      "gating": false
+    },
+    {
+      "risk": "A pure-play tower portfolio sacrifices fiber/small-cell diversification and makes capital allocation dependent on tower organic growth, debt discipline and shareholder returns.",
+      "gating": false
+    },
+    {
+      "risk": "Cost reductions can improve AFFO but cannot substitute indefinitely for leasing growth.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -158,21 +225,64 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "human_need:mobile_connectivity",
+        "to": "technology:wireless_networks",
+        "relation": "requires"
+      },
+      {
+        "from": "technology:wireless_networks",
+        "to": "infrastructure:macro_tower_sites",
+        "relation": "uses_for_coverage_capacity"
+      },
+      {
+        "from": "infrastructure:macro_tower_sites",
+        "to": "company:CCI",
+        "relation": "owned_leased_by"
+      },
+      {
+        "from": "company:CCI",
+        "to": "bottleneck:permitted_sited_vertical_real_estate",
+        "relation": "controls_portfolio"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "human_need:mobile_connectivity",
+      "to": "technology:wireless_networks",
+      "relation": "requires"
+    },
+    {
+      "from": "technology:wireless_networks",
+      "to": "infrastructure:macro_tower_sites",
+      "relation": "uses_for_coverage_capacity"
+    },
+    {
+      "from": "infrastructure:macro_tower_sites",
+      "to": "company:CCI",
+      "relation": "owned_leased_by"
+    },
+    {
+      "from": "company:CCI",
+      "to": "bottleneck:permitted_sited_vertical_real_estate",
+      "relation": "controls_portfolio"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:CCI:fiber-sale-close:20260501",
-      "issuer:CCI:2026Q2:20260722"
+      "issuer:CCI:2026Q2:20260722",
+      "issuer:CCI:2025FY:20260204"
     ]
   },
   "sources": [
@@ -191,18 +301,46 @@
       "primary": true,
       "publishedAt": "2026-07-22",
       "originFingerprint": "issuer:CCI:2026Q2:20260722"
+    },
+    {
+      "sourceId": "issuer:CCI:2025FY",
+      "url": "https://investor.crowncastle.com/news-releases/news-release-details/crown-castle-reports-fourth-quarter-and-full-year-2025-results",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-04",
+      "originFingerprint": "issuer:CCI:2025FY:20260204"
     }
   ],
   "contradictions": [
     {
       "contradiction": "Balance-sheet simplification and debt reduction improve resilience while reported site-rental revenue outlook still implies contraction versus 2025."
+    },
+    {
+      "contradiction": "Balance-sheet resilience improved sharply after the fiber sale while reported site-rental revenue remains pressured by tenant cancellations.",
+      "material": false,
+      "disposition": "structurally_explainable_monitor"
+    },
+    {
+      "contradiction": "Debt reduction and cost savings improve AFFO resilience while headline site-rental revenue can still contract because cancellation losses exceed new organic contribution.",
+      "material": true,
+      "disposition": "retain_for_deep_resolver_growth_quality_reconciliation"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "contradiction": "Balance-sheet simplification and debt reduction improve resilience while reported site-rental revenue outlook still implies contraction versus 2025."
+      },
+      {
+        "contradiction": "Balance-sheet resilience improved sharply after the fiber sale while reported site-rental revenue remains pressured by tenant cancellations.",
+        "material": false,
+        "disposition": "structurally_explainable_monitor"
+      },
+      {
+        "contradiction": "Debt reduction and cost savings improve AFFO resilience while headline site-rental revenue can still contract because cancellation losses exceed new organic contribution.",
+        "material": true,
+        "disposition": "retain_for_deep_resolver_growth_quality_reconciliation"
       }
     ]
   },
@@ -214,11 +352,19 @@
     {
       "unknown": "Post-sale normalized AFFO growth and reinvestment returns require full council underwriting.",
       "gating": false
+    },
+    {
+      "unknown": "Long-run colocation growth after DISH/Sprint churn and post-sale reinvestment economics remain unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Whether post-cancellation organic growth reaccelerates enough to support durable AFFO growth is not yet established.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 91,
@@ -227,13 +373,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -244,14 +387,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -268,10 +403,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

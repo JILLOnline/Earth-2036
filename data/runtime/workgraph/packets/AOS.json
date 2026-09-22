@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "AOS",
   "workId": "t0:AOS",
-  "generatedAt": "2026-09-22T06:16:20.819Z",
+  "generatedAt": "2026-09-22T06:28:53.969Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-22T04:03:09.925Z"
   },
   "evidenceWindow": {
-    "start": "2026-01-29T00:00:00.000Z",
-    "end": "2026-09-19T08:06:13.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T08:06:13.000Z"
+    "start": "2025-11-12T00:00:00.000Z",
+    "end": "2026-09-22T06:26:03.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T06:26:03.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/AOS-20260919T080613Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/AOS-20260919T080613Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/AOS-20260922T062603Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -63,18 +66,36 @@
       "financialOperatingMomentum",
       "catalystScore",
       "scenarioRobustness",
-      "substitutionResilience"
+      "substitutionResilience",
+      "bottleneckControl",
+      "governancePower",
+      "supplyChainResilience",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "alignment2036",
         "crossDivisionLeverage"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "governancePower",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "pricingPower",
+        "substitutionResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -127,7 +148,11 @@
     "financialOperatingMomentum",
     "catalystScore",
     "scenarioRobustness",
-    "substitutionResilience"
+    "substitutionResilience",
+    "bottleneckControl",
+    "governancePower",
+    "supplyChainResilience",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -138,6 +163,26 @@
       },
       {
         "risk": "A downward guidance revision is a direct expectations miss and China remains a material operating drag.",
+        "gating": false
+      },
+      {
+        "risk": "The water-management adjacency remains small relative to the core and must demonstrate profitable attachment and integration.",
+        "gating": false
+      },
+      {
+        "risk": "Electrification, heat-pump water heating and competing connected-control architectures can shift value away from incumbent product categories if AOS does not keep pace.",
+        "gating": false
+      },
+      {
+        "risk": "China consumer-appliance weakness and softer North American residential water-heater volumes can persist longer than acquisition-led growth offsets them.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition returns can disappoint if Leonard growth or synergies miss the forecast embedded in the purchase multiple.",
+        "gating": false
+      },
+      {
+        "risk": "Regulatory change, materials costs and technology substitution remain execution risks for the core portfolio.",
         "gating": false
       }
     ]
@@ -150,6 +195,26 @@
     {
       "risk": "A downward guidance revision is a direct expectations miss and China remains a material operating drag.",
       "gating": false
+    },
+    {
+      "risk": "The water-management adjacency remains small relative to the core and must demonstrate profitable attachment and integration.",
+      "gating": false
+    },
+    {
+      "risk": "Electrification, heat-pump water heating and competing connected-control architectures can shift value away from incumbent product categories if AOS does not keep pace.",
+      "gating": false
+    },
+    {
+      "risk": "China consumer-appliance weakness and softer North American residential water-heater volumes can persist longer than acquisition-led growth offsets them.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition returns can disappoint if Leonard growth or synergies miss the forecast embedded in the purchase multiple.",
+      "gating": false
+    },
+    {
+      "risk": "Regulatory change, materials costs and technology substitution remain execution risks for the core portfolio.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -160,21 +225,65 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 4
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "human_need:reliable_hot_water",
+        "to": "technology:water_heating_boilers",
+        "relation": "requires"
+      },
+      {
+        "from": "technology:water_heating_boilers",
+        "to": "company:AOS",
+        "relation": "supplied_by"
+      },
+      {
+        "from": "company:AOS",
+        "to": "technology:digital_mixing_flow_control",
+        "relation": "expanded_via_leonard"
+      },
+      {
+        "from": "technology:digital_mixing_flow_control",
+        "to": "infrastructure:commercial_mechanical_room",
+        "relation": "integrates_with"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "human_need:reliable_hot_water",
+      "to": "technology:water_heating_boilers",
+      "relation": "requires"
+    },
+    {
+      "from": "technology:water_heating_boilers",
+      "to": "company:AOS",
+      "relation": "supplied_by"
+    },
+    {
+      "from": "company:AOS",
+      "to": "technology:digital_mixing_flow_control",
+      "relation": "expanded_via_leonard"
+    },
+    {
+      "from": "technology:digital_mixing_flow_control",
+      "to": "infrastructure:commercial_mechanical_room",
+      "relation": "integrates_with"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:AOS:FY2025:20260129",
-      "issuer:AOS:2026Q1:20260430"
+      "issuer:AOS:2026Q1:20260430",
+      "issuer:AOS:2026Q2:20260730",
+      "issuer:AOS:Leonard:20251112"
     ]
   },
   "sources": [
@@ -193,6 +302,22 @@
       "primary": true,
       "publishedAt": "2026-04-30",
       "originFingerprint": "issuer:AOS:2026Q1:20260430"
+    },
+    {
+      "sourceId": "issuer:AOS:2026Q2:20260730",
+      "url": "https://investor.aosmith.com/node/23136/pdf",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-30",
+      "originFingerprint": "issuer:AOS:2026Q2:20260730"
+    },
+    {
+      "sourceId": "issuer:AOS:Leonard:20251112",
+      "url": "https://investor.aosmith.com/news-releases/news-release-details/o-smith-acquire-leonard-valve-company-leader-water-temperature",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2025-11-12",
+      "originFingerprint": "issuer:AOS:Leonard:20251112"
     }
   ],
   "contradictions": [
@@ -200,15 +325,35 @@
       "contradiction": "Record 2025 EPS and margin improvement were followed by a 2026 guidance reduction after Q1.",
       "material": true,
       "disposition": "retain_for_underwriting"
+    },
+    {
+      "contradiction": "Broader water-management positioning is strengthening while 2026 core demand and China performance weakened; adjacency does not yet offset core cyclicality.",
+      "material": false,
+      "disposition": "non_gating_monitor"
+    },
+    {
+      "contradiction": "Record 2025 EPS and a platform-expansion acquisition were followed by lower 2026 guidance; the contradiction is explainable by China/core-volume weakness but remains relevant to underwriting confidence.",
+      "material": true,
+      "disposition": "retain_for_deep_resolver_underwriting_reconciliation"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "contradiction": "Record 2025 EPS and margin improvement were followed by a 2026 guidance reduction after Q1.",
         "material": true,
         "disposition": "retain_for_underwriting"
+      },
+      {
+        "contradiction": "Broader water-management positioning is strengthening while 2026 core demand and China performance weakened; adjacency does not yet offset core cyclicality.",
+        "material": false,
+        "disposition": "non_gating_monitor"
+      },
+      {
+        "contradiction": "Record 2025 EPS and a platform-expansion acquisition were followed by lower 2026 guidance; the contradiction is explainable by China/core-volume weakness but remains relevant to underwriting confidence.",
+        "material": true,
+        "disposition": "retain_for_deep_resolver_underwriting_reconciliation"
       }
     ]
   },
@@ -220,11 +365,19 @@
     {
       "unknown": "Whether China remediation and North American demand recover enough to stabilize 2026 guidance remains unknown.",
       "gating": false
+    },
+    {
+      "unknown": "Leonard Valve post-close organic growth, synergy capture and attachment to AOS's installed base are not yet established.",
+      "gating": false
+    },
+    {
+      "unknown": "The durable margin contribution of Leonard and the timing of China normalization remain uncertain.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 86,
@@ -233,13 +386,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -250,14 +400,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -274,10 +416,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

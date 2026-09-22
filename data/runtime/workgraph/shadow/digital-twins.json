@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-22T06:16:20.820Z",
+  "generatedAt": "2026-09-22T06:28:53.969Z",
   "canonicalWriteAuthority": false,
   "total": 173,
   "twins": [
@@ -9111,7 +9111,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "CAMT",
       "workId": "t0:CAMT",
-      "inputSignature": "a9dbfb1e3281a05498720071",
+      "inputSignature": "c3a3e7fdb3448df3a69d2de9",
       "sourceState": "researching",
       "identity": {
         "ticker": "CAMT",
@@ -9134,30 +9134,32 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 3,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 5,
         "sourceLineage": {
-          "rawSourceCount": 3,
-          "uniqueSourceCount": 3,
-          "duplicatesCollapsed": 0,
+          "rawSourceCount": 8,
+          "uniqueSourceCount": 5,
+          "duplicatesCollapsed": 3,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:CAMT:AI-HBM-orders:20260602",
             "issuer:CAMT:OSAT-orders:20260330",
-            "issuer:CAMT:2026Q2:20260810"
+            "issuer:CAMT:2026Q2:20260810",
+            "sec:CAMT:2025FY:20260319",
+            "issuer:CAMT:Hawk-IDM:20260210"
           ]
         },
         "evidenceWindow": {
-          "start": "2026-03-30T00:00:00.000Z",
-          "end": "2026-09-19T10:05:01.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T10:05:01.000Z"
+          "start": "2026-02-10T00:00:00.000Z",
+          "end": "2026-09-22T06:26:03.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-22T06:26:03.000Z"
         },
         "preflightPassed": false
       },
@@ -9168,37 +9170,66 @@
         "bottleneckControl",
         "pricingPower",
         "financialOperatingMomentum",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "substitutionResilience",
+        "governancePower",
+        "supplyChainResilience"
       ],
       "constraintSignals": {
         "risks": [
           "AI advanced-packaging demand is concentrated among a limited set of large OSAT/HBM/IDM customers and may be cyclical.",
-          "GAAP operating margin fell to 20.4% from 25.9% year over year and GAAP net income declined 31%, despite revenue growth."
+          "GAAP operating margin fell to 20.4% from 25.9% year over year and GAAP net income declined 31%, despite revenue growth.",
+          "A packaging transition that reduces optical inspection/metrology steps or shifts value to competing modalities would weaken bottleneck control.",
+          "AI packaging capex is cyclical even when the underlying complexity trend is structural.",
+          "Customer and geographic concentration can magnify a pause in HBM/OSAT capex or Asia trade restrictions.",
+          "Competitors with greater resources or lower-priced regional tools can pressure pricing or displace systems if performance gaps narrow.",
+          "GAAP margin compression during rapid order growth can indicate integration/operating-cost drag even when non-GAAP profitability remains strong."
         ],
         "unknowns": [
           "Customer identities and exact system-level margins are undisclosed.",
-          "Durability of >30% H2 growth beyond the current AI packaging capex cycle remains unproven."
+          "Durability of >30% H2 growth beyond the current AI packaging capex cycle remains unproven.",
+          "System-level share at each HBM/hybrid-bonding process step and customer switching costs are not disclosed.",
+          "Exact customer identities, order cancellation protections and per-system margins are undisclosed."
         ],
         "contradictions": [
-          "Strong order/revenue acceleration coexists with weaker GAAP profitability year over year; margin quality must be reconciled before high execution confidence."
+          "Strong order/revenue acceleration coexists with weaker GAAP profitability year over year; margin quality must be reconciled before high execution confidence.",
+          "Record revenue and >$600M year-to-date orders coexist with materially weaker GAAP operating margin and net income year over year."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
           "missing_data_confidence_evidence",
-          "missing_causal_mapping",
           "unresolved_material_contradiction"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "human_need:compute_capacity",
+            "to": "technology:AI_HPC",
+            "relation": "drives"
+          },
+          {
+            "from": "technology:AI_HPC",
+            "to": "technology:HBM_chiplets_advanced_packaging",
+            "relation": "requires"
+          },
+          {
+            "from": "technology:advanced_packaging",
+            "to": "bottleneck:yield_defect_control",
+            "relation": "intensifies"
+          },
+          {
+            "from": "bottleneck:yield_defect_control",
+            "to": "company:CAMT",
+            "relation": "addressed_by_inspection_metrology"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -9209,16 +9240,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -9242,11 +9263,6 @@
           "stance": "improvement-oriented"
         },
         {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
-        },
-        {
           "failure": "unresolved_material_contradiction",
           "question": "Which material contradiction must be reconciled before the representation can advance?",
           "stance": "improvement-oriented"
@@ -9260,13 +9276,23 @@
           "bottleneckControl",
           "pricingPower",
           "financialOperatingMomentum",
-          "scenarioRobustness"
+          "scenarioRobustness",
+          "substitutionResilience",
+          "governancePower",
+          "supplyChainResilience"
         ],
         "needOrConstraintCandidates": [
           "Customer identities and exact system-level margins are undisclosed.",
           "Durability of >30% H2 growth beyond the current AI packaging capex cycle remains unproven.",
+          "System-level share at each HBM/hybrid-bonding process step and customer switching costs are not disclosed.",
+          "Exact customer identities, order cancellation protections and per-system margins are undisclosed.",
           "AI advanced-packaging demand is concentrated among a limited set of large OSAT/HBM/IDM customers and may be cyclical.",
-          "GAAP operating margin fell to 20.4% from 25.9% year over year and GAAP net income declined 31%, despite revenue growth."
+          "GAAP operating margin fell to 20.4% from 25.9% year over year and GAAP net income declined 31%, despite revenue growth.",
+          "A packaging transition that reduces optical inspection/metrology steps or shifts value to competing modalities would weaken bottleneck control.",
+          "AI packaging capex is cyclical even when the underlying complexity trend is structural.",
+          "Customer and geographic concentration can magnify a pause in HBM/OSAT capex or Asia trade restrictions.",
+          "Competitors with greater resources or lower-priced regional tools can pressure pricing or displace systems if performance gaps narrow.",
+          "GAAP margin compression during rapid order growth can indicate integration/operating-cost drag even when non-GAAP profitability remains strong."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -10882,7 +10908,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "CCI",
       "workId": "t0:CCI",
-      "inputSignature": "0c854cacd022f744241c93b1",
+      "inputSignature": "e26f0527d7bfd8dc4e453354",
       "sourceState": "researching",
       "identity": {
         "ticker": "CCI",
@@ -10905,29 +10931,30 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 2,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 3,
         "sourceLineage": {
-          "rawSourceCount": 3,
-          "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 1,
+          "rawSourceCount": 7,
+          "uniqueSourceCount": 3,
+          "duplicatesCollapsed": 4,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:CCI:fiber-sale-close:20260501",
-            "issuer:CCI:2026Q2:20260722"
+            "issuer:CCI:2026Q2:20260722",
+            "issuer:CCI:2025FY:20260204"
           ]
         },
         "evidenceWindow": {
-          "start": "2026-05-01T00:00:00.000Z",
-          "end": "2026-09-19T10:05:03.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T10:05:03.000Z"
+          "start": "2026-02-04T00:00:00.000Z",
+          "end": "2026-09-22T06:26:03.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-22T06:26:03.000Z"
         },
         "preflightPassed": false
       },
@@ -10937,37 +10964,69 @@
         "scenarioRobustness",
         "bottleneckControl",
         "financialOperatingMomentum",
-        "marketValuationOpportunity"
+        "marketValuationOpportunity",
+        "alignment2036",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "governancePower",
+        "pricingPower"
       ],
       "constraintSignals": {
         "risks": [
           "The divestiture reduces diversification and concentrates exposure in U.S. tower leasing and carrier capital cycles.",
-          "Full-year site-rental revenue midpoint remains below 2025 actual, reflecting churn/cancellation pressure despite balance-sheet repair."
+          "Full-year site-rental revenue midpoint remains below 2025 actual, reflecting churn/cancellation pressure despite balance-sheet repair.",
+          "Pure-play focus increases exposure to U.S. carrier capital cycles and tenant concentration.",
+          "Alternative architectures can shift incremental network spend toward small cells, fiber, satellite or other infrastructure even if macro towers remain necessary.",
+          "Carrier/tenant concentration creates discontinuous revenue loss when a major network exits or consolidates.",
+          "A pure-play tower portfolio sacrifices fiber/small-cell diversification and makes capital allocation dependent on tower organic growth, debt discipline and shareholder returns.",
+          "Cost reductions can improve AFFO but cannot substitute indefinitely for leasing growth."
         ],
         "unknowns": [
           "Whether pure-play focus produces sustainably higher organic growth after customer churn remains unproven.",
-          "Post-sale normalized AFFO growth and reinvestment returns require full council underwriting."
+          "Post-sale normalized AFFO growth and reinvestment returns require full council underwriting.",
+          "Long-run colocation growth after DISH/Sprint churn and post-sale reinvestment economics remain unproven.",
+          "Whether post-cancellation organic growth reaccelerates enough to support durable AFFO growth is not yet established."
         ],
         "contradictions": [
-          "Balance-sheet simplification and debt reduction improve resilience while reported site-rental revenue outlook still implies contraction versus 2025."
+          "Balance-sheet simplification and debt reduction improve resilience while reported site-rental revenue outlook still implies contraction versus 2025.",
+          "Balance-sheet resilience improved sharply after the fiber sale while reported site-rental revenue remains pressured by tenant cancellations.",
+          "Debt reduction and cost savings improve AFFO resilience while headline site-rental revenue can still contract because cancellation losses exceed new organic contribution."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
           "missing_data_confidence_evidence",
-          "missing_causal_mapping",
           "unresolved_material_contradiction"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "human_need:mobile_connectivity",
+            "to": "technology:wireless_networks",
+            "relation": "requires"
+          },
+          {
+            "from": "technology:wireless_networks",
+            "to": "infrastructure:macro_tower_sites",
+            "relation": "uses_for_coverage_capacity"
+          },
+          {
+            "from": "infrastructure:macro_tower_sites",
+            "to": "company:CCI",
+            "relation": "owned_leased_by"
+          },
+          {
+            "from": "company:CCI",
+            "to": "bottleneck:permitted_sited_vertical_real_estate",
+            "relation": "controls_portfolio"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -10978,16 +11037,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -11011,11 +11060,6 @@
           "stance": "improvement-oriented"
         },
         {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
-        },
-        {
           "failure": "unresolved_material_contradiction",
           "question": "Which material contradiction must be reconciled before the representation can advance?",
           "stance": "improvement-oriented"
@@ -11028,13 +11072,25 @@
           "scenarioRobustness",
           "bottleneckControl",
           "financialOperatingMomentum",
-          "marketValuationOpportunity"
+          "marketValuationOpportunity",
+          "alignment2036",
+          "substitutionResilience",
+          "supplyChainResilience",
+          "governancePower",
+          "pricingPower"
         ],
         "needOrConstraintCandidates": [
           "Whether pure-play focus produces sustainably higher organic growth after customer churn remains unproven.",
           "Post-sale normalized AFFO growth and reinvestment returns require full council underwriting.",
+          "Long-run colocation growth after DISH/Sprint churn and post-sale reinvestment economics remain unproven.",
+          "Whether post-cancellation organic growth reaccelerates enough to support durable AFFO growth is not yet established.",
           "The divestiture reduces diversification and concentrates exposure in U.S. tower leasing and carrier capital cycles.",
-          "Full-year site-rental revenue midpoint remains below 2025 actual, reflecting churn/cancellation pressure despite balance-sheet repair."
+          "Full-year site-rental revenue midpoint remains below 2025 actual, reflecting churn/cancellation pressure despite balance-sheet repair.",
+          "Pure-play focus increases exposure to U.S. carrier capital cycles and tenant concentration.",
+          "Alternative architectures can shift incremental network spend toward small cells, fiber, satellite or other infrastructure even if macro towers remain necessary.",
+          "Carrier/tenant concentration creates discontinuous revenue loss when a major network exits or consolidates.",
+          "A pure-play tower portfolio sacrifices fiber/small-cell diversification and makes capital allocation dependent on tower organic growth, debt discipline and shareholder returns.",
+          "Cost reductions can improve AFFO but cannot substitute indefinitely for leasing growth."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -29563,7 +29619,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "AOS",
       "workId": "t0:AOS",
-      "inputSignature": "df707eb1df930c933e7efb8c",
+      "inputSignature": "fc2aadda601868e3d6cd4c34",
       "sourceState": "researching",
       "identity": {
         "ticker": "AOS",
@@ -29586,29 +29642,31 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 2,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 4,
         "sourceLineage": {
-          "rawSourceCount": 2,
-          "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 0,
+          "rawSourceCount": 6,
+          "uniqueSourceCount": 4,
+          "duplicatesCollapsed": 2,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:AOS:FY2025:20260129",
-            "issuer:AOS:2026Q1:20260430"
+            "issuer:AOS:2026Q1:20260430",
+            "issuer:AOS:2026Q2:20260730",
+            "issuer:AOS:Leonard:20251112"
           ]
         },
         "evidenceWindow": {
-          "start": "2026-01-29T00:00:00.000Z",
-          "end": "2026-09-19T08:06:13.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T08:06:13.000Z"
+          "start": "2025-11-12T00:00:00.000Z",
+          "end": "2026-09-22T06:26:03.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-22T06:26:03.000Z"
         },
         "preflightPassed": false
       },
@@ -29619,37 +29677,68 @@
         "financialOperatingMomentum",
         "catalystScore",
         "scenarioRobustness",
-        "substitutionResilience"
+        "substitutionResilience",
+        "bottleneckControl",
+        "governancePower",
+        "supplyChainResilience",
+        "pricingPower"
       ],
       "constraintSignals": {
         "risks": [
           "Platform expansion is still small relative to the core business and acquisition integration must prove incremental returns.",
-          "A downward guidance revision is a direct expectations miss and China remains a material operating drag."
+          "A downward guidance revision is a direct expectations miss and China remains a material operating drag.",
+          "The water-management adjacency remains small relative to the core and must demonstrate profitable attachment and integration.",
+          "Electrification, heat-pump water heating and competing connected-control architectures can shift value away from incumbent product categories if AOS does not keep pace.",
+          "China consumer-appliance weakness and softer North American residential water-heater volumes can persist longer than acquisition-led growth offsets them.",
+          "Acquisition returns can disappoint if Leonard growth or synergies miss the forecast embedded in the purchase multiple.",
+          "Regulatory change, materials costs and technology substitution remain execution risks for the core portfolio."
         ],
         "unknowns": [
           "Leonard Valve post-close organic growth and realized synergies are not yet established.",
-          "Whether China remediation and North American demand recover enough to stabilize 2026 guidance remains unknown."
+          "Whether China remediation and North American demand recover enough to stabilize 2026 guidance remains unknown.",
+          "Leonard Valve post-close organic growth, synergy capture and attachment to AOS's installed base are not yet established.",
+          "The durable margin contribution of Leonard and the timing of China normalization remain uncertain."
         ],
         "contradictions": [
-          "Record 2025 EPS and margin improvement were followed by a 2026 guidance reduction after Q1."
+          "Record 2025 EPS and margin improvement were followed by a 2026 guidance reduction after Q1.",
+          "Broader water-management positioning is strengthening while 2026 core demand and China performance weakened; adjacency does not yet offset core cyclicality.",
+          "Record 2025 EPS and a platform-expansion acquisition were followed by lower 2026 guidance; the contradiction is explainable by China/core-volume weakness but remains relevant to underwriting confidence."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
           "missing_data_confidence_evidence",
-          "missing_causal_mapping",
           "unresolved_material_contradiction"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "human_need:reliable_hot_water",
+            "to": "technology:water_heating_boilers",
+            "relation": "requires"
+          },
+          {
+            "from": "technology:water_heating_boilers",
+            "to": "company:AOS",
+            "relation": "supplied_by"
+          },
+          {
+            "from": "company:AOS",
+            "to": "technology:digital_mixing_flow_control",
+            "relation": "expanded_via_leonard"
+          },
+          {
+            "from": "technology:digital_mixing_flow_control",
+            "to": "infrastructure:commercial_mechanical_room",
+            "relation": "integrates_with"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -29660,16 +29749,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -29693,11 +29772,6 @@
           "stance": "improvement-oriented"
         },
         {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
-        },
-        {
           "failure": "unresolved_material_contradiction",
           "question": "Which material contradiction must be reconciled before the representation can advance?",
           "stance": "improvement-oriented"
@@ -29711,13 +29785,24 @@
           "financialOperatingMomentum",
           "catalystScore",
           "scenarioRobustness",
-          "substitutionResilience"
+          "substitutionResilience",
+          "bottleneckControl",
+          "governancePower",
+          "supplyChainResilience",
+          "pricingPower"
         ],
         "needOrConstraintCandidates": [
           "Leonard Valve post-close organic growth and realized synergies are not yet established.",
           "Whether China remediation and North American demand recover enough to stabilize 2026 guidance remains unknown.",
+          "Leonard Valve post-close organic growth, synergy capture and attachment to AOS's installed base are not yet established.",
+          "The durable margin contribution of Leonard and the timing of China normalization remain uncertain.",
           "Platform expansion is still small relative to the core business and acquisition integration must prove incremental returns.",
-          "A downward guidance revision is a direct expectations miss and China remains a material operating drag."
+          "A downward guidance revision is a direct expectations miss and China remains a material operating drag.",
+          "The water-management adjacency remains small relative to the core and must demonstrate profitable attachment and integration.",
+          "Electrification, heat-pump water heating and competing connected-control architectures can shift value away from incumbent product categories if AOS does not keep pace.",
+          "China consumer-appliance weakness and softer North American residential water-heater volumes can persist longer than acquisition-led growth offsets them.",
+          "Acquisition returns can disappoint if Leonard growth or synergies miss the forecast embedded in the purchase multiple.",
+          "Regulatory change, materials costs and technology substitution remain execution risks for the core portfolio."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },
@@ -29932,7 +30017,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "CF",
       "workId": "t0:CF",
-      "inputSignature": "b609e2a06ebc6a1535837b35",
+      "inputSignature": "eefa1b6a2540519bc438430c",
       "sourceState": "researching",
       "identity": {
         "ticker": "CF",
@@ -29955,29 +30040,30 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 2,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 3,
         "sourceLineage": {
-          "rawSourceCount": 2,
-          "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 0,
+          "rawSourceCount": 6,
+          "uniqueSourceCount": 3,
+          "duplicatesCollapsed": 3,
           "missingLineage": 0,
           "uniqueOrigins": [
             "issuer:CF:BluePoint-groundbreak:20260826",
-            "issuer:CF:2026Q2:20260805"
+            "issuer:CF:2026Q2:20260805",
+            "issuer:CF:BluePoint-JV:20250408"
           ]
         },
         "evidenceWindow": {
-          "start": "2026-08-05T00:00:00.000Z",
-          "end": "2026-09-19T10:05:05.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T10:05:05.000Z"
+          "start": "2025-04-08T00:00:00.000Z",
+          "end": "2026-09-22T06:26:03.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-22T06:26:03.000Z"
         },
         "preflightPassed": false
       },
@@ -29990,37 +30076,70 @@
         "financialOperatingMomentum",
         "scenarioRobustness",
         "supplyChainResilience",
-        "pricingPower"
+        "pricingPower",
+        "substitutionResilience",
+        "governancePower"
       ],
       "constraintSignals": {
         "risks": [
           "Blue Point is a multiyear capital project with construction, carbon-sequestration, offtake and policy execution risk before expected 2029 production.",
-          "Q2 sales volumes were 15% lower year over year and the Yazoo City outage reduced product availability; nitrogen earnings remain exposed to gas costs and global supply-demand swings."
+          "Q2 sales volumes were 15% lower year over year and the Yazoo City outage reduced product availability; nitrogen earnings remain exposed to gas costs and global supply-demand swings.",
+          "Blue Point depends on multiyear construction, CCS infrastructure, partner performance and policy/economic support through 2029 startup.",
+          "Low-carbon ammonia competes with conventional ammonia and potentially green-electrolysis routes; relative gas, power and carbon economics can change the preferred pathway.",
+          "Nitrogen pricing and earnings remain sensitive to global outages, conflict, trade flows and natural-gas cost differentials.",
+          "Yazoo City outage reduces product availability until expected first-half 2027 restart and illustrates concentrated asset-operability risk.",
+          "Low-carbon project returns depend on construction discipline, CCS availability, tax-credit/policy durability and contracted/market offtake economics."
         ],
         "unknowns": [
           "Long-run premium realization for low-carbon ammonia and final project returns remain uncertain.",
-          "Normalization of nitrogen pricing after conflict-related supply disruptions is uncertain."
+          "Normalization of nitrogen pricing after conflict-related supply disruptions is uncertain.",
+          "Realized low-carbon premium and full-cycle return on CF's equity plus $550M shared infrastructure remain uncertain.",
+          "Normalized nitrogen pricing after conflict-related disruptions and the ultimate Blue Point low-carbon premium remain uncertain."
         ],
         "contradictions": [
-          "Strong earnings and pricing coexist with materially lower sales volumes, partly reflecting outage and customer timing effects."
+          "Strong earnings and pricing coexist with materially lower sales volumes, partly reflecting outage and customer timing effects.",
+          "Strong first-half earnings and pricing coexist with lower physical sales volumes; the difference is substantially explained by tighter supply/pricing, outage effects and a litigation gain rather than broad volume expansion."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
           "missing_data_confidence_evidence",
-          "missing_causal_mapping",
           "unresolved_material_contradiction"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "human_need:food_security",
+            "to": "technology:nitrogen_fertilizer",
+            "relation": "supports_yields"
+          },
+          {
+            "from": "resource:natural_gas",
+            "to": "technology:ammonia_production",
+            "relation": "feedstock"
+          },
+          {
+            "from": "technology:ammonia_production",
+            "to": "company:CF",
+            "relation": "scaled_operator"
+          },
+          {
+            "from": "company:CF",
+            "to": "technology:ATR_CCS_low_carbon_ammonia",
+            "relation": "develops_with_partners"
+          },
+          {
+            "from": "technology:ATR_CCS_low_carbon_ammonia",
+            "to": "bottleneck:CO2_transport_sequestration_and_offtake",
+            "relation": "depends_on"
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -30031,16 +30150,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -30064,11 +30173,6 @@
           "stance": "improvement-oriented"
         },
         {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
-        },
-        {
           "failure": "unresolved_material_contradiction",
           "question": "Which material contradiction must be reconciled before the representation can advance?",
           "stance": "improvement-oriented"
@@ -30084,13 +30188,22 @@
           "financialOperatingMomentum",
           "scenarioRobustness",
           "supplyChainResilience",
-          "pricingPower"
+          "pricingPower",
+          "substitutionResilience",
+          "governancePower"
         ],
         "needOrConstraintCandidates": [
           "Long-run premium realization for low-carbon ammonia and final project returns remain uncertain.",
           "Normalization of nitrogen pricing after conflict-related supply disruptions is uncertain.",
+          "Realized low-carbon premium and full-cycle return on CF's equity plus $550M shared infrastructure remain uncertain.",
+          "Normalized nitrogen pricing after conflict-related disruptions and the ultimate Blue Point low-carbon premium remain uncertain.",
           "Blue Point is a multiyear capital project with construction, carbon-sequestration, offtake and policy execution risk before expected 2029 production.",
-          "Q2 sales volumes were 15% lower year over year and the Yazoo City outage reduced product availability; nitrogen earnings remain exposed to gas costs and global supply-demand swings."
+          "Q2 sales volumes were 15% lower year over year and the Yazoo City outage reduced product availability; nitrogen earnings remain exposed to gas costs and global supply-demand swings.",
+          "Blue Point depends on multiyear construction, CCS infrastructure, partner performance and policy/economic support through 2029 startup.",
+          "Low-carbon ammonia competes with conventional ammonia and potentially green-electrolysis routes; relative gas, power and carbon economics can change the preferred pathway.",
+          "Nitrogen pricing and earnings remain sensitive to global outages, conflict, trade flows and natural-gas cost differentials.",
+          "Yazoo City outage reduces product availability until expected first-half 2027 restart and illustrates concentrated asset-operability risk.",
+          "Low-carbon project returns depend on construction discipline, CCS availability, tax-credit/policy durability and contracted/market offtake economics."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

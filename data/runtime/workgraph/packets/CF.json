@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CF",
   "workId": "t0:CF",
-  "generatedAt": "2026-09-22T06:16:20.820Z",
+  "generatedAt": "2026-09-22T06:28:53.969Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-22T04:03:09.925Z"
   },
   "evidenceWindow": {
-    "start": "2026-08-05T00:00:00.000Z",
-    "end": "2026-09-19T10:05:05.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T10:05:05.000Z"
+    "start": "2025-04-08T00:00:00.000Z",
+    "end": "2026-09-22T06:26:03.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T06:26:03.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/CF-20260919T100505Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/CF-20260919T100505Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/CF-20260922T062603Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -65,12 +68,22 @@
       "financialOperatingMomentum",
       "scenarioRobustness",
       "supplyChainResilience",
-      "pricingPower"
+      "pricingPower",
+      "substitutionResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "catalystScore",
@@ -78,7 +91,14 @@
         "crossDivisionLeverage",
         "bottleneckControl"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "governancePower",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "pricingPower",
+        "substitutionResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -133,7 +153,9 @@
     "financialOperatingMomentum",
     "scenarioRobustness",
     "supplyChainResilience",
-    "pricingPower"
+    "pricingPower",
+    "substitutionResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -144,6 +166,26 @@
       },
       {
         "risk": "Q2 sales volumes were 15% lower year over year and the Yazoo City outage reduced product availability; nitrogen earnings remain exposed to gas costs and global supply-demand swings.",
+        "gating": false
+      },
+      {
+        "risk": "Blue Point depends on multiyear construction, CCS infrastructure, partner performance and policy/economic support through 2029 startup.",
+        "gating": false
+      },
+      {
+        "risk": "Low-carbon ammonia competes with conventional ammonia and potentially green-electrolysis routes; relative gas, power and carbon economics can change the preferred pathway.",
+        "gating": false
+      },
+      {
+        "risk": "Nitrogen pricing and earnings remain sensitive to global outages, conflict, trade flows and natural-gas cost differentials.",
+        "gating": false
+      },
+      {
+        "risk": "Yazoo City outage reduces product availability until expected first-half 2027 restart and illustrates concentrated asset-operability risk.",
+        "gating": false
+      },
+      {
+        "risk": "Low-carbon project returns depend on construction discipline, CCS availability, tax-credit/policy durability and contracted/market offtake economics.",
         "gating": false
       }
     ]
@@ -156,6 +198,26 @@
     {
       "risk": "Q2 sales volumes were 15% lower year over year and the Yazoo City outage reduced product availability; nitrogen earnings remain exposed to gas costs and global supply-demand swings.",
       "gating": false
+    },
+    {
+      "risk": "Blue Point depends on multiyear construction, CCS infrastructure, partner performance and policy/economic support through 2029 startup.",
+      "gating": false
+    },
+    {
+      "risk": "Low-carbon ammonia competes with conventional ammonia and potentially green-electrolysis routes; relative gas, power and carbon economics can change the preferred pathway.",
+      "gating": false
+    },
+    {
+      "risk": "Nitrogen pricing and earnings remain sensitive to global outages, conflict, trade flows and natural-gas cost differentials.",
+      "gating": false
+    },
+    {
+      "risk": "Yazoo City outage reduces product availability until expected first-half 2027 restart and illustrates concentrated asset-operability risk.",
+      "gating": false
+    },
+    {
+      "risk": "Low-carbon project returns depend on construction discipline, CCS availability, tax-credit/policy durability and contracted/market offtake economics.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -166,21 +228,74 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "human_need:food_security",
+        "to": "technology:nitrogen_fertilizer",
+        "relation": "supports_yields"
+      },
+      {
+        "from": "resource:natural_gas",
+        "to": "technology:ammonia_production",
+        "relation": "feedstock"
+      },
+      {
+        "from": "technology:ammonia_production",
+        "to": "company:CF",
+        "relation": "scaled_operator"
+      },
+      {
+        "from": "company:CF",
+        "to": "technology:ATR_CCS_low_carbon_ammonia",
+        "relation": "develops_with_partners"
+      },
+      {
+        "from": "technology:ATR_CCS_low_carbon_ammonia",
+        "to": "bottleneck:CO2_transport_sequestration_and_offtake",
+        "relation": "depends_on"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "human_need:food_security",
+      "to": "technology:nitrogen_fertilizer",
+      "relation": "supports_yields"
+    },
+    {
+      "from": "resource:natural_gas",
+      "to": "technology:ammonia_production",
+      "relation": "feedstock"
+    },
+    {
+      "from": "technology:ammonia_production",
+      "to": "company:CF",
+      "relation": "scaled_operator"
+    },
+    {
+      "from": "company:CF",
+      "to": "technology:ATR_CCS_low_carbon_ammonia",
+      "relation": "develops_with_partners"
+    },
+    {
+      "from": "technology:ATR_CCS_low_carbon_ammonia",
+      "to": "bottleneck:CO2_transport_sequestration_and_offtake",
+      "relation": "depends_on"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:CF:BluePoint-groundbreak:20260826",
-      "issuer:CF:2026Q2:20260805"
+      "issuer:CF:2026Q2:20260805",
+      "issuer:CF:BluePoint-JV:20250408"
     ]
   },
   "sources": [
@@ -199,18 +314,36 @@
       "primary": true,
       "publishedAt": "2026-08-05",
       "originFingerprint": "issuer:CF:2026Q2:20260805"
+    },
+    {
+      "sourceId": "issuer:CF:BluePointJV:20250408",
+      "url": "https://www.cfindustries.com/newsroom/2025/blue-point-joint-venture",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2025-04-08",
+      "originFingerprint": "issuer:CF:BluePoint-JV:20250408"
     }
   ],
   "contradictions": [
     {
       "contradiction": "Strong earnings and pricing coexist with materially lower sales volumes, partly reflecting outage and customer timing effects."
+    },
+    {
+      "contradiction": "Strong first-half earnings and pricing coexist with lower physical sales volumes; the difference is substantially explained by tighter supply/pricing, outage effects and a litigation gain rather than broad volume expansion.",
+      "material": true,
+      "disposition": "retain_for_deep_resolver_normalized_earnings_reconciliation"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "contradiction": "Strong earnings and pricing coexist with materially lower sales volumes, partly reflecting outage and customer timing effects."
+      },
+      {
+        "contradiction": "Strong first-half earnings and pricing coexist with lower physical sales volumes; the difference is substantially explained by tighter supply/pricing, outage effects and a litigation gain rather than broad volume expansion.",
+        "material": true,
+        "disposition": "retain_for_deep_resolver_normalized_earnings_reconciliation"
       }
     ]
   },
@@ -222,11 +355,19 @@
     {
       "unknown": "Normalization of nitrogen pricing after conflict-related supply disruptions is uncertain.",
       "gating": false
+    },
+    {
+      "unknown": "Realized low-carbon premium and full-cycle return on CF's equity plus $550M shared infrastructure remain uncertain.",
+      "gating": false
+    },
+    {
+      "unknown": "Normalized nitrogen pricing after conflict-related disruptions and the ultimate Blue Point low-carbon premium remain uncertain.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 92,
@@ -235,13 +376,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -252,14 +390,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -276,10 +406,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

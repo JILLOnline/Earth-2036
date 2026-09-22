@@ -136,8 +136,9 @@ for(const entity of entities){
     audit
   });
 
-  // 8 requests/sec max here, below SEC's published 10 req/sec ceiling.
-  await new Promise(r=>setTimeout(r,125));
+  // Deliberately target <=4 requests/sec so this Lab audit leaves headroom
+  // for other Earth/SEC activity under the SEC's total fair-access ceiling.
+  await new Promise(r=>setTimeout(r,250));
 }
 
 let manifestWrite="not-written";

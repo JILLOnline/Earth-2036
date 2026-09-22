@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-22T18:17:52.762Z",
+  "updatedAt": "2026-09-22T19:17:55.840Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1141,6 +1141,18 @@
       "id": "market:LHX-lhx-structural-demand",
       "type": "market",
       "label": "LHX structural demand",
+      "description": "Structural demand channel"
+    },
+    {
+      "id": "company:LAC",
+      "type": "company",
+      "label": "Lithium Americas",
+      "description": "Lithium Americas structural-causal evidence"
+    },
+    {
+      "id": "market:LAC-lac-structural-demand",
+      "type": "market",
+      "label": "LAC structural demand",
       "description": "Structural demand channel"
     }
   ],
@@ -2640,6 +2652,20 @@
       "sourceIds": [
         "l3harris.com|pac3-mse-4.7b|2026-09-08",
         "l3harris.com|viper-shield-first-35-production|2026-09-03"
+      ],
+      "observedAt": "2026-09-21T01:25:22Z"
+    },
+    {
+      "id": "edge:LAC-structural-exposure",
+      "from": "company:LAC",
+      "to": "market:LAC-lac-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 83,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "lithiumamericas.com|175m-financing-thacker-pass|2026-08-06"
       ],
       "observedAt": "2026-09-21T01:25:22Z"
     }
@@ -4491,6 +4517,24 @@
       ],
       "observedAt": "2026-09-21T01:25:22Z",
       "thesis": "L3Harris Technologies has a sourced structural demand path.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:LAC-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:LAC-lac-structural-demand",
+      "affectedNodeIds": [
+        "company:LAC"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 83,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "lithiumamericas.com|175m-financing-thacker-pass|2026-08-06"
+      ],
+      "observedAt": "2026-09-21T01:25:22Z",
+      "thesis": "Lithium Americas has a sourced structural demand path.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

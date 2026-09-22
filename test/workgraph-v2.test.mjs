@@ -827,3 +827,41 @@ test("assist bus uses idle Scout capacity before three failed Alpha attempts", (
   assert.equal(bus.requests[0].rootOwner, "council-alpha");
   assert.equal(bus.requests[0].capability, "source-acquisition");
 });
+
+
+test("newer contradictory evidence reopens a gate after an older Resolver closure", () => {
+  const evidence = completeEvidence();
+  const beta = evidence.find((row) => row.perspective === "adversarial-red-team");
+  beta.generatedAt = "2026-09-22T13:00:00Z";
+  beta.contradictions = [{ contradiction: "new material tension", material: true }];
+
+  evidence.push({
+    version: 2,
+    contract: "workgraph-v2-deep-resolver-evidence",
+    ticker: "AAA",
+    workId: "t0:AAA",
+    role: "deep-resolver",
+    perspective: null,
+    generatedAt: "2026-09-22T12:00:00Z",
+    claims: [],
+    sources: [],
+    factors: [],
+    risks: [],
+    causalEdges: [],
+    contradictions: [],
+    unknowns: [],
+    gatingIssues: [],
+    items: [{ itemId: "t0:AAA:unresolved_material_contradiction", status: "resolved" }],
+    confidence: 95,
+    path: "data/runtime/workgraph/evidence/AAA-old-resolver.json",
+  });
+
+  const packet = compilePromotionPacket(
+    "AAA",
+    evidence,
+    { ticker:"AAA", state:"researching", workId:"t0:AAA" },
+    { registryEntry, methodologyVersion:"1.0.0" },
+  );
+  assert.equal(packet.preflight.failures.includes("unresolved_material_contradiction"), true);
+  assert.equal(packet.evidenceResolution.resolvedGateKinds.includes("material_contradiction"), false);
+});

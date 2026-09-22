@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-22T14:29:42.038Z",
+  "updatedAt": "2026-09-22T15:19:13.165Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1058,6 +1058,18 @@
       "type": "market",
       "label": "infrastructure:high-density-power-conversion",
       "description": "Flex's CPI/Axiom path links AI compute demand to a physical power-and-thermal bottleneck: higher rack density requires power conversion, grid stabilization, backup power, cooling and scalable manufacturing; Flex's 800 VDC rack and proposed EPC Power acquisition extend its exposure from manufacturing into system-level power conversion."
+    },
+    {
+      "id": "company:FLNC",
+      "type": "company",
+      "label": "Fluence Energy, Inc.",
+      "description": "Fluence addresses a durable grid-flexibility bottleneck: variable generation, load growth and data-center demand increase the need for dispatchable storage, controls and asset optimization. Current record demand/backlog supports the human-need-to-grid-infrastructure link, but company value realization is constrained by manufacturing throughput rather than demand acquisition."
+    },
+    {
+      "id": "market:FLNC-infrastructure-energy-storage",
+      "type": "market",
+      "label": "infrastructure:energy-storage",
+      "description": "Fluence addresses a durable grid-flexibility bottleneck: variable generation, load growth and data-center demand increase the need for dispatchable storage, controls and asset optimization. Current record demand/backlog supports the human-need-to-grid-infrastructure link, but company value realization is constrained by manufacturing throughput rather than demand acquisition."
     }
   ],
   "edges": [
@@ -2452,6 +2464,21 @@
         "flex:epc-power:2026-09-03",
         "flex:800v-rack:2026-03-16",
         "flex:axiom-form10:2026-09-15"
+      ],
+      "observedAt": "2026-09-20T13:26:36Z"
+    },
+    {
+      "id": "edge:FLNC-structural-exposure",
+      "from": "company:FLNC",
+      "to": "market:FLNC-infrastructure-energy-storage",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 95,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "fluence:2026-09-16-guidance",
+        "fluence:2026q3-results"
       ],
       "observedAt": "2026-09-20T13:26:36Z"
     }
@@ -4171,6 +4198,25 @@
       ],
       "observedAt": "2026-09-20T13:26:36Z",
       "thesis": "Flex's CPI/Axiom path links AI compute demand to a physical power-and-thermal bottleneck: higher rack density requires power conversion, grid stabilization, backup power, cooling and scalable manufacturing; Flex's 800 VDC rack and proposed EPC Power acquisition extend its exposure from manufacturing into system-level power conversion.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:FLNC-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:FLNC-infrastructure-energy-storage",
+      "affectedNodeIds": [
+        "company:FLNC"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 95,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "fluence:2026-09-16-guidance",
+        "fluence:2026q3-results"
+      ],
+      "observedAt": "2026-09-20T13:26:36Z",
+      "thesis": "Fluence addresses a durable grid-flexibility bottleneck: variable generation, load growth and data-center demand increase the need for dispatchable storage, controls and asset optimization. Current record demand/backlog supports the human-need-to-grid-infrastructure link, but company value realization is constrained by manufacturing throughput rather than demand acquisition.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

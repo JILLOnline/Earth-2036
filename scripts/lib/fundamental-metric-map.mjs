@@ -28,7 +28,6 @@ export const FUNDAMENTAL_METRICS = Object.freeze({
     periodType: "duration",
     concepts: [
       ["us-gaap", "NetIncomeLoss"],
-      ["us-gaap", "ProfitLoss"],
       ["ifrs-full", "ProfitLoss"]
     ]
   },
@@ -54,20 +53,27 @@ export const FUNDAMENTAL_METRICS = Object.freeze({
       ["ifrs-full", "CashAndCashEquivalents"]
     ]
   },
-  debt_current: {
+  long_term_debt_current: {
     periodType: "instant",
     concepts: [
-      ["us-gaap", "LongTermDebtCurrent"],
-      ["us-gaap", "LongTermDebtAndFinanceLeaseObligationsCurrent"],
-      ["us-gaap", "CurrentDebtAndCapitalLeaseObligations"],
+      ["us-gaap", "LongTermDebtCurrent"]
+    ]
+  },
+  long_term_debt_noncurrent: {
+    periodType: "instant",
+    concepts: [
+      ["us-gaap", "LongTermDebtNoncurrent"]
+    ]
+  },
+  borrowings_current_ifrs: {
+    periodType: "instant",
+    concepts: [
       ["ifrs-full", "CurrentBorrowings"]
     ]
   },
-  debt_noncurrent: {
+  borrowings_noncurrent_ifrs: {
     periodType: "instant",
     concepts: [
-      ["us-gaap", "LongTermDebtNoncurrent"],
-      ["us-gaap", "LongTermDebtAndFinanceLeaseObligationsNoncurrent"],
       ["ifrs-full", "NoncurrentBorrowings"]
     ]
   },

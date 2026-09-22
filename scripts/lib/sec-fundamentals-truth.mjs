@@ -139,18 +139,25 @@ export function latestContextVersions(facts) {
   const superseded = [];
   for (const list of groups.values()) {
     list.sort(sortVersions);
-    const winner = list.at(-1);
-    current.push(winner);
-    for (const fact of list.slice(0, -1)) {
+    const latestFiled = list.map((fact)=>String(fact.filed ?? "")).sort().at(-1) ?? "";
+    const winners = list.filter((fact)=>String(fact.filed ?? "")===latestFiled);
+    const older = list.filter((fact)=>String(fact.filed ?? "")<latestFiled);
+
+    // Company Facts exposes filing date but not intraday acceptance time.
+    // Same-day competing versions therefore remain jointly current instead of
+    // inventing an order from accession-number sorting.
+    current.push(...winners);
+    for (const fact of older) {
       superseded.push({
         ...fact,
-        supersededBy: winner?.accn ?? null,
-        supersededByFiled: winner?.filed ?? null,
+        supersededBy: winners.length===1 ? winners[0]?.accn ?? null : null,
+        supersededByCandidates: winners.map((winner)=>winner?.accn).filter(Boolean).sort(),
+        supersededByFiled: latestFiled || null,
       });
     }
   }
 
-  current.sort((a,b) => contextKey(a).localeCompare(contextKey(b)));
+  current.sort((a,b) => contextKey(a).localeCompare(contextKey(b)) || sortVersions(a,b));
   superseded.sort((a,b) => contextKey(a).localeCompare(contextKey(b)) || sortVersions(a,b));
   return { current, superseded };
 }
@@ -170,15 +177,19 @@ export function buildRawVersionIndex(facts) {
   const supersessions = [];
   for (const list of groups.values()) {
     list.sort((a,b) => sortVersions(a.fact,b.fact));
-    const winner = list.at(-1);
-    currentFactIndexes.push(winner.index);
-    for (const item of list.slice(0,-1)) {
-      supersessions.push({ from: item.index, to: winner.index });
+    const latestFiled = list.map((item)=>String(item.fact?.filed ?? "")).sort().at(-1) ?? "";
+    const winners = list.filter((item)=>String(item.fact?.filed ?? "")===latestFiled);
+    const older = list.filter((item)=>String(item.fact?.filed ?? "")<latestFiled);
+
+    currentFactIndexes.push(...winners.map((item)=>item.index));
+    for (const item of older) {
+      if (winners.length===1) supersessions.push({ from:item.index, to:winners[0].index });
+      else supersessions.push({ from:item.index, toCandidates:winners.map((winner)=>winner.index).sort((a,b)=>a-b) });
     }
   }
 
   currentFactIndexes.sort((a,b)=>a-b);
-  supersessions.sort((a,b)=>a.from-b.from || a.to-b.to);
+  supersessions.sort((a,b)=>a.from-b.from);
   return { currentFactIndexes, supersessions };
 }
 
@@ -412,6 +423,13 @@ export function buildFundamentalsTruth(companyFacts, options = {}) {
       eligibleSourceHash:factStateHash,
       sourceTaxonomies:eligibleTaxonomies,
       availabilityBasis:"SEC filed date; eligible after UTC filing-date end because acceptance timestamp is not exposed by Company Facts",
+      scope:{
+        standardTaxonomyFactsOnly:true,
+        wholeEntityFactsOnly:true,
+        customExtensionsExcluded:true,
+        dimensionalOrSegmentFactsMayBeExcluded:true,
+        absenceMeaning:"not observed in SEC Company Facts; never interpreted as economic absence or zero"
+      },
     },
     rawTruth:{
       learningAuthority:true,

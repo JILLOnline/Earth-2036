@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-22T16:18:50.997Z",
+  "updatedAt": "2026-09-22T17:19:31.874Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1082,6 +1082,18 @@
       "type": "market",
       "label": "technology:crop-protection-actives",
       "description": "FMC links agricultural productivity and crop protection needs to proprietary active ingredients and formulation/commercialization capability, but the current business is in a transition where legacy-product pricing and diamide partner demand are weakening while newer active ingredients are expected to carry more of the growth burden."
+    },
+    {
+      "id": "company:ETN",
+      "type": "company",
+      "label": "Eaton Corporation plc",
+      "description": "Eaton is exposed to a physical power-infrastructure bottleneck: data-center and broader electrification load growth require distribution, protection and related electrical equipment before incremental compute or industrial load can operate."
+    },
+    {
+      "id": "market:ETN-power-distribution-protection-requirements",
+      "type": "market",
+      "label": "power distribution/protection requirements",
+      "description": "new loads require safe, reliable electrical infrastructure"
     }
   ],
   "edges": [
@@ -2508,6 +2520,20 @@
         "fmc:tessenderlo-investment"
       ],
       "observedAt": "2026-09-20T13:26:36Z"
+    },
+    {
+      "id": "edge:ETN-structural-exposure",
+      "from": "company:ETN",
+      "to": "market:ETN-power-distribution-protection-requirements",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 92,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "eaton:q2-2026:2026-07-31"
+      ],
+      "observedAt": "2026-09-19T08:22:12Z"
     }
   ],
   "structuralSignals": [
@@ -4264,6 +4290,24 @@
       "observedAt": "2026-09-20T13:26:36Z",
       "thesis": "FMC links agricultural productivity and crop protection needs to proprietary active ingredients and formulation/commercialization capability, but the current business is in a transition where legacy-product pricing and diamide partner demand are weakening while newer active ingredients are expected to carry more of the growth burden.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:ETN-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:ETN-power-distribution-protection-requirements",
+      "affectedNodeIds": [
+        "company:ETN"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 92,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "eaton:q2-2026:2026-07-31"
+      ],
+      "observedAt": "2026-09-19T08:22:12Z",
+      "thesis": "Eaton is exposed to a physical power-infrastructure bottleneck: data-center and broader electrification load growth require distribution, protection and related electrical equipment before incremental compute or industrial load can operate.",
+      "falsifier": "electrical orders/backlog contract despite sustained load growth"
     }
   ],
   "roadmapMilestones": [

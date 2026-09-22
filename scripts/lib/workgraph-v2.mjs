@@ -222,11 +222,23 @@ function normalizeEvidenceObject(obj, filePath) {
           sourceId: item.sourceId || item.originFingerprint || item.source,
         }))
     : [];
+  const inferredResolverGateKind =
+    obj?.role === "deep-resolver" &&
+    obj?.result === "resolved" &&
+    obj?.gateImpact === "close_unresolved_material_contradiction_on_reconcile"
+      ? "unresolved_material_contradiction"
+      : null;
   const resolverItems = Array.isArray(obj?.items)
     ? obj.items
     : obj?.role === "deep-resolver" && obj?.result && obj?.gateKind
       ? [{ itemId: `${obj?.workId || obj?.ticker || "resolver"}:${obj.gateKind}`, status: obj.result }]
-      : [];
+      : inferredResolverGateKind
+        ? [{
+            itemId: `${obj?.workId || obj?.ticker || "resolver"}:${inferredResolverGateKind}`,
+            status: "resolved",
+            dispositionSource: "explicit_gateImpact",
+          }]
+        : [];
   const rawConfidence = Number.isFinite(obj?.confidence)
     ? obj.confidence
     : Number.isFinite(obj?.resolution?.confidence)

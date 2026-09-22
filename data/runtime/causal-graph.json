@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-22T15:19:13.165Z",
+  "updatedAt": "2026-09-22T16:18:50.997Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1070,6 +1070,18 @@
       "type": "market",
       "label": "infrastructure:energy-storage",
       "description": "Fluence addresses a durable grid-flexibility bottleneck: variable generation, load growth and data-center demand increase the need for dispatchable storage, controls and asset optimization. Current record demand/backlog supports the human-need-to-grid-infrastructure link, but company value realization is constrained by manufacturing throughput rather than demand acquisition."
+    },
+    {
+      "id": "company:FMC",
+      "type": "company",
+      "label": "FMC Corporation",
+      "description": "FMC links agricultural productivity and crop protection needs to proprietary active ingredients and formulation/commercialization capability, but the current business is in a transition where legacy-product pricing and diamide partner demand are weakening while newer active ingredients are expected to carry more of the growth burden."
+    },
+    {
+      "id": "market:FMC-technology-crop-protection-actives",
+      "type": "market",
+      "label": "technology:crop-protection-actives",
+      "description": "FMC links agricultural productivity and crop protection needs to proprietary active ingredients and formulation/commercialization capability, but the current business is in a transition where legacy-product pricing and diamide partner demand are weakening while newer active ingredients are expected to carry more of the growth burden."
     }
   ],
   "edges": [
@@ -2479,6 +2491,21 @@
       "sourceIds": [
         "fluence:2026-09-16-guidance",
         "fluence:2026q3-results"
+      ],
+      "observedAt": "2026-09-20T13:26:36Z"
+    },
+    {
+      "id": "edge:FMC-structural-exposure",
+      "from": "company:FMC",
+      "to": "market:FMC-technology-crop-protection-actives",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 90,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "fmc:2026q2-results",
+        "fmc:tessenderlo-investment"
       ],
       "observedAt": "2026-09-20T13:26:36Z"
     }
@@ -4217,6 +4244,25 @@
       ],
       "observedAt": "2026-09-20T13:26:36Z",
       "thesis": "Fluence addresses a durable grid-flexibility bottleneck: variable generation, load growth and data-center demand increase the need for dispatchable storage, controls and asset optimization. Current record demand/backlog supports the human-need-to-grid-infrastructure link, but company value realization is constrained by manufacturing throughput rather than demand acquisition.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:FMC-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:FMC-technology-crop-protection-actives",
+      "affectedNodeIds": [
+        "company:FMC"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 90,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "fmc:2026q2-results",
+        "fmc:tessenderlo-investment"
+      ],
+      "observedAt": "2026-09-20T13:26:36Z",
+      "thesis": "FMC links agricultural productivity and crop protection needs to proprietary active ingredients and formulation/commercialization capability, but the current business is in a transition where legacy-product pricing and diamide partner demand are weakening while newer active ingredients are expected to carry more of the growth burden.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

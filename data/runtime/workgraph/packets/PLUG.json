@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "PLUG",
   "workId": "t0:PLUG",
-  "generatedAt": "2026-09-22T08:18:49.097Z",
+  "generatedAt": "2026-09-22T08:24:12.769Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-22T04:03:09.925Z"
   },
   "evidenceWindow": {
-    "start": "2026-08-01T00:00:00.000Z",
-    "end": "2026-09-21T09:07:18.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T09:07:18.000Z"
+    "start": "2025-01-16T00:00:00.000Z",
+    "end": "2026-09-22T08:23:40.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T08:23:40.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/PLUG-20260921T090718Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/PLUG-20260921T090718Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/PLUG-20260922T082340Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -61,18 +64,36 @@
       "catalystScore",
       "financialOperatingMomentum",
       "executionQuality",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "bottleneckControl",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "crossDivisionLeverage",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "crossDivisionLeverage"
+      ],
       "discovery-weak-signals": [
         "alignment2036",
         "catalystScore",
         "financialOperatingMomentum"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "governancePower",
+        "scenarioRobustness",
+        "bottleneckControl",
+        "supplyChainResilience"
+      ],
       "expectations-execution": [
         "executionQuality",
         "financialOperatingMomentum",
@@ -122,7 +143,12 @@
     "catalystScore",
     "financialOperatingMomentum",
     "executionQuality",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "bottleneckControl",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "crossDivisionLeverage",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -133,6 +159,26 @@
       },
       {
         "risk": "Break-even gross margin is a milestone, not yet proof of durable consolidated profitability or self-funding operations.",
+        "gating": false
+      },
+      {
+        "risk": "Vertical integration improves control but concentrates execution burden across manufacturing, hydrogen production, logistics and end-use equipment.",
+        "gating": false
+      },
+      {
+        "risk": "Battery-electric substitutes can erode hydrogen's advantage in duty cycles where charging downtime and infrastructure are manageable.",
+        "gating": false
+      },
+      {
+        "risk": "Continued operating cash consumption leaves financing/dilution sensitivity material until operations become durably self-funding.",
+        "gating": false
+      },
+      {
+        "risk": "A vertically integrated network can amplify fixed-cost and utilization risk if hydrogen demand or plant ramp trails expectations.",
+        "gating": false
+      },
+      {
+        "risk": "Customer refresh intentions and backlog-like demand signals should not be equated with realized revenue until conversion occurs.",
         "gating": false
       }
     ]
@@ -145,6 +191,26 @@
     {
       "risk": "Break-even gross margin is a milestone, not yet proof of durable consolidated profitability or self-funding operations.",
       "gating": false
+    },
+    {
+      "risk": "Vertical integration improves control but concentrates execution burden across manufacturing, hydrogen production, logistics and end-use equipment.",
+      "gating": false
+    },
+    {
+      "risk": "Battery-electric substitutes can erode hydrogen's advantage in duty cycles where charging downtime and infrastructure are manageable.",
+      "gating": false
+    },
+    {
+      "risk": "Continued operating cash consumption leaves financing/dilution sensitivity material until operations become durably self-funding.",
+      "gating": false
+    },
+    {
+      "risk": "A vertically integrated network can amplify fixed-cost and utilization risk if hydrogen demand or plant ramp trails expectations.",
+      "gating": false
+    },
+    {
+      "risk": "Customer refresh intentions and backlog-like demand signals should not be equated with realized revenue until conversion occurs.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -155,20 +221,72 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "PEM electrolyzer manufacturing",
+        "to": "domestic hydrogen production capacity",
+        "mechanism": "electrolyzers convert electricity and water into hydrogen at Plug-operated or financed plants",
+        "confidence": 90
+      },
+      {
+        "from": "hydrogen production/liquefaction network",
+        "to": "fuel availability for material handling and industrial customers",
+        "mechanism": "regional production and liquefaction supplies an installed base requiring dependable hydrogen",
+        "confidence": 90
+      },
+      {
+        "from": "fuel availability",
+        "to": "high-utilization material-handling productivity",
+        "mechanism": "rapid refueling can reduce equipment downtime where duty cycles favor fuel cells",
+        "confidence": 82
+      },
+      {
+        "from": "electricity/input economics and plant utilization",
+        "to": "hydrogen unit economics",
+        "mechanism": "capital-intensive production must achieve sufficient utilization and input-cost discipline for durable margins",
+        "confidence": 88
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "PEM electrolyzer manufacturing",
+      "to": "domestic hydrogen production capacity",
+      "mechanism": "electrolyzers convert electricity and water into hydrogen at Plug-operated or financed plants",
+      "confidence": 90
+    },
+    {
+      "from": "hydrogen production/liquefaction network",
+      "to": "fuel availability for material handling and industrial customers",
+      "mechanism": "regional production and liquefaction supplies an installed base requiring dependable hydrogen",
+      "confidence": 90
+    },
+    {
+      "from": "fuel availability",
+      "to": "high-utilization material-handling productivity",
+      "mechanism": "rapid refueling can reduce equipment downtime where duty cycles favor fuel cells",
+      "confidence": 82
+    },
+    {
+      "from": "electricity/input economics and plant utilization",
+      "to": "hydrogen unit economics",
+      "mechanism": "capital-intensive production must achieve sufficient utilization and input-cost discipline for durable margins",
+      "confidence": 88
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:PLUG:Q2:2026"
+      "issuer:PLUG:Q2:2026",
+      "sec:1093691:2026Q2:10Q",
+      "doe:edf:plug-power:2025-01-16"
     ]
   },
   "sources": [
@@ -179,12 +297,38 @@
       "primary": true,
       "publishedAt": "2026-08",
       "originFingerprint": "issuer:PLUG:Q2:2026"
+    },
+    {
+      "sourceId": "sec:PLUG:2026Q2:10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1093691/000110465926093454/plug-20260630x10q.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08",
+      "originFingerprint": "sec:1093691:2026Q2:10Q"
+    },
+    {
+      "sourceId": "doe:PLUG:loan-guarantee:2025",
+      "url": "https://www.energy.gov/edf/plug-power",
+      "kind": "primary-government",
+      "primary": true,
+      "publishedAt": "2025-01-16",
+      "originFingerprint": "doe:edf:plug-power:2025-01-16"
     }
   ],
   "contradictions": [
     {
       "contradiction": "Operational and margin improvement coexists with continued net cash consumption.",
       "material": true
+    },
+    {
+      "contradiction": "Greater vertical integration can improve supply reliability while simultaneously increasing capital intensity and financing dependence.",
+      "material": true,
+      "disposition": "resolved_as_tradeoff_not_factual_conflict"
+    },
+    {
+      "contradiction": "Break-even gross margin and improving service economics coexist with substantial consolidated net losses and operating cash use.",
+      "material": true,
+      "disposition": "resolved_as_scope_difference:unit_and_gross_margin_improvement_does_not_imply_consolidated_self_funding"
     }
   ],
   "contradictionDispositions": {
@@ -193,6 +337,16 @@
       {
         "contradiction": "Operational and margin improvement coexists with continued net cash consumption.",
         "material": true
+      },
+      {
+        "contradiction": "Greater vertical integration can improve supply reliability while simultaneously increasing capital intensity and financing dependence.",
+        "material": true,
+        "disposition": "resolved_as_tradeoff_not_factual_conflict"
+      },
+      {
+        "contradiction": "Break-even gross margin and improving service economics coexist with substantial consolidated net losses and operating cash use.",
+        "material": true,
+        "disposition": "resolved_as_scope_difference:unit_and_gross_margin_improvement_does_not_imply_consolidated_self_funding"
       }
     ]
   },
@@ -204,26 +358,35 @@
     {
       "unknown": "Path and timing to durable positive free cash flow remain unproven.",
       "gating": false
+    },
+    {
+      "unknown": "Long-run utilization and delivered hydrogen cost across the planned DOE-supported network are not yet demonstrated at mature scale.",
+      "gating": false
+    },
+    {
+      "unknown": "Future external financing mix and resulting dilution cannot be established from current evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Mature economics of each planned hydrogen facility remain unproven.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 88,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -234,14 +397,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -258,10 +413,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ADM",
   "workId": "t0:ADM",
-  "generatedAt": "2026-09-22T04:18:29.997Z",
+  "generatedAt": "2026-09-22T04:23:17.130Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-22T04:03:09.925Z"
   },
   "evidenceWindow": {
-    "start": "2026-08-01T00:00:00.000Z",
-    "end": "2026-09-19T06:06:41.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T06:06:41.000Z"
+    "start": "2025-01-01T00:00:00.000Z",
+    "end": "2026-09-22T04:22:06.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T04:22:06.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/ADM-20260919T060641Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ADM-20260919T060641Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ADM-20260922T042206Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -61,19 +64,37 @@
       "bottleneckControl",
       "supplyChainResilience",
       "pricingPower",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "substitutionResilience",
+      "alignment2036",
+      "crossDivisionLeverage",
+      "governancePower",
+      "dataConfidence"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "alignment2036",
+        "crossDivisionLeverage"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "bottleneckControl",
         "supplyChainResilience",
         "pricingPower"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "governancePower",
+        "scenarioRobustness",
+        "pricingPower",
+        "dataConfidence"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -123,7 +144,12 @@
     "bottleneckControl",
     "supplyChainResilience",
     "pricingPower",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "substitutionResilience",
+    "alignment2036",
+    "crossDivisionLeverage",
+    "governancePower",
+    "dataConfidence"
   ],
   "riskEvidence": {
     "present": true,
@@ -134,6 +160,26 @@
       },
       {
         "risk": "Policy incentives and favorable energy/corn economics contributed to ethanol performance, limiting confidence in straight-line extrapolation.",
+        "gating": false
+      },
+      {
+        "risk": "Successor bottleneck can migrate from processing capacity to feedstock availability, logistics, policy credits or end-market blend economics; additional crush capacity does not guarantee durable margin capture.",
+        "gating": false
+      },
+      {
+        "risk": "Substitution by alternative feedstocks, competing crush capacity or non-crop low-carbon fuels can weaken the renewable-fuel demand channel even while food/feed infrastructure remains useful.",
+        "gating": false
+      },
+      {
+        "risk": "Margin and earnings sensitivity to policy, commodity spreads, energy prices and mark-to-market timing can create confidence inflation if a favorable quarter is annualized without normalization.",
+        "gating": false
+      },
+      {
+        "risk": "Capacity additions can invite industry supply response; if crush capacity grows faster than renewable-oil/feed demand, utilization may rise while unit margins compress.",
+        "gating": false
+      },
+      {
+        "risk": "Prior segment-disclosure control weakness raises the value of independent filing-level reconciliation when Alpha constructs numeric score evidence.",
         "gating": false
       }
     ]
@@ -146,6 +192,26 @@
     {
       "risk": "Policy incentives and favorable energy/corn economics contributed to ethanol performance, limiting confidence in straight-line extrapolation.",
       "gating": false
+    },
+    {
+      "risk": "Successor bottleneck can migrate from processing capacity to feedstock availability, logistics, policy credits or end-market blend economics; additional crush capacity does not guarantee durable margin capture.",
+      "gating": false
+    },
+    {
+      "risk": "Substitution by alternative feedstocks, competing crush capacity or non-crop low-carbon fuels can weaken the renewable-fuel demand channel even while food/feed infrastructure remains useful.",
+      "gating": false
+    },
+    {
+      "risk": "Margin and earnings sensitivity to policy, commodity spreads, energy prices and mark-to-market timing can create confidence inflation if a favorable quarter is annualized without normalization.",
+      "gating": false
+    },
+    {
+      "risk": "Capacity additions can invite industry supply response; if crush capacity grows faster than renewable-oil/feed demand, utilization may rise while unit margins compress.",
+      "gating": false
+    },
+    {
+      "risk": "Prior segment-disclosure control weakness raises the value of independent filing-level reconciliation when Alpha constructs numeric score evidence.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -156,20 +222,62 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 5
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "agricultural-feedstocks",
+        "to": "ADM-global-processing-and-logistics-network",
+        "mechanism": "origination, storage, transport, crushing and wet milling aggregate dispersed crops into food/feed/fuel intermediates",
+        "confidence": 94
+      },
+      {
+        "from": "ADM-global-processing-and-logistics-network",
+        "to": "food-feed-and-renewable-fuel-demand",
+        "mechanism": "processing capacity and restored/export infrastructure increase usable meal, vegetable oil, ethanol and ingredient supply",
+        "confidence": 92
+      },
+      {
+        "from": "biofuel-policy-and-energy-economics",
+        "to": "ADM-crush-and-ethanol-margins",
+        "mechanism": "RVO obligations and energy/corn price relationships alter demand and blendstock economics",
+        "confidence": 97
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "agricultural-feedstocks",
+      "to": "ADM-global-processing-and-logistics-network",
+      "mechanism": "origination, storage, transport, crushing and wet milling aggregate dispersed crops into food/feed/fuel intermediates",
+      "confidence": 94
+    },
+    {
+      "from": "ADM-global-processing-and-logistics-network",
+      "to": "food-feed-and-renewable-fuel-demand",
+      "mechanism": "processing capacity and restored/export infrastructure increase usable meal, vegetable oil, ethanol and ingredient supply",
+      "confidence": 92
+    },
+    {
+      "from": "biofuel-policy-and-energy-economics",
+      "to": "ADM-crush-and-ethanol-margins",
+      "mechanism": "RVO obligations and energy/corn price relationships alter demand and blendstock economics",
+      "confidence": 97
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 5,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:ADM:2026Q2:202608"
+      "issuer:ADM:2026Q2:202608",
+      "issuer:ADM:2026Q2:20260804",
+      "issuer:ADM:crush-expansion:20260730",
+      "issuer:ADM:2025FY:202602",
+      "sec:7084:10k:2024"
     ]
   },
   "sources": [
@@ -180,20 +288,82 @@
       "primary": true,
       "publishedAt": "2026-08",
       "originFingerprint": "issuer:ADM:2026Q2:202608"
+    },
+    {
+      "sourceId": "issuer:ADM:2026Q2",
+      "url": "https://www.adm.com/en-us/news/news-releases/2026/8/adm-reports-second-quarter-2026-results/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-04",
+      "originFingerprint": "issuer:ADM:2026Q2:20260804"
+    },
+    {
+      "sourceId": "issuer:ADM:crush-expansion:20260730",
+      "url": "https://investors.adm.com/news/news-details/2026/ADM-to-Expand-North-America-Crush-Capacity-Amid-Strong-Biofuel-Demand/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-30",
+      "originFingerprint": "issuer:ADM:crush-expansion:20260730"
+    },
+    {
+      "sourceId": "issuer:ADM:2025FY",
+      "url": "https://investors.adm.com/news/news-details/2026/ADM-Reports-Fourth-Quarter-and-Full-year-2025-Results-Provides-2026-Guidance/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02",
+      "originFingerprint": "issuer:ADM:2025FY:202602"
+    },
+    {
+      "sourceId": "sec:ADM:2024-10K",
+      "url": "https://www.sec.gov/Archives/edgar/data/7084/000000708425000011/adm-20241231.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2025",
+      "originFingerprint": "sec:7084:10k:2024"
     }
   ],
   "contradictions": [
     {
       "contradiction": "Strong segment profit growth includes meaningful favorable timing/mark-to-market effects and policy-sensitive economics.",
       "material": true
+    },
+    {
+      "contradiction": "Q2 network utilization and segment profit demonstrate operating leverage, but approximately $100M of favorable mark-to-market/timing effects and policy-supported biofuel economics mean headline profit cannot be treated as pure structural improvement.",
+      "material": true,
+      "disposition": "bounded_present_risk_not_causal_mapping_blocker"
+    },
+    {
+      "contradiction": "Current strong crushing economics contrast with Q4 2025, when higher volumes coincided with a 69% operating-profit decline because margins weakened.",
+      "material": true,
+      "disposition": "resolved_as_scenario_sensitivity; retain as normalization constraint rather than present blocker"
+    },
+    {
+      "contradiction": "Headline Q2 profit growth is partly explained by timing effects and policy-sensitive economics rather than solely durable execution.",
+      "material": true,
+      "disposition": "resolved_as_earnings-quality adjustment; Alpha should normalize rather than reject evidence"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "contradiction": "Strong segment profit growth includes meaningful favorable timing/mark-to-market effects and policy-sensitive economics.",
         "material": true
+      },
+      {
+        "contradiction": "Q2 network utilization and segment profit demonstrate operating leverage, but approximately $100M of favorable mark-to-market/timing effects and policy-supported biofuel economics mean headline profit cannot be treated as pure structural improvement.",
+        "material": true,
+        "disposition": "bounded_present_risk_not_causal_mapping_blocker"
+      },
+      {
+        "contradiction": "Current strong crushing economics contrast with Q4 2025, when higher volumes coincided with a 69% operating-profit decline because margins weakened.",
+        "material": true,
+        "disposition": "resolved_as_scenario_sensitivity; retain as normalization constraint rather than present blocker"
+      },
+      {
+        "contradiction": "Headline Q2 profit growth is partly explained by timing effects and policy-sensitive economics rather than solely durable execution.",
+        "material": true,
+        "disposition": "resolved_as_earnings-quality adjustment; Alpha should normalize rather than reject evidence"
       }
     ]
   },
@@ -205,26 +375,35 @@
     {
       "unknown": "Normalized earnings power excluding timing and unusually constructive biofuel conditions remains uncertain.",
       "gating": false
+    },
+    {
+      "unknown": "Durable incremental return on the announced 700,000-ton crush expansion across a normalized RVO/energy/feedstock environment is not yet observed.",
+      "gating": false
+    },
+    {
+      "unknown": "Whether internal-control remediation has fully eliminated the prior segment-disclosure weakness requires current filing-level confirmation beyond the evidence used here.",
+      "gating": false
+    },
+    {
+      "unknown": "Long-run industry response to announced crush additions and competing low-carbon fuel pathways remains uncertain.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
-  "confidence": 96,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -235,14 +414,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -259,10 +430,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-22T04:18:29.998Z",
+  "generatedAt": "2026-09-22T04:23:17.130Z",
   "canonicalWriteAuthority": false,
   "total": 174,
   "twins": [
@@ -29896,7 +29896,7 @@
       "canonicalWriteAuthority": false,
       "ticker": "ADM",
       "workId": "t0:ADM",
-      "inputSignature": "0c86d708eab2b5b9b0455e69",
+      "inputSignature": "d40da3191e066ef94babd493",
       "sourceState": "researching",
       "identity": {
         "ticker": "ADM",
@@ -29919,28 +29919,32 @@
         ],
         "presentPerspectives": [
           "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missingPerspectives": [
-          "source-integrity",
-          "company-underwriting",
+          "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
         ],
-        "primarySourceCount": 1,
+        "missingPerspectives": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "primarySourceCount": 5,
         "sourceLineage": {
-          "rawSourceCount": 2,
-          "uniqueSourceCount": 1,
-          "duplicatesCollapsed": 1,
+          "rawSourceCount": 7,
+          "uniqueSourceCount": 5,
+          "duplicatesCollapsed": 2,
           "missingLineage": 0,
           "uniqueOrigins": [
-            "issuer:ADM:2026Q2:202608"
+            "issuer:ADM:2026Q2:202608",
+            "issuer:ADM:2026Q2:20260804",
+            "issuer:ADM:crush-expansion:20260730",
+            "issuer:ADM:2025FY:202602",
+            "sec:7084:10k:2024"
           ]
         },
         "evidenceWindow": {
-          "start": "2026-08-01T00:00:00.000Z",
-          "end": "2026-09-19T06:06:41.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-19T06:06:41.000Z"
+          "start": "2025-01-01T00:00:00.000Z",
+          "end": "2026-09-22T04:22:06.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-22T04:22:06.000Z"
         },
         "preflightPassed": false
       },
@@ -29949,37 +29953,69 @@
         "bottleneckControl",
         "supplyChainResilience",
         "pricingPower",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "substitutionResilience",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "governancePower",
+        "dataConfidence"
       ],
       "constraintSignals": {
         "risks": [
           "Results remain exposed to agricultural commodity spreads, energy prices, policy incentives and mark-to-market timing.",
-          "Policy incentives and favorable energy/corn economics contributed to ethanol performance, limiting confidence in straight-line extrapolation."
+          "Policy incentives and favorable energy/corn economics contributed to ethanol performance, limiting confidence in straight-line extrapolation.",
+          "Successor bottleneck can migrate from processing capacity to feedstock availability, logistics, policy credits or end-market blend economics; additional crush capacity does not guarantee durable margin capture.",
+          "Substitution by alternative feedstocks, competing crush capacity or non-crop low-carbon fuels can weaken the renewable-fuel demand channel even while food/feed infrastructure remains useful.",
+          "Margin and earnings sensitivity to policy, commodity spreads, energy prices and mark-to-market timing can create confidence inflation if a favorable quarter is annualized without normalization.",
+          "Capacity additions can invite industry supply response; if crush capacity grows faster than renewable-oil/feed demand, utilization may rise while unit margins compress.",
+          "Prior segment-disclosure control weakness raises the value of independent filing-level reconciliation when Alpha constructs numeric score evidence."
         ],
         "unknowns": [
           "Persistence of current crush and ethanol margin conditions through a normalized policy/energy environment is uncertain.",
-          "Normalized earnings power excluding timing and unusually constructive biofuel conditions remains uncertain."
+          "Normalized earnings power excluding timing and unusually constructive biofuel conditions remains uncertain.",
+          "Durable incremental return on the announced 700,000-ton crush expansion across a normalized RVO/energy/feedstock environment is not yet observed.",
+          "Whether internal-control remediation has fully eliminated the prior segment-disclosure weakness requires current filing-level confirmation beyond the evidence used here.",
+          "Long-run industry response to announced crush additions and competing low-carbon fuel pathways remains uncertain."
         ],
         "contradictions": [
-          "Strong segment profit growth includes meaningful favorable timing/mark-to-market effects and policy-sensitive economics."
+          "Strong segment profit growth includes meaningful favorable timing/mark-to-market effects and policy-sensitive economics.",
+          "Q2 network utilization and segment profit demonstrate operating leverage, but approximately $100M of favorable mark-to-market/timing effects and policy-supported biofuel economics mean headline profit cannot be treated as pure structural improvement.",
+          "Current strong crushing economics contrast with Q4 2025, when higher volumes coincided with a 69% operating-profit decline because margins weakened.",
+          "Headline Q2 profit growth is partly explained by timing effects and policy-sensitive economics rather than solely durable execution."
         ],
         "gatingIssues": [],
         "preflightFailures": [
           "missing_specialist_perspective:source-integrity",
           "missing_specialist_perspective:company-underwriting",
-          "missing_specialist_perspective:structural-causal",
-          "missing_specialist_perspective:adversarial-red-team",
           "missing_factor_evidence",
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
           "missing_data_confidence_evidence",
-          "missing_causal_mapping",
           "unresolved_material_contradiction"
         ]
       },
       "causalContext": {
-        "mapped": false,
-        "edges": []
+        "mapped": true,
+        "edges": [
+          {
+            "from": "agricultural-feedstocks",
+            "to": "ADM-global-processing-and-logistics-network",
+            "mechanism": "origination, storage, transport, crushing and wet milling aggregate dispersed crops into food/feed/fuel intermediates",
+            "confidence": 94
+          },
+          {
+            "from": "ADM-global-processing-and-logistics-network",
+            "to": "food-feed-and-renewable-fuel-demand",
+            "mechanism": "processing capacity and restored/export infrastructure increase usable meal, vegetable oil, ethanol and ingredient supply",
+            "confidence": 92
+          },
+          {
+            "from": "biofuel-policy-and-energy-economics",
+            "to": "ADM-crush-and-ethanol-margins",
+            "mechanism": "RVO obligations and energy/corn price relationships alter demand and blendstock economics",
+            "confidence": 97
+          }
+        ]
       },
       "improvementWindows": [
         {
@@ -29990,16 +30026,6 @@
         {
           "failure": "missing_specialist_perspective:company-underwriting",
           "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:structural-causal",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:structural-causal?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:adversarial-red-team",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
           "stance": "improvement-oriented"
         },
         {
@@ -30023,11 +30049,6 @@
           "stance": "improvement-oriented"
         },
         {
-          "failure": "missing_causal_mapping",
-          "question": "Which causal mechanism still requires evidence, a falsifier, or a clearer connection to company economics?",
-          "stance": "improvement-oriented"
-        },
-        {
           "failure": "unresolved_material_contradiction",
           "question": "Which material contradiction must be reconciled before the representation can advance?",
           "stance": "improvement-oriented"
@@ -30039,13 +30060,26 @@
           "bottleneckControl",
           "supplyChainResilience",
           "pricingPower",
-          "scenarioRobustness"
+          "scenarioRobustness",
+          "substitutionResilience",
+          "alignment2036",
+          "crossDivisionLeverage",
+          "governancePower",
+          "dataConfidence"
         ],
         "needOrConstraintCandidates": [
           "Persistence of current crush and ethanol margin conditions through a normalized policy/energy environment is uncertain.",
           "Normalized earnings power excluding timing and unusually constructive biofuel conditions remains uncertain.",
+          "Durable incremental return on the announced 700,000-ton crush expansion across a normalized RVO/energy/feedstock environment is not yet observed.",
+          "Whether internal-control remediation has fully eliminated the prior segment-disclosure weakness requires current filing-level confirmation beyond the evidence used here.",
+          "Long-run industry response to announced crush additions and competing low-carbon fuel pathways remains uncertain.",
           "Results remain exposed to agricultural commodity spreads, energy prices, policy incentives and mark-to-market timing.",
-          "Policy incentives and favorable energy/corn economics contributed to ethanol performance, limiting confidence in straight-line extrapolation."
+          "Policy incentives and favorable energy/corn economics contributed to ethanol performance, limiting confidence in straight-line extrapolation.",
+          "Successor bottleneck can migrate from processing capacity to feedstock availability, logistics, policy credits or end-market blend economics; additional crush capacity does not guarantee durable margin capture.",
+          "Substitution by alternative feedstocks, competing crush capacity or non-crop low-carbon fuels can weaken the renewable-fuel demand channel even while food/feed infrastructure remains useful.",
+          "Margin and earnings sensitivity to policy, commodity spreads, energy prices and mark-to-market timing can create confidence inflation if a favorable quarter is annualized without normalization.",
+          "Capacity additions can invite industry supply response; if crush capacity grows faster than renewable-oil/feed demand, utilization may rise while unit margins compress.",
+          "Prior segment-disclosure control weakness raises the value of independent filing-level reconciliation when Alpha constructs numeric score evidence."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

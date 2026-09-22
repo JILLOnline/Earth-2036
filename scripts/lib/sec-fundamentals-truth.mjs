@@ -32,6 +32,29 @@ function daySpan(start, end) {
   return a == null || b == null ? null : Math.round((b - a) / 86400000);
 }
 
+function calendarDayAge(asOf, value) {
+  if (!asOf || !value) return null;
+  const asOfDay = String(asOf).slice(0, 10);
+  const valueDay = String(value).slice(0, 10);
+  const a = Date.parse(asOfDay + "T00:00:00Z");
+  const b = Date.parse(valueDay + "T00:00:00Z");
+  if (!Number.isFinite(a) || !Number.isFinite(b)) return null;
+  return Math.floor((a - b) / 86400000);
+}
+
+function metricFreshness(currentFacts, asOf) {
+  const ends = currentFacts.map((fact) => fact.end).filter(Boolean).sort();
+  const filed = currentFacts.map((fact) => fact.filed).filter(Boolean).sort();
+  const latestPeriodEnd = ends.at(-1) ?? null;
+  const latestFiledDate = filed.at(-1) ?? null;
+  return {
+    latestPeriodEnd,
+    periodEndAgeDays: calendarDayAge(asOf, latestPeriodEnd),
+    latestFiledDate,
+    filedAgeDays: calendarDayAge(asOf, latestFiledDate),
+  };
+}
+
 function compactFact({ taxonomy, tag, label, description, unit, fact }) {
   return {
     taxonomy,
@@ -249,6 +272,7 @@ export function normalizeMetric(companyFacts, metricName, asOf) {
     supersededFacts: superseded,
     periods,
     latest,
+    freshness: metricFreshness(current, asOf),
     factsHash: truthHash(allEligibleFacts),
   };
 }

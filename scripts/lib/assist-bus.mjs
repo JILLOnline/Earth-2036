@@ -74,7 +74,11 @@ export function buildAssistRequests(graph, packets, roleRuns = [], nowIso = new 
     const isFrontier = ["packet_ready","chief_ready"].includes(row.state);
     const attempts = Number(row.attempts || 0);
     const perspectiveCount = Number(packet?.specialistCoverage?.present?.length || 0);
-    const nearClosureResearch = row.state === "researching" && attempts >= 3 && perspectiveCount >= 4;
+    // Researching companies with four specialist perspectives already present are
+    // close enough for bounded Scout source assistance even before repeated attempts.
+    // This lets an idle Scout pre-stage primary/current sources for Alpha instead of
+    // waiting for the same company to fail three times first.
+    const nearClosureResearch = row.state === "researching" && perspectiveCount >= 4;
 
     const alphaSourceFailures = failures.filter((failure) => [
       "missing_primary_source","missing_source_lineage","missing_factor_evidence",

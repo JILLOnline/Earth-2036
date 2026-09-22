@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-22T00:16:26.018Z",
+  "updatedAt": "2026-09-22T01:19:27.832Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -914,6 +914,18 @@
       "type": "market",
       "label": "operational visibility and decision support",
       "description": "contextualizes OT data and embeds domain models into operating workflows"
+    },
+    {
+      "id": "company:ENPH",
+      "type": "company",
+      "label": "Enphase Energy, Inc.",
+      "description": "Enphase's core structural role is distributed power conversion and storage control between rooftop generation/batteries and household/grid loads; this serves electricity resilience and distributed-energy needs but remains substitutable by competing inverter/storage architectures."
+    },
+    {
+      "id": "market:ENPH-enph-structural-demand",
+      "type": "market",
+      "label": "ENPH structural demand",
+      "description": "Enphase's core structural role is distributed power conversion and storage control between rooftop generation/batteries and household/grid loads; this serves electricity resilience and distributed-energy needs but remains substitutable by competing inverter/storage architectures."
     }
   ],
   "edges": [
@@ -2126,6 +2138,21 @@
         "emerson:2026-05-11:ava-industrial-ai"
       ],
       "observedAt": "2026-09-20T06:25:30Z"
+    },
+    {
+      "id": "edge:ENPH-structural-exposure",
+      "from": "company:ENPH",
+      "to": "market:ENPH-enph-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "enphase:2026-07-28:q2-results",
+        "sec:ENPH:2025-10K"
+      ],
+      "observedAt": "2026-09-20T07:23:56Z"
     }
   ],
   "structuralSignals": [
@@ -3611,6 +3638,25 @@
       ],
       "observedAt": "2026-09-20T06:25:30Z",
       "thesis": "Emerson's causal position spans sensing/final-control hardware, control software, test and measurement, and AspenTech industrial software, linking operational data and physical control to reliability, grid operations and industrial productivity.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:ENPH-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:ENPH-enph-structural-demand",
+      "affectedNodeIds": [
+        "company:ENPH"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "enphase:2026-07-28:q2-results",
+        "sec:ENPH:2025-10K"
+      ],
+      "observedAt": "2026-09-20T07:23:56Z",
+      "thesis": "Enphase's core structural role is distributed power conversion and storage control between rooftop generation/batteries and household/grid loads; this serves electricity resilience and distributed-energy needs but remains substitutable by competing inverter/storage architectures.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

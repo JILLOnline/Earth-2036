@@ -9,6 +9,16 @@ on:
       - "scripts/lab-fundamentals-truth.mjs"
       - "test/fundamentals-truth.test.mjs"
       - ".github/workflows/fundamentals-truth-canary.yml"
+  push:
+    branches: [main]
+    paths:
+      - "config/fundamentals-truth-contract-v1.json"
+      - "scripts/lib/fundamental-metric-map.mjs"
+      - "scripts/lib/sec-fundamentals-truth.mjs"
+      - "scripts/lab-fundamentals-truth.mjs"
+      - "test/fundamentals-truth.test.mjs"
+      - ".github/workflows/fundamentals-truth-canary.yml"
+      - "package.json"
   workflow_dispatch:
 
 permissions:
@@ -32,3 +42,7 @@ jobs:
         env:
           SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
         run: npm run truth:fundamentals -- --tickers ETN,AAPL,ASML --limit 3 --no-write --audit-details
+      - name: Diversified SEC truth smoke
+        env:
+          SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
+        run: npm run truth:fundamentals -- --tickers ETN,AAPL,ASML,JPM,XOM,LLY,PLTR,RKLB,GEV,NVO,V,MSFT --limit 12 --no-write

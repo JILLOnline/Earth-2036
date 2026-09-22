@@ -57,6 +57,7 @@ function auditTruth(truth) {
       supersededFacts: metric.supersededFacts.length,
       ambiguousPeriods: Object.values(ambiguityByKind).reduce((a,b)=>a+b,0),
       ambiguityByKind,
+      freshness: metric.freshness,
       latest: metric.periodType === "instant"
         ? { instant: selectedSummary(metric.latest?.instant) }
         : {

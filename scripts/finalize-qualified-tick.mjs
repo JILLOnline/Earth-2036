@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { qualifiesT0Publication, qualifiesTick } from "./lib/runtime-gates.mjs";
+import { buildTrajectorySnapshot, validateTrajectorySnapshot } from "./lib/trajectory-engine.mjs";
 
 const ROOT = process.cwd();
 const RUNTIME = path.join(ROOT, "data", "runtime");
@@ -142,6 +143,21 @@ if (!manifest?.published) {
   }
 
   const publishedAt = new Date().toISOString();
+  const t0TrajectoryBase = buildTrajectorySnapshot({
+    rankings: rankingRows,
+    observations: observations?.candidates || {},
+    asOf: state.lastCycleAt,
+    generatedAt: publishedAt,
+    methodologyVersion: state.methodologyVersion,
+    universeVersion: state.universeVersion,
+    trialTickNumber: 0,
+  });
+  const t0TrajectoryErrors = validateTrajectorySnapshot(t0TrajectoryBase);
+  const t0Trajectory = {
+    ...t0TrajectoryBase,
+    validation: { passed: t0TrajectoryErrors.length === 0, errors: t0TrajectoryErrors },
+    captureRole: "t0-origin",
+  };
   const t0Snapshot = existingT0 ?? {
     baselineId: manifest?.baselineId ?? "earth2036-official-t0-2026-09-12",
     cycleKey: state.cycleKey,
@@ -157,6 +173,7 @@ if (!manifest?.published) {
     intelligenceIntegrityPassed,
     attestationId: effectiveAttestation?.attestationId ?? null,
     councilLanes: effectiveAttestation?.lanes ?? {},
+    trajectory: t0Trajectory,
     rankings: rankingRows,
   };
   if (!existingT0) await writeJson(T0_RANKING, t0Snapshot);
@@ -244,6 +261,22 @@ const tickRows = (entities.candidates || []).map((entity) => {
 });
 
 const finalizedAt = new Date().toISOString();
+const trajectoryBase = buildTrajectorySnapshot({
+  rankings: rankingRows,
+  observations: observations?.candidates || {},
+  asOf: state.lastCycleAt,
+  generatedAt: finalizedAt,
+  methodologyVersion: state.methodologyVersion,
+  universeVersion: state.universeVersion,
+  trialTickNumber: nextTick,
+});
+const trajectoryErrors = validateTrajectorySnapshot(trajectoryBase);
+const trajectorySnapshot = {
+  ...trajectoryBase,
+  validation: { passed: trajectoryErrors.length === 0, errors: trajectoryErrors },
+  captureRole: "qualified-trial-tick",
+};
+
 const tickPath = path.join(RUNTIME, "ticks", `${state.cycleKey}.json`);
 await writeJson(tickPath, {
   tickNumber: nextTick,
@@ -267,6 +300,7 @@ await writeJson(tickPath, {
     approvedAt: effectiveAttestation?.approvedAt ?? null,
     lanes: effectiveAttestation?.lanes ?? {},
   },
+  trajectory: trajectorySnapshot,
   rankings: tickRows,
 });
 
@@ -290,6 +324,9 @@ await appendJsonLine(path.join(RUNTIME, "tick-finalizations.jsonl"), {
   councilLaneCount: Object.keys(effectiveAttestation?.lanes ?? {}).length,
   sourceCoverageRatio: sourceCoverage,
   intelligenceIntegrityPassed,
+  trajectoryCaptured: true,
+  trajectoryValidationPassed: trajectoryErrors.length === 0,
+  trajectorySnapshotHash: trajectorySnapshot.snapshotHash,
 });
 
 console.log(JSON.stringify({

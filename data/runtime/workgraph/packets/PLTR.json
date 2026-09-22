@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "PLTR",
   "workId": "t0:PLTR",
-  "generatedAt": "2026-09-22T19:17:52.753Z",
+  "generatedAt": "2026-09-22T19:28:17.069Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-03T00:00:00.000Z",
-    "end": "2026-09-21T09:07:18.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T09:07:18.000Z"
+    "end": "2026-09-22T19:23:06.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T19:23:06.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/PLTR-20260921T090718Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/PLTR-20260921T090718Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/PLTR-20260922T192306Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,19 +65,33 @@
       "bottleneckControl",
       "catalystScore",
       "executionQuality",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "thesisQuality",
+      "substitutionResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "alignment2036",
         "bottleneckControl",
         "catalystScore"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "scenarioRobustness",
+        "substitutionResilience",
+        "governancePower",
+        "bottleneckControl"
+      ],
       "expectations-execution": [
         "executionQuality",
         "scenarioRobustness",
@@ -125,7 +142,10 @@
     "bottleneckControl",
     "catalystScore",
     "executionQuality",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "thesisQuality",
+    "substitutionResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -136,6 +156,22 @@
       },
       {
         "risk": "Model-provider data-retention/security policy can constrain deployments involving sensitive proprietary data.",
+        "gating": false
+      },
+      {
+        "risk": "If open standards, hyperscalers or model vendors commoditize governed operational integration, Palantir's bottleneck control could weaken.",
+        "gating": false
+      },
+      {
+        "risk": "Government concentration, procurement cycles and policy shifts can create lumpy demand despite current acceleration.",
+        "gating": false
+      },
+      {
+        "risk": "Reliance on third-party frontier models creates data-governance and supplier-policy exposure for sensitive deployments.",
+        "gating": false
+      },
+      {
+        "risk": "Current growth rates are unusually high and should not be extrapolated without continued conversion evidence.",
         "gating": false
       }
     ]
@@ -148,6 +184,22 @@
     {
       "risk": "Model-provider data-retention/security policy can constrain deployments involving sensitive proprietary data.",
       "gating": false
+    },
+    {
+      "risk": "If open standards, hyperscalers or model vendors commoditize governed operational integration, Palantir's bottleneck control could weaken.",
+      "gating": false
+    },
+    {
+      "risk": "Government concentration, procurement cycles and policy shifts can create lumpy demand despite current acceleration.",
+      "gating": false
+    },
+    {
+      "risk": "Reliance on third-party frontier models creates data-governance and supplier-policy exposure for sensitive deployments.",
+      "gating": false
+    },
+    {
+      "risk": "Current growth rates are unusually high and should not be extrapolated without continued conversion evidence.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -157,22 +209,31 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "frontier-AI-capability -> governed-enterprise-integration -> operational-decisions",
+      "sensitive-data-governance -> model-provider-constraints -> deployment-friction",
+      "government-and-commercial-workflows -> Palantir-platform-demand"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "frontier-AI-capability -> governed-enterprise-integration -> operational-decisions",
+    "sensitive-data-governance -> model-provider-constraints -> deployment-friction",
+    "government-and-commercial-workflows -> Palantir-platform-demand"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "republish:PLTR:Q2:20260803",
-      "reuters:PLTR:20260914"
+      "reuters:PLTR:20260914",
+      "sec:PLTR:2026Q2:ex99.1"
     ]
   },
   "sources": [
@@ -191,20 +252,38 @@
       "primary": false,
       "publishedAt": "2026-09-14",
       "originFingerprint": "reuters:PLTR:20260914"
+    },
+    {
+      "sourceId": "sec:PLTR:q2-2026-results",
+      "url": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000039/a2026q2ex991pressrelease.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-03",
+      "originFingerprint": "sec:PLTR:2026Q2:ex99.1"
     }
   ],
   "contradictions": [
     {
       "contradiction": "Explosive AI demand coexists with rising concern about third-party model data governance.",
       "material": true
+    },
+    {
+      "contradiction": "Rapid AI-driven adoption and sovereign-control positioning coexist with dependence on external model providers whose retention policies may conflict with sensitive-data requirements.",
+      "material": true,
+      "disposition": "real but bounded; architecture/provider diversification can mitigate it, and current evidence does not show material demand impairment"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "contradiction": "Explosive AI demand coexists with rising concern about third-party model data governance.",
         "material": true
+      },
+      {
+        "contradiction": "Rapid AI-driven adoption and sovereign-control positioning coexist with dependence on external model providers whose retention policies may conflict with sensitive-data requirements.",
+        "material": true,
+        "disposition": "real but bounded; architecture/provider diversification can mitigate it, and current evidence does not show material demand impairment"
       }
     ]
   },
@@ -216,27 +295,31 @@
     {
       "unknown": "Extent to which model-provider restrictions affect Palantir deployment economics or customer adoption is not quantified.",
       "gating": false
+    },
+    {
+      "unknown": "The long-run share of customer value captured by Palantir versus model providers and cloud infrastructure is not yet observable.",
+      "gating": false
+    },
+    {
+      "unknown": "Economic impact of model-provider restrictions on deployment cost, time or win rates remains unquantified.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 87,
+  "confidence": 86,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -246,18 +329,6 @@
       },
       {
         "failure": "missing_specialist_perspective:company-underwriting",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_primary_source",
         "owner": "council-alpha"
       },
       {
@@ -275,10 +346,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

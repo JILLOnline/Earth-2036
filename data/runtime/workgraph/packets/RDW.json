@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "RDW",
   "workId": "t0:RDW",
-  "generatedAt": "2026-09-22T19:17:52.751Z",
+  "generatedAt": "2026-09-22T19:28:17.068Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-22T18:37:04.936Z"
   },
   "evidenceWindow": {
-    "start": "2026-09-04T00:00:00.000Z",
-    "end": "2026-09-18T20:03:18.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-18T20:03:18.000Z"
+    "start": "2026-08-05T00:00:00.000Z",
+    "end": "2026-09-22T19:26:34.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T19:26:34.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,47 +32,67 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/RDW-20260918T2000Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/RDW-20260918T2000Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/RDW-20260922T192634Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
       "financialOperatingMomentum",
       "catalystScore",
       "alignment2036",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "thesisQuality",
+      "bottleneckControl",
+      "supplyChainResilience",
+      "governancePower",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "catalystScore",
         "alignment2036",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "governancePower",
+        "supplyChainResilience",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -121,7 +141,12 @@
     "financialOperatingMomentum",
     "catalystScore",
     "alignment2036",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "thesisQuality",
+    "bottleneckControl",
+    "supplyChainResilience",
+    "governancePower",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -132,6 +157,22 @@
       },
       {
         "risk": "Complex fixed-price/program accounting can reverse apparent margin improvement through estimate-at-completion changes.",
+        "gating": false
+      },
+      {
+        "risk": "Program execution, component availability and customer funding can interrupt the path from contracted backlog to delivered mission capability.",
+        "gating": false
+      },
+      {
+        "risk": "Backlog can overstate economic certainty when annual funding, termination rights or program changes delay or reduce conversion.",
+        "gating": false
+      },
+      {
+        "risk": "Negative free cash flow means improved accounting profitability has not yet become self-funding operations.",
+        "gating": false
+      },
+      {
+        "risk": "Equity-funded liquidity improves resilience but transfers part of the financing cost to shareholders through dilution.",
         "gating": false
       }
     ]
@@ -144,6 +185,22 @@
     {
       "risk": "Complex fixed-price/program accounting can reverse apparent margin improvement through estimate-at-completion changes.",
       "gating": false
+    },
+    {
+      "risk": "Program execution, component availability and customer funding can interrupt the path from contracted backlog to delivered mission capability.",
+      "gating": false
+    },
+    {
+      "risk": "Backlog can overstate economic certainty when annual funding, termination rights or program changes delay or reduce conversion.",
+      "gating": false
+    },
+    {
+      "risk": "Negative free cash flow means improved accounting profitability has not yet become self-funding operations.",
+      "gating": false
+    },
+    {
+      "risk": "Equity-funded liquidity improves resilience but transfers part of the financing cost to shareholders through dilution.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -153,21 +210,30 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "defense/space-mission-demand -> contracted-programs -> production-backlog",
+      "specialized-hardware/capacity -> mission-delivery -> customer-renewal/follow-on-awards",
+      "capital-and-facilities -> production-scale -> revenue/cash-conversion"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "defense/space-mission-demand -> contracted-programs -> production-backlog",
+    "specialized-hardware/capacity -> mission-delivery -> customer-renewal/follow-on-awards",
+    "capital-and-facilities -> production-scale -> revenue/cash-conversion"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 2,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "zacks:RDW:2026-09-04:q2-review"
+      "zacks:RDW:2026-09-04:q2-review",
+      "issuer:RDW:2026Q2:results"
     ]
   },
   "sources": [
@@ -178,18 +244,36 @@
       "primary": false,
       "publishedAt": "2026-09-04",
       "originFingerprint": "zacks:RDW:2026-09-04:q2-review"
+    },
+    {
+      "sourceId": "issuer:RDW:q2-2026-results",
+      "url": "https://ir.rdw.com/news-events/press-releases/detail/240/redwire-corporation-reports-second-quarter-2026-financial",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-05",
+      "originFingerprint": "issuer:RDW:2026Q2:results"
     }
   ],
   "contradictions": [
     {
       "contradiction": "Revenue/backlog and gross margin improved sharply while the company still carries sizable losses and execution risk."
+    },
+    {
+      "contradiction": "Record revenue, gross margin and backlog coexist with a net loss and negative first-half free cash flow.",
+      "material": true,
+      "disposition": "real but improving execution tension; sustained positive cash conversion is the key falsification/resolution path"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "contradiction": "Revenue/backlog and gross margin improved sharply while the company still carries sizable losses and execution risk."
+      },
+      {
+        "contradiction": "Record revenue, gross margin and backlog coexist with a net loss and negative first-half free cash flow.",
+        "material": true,
+        "disposition": "real but improving execution tension; sustained positive cash conversion is the key falsification/resolution path"
       }
     ]
   },
@@ -201,11 +285,19 @@
     {
       "unknown": "This Scout artifact lacks a primary issuer filing and therefore should not satisfy packet primary-source preflight by itself.",
       "gating": false
+    },
+    {
+      "unknown": "The durable margin and cash-conversion profile of the combined Space and Defense Tech mix is not yet established across a full operating cycle.",
+      "gating": false
+    },
+    {
+      "unknown": "How much of the recent margin improvement persists after program mix normalizes and facility expansion raises fixed costs remains uncertain.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
   "confidence": 76,
@@ -214,14 +306,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -231,18 +319,6 @@
       },
       {
         "failure": "missing_specialist_perspective:company-underwriting",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_primary_source",
         "owner": "council-alpha"
       },
       {
@@ -260,10 +336,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

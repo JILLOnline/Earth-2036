@@ -130,14 +130,15 @@ test("derived fundamentals require same-period, same-unit and same-filing inputs
   const earlyGross = preAmendment.derived.gross_margin.observations.find((row) => row.end === "2025-12-31");
   const earlyOperating = preAmendment.derived.operating_margin.observations.find((row) => row.end === "2025-12-31");
   const fcf = later.derived.free_cash_flow.observations.find((row) => row.end === "2025-12-31");
-  const totalDebt = later.derived.total_debt.observations.find((row) => row.end === "2025-12-31");
   const lateGross = later.derived.gross_margin.observations.find((row) => row.end === "2025-12-31");
   const lateOperating = later.derived.operating_margin.observations.find((row) => row.end === "2025-12-31");
 
   assert.equal(earlyGross.value, 0.4);
   assert.equal(earlyOperating.value, 0.15);
   assert.equal(fcf.value, 15);
-  assert.equal(totalDebt.value, 40);
+  assert.equal(later.metrics.long_term_debt_current.latest.instant.selected.val, 10);
+  assert.equal(later.metrics.long_term_debt_noncurrent.latest.instant.selected.val, 30);
+  assert.equal("total_debt" in later.derived, false);
   assert.equal(lateGross, undefined);
   assert.equal(lateOperating, undefined);
 });
@@ -184,4 +185,40 @@ test("FCF treats capex source concepts as cash-outflow magnitude", () => {
   const truth = buildFundamentalsTruth(sample, { ticker: "TEST", asOf: "2026-04-01T00:00:00Z" });
   const fcf = truth.derived.free_cash_flow.observations.find((row) => row.end === "2025-12-31");
   assert.equal(fcf.value, 15);
+});
+
+
+test("a nine-month 10-Q is year-to-date, never annual", () => {
+  const sample = payload();
+  sample.facts["us-gaap"].RevenueFromContractWithCustomerExcludingAssessedTax.units.USD.push(
+    { start: "2025-09-28", end: "2026-06-27", val: 300, filed: "2026-07-31", accn: "Q3", form: "10-Q", fy: 2026, fp: "Q3" }
+  );
+  const metric = normalizeMetric(sample, "revenue", "2026-08-15T00:00:00Z");
+  assert.equal(metric.latest.annual.selected.val, 105);
+  assert.equal(metric.latest.yearToDate.selected.val, 300);
+  assert.equal(metric.latest.yearToDate.selected.accn, "Q3");
+});
+
+test("later comparative filings supersede the same economic fact even when fy/fp metadata changes", () => {
+  const sample = payload();
+  sample.facts["us-gaap"].GrossProfit.units.USD.push(
+    { start: "2025-01-01", end: "2025-12-31", val: 41, filed: "2027-02-01", accn: "A3", form: "10-K", fy: 2026, fp: "FY", frame: "CY2025" }
+  );
+  const metric = normalizeMetric(sample, "gross_profit", "2027-03-01T00:00:00Z");
+  assert.equal(metric.currentFacts.filter((fact) => fact.start === "2025-01-01" && fact.end === "2025-12-31").length, 1);
+  assert.equal(metric.currentFacts.find((fact) => fact.end === "2025-12-31").accn, "A3");
+  assert.ok(metric.supersededFacts.some((fact) => fact.accn === "A1" && fact.supersededBy === "A3"));
+});
+
+test("US-GAAP ProfitLoss is not silently treated as NetIncomeLoss", () => {
+  const sample = payload();
+  sample.facts["us-gaap"].ProfitLoss = {
+    label: "Profit Loss",
+    units: { USD: [
+      { start: "2025-01-01", end: "2025-12-31", val: 999, filed: "2026-02-01", accn: "A1", form: "10-K", fy: 2025, fp: "FY", frame: "CY2025" }
+    ] }
+  };
+  const metric = normalizeMetric(sample, "net_income", "2026-04-01T00:00:00Z");
+  assert.equal(metric.latest.annual.selected.val, 12);
+  assert.equal(metric.allEligibleFacts.some((fact) => fact.tag === "ProfitLoss"), false);
 });

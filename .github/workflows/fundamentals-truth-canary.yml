@@ -32,4 +32,8 @@ jobs:
       - name: Live SEC Company Facts canary
         env:
           SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
-        run: npm run truth:fundamentals -- --tickers ETN,AAPL,ASML --limit 3 --no-write --audit-details
+        run: npm run truth:fundamentals -- --tickers ETN,AAPL,ASML,TSM,NVO,ARM,AMT,COIN --limit 8 --no-write --audit-details
+      - name: Historical point-in-time reconstruction canary
+        env:
+          SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
+        run: npm run truth:fundamentals -- --tickers ETN,AAPL,ASML --limit 3 --no-write --as-of 2020-12-31T23:59:59Z --audit-details

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-22T05:15:59.329Z",
+  "updatedAt": "2026-09-22T09:42:08.562Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -962,6 +962,54 @@
       "type": "market",
       "label": "higher energy density in space-constrained devices",
       "description": "Enovix's structural thesis is higher-energy-density silicon-anode lithium-ion cells for space-constrained devices; present evidence connects that technology to smartphone, smart-eyewear, drone/defense demand, while customer qualification and manufacturing throughput remain the bridge from technical value to scaled human/device utility."
+    },
+    {
+      "id": "company:EOSE",
+      "type": "company",
+      "label": "Eos Energy Enterprises, Inc.",
+      "description": "Eos links zinc-based long-duration storage manufacturing to grid reliability and renewable-integration needs, but current evidence shows manufacturing throughput improvement without proof that scale has crossed into positive unit economics."
+    },
+    {
+      "id": "market:EOSE-eose-structural-demand",
+      "type": "market",
+      "label": "EOSE structural demand",
+      "description": "Eos links zinc-based long-duration storage manufacturing to grid reliability and renewable-integration needs, but current evidence shows manufacturing throughput improvement without proof that scale has crossed into positive unit economics."
+    },
+    {
+      "id": "company:EQIX",
+      "type": "company",
+      "label": "Equinix",
+      "description": "Equinix sits between compute/network demand and physical power/cooling/interconnection infrastructure; rising cabinet power density makes electricity delivery and thermal capacity successor bottlenecks to customer demand."
+    },
+    {
+      "id": "market:EQIX-eqix-structural-demand",
+      "type": "market",
+      "label": "EQIX structural demand",
+      "description": "Equinix sits between compute/network demand and physical power/cooling/interconnection infrastructure; rising cabinet power density makes electricity delivery and thermal capacity successor bottlenecks to customer demand."
+    },
+    {
+      "id": "company:EQT",
+      "type": "company",
+      "label": "EQT Corporation",
+      "description": "EQT connects Appalachian gas resources to power, industrial and LNG demand; transport capacity, basis differentials and future LNG logistics are the principal infrastructure bridges between resource abundance and end-market value."
+    },
+    {
+      "id": "market:EQT-eqt-structural-demand",
+      "type": "market",
+      "label": "EQT structural demand",
+      "description": "EQT connects Appalachian gas resources to power, industrial and LNG demand; transport capacity, basis differentials and future LNG logistics are the principal infrastructure bridges between resource abundance and end-market value."
+    },
+    {
+      "id": "company:ERIC",
+      "type": "company",
+      "label": "Ericsson",
+      "description": "Ericsson links radio/network technology to carrier infrastructure and end-user connectivity; AI-native radio capability can improve network resource allocation, but product capability only becomes a durable bottleneck position through scaled operator adoption and economic contribution."
+    },
+    {
+      "id": "market:ERIC-eric-structural-demand",
+      "type": "market",
+      "label": "ERIC structural demand",
+      "description": "Ericsson links radio/network technology to carrier infrastructure and end-user connectivity; AI-native radio capability can improve network resource allocation, but product capability only becomes a durable bottleneck position through scaled operator adoption and economic contribution."
     }
   ],
   "edges": [
@@ -2236,6 +2284,66 @@
         "sec:ENVX:2026Q2:10-Q"
       ],
       "observedAt": "2026-09-20T09:22:49Z"
+    },
+    {
+      "id": "edge:EOSE-structural-exposure",
+      "from": "company:EOSE",
+      "to": "market:EOSE-eose-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "eos:2026-08-05:q2-results",
+        "eos:2026-06-16:line2-production"
+      ],
+      "observedAt": "2026-09-20T10:27:37Z"
+    },
+    {
+      "id": "edge:EQIX-structural-exposure",
+      "from": "company:EQIX",
+      "to": "market:EQIX-eqix-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 95,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:eqix:2026q2-ex99-1",
+        "sec:eqix:2026q2-10q"
+      ],
+      "observedAt": "2026-09-20T10:27:37Z"
+    },
+    {
+      "id": "edge:EQT-structural-exposure",
+      "from": "company:EQT",
+      "to": "market:EQT-eqt-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 95,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:eqt:2026q2-ex99-1",
+        "sec:eqt:2026q2-10q"
+      ],
+      "observedAt": "2026-09-20T10:27:37Z"
+    },
+    {
+      "id": "edge:ERIC-structural-exposure",
+      "from": "company:ERIC",
+      "to": "market:ERIC-eric-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 87,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:eric:2026q1-6k",
+        "sec:eric:2026q2-6k"
+      ],
+      "observedAt": "2026-09-20T10:27:37Z"
     }
   ],
   "structuralSignals": [
@@ -3799,6 +3907,82 @@
       ],
       "observedAt": "2026-09-20T09:22:49Z",
       "thesis": "Enovix's structural thesis is higher-energy-density silicon-anode lithium-ion cells for space-constrained devices; present evidence connects that technology to smartphone, smart-eyewear, drone/defense demand, while customer qualification and manufacturing throughput remain the bridge from technical value to scaled human/device utility.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:EOSE-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:EOSE-eose-structural-demand",
+      "affectedNodeIds": [
+        "company:EOSE"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "eos:2026-08-05:q2-results",
+        "eos:2026-06-16:line2-production"
+      ],
+      "observedAt": "2026-09-20T10:27:37Z",
+      "thesis": "Eos links zinc-based long-duration storage manufacturing to grid reliability and renewable-integration needs, but current evidence shows manufacturing throughput improvement without proof that scale has crossed into positive unit economics.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:EQIX-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:EQIX-eqix-structural-demand",
+      "affectedNodeIds": [
+        "company:EQIX"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 95,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:eqix:2026q2-ex99-1",
+        "sec:eqix:2026q2-10q"
+      ],
+      "observedAt": "2026-09-20T10:27:37Z",
+      "thesis": "Equinix sits between compute/network demand and physical power/cooling/interconnection infrastructure; rising cabinet power density makes electricity delivery and thermal capacity successor bottlenecks to customer demand.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:EQT-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:EQT-eqt-structural-demand",
+      "affectedNodeIds": [
+        "company:EQT"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 95,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:eqt:2026q2-ex99-1",
+        "sec:eqt:2026q2-10q"
+      ],
+      "observedAt": "2026-09-20T10:27:37Z",
+      "thesis": "EQT connects Appalachian gas resources to power, industrial and LNG demand; transport capacity, basis differentials and future LNG logistics are the principal infrastructure bridges between resource abundance and end-market value.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:ERIC-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:ERIC-eric-structural-demand",
+      "affectedNodeIds": [
+        "company:ERIC"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 87,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:eric:2026q1-6k",
+        "sec:eric:2026q2-6k"
+      ],
+      "observedAt": "2026-09-20T10:27:37Z",
+      "thesis": "Ericsson links radio/network technology to carrier infrastructure and end-user connectivity; AI-native radio capability can improve network resource allocation, but product capability only becomes a durable bottleneck position through scaled operator adoption and economic contribution.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

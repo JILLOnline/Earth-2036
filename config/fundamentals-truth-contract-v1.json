@@ -1,0 +1,118 @@
+{
+  "version": "1.0.0",
+  "contract": "earth2036-fundamentals-truth-v1",
+  "status": "lab-audit",
+  "system": "lab",
+  "canonicalWriteAuthority": false,
+  "purpose": "Preserve deterministic point-in-time SEC XBRL observations as machine truth. Human-selected financial metrics are convenience projections only; the learner retains access to the complete eligible standard-taxonomy fact set.",
+  "authority": {
+    "primary": "SEC EDGAR XBRL Company Facts API",
+    "endpointTemplate": "https://data.sec.gov/api/xbrl/companyfacts/CIK##########.json",
+    "bulkScalePath": "https://www.sec.gov/Archives/edgar/daily-index/xbrl/companyfacts.zip",
+    "authenticationRequired": false,
+    "sourceClass": "primary-regulatory",
+    "customTaxonomyPolicy": "Company Facts exposes standard taxonomy facts only. Extension-only disclosures remain absent/unknown rather than inferred."
+  },
+  "pointInTime": {
+    "required": true,
+    "futureLeakageForbidden": true,
+    "rule": "A fact is eligible only when its SEC filed date is available by the requested asOf cutoff.",
+    "preserveAllEligibleVersions": true,
+    "sameDayPolicy": "conservative-end-of-UTC-day",
+    "note": "Company Facts exposes filing date, not EDGAR acceptance timestamp; same-day eligibility is therefore delayed until UTC day end."
+  },
+  "rawTruth": {
+    "learnerAuthority": "allEligibleStandardFacts",
+    "allowedTaxonomies": [
+      "us-gaap",
+      "ifrs-full",
+      "dei",
+      "srt"
+    ],
+    "preserveUnknownStandardTaxonomies": true,
+    "preserveAllUnits": true,
+    "preserveAllForms": true,
+    "noSilentCurrencyConversion": true,
+    "noHumanMetricFilterForLearning": true,
+    "rawFactIdentity": [
+      "taxonomy",
+      "tag",
+      "unit",
+      "val",
+      "start",
+      "end",
+      "filed",
+      "accn",
+      "form",
+      "fy",
+      "fp",
+      "frame"
+    ],
+    "payloadHashRequired": true,
+    "rawFactsHashRequired": true
+  },
+  "normalizedProjection": {
+    "learningAuthority": false,
+    "purpose": "Mechanical convenience view for audit and later outcome calculations; never the only feature space available to learning.",
+    "metrics": [
+      "revenue",
+      "gross_profit",
+      "operating_income",
+      "net_income",
+      "operating_cash_flow",
+      "capital_expenditures",
+      "cash_and_equivalents",
+      "long_term_debt_current",
+      "long_term_debt_noncurrent",
+      "borrowings_current_ifrs",
+      "borrowings_noncurrent_ifrs",
+      "shares_outstanding"
+    ],
+    "derived": [
+      "free_cash_flow",
+      "gross_margin",
+      "operating_margin",
+      "net_margin"
+    ],
+    "ambiguityPolicy": "unknown-not-reconciled",
+    "periodicForms": [
+      "10-K",
+      "10-K/A",
+      "10-Q",
+      "10-Q/A",
+      "20-F",
+      "20-F/A",
+      "40-F",
+      "40-F/A",
+      "6-K",
+      "6-K/A"
+    ],
+    "excludeFromNormalized": [
+      "8-K",
+      "8-K/A"
+    ],
+    "derivedSameAccessionRequired": true,
+    "noTotalDebtSynthesisV1": true
+  },
+  "amendmentPolicy": {
+    "historyImmutable": true,
+    "sameEconomicContext": "taxonomy + tag + unit + start + end",
+    "currentVersion": "latest eligible filed/accession for the same economic context",
+    "supersededVersionsPreserved": true,
+    "note": "Later comparative filings may supersede the same economic fact while original versions remain visible."
+  },
+  "missingData": {
+    "missingMeans": "unknown",
+    "zeroImputationForbidden": true,
+    "favorableImputationForbidden": true,
+    "extensionOnlyMeans": "unknown"
+  },
+  "governance": {
+    "mayChangeEarthScore": false,
+    "mayChangeCanonicalRank": false,
+    "mayChangeWorkgraphState": false,
+    "mayAffectT0Qualification": false,
+    "mayTrainTrajectoryDirectlyBeforeAudit": false,
+    "promotionRequires": "separate audit and explicit governance change"
+  }
+}

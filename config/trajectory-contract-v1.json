@@ -1,0 +1,53 @@
+{
+  "version": "1.0.0",
+  "contract": "earth2036-trajectory-contract-v1",
+  "status": "t1000-shadow-foundation",
+  "system": "shadow",
+  "canonicalWriteAuthority": false,
+  "purpose": "Preserve point-in-time company state during the 1,000 qualified trial ticks so long-horizon forecasts can be trained, audited and reconciled against later outcomes without rewriting history.",
+  "trial": {
+    "qualifiedTicksRequired": 1000,
+    "capturePolicy": "every-qualified-trial-tick",
+    "prototypeHistoryCountsTowardTrial": false,
+    "missingTrajectoryCaptureChangesQualifiedTick": false
+  },
+  "featureSchemaVersion": "1.0.0",
+  "horizonsMonths": [
+    12,
+    24,
+    36,
+    60
+  ],
+  "targets": [
+    "operational_success",
+    "structural_thesis_success",
+    "financial_deterioration",
+    "distress",
+    "relative_equity_outperformance"
+  ],
+  "pointInTimePolicy": {
+    "enabled": true,
+    "futureLeakageForbidden": true,
+    "sourceCutoffMustNotExceedSnapshotAsOf": true,
+    "snapshotsImmutable": true,
+    "laterOutcomesStoredSeparately": true
+  },
+  "forecastPolicy": {
+    "placeholderForecastsAllowed": false,
+    "probabilitiesRequireValidatedModel": true,
+    "liveForecastsCanonicalAuthority": false,
+    "validationMode": "walk-forward"
+  },
+  "outcomePolicy": {
+    "appendOnly": true,
+    "originalSnapshotMutable": false,
+    "businessAndMarketOutcomesSeparated": true,
+    "unresolvedOutcomesRemainPending": true
+  },
+  "governance": {
+    "mayChangeEarthScore": false,
+    "mayChangeCanonicalRank": false,
+    "mayPromoteWorkgraphState": false,
+    "methodologyPromotionRequires": "explicit versioned governance change plus CI, historical validation and Beast integrity"
+  }
+}

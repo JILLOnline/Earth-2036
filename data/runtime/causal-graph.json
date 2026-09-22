@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-21T23:23:33.612Z",
+  "updatedAt": "2026-09-22T00:16:26.018Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -902,6 +902,18 @@
       "type": "market",
       "label": "EME structural demand",
       "description": "EMCOR sits at the skilled-trade execution layer connecting electrical/mechanical systems and industrial/building infrastructure to data-network, water, healthcare and institutional demand; this makes labor availability, project execution and customer capital spending the key bottleneck chain."
+    },
+    {
+      "id": "company:EMR",
+      "type": "company",
+      "label": "Emerson Electric",
+      "description": "Emerson's causal position spans sensing/final-control hardware, control software, test and measurement, and AspenTech industrial software, linking operational data and physical control to reliability, grid operations and industrial productivity."
+    },
+    {
+      "id": "market:EMR-operational-visibility-and-decision-support",
+      "type": "market",
+      "label": "operational visibility and decision support",
+      "description": "contextualizes OT data and embeds domain models into operating workflows"
     }
   ],
   "edges": [
@@ -2098,6 +2110,22 @@
         "sec:EME:2026Q2-ex991"
       ],
       "observedAt": "2026-09-20T05:23:03Z"
+    },
+    {
+      "id": "edge:EMR-structural-exposure",
+      "from": "company:EMR",
+      "to": "market:EMR-operational-visibility-and-decision-support",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "emerson:2026-08-04:q3-results",
+        "emerson:2026-05-12:oncor-grid",
+        "emerson:2026-05-11:ava-industrial-ai"
+      ],
+      "observedAt": "2026-09-20T06:25:30Z"
     }
   ],
   "structuralSignals": [
@@ -3563,6 +3591,26 @@
       ],
       "observedAt": "2026-09-20T05:23:03Z",
       "thesis": "EMCOR sits at the skilled-trade execution layer connecting electrical/mechanical systems and industrial/building infrastructure to data-network, water, healthcare and institutional demand; this makes labor availability, project execution and customer capital spending the key bottleneck chain.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:EMR-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:EMR-operational-visibility-and-decision-support",
+      "affectedNodeIds": [
+        "company:EMR"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "emerson:2026-08-04:q3-results",
+        "emerson:2026-05-12:oncor-grid",
+        "emerson:2026-05-11:ava-industrial-ai"
+      ],
+      "observedAt": "2026-09-20T06:25:30Z",
+      "thesis": "Emerson's causal position spans sensing/final-control hardware, control software, test and measurement, and AspenTech industrial software, linking operational data and physical control to reliability, grid operations and industrial productivity.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

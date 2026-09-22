@@ -1,0 +1,48 @@
+name: Fundamentals Truth Canary
+
+on:
+  pull_request:
+    paths:
+      - "config/fundamentals-truth-contract-v1.json"
+      - "scripts/lib/fundamental-metric-map.mjs"
+      - "scripts/lib/sec-fundamentals-truth.mjs"
+      - "scripts/lab-fundamentals-truth.mjs"
+      - "test/fundamentals-truth.test.mjs"
+      - ".github/workflows/fundamentals-truth-canary.yml"
+  push:
+    branches: [main]
+    paths:
+      - "config/fundamentals-truth-contract-v1.json"
+      - "scripts/lib/fundamental-metric-map.mjs"
+      - "scripts/lib/sec-fundamentals-truth.mjs"
+      - "scripts/lab-fundamentals-truth.mjs"
+      - "test/fundamentals-truth.test.mjs"
+      - ".github/workflows/fundamentals-truth-canary.yml"
+      - "package.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  canary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+      - name: Unit truth invariants
+        run: node --test test/fundamentals-truth.test.mjs
+      - name: Live SEC Company Facts canary
+        env:
+          SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
+        run: npm run truth:fundamentals -- --tickers ETN,AAPL,ASML --limit 3 --no-write --audit-details
+      - name: Diversified SEC truth smoke
+        env:
+          SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
+        run: npm run truth:fundamentals -- --tickers ETN,AAPL,ASML,LLY,PLTR,RKLB,GEV,NVO,V,MSFT,LAC,EDIT --limit 12 --no-write

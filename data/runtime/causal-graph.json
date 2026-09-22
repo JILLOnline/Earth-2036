@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-22T17:19:31.874Z",
+  "updatedAt": "2026-09-22T18:17:52.762Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1094,6 +1094,54 @@
       "type": "market",
       "label": "power distribution/protection requirements",
       "description": "new loads require safe, reliable electrical infrastructure"
+    },
+    {
+      "id": "company:JOBY",
+      "type": "company",
+      "label": "Joby Aviation",
+      "description": "Joby Aviation structural-causal evidence"
+    },
+    {
+      "id": "market:JOBY-joby-structural-demand",
+      "type": "market",
+      "label": "JOBY structural demand",
+      "description": "Structural demand channel"
+    },
+    {
+      "id": "company:KMI",
+      "type": "company",
+      "label": "Kinder Morgan",
+      "description": "KMI's structural role is transmission of natural gas and refined products through long-lived network infrastructure; incremental power/data-center load can increase demand for gas transport, while Western Gateway extends refined-products connectivity by combining existing SFPP assets with new-build links."
+    },
+    {
+      "id": "market:KMI-kmi-structural-demand",
+      "type": "market",
+      "label": "KMI structural demand",
+      "description": "KMI's structural role is transmission of natural gas and refined products through long-lived network infrastructure; incremental power/data-center load can increase demand for gas transport, while Western Gateway extends refined-products connectivity by combining existing SFPP assets with new-build links."
+    },
+    {
+      "id": "company:LEU",
+      "type": "company",
+      "label": "Centrus Energy",
+      "description": "Centrus Energy structural-causal evidence"
+    },
+    {
+      "id": "market:LEU-leu-structural-demand",
+      "type": "market",
+      "label": "LEU structural demand",
+      "description": "Structural demand channel"
+    },
+    {
+      "id": "company:LHX",
+      "type": "company",
+      "label": "L3Harris Technologies",
+      "description": "L3Harris Technologies structural-causal evidence"
+    },
+    {
+      "id": "market:LHX-lhx-structural-demand",
+      "type": "market",
+      "label": "LHX structural demand",
+      "description": "Structural demand channel"
     }
   ],
   "edges": [
@@ -2534,6 +2582,66 @@
         "eaton:q2-2026:2026-07-31"
       ],
       "observedAt": "2026-09-19T08:22:12Z"
+    },
+    {
+      "id": "edge:JOBY-structural-exposure",
+      "from": "company:JOBY",
+      "to": "market:JOBY-joby-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 82,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "jobyaviation.com|news|faa-conforming-tia-first-flight|2026-03-11",
+        "ir.jobyaviation.com|q1-2026-results|manufacturing-certification"
+      ],
+      "observedAt": "2026-09-21T01:25:22Z"
+    },
+    {
+      "id": "edge:KMI-structural-exposure",
+      "from": "company:KMI",
+      "to": "market:KMI-kmi-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 84,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "kmi:western-gateway:2026-08-11",
+        "kmi:q2-2026"
+      ],
+      "observedAt": "2026-09-21T02:25:37Z"
+    },
+    {
+      "id": "edge:LEU-structural-exposure",
+      "from": "company:LEU",
+      "to": "market:LEU-leu-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 84,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "centrusenergy.com|doe-900m-commercial-haleu|2026-07-01",
+        "centrusenergy.com|500m-equity-warrant-offering|2026-09-09"
+      ],
+      "observedAt": "2026-09-21T01:25:22Z"
+    },
+    {
+      "id": "edge:LHX-structural-exposure",
+      "from": "company:LHX",
+      "to": "market:LHX-lhx-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 85,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "l3harris.com|pac3-mse-4.7b|2026-09-08",
+        "l3harris.com|viper-shield-first-35-production|2026-09-03"
+      ],
+      "observedAt": "2026-09-21T01:25:22Z"
     }
   ],
   "structuralSignals": [
@@ -4308,6 +4416,82 @@
       "observedAt": "2026-09-19T08:22:12Z",
       "thesis": "Eaton is exposed to a physical power-infrastructure bottleneck: data-center and broader electrification load growth require distribution, protection and related electrical equipment before incremental compute or industrial load can operate.",
       "falsifier": "electrical orders/backlog contract despite sustained load growth"
+    },
+    {
+      "id": "signal:JOBY-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:JOBY-joby-structural-demand",
+      "affectedNodeIds": [
+        "company:JOBY"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 82,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "jobyaviation.com|news|faa-conforming-tia-first-flight|2026-03-11",
+        "ir.jobyaviation.com|q1-2026-results|manufacturing-certification"
+      ],
+      "observedAt": "2026-09-21T01:25:22Z",
+      "thesis": "Joby Aviation has a sourced structural demand path.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:KMI-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:KMI-kmi-structural-demand",
+      "affectedNodeIds": [
+        "company:KMI"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 84,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "kmi:western-gateway:2026-08-11",
+        "kmi:q2-2026"
+      ],
+      "observedAt": "2026-09-21T02:25:37Z",
+      "thesis": "KMI's structural role is transmission of natural gas and refined products through long-lived network infrastructure; incremental power/data-center load can increase demand for gas transport, while Western Gateway extends refined-products connectivity by combining existing SFPP assets with new-build links.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:LEU-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:LEU-leu-structural-demand",
+      "affectedNodeIds": [
+        "company:LEU"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 84,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "centrusenergy.com|doe-900m-commercial-haleu|2026-07-01",
+        "centrusenergy.com|500m-equity-warrant-offering|2026-09-09"
+      ],
+      "observedAt": "2026-09-21T01:25:22Z",
+      "thesis": "Centrus Energy has a sourced structural demand path.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:LHX-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:LHX-lhx-structural-demand",
+      "affectedNodeIds": [
+        "company:LHX"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 85,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "l3harris.com|pac3-mse-4.7b|2026-09-08",
+        "l3harris.com|viper-shield-first-35-production|2026-09-03"
+      ],
+      "observedAt": "2026-09-21T01:25:22Z",
+      "thesis": "L3Harris Technologies has a sourced structural demand path.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],
   "roadmapMilestones": [

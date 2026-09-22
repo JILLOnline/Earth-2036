@@ -236,3 +236,18 @@ test("historical truth never contains facts filed after the requested cutoff",()
   assert.ok(truth.rawTruth.facts.every((fact)=>fact.filed<="2026-02-15"));
   assert.ok(!truth.rawTruth.facts.some((fact)=>fact.accn==="A2"||fact.accn==="Q1"||fact.accn==="Q2"));
 });
+
+
+test("same-day conflicting versions remain jointly current instead of inventing accession order",()=>{
+  const sample=payload();
+  sample.facts["us-gaap"].RevenueFromContractWithCustomerExcludingAssessedTax.units.USD.push(
+    {start:"2025-01-01",end:"2025-12-31",val:106,filed:"2026-03-01",accn:"A2B",form:"10-K/A",fy:2025,fp:"FY"}
+  );
+  const metric=normalizeMetric(sample,"revenue","2026-04-01T00:00:00Z");
+  assert.equal(metric.latest.annual.status,"ambiguous_concepts");
+  assert.equal(metric.latest.annual.selected,null);
+  const truth=buildFundamentalsTruth(sample,{ticker:"TEST",asOf:"2026-04-01T00:00:00Z"});
+  const current=truth.rawTruth.currentFactIndexes.map((index)=>truth.rawTruth.facts[index])
+    .filter((fact)=>fact.tag==="RevenueFromContractWithCustomerExcludingAssessedTax"&&fact.end==="2025-12-31");
+  assert.deepEqual(current.map((fact)=>fact.accn).sort(),["A2","A2B"]);
+});

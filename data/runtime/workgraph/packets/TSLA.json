@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "TSLA",
   "workId": "t0:TSLA",
-  "generatedAt": "2026-09-22T00:16:22.322Z",
+  "generatedAt": "2026-09-22T00:28:24.763Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-06-26T00:00:00.000Z",
-    "end": "2026-09-21T19:03:56.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T19:03:56.000Z"
+    "end": "2026-09-22T00:25:38.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T00:25:38.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,29 +32,33 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "adversarial-red-team",
+      "structural-causal"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "adversarial-red-team",
+    "structural-causal"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/TSLA-20260921T190355Z-earth-scout-discovery.json",
-    "data/runtime/workgraph/evidence/TSLA-20260921T190356Z-earth-scout-execution.json"
+    "data/runtime/workgraph/evidence/TSLA-20260921T190356Z-earth-scout-execution.json",
+    "data/runtime/workgraph/evidence/TSLA-20260922T002538Z-council-beta-adversarial-red-team.json",
+    "data/runtime/workgraph/evidence/TSLA-20260922T002538Z-council-beta-structural-causal.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -133,14 +137,30 @@
       "deliveries exceeding production can reflect inventory drawdown and should not be extrapolated mechanically",
       "vehicle and energy businesses have different margin and capital profiles",
       "one-quarter delivery outperformance may include timing and inventory effects",
-      "company-compiled consensus is not company guidance and should not be treated as such"
+      "company-compiled consensus is not company guidance and should not be treated as such",
+      "inventory/timing effects can inflate interpretation of one-quarter deliveries",
+      "vehicle and storage margins/capital intensity differ",
+      "issuer-compiled consensus can create confidence inflation if treated as guidance",
+      "competitive substitution across EV and storage markets",
+      "vehicle demand and storage demand have different economics",
+      "inventory drawdown can temporarily lift deliveries above production",
+      "battery/input constraints can correlate across divisions",
+      "competitive EV and storage substitutes remain credible"
     ]
   },
   "risks": [
     "deliveries exceeding production can reflect inventory drawdown and should not be extrapolated mechanically",
     "vehicle and energy businesses have different margin and capital profiles",
     "one-quarter delivery outperformance may include timing and inventory effects",
-    "company-compiled consensus is not company guidance and should not be treated as such"
+    "company-compiled consensus is not company guidance and should not be treated as such",
+    "inventory/timing effects can inflate interpretation of one-quarter deliveries",
+    "vehicle and storage margins/capital intensity differ",
+    "issuer-compiled consensus can create confidence inflation if treated as guidance",
+    "competitive substitution across EV and storage markets",
+    "vehicle demand and storage demand have different economics",
+    "inventory drawdown can temporarily lift deliveries above production",
+    "battery/input constraints can correlate across divisions",
+    "competitive EV and storage substitutes remain credible"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -153,14 +173,46 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "human_need:mobility",
+        "to": "technology:EV-manufacturing-and-software",
+        "mechanism": "electric vehicles provide transport using battery/electronic/software systems"
+      },
+      {
+        "from": "human_need:grid-flexibility",
+        "to": "technology:stationary-energy-storage",
+        "mechanism": "storage shifts power across time and supports variable generation/load"
+      },
+      {
+        "from": "resource:battery-cells-power-electronics-manufacturing",
+        "to": "company:TSLA",
+        "mechanism": "shared industrial inputs constrain and enable both vehicle and storage scaling"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "human_need:mobility",
+      "to": "technology:EV-manufacturing-and-software",
+      "mechanism": "electric vehicles provide transport using battery/electronic/software systems"
+    },
+    {
+      "from": "human_need:grid-flexibility",
+      "to": "technology:stationary-energy-storage",
+      "mechanism": "storage shifts power across time and supports variable generation/load"
+    },
+    {
+      "from": "resource:battery-cells-power-electronics-manufacturing",
+      "to": "company:TSLA",
+      "mechanism": "shared industrial inputs constrain and enable both vehicle and storage scaling"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "ir.tesla.com|TSLA|Q2-2026-deliveries|2026-07-02",
@@ -187,39 +239,45 @@
   ],
   "contradictions": [
     "Q2 vehicle deliveries exceeded production by roughly 28,000 units, a favorable near-term inventory signal that also means delivery growth must be separated from current-quarter production growth.",
-    "Vehicle deliveries substantially beat compiled expectations while storage was roughly in line; execution strength was therefore uneven across operating vectors rather than uniformly above expectations."
+    "Vehicle deliveries substantially beat compiled expectations while storage was roughly in line; execution strength was therefore uneven across operating vectors rather than uniformly above expectations.",
+    "Deliveries beating expectations is real execution evidence, while deliveries exceeding production means part of the quarter's strength came from inventory conversion; both must remain explicit.",
+    "Vehicle delivery outperformance and roughly in-line storage execution show uneven strength across Tesla's two major physical scaling vectors."
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 4,
     "items": [
       "Q2 vehicle deliveries exceeded production by roughly 28,000 units, a favorable near-term inventory signal that also means delivery growth must be separated from current-quarter production growth.",
-      "Vehicle deliveries substantially beat compiled expectations while storage was roughly in line; execution strength was therefore uneven across operating vectors rather than uniformly above expectations."
+      "Vehicle deliveries substantially beat compiled expectations while storage was roughly in line; execution strength was therefore uneven across operating vectors rather than uniformly above expectations.",
+      "Deliveries beating expectations is real execution evidence, while deliveries exceeding production means part of the quarter's strength came from inventory conversion; both must remain explicit.",
+      "Vehicle delivery outperformance and roughly in-line storage execution show uneven strength across Tesla's two major physical scaling vectors."
     ]
   },
   "unknowns": [
     "margin contribution of Q2 delivery mix",
     "durability of energy-storage deployment growth",
     "how much of the vehicle beat came from timing/incentives versus durable demand",
-    "profitability of incremental deliveries"
+    "profitability of incremental deliveries",
+    "incremental delivery profitability",
+    "incentive contribution to demand",
+    "storage margin and return profile",
+    "margin contribution of Q2 vehicle mix",
+    "durability and economics of storage growth"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 9
   },
   "gatingIssues": [],
-  "confidence": 92,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -230,14 +288,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -254,10 +304,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

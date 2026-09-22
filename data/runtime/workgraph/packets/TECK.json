@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "TECK",
   "workId": "t0:TECK",
-  "generatedAt": "2026-09-22T00:16:22.322Z",
+  "generatedAt": "2026-09-22T00:28:24.762Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2025-10-07T00:00:00.000Z",
-    "end": "2026-09-21T19:03:50.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T19:03:50.000Z"
+    "end": "2026-09-22T00:25:38.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T00:25:38.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,29 +32,33 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "adversarial-red-team",
+      "structural-causal"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "adversarial-red-team",
+    "structural-causal"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/TECK-20260921T190349Z-earth-scout-discovery.json",
-    "data/runtime/workgraph/evidence/TECK-20260921T190350Z-earth-scout-execution.json"
+    "data/runtime/workgraph/evidence/TECK-20260921T190350Z-earth-scout-execution.json",
+    "data/runtime/workgraph/evidence/TECK-20260922T002538Z-council-beta-adversarial-red-team.json",
+    "data/runtime/workgraph/evidence/TECK-20260922T002538Z-council-beta-structural-causal.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -134,7 +138,14 @@
       "QB tailings-management execution remains operationally material",
       "planned Anglo American merger adds regulatory and integration dependency",
       "2026 guidance was reset materially lower after 2025 problems",
-      "future TMF or recovery shortfalls could again constrain production"
+      "future TMF or recovery shortfalls could again constrain production",
+      "commodity-price dependence",
+      "QB tailings and recovery execution",
+      "merger regulatory/integration dependency",
+      "confidence inflation from extrapolating three stable quarters",
+      "commodity-price sensitivity can weaken economics even with physical throughput recovery",
+      "TMF/recovery execution remains the successor bottleneck after mine capacity exists",
+      "merger execution may add organizational and regulatory complexity"
     ]
   },
   "risks": [
@@ -142,7 +153,14 @@
     "QB tailings-management execution remains operationally material",
     "planned Anglo American merger adds regulatory and integration dependency",
     "2026 guidance was reset materially lower after 2025 problems",
-    "future TMF or recovery shortfalls could again constrain production"
+    "future TMF or recovery shortfalls could again constrain production",
+    "commodity-price dependence",
+    "QB tailings and recovery execution",
+    "merger regulatory/integration dependency",
+    "confidence inflation from extrapolating three stable quarters",
+    "commodity-price sensitivity can weaken economics even with physical throughput recovery",
+    "TMF/recovery execution remains the successor bottleneck after mine capacity exists",
+    "merger execution may add organizational and regulatory complexity"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -155,14 +173,46 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "human_need:electrification-and-grid-capacity",
+        "to": "resource:copper-demand",
+        "mechanism": "electrification and infrastructure require conductive material"
+      },
+      {
+        "from": "resource:copper-demand",
+        "to": "company:TECK",
+        "mechanism": "Teck monetizes copper through QB and other copper operations"
+      },
+      {
+        "from": "constraint:QB-TMF-and-recovery-throughput",
+        "to": "company:TECK",
+        "mechanism": "tailings-management and recovery execution constrain saleable copper output and unit economics"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "human_need:electrification-and-grid-capacity",
+      "to": "resource:copper-demand",
+      "mechanism": "electrification and infrastructure require conductive material"
+    },
+    {
+      "from": "resource:copper-demand",
+      "to": "company:TECK",
+      "mechanism": "Teck monetizes copper through QB and other copper operations"
+    },
+    {
+      "from": "constraint:QB-TMF-and-recovery-throughput",
+      "to": "company:TECK",
+      "mechanism": "tailings-management and recovery execution constrain saleable copper output and unit economics"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "teck.com|TECK|Q2-2026|2026-07",
@@ -189,39 +239,45 @@
   ],
   "contradictions": [
     "Current QB stability is materially better than 2025 disruption, but the historical TMF constraint remains relevant until sustained through a longer operating window.",
-    "Three stable quarters support recovery, but the company explicitly warned in 2025 that TMF and recovery execution could impair 2026-27 output; both facts should remain live."
+    "Three stable quarters support recovery, but the company explicitly warned in 2025 that TMF and recovery execution could impair 2026-27 output; both facts should remain live.",
+    "Improved Q2 production/costs coexist with a recent history of material QB execution failure; neither observation cancels the other.",
+    "Current stable QB operations strengthen the recovery thesis, while the 2025 reset proves the same operating chain has recently failed; this is a live resilience test rather than evidence that either observation is false."
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 4,
     "items": [
       "Current QB stability is materially better than 2025 disruption, but the historical TMF constraint remains relevant until sustained through a longer operating window.",
-      "Three stable quarters support recovery, but the company explicitly warned in 2025 that TMF and recovery execution could impair 2026-27 output; both facts should remain live."
+      "Three stable quarters support recovery, but the company explicitly warned in 2025 that TMF and recovery execution could impair 2026-27 output; both facts should remain live.",
+      "Improved Q2 production/costs coexist with a recent history of material QB execution failure; neither observation cancels the other.",
+      "Current stable QB operations strengthen the recovery thesis, while the 2025 reset proves the same operating chain has recently failed; this is a live resilience test rather than evidence that either observation is false."
     ]
   },
   "unknowns": [
     "durability of QB recovery and throughput improvements",
     "final merger approvals and integration timetable",
     "whether QB exits 2026 at sustainable design-rate economics",
-    "whether current copper prices normalize before operating improvements fully mature"
+    "whether current copper prices normalize before operating improvements fully mature",
+    "merger integration timetable and economics",
+    "whether cost improvement persists at normalized copper prices and by-product credits",
+    "durability of QB stability through a longer operating window",
+    "sustainable design-rate economics",
+    "final merger approvals and integration effects"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 9
   },
   "gatingIssues": [],
-  "confidence": 90,
+  "confidence": 89,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -232,14 +288,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -256,10 +304,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

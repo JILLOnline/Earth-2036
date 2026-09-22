@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "TENB",
   "workId": "t0:TENB",
-  "generatedAt": "2026-09-22T00:16:22.325Z",
+  "generatedAt": "2026-09-22T00:28:24.764Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-04-29T00:00:00.000Z",
-    "end": "2026-09-21T19:03:52.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T19:03:52.000Z"
+    "end": "2026-09-22T00:25:38.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T00:25:38.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,29 +32,33 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "adversarial-red-team",
+      "structural-causal"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "adversarial-red-team",
+    "structural-causal"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/TENB-20260921T190351Z-earth-scout-discovery.json",
-    "data/runtime/workgraph/evidence/TENB-20260921T190352Z-earth-scout-execution.json"
+    "data/runtime/workgraph/evidence/TENB-20260921T190352Z-earth-scout-execution.json",
+    "data/runtime/workgraph/evidence/TENB-20260922T002538Z-council-beta-adversarial-red-team.json",
+    "data/runtime/workgraph/evidence/TENB-20260922T002538Z-council-beta-structural-causal.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -134,7 +138,14 @@
       "cybersecurity competition can pressure retention and pricing",
       "AI-native product claims require customer-level proof beyond launches",
       "non-GAAP margin excludes costs that must be reconciled to GAAP",
-      "share repurchases can improve per-share optics without proving durable organic growth"
+      "share repurchases can improve per-share optics without proving durable organic growth",
+      "moderate revenue growth relative to platform narrative",
+      "security-stack consolidation and competition",
+      "non-GAAP profitability can overstate economic improvement if excluded costs remain material",
+      "repurchases can improve per-share optics without organic acceleration",
+      "integrated security platforms can substitute for standalone exposure tooling",
+      "customer remediation capacity may become the successor bottleneck",
+      "AI-native claims require realized customer outcomes"
     ]
   },
   "risks": [
@@ -142,7 +153,14 @@
     "cybersecurity competition can pressure retention and pricing",
     "AI-native product claims require customer-level proof beyond launches",
     "non-GAAP margin excludes costs that must be reconciled to GAAP",
-    "share repurchases can improve per-share optics without proving durable organic growth"
+    "share repurchases can improve per-share optics without proving durable organic growth",
+    "moderate revenue growth relative to platform narrative",
+    "security-stack consolidation and competition",
+    "non-GAAP profitability can overstate economic improvement if excluded costs remain material",
+    "repurchases can improve per-share optics without organic acceleration",
+    "integrated security platforms can substitute for standalone exposure tooling",
+    "customer remediation capacity may become the successor bottleneck",
+    "AI-native claims require realized customer outcomes"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -155,14 +173,46 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "technology:cloud-ai-and-connected-assets",
+        "to": "constraint:cyber-exposure-complexity",
+        "mechanism": "more assets and identities expand attack surface and prioritization burden"
+      },
+      {
+        "from": "constraint:cyber-exposure-complexity",
+        "to": "company:TENB",
+        "mechanism": "exposure-management platform discovers and prioritizes weaknesses"
+      },
+      {
+        "from": "company:TENB",
+        "to": "human_need:reliable-digital-infrastructure",
+        "mechanism": "better exposure prioritization can reduce preventable cyber risk when remediation follows"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "technology:cloud-ai-and-connected-assets",
+      "to": "constraint:cyber-exposure-complexity",
+      "mechanism": "more assets and identities expand attack surface and prioritization burden"
+    },
+    {
+      "from": "constraint:cyber-exposure-complexity",
+      "to": "company:TENB",
+      "mechanism": "exposure-management platform discovers and prioritizes weaknesses"
+    },
+    {
+      "from": "company:TENB",
+      "to": "human_need:reliable-digital-infrastructure",
+      "mechanism": "better exposure prioritization can reduce preventable cyber risk when remediation follows"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "investors.tenable.com|TENB|Q2-2026|2026-07-29",
@@ -189,39 +239,45 @@
   ],
   "contradictions": [
     "Profitability expanded sharply while top-line growth remained single digit, suggesting efficiency is improving faster than demand growth.",
-    "Execution beat guidance and margins expanded, but growth remains below the pace implied by some AI-security narratives; future evidence should separate category excitement from realized revenue."
+    "Execution beat guidance and margins expanded, but growth remains below the pace implied by some AI-security narratives; future evidence should separate category excitement from realized revenue.",
+    "Profitability is expanding faster than revenue; this can be healthy operating leverage but falsifies any assumption that current margin improvement alone proves accelerating category demand.",
+    "Broader platform narrative and improving profitability coexist with moderate top-line growth, implying structural relevance is stronger than demonstrated monetization acceleration."
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 4,
     "items": [
       "Profitability expanded sharply while top-line growth remained single digit, suggesting efficiency is improving faster than demand growth.",
-      "Execution beat guidance and margins expanded, but growth remains below the pace implied by some AI-security narratives; future evidence should separate category excitement from realized revenue."
+      "Execution beat guidance and margins expanded, but growth remains below the pace implied by some AI-security narratives; future evidence should separate category excitement from realized revenue.",
+      "Profitability is expanding faster than revenue; this can be healthy operating leverage but falsifies any assumption that current margin improvement alone proves accelerating category demand.",
+      "Broader platform narrative and improving profitability coexist with moderate top-line growth, implying structural relevance is stronger than demonstrated monetization acceleration."
     ]
   },
   "unknowns": [
     "net retention and platform expansion rate",
     "share of new enterprise wins attributable specifically to AI-native capabilities",
     "Q3 conversion of new enterprise platform customers into durable recurring expansion",
-    "organic contribution of AI Exposure and Hexa to bookings"
+    "organic contribution of AI Exposure and Hexa to bookings",
+    "net retention",
+    "organic bookings contribution of AI Exposure/Hexa",
+    "GAAP-to-non-GAAP cost persistence",
+    "net retention/platform expansion rate",
+    "customer-level outcome evidence attributable to AI Exposure/Hexa"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 9
   },
   "gatingIssues": [],
-  "confidence": 88,
+  "confidence": 86,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -232,14 +288,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -256,10 +304,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

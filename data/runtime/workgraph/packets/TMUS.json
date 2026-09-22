@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "TMUS",
   "workId": "t0:TMUS",
-  "generatedAt": "2026-09-22T00:16:22.326Z",
+  "generatedAt": "2026-09-22T00:28:24.765Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-23T00:00:00.000Z",
-    "end": "2026-09-21T19:03:54.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T19:03:54.000Z"
+    "end": "2026-09-22T00:25:38.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T00:25:38.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,29 +32,33 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "adversarial-red-team",
+      "structural-causal"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "adversarial-red-team",
+    "structural-causal"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/TMUS-20260921T190353Z-earth-scout-discovery.json",
-    "data/runtime/workgraph/evidence/TMUS-20260921T190354Z-earth-scout-execution.json"
+    "data/runtime/workgraph/evidence/TMUS-20260921T190354Z-earth-scout-execution.json",
+    "data/runtime/workgraph/evidence/TMUS-20260922T002538Z-council-beta-adversarial-red-team.json",
+    "data/runtime/workgraph/evidence/TMUS-20260922T002538Z-council-beta-structural-causal.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -134,7 +138,15 @@
       "large capital returns must coexist with network and integration investment",
       "pricing changes can increase churn",
       "higher pricing may pressure churn and net adds",
-      "wireless saturation raises sensitivity to execution misses"
+      "wireless saturation raises sensitivity to execution misses",
+      "pricing-driven churn",
+      "saturated wireless demand",
+      "capital allocation tension between returns and reinvestment",
+      "fiber/integration execution",
+      "wireless saturation",
+      "pricing-driven churn",
+      "fiber/adjacency capital intensity",
+      "competitive network convergence"
     ]
   },
   "risks": [
@@ -142,7 +154,15 @@
     "large capital returns must coexist with network and integration investment",
     "pricing changes can increase churn",
     "higher pricing may pressure churn and net adds",
-    "wireless saturation raises sensitivity to execution misses"
+    "wireless saturation raises sensitivity to execution misses",
+    "pricing-driven churn",
+    "saturated wireless demand",
+    "capital allocation tension between returns and reinvestment",
+    "fiber/integration execution",
+    "wireless saturation",
+    "pricing-driven churn",
+    "fiber/adjacency capital intensity",
+    "competitive network convergence"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -155,14 +175,46 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "human_need:ubiquitous-connectivity",
+        "to": "resource:licensed-spectrum-and-network-capacity",
+        "mechanism": "mobile data requires scarce spectrum plus physical network investment"
+      },
+      {
+        "from": "resource:licensed-spectrum-and-network-capacity",
+        "to": "company:TMUS",
+        "mechanism": "T-Mobile operates nationwide wireless infrastructure and monetizes network access"
+      },
+      {
+        "from": "constraint:mature-wireless-saturation",
+        "to": "company:TMUS",
+        "mechanism": "growth increasingly depends on retention, premium monetization and adjacencies rather than first-time subscriber capture"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "human_need:ubiquitous-connectivity",
+      "to": "resource:licensed-spectrum-and-network-capacity",
+      "mechanism": "mobile data requires scarce spectrum plus physical network investment"
+    },
+    {
+      "from": "resource:licensed-spectrum-and-network-capacity",
+      "to": "company:TMUS",
+      "mechanism": "T-Mobile operates nationwide wireless infrastructure and monetizes network access"
+    },
+    {
+      "from": "constraint:mature-wireless-saturation",
+      "to": "company:TMUS",
+      "mechanism": "growth increasingly depends on retention, premium monetization and adjacencies rather than first-time subscriber capture"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 4,
+    "rawSourceCount": 8,
     "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "investor.t-mobile.com|TMUS|Q2-2026|2026-07-23",
@@ -198,24 +250,32 @@
   ],
   "contradictions": [
     "Strong cash-return capacity signals mature cash generation, while continued growth increasingly depends on monetization, broadband adjacencies and integration rather than subscriber land-grab.",
-    "Higher free-cash-flow expectations coexist with a near-term churn/account-growth warning; monetization quality should be judged on retained lifetime value rather than price increases alone."
+    "Higher free-cash-flow expectations coexist with a near-term churn/account-growth warning; monetization quality should be judged on retained lifetime value rather than price increases alone.",
+    "Raised cash-flow expectations coexist with near-term churn/account-growth sensitivity; both can be true if monetization rises while customer elasticity worsens.",
+    "Mature cash generation strengthens resilience while simultaneously indicating that future growth depends more on monetization and adjacencies than subscriber land-grab."
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 4,
     "items": [
       "Strong cash-return capacity signals mature cash generation, while continued growth increasingly depends on monetization, broadband adjacencies and integration rather than subscriber land-grab.",
-      "Higher free-cash-flow expectations coexist with a near-term churn/account-growth warning; monetization quality should be judged on retained lifetime value rather than price increases alone."
+      "Higher free-cash-flow expectations coexist with a near-term churn/account-growth warning; monetization quality should be judged on retained lifetime value rather than price increases alone.",
+      "Raised cash-flow expectations coexist with near-term churn/account-growth sensitivity; both can be true if monetization rises while customer elasticity worsens.",
+      "Mature cash generation strengthens resilience while simultaneously indicating that future growth depends more on monetization and adjacencies than subscriber land-grab."
     ]
   },
   "unknowns": [
     "long-run economics of fiber expansion",
     "retention impact of premium-plan migration",
     "duration of premium-plan migration churn effect",
-    "incremental return from fiber and adjacent broadband investment"
+    "incremental return from fiber and adjacent broadband investment",
+    "incremental return on fiber expansion",
+    "lifetime-value effect of premium-plan migration",
+    "long-run fiber returns",
+    "durability of premium-plan migration without churn deterioration"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 8
   },
   "gatingIssues": [],
   "confidence": 82,
@@ -224,13 +284,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -241,14 +298,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -265,10 +314,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

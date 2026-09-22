@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "LMT",
   "workId": "t0:LMT",
-  "generatedAt": "2026-09-22T17:19:28.036Z",
+  "generatedAt": "2026-09-22T17:26:54.244Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-22T16:43:39.370Z"
   },
   "evidenceWindow": {
-    "start": "2026-04-23T00:00:00.000Z",
-    "end": "2026-09-21T03:05:25.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T03:05:25.000Z"
+    "start": "2025-07-22T00:00:00.000Z",
+    "end": "2026-09-22T17:25:35.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T17:25:35.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,34 +32,37 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/LMT-20260920T060335Z-earth-scout.json",
     "data/runtime/workgraph/evidence/LMT-20260920T170401Z-earth-scout.json",
     "data/runtime/workgraph/evidence/LMT-20260920T180803Z-earth-scout.json",
     "data/runtime/workgraph/evidence/LMT-20260920T190403Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/LMT-20260921T030525Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/LMT-20260921T030525Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/LMT-20260922T172535Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
       "data/runtime/workgraph/evidence/LMT-20260920T200614Z-earth-scout.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 10,
-    "historicalEvidenceCount": 12
+    "activeEvidenceCount": 12,
+    "historicalEvidenceCount": 14
   },
   "factorEvidence": {
     "names": [
@@ -76,12 +79,40 @@
       "raised guidance",
       "potential F-35 foreign demand",
       "air-dominance demand",
-      "execution visibility"
+      "execution visibility",
+      "bottleneckControl",
+      "scenarioRobustness",
+      "substitutionResilience",
+      "supplyChainResilience",
+      "thesisQuality",
+      "financialOperatingMomentum",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        {
+          "name": "bottleneckControl",
+          "direction": "positive",
+          "basis": "Record $230.4B backlog and large Missiles and Fire Control backlog expansion are consistent with constrained defense-production demand, including PAC-3/THAAD and other munitions ramps."
+        },
+        {
+          "name": "scenarioRobustness",
+          "direction": "positive",
+          "basis": "Demand spans air/missile defense, tactical missiles, combat aircraft, undersea systems and strategic/space programs rather than one end market."
+        },
+        {
+          "name": "substitutionResilience",
+          "direction": "mixed",
+          "basis": "Mission integration, installed programs and qualification barriers create friction, but budget reprioritization, competing platforms and alternate suppliers can shift future awards."
+        },
+        {
+          "name": "supplyChainResilience",
+          "direction": "mixed",
+          "basis": "Production ramps demonstrate capacity expansion, while specialized components and ramp execution remain explicit constraints."
+        }
+      ],
       "discovery-weak-signals": [
         {
           "name": "missile production framework",
@@ -89,7 +120,23 @@
           "basis": "Production acceleration supports long-duration air-dominance demand visibility."
         }
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        {
+          "name": "thesisQuality",
+          "direction": "mixed",
+          "basis": "Strategic demand and backlog are well supported, but economics remain exposed to program accounting, contract structure and execution."
+        },
+        {
+          "name": "financialOperatingMomentum",
+          "direction": "mixed",
+          "basis": "Sales grew 11% and guidance rose, while profit comparability is flattered by prior-year reach-forward losses and cash flow benefited from receipt timing."
+        },
+        {
+          "name": "pricingPower",
+          "direction": "mixed",
+          "basis": "High demand does not imply unrestricted pricing because government procurement and contract structures constrain economics."
+        }
+      ],
       "expectations-execution": [
         {
           "name": "execution visibility",
@@ -150,7 +197,14 @@
     "raised guidance",
     "potential F-35 foreign demand",
     "air-dominance demand",
-    "execution visibility"
+    "execution visibility",
+    "bottleneckControl",
+    "scenarioRobustness",
+    "substitutionResilience",
+    "supplyChainResilience",
+    "thesisQuality",
+    "financialOperatingMomentum",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -197,6 +251,30 @@
       },
       {
         "risk": "Program charges and supply-chain constraints can impair conversion of demand into cash flow.",
+        "gating": false
+      },
+      {
+        "risk": "Successor bottlenecks are specialized supply availability, funded contract structure and production-ramp execution rather than demand alone.",
+        "gating": false
+      },
+      {
+        "risk": "Government/allied concentration makes budget, authorization and export decisions structurally important to conversion timing.",
+        "gating": false
+      },
+      {
+        "risk": "Backlog can overstate near-term economic realization when funding, definitization, delivery schedules or working capital delay conversion.",
+        "gating": false
+      },
+      {
+        "risk": "Fixed-price and complex development programs can generate reach-forward losses even in a strong demand environment; 2025 included $1.6B of such program losses.",
+        "gating": false
+      },
+      {
+        "risk": "Customer concentration in governments and allies creates budget, political, export and procurement exposure.",
+        "gating": false
+      },
+      {
+        "risk": "Specialized supply-chain and ramp constraints can prevent strategic demand from becoming deliveries on expected timing.",
         "gating": false
       }
     ]
@@ -245,6 +323,30 @@
     {
       "risk": "Program charges and supply-chain constraints can impair conversion of demand into cash flow.",
       "gating": false
+    },
+    {
+      "risk": "Successor bottlenecks are specialized supply availability, funded contract structure and production-ramp execution rather than demand alone.",
+      "gating": false
+    },
+    {
+      "risk": "Government/allied concentration makes budget, authorization and export decisions structurally important to conversion timing.",
+      "gating": false
+    },
+    {
+      "risk": "Backlog can overstate near-term economic realization when funding, definitization, delivery schedules or working capital delay conversion.",
+      "gating": false
+    },
+    {
+      "risk": "Fixed-price and complex development programs can generate reach-forward losses even in a strong demand environment; 2025 included $1.6B of such program losses.",
+      "gating": false
+    },
+    {
+      "risk": "Customer concentration in governments and allies creates budget, political, export and procurement exposure.",
+      "gating": false
+    },
+    {
+      "risk": "Specialized supply-chain and ramp constraints can prevent strategic demand from becoming deliveries on expected timing.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -254,18 +356,68 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "security and deterrence demand",
+        "to": "missile/interceptor and aircraft capacity",
+        "mechanism": "government/allied requirements create funded procurement and replenishment demand",
+        "falsifier": "funded awards and backlog weaken despite persistent stated security need"
+      },
+      {
+        "from": "funded procurement",
+        "to": "Lockheed production backlog",
+        "mechanism": "qualified program positions and integration capability convert awards into contracted workload",
+        "falsifier": "competitors capture awards or cancellations materially erode backlog"
+      },
+      {
+        "from": "backlog and production ramps",
+        "to": "cash generation",
+        "mechanism": "successful execution converts contracted workload into deliveries, profit and cash",
+        "falsifier": "contract assets, program losses or working-capital absorption rise persistently despite sales growth"
+      },
+      {
+        "from": "complex fixed-price/program execution",
+        "to": "margin and cash volatility",
+        "mechanism": "cost growth or schedule changes can require unfavorable profit adjustments or reach-forward losses",
+        "falsifier": "sustained absence of material unfavorable adjustments across major programs while ramps scale"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "security and deterrence demand",
+      "to": "missile/interceptor and aircraft capacity",
+      "mechanism": "government/allied requirements create funded procurement and replenishment demand",
+      "falsifier": "funded awards and backlog weaken despite persistent stated security need"
+    },
+    {
+      "from": "funded procurement",
+      "to": "Lockheed production backlog",
+      "mechanism": "qualified program positions and integration capability convert awards into contracted workload",
+      "falsifier": "competitors capture awards or cancellations materially erode backlog"
+    },
+    {
+      "from": "backlog and production ramps",
+      "to": "cash generation",
+      "mechanism": "successful execution converts contracted workload into deliveries, profit and cash",
+      "falsifier": "contract assets, program losses or working-capital absorption rise persistently despite sales growth"
+    },
+    {
+      "from": "complex fixed-price/program execution",
+      "to": "margin and cash volatility",
+      "mechanism": "cost growth or schedule changes can require unfavorable profit adjustments or reach-forward losses",
+      "falsifier": "sustained absence of material unfavorable adjustments across major programs while ramps scale"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 20,
-    "uniqueSourceCount": 7,
-    "duplicatesCollapsed": 13,
+    "rawSourceCount": 24,
+    "uniqueSourceCount": 8,
+    "duplicatesCollapsed": 16,
     "missingLineage": 0,
     "uniqueOrigins": [
       "investors.lockheedmartin.com|q2-2026-results|2026-07-23",
@@ -274,7 +426,8 @@
       "investors.lockheedmartin.com|q1-2026-results|2026-04-23",
       "investors.lockheedmartin.com|current-ir-through-2026-09-17",
       "reuters.com|saudi-f35-state-department-approval|2026-09-17",
-      "investors.lockheedmartin.com|jatm-production-framework|2026-09-17"
+      "investors.lockheedmartin.com|jatm-production-framework|2026-09-17",
+      "investors.lockheedmartin.com|q2-2025-results|2025-07-22"
     ]
   },
   "sources": [
@@ -340,6 +493,14 @@
       "use": "primary production/demand execution",
       "sourceId": null,
       "primary": false
+    },
+    {
+      "sourceId": "lmt:q2-2025:results",
+      "url": "https://investors.lockheedmartin.com/news-releases/news-release-details/lockheed-martin-reports-second-quarter-2025-financial-results",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2025-07-22",
+      "originFingerprint": "investors.lockheedmartin.com|q2-2025-results|2025-07-22"
     }
   ],
   "contradictions": [
@@ -356,10 +517,25 @@
       "resolution": "Demand and economic realization are distinct; retain both.",
       "resolved": true,
       "gating": false
+    },
+    {
+      "claimA": "Record backlog and production ramps support long-duration demand visibility.",
+      "claimB": "Cash conversion and program economics have shown material timing and execution volatility.",
+      "disposition": "Both can be true; demand visibility is structural evidence, while realized economics remain execution-dependent and should not be inferred from backlog alone."
+    },
+    {
+      "claimA": "Q2 2026 operating profit increased sharply year over year.",
+      "claimB": "A large portion of the comparison reflects $1.6B of prior-year reach-forward losses rather than solely current-period productivity.",
+      "disposition": "Resolved as a comparability issue, not a blocker; retain underlying sales/ramp evidence separately from year-over-year profit optics."
+    },
+    {
+      "claimA": "Q2 2026 free cash flow was $2.9B.",
+      "claimB": "Company disclosure attributes much of the increase to customer-receipt timing and lower tax payments.",
+      "disposition": "Resolved as timing sensitivity; use multi-period cash conversion rather than extrapolating the quarter."
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 8,
+    "unresolvedMaterialCount": 9,
     "items": [
       "Q1 2026 free cash flow was negative $291M while Q2 rebounded to $2.9B; timing of customer receipts materially affects quarter-to-quarter cash conversion, so one strong quarter should not be extrapolated mechanically.",
       "Q1 2026 free cash flow was negative $291M while Q2 rebounded to $2.9B; timing of customer receipts materially affects quarter-to-quarter cash conversion, so one strong quarter should not be extrapolated mechanically.",
@@ -374,6 +550,21 @@
         "resolution": "Demand and economic realization are distinct; retain both.",
         "resolved": true,
         "gating": false
+      },
+      {
+        "claimA": "Record backlog and production ramps support long-duration demand visibility.",
+        "claimB": "Cash conversion and program economics have shown material timing and execution volatility.",
+        "disposition": "Both can be true; demand visibility is structural evidence, while realized economics remain execution-dependent and should not be inferred from backlog alone."
+      },
+      {
+        "claimA": "Q2 2026 operating profit increased sharply year over year.",
+        "claimB": "A large portion of the comparison reflects $1.6B of prior-year reach-forward losses rather than solely current-period productivity.",
+        "disposition": "Resolved as a comparability issue, not a blocker; retain underlying sales/ramp evidence separately from year-over-year profit optics."
+      },
+      {
+        "claimA": "Q2 2026 free cash flow was $2.9B.",
+        "claimB": "Company disclosure attributes much of the increase to customer-receipt timing and lower tax payments.",
+        "disposition": "Resolved as timing sensitivity; use multi-period cash conversion rather than extrapolating the quarter."
       }
     ]
   },
@@ -411,11 +602,23 @@
     {
       "unknown": "Future program charges and margin profile remain unknown.",
       "gating": false
+    },
+    {
+      "unknown": "Reviewed Beta evidence does not quantify supplier-level concentration for critical missile, aircraft and space components.",
+      "gating": false
+    },
+    {
+      "unknown": "Current source-addressed evidence does not establish a material financing/dilution defect.",
+      "gating": false
+    },
+    {
+      "unknown": "Supplier concentration by critical component is not quantified in reviewed evidence.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 28
+    "nonGatingCount": 31
   },
   "gatingIssues": [],
   "confidence": 91,
@@ -424,14 +627,10 @@
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -441,18 +640,6 @@
       },
       {
         "failure": "missing_specialist_perspective:company-underwriting",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_primary_source",
         "owner": "council-alpha"
       },
       {
@@ -470,10 +657,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

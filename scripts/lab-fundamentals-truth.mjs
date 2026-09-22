@@ -13,7 +13,9 @@ function argValue(name,fallback=null){
 
 const tickersArg=argValue("--tickers","");
 const limit=Math.max(1,Number(argValue("--limit","5"))||5);
+const explicitAsOf=args.includes("--as-of");
 const asOf=argValue("--as-of",new Date().toISOString());
+const captureMode=explicitAsOf?"historical-reconstructed":"live-captured";
 const writeMode=args.includes("--write");
 const auditDetails=args.includes("--audit-details");
 const summaryOnly=args.includes("--summary-only");
@@ -96,7 +98,7 @@ for(const entity of entities){
   const payload=await fetchJson(sourceUrl);
   const truth=buildFundamentalsTruth(payload,{
     ticker:entity.ticker,cik:entity.cik,asOf,
-    retrievedAt:new Date().toISOString(),sourceUrl
+    retrievedAt:new Date().toISOString(),sourceUrl,captureMode
   });
   const errors=validateFundamentalsTruth(truth);
   const audit=auditSummary(truth);
@@ -180,7 +182,7 @@ const aggregate={
 console.log(JSON.stringify({
   contract:"earth2036-fundamentals-truth-v1",
   source:"SEC XBRL Company Facts",
-  asOf,writeMode,manifestWrite,
+  asOf,captureMode,writeMode,manifestWrite,
   aggregate,
   results:summaryOnly?results.filter((row)=>
     row.errors.length||row.rawFactCount===0||row.normalizedObservedMetricCount<=6||row.normalizedAmbiguousPeriodCount>=20

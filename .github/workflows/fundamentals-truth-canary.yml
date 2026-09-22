@@ -18,7 +18,7 @@ permissions:
 jobs:
   canary:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -37,3 +37,7 @@ jobs:
         env:
           SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
         run: npm run truth:fundamentals -- --tickers ETN,AAPL,ASML --limit 3 --no-write --as-of 2020-12-31T23:59:59Z --audit-details
+      - name: Full T0 universe raw-truth coverage audit
+        env:
+          SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
+        run: npm run truth:fundamentals -- --limit 250 --no-write --summary-only

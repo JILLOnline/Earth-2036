@@ -6,6 +6,7 @@ import { buildAssistRequests } from "./lib/assist-bus.mjs";
 import { buildDigitalTwinShadow } from "./lib/digital-twin-engine.mjs";
 import { buildValueAllocationShadow } from "./lib/value-allocator.mjs";
 import { buildDependencyShadow } from "./lib/dependency-graph.mjs";
+import { buildTrajectorySnapshot, validateTrajectorySnapshot } from "./lib/trajectory-engine.mjs";
 import { MIN_PUBLISHABLE_DATA_CONFIDENCE } from "./lib/runtime-gates.mjs";
 
 const ROOT = process.cwd();
@@ -228,10 +229,38 @@ await writeFile(
   "utf8"
 );
 
+const rankingState = await readJsonOr(path.join(ROOT, "data", "runtime", "current-ranking.json"), { rankings: [] });
+const observationsState = await readJsonOr(path.join(ROOT, "data", "runtime", "company-observations.json"), { candidates: {} });
+const trajectoryAsOf = rankingState?.capturedAt || scoreState?.updatedAt || now.toISOString();
+const trajectoryShadowBase = buildTrajectorySnapshot({
+  rankings: rankingState?.rankings || [],
+  observations: observationsState?.candidates || {},
+  asOf: trajectoryAsOf,
+  generatedAt: now.toISOString(),
+  methodologyVersion: rankingState?.methodologyVersion || methodologyVersion,
+  universeVersion: registry?.version || registry?.universeVersion || "u1-250",
+  trialTickNumber: null,
+});
+const trajectoryErrors = validateTrajectorySnapshot(trajectoryShadowBase);
+const trajectoryShadow = {
+  ...trajectoryShadowBase,
+  validation: {
+    passed: trajectoryErrors.length === 0,
+    errors: trajectoryErrors,
+  },
+  mode: "pre-t0-and-live-dry-run",
+  note: "Shadow capture proves the T1000 feature pipeline without changing canonical score, rank, Workgraph state or tick qualification.",
+};
+await writeFile(
+  path.join(shadowDir, "trajectory.json"),
+  `${JSON.stringify(trajectoryShadow, null, 2)}\n`,
+  "utf8"
+);
+
 const priorLearningState = await readJsonOr(LEARNING_PATH, null);
 const learningState = deriveLearningState(priorLearningState, metrics, packets, routingQueues, roleRuns, now);
 await import("node:fs/promises").then(({ writeFile }) =>
   writeFile(LEARNING_PATH, `${JSON.stringify(learningState, null, 2)}\n`, "utf8")
 );
 
-console.log(`Workgraph v2: ${metrics.total} companies; ${metrics.counts.chief_ready} chief_ready; ${metrics.counts.packet_ready} packet_ready; ${metrics.counts.blocked} blocked; assists ${assistBus.active} active/${assistBus.dormant} dormant; calibration, Digital Twin and value-allocation shadows refreshed.`);
+console.log(`Workgraph v2: ${metrics.total} companies; ${metrics.counts.chief_ready} chief_ready; ${metrics.counts.packet_ready} packet_ready; ${metrics.counts.blocked} blocked; assists ${assistBus.active} active/${assistBus.dormant} dormant; calibration, Digital Twin, Trajectory and value-allocation shadows refreshed.`);

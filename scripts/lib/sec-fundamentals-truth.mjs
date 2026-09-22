@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { FUNDAMENTAL_METRICS } from "./fundamental-metric-map.mjs";
 
 const ALLOWED_FORMS = new Set([
-  "10-K","10-K/A","10-Q","10-Q/A","20-F","20-F/A","40-F","40-F/A","6-K","6-K/A","8-K","8-K/A"
+  "10-K","10-K/A","10-Q","10-Q/A","20-F","20-F/A","40-F","40-F/A","6-K","6-K/A"
 ]);
 
 function stable(value) {
@@ -328,7 +328,7 @@ export function buildFundamentalsTruth(companyFacts, options = {}) {
   }
 
   const derived = {
-    free_cash_flow: deriveBinary("free_cash_flow", metrics.operating_cash_flow, metrics.capital_expenditures, (a, b) => a - b),
+    free_cash_flow: deriveBinary("free_cash_flow", metrics.operating_cash_flow, metrics.capital_expenditures, (a, b) => a - Math.abs(b)),
     gross_margin: deriveBinary("gross_margin", metrics.gross_profit, metrics.revenue, (a, b) => b === 0 ? NaN : a / b),
     operating_margin: deriveBinary("operating_margin", metrics.operating_income, metrics.revenue, (a, b) => b === 0 ? NaN : a / b),
     net_margin: deriveBinary("net_margin", metrics.net_income, metrics.revenue, (a, b) => b === 0 ? NaN : a / b),

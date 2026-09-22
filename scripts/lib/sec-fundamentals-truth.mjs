@@ -244,6 +244,15 @@ function resolvePeriodBucket(facts) {
     return { status: "ambiguous_concepts", selected: null, facts };
   }
   const same = [...distinctValues.values()].flat().sort(sortVersions);
+  const accessions = [...new Set(same.map((fact)=>fact?.accn).filter(Boolean))];
+  if (accessions.length > 1) {
+    return {
+      status: "value_consistent_provenance_ambiguous",
+      selected: null,
+      value: same[0]?.val ?? null,
+      facts
+    };
+  }
   return { status: "resolved", selected: same.at(-1), facts };
 }
 
@@ -372,9 +381,15 @@ function deriveBinary(name, leftMetric, rightMetric, op) {
 }
 
 export function buildFundamentalsTruth(companyFacts, options = {}) {
-  const { ticker, cik, asOf, retrievedAt = new Date().toISOString(), sourceUrl = null } = options;
+  const {
+    ticker, cik, asOf, retrievedAt = new Date().toISOString(), sourceUrl = null,
+    captureMode = "live-captured"
+  } = options;
   if (!ticker) throw new Error("ticker is required");
   if (!asOf || !Number.isFinite(Date.parse(asOf))) throw new Error("valid asOf is required");
+  if (!["live-captured","historical-reconstructed"].includes(captureMode)) {
+    throw new Error("invalid fundamentals captureMode: " + captureMode);
+  }
 
   const rawFacts = extractAllStandardFacts(companyFacts, asOf);
   const versionIndex = buildRawVersionIndex(rawFacts);
@@ -406,7 +421,7 @@ export function buildFundamentalsTruth(companyFacts, options = {}) {
   // eligible source-backed fact state for this SEC entity changes.
   const factStateCore = { cik: companyCik, rawFactsHash };
   const factStateHash = truthHash(factStateCore);
-  const snapshotHash = truthHash({ cik: companyCik, asOf, factStateHash, projectionHash });
+  const snapshotHash = truthHash({ cik: companyCik, asOf, captureMode, factStateHash, projectionHash });
 
   const ambiguous = Object.values(metrics)
     .flatMap((metric) => metric.periods ?? [])
@@ -431,6 +446,7 @@ export function buildFundamentalsTruth(companyFacts, options = {}) {
     source:{
       learningEligible:false,
       sourceClass:"primary-regulatory",
+      captureMode,
       sourceUrl,
       eligibleSourceHash:factStateHash,
       sourceTaxonomies:eligibleTaxonomies,
@@ -485,6 +501,7 @@ export function validateFundamentalsTruth(record) {
   if (record?.normalizedProjection?.learningAuthority !== false) errors.push("normalized projection must not be primary learning authority");
   if (record?.identity?.learningEligible !== false) errors.push("identity metadata must not be learning-eligible");
   if (record?.source?.learningEligible !== false) errors.push("source metadata must not be learning-eligible");
+  if (!["live-captured","historical-reconstructed"].includes(record?.source?.captureMode)) errors.push("invalid capture mode");
   if (!record?.identity?.ticker) errors.push("ticker missing");
   if (!record?.identity?.cik) errors.push("cik missing");
   if (!record?.asOf || !Number.isFinite(Date.parse(record.asOf))) errors.push("invalid asOf");
@@ -526,6 +543,7 @@ export function validateFundamentalsTruth(record) {
   const expectedSnapshotHash=truthHash({
     cik:record?.identity?.cik ?? null,
     asOf:record?.asOf ?? null,
+    captureMode:record?.source?.captureMode ?? null,
     factStateHash:record?.factStateHash ?? null,
     projectionHash:record?.projectionHash ?? null,
   });

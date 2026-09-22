@@ -1,0 +1,113 @@
+{
+  "version": "1.0.0",
+  "contract": "earth2036-fundamentals-truth-v1",
+  "status": "lab-audit",
+  "system": "lab",
+  "canonicalWriteAuthority": false,
+  "purpose": "Create deterministic, point-in-time, source-addressed fundamental observations from SEC XBRL Company Facts without training on Earth scores, narrative judgments or invented financial labels.",
+  "authority": {
+    "primary": "SEC EDGAR XBRL Company Facts API",
+    "endpointTemplate": "https://data.sec.gov/api/xbrl/companyfacts/CIK##########.json",
+    "bulkScalePath": "https://www.sec.gov/Archives/edgar/daily-index/xbrl/companyfacts.zip",
+    "authenticationRequired": false,
+    "customTaxonomyPolicy": "Company Facts exposes standard taxonomy facts only; missing extension-only disclosures remain unknown rather than inferred."
+  },
+  "pointInTime": {
+    "required": true,
+    "rule": "A source fact is eligible only when filed <= asOf.",
+    "futureLeakageForbidden": true,
+    "preserveAllEligibleVersions": true,
+    "latestContextVersionIsMechanical": true,
+    "availabilityPrecision": "SEC Company Facts exposes filed date, not acceptance timestamp, for each fact.",
+    "sameDayPolicy": "Conservative: a fact with only a filing date becomes eligible after the end of that UTC filing date.",
+    "economicContextIdentity": "taxonomy + tag + unit + start/end; fy/fp are filing metadata and do not create a new economic fact.",
+    "periodClassification": "Periodic form is authoritative for annual vs interim classification; duration is secondary within interim filings."
+  },
+  "metrics": [
+    "revenue",
+    "gross_profit",
+    "operating_income",
+    "net_income",
+    "operating_cash_flow",
+    "capital_expenditures",
+    "cash_and_equivalents",
+    "long_term_debt_current",
+    "long_term_debt_noncurrent",
+    "borrowings_current_ifrs",
+    "borrowings_noncurrent_ifrs",
+    "shares_outstanding"
+  ],
+  "derivedMetrics": [
+    "free_cash_flow",
+    "gross_margin",
+    "operating_margin",
+    "net_margin"
+  ],
+  "derivedPolicy": {
+    "rule": "Derived values are mechanical transformations of selected source facts only.",
+    "provenanceRequired": true,
+    "noCrossCurrencyMath": true,
+    "noCrossPeriodMath": true,
+    "ambiguousInputsYieldUnknown": true,
+    "missingInputsYieldUnknown": true,
+    "sameFilingAccessionRequired": true,
+    "note": "A later amendment to one input cannot be combined with a stale value from another filing; incompatible inputs yield unknown.",
+    "debtPolicy": "No total-debt synthesis in v1; debt/borrowings concepts remain separate until semantic component coverage is audited."
+  },
+  "ambiguityPolicy": {
+    "conflictingStandardConcepts": "unknown",
+    "conflictingUnits": "separate; never converted silently",
+    "missingFact": "unknown",
+    "extensionOnlyDisclosure": "unknown",
+    "humanOverrideAllowed": false
+  },
+  "governance": {
+    "mayChangeEarthScore": false,
+    "mayChangeCanonicalRank": false,
+    "mayChangeWorkgraphState": false,
+    "mayAffectT0Qualification": false,
+    "promotionRequires": "separate audited governance change after truth-pipeline validation"
+  },
+  "sourceFactSchema": {
+    "requiredIdentity": [
+      "taxonomy",
+      "tag",
+      "unit",
+      "val",
+      "filed",
+      "accn",
+      "form"
+    ],
+    "nullableContext": [
+      "start",
+      "end",
+      "fy",
+      "fp",
+      "frame"
+    ],
+    "note": "Instant facts normally have no start; some SEC facts omit frame/fiscal focus. Null stays null."
+  },
+  "periodicFormsUsedForNormalizedFundamentals": [
+    "10-K",
+    "10-K/A",
+    "10-Q",
+    "10-Q/A",
+    "20-F",
+    "20-F/A",
+    "40-F",
+    "40-F/A",
+    "6-K",
+    "6-K/A"
+  ],
+  "periodicFormsPolicy": "8-K facts are excluded from normalized fundamentals v1 so preliminary/current-report facts cannot silently supersede periodic financial statements.",
+  "freshnessPolicy": {
+    "fields": [
+      "latestPeriodEnd",
+      "periodEndAgeDays",
+      "latestFiledDate",
+      "filedAgeDays"
+    ],
+    "rule": "Record mechanical calendar-day age only. V1 does not label a fact fresh/stale or impute a newer value.",
+    "threshold": null
+  }
+}

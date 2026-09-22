@@ -156,3 +156,22 @@ test("tampering with a source fact is caught by the truth hash", () => {
   truth.metrics.revenue.allEligibleFacts[0].val = 999;
   assert.ok(validateFundamentalsTruth(truth).includes("fundamentals truth hash mismatch"));
 });
+
+
+test("8-K facts cannot silently supersede periodic fundamentals", () => {
+  const sample = payload();
+  sample.facts["us-gaap"].RevenueFromContractWithCustomerExcludingAssessedTax.units.USD.push(
+    { start: "2025-01-01", end: "2025-12-31", val: 999, filed: "2026-03-15", accn: "E1", form: "8-K", fy: 2025, fp: "FY", frame: "CY2025" }
+  );
+  const metric = normalizeMetric(sample, "revenue", "2026-04-01T00:00:00Z");
+  assert.equal(metric.latest.annual.selected.val, 105);
+  assert.equal(metric.allEligibleFacts.some((fact) => fact.accn === "E1"), false);
+});
+
+test("FCF treats capex source concepts as cash-outflow magnitude", () => {
+  const sample = payload();
+  sample.facts["us-gaap"].PaymentsToAcquirePropertyPlantAndEquipment.units.USD[0].val = -5;
+  const truth = buildFundamentalsTruth(sample, { ticker: "TEST", asOf: "2026-04-01T00:00:00Z" });
+  const fcf = truth.derived.free_cash_flow.observations.find((row) => row.end === "2025-12-31");
+  assert.equal(fcf.value, 15);
+});

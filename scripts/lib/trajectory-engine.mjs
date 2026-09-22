@@ -19,6 +19,27 @@ function stableValue(value) {
   );
 }
 
+function evidenceReferences(record) {
+  const refs = new Set();
+  const visit = (node) => {
+    if (Array.isArray(node)) {
+      for (const value of node) visit(value);
+      return;
+    }
+    if (!node || typeof node !== "object") return;
+    if (Array.isArray(node.sourceIds)) {
+      for (const value of node.sourceIds) if (value) refs.add(String(value));
+    }
+    for (const value of Object.values(node)) visit(value);
+  };
+  visit(record?.factorEvidence);
+  visit(record?.riskEvidence);
+  visit(record?.dataConfidenceEvidence);
+  for (const value of record?.primarySourceUrls || []) if (value) refs.add(String(value));
+  for (const value of record?.independentSourceUrls || []) if (value) refs.add(String(value));
+  return [...refs].sort();
+}
+
 export function stableJson(value) {
   return JSON.stringify(stableValue(value));
 }
@@ -38,7 +59,7 @@ function addUtcMonths(iso, months) {
   return date.toISOString();
 }
 
-export function buildTrajectoryFeatureRow(record, observation = null) {
+export function buildTrajectoryFeatureRow(record, observation = null, workgraphRow = null) {
   const components = Object.fromEntries(
     REQUIRED_SCORE_COMPONENTS.map((key) => [
       key,
@@ -46,6 +67,7 @@ export function buildTrajectoryFeatureRow(record, observation = null) {
     ])
   );
 
+  const sourceRefs = evidenceReferences(record);
   const featureCore = {
     ticker: record?.ticker ?? null,
     rank: finiteOrNull(record?.rank),
@@ -58,6 +80,13 @@ export function buildTrajectoryFeatureRow(record, observation = null) {
       rawWeightedScore: finiteOrNull(record?.scoreBreakdown?.rawWeightedScore),
       confidenceMultiplier: finiteOrNull(record?.scoreBreakdown?.confidenceMultiplier),
       riskPenalty: finiteOrNull(record?.scoreBreakdown?.riskPenalty),
+    },
+    evidenceState: {
+      sourceRefCount: sourceRefs.length,
+      sourceRefsHash: trajectoryHash(sourceRefs),
+      primarySourceCount: Array.isArray(record?.primarySourceUrls) ? record.primarySourceUrls.filter(Boolean).length : 0,
+      independentSourceCount: Array.isArray(record?.independentSourceUrls) ? record.independentSourceUrls.filter(Boolean).length : 0,
+      causalMapped: record?.causalMapped === true,
     },
   };
 
@@ -80,6 +109,10 @@ export function buildTrajectoryFeatureRow(record, observation = null) {
     methodologyVersion: record?.methodologyVersion ?? record?.scoreBreakdown?.methodologyVersion ?? null,
     scoreFormulaHash: record?.scoreContract?.formulaHash ?? null,
     filingFingerprint: observation?.filingFingerprint ?? null,
+    workId: workgraphRow?.workId ?? null,
+    workgraphState: workgraphRow?.state ?? null,
+    workgraphEvidencePath: workgraphRow?.evidencePath ?? null,
+    workgraphUpdatedAt: workgraphRow?.updatedAt ?? null,
     featureHash: trajectoryHash(featureCore),
   };
 
@@ -94,6 +127,7 @@ export function buildTrajectoryFeatureRow(record, observation = null) {
 export function buildTrajectorySnapshot({
   rankings,
   observations = {},
+  workgraphCompanies = {},
   asOf,
   generatedAt = asOf,
   methodologyVersion = null,
@@ -104,7 +138,11 @@ export function buildTrajectorySnapshot({
   if (Number.isNaN(asOfDate.getTime())) throw new Error(`Invalid trajectory asOf: ${asOf}`);
 
   const rows = (Array.isArray(rankings) ? rankings : [])
-    .map((record) => buildTrajectoryFeatureRow(record, observations?.[record?.ticker] ?? null))
+    .map((record) => buildTrajectoryFeatureRow(
+      record,
+      observations?.[record?.ticker] ?? null,
+      workgraphCompanies?.[record?.ticker] ?? null
+    ))
     .sort((a, b) => (a.rank ?? Number.MAX_SAFE_INTEGER) - (b.rank ?? Number.MAX_SAFE_INTEGER) || String(a.ticker).localeCompare(String(b.ticker)));
 
   const base = {
@@ -174,6 +212,7 @@ export function validateTrajectorySnapshot(snapshot) {
       dataConfidence: row?.dataConfidence ?? null,
       components: row?.components ?? {},
       scoreBreakdown: row?.scoreBreakdown ?? {},
+      evidenceState: row?.evidenceState ?? {},
     };
     if (!featureHash || featureHash !== trajectoryHash(featureCore)) {
       errors.push(`trajectory feature hash mismatch for ${row?.ticker || "unknown"}`);

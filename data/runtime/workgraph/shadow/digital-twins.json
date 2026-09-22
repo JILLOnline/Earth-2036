@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-digital-twin-shadow-index-v1",
-  "generatedAt": "2026-09-22T16:04:02.436Z",
+  "generatedAt": "2026-09-22T16:18:47.844Z",
   "canonicalWriteAuthority": false,
   "total": 164,
   "twins": [
@@ -29058,8 +29058,8 @@
       "canonicalWriteAuthority": false,
       "ticker": "FMC",
       "workId": "t0:FMC",
-      "inputSignature": "374c1dda2497841c6e40b046",
-      "sourceState": "researching",
+      "inputSignature": "bae6b5ad619ee8851101d4da",
+      "sourceState": "chief_ready",
       "identity": {
         "ticker": "FMC",
         "company": "FMC",
@@ -29083,29 +29083,30 @@
           "discovery-weak-signals",
           "expectations-execution",
           "structural-causal",
-          "adversarial-red-team"
-        ],
-        "missingPerspectives": [
+          "adversarial-red-team",
           "source-integrity",
           "company-underwriting"
         ],
+        "missingPerspectives": [],
         "primarySourceCount": 2,
         "sourceLineage": {
-          "rawSourceCount": 7,
-          "uniqueSourceCount": 2,
-          "duplicatesCollapsed": 5,
+          "rawSourceCount": 15,
+          "uniqueSourceCount": 4,
+          "duplicatesCollapsed": 11,
           "missingLineage": 0,
           "uniqueOrigins": [
             "fmc:q2-results:2026-07-29",
-            "fmc:tessenderlo:2026-06-30"
+            "fmc:tessenderlo:2026-06-30",
+            "stockanalysis:FMC:2026-09-21",
+            "stocktitan:FMC:10Q:2026Q2"
           ]
         },
         "evidenceWindow": {
           "start": "2026-09-19T19:07:11.000Z",
-          "end": "2026-09-20T13:26:36.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-20T13:26:36.000Z"
+          "end": "2026-09-22T16:17:14.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-22T16:17:14.000Z"
         },
-        "preflightPassed": false
+        "preflightPassed": true
       },
       "capabilitySignals": [
         "financialOperatingMomentum",
@@ -29120,7 +29121,11 @@
         "alignment2036",
         "governancePower",
         "pricingPower",
-        "dataConfidence"
+        "dataConfidence",
+        "marketValuationOpportunity",
+        "catalystScore",
+        "crossDivisionLeverage",
+        "supplyChainResilience"
       ],
       "constraintSignals": {
         "risks": [
@@ -29129,27 +29134,26 @@
           "Post-patent/generic and legacy-product price pressure can erode economic capture faster than new actives scale.",
           "Grower margin pressure and channel timing can slow adoption even when agronomic need remains.",
           "Deleveraging relies partly on transactions/approvals and one-time monetizations while core earnings remain pressured.",
-          "Approximately 20% minority equity issuance is substantial dilution and introduces a large strategic shareholder."
+          "Approximately 20% minority equity issuance is substantial dilution and introduces a large strategic shareholder.",
+          "High leverage, weak recurring earnings and transaction-dependent deleveraging create material execution/dilution risk.",
+          "Generic/post-patent and legacy-product price pressure may outrun adoption of new active ingredients."
         ],
         "unknowns": [
           "Net leverage after all announced transactions close and the sustainable earnings contribution from new active ingredients remain unproven.",
           "Whether the expected Q4 return to year-over-year growth occurs remains a forward expectation rather than observed evidence.",
           "Sustainable revenue/margin contribution from the new-active portfolio at scale remains unproven in current results.",
-          "Final leverage after all announced transactions and the governance effects of Tessenderlo's approximately 20% stake remain to be observed after closing."
+          "Final leverage after all announced transactions and the governance effects of Tessenderlo's approximately 20% stake remain to be observed after closing.",
+          "Current market data is independent but not a primary exchange feed; this limits valuation-input confidence modestly.",
+          "Sustainable contribution and margins from newer active ingredients remain unproven.",
+          "Final leverage after announced transactions and long-run governance effects of the Tessenderlo stake remain unobserved."
         ],
         "contradictions": [
           "Cash generation and planned deleveraging improved while underlying revenue and EBITDA deteriorated materially.",
-          "Improved Q2 cash generation coexists with sharply weaker recurring operating performance; the difference is partly explained by the $200 million licensing prepayment and should remain separated in underwriting."
+          "Improved Q2 cash generation coexists with sharply weaker recurring operating performance; the difference is partly explained by the $200 million licensing prepayment and should remain separated in underwriting.",
+          "Strong Q2 cash generation is not equivalent to recurring recovery because it included a $200M licensing prepayment while revenue and EBITDA declined sharply."
         ],
         "gatingIssues": [],
-        "preflightFailures": [
-          "missing_specialist_perspective:source-integrity",
-          "missing_specialist_perspective:company-underwriting",
-          "missing_factor_evidence",
-          "missing_numeric_score_record",
-          "missing_score_risk_evidence",
-          "missing_data_confidence_evidence"
-        ]
+        "preflightFailures": []
       },
       "causalContext": {
         "mapped": true,
@@ -29186,38 +29190,7 @@
           }
         ]
       },
-      "improvementWindows": [
-        {
-          "failure": "missing_specialist_perspective:source-integrity",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:source-integrity?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_specialist_perspective:company-underwriting",
-          "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_factor_evidence",
-          "question": "Which required methodology factor still lacks source-addressed evidence?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_numeric_score_record",
-          "question": "Which source-addressed factor assessments are still required before a reproducible score can be constructed?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_score_risk_evidence",
-          "question": "Which material risks require source-addressed quantitative treatment?",
-          "stance": "improvement-oriented"
-        },
-        {
-          "failure": "missing_data_confidence_evidence",
-          "question": "Which evidence-quality dimensions remain insufficiently supported?",
-          "stance": "improvement-oriented"
-        }
-      ],
+      "improvementWindows": [],
       "bridgeInputs": {
         "capabilityCandidates": [
           "financialOperatingMomentum",
@@ -29232,19 +29205,28 @@
           "alignment2036",
           "governancePower",
           "pricingPower",
-          "dataConfidence"
+          "dataConfidence",
+          "marketValuationOpportunity",
+          "catalystScore",
+          "crossDivisionLeverage",
+          "supplyChainResilience"
         ],
         "needOrConstraintCandidates": [
           "Net leverage after all announced transactions close and the sustainable earnings contribution from new active ingredients remain unproven.",
           "Whether the expected Q4 return to year-over-year growth occurs remains a forward expectation rather than observed evidence.",
           "Sustainable revenue/margin contribution from the new-active portfolio at scale remains unproven in current results.",
           "Final leverage after all announced transactions and the governance effects of Tessenderlo's approximately 20% stake remain to be observed after closing.",
+          "Current market data is independent but not a primary exchange feed; this limits valuation-input confidence modestly.",
+          "Sustainable contribution and margins from newer active ingredients remain unproven.",
+          "Final leverage after announced transactions and long-run governance effects of the Tessenderlo stake remain unobserved.",
           "Core legacy-product price and volume pressure plus higher interest expense remain material while deleveraging depends partly on transactions not yet fully closed.",
           "Announced financing and asset actions can improve liquidity without resolving weak end-market pricing or legacy-product demand.",
           "Post-patent/generic and legacy-product price pressure can erode economic capture faster than new actives scale.",
           "Grower margin pressure and channel timing can slow adoption even when agronomic need remains.",
           "Deleveraging relies partly on transactions/approvals and one-time monetizations while core earnings remain pressured.",
-          "Approximately 20% minority equity issuance is substantial dilution and introduces a large strategic shareholder."
+          "Approximately 20% minority equity issuance is substantial dilution and introduces a large strategic shareholder.",
+          "High leverage, weak recurring earnings and transaction-dependent deleveraging create material execution/dilution risk.",
+          "Generic/post-patent and legacy-product price pressure may outrun adoption of new active ingredients."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

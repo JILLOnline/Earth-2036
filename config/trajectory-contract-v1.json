@@ -1,30 +1,69 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "contract": "earth2036-trajectory-contract-v1",
-  "status": "t1000-shadow-foundation",
+  "status": "t1000-truth-first-shadow-foundation",
   "system": "shadow",
   "canonicalWriteAuthority": false,
-  "purpose": "Preserve point-in-time company state during the 1,000 qualified trial ticks so long-horizon forecasts can be trained, audited and reconciled against later outcomes without rewriting history.",
+  "purpose": "Preserve point-in-time observed company state during the 1,000 qualified trial ticks so models can learn relationships from source-backed facts and later observed outcomes without treating Earth methodology, human labels or assistant judgments as truth.",
   "trial": {
     "qualifiedTicksRequired": 1000,
     "capturePolicy": "every-qualified-trial-tick",
     "prototypeHistoryCountsTowardTrial": false,
     "missingTrajectoryCaptureChangesQualifiedTick": false
   },
-  "featureSchemaVersion": "1.0.0",
+  "featureSchemaVersion": "1.1.0",
   "horizonsMonths": [
     12,
     24,
     36,
     60
   ],
-  "targets": [
-    "operational_success",
-    "structural_thesis_success",
-    "financial_deterioration",
-    "distress",
-    "relative_equity_outperformance"
-  ],
+  "observedOutcomeChannels": {
+    "business": [
+      "revenue",
+      "operating_income",
+      "net_income",
+      "operating_cash_flow",
+      "capital_expenditures",
+      "free_cash_flow",
+      "gross_margin",
+      "operating_margin",
+      "cash",
+      "total_debt",
+      "shares_outstanding"
+    ],
+    "factualEvents": [
+      "bankruptcy_filing",
+      "delisting",
+      "restatement",
+      "going_concern_disclosure",
+      "debt_restructuring"
+    ],
+    "marketWhenAuthoritativeSourceExists": [
+      "adjusted_price",
+      "total_shareholder_return",
+      "benchmark_relative_total_return"
+    ]
+  },
+  "learningPolicy": {
+    "rule": "Models learn observed-state -> later-observed-state relationships. Humans define provenance and integrity rules, never desired answers.",
+    "primaryTrainingInput": "truthState",
+    "primaryTrainingTargets": "observedOutcomeChannels",
+    "forbiddenAsGroundTruth": [
+      "earthScore",
+      "canonicalRank",
+      "rankClass",
+      "methodologyComponentScores",
+      "manual success/failure labels",
+      "assistant-generated success/failure labels",
+      "narrative verdicts"
+    ],
+    "earthContextUse": "audit-and-methodology-comparison-only",
+    "subjectiveSuccessLabelsAllowed": false,
+    "modelMayDiscoverOutcomeClusters": true,
+    "modelMayInferProbabilitiesOnlyAfterWalkForwardValidation": true,
+    "missingObservedDataPolicy": "unknown-not-favorable"
+  },
   "pointInTimePolicy": {
     "enabled": true,
     "futureLeakageForbidden": true,
@@ -36,13 +75,15 @@
     "placeholderForecastsAllowed": false,
     "probabilitiesRequireValidatedModel": true,
     "liveForecastsCanonicalAuthority": false,
-    "validationMode": "walk-forward"
+    "validationMode": "walk-forward",
+    "forecastsMustNameObservedTarget": true
   },
   "outcomePolicy": {
     "appendOnly": true,
     "originalSnapshotMutable": false,
     "businessAndMarketOutcomesSeparated": true,
-    "unresolvedOutcomesRemainPending": true
+    "unresolvedOutcomesRemainPending": true,
+    "derivedChangesMustBeMechanicalFromObservedEndpoints": true
   },
   "governance": {
     "mayChangeEarthScore": false,

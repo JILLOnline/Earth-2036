@@ -14,10 +14,11 @@ function argValue(name,fallback=null){
 const tickersArg=argValue("--tickers","");
 const limit=Math.max(1,Number(argValue("--limit","5"))||5);
 const asOf=argValue("--as-of",new Date().toISOString());
-const writeMode=!args.includes("--no-write");
+const writeMode=args.includes("--write");
 const auditDetails=args.includes("--audit-details");
 const summaryOnly=args.includes("--summary-only");
 const outputDir=argValue("--output-dir",path.join("data","lab","truth","fundamentals"));
+const allowBulkRaw=args.includes("--allow-bulk-raw");
 
 async function readJson(file){ return JSON.parse(await readFile(file,"utf8")); }
 
@@ -83,6 +84,9 @@ let entities=(registry.candidates ?? []).filter(e=>e?.ticker && e?.cik);
 if(requested.size) entities=entities.filter(e=>requested.has(String(e.ticker).toUpperCase()));
 entities=entities.slice(0,limit);
 if(!entities.length) throw new Error("No matching SEC-identified companies found.");
+if(writeMode && entities.length>10 && !allowBulkRaw){
+  throw new Error("Refusing bulk raw materialization for more than 10 companies without --allow-bulk-raw; audit mode is read-only by default.");
+}
 
 const results=[];
 const manifestCompanies=[];

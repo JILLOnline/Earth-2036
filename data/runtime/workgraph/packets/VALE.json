@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "VALE",
   "workId": "t0:VALE",
-  "generatedAt": "2026-09-22T12:17:27.319Z",
+  "generatedAt": "2026-09-22T12:26:40.765Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-22T09:41:27.794Z"
   },
   "evidenceWindow": {
-    "start": "2026-04-22T00:00:00.000Z",
-    "end": "2026-09-21T21:03:09.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T21:03:09.000Z"
+    "start": "2026-04-14T00:00:00.000Z",
+    "end": "2026-09-22T12:24:51.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T12:24:51.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,30 +32,33 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/VALE-20260921T210309Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/VALE-20260921T210309Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/VALE-20260922T122451Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
       "data/runtime/workgraph/evidence/VALE-20260921T200323Z-earth-scout.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -63,19 +66,34 @@
       "alignment2036",
       "bottleneckControl",
       "supplyChainResilience",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "substitutionResilience",
+      "governancePower",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "alignment2036",
         "bottleneckControl",
         "supplyChainResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "governancePower",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -125,7 +143,10 @@
     "alignment2036",
     "bottleneckControl",
     "supplyChainResilience",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "substitutionResilience",
+    "governancePower",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -136,6 +157,26 @@
       },
       {
         "risk": "Commodity cyclicality, operational interruptions and environmental/social liabilities remain material execution risks.",
+        "gating": false
+      },
+      {
+        "risk": "Successor bottlenecks shift from resource availability toward safe tailings management, energy/freight cost, permitting and logistics reliability.",
+        "gating": false
+      },
+      {
+        "risk": "Scrap-based steel, material efficiency and alternative chemistries can reduce marginal demand intensity for virgin iron ore or nickel in some scenarios.",
+        "gating": false
+      },
+      {
+        "risk": "Commodity-price support can mask deterioration in physical cost competitiveness; Q2 iron-ore all-in costs increased materially year over year.",
+        "gating": false
+      },
+      {
+        "risk": "Brumadinho/Mariana remediation and dam-management obligations remain financial, operational and governance sensitivities despite documented progress.",
+        "gating": false
+      },
+      {
+        "risk": "Large shareholder distributions and buybacks should be interpreted alongside US$16.7B expanded net debt and continuing remediation/growth capital requirements, not as standalone balance-sheet strength.",
         "gating": false
       }
     ]
@@ -148,6 +189,26 @@
     {
       "risk": "Commodity cyclicality, operational interruptions and environmental/social liabilities remain material execution risks.",
       "gating": false
+    },
+    {
+      "risk": "Successor bottlenecks shift from resource availability toward safe tailings management, energy/freight cost, permitting and logistics reliability.",
+      "gating": false
+    },
+    {
+      "risk": "Scrap-based steel, material efficiency and alternative chemistries can reduce marginal demand intensity for virgin iron ore or nickel in some scenarios.",
+      "gating": false
+    },
+    {
+      "risk": "Commodity-price support can mask deterioration in physical cost competitiveness; Q2 iron-ore all-in costs increased materially year over year.",
+      "gating": false
+    },
+    {
+      "risk": "Brumadinho/Mariana remediation and dam-management obligations remain financial, operational and governance sensitivities despite documented progress.",
+      "gating": false
+    },
+    {
+      "risk": "Large shareholder distributions and buybacks should be interpreted alongside US$16.7B expanded net debt and continuing remediation/growth capital requirements, not as standalone balance-sheet strength.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -158,21 +219,63 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 6
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "Vale mineral assets and processing/logistics",
+        "to": "iron ore, copper and nickel supply",
+        "mechanism": "mine productivity, processing capacity and integrated logistics convert geological resources into saleable materials",
+        "confidence": 92
+      },
+      {
+        "from": "iron ore, copper and nickel supply",
+        "to": "steel, grids, electrification and industrial infrastructure",
+        "mechanism": "bulk steelmaking feedstock plus conductive/electrification metals support physical infrastructure and energy-system buildout",
+        "confidence": 88
+      },
+      {
+        "from": "fuel, freight, BRL and safe-tailings constraints",
+        "to": "delivered-cost and operating resilience",
+        "mechanism": "input inflation, logistics disruption and geotechnical obligations can raise all-in costs or interrupt production even when ore bodies remain advantaged",
+        "confidence": 93
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "Vale mineral assets and processing/logistics",
+      "to": "iron ore, copper and nickel supply",
+      "mechanism": "mine productivity, processing capacity and integrated logistics convert geological resources into saleable materials",
+      "confidence": 92
+    },
+    {
+      "from": "iron ore, copper and nickel supply",
+      "to": "steel, grids, electrification and industrial infrastructure",
+      "mechanism": "bulk steelmaking feedstock plus conductive/electrification metals support physical infrastructure and energy-system buildout",
+      "confidence": 88
+    },
+    {
+      "from": "fuel, freight, BRL and safe-tailings constraints",
+      "to": "delivered-cost and operating resilience",
+      "mechanism": "input inflation, logistics disruption and geotechnical obligations can raise all-in costs or interrupt production even when ore bodies remain advantaged",
+      "confidence": 93
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 9,
+    "uniqueSourceCount": 6,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:VALE:2Q26-production:20260722",
-      "issuer:VALE:1Q26-production:20260422"
+      "issuer:VALE:1Q26-production:20260422",
+      "issuer:VALE:2Q26-results:20260730",
+      "issuer:VALE:2025-annual-report:20260414",
+      "issuer:VALE:controversies:20260922",
+      "issuer:VALE:dam-decharacterization:20260922"
     ]
   },
   "sources": [
@@ -191,12 +294,48 @@
       "primary": true,
       "publishedAt": "2026-04-22",
       "originFingerprint": "issuer:VALE:1Q26-production:20260422"
+    },
+    {
+      "sourceId": "issuer:VALE:2Q26-results",
+      "url": "https://vale.com/de/w/vales-performance-in-2q26",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-30",
+      "originFingerprint": "issuer:VALE:2Q26-results:20260730"
+    },
+    {
+      "sourceId": "issuer:VALE:2025-annual-report",
+      "url": "https://www.vale.com/documents/d/guest/2025_annual-report_14042026",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-04-14",
+      "originFingerprint": "issuer:VALE:2025-annual-report:20260414"
+    },
+    {
+      "sourceId": "issuer:VALE:controversies-2026",
+      "url": "https://vale.com/ca/esg/controversies",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-22",
+      "originFingerprint": "issuer:VALE:controversies:20260922"
+    },
+    {
+      "sourceId": "issuer:VALE:dam-decharacterization-2026",
+      "url": "https://vale.com/ca/esg/de-characterization-program",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-22",
+      "originFingerprint": "issuer:VALE:dam-decharacterization:20260922"
     }
   ],
   "contradictions": [
     {
       "contradiction": "Broad production improvement does not itself prove margin or free-cash-flow improvement.",
       "material": true
+    },
+    {
+      "contradiction": "Production growth did convert into stronger Q2 EBITDA and recurring free cash flow, resolving the earlier production-versus-cash-conversion uncertainty for the current quarter; however iron-ore unit costs rose, so the broader claim of structurally improving margins remains unproven.",
+      "material": false
     }
   ],
   "contradictionDispositions": {
@@ -205,6 +344,10 @@
       {
         "contradiction": "Broad production improvement does not itself prove margin or free-cash-flow improvement.",
         "material": true
+      },
+      {
+        "contradiction": "Production growth did convert into stronger Q2 EBITDA and recurring free cash flow, resolving the earlier production-versus-cash-conversion uncertainty for the current quarter; however iron-ore unit costs rose, so the broader claim of structurally improving margins remains unproven.",
+        "material": false
       }
     ]
   },
@@ -216,26 +359,35 @@
     {
       "unknown": "Current quantified environmental/tailings risk and margin conversion remain outside this Scout artifact.",
       "gating": false
+    },
+    {
+      "unknown": "Long-horizon demand shares by steelmaking route and battery chemistry remain scenario-dependent rather than established present facts.",
+      "gating": false
+    },
+    {
+      "unknown": "Durability of current realized copper/iron-ore pricing and by-product credits through a commodity downturn is unknown.",
+      "gating": false
+    },
+    {
+      "unknown": "Ultimate total tailings/reparation cash burden beyond disclosed schedules remains exposed to legal, regulatory and execution developments.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
-  "confidence": 90,
+  "confidence": 89,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -246,14 +398,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -270,10 +414,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

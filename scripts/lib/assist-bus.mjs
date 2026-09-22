@@ -37,7 +37,9 @@ function requestFor(packet, row, helperRole, capability, rootOwner, failures, no
     ? "Acquire materially new primary or independent evidence reusable by the root owner to close source-addressed underwriting gaps."
     : capability === "causal-source-support"
       ? "Acquire evidence that can strengthen or falsify the causal mechanism without taking over the root owner's causal judgment."
-      : "Provide bounded support without assuming the root owner's authority.";
+      : capability === "risk-source-support"
+        ? "Provide source-addressed risk facts, counterevidence and falsifiers reusable by Alpha without creating Alpha's numeric risk score or underwriting judgment."
+        : "Provide bounded support without assuming the root owner's authority.";
   return {
     version: 1,
     requestId,
@@ -86,6 +88,11 @@ export function buildAssistRequests(graph, packets, roleRuns = [], nowIso = new 
     ].includes(failure));
     if (alphaSourceFailures.length && (isFrontier || nearClosureResearch)) {
       requests.push(requestFor(packet, row, "earth-scout", "source-acquisition", "council-alpha", alphaSourceFailures, nowIso));
+    }
+
+    const alphaRiskFailures = failures.filter((failure) => failure === "missing_score_risk_evidence");
+    if (alphaRiskFailures.length && (isFrontier || nearClosureResearch)) {
+      requests.push(requestFor(packet, row, "council-beta", "risk-source-support", "council-alpha", alphaRiskFailures, nowIso));
     }
 
     const betaSourceFailures = failures.filter((failure) => failure === "missing_causal_mapping");

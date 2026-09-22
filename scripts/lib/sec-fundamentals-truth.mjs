@@ -59,7 +59,7 @@ function exactFactKey(fact) {
 }
 
 function contextKey(fact) {
-  return [fact.taxonomy, fact.tag, fact.unit, fact.start, fact.end, fact.fy, fact.fp].join("|");
+  return [fact.taxonomy, fact.tag, fact.unit, fact.start, fact.end].join("|");
 }
 
 function periodKey(fact) {
@@ -142,9 +142,23 @@ export function latestContextVersions(facts) {
 function classifyDuration(fact) {
   const days = daySpan(fact.start, fact.end);
   if (days == null) return "unknown";
-  if (days >= 270 && days <= 410) return "annual";
+  const form = String(fact.form ?? "").replace(/\/A$/, "");
+
+  if (["10-K", "20-F", "40-F"].includes(form)) return "annual";
+  if (form === "10-Q") {
+    if (days >= 60 && days <= 120) return "quarter";
+    if (days > 120 && days <= 300) return "year_to_date";
+    return "other_duration";
+  }
+  if (form === "6-K") {
+    if (days >= 60 && days <= 120) return "quarter";
+    if (days > 120 && days <= 300) return "year_to_date";
+    return "other_duration";
+  }
+
+  if (days >= 330 && days <= 410) return "annual";
   if (days >= 60 && days <= 120) return "quarter";
-  if (days >= 121 && days <= 300) return "year_to_date";
+  if (days > 120 && days <= 300) return "year_to_date";
   return "other_duration";
 }
 
@@ -275,48 +289,6 @@ function deriveBinary(name, leftMetric, rightMetric, op) {
   return { metric: name, derived: true, observations, observationsHash: truthHash(observations) };
 }
 
-function resolvedInstantPeriods(metric) {
-  return (metric?.periods ?? [])
-    .filter((period) => period.kind === "instant" && period.status === "resolved" && period.selected);
-}
-
-function deriveTotalDebt(currentDebt, noncurrentDebt) {
-  const byEnd = new Map();
-
-  for (const period of resolvedInstantPeriods(currentDebt)) {
-    const key = String(period.end) + "|" + String(period.unit);
-    byEnd.set(key, { current: period.selected, noncurrent: null });
-  }
-
-  for (const period of resolvedInstantPeriods(noncurrentDebt)) {
-    const key = String(period.end) + "|" + String(period.unit);
-    const row = byEnd.get(key) ?? { current: null, noncurrent: null };
-    row.noncurrent = period.selected;
-    byEnd.set(key, row);
-  }
-
-  const observations = [];
-  for (const [key, row] of byEnd) {
-    if (!row.current || !row.noncurrent || row.current.unit !== row.noncurrent.unit || !row.current.accn || row.current.accn !== row.noncurrent.accn) continue;
-    const a = Number(row.current.val);
-    const b = Number(row.noncurrent.val);
-    if (!Number.isFinite(a) || !Number.isFinite(b)) continue;
-
-    observations.push({
-      key,
-      end: row.current.end,
-      unit: row.current.unit,
-      value: a + b,
-      inputs: [
-        { metric: "debt_current", taxonomy: row.current.taxonomy, tag: row.current.tag, accn: row.current.accn, filed: row.current.filed, unit: row.current.unit, val: row.current.val },
-        { metric: "debt_noncurrent", taxonomy: row.noncurrent.taxonomy, tag: row.noncurrent.tag, accn: row.noncurrent.accn, filed: row.noncurrent.filed, unit: row.noncurrent.unit, val: row.noncurrent.val }
-      ]
-    });
-  }
-
-  return { metric: "total_debt", derived: true, observations, observationsHash: truthHash(observations) };
-}
-
 export function buildFundamentalsTruth(companyFacts, options = {}) {
   const { ticker, cik, asOf, retrievedAt = new Date().toISOString(), sourceUrl = null } = options;
   if (!ticker) throw new Error("ticker is required");
@@ -332,7 +304,6 @@ export function buildFundamentalsTruth(companyFacts, options = {}) {
     gross_margin: deriveBinary("gross_margin", metrics.gross_profit, metrics.revenue, (a, b) => b === 0 ? NaN : a / b),
     operating_margin: deriveBinary("operating_margin", metrics.operating_income, metrics.revenue, (a, b) => b === 0 ? NaN : a / b),
     net_margin: deriveBinary("net_margin", metrics.net_income, metrics.revenue, (a, b) => b === 0 ? NaN : a / b),
-    total_debt: deriveTotalDebt(metrics.debt_current, metrics.debt_noncurrent),
   };
 
   const companyCik = cik ?? (companyFacts?.cik != null ? String(companyFacts.cik).padStart(10, "0") : null);

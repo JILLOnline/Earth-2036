@@ -200,6 +200,35 @@ function normalizeSource(source) {
   };
 }
 
+function normalizedResolverStatus(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replaceAll("-", "_")
+    .replaceAll(" ", "_");
+}
+
+function resolverStatusClosesGate(value) {
+  const status = normalizedResolverStatus(value);
+  return status === "resolved" ||
+    status === "closed" ||
+    status === "non_gating" ||
+    status.startsWith("resolved_");
+}
+
+function resolverGateFailure(obj) {
+  if (obj?.gateKind) return String(obj.gateKind);
+  const impact = String(obj?.gateImpact || "").toLowerCase();
+  for (const failure of [
+    "unresolved_gating_issue",
+    "unresolved_gating_unknown",
+    "unresolved_material_contradiction",
+  ]) {
+    if (impact.includes(failure)) return failure;
+  }
+  return null;
+}
+
 function normalizeEvidenceObject(obj, filePath) {
   const claims = Array.isArray(obj?.claims) ? obj.claims : [];
   const explicitFactors = Array.isArray(obj?.factors)
@@ -222,10 +251,19 @@ function normalizeEvidenceObject(obj, filePath) {
           sourceId: item.sourceId || item.originFingerprint || item.source,
         }))
     : [];
+  const resolverFailure = resolverGateFailure(obj);
+  const resolverOutcome = obj?.result ?? obj?.contradictionStatus ?? obj?.resolution?.status ?? null;
   const resolverItems = Array.isArray(obj?.items)
-    ? obj.items
-    : obj?.role === "deep-resolver" && obj?.result && obj?.gateKind
-      ? [{ itemId: `${obj?.workId || obj?.ticker || "resolver"}:${obj.gateKind}`, status: obj.result }]
+    ? obj.items.map((item) =>
+        resolverStatusClosesGate(item?.status) ? { ...item, status: "resolved" } : item
+      )
+    : obj?.role === "deep-resolver" && resolverFailure && resolverStatusClosesGate(resolverOutcome)
+      ? [{
+          itemId: `${obj?.workId || obj?.ticker || "resolver"}:${resolverFailure}`,
+          status: "resolved",
+          originalStatus: resolverOutcome,
+          gateImpact: obj?.gateImpact || null,
+        }]
       : [];
   const rawConfidence = Number.isFinite(obj?.confidence)
     ? obj.confidence

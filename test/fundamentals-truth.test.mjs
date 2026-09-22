@@ -111,8 +111,15 @@ test("conflicting standard concepts never get silently reconciled", () => {
   assert.equal(metric.latest.annual.selected, null);
 });
 
-test("free cash flow, margins and total debt are mechanical and source-addressed", () => {
-  const truth = buildFundamentalsTruth(payload(), {
+test("derived fundamentals require same-period, same-unit and same-filing inputs", () => {
+  const preAmendment = buildFundamentalsTruth(payload(), {
+    ticker: "TEST",
+    cik: "0001551182",
+    asOf: "2026-02-15T00:00:00Z",
+    retrievedAt: "2026-02-15T01:00:00Z",
+    sourceUrl: "https://data.sec.gov/api/xbrl/companyfacts/CIK0001551182.json"
+  });
+  const later = buildFundamentalsTruth(payload(), {
     ticker: "TEST",
     cik: "0001551182",
     asOf: "2026-04-01T00:00:00Z",
@@ -120,16 +127,19 @@ test("free cash flow, margins and total debt are mechanical and source-addressed
     sourceUrl: "https://data.sec.gov/api/xbrl/companyfacts/CIK0001551182.json"
   });
 
-  const fcf = truth.derived.free_cash_flow.observations.find((row) => row.end === "2025-12-31");
-  const grossMargin = truth.derived.gross_margin.observations.find((row) => row.end === "2025-12-31");
-  const operatingMargin = truth.derived.operating_margin.observations.find((row) => row.end === "2025-12-31");
-  const totalDebt = truth.derived.total_debt.observations.find((row) => row.end === "2025-12-31");
+  const earlyGross = preAmendment.derived.gross_margin.observations.find((row) => row.end === "2025-12-31");
+  const earlyOperating = preAmendment.derived.operating_margin.observations.find((row) => row.end === "2025-12-31");
+  const fcf = later.derived.free_cash_flow.observations.find((row) => row.end === "2025-12-31");
+  const totalDebt = later.derived.total_debt.observations.find((row) => row.end === "2025-12-31");
+  const lateGross = later.derived.gross_margin.observations.find((row) => row.end === "2025-12-31");
+  const lateOperating = later.derived.operating_margin.observations.find((row) => row.end === "2025-12-31");
 
+  assert.equal(earlyGross.value, 0.4);
+  assert.equal(earlyOperating.value, 0.15);
   assert.equal(fcf.value, 15);
-  assert.equal(fcf.inputs.length, 2);
-  assert.equal(grossMargin.value, 0.4);
-  assert.equal(operatingMargin.value, 0.15);
   assert.equal(totalDebt.value, 40);
+  assert.equal(lateGross, undefined);
+  assert.equal(lateOperating, undefined);
 });
 
 test("different currencies are preserved and never combined", () => {

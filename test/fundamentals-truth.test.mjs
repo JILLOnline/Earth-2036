@@ -191,9 +191,9 @@ test("FCF treats capex source concepts as cash-outflow magnitude", () => {
 test("a nine-month 10-Q is year-to-date, never annual", () => {
   const sample = payload();
   sample.facts["us-gaap"].RevenueFromContractWithCustomerExcludingAssessedTax.units.USD.push(
-    { start: "2025-09-28", end: "2026-06-27", val: 300, filed: "2026-07-31", accn: "Q3", form: "10-Q", fy: 2026, fp: "Q3" }
+    { start: "2026-01-01", end: "2026-09-30", val: 300, filed: "2026-11-01", accn: "Q3", form: "10-Q", fy: 2026, fp: "Q3" }
   );
-  const metric = normalizeMetric(sample, "revenue", "2026-08-15T00:00:00Z");
+  const metric = normalizeMetric(sample, "revenue", "2026-11-15T00:00:00Z");
   assert.equal(metric.latest.annual.selected.val, 105);
   assert.equal(metric.latest.yearToDate.selected.val, 300);
   assert.equal(metric.latest.yearToDate.selected.accn, "Q3");

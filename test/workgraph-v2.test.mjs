@@ -796,3 +796,34 @@ test("loader consumes explicit Resolver gateImpact closures without weakening ot
     await rm(root, { recursive: true, force: true });
   }
 });
+
+
+test("assist bus uses idle Scout capacity before three failed Alpha attempts", () => {
+  const graph = {
+    companies: {
+      AAA: { ticker: "AAA", state: "researching", workId: "t0:AAA", attempts: 0 },
+    },
+  };
+  const packets = [{
+    ticker: "AAA",
+    workId: "t0:AAA",
+    sourceState: "researching",
+    evidencePaths: ["evidence/scout.json", "evidence/beta.json"],
+    specialistCoverage: { present: [
+      "discovery-weak-signals",
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
+    ] },
+    gatingIssues: [],
+    unknowns: [],
+    preflight: {
+      failures: ["missing_primary_source", "missing_factor_evidence", "missing_numeric_score_record"],
+    },
+  }];
+  const bus = buildAssistRequests(graph, packets, [], "2026-09-22T16:30:00Z");
+  assert.equal(bus.active, 1);
+  assert.equal(bus.requests[0].helperRole, "earth-scout");
+  assert.equal(bus.requests[0].rootOwner, "council-alpha");
+  assert.equal(bus.requests[0].capability, "source-acquisition");
+});

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-22T10:16:33.014Z",
+  "updatedAt": "2026-09-22T11:15:16.333Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1022,6 +1022,18 @@
       "type": "market",
       "label": "reverse-osmosis desalination capacity",
       "description": "scarcity and reliability needs support desalination where local economics permit"
+    },
+    {
+      "id": "company:FCX",
+      "type": "company",
+      "label": "Freeport-McMoRan Inc.",
+      "description": "Freeport's copper system links long-lived mine resources to concentrator and smelter infrastructure serving electrification and industrial copper demand; in Indonesia the present binding constraint is safe Grasberg Block Cave recovery and concentrate flow rather than installed smelter capability."
+    },
+    {
+      "id": "market:FCX-copper-concentrate-availability",
+      "type": "market",
+      "label": "copper concentrate availability",
+      "description": "Freeport's copper system links long-lived mine resources to concentrator and smelter infrastructure serving electrification and industrial copper demand; in Indonesia the present binding constraint is safe Grasberg Block Cave recovery and concentrate flow rather than installed smelter capability."
     }
   ],
   "edges": [
@@ -2371,6 +2383,22 @@
         "sec:erii:2026q2-10q"
       ],
       "observedAt": "2026-09-20T11:27:56Z"
+    },
+    {
+      "id": "edge:FCX-structural-exposure",
+      "from": "company:FCX",
+      "to": "market:FCX-copper-concentrate-availability",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 94,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "fcx-sec-2026q2",
+        "fcx-indonesia-operations-2026",
+        "fcx-manyar-copper-mark-2026-07-27"
+      ],
+      "observedAt": "2026-09-20T12:26:41Z"
     }
   ],
   "structuralSignals": [
@@ -4029,6 +4057,26 @@
       ],
       "observedAt": "2026-09-20T11:27:56Z",
       "thesis": "Energy Recovery's pressure-exchanger franchise sits in the desalination energy-efficiency chain: pressure energy that would otherwise be dissipated is recovered to reduce the electricity intensity and operating cost of reverse-osmosis infrastructure, linking the company to the durable human need for freshwater where desalination remains economic.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:FCX-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:FCX-copper-concentrate-availability",
+      "affectedNodeIds": [
+        "company:FCX"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 94,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "fcx-sec-2026q2",
+        "fcx-indonesia-operations-2026",
+        "fcx-manyar-copper-mark-2026-07-27"
+      ],
+      "observedAt": "2026-09-20T12:26:41Z",
+      "thesis": "Freeport's copper system links long-lived mine resources to concentrator and smelter infrastructure serving electrification and industrial copper demand; in Indonesia the present binding constraint is safe Grasberg Block Cave recovery and concentrate flow rather than installed smelter capability.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

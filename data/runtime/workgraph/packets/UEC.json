@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "UEC",
   "workId": "t0:UEC",
-  "generatedAt": "2026-09-22T10:16:30.048Z",
+  "generatedAt": "2026-09-22T10:26:32.952Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-06-09T00:00:00.000Z",
-    "end": "2026-09-21T21:03:06.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T21:03:06.000Z"
+    "end": "2026-09-22T10:24:04.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T10:24:04.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,30 +32,33 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/UEC-20260921T210306Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/UEC-20260921T210306Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/UEC-20260922T102404Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
       "data/runtime/workgraph/evidence/UEC-20260921T200323Z-earth-scout.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -64,19 +67,30 @@
       "bottleneckControl",
       "supplyChainResilience",
       "financialOperatingMomentum",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "thesisQuality"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "supplyChainResilience",
+        "scenarioRobustness",
+        "alignment2036"
+      ],
       "discovery-weak-signals": [
         "catalystScore",
         "alignment2036",
         "bottleneckControl",
         "supplyChainResilience"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "supplyChainResilience",
+        "thesisQuality"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "scenarioRobustness",
@@ -128,7 +142,8 @@
     "bottleneckControl",
     "supplyChainResilience",
     "financialOperatingMomentum",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "thesisQuality"
   ],
   "riskEvidence": {
     "present": true,
@@ -140,6 +155,18 @@
       {
         "risk": "Quarter unit costs were elevated by low production and regulatory timing; uranium price exposure is deliberately unhedged.",
         "gating": false
+      },
+      {
+        "risk": "Licensing, conversion siting and production-ramp execution can delay the bridge from strategic resource position to delivered fuel supply.",
+        "gating": false
+      },
+      {
+        "risk": "Production economics can disappoint if ramp volumes lag or uranium prices weaken.",
+        "gating": false
+      },
+      {
+        "risk": "Conversion plans require siting, licensing and capital before they become operating bottleneck control rather than optionality.",
+        "gating": false
       }
     ]
   },
@@ -150,6 +177,18 @@
     },
     {
       "risk": "Quarter unit costs were elevated by low production and regulatory timing; uranium price exposure is deliberately unhedged.",
+      "gating": false
+    },
+    {
+      "risk": "Licensing, conversion siting and production-ramp execution can delay the bridge from strategic resource position to delivered fuel supply.",
+      "gating": false
+    },
+    {
+      "risk": "Production economics can disappoint if ramp volumes lag or uranium prices weaken.",
+      "gating": false
+    },
+    {
+      "risk": "Conversion plans require siting, licensing and capital before they become operating bottleneck control rather than optionality.",
       "gating": false
     }
   ],
@@ -164,14 +203,28 @@
     "count": 1
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "uranium-resource -> mined-uranium",
+      "mined-uranium -> conversion-capability",
+      "conversion-capability -> nuclear-fuel-supply",
+      "nuclear-fuel-supply -> dispatchable-nuclear-generation",
+      "low-production-volume -> elevated-unit-cost",
+      "unhedged-price-exposure -> cash-flow-volatility"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "uranium-resource -> mined-uranium",
+    "mined-uranium -> conversion-capability",
+    "conversion-capability -> nuclear-fuel-supply",
+    "nuclear-fuel-supply -> dispatchable-nuclear-generation",
+    "low-production-volume -> elevated-unit-cost",
+    "unhedged-price-exposure -> cash-flow-volatility"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:UEC:2026-release-index",
@@ -200,11 +253,27 @@
     {
       "contradiction": "Strong liquidity and strategic inventory coexist with early-stage production volumes and quarter-specific cost inflation.",
       "material": true
+    },
+    {
+      "contradiction": "Strong liquidity and strategic inventory coexist with early-stage production volumes and quarter-specific cost inflation.",
+      "material": true
+    },
+    {
+      "contradiction": "Strong liquidity and strategic inventory coexist with early-stage production volumes and quarter-specific cost inflation.",
+      "material": true
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 3,
     "items": [
+      {
+        "contradiction": "Strong liquidity and strategic inventory coexist with early-stage production volumes and quarter-specific cost inflation.",
+        "material": true
+      },
+      {
+        "contradiction": "Strong liquidity and strategic inventory coexist with early-stage production volumes and quarter-specific cost inflation.",
+        "material": true
+      },
       {
         "contradiction": "Strong liquidity and strategic inventory coexist with early-stage production volumes and quarter-specific cost inflation.",
         "material": true
@@ -219,26 +288,31 @@
     {
       "unknown": "Sustainable steady-state Burke Hollow production and unit cost remain unproven.",
       "gating": false
+    },
+    {
+      "unknown": "Steady-state Burke Hollow production and conversion-facility timing remain unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Conversion capital requirement and sustainable unit cost are not yet established.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 86,
+  "confidence": 83,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -249,14 +323,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -273,10 +339,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

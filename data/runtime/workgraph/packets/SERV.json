@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SERV",
   "workId": "t0:SERV",
-  "generatedAt": "2026-09-22T10:16:30.044Z",
+  "generatedAt": "2026-09-22T10:26:32.948Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-06T00:00:00.000Z",
-    "end": "2026-09-19T05:06:57.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T05:06:57.000Z"
+    "end": "2026-09-22T10:24:04.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T10:24:04.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/SERV-20260919T050657Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/SERV-20260919T050657Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/SERV-20260922T102404Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -62,12 +65,21 @@
       "alignment2036",
       "crossDivisionLeverage",
       "scenarioRobustness",
-      "marketValuationOpportunity"
+      "marketValuationOpportunity",
+      "bottleneckControl",
+      "substitutionResilience",
+      "thesisQuality",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "crossDivisionLeverage"
+      ],
       "discovery-weak-signals": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -75,7 +87,12 @@
         "crossDivisionLeverage",
         "scenarioRobustness"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -127,7 +144,11 @@
     "alignment2036",
     "crossDivisionLeverage",
     "scenarioRobustness",
-    "marketValuationOpportunity"
+    "marketValuationOpportunity",
+    "bottleneckControl",
+    "substitutionResilience",
+    "thesisQuality",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -139,6 +160,18 @@
       {
         "risk": "A major demand partner underperformed expectations, demonstrating utilization and customer-demand risk despite fleet scale.",
         "gating": false
+      },
+      {
+        "risk": "Human couriers, e-bikes, drones and other autonomous systems remain substitutes; local density and operating-domain constraints can shift the bottleneck from autonomy to utilization.",
+        "gating": false
+      },
+      {
+        "risk": "Absolute revenue remains small, increasing financing sensitivity while the network is scaled.",
+        "gating": false
+      },
+      {
+        "risk": "Demand concentration and platform bargaining power can impair utilization and pricing even if robot technology performs.",
+        "gating": false
       }
     ]
   },
@@ -149,6 +182,18 @@
     },
     {
       "risk": "A major demand partner underperformed expectations, demonstrating utilization and customer-demand risk despite fleet scale.",
+      "gating": false
+    },
+    {
+      "risk": "Human couriers, e-bikes, drones and other autonomous systems remain substitutes; local density and operating-domain constraints can shift the bottleneck from autonomy to utilization.",
+      "gating": false
+    },
+    {
+      "risk": "Absolute revenue remains small, increasing financing sensitivity while the network is scaled.",
+      "gating": false
+    },
+    {
+      "risk": "Demand concentration and platform bargaining power can impair utilization and pricing even if robot technology performs.",
       "gating": false
     }
   ],
@@ -163,14 +208,28 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "autonomous-robot -> delivery-capacity",
+      "platform-integration -> addressable-orders",
+      "order-density -> robot-utilization",
+      "robot-utilization -> unit-economics",
+      "fleet-growth -/-> revenue-growth without utilization",
+      "partner-concentration -> demand-volatility"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "autonomous-robot -> delivery-capacity",
+    "platform-integration -> addressable-orders",
+    "order-density -> robot-utilization",
+    "robot-utilization -> unit-economics",
+    "fleet-growth -/-> revenue-growth without utilization",
+    "partner-concentration -> demand-volatility"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:SERV:2026Q2",
@@ -203,10 +262,18 @@
     {
       "contradiction": "Operational footprint and partner count expanded while 2026 revenue expectations materially declined.",
       "material": true
+    },
+    {
+      "contradiction": "Operational footprint and partner count expanded while 2026 revenue expectations materially declined.",
+      "material": true
+    },
+    {
+      "contradiction": "Rapid platform expansion contrasts with lower-than-expected Uber Eats delivery volume that caused a full-year guidance cut.",
+      "material": true
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 4,
     "items": [
       {
         "contradiction": "Rapid platform expansion contrasts with lower-than-expected Uber Eats delivery volume that caused a full-year guidance cut.",
@@ -214,6 +281,14 @@
       },
       {
         "contradiction": "Operational footprint and partner count expanded while 2026 revenue expectations materially declined.",
+        "material": true
+      },
+      {
+        "contradiction": "Operational footprint and partner count expanded while 2026 revenue expectations materially declined.",
+        "material": true
+      },
+      {
+        "contradiction": "Rapid platform expansion contrasts with lower-than-expected Uber Eats delivery volume that caused a full-year guidance cut.",
         "material": true
       }
     ]
@@ -226,26 +301,31 @@
     {
       "unknown": "Whether Grubhub, DoorDash, healthcare and advertising growth can offset the removed Uber Eats demand within the next reporting periods is unknown.",
       "gating": false
+    },
+    {
+      "unknown": "Platform-level unit economics and utilization are not fully disclosed.",
+      "gating": false
+    },
+    {
+      "unknown": "Whether newer partners can offset removed demand within the next reporting periods is unknown.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 95,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -256,14 +336,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -280,10 +352,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

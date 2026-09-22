@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "UUUU",
   "workId": "t0:UUUU",
-  "generatedAt": "2026-09-22T10:16:30.048Z",
+  "generatedAt": "2026-09-22T10:26:32.953Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-06-11T00:00:00.000Z",
-    "end": "2026-09-21T21:03:07.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T21:03:07.000Z"
+    "end": "2026-09-22T10:24:04.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T10:24:04.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,30 +32,33 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/UUUU-20260921T210307Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/UUUU-20260921T210307Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/UUUU-20260922T102404Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
       "data/runtime/workgraph/evidence/UUUU-20260921T200323Z-earth-scout.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -65,12 +68,19 @@
       "supplyChainResilience",
       "crossDivisionLeverage",
       "financialOperatingMomentum",
-      "scenarioRobustness"
+      "scenarioRobustness",
+      "thesisQuality"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "bottleneckControl",
+        "supplyChainResilience",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "alignment2036"
+      ],
       "discovery-weak-signals": [
         "catalystScore",
         "alignment2036",
@@ -78,7 +88,12 @@
         "supplyChainResilience",
         "crossDivisionLeverage"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "supplyChainResilience"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -131,7 +146,8 @@
     "supplyChainResilience",
     "crossDivisionLeverage",
     "financialOperatingMomentum",
-    "scenarioRobustness"
+    "scenarioRobustness",
+    "thesisQuality"
   ],
   "riskEvidence": {
     "present": true,
@@ -143,6 +159,18 @@
       {
         "risk": "Conditional government financing is not equivalent to closed funding and commodity exposure remains material.",
         "gating": false
+      },
+      {
+        "risk": "Feedstock, commissioning, qualification and commodity-price conditions can shift the bottleneck downstream even after plant construction completes.",
+        "gating": false
+      },
+      {
+        "risk": "Commercial heavy-REE scale-up may underperform on yield, cost, ramp or qualification despite successful construction.",
+        "gating": false
+      },
+      {
+        "risk": "Financing and commodity exposure can increase dilution or capital-allocation pressure if project cash generation lags.",
+        "gating": false
       }
     ]
   },
@@ -153,6 +181,18 @@
     },
     {
       "risk": "Conditional government financing is not equivalent to closed funding and commodity exposure remains material.",
+      "gating": false
+    },
+    {
+      "risk": "Feedstock, commissioning, qualification and commodity-price conditions can shift the bottleneck downstream even after plant construction completes.",
+      "gating": false
+    },
+    {
+      "risk": "Commercial heavy-REE scale-up may underperform on yield, cost, ramp or qualification despite successful construction.",
+      "gating": false
+    },
+    {
+      "risk": "Financing and commodity exposure can increase dilution or capital-allocation pressure if project cash generation lags.",
       "gating": false
     }
   ],
@@ -167,14 +207,30 @@
     "count": 2
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      "mineral-feedstock -> domestic-processing",
+      "domestic-processing -> separated-uranium-and-ree-products",
+      "separated-ree-products -> magnet-supply-chain",
+      "uranium-output -> nuclear-fuel-supply",
+      "construction -/-> proven-commercial-economics",
+      "conditional-financing -/-> closed-funding",
+      "commodity-volatility -> project-return-volatility"
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    "mineral-feedstock -> domestic-processing",
+    "domestic-processing -> separated-uranium-and-ree-products",
+    "separated-ree-products -> magnet-supply-chain",
+    "uranium-output -> nuclear-fuel-supply",
+    "construction -/-> proven-commercial-economics",
+    "conditional-financing -/-> closed-funding",
+    "commodity-volatility -> project-return-volatility"
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
+    "rawSourceCount": 7,
     "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:UUUU:heavy-ree-construction:20260729",
@@ -203,11 +259,27 @@
     {
       "contradiction": "Technical and construction milestones materially improve execution evidence, but commercial-scale heavy-REE economics remain prospective.",
       "material": true
+    },
+    {
+      "contradiction": "Technical and construction milestones improve execution evidence, but commercial-scale heavy-REE economics remain prospective.",
+      "material": true
+    },
+    {
+      "contradiction": "Technical and construction milestones materially improve execution evidence, but commercial-scale heavy-REE economics remain prospective.",
+      "material": true
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 3,
     "items": [
+      {
+        "contradiction": "Technical and construction milestones materially improve execution evidence, but commercial-scale heavy-REE economics remain prospective.",
+        "material": true
+      },
+      {
+        "contradiction": "Technical and construction milestones improve execution evidence, but commercial-scale heavy-REE economics remain prospective.",
+        "material": true
+      },
       {
         "contradiction": "Technical and construction milestones materially improve execution evidence, but commercial-scale heavy-REE economics remain prospective.",
         "material": true
@@ -222,26 +294,31 @@
     {
       "unknown": "Final financing mix and commercial heavy-REE economics remain unknown.",
       "gating": false
+    },
+    {
+      "unknown": "Commercial Tb/Dy yields, costs and customer qualification remain unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Final financing mix and commercial heavy-REE economics remain unknown.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 4
   },
   "gatingIssues": [],
-  "confidence": 93,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -252,14 +329,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -276,10 +345,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

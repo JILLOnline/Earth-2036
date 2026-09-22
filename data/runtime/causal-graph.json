@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-22T09:42:08.562Z",
+  "updatedAt": "2026-09-22T10:16:33.014Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1010,6 +1010,18 @@
       "type": "market",
       "label": "ERIC structural demand",
       "description": "Ericsson links radio/network technology to carrier infrastructure and end-user connectivity; AI-native radio capability can improve network resource allocation, but product capability only becomes a durable bottleneck position through scaled operator adoption and economic contribution."
+    },
+    {
+      "id": "company:ERII",
+      "type": "company",
+      "label": "Energy Recovery, Inc.",
+      "description": "Energy Recovery's pressure-exchanger franchise sits in the desalination energy-efficiency chain: pressure energy that would otherwise be dissipated is recovered to reduce the electricity intensity and operating cost of reverse-osmosis infrastructure, linking the company to the durable human need for freshwater where desalination remains economic."
+    },
+    {
+      "id": "market:ERII-reverse-osmosis-desalination-capacity",
+      "type": "market",
+      "label": "reverse-osmosis desalination capacity",
+      "description": "scarcity and reliability needs support desalination where local economics permit"
     }
   ],
   "edges": [
@@ -2344,6 +2356,21 @@
         "sec:eric:2026q2-6k"
       ],
       "observedAt": "2026-09-20T10:27:37Z"
+    },
+    {
+      "id": "edge:ERII-structural-exposure",
+      "from": "company:ERII",
+      "to": "market:ERII-reverse-osmosis-desalination-capacity",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 84,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:erii:2026q2-ex99-1",
+        "sec:erii:2026q2-10q"
+      ],
+      "observedAt": "2026-09-20T11:27:56Z"
     }
   ],
   "structuralSignals": [
@@ -3983,6 +4010,25 @@
       ],
       "observedAt": "2026-09-20T10:27:37Z",
       "thesis": "Ericsson links radio/network technology to carrier infrastructure and end-user connectivity; AI-native radio capability can improve network resource allocation, but product capability only becomes a durable bottleneck position through scaled operator adoption and economic contribution.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:ERII-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:ERII-reverse-osmosis-desalination-capacity",
+      "affectedNodeIds": [
+        "company:ERII"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 84,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:erii:2026q2-ex99-1",
+        "sec:erii:2026q2-10q"
+      ],
+      "observedAt": "2026-09-20T11:27:56Z",
+      "thesis": "Energy Recovery's pressure-exchanger franchise sits in the desalination energy-efficiency chain: pressure energy that would otherwise be dissipated is recovered to reduce the electricity intensity and operating cost of reverse-osmosis infrastructure, linking the company to the durable human need for freshwater where desalination remains economic.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

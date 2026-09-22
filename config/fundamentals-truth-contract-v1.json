@@ -22,7 +22,12 @@
     "preserveAllEligibleVersions": true,
     "sameDayPolicy": "conservative-end-of-UTC-day",
     "note": "Company Facts exposes filing date rather than precise acceptance timestamp for each fact; eligibility is delayed until UTC filing-date end to avoid same-day leakage.",
-    "sameDayVersionPolicy": "If multiple competing versions share the same SEC filed date, keep all latest-date versions jointly current; do not infer intraday supersession from accession ordering."
+    "sameDayVersionPolicy": "If multiple competing versions share the same SEC filed date, keep all latest-date versions jointly current; do not infer intraday supersession from accession ordering.",
+    "captureModes": {
+      "live-captured": "Forward observation captured from SEC Company Facts at/near the snapshot time. This is the preferred evidentiary mode for T1000.",
+      "historical-reconstructed": "Filed-date-filtered reconstruction from a later SEC Company Facts payload. It is useful for backtests but cannot prove the exact historical API representation if SEC later reprocessed old metadata."
+    },
+    "historicalBackfillLimitation": "Historical reconstruction establishes which currently-represented SEC facts have filed dates eligible by the cutoff. It must not be described as an exact archived copy of what the API returned on that historical date."
   },
   "rawTruth": {
     "learnerAuthority": "allEligibleStandardFacts",
@@ -98,7 +103,8 @@
     ],
     "derivedSameAccessionRequired": true,
     "noTotalDebtSynthesisV1": true,
-    "hashSeparatedFromTruth": true
+    "hashSeparatedFromTruth": true,
+    "provenanceRule": "A value shared by multiple candidate facts from different accessions remains provenance-ambiguous; no accession is selected merely by lexical order."
   },
   "amendmentPolicy": {
     "historyImmutable": true,
@@ -142,6 +148,8 @@
     "historicalFutureAdditionInvarianceRequired": true,
     "taxonomyMetadataLeakageTestRequired": true,
     "identityMetadataLeakageTestRequired": true,
-    "storageDeduplicationTestRequired": true
+    "storageDeduplicationTestRequired": true,
+    "historicalBackfillModeDistinguished": true,
+    "projectionRawObjectAliasingForbidden": true
   }
 }

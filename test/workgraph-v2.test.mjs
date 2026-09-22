@@ -495,6 +495,49 @@ test("loader normalizes top-level Deep Resolver gate resolution into compiler it
 });
 
 
+test("loader consumes resolved gateImpact dispositions without requiring legacy gateKind or items", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "earth2036-workgraph-resolver-impact-"));
+  try {
+    const dir = path.join(root, "data", "runtime", "workgraph", "evidence");
+    await mkdir(dir, { recursive: true });
+    await writeFile(path.join(dir, "AAA-resolver-impact.json"), JSON.stringify({
+      version: 2,
+      contract: "workgraph-v2-deep-resolver-evidence",
+      ticker: "AAA",
+      workId: "t0:AAA",
+      role: "deep-resolver",
+      generatedAt: "2026-09-22T07:33:51Z",
+      result: "resolved",
+      contradictionStatus: "resolved",
+      gateImpact: "close_unresolved_material_contradiction_on_reconcile",
+      recommendedNextState: "researching",
+      recommendedOwner: "council-alpha",
+      confidence: 0.99,
+    }), "utf8");
+
+    const loaded = await loadStructuredEvidence(root);
+    assert.equal(loaded.length, 1);
+    assert.equal(loaded[0].items[0].status, "resolved");
+    assert.ok(loaded[0].items[0].itemId.includes("unresolved_material_contradiction"));
+
+    const base = completeEvidence();
+    base.find((row) => row.perspective === "adversarial-red-team").contradictions = [
+      { issue: "material tension", material: true },
+    ];
+    const packet = compilePromotionPacket(
+      "AAA",
+      [...base, ...loaded],
+      { ticker:"AAA", state:"researching", workId:"t0:AAA" },
+      { registryEntry, methodologyVersion:"1.0.0" },
+    );
+    assert.equal(packet.preflight.failures.includes("unresolved_material_contradiction"), false);
+    assert.ok(packet.evidenceResolution.resolvedGateKinds.includes("material_contradiction"));
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+
 test("Deep Resolver defers dependent score-gate symptoms while Alpha owns the root cause", () => {
   const graph = {
     companies: {
@@ -633,6 +676,69 @@ test("assist bus creates bounded Scout help for stalled Alpha source gaps withou
   assert.equal(bus.policy.rootOwnerRetainsAuthority, true);
 });
 
+test("assist bus activates Scout on started researching Alpha work and prioritizes missing primary sources", () => {
+  const graph = {
+    companies: {
+      AAA: { ticker: "AAA", state: "researching", workId: "t0:AAA", attempts: 0 },
+      BBB: { ticker: "BBB", state: "researching", workId: "t0:BBB", attempts: 0 },
+    },
+  };
+  const packets = [
+    {
+      ticker: "AAA",
+      workId: "t0:AAA",
+      sourceState: "researching",
+      evidencePaths: ["evidence/AAA-beta.json"],
+      specialistCoverage: { present: ["structural-causal", "adversarial-red-team"] },
+      gatingIssues: [],
+      unknowns: [],
+      preflight: { failures: ["missing_numeric_score_record"] },
+    },
+    {
+      ticker: "BBB",
+      workId: "t0:BBB",
+      sourceState: "researching",
+      evidencePaths: ["evidence/BBB-beta.json"],
+      specialistCoverage: { present: ["structural-causal", "adversarial-red-team"] },
+      gatingIssues: [],
+      unknowns: [],
+      preflight: { failures: ["missing_primary_source", "missing_numeric_score_record"] },
+    },
+  ];
+  const bus = buildAssistRequests(graph, packets, [], "2026-09-22T16:00:00Z");
+  assert.equal(bus.active, 2);
+  assert.equal(bus.requests[0].ticker, "BBB");
+  assert.equal(bus.requests[0].helperRole, "earth-scout");
+  assert.equal(bus.requests[0].rootOwner, "council-alpha");
+  assert.ok(bus.requests[0].failures.includes("missing_primary_source"));
+});
+
+test("assist bus exposes bounded Beta risk-source support without transferring Alpha scoring authority", () => {
+  const graph = {
+    companies: {
+      AAA: { ticker: "AAA", state: "researching", workId: "t0:AAA", attempts: 1 },
+    },
+  };
+  const packets = [{
+    ticker: "AAA",
+    workId: "t0:AAA",
+    sourceState: "researching",
+    evidencePaths: ["evidence/AAA-scout.json"],
+    specialistCoverage: { present: ["discovery-weak-signals", "expectations-execution"] },
+    gatingIssues: [],
+    unknowns: [],
+    preflight: { failures: ["missing_score_risk_evidence"] },
+  }];
+  const bus = buildAssistRequests(graph, packets, [], "2026-09-22T16:00:00Z");
+  const beta = bus.requests.find((request) => request.helperRole === "council-beta");
+  assert.ok(beta);
+  assert.equal(beta.capability, "risk-source-support");
+  assert.equal(beta.rootOwner, "council-alpha");
+  assert.ok(beta.exactQuestion.includes("without setting Alpha's numeric risk or score"));
+  assert.equal(bus.policy.canonicalAuthorityUnchanged, true);
+});
+
+
 test("assist bus sleeps an unchanged failed request and reactivates when packet inputs change", () => {
   const graph = {
     companies: {
@@ -749,7 +855,7 @@ test("assist bus caps helper capacity instead of flooding one minion", () => {
     });
   }
   const bus = buildAssistRequests({companies}, packets, [], "2026-09-19T14:00:00Z");
-  assert.equal(bus.active, 8);
-  assert.equal(bus.queued, 4);
-  assert.equal(bus.byHelper["earth-scout"], 8);
+  assert.equal(bus.active, 6);
+  assert.equal(bus.queued, 6);
+  assert.equal(bus.byHelper["earth-scout"], 6);
 });

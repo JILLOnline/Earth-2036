@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "LAC",
   "workId": "t0:LAC",
-  "generatedAt": "2026-09-22T18:08:22.539Z",
+  "generatedAt": "2026-09-22T18:17:49.762Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-20T00:00:00.000Z",
-    "end": "2026-09-22T18:05:13.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-22T18:05:13.000Z"
+    "end": "2026-09-22T18:14:56.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T18:14:56.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -34,19 +34,20 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
-    ],
-    "missing": [
+      "adversarial-red-team",
       "source-integrity",
       "company-underwriting"
     ],
-    "complete": false
+    "missing": [],
+    "complete": true
   },
   "perspectives": [
     "discovery-weak-signals",
     "expectations-execution",
     "structural-causal",
-    "adversarial-red-team"
+    "adversarial-red-team",
+    "source-integrity",
+    "company-underwriting"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/LAC-20260920T000629Z-earth-scout.json",
@@ -64,13 +65,14 @@
     "data/runtime/workgraph/evidence/LAC-20260920T150516Z-earth-scout.json",
     "data/runtime/workgraph/evidence/LAC-20260920T160208Z-earth-scout.json",
     "data/runtime/workgraph/evidence/LAC-20260921T012522Z-council-beta.json",
-    "data/runtime/workgraph/evidence/LAC-20260922T180513Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/LAC-20260922T180513Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/LAC-20260922T181456Z-council-alpha.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 32,
-    "historicalEvidenceCount": 32
+    "activeEvidenceCount": 34,
+    "historicalEvidenceCount": 34
   },
   "factorEvidence": {
     "names": [
@@ -310,7 +312,11 @@
       {
         "risk": "Tariffs, fabrication capacity, logistics and labor inflation can raise remaining project cost above prior assumptions.",
         "gating": false
-      }
+      },
+      "construction cost/schedule",
+      "lithium-price weakness",
+      "commissioning/qualification",
+      "dilution/capital structure"
     ]
   },
   "risks": [
@@ -436,13 +442,19 @@
     {
       "risk": "Tariffs, fabrication capacity, logistics and labor inflation can raise remaining project cost above prior assumptions.",
       "gating": false
-    }
+    },
+    "construction cost/schedule",
+    "lithium-price weakness",
+    "commissioning/qualification",
+    "dilution/capital structure"
   ],
   "dataConfidenceEvidence": {
-    "available": false,
+    "available": true,
     "factors": [],
-    "confidenceFloor": null,
-    "evidencePaths": []
+    "confidenceFloor": 92,
+    "evidencePaths": [
+      "data/runtime/workgraph/evidence/LAC-20260922T181456Z-council-alpha.json"
+    ]
   },
   "primarySourcePresence": {
     "present": true,
@@ -462,9 +474,9 @@
     "lithium price + commissioning performance -> project economics -> durable supply contribution"
   ],
   "sourceLineage": {
-    "rawSourceCount": 34,
+    "rawSourceCount": 36,
     "uniqueSourceCount": 4,
-    "duplicatesCollapsed": 30,
+    "duplicatesCollapsed": 32,
     "missingLineage": 0,
     "uniqueOrigins": [
       "lithiumamericas.com|q1-2026-thacker-pass|2026",
@@ -606,33 +618,29 @@
     {
       "unknown": "Remaining funding sufficiency should be assessed against the forthcoming definitive capital estimate, not inferred from cash alone.",
       "gating": false
-    }
+    },
+    "No independent current valuation source was acquired in this run.",
+    "definitive updated capital estimate",
+    "current valuation asymmetry"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 87
+    "nonGatingCount": 90
   },
-  "gatingIssues": [],
-  "confidence": 82,
+  "gatingIssues": [
+    "marketValuationOpportunity lacks a current source-addressed valuation input; methodology requires evidence-backed numeric treatment."
+  ],
+  "confidence": 72,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_specialist_perspective:source-integrity",
-      "missing_specialist_perspective:company-underwriting",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence"
+      "missing_data_confidence_evidence",
+      "unresolved_gating_issue"
     ],
     "routing": [
-      {
-        "failure": "missing_specialist_perspective:source-integrity",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:company-underwriting",
-        "owner": "council-alpha"
-      },
       {
         "failure": "missing_factor_evidence",
         "owner": "council-alpha"
@@ -648,6 +656,10 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
+      },
+      {
+        "failure": "unresolved_gating_issue",
+        "owner": "deep-resolver"
       }
     ]
   }

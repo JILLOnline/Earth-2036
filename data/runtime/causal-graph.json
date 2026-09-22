@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-22T19:17:55.840Z",
+  "updatedAt": "2026-09-22T20:16:44.198Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1154,6 +1154,18 @@
       "type": "market",
       "label": "LAC structural demand",
       "description": "Structural demand channel"
+    },
+    {
+      "id": "company:AA",
+      "type": "company",
+      "label": "Alcoa Corporation",
+      "description": "Alcoa's structural role links bauxite and alumina conversion to primary aluminum supply for transport, construction, power and industrial needs; the South32 asset acquisition can deepen upstream resource control and supply-chain integration if acquired assets perform as expected."
+    },
+    {
+      "id": "market:AA-aa-structural-demand",
+      "type": "market",
+      "label": "AA structural demand",
+      "description": "Alcoa's structural role links bauxite and alumina conversion to primary aluminum supply for transport, construction, power and industrial needs; the South32 asset acquisition can deepen upstream resource control and supply-chain integration if acquired assets perform as expected."
     }
   ],
   "edges": [
@@ -2668,6 +2680,22 @@
         "lithiumamericas.com|175m-financing-thacker-pass|2026-08-06"
       ],
       "observedAt": "2026-09-21T01:25:22Z"
+    },
+    {
+      "id": "edge:AA-structural-exposure",
+      "from": "company:AA",
+      "to": "market:AA-aa-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:AA:2026Q2",
+        "issuer:AA:South32Acquisition",
+        "issuer:AA:Debt20260909"
+      ],
+      "observedAt": "2026-09-21T02:25:37Z"
     }
   ],
   "structuralSignals": [
@@ -4535,6 +4563,26 @@
       ],
       "observedAt": "2026-09-21T01:25:22Z",
       "thesis": "Lithium Americas has a sourced structural demand path.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:AA-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:AA-aa-structural-demand",
+      "affectedNodeIds": [
+        "company:AA"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:AA:2026Q2",
+        "issuer:AA:South32Acquisition",
+        "issuer:AA:Debt20260909"
+      ],
+      "observedAt": "2026-09-21T02:25:37Z",
+      "thesis": "Alcoa's structural role links bauxite and alumina conversion to primary aluminum supply for transport, construction, power and industrial needs; the South32 asset acquisition can deepen upstream resource control and supply-chain integration if acquired assets perform as expected.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

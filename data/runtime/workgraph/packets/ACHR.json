@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ACHR",
   "workId": "t0:ACHR",
-  "generatedAt": "2026-09-22T02:14:12.732Z",
+  "generatedAt": "2026-09-22T02:25:42.098Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-21T23:56:01.235Z"
   },
   "evidenceWindow": {
-    "start": "2026-08-10T00:00:00.000Z",
-    "end": "2026-09-19T06:06:41.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T06:06:41.000Z"
+    "start": "2025-11-17T00:00:00.000Z",
+    "end": "2026-09-22T02:24:38.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T02:24:38.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,28 +32,31 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/ACHR-20260919T060641Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ACHR-20260919T060641Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ACHR-20260922T022438Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 2
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 4
   },
   "factorEvidence": {
     "names": [
@@ -64,12 +67,22 @@
       "bottleneckControl",
       "financialOperatingMomentum",
       "scenarioRobustness",
-      "supplyChainResilience"
+      "supplyChainResilience",
+      "substitutionResilience",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "thesisQuality",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "bottleneckControl",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "thesisQuality",
         "catalystScore",
@@ -77,7 +90,14 @@
         "crossDivisionLeverage",
         "bottleneckControl"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "governancePower",
+        "scenarioRobustness",
+        "substitutionResilience",
+        "supplyChainResilience",
+        "thesisQuality"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -131,7 +151,9 @@
     "bottleneckControl",
     "financialOperatingMomentum",
     "scenarioRobustness",
-    "supplyChainResilience"
+    "supplyChainResilience",
+    "substitutionResilience",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -142,6 +164,30 @@
       },
       {
         "risk": "Cash burn remains substantial relative to nascent revenue, making certification timing, capital intensity and commercialization critical execution variables.",
+        "gating": false
+      },
+      {
+        "risk": "Certification, manufacturing scale and unit economics remain sequential bottlenecks; progress at one layer does not prove the next.",
+        "gating": false
+      },
+      {
+        "risk": "Diversification can improve scenario resilience while simultaneously increasing integration and capital-allocation complexity.",
+        "gating": false
+      },
+      {
+        "risk": "High cash burn before mature recurring aircraft revenue can increase dependence on external capital and potential dilution.",
+        "gating": false
+      },
+      {
+        "risk": "Multiple simultaneous programs and acquisitions create execution, integration and management-focus risk.",
+        "gating": false
+      },
+      {
+        "risk": "Backlog, partner announcements and prospective acquired revenue are weaker evidence than delivered aircraft, realized margins and recurring cash generation.",
+        "gating": false
+      },
+      {
+        "risk": "Competing eVTOL, rotorcraft, ground mobility and autonomous-aircraft approaches can compress adoption or pricing even if Archer's technology works.",
         "gating": false
       }
     ]
@@ -154,6 +200,30 @@
     {
       "risk": "Cash burn remains substantial relative to nascent revenue, making certification timing, capital intensity and commercialization critical execution variables.",
       "gating": false
+    },
+    {
+      "risk": "Certification, manufacturing scale and unit economics remain sequential bottlenecks; progress at one layer does not prove the next.",
+      "gating": false
+    },
+    {
+      "risk": "Diversification can improve scenario resilience while simultaneously increasing integration and capital-allocation complexity.",
+      "gating": false
+    },
+    {
+      "risk": "High cash burn before mature recurring aircraft revenue can increase dependence on external capital and potential dilution.",
+      "gating": false
+    },
+    {
+      "risk": "Multiple simultaneous programs and acquisitions create execution, integration and management-focus risk.",
+      "gating": false
+    },
+    {
+      "risk": "Backlog, partner announcements and prospective acquired revenue are weaker evidence than delivered aircraft, realized margins and recurring cash generation.",
+      "gating": false
+    },
+    {
+      "risk": "Competing eVTOL, rotorcraft, ground mobility and autonomous-aircraft approaches can compress adoption or pricing even if Archer's technology works.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -164,20 +234,66 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 5
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "Archer aircraft/powertrain engineering",
+        "to": "eVTOL and autonomous VTOL platforms",
+        "mechanism": "shared propulsion, rotor, flight-test and manufacturing capabilities"
+      },
+      {
+        "from": "eVTOL/autonomous VTOL platforms",
+        "to": "urban mobility and defense/logistics needs",
+        "mechanism": "runway-independent vertical lift with configurable mission profiles"
+      },
+      {
+        "from": "certification and production capability",
+        "to": "commercial deployment",
+        "mechanism": "regulatory approval and repeatable manufacturing are necessary conversion gates"
+      },
+      {
+        "from": "Wisk/Insitu/SkyGrid plus ZEE",
+        "to": "autonomy and airspace intelligence",
+        "mechanism": "acquired flight/autonomy experience and software broaden the stack beyond airframes"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "Archer aircraft/powertrain engineering",
+      "to": "eVTOL and autonomous VTOL platforms",
+      "mechanism": "shared propulsion, rotor, flight-test and manufacturing capabilities"
+    },
+    {
+      "from": "eVTOL/autonomous VTOL platforms",
+      "to": "urban mobility and defense/logistics needs",
+      "mechanism": "runway-independent vertical lift with configurable mission profiles"
+    },
+    {
+      "from": "certification and production capability",
+      "to": "commercial deployment",
+      "mechanism": "regulatory approval and repeatable manufacturing are necessary conversion gates"
+    },
+    {
+      "from": "Wisk/Insitu/SkyGrid plus ZEE",
+      "to": "autonomy and airspace intelligence",
+      "mechanism": "acquired flight/autonomy experience and software broaden the stack beyond airframes"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 2,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 5,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:ACHR:2026Q2:20260810"
+      "issuer:ACHR:2026Q2:20260810",
+      "issuer:ACHR:2026Q1:20260511",
+      "issuer:ACHR:anduril-halo-thunder:20260720",
+      "issuer:ACHR:powertrain-omen:20251117",
+      "issuer:ACHR:boeing-transaction:20260810"
     ]
   },
   "sources": [
@@ -188,19 +304,67 @@
       "primary": true,
       "publishedAt": "2026-08-10",
       "originFingerprint": "issuer:ACHR:2026Q2:20260810"
+    },
+    {
+      "sourceId": "issuer:ACHR:2026Q1",
+      "url": "https://investors.archer.com/news/news-details/2026/Archer-Announces-First-Quarter-2026-Results-Highlighting-Record-FAA-Certification-Progress-With-Initial-US-Operations-Expected-In-2026/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-11",
+      "originFingerprint": "issuer:ACHR:2026Q1:20260511"
+    },
+    {
+      "sourceId": "issuer:ACHR:anduril-halo-thunder:20260720",
+      "url": "https://investors.archer.com/news/news-details/2026/Anduril-and-Archer-Unveil-Jointly-Developed-Autonomous-VTOL-Platform-For-Commercial-and-Defense-Applications/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-20",
+      "originFingerprint": "issuer:ACHR:anduril-halo-thunder:20260720"
+    },
+    {
+      "sourceId": "issuer:ACHR:powertrain-omen:20251117",
+      "url": "https://investors.archer.com/news/news-details/2025/Archer-to-Supply-Its-Proprietary-Electric-Powertrain-to-Third-Parties-Starting-with-Anduril-and-EDGE-Group-for-their-Recently-Announced-Omen-Autonomous-Air-Vehicle/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2025-11-17",
+      "originFingerprint": "issuer:ACHR:powertrain-omen:20251117"
+    },
+    {
+      "sourceId": "issuer:ACHR:boeing-transaction:20260810",
+      "url": "https://www.investors.archer.com/news/news-details/2026/Archer-to-Shape-Physical-AI-Future-of-Aerospace-and-Defense-with-Acquisition-of-Boeings-Wisk-Aero-Insitu-and-SkyGrid-Subsidiaries-Boeing-to-Invest-in-Archer-and-Collaborate/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-10",
+      "originFingerprint": "issuer:ACHR:boeing-transaction:20260810"
     }
   ],
   "contradictions": [
     {
       "contradiction": "Operational/certification milestones are advancing while current revenue remains very small versus operating losses.",
       "material": true
+    },
+    {
+      "contradiction": "Strong certification/flight milestones coexist with only nascent commercial revenue and high cash consumption; technical progress therefore cannot yet be treated as proof of scaled economic viability.",
+      "material": true
+    },
+    {
+      "contradiction": "Archer reports substantial technical and strategic expansion while present revenue remains tiny relative to operating expense and losses.",
+      "material": true
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 3,
     "items": [
       {
         "contradiction": "Operational/certification milestones are advancing while current revenue remains very small versus operating losses.",
+        "material": true
+      },
+      {
+        "contradiction": "Strong certification/flight milestones coexist with only nascent commercial revenue and high cash consumption; technical progress therefore cannot yet be treated as proof of scaled economic viability.",
+        "material": true
+      },
+      {
+        "contradiction": "Archer reports substantial technical and strategic expansion while present revenue remains tiny relative to operating expense and losses.",
         "material": true
       }
     ]
@@ -213,26 +377,39 @@
     {
       "unknown": "Timing and economics of scaled passenger service and full FAA type certification remain uncertain.",
       "gating": false
+    },
+    {
+      "unknown": "Post-closing integration economics and durable margins from Wisk/Insitu/SkyGrid are not yet demonstrated.",
+      "gating": false
+    },
+    {
+      "unknown": "Scaled Midnight unit economics and passenger demand after certification remain unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Future share issuance, acquisition consideration and stock-based compensation effects on per-share economics require ongoing monitoring.",
+      "gating": false
+    },
+    {
+      "unknown": "Independent evidence of mature fleet reliability, utilization, maintenance cost and passenger-service margins is not yet available because scaled service is not yet established.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -243,14 +420,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -267,10 +436,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

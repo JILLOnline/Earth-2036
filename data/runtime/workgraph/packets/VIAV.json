@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "VIAV",
   "workId": "t0:VIAV",
-  "generatedAt": "2026-09-22T13:16:28.881Z",
+  "generatedAt": "2026-09-22T13:28:32.877Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-05T00:00:00.000Z",
-    "end": "2026-09-21T21:03:10.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T21:03:10.000Z"
+    "end": "2026-09-22T13:27:15.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-22T13:27:15.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -32,30 +32,33 @@
     ],
     "present": [
       "discovery-weak-signals",
-      "expectations-execution"
+      "expectations-execution",
+      "structural-causal",
+      "adversarial-red-team"
     ],
     "missing": [
       "source-integrity",
-      "company-underwriting",
-      "structural-causal",
-      "adversarial-red-team"
+      "company-underwriting"
     ],
     "complete": false
   },
   "perspectives": [
     "discovery-weak-signals",
-    "expectations-execution"
+    "expectations-execution",
+    "structural-causal",
+    "adversarial-red-team"
   ],
   "evidencePaths": [
-    "data/runtime/workgraph/evidence/VIAV-20260921T210310Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/VIAV-20260921T210310Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/VIAV-20260922T132715Z-council-beta.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
       "data/runtime/workgraph/evidence/VIAV-20260921T200323Z-earth-scout.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 2,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 4,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -66,12 +69,22 @@
       "crossDivisionLeverage",
       "financialOperatingMomentum",
       "scenarioRobustness",
-      "pricingPower"
+      "pricingPower",
+      "supplyChainResilience",
+      "governancePower",
+      "dataConfidence"
     ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
-      "structural-causal": [],
+      "structural-causal": [
+        "alignment2036",
+        "bottleneckControl",
+        "substitutionResilience",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "supplyChainResilience"
+      ],
       "discovery-weak-signals": [
         "catalystScore",
         "alignment2036",
@@ -79,7 +92,15 @@
         "substitutionResilience",
         "crossDivisionLeverage"
       ],
-      "adversarial-red-team": [],
+      "adversarial-red-team": [
+        "financialOperatingMomentum",
+        "governancePower",
+        "bottleneckControl",
+        "substitutionResilience",
+        "scenarioRobustness",
+        "pricingPower",
+        "dataConfidence"
+      ],
       "expectations-execution": [
         "financialOperatingMomentum",
         "catalystScore",
@@ -133,7 +154,10 @@
     "crossDivisionLeverage",
     "financialOperatingMomentum",
     "scenarioRobustness",
-    "pricingPower"
+    "pricingPower",
+    "supplyChainResilience",
+    "governancePower",
+    "dataConfidence"
   ],
   "riskEvidence": {
     "present": true,
@@ -144,6 +168,26 @@
       },
       {
         "risk": "FY GAAP net loss, acquisition integration and normalization of rapid datacenter growth remain material execution variables.",
+        "gating": false
+      },
+      {
+        "risk": "Validation demand can grow while value capture fragments across competing test vendors, integrated equipment diagnostics or customer-built tooling.",
+        "gating": false
+      },
+      {
+        "risk": "Rapid architecture change creates a successor-bottleneck risk: relevance must migrate from current 1.6T products into later optical/electrical interconnect regimes.",
+        "gating": false
+      },
+      {
+        "risk": "GAAP/non-GAAP divergence can inflate perceived operating quality if acquisition amortization, financing and integration costs are treated as economically irrelevant.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition-related debt and integration can consume cash or management capacity even when current liquidity appears adequate.",
+        "gating": false
+      },
+      {
+        "risk": "AI infrastructure spending may remain strong while VIAVI capture underperforms if customers shift architectures, internalize diagnostics or competitors compress pricing.",
         "gating": false
       }
     ]
@@ -156,6 +200,26 @@
     {
       "risk": "FY GAAP net loss, acquisition integration and normalization of rapid datacenter growth remain material execution variables.",
       "gating": false
+    },
+    {
+      "risk": "Validation demand can grow while value capture fragments across competing test vendors, integrated equipment diagnostics or customer-built tooling.",
+      "gating": false
+    },
+    {
+      "risk": "Rapid architecture change creates a successor-bottleneck risk: relevance must migrate from current 1.6T products into later optical/electrical interconnect regimes.",
+      "gating": false
+    },
+    {
+      "risk": "GAAP/non-GAAP divergence can inflate perceived operating quality if acquisition amortization, financing and integration costs are treated as economically irrelevant.",
+      "gating": false
+    },
+    {
+      "risk": "Acquisition-related debt and integration can consume cash or management capacity even when current liquidity appears adequate.",
+      "gating": false
+    },
+    {
+      "risk": "AI infrastructure spending may remain strong while VIAVI capture underperforms if customers shift architectures, internalize diagnostics or competitors compress pricing.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -166,21 +230,64 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
-    "present": false,
-    "edges": []
+    "present": true,
+    "edges": [
+      {
+        "from": "AI/data-center bandwidth demand",
+        "to": "higher-speed and denser optical/network architectures",
+        "mechanism": "scale-up/scale-out/scale-across networks move toward 1.6T and beyond"
+      },
+      {
+        "from": "higher-speed optical/network complexity",
+        "to": "validation and monitoring demand",
+        "mechanism": "silicon photonics, CPO, Ethernet and fiber infrastructure require measurement before reliable deployment"
+      },
+      {
+        "from": "VIAVI test/monitoring portfolio",
+        "to": "deployment confidence and infrastructure reliability",
+        "mechanism": "component, system and fiber validation identifies performance/interoperability defects before or during operation"
+      },
+      {
+        "from": "architecture/standards change or competing test platforms",
+        "to": "VIAVI bottleneck control",
+        "mechanism": "substitution or commoditization can reduce differentiated validation value"
+      }
+    ]
   },
-  "causalEdges": [],
+  "causalEdges": [
+    {
+      "from": "AI/data-center bandwidth demand",
+      "to": "higher-speed and denser optical/network architectures",
+      "mechanism": "scale-up/scale-out/scale-across networks move toward 1.6T and beyond"
+    },
+    {
+      "from": "higher-speed optical/network complexity",
+      "to": "validation and monitoring demand",
+      "mechanism": "silicon photonics, CPO, Ethernet and fiber infrastructure require measurement before reliable deployment"
+    },
+    {
+      "from": "VIAVI test/monitoring portfolio",
+      "to": "deployment confidence and infrastructure reliability",
+      "mechanism": "component, system and fiber validation identifies performance/interoperability defects before or during operation"
+    },
+    {
+      "from": "architecture/standards change or competing test platforms",
+      "to": "VIAVI bottleneck control",
+      "mechanism": "substitution or commoditization can reduce differentiated validation value"
+    }
+  ],
   "sourceLineage": {
-    "rawSourceCount": 3,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 1,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:VIAV:ECOC2026:20260909",
-      "issuer:VIAV:FY2026:20260805"
+      "issuer:VIAV:FY2026:20260805",
+      "sec:VIAV:10-K:20260813"
     ]
   },
   "sources": [
@@ -199,20 +306,38 @@
       "primary": true,
       "publishedAt": "2026-08-05",
       "originFingerprint": "issuer:VIAV:FY2026:20260805"
+    },
+    {
+      "sourceId": "sec:VIAV:10-K:20260813",
+      "url": "https://www.sec.gov/Archives/edgar/data/912093/000162828026056765/0001628280-26-056765-index.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-13",
+      "originFingerprint": "sec:VIAV:10-K:20260813"
     }
   ],
   "contradictions": [
     {
       "contradiction": "Strong revenue and non-GAAP profitability growth coexist with a FY GAAP net loss.",
       "material": true
+    },
+    {
+      "contradiction": "FY2026 delivered strong revenue growth and positive GAAP operating income while full-year GAAP EPS remained negative; the apparent growth/profitability strength therefore requires reconciliation with below-operating-line and acquisition-related effects.",
+      "material": true,
+      "resolution": "Beta narrows this from a thesis-invalidating contradiction to an underwriting/accounting-quality question: current evidence shows real operating improvement and adequate year-end liquidity, but does not justify treating non-GAAP profitability as equivalent to distributable earnings. Deep Resolver/Alpha should reconcile the exact FY GAAP loss bridge and organic/acquired contribution."
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "contradiction": "Strong revenue and non-GAAP profitability growth coexist with a FY GAAP net loss.",
         "material": true
+      },
+      {
+        "contradiction": "FY2026 delivered strong revenue growth and positive GAAP operating income while full-year GAAP EPS remained negative; the apparent growth/profitability strength therefore requires reconciliation with below-operating-line and acquisition-related effects.",
+        "material": true,
+        "resolution": "Beta narrows this from a thesis-invalidating contradiction to an underwriting/accounting-quality question: current evidence shows real operating improvement and adequate year-end liquidity, but does not justify treating non-GAAP profitability as equivalent to distributable earnings. Deep Resolver/Alpha should reconcile the exact FY GAAP loss bridge and organic/acquired contribution."
       }
     ]
   },
@@ -224,26 +349,39 @@
     {
       "unknown": "Organic versus acquired growth contribution and durability of current margin gains remain unresolved.",
       "gating": false
+    },
+    {
+      "unknown": "Competitive share and revenue contribution attributable specifically to 1.6T/AI-fabric validation are not quantified in the cited evidence.",
+      "gating": false
+    },
+    {
+      "unknown": "Evidence does not establish that customers lack viable substitute validation platforms.",
+      "gating": false
+    },
+    {
+      "unknown": "Organic versus acquired contribution to FY2026 growth remains unquantified in the current Beta lineage.",
+      "gating": false
+    },
+    {
+      "unknown": "Customer concentration and competitive share for the newest AI/datacenter products require source-addressed underwriting if material to score confidence.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 2
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
-      "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:adversarial-red-team",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
-      "missing_causal_mapping",
       "unresolved_material_contradiction"
     ],
     "routing": [
@@ -254,14 +392,6 @@
       {
         "failure": "missing_specialist_perspective:company-underwriting",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:structural-causal",
-        "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:adversarial-red-team",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_factor_evidence",
@@ -278,10 +408,6 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_causal_mapping",
-        "owner": "council-beta"
       },
       {
         "failure": "unresolved_material_contradiction",

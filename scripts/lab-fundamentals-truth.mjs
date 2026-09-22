@@ -20,6 +20,20 @@ const outputDir=argValue("--output-dir",path.join("data","lab","truth","fundamen
 
 async function readJson(file){ return JSON.parse(await readFile(file,"utf8")); }
 
+async function writeImmutableJson(file,value){
+  await mkdir(path.dirname(file),{recursive:true});
+  const body=JSON.stringify(value,null,2)+"\n";
+  try{
+    await writeFile(file,body,{encoding:"utf8",flag:"wx"});
+    return "created";
+  }catch(error){
+    if(error?.code!=="EEXIST") throw error;
+    const existing=await readFile(file,"utf8");
+    if(existing!==body) throw new Error("immutable truth collision at "+file);
+    return "reused";
+  }
+}
+
 async function fetchJson(url,attempts=3){
   let lastError=null;
   for(let attempt=1;attempt<=attempts;attempt+=1){
@@ -40,44 +54,25 @@ async function fetchJson(url,attempts=3){
   throw lastError;
 }
 
-function latestSummary(bucket){
-  const fact=bucket?.selected ?? null;
-  return {
-    status:bucket?.status ?? "missing",
-    selected:fact ? {
-      taxonomy:fact.taxonomy,tag:fact.tag,unit:fact.unit,val:fact.val,
-      start:fact.start,end:fact.end,filed:fact.filed,accn:fact.accn,form:fact.form
-    } : null,
-    candidateCount:Array.isArray(bucket?.facts)?bucket.facts.length:0
-  };
-}
-
 function auditSummary(truth){
-  const metrics={};
-  for(const [name,metric] of Object.entries(truth.normalizedProjection?.metrics ?? {})){
-    metrics[name]={
-      status:metric.status,
-      sourceFacts:metric.allEligibleFacts.length,
-      currentFacts:metric.currentFacts.length,
-      supersededFacts:metric.supersededFacts.length,
-      freshness:metric.freshness,
-      latest:metric.periodType==="instant"
-        ? {instant:latestSummary(metric.latest?.instant)}
-        : {
-            annual:latestSummary(metric.latest?.annual),
-            quarter:latestSummary(metric.latest?.quarter),
-            yearToDate:latestSummary(metric.latest?.yearToDate)
-          }
-    };
-  }
+  const missing=Object.entries(truth.normalizedProjection?.metrics ?? {})
+    .filter(([,metric])=>metric.status==="missing").map(([name])=>name);
   return {
-    audit:truth.audit,
-    raw:{
-      factsHash:truth.rawTruth.factsHash,
-      taxonomies:truth.sourceTaxonomies,
-      sampleCurrentFacts:truth.rawTruth.currentFacts.slice(0,12)
-    },
-    metrics
+    rawFactCount:truth.audit.rawFactCount,
+    rawCurrentFactCount:truth.audit.rawCurrentFactCount,
+    rawSupersededFactCount:truth.audit.rawSupersededFactCount,
+    taxonomyCount:truth.audit.taxonomyCount,
+    tagCount:truth.audit.tagCount,
+    unitCount:truth.audit.unitCount,
+    formCount:truth.audit.formCount,
+    earliestFiled:truth.audit.earliestFiled,
+    latestFiled:truth.audit.latestFiled,
+    normalizedObservedMetricCount:truth.audit.normalizedObservedMetricCount,
+    normalizedMissingMetrics:missing,
+    normalizedAmbiguousPeriodCount:truth.audit.normalizedAmbiguousPeriodCount,
+    derivedObservationCount:truth.audit.derivedObservationCount,
+    rawTruthBytes:Buffer.byteLength(JSON.stringify(truth.rawTruth)),
+    projectionBytes:Buffer.byteLength(JSON.stringify(truth.normalizedProjection)),
   };
 }
 
@@ -89,6 +84,8 @@ entities=entities.slice(0,limit);
 if(!entities.length) throw new Error("No matching SEC-identified companies found.");
 
 const results=[];
+const manifestCompanies=[];
+
 for(const entity of entities){
   const sourceUrl="https://data.sec.gov/api/xbrl/companyfacts/CIK"+entity.cik+".json";
   const payload=await fetchJson(sourceUrl);
@@ -97,26 +94,67 @@ for(const entity of entities){
     retrievedAt:new Date().toISOString(),sourceUrl
   });
   const errors=validateFundamentalsTruth(truth);
+  const audit=auditSummary(truth);
+
+  let objectWrite="not-written";
+  if(writeMode){
+    const rawObject={
+      version:1,
+      contract:"earth2036-fundamentals-raw-object-v1",
+      cik:truth.identity.cik,
+      factStateHash:truth.factStateHash,
+      source:truth.source,
+      rawTruth:truth.rawTruth
+    };
+    const objectPath=path.join(ROOT,outputDir,"objects",truth.identity.cik,truth.factStateHash+".json");
+    objectWrite=await writeImmutableJson(objectPath,rawObject);
+  }
+
   results.push({
     ticker:entity.ticker,cik:entity.cik,errors,
-    truthHash:truth.truthHash,
-    rawFactCount:truth.audit.rawFactCount,
-    currentRawFactCount:truth.audit.rawCurrentFactCount,
-    normalizedObservedMetricCount:truth.audit.normalizedObservedMetricCount,
-    details:auditDetails?auditSummary(truth):undefined
+    factStateHash:truth.factStateHash,
+    snapshotHash:truth.snapshotHash,
+    projectionHash:truth.projectionHash,
+    objectWrite,
+    ...audit,
+    details:auditDetails?{
+      sourceTaxonomies:truth.source.sourceTaxonomies,
+      availabilityBasis:truth.source.availabilityBasis,
+      currentFactIndexCount:truth.rawTruth.currentFactIndexes.length,
+      supersessionCount:truth.rawTruth.supersessions.length
+    }:undefined
   });
-  if(writeMode){
-    const dir=path.join(ROOT,outputDir);
-    await mkdir(dir,{recursive:true});
-    await writeFile(path.join(dir,entity.ticker+".json"),JSON.stringify(truth,null,2)+"\n","utf8");
-  }
+
+  manifestCompanies.push({
+    ticker:entity.ticker,
+    cik:entity.cik,
+    factStateHash:truth.factStateHash,
+    snapshotHash:truth.snapshotHash,
+    projectionHash:truth.projectionHash,
+    validationPassed:errors.length===0,
+    audit
+  });
+
+  // 8 requests/sec max here, below SEC's published 10 req/sec ceiling.
   await new Promise(r=>setTimeout(r,125));
+}
+
+let manifestWrite="not-written";
+if(writeMode){
+  const safeAsOf=asOf.replaceAll(":","-");
+  const manifest={
+    version:1,
+    contract:"earth2036-fundamentals-snapshot-manifest-v1",
+    asOf,
+    companies:manifestCompanies
+  };
+  manifestWrite=await writeImmutableJson(path.join(ROOT,outputDir,"manifests",safeAsOf+".json"),manifest);
 }
 
 const failed=results.filter(r=>r.errors.length);
 console.log(JSON.stringify({
   contract:"earth2036-fundamentals-truth-v1",
   source:"SEC XBRL Company Facts",
-  asOf,writeMode,companies:results.length,failed:failed.length,results
+  asOf,writeMode,manifestWrite,companies:results.length,failed:failed.length,results
 },null,2));
 if(failed.length) process.exitCode=1;

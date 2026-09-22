@@ -15,10 +15,64 @@ const tickersArg = argValue("--tickers", "");
 const limit = Math.max(1, Number(argValue("--limit", "5")) || 5);
 const asOf = argValue("--as-of", new Date().toISOString());
 const writeMode = !args.includes("--no-write");
+const auditDetails = args.includes("--audit-details");
 const outputDir = argValue("--output-dir", path.join("data", "lab", "truth", "fundamentals"));
 
 async function readJson(file) {
   return JSON.parse(await readFile(file, "utf8"));
+}
+
+function selectedSummary(bucket) {
+  const fact = bucket?.selected ?? null;
+  return {
+    status: bucket?.status ?? "missing",
+    selected: fact ? {
+      taxonomy: fact.taxonomy,
+      tag: fact.tag,
+      unit: fact.unit,
+      val: fact.val,
+      start: fact.start,
+      end: fact.end,
+      filed: fact.filed,
+      accn: fact.accn,
+      form: fact.form
+    } : null,
+    candidateCount: Array.isArray(bucket?.facts) ? bucket.facts.length : 0
+  };
+}
+
+function auditTruth(truth) {
+  const metrics = {};
+  for (const [name, metric] of Object.entries(truth.metrics ?? {})) {
+    const ambiguityByKind = {};
+    for (const period of metric.periods ?? []) {
+      if (String(period.status).startsWith("ambiguous")) {
+        ambiguityByKind[period.kind] = (ambiguityByKind[period.kind] || 0) + 1;
+      }
+    }
+    metrics[name] = {
+      status: metric.status,
+      sourceFacts: metric.allEligibleFacts.length,
+      currentFacts: metric.currentFacts.length,
+      supersededFacts: metric.supersededFacts.length,
+      ambiguousPeriods: Object.values(ambiguityByKind).reduce((a,b)=>a+b,0),
+      ambiguityByKind,
+      latest: metric.periodType === "instant"
+        ? { instant: selectedSummary(metric.latest?.instant) }
+        : {
+            annual: selectedSummary(metric.latest?.annual),
+            quarter: selectedSummary(metric.latest?.quarter),
+            yearToDate: selectedSummary(metric.latest?.yearToDate)
+          }
+    };
+  }
+  const derived = Object.fromEntries(
+    Object.entries(truth.derived ?? {}).map(([name, metric]) => [name, {
+      observations: metric.observations.length,
+      latest: metric.observations.at(-1) ?? null
+    }])
+  );
+  return { metrics, derived };
 }
 
 async function fetchJson(url, attempts = 3) {
@@ -75,6 +129,7 @@ for (const entity of entities) {
     cik: entity.cik,
     errors,
     audit: truth.audit,
+    details: auditDetails ? auditTruth(truth) : undefined,
     truthHash: truth.truthHash
   });
 

@@ -235,6 +235,7 @@ const trajectoryAsOf = rankingState?.capturedAt || scoreState?.updatedAt || now.
 const trajectoryShadowBase = buildTrajectorySnapshot({
   rankings: rankingState?.rankings || [],
   observations: observationsState?.candidates || {},
+  workgraphCompanies: graph?.companies || {},
   asOf: trajectoryAsOf,
   generatedAt: now.toISOString(),
   methodologyVersion: rankingState?.methodologyVersion || methodologyVersion,

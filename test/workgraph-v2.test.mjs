@@ -538,6 +538,49 @@ test("loader consumes resolved gateImpact dispositions without requiring legacy 
 });
 
 
+test("loader consumes legacy nested adjudication gateImpact when Resolver explicitly marks it resolved", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "earth2036-workgraph-resolver-nested-"));
+  try {
+    const dir = path.join(root, "data", "runtime", "workgraph", "evidence");
+    await mkdir(dir, { recursive: true });
+    await writeFile(path.join(dir, "AAA-resolver-nested.json"), JSON.stringify({
+      version: 1,
+      contract: "workgraph-v2-auxiliary-evidence",
+      role: "deep-resolver",
+      ticker: "AAA",
+      workId: "t0:AAA",
+      generatedAt: "2026-09-19T19:34:22Z",
+      status: "resolved",
+      adjudication: {
+        contradictionStatus: "resolved_as_noncontradictory_mix_tension",
+        gateImpact: "Resolve unresolved_material_contradiction only. Preserve Alpha-owned work.",
+        recommendedNextState: "researching",
+      },
+    }), "utf8");
+
+    const loaded = await loadStructuredEvidence(root);
+    assert.equal(loaded.length, 1);
+    assert.equal(loaded[0].items[0].status, "resolved");
+    assert.ok(loaded[0].items[0].itemId.includes("unresolved_material_contradiction"));
+
+    const base = completeEvidence();
+    base.find((row) => row.perspective === "adversarial-red-team").contradictions = [
+      { issue: "material tension", material: true },
+    ];
+    const packet = compilePromotionPacket(
+      "AAA",
+      [...base, ...loaded],
+      { ticker:"AAA", state:"researching", workId:"t0:AAA" },
+      { registryEntry, methodologyVersion:"1.0.0" },
+    );
+    assert.equal(packet.preflight.failures.includes("unresolved_material_contradiction"), false);
+    assert.ok(packet.evidenceResolution.resolvedGateKinds.includes("material_contradiction"));
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+
 test("Deep Resolver defers dependent score-gate symptoms while Alpha owns the root cause", () => {
   const graph = {
     companies: {

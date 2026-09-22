@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-22T04:03:53.509Z",
+  "updatedAt": "2026-09-22T05:15:59.329Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -950,6 +950,18 @@
       "type": "market",
       "label": "HBM/advanced DRAM demand",
       "description": "larger models and accelerator clusters require more bandwidth and memory capacity"
+    },
+    {
+      "id": "company:ENVX",
+      "type": "company",
+      "label": "Enovix",
+      "description": "Enovix's structural thesis is higher-energy-density silicon-anode lithium-ion cells for space-constrained devices; present evidence connects that technology to smartphone, smart-eyewear, drone/defense demand, while customer qualification and manufacturing throughput remain the bridge from technical value to scaled human/device utility."
+    },
+    {
+      "id": "market:ENVX-higher-energy-density-in-space-constrained-devices",
+      "type": "market",
+      "label": "higher energy density in space-constrained devices",
+      "description": "Enovix's structural thesis is higher-energy-density silicon-anode lithium-ion cells for space-constrained devices; present evidence connects that technology to smartphone, smart-eyewear, drone/defense demand, while customer qualification and manufacturing throughput remain the bridge from technical value to scaled human/device utility."
     }
   ],
   "edges": [
@@ -2209,6 +2221,21 @@
         "micron-ir:2026-07-09:globalwafers-supply"
       ],
       "observedAt": "2026-09-19T10:24:20Z"
+    },
+    {
+      "id": "edge:ENVX-structural-exposure",
+      "from": "company:ENVX",
+      "to": "market:ENVX-higher-energy-density-in-space-constrained-devices",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "enovix:2026-08-12:q2-results",
+        "sec:ENVX:2026Q2:10-Q"
+      ],
+      "observedAt": "2026-09-20T09:22:49Z"
     }
   ],
   "structuralSignals": [
@@ -3754,6 +3781,25 @@
       "observedAt": "2026-09-19T10:24:20Z",
       "thesis": "Micron is positioned on a structural AI bottleneck because accelerator scaling raises demand for high-bandwidth/high-capacity memory, while disclosed HBM4 high-volume production and server-memory validation show present participation rather than roadmap-only exposure.",
       "falsifier": "architectures materially reduce external advanced-memory intensity or competing memory approaches displace HBM/DRAM economics"
+    },
+    {
+      "id": "signal:ENVX-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:ENVX-higher-energy-density-in-space-constrained-devices",
+      "affectedNodeIds": [
+        "company:ENVX"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "enovix:2026-08-12:q2-results",
+        "sec:ENVX:2026Q2:10-Q"
+      ],
+      "observedAt": "2026-09-20T09:22:49Z",
+      "thesis": "Enovix's structural thesis is higher-energy-density silicon-anode lithium-ion cells for space-constrained devices; present evidence connects that technology to smartphone, smart-eyewear, drone/defense demand, while customer qualification and manufacturing throughput remain the bridge from technical value to scaled human/device utility.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],
   "roadmapMilestones": [

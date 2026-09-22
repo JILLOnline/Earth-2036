@@ -146,6 +146,7 @@ if (!manifest?.published) {
   const t0TrajectoryBase = buildTrajectorySnapshot({
     rankings: rankingRows,
     observations: observations?.candidates || {},
+    workgraphCompanies: workgraph?.companies || {},
     asOf: state.lastCycleAt,
     generatedAt: publishedAt,
     methodologyVersion: state.methodologyVersion,
@@ -264,6 +265,7 @@ const finalizedAt = new Date().toISOString();
 const trajectoryBase = buildTrajectorySnapshot({
   rankings: rankingRows,
   observations: observations?.candidates || {},
+  workgraphCompanies: workgraph?.companies || {},
   asOf: state.lastCycleAt,
   generatedAt: finalizedAt,
   methodologyVersion: state.methodologyVersion,

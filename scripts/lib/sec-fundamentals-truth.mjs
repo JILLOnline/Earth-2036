@@ -472,7 +472,8 @@ export function validateFundamentalsTruth(record) {
   }
 
   if (record?.rawTruth?.factCount !== facts.length) errors.push("raw fact count mismatch");
-  if (record?.rawTruth?.factsHash !== truthHash(facts)) errors.push("raw facts hash mismatch");
+  const recomputedRawFactsHash=truthHash(facts);
+  if (record?.rawTruth?.factsHash !== recomputedRawFactsHash) errors.push("raw facts hash mismatch");
 
   const expectedVersionIndex=buildRawVersionIndex(facts);
   if (stableJson(record?.rawTruth?.currentFactIndexes ?? []) !== stableJson(expectedVersionIndex.currentFactIndexes)) {
@@ -484,7 +485,7 @@ export function validateFundamentalsTruth(record) {
 
   const expectedFactStateHash=truthHash({
     cik:record?.identity?.cik ?? null,
-    rawFactsHash:record?.rawTruth?.factsHash ?? null,
+    rawFactsHash:recomputedRawFactsHash,
   });
   if (record?.factStateHash !== expectedFactStateHash) errors.push("fact-state hash mismatch");
   if (record?.source?.eligibleSourceHash !== expectedFactStateHash) errors.push("eligible source hash mismatch");

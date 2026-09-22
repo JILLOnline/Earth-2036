@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-22T01:19:27.832Z",
+  "updatedAt": "2026-09-22T04:03:53.509Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -926,6 +926,30 @@
       "type": "market",
       "label": "ENPH structural demand",
       "description": "Enphase's core structural role is distributed power conversion and storage control between rooftop generation/batteries and household/grid loads; this serves electricity resilience and distributed-energy needs but remains substitutable by competing inverter/storage architectures."
+    },
+    {
+      "id": "company:ENTG",
+      "type": "company",
+      "label": "Entegris, Inc.",
+      "description": "Entegris occupies a structural semiconductor-manufacturing bridge between advanced device architectures and yield: its Materials Solutions supplies deposition/CMP/etch-clean inputs while Advanced Purity Solutions supplies filtration, purification and contamination-control inputs, so shrinking features and more complex 3D/advanced-packaging flows can increase the economic cost of contamination and process variation."
+    },
+    {
+      "id": "market:ENTG-tighter-contamination-and-process-variation-tolerances",
+      "type": "market",
+      "label": "tighter contamination and process-variation tolerances",
+      "description": "Entegris occupies a structural semiconductor-manufacturing bridge between advanced device architectures and yield: its Materials Solutions supplies deposition/CMP/etch-clean inputs while Advanced Purity Solutions supplies filtration, purification and contamination-control inputs, so shrinking features and more complex 3D/advanced-packaging flows can increase the economic cost of contamination and process variation."
+    },
+    {
+      "id": "company:MU",
+      "type": "company",
+      "label": "Micron Technology, Inc.",
+      "description": "Micron is positioned on a structural AI bottleneck because accelerator scaling raises demand for high-bandwidth/high-capacity memory, while disclosed HBM4 high-volume production and server-memory validation show present participation rather than roadmap-only exposure."
+    },
+    {
+      "id": "market:MU-hbm-advanced-dram-demand",
+      "type": "market",
+      "label": "HBM/advanced DRAM demand",
+      "description": "larger models and accelerator clusters require more bandwidth and memory capacity"
     }
   ],
   "edges": [
@@ -2153,6 +2177,38 @@
         "sec:ENPH:2025-10K"
       ],
       "observedAt": "2026-09-20T07:23:56Z"
+    },
+    {
+      "id": "edge:ENTG-structural-exposure",
+      "from": "company:ENTG",
+      "to": "market:ENTG-tighter-contamination-and-process-variation-tolerances",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 90,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "entegris:2026-08-04:q2-results",
+        "entegris:2026:spcc",
+        "entegris:2026:spie-advanced-lithography"
+      ],
+      "observedAt": "2026-09-20T08:27:10Z"
+    },
+    {
+      "id": "edge:MU-structural-exposure",
+      "from": "company:MU",
+      "to": "market:MU-hbm-advanced-dram-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 94,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "micron-ir:2026-03-16:hbm4-hvp",
+        "micron-ir:2026-07-09:us-investment-ny-concrete",
+        "micron-ir:2026-07-09:globalwafers-supply"
+      ],
+      "observedAt": "2026-09-19T10:24:20Z"
     }
   ],
   "structuralSignals": [
@@ -3658,6 +3714,46 @@
       "observedAt": "2026-09-20T07:23:56Z",
       "thesis": "Enphase's core structural role is distributed power conversion and storage control between rooftop generation/batteries and household/grid loads; this serves electricity resilience and distributed-energy needs but remains substitutable by competing inverter/storage architectures.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:ENTG-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:ENTG-tighter-contamination-and-process-variation-tolerances",
+      "affectedNodeIds": [
+        "company:ENTG"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 90,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "entegris:2026-08-04:q2-results",
+        "entegris:2026:spcc",
+        "entegris:2026:spie-advanced-lithography"
+      ],
+      "observedAt": "2026-09-20T08:27:10Z",
+      "thesis": "Entegris occupies a structural semiconductor-manufacturing bridge between advanced device architectures and yield: its Materials Solutions supplies deposition/CMP/etch-clean inputs while Advanced Purity Solutions supplies filtration, purification and contamination-control inputs, so shrinking features and more complex 3D/advanced-packaging flows can increase the economic cost of contamination and process variation.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:MU-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:MU-hbm-advanced-dram-demand",
+      "affectedNodeIds": [
+        "company:MU"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 94,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "micron-ir:2026-03-16:hbm4-hvp",
+        "micron-ir:2026-07-09:us-investment-ny-concrete",
+        "micron-ir:2026-07-09:globalwafers-supply"
+      ],
+      "observedAt": "2026-09-19T10:24:20Z",
+      "thesis": "Micron is positioned on a structural AI bottleneck because accelerator scaling raises demand for high-bandwidth/high-capacity memory, while disclosed HBM4 high-volume production and server-memory validation show present participation rather than roadmap-only exposure.",
+      "falsifier": "architectures materially reduce external advanced-memory intensity or competing memory approaches displace HBM/DRAM economics"
     }
   ],
   "roadmapMilestones": [

@@ -6,6 +6,7 @@ export const TRAJECTORY_FEATURE_SCHEMA_VERSION = "1.0.0";
 export const TRAJECTORY_HORIZONS_MONTHS = Object.freeze([12, 24, 36, 60]);
 
 function finiteOrNull(value) {
+  if (value === null || value === undefined || value === "") return null;
   const numeric = Number(value);
   return Number.isFinite(numeric) ? numeric : null;
 }
@@ -190,7 +191,7 @@ export function validateTrajectorySnapshot(snapshot) {
   if (snapshot.records !== (snapshot.rows || []).length) errors.push("trajectory record count mismatch");
   if (snapshot.completeRecords + snapshot.incompleteRecords !== snapshot.records) errors.push("trajectory completeness count mismatch");
 
-  const { snapshotHash, validation, ...hashable } = snapshot;
+  const { snapshotHash, validation, captureRole, mode, note, ...hashable } = snapshot;
   if (!snapshotHash || snapshotHash !== trajectoryHash(hashable)) errors.push("trajectory snapshot hash mismatch");
   return errors;
 }

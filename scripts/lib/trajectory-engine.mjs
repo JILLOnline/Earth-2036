@@ -29,7 +29,7 @@ export function trajectoryHash(value) {
 
 function addUtcMonths(iso, months) {
   const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) throw new Error(\`Invalid trajectory asOf: \${iso}\`);
+  if (Number.isNaN(date.getTime())) throw new Error(`Invalid trajectory asOf: ${iso}`);
   const day = date.getUTCDate();
   date.setUTCDate(1);
   date.setUTCMonth(date.getUTCMonth() + months);
@@ -73,7 +73,7 @@ export function buildTrajectoryFeatureRow(record, observation = null) {
   if (featureCore.risk == null) missingFeatures.push("risk");
   if (featureCore.dataConfidence == null) missingFeatures.push("dataConfidence");
   for (const [key, value] of Object.entries(components)) {
-    if (value == null) missingFeatures.push(\`component:\${key}\`);
+    if (value == null) missingFeatures.push(`component:${key}`);
   }
 
   const provenance = {
@@ -101,7 +101,7 @@ export function buildTrajectorySnapshot({
   trialTickNumber = null,
 }) {
   const asOfDate = new Date(asOf);
-  if (Number.isNaN(asOfDate.getTime())) throw new Error(\`Invalid trajectory asOf: \${asOf}\`);
+  if (Number.isNaN(asOfDate.getTime())) throw new Error(`Invalid trajectory asOf: ${asOf}`);
 
   const rows = (Array.isArray(rankings) ? rankings : [])
     .map((record) => buildTrajectoryFeatureRow(record, observations?.[record?.ticker] ?? null))
@@ -156,13 +156,13 @@ export function validateTrajectorySnapshot(snapshot) {
   const seen = new Set();
   for (const row of snapshot.rows || []) {
     if (!row?.ticker) errors.push("trajectory row missing ticker");
-    if (seen.has(row?.ticker)) errors.push(\`duplicate trajectory ticker \${row?.ticker}\`);
+    if (seen.has(row?.ticker)) errors.push(`duplicate trajectory ticker ${row?.ticker}`);
     seen.add(row?.ticker);
     if (row?.featureComplete !== true) {
-      errors.push(\`incomplete trajectory features for \${row?.ticker || "unknown"}: \${(row?.missingFeatures || []).join(",")}\`);
+      errors.push(`incomplete trajectory features for ${row?.ticker || "unknown"}: ${(row?.missingFeatures || []).join(",")}`);
     }
     if (row?.forecast != null || row?.probability != null || row?.probabilities != null) {
-      errors.push(\`placeholder/live forecast fields are not allowed in capture row \${row?.ticker || "unknown"}\`);
+      errors.push(`placeholder/live forecast fields are not allowed in capture row ${row?.ticker || "unknown"}`);
     }
     const featureHash = row?.provenance?.featureHash;
     const featureCore = {
@@ -176,14 +176,14 @@ export function validateTrajectorySnapshot(snapshot) {
       scoreBreakdown: row?.scoreBreakdown ?? {},
     };
     if (!featureHash || featureHash !== trajectoryHash(featureCore)) {
-      errors.push(\`trajectory feature hash mismatch for \${row?.ticker || "unknown"}\`);
+      errors.push(`trajectory feature hash mismatch for ${row?.ticker || "unknown"}`);
     }
   }
 
   for (const horizon of snapshot.horizons || []) {
     const targetMs = Date.parse(horizon?.targetAt || "");
     if (!Number.isFinite(targetMs) || (Number.isFinite(asOfMs) && targetMs <= asOfMs)) {
-      errors.push(\`invalid future outcome target for \${horizon?.months ?? "unknown"} months\`);
+      errors.push(`invalid future outcome target for ${horizon?.months ?? "unknown"} months`);
     }
     if (horizon?.outcomeStatus !== "pending") errors.push("new trajectory snapshot outcome must start pending");
   }

@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "contract": "earth2036-fundamentals-truth-v1",
   "status": "lab-audit",
   "system": "lab",
@@ -19,7 +19,7 @@
     "rule": "A fact is eligible only when its SEC filed date is available by the requested asOf cutoff.",
     "preserveAllEligibleVersions": true,
     "sameDayPolicy": "conservative-end-of-UTC-day",
-    "note": "Company Facts exposes filing date, not EDGAR acceptance timestamp; same-day eligibility is therefore delayed until UTC day end."
+    "note": "Company Facts exposes filing date rather than precise acceptance timestamp for each fact; eligibility is delayed until UTC filing-date end to avoid same-day leakage."
   },
   "rawTruth": {
     "learnerAuthority": "allEligibleStandardFacts",
@@ -48,8 +48,10 @@
       "fp",
       "frame"
     ],
-    "payloadHashRequired": true,
-    "rawFactsHashRequired": true
+    "payloadHashRequired": false,
+    "rawFactsHashRequired": true,
+    "currentTaxonomyLabelsLearningEligible": false,
+    "truthIdentity": "CIK + eligible raw facts hash only; ticker, entity name, retrieval metadata and normalized projections cannot change fact-state truth."
   },
   "normalizedProjection": {
     "learningAuthority": false,
@@ -92,7 +94,8 @@
       "8-K/A"
     ],
     "derivedSameAccessionRequired": true,
-    "noTotalDebtSynthesisV1": true
+    "noTotalDebtSynthesisV1": true,
+    "hashSeparatedFromTruth": true
   },
   "amendmentPolicy": {
     "historyImmutable": true,
@@ -114,5 +117,20 @@
     "mayAffectT0Qualification": false,
     "mayTrainTrajectoryDirectlyBeforeAudit": false,
     "promotionRequires": "separate audit and explicit governance change"
+  },
+  "storagePolicy": {
+    "fullRawTruthCopyPerTrialTickForbidden": true,
+    "rawObjects": "content-addressed by factStateHash and written immutably",
+    "trialSnapshots": "small manifests reference existing factStateHash values",
+    "unchangedFactStateReusedAcrossTicks": true,
+    "normalizedProjection": "recomputable/non-authoritative; never required to duplicate raw truth per tick",
+    "scaleRule": "T1000 integration must reference content-addressed truth objects rather than write 250 full Company Facts histories on every tick"
+  },
+  "auditRequirements": {
+    "diversifiedIssuerCanaryRequired": true,
+    "historicalFutureAdditionInvarianceRequired": true,
+    "taxonomyMetadataLeakageTestRequired": true,
+    "identityMetadataLeakageTestRequired": true,
+    "storageDeduplicationTestRequired": true
   }
 }

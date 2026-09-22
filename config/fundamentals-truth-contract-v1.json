@@ -17,22 +17,10 @@
     "rule": "A source fact is eligible only when filed <= asOf.",
     "futureLeakageForbidden": true,
     "preserveAllEligibleVersions": true,
-    "latestContextVersionIsMechanical": true
+    "latestContextVersionIsMechanical": true,
+    "availabilityPrecision": "SEC Company Facts exposes filed date, not acceptance timestamp, for each fact.",
+    "sameDayPolicy": "Conservative: a fact with only a filing date becomes eligible after the end of that UTC filing date."
   },
-  "sourceFactRequiredFields": [
-    "taxonomy",
-    "tag",
-    "unit",
-    "val",
-    "start",
-    "end",
-    "filed",
-    "accn",
-    "form",
-    "fy",
-    "fp",
-    "frame"
-  ],
   "metrics": [
     "revenue",
     "gross_profit",
@@ -73,5 +61,37 @@
     "mayChangeWorkgraphState": false,
     "mayAffectT0Qualification": false,
     "promotionRequires": "separate audited governance change after truth-pipeline validation"
-  }
+  },
+  "sourceFactSchema": {
+    "requiredIdentity": [
+      "taxonomy",
+      "tag",
+      "unit",
+      "val",
+      "filed",
+      "accn",
+      "form"
+    ],
+    "nullableContext": [
+      "start",
+      "end",
+      "fy",
+      "fp",
+      "frame"
+    ],
+    "note": "Instant facts normally have no start; some SEC facts omit frame/fiscal focus. Null stays null."
+  },
+  "periodicFormsUsedForNormalizedFundamentals": [
+    "10-K",
+    "10-K/A",
+    "10-Q",
+    "10-Q/A",
+    "20-F",
+    "20-F/A",
+    "40-F",
+    "40-F/A",
+    "6-K",
+    "6-K/A"
+  ],
+  "periodicFormsPolicy": "8-K facts are excluded from normalized fundamentals v1 so preliminary/current-report facts cannot silently supersede periodic financial statements."
 }

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 
 async function source(relativePath) {
   return readFile(new URL(`../${relativePath}`, import.meta.url), "utf8");
@@ -100,6 +100,21 @@ test("tick finalization requires Workgraph v2 and has no legacy council fallback
   assert.equal(text.includes("supervisor-council.json"), false);
   assert.equal(text.includes("validateCouncilAttestationShape"), false);
   assert.equal(text.includes("legacyCouncilPassed"), false);
+});
+
+
+test("every persisted Workgraph evidence artifact is valid JSON", async () => {
+  const dir = new URL("../data/runtime/workgraph/evidence/", import.meta.url);
+  const files = (await readdir(dir)).filter((name) => name.endsWith(".json")).sort();
+  assert.ok(files.length > 0);
+  for (const file of files) {
+    const text = await readFile(new URL(file, dir), "utf8");
+    try {
+      JSON.parse(text);
+    } catch (error) {
+      assert.fail(`${file}: ${error.message}`);
+    }
+  }
 });
 
 

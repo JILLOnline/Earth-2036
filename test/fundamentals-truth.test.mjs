@@ -254,3 +254,30 @@ test("same-day conflicting versions remain jointly current instead of inventing 
     .filter((fact)=>fact.tag==="RevenueFromContractWithCustomerExcludingAssessedTax"&&fact.end==="2025-12-31");
   assert.deepEqual(current.map((fact)=>fact.accn).sort(),["A2","A2B"]);
 });
+
+
+test("same-value facts from different accessions do not invent provenance",()=>{
+  const sample=payload();
+  sample.facts["us-gaap"].RevenueFromContractWithCustomerExcludingAssessedTax.units.USD.push(
+    {start:"2025-01-01",end:"2025-12-31",val:105,filed:"2026-03-01",accn:"A2SAME",form:"10-K/A",fy:2025,fp:"FY"}
+  );
+  const metric=normalizeMetric(sample,"revenue","2026-04-01T00:00:00Z");
+  assert.equal(metric.latest.annual.status,"value_consistent_provenance_ambiguous");
+  assert.equal(metric.latest.annual.value,105);
+  assert.equal(metric.latest.annual.selected,null);
+});
+
+test("historical reconstruction mode is provenance metadata and cannot redefine fact truth",()=>{
+  const live=buildFundamentalsTruth(payload(),{
+    ticker:"TEST",asOf:"2026-04-01T00:00:00Z",captureMode:"live-captured"
+  });
+  const historical=buildFundamentalsTruth(payload(),{
+    ticker:"TEST",asOf:"2026-04-01T00:00:00Z",captureMode:"historical-reconstructed"
+  });
+  assert.equal(live.factStateHash,historical.factStateHash);
+  assert.notEqual(live.snapshotHash,historical.snapshotHash);
+  assert.equal(live.source.captureMode,"live-captured");
+  assert.equal(historical.source.captureMode,"historical-reconstructed");
+  assert.deepEqual(validateFundamentalsTruth(live),[]);
+  assert.deepEqual(validateFundamentalsTruth(historical),[]);
+});

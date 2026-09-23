@@ -87,7 +87,7 @@ export default function SystemPage() {
 
       <Deck>
         <DeckHeader
-          eyebrow={bridge.asOf ? "SHADOW · PIT " + runtimeTime(bridge.asOf) : "SHADOW · AUDIT PENDING"}
+          eyebrow={bridge.asOf ? "SHADOW · PIT " + runtimeTime(bridge.asOf) : "SHADOW · NO PUBLISHED LIVE INDEX"}
           title="TRAJECTORY FUNDAMENTALS"
           action={<Bubble active={bridge.companies > 0 && bridge.invalid === 0 && bridge.unknown === 0}>
             {bridge.companies > 0 ? bridge.valid + "/" + bridge.companies + " VERIFIED" : "NO AUDITED INDEX"}
@@ -122,7 +122,7 @@ export default function SystemPage() {
             ))}
           </ProgressiveList>
         ) : (
-          <div className="queueClear"><span>NO VERIFIED BRIDGE REFERENCES PUBLISHED</span><b>#11 AUDIT PENDING · EARTH PRODUCTION UNAFFECTED</b></div>
+          <div className="queueClear"><span>NO VERIFIED LIVE BRIDGE REFERENCES PUBLISHED</span><b>LIVE SOURCE BOOTSTRAP PENDING · EARTH PRODUCTION UNAFFECTED</b></div>
         )}
       </Deck>
 

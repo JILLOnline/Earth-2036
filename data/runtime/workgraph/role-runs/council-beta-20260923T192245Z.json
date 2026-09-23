@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "role": "council-beta",
+  "generatedAt": "2026-09-23T19:22:45Z",
+  "sourceCycleKey": "2026-09-23T19:18:40.985Z",
+  "startingGitHead": "d79faa798f20407a2518d51187936446803b4d29",
+  "operatingMode": "assist-mode-no-owned-queue",
+  "companiesInspected": [],
+  "betaPairsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [],
+  "blockers": [
+    {
+      "scope": "assist-mode",
+      "defect": "assist-bus declares four active council-beta helper slots, but the available repository response is truncated before those request objects, so requestId/inputSignature/exactQuestion cannot be verified without guessing.",
+      "lawfulNextEvidencePath": "Read the complete active helperRole=council-beta request objects from data/runtime/workgraph/assist-bus.json, then inspect each request packetPath and evidencePaths before producing bounded structural/risk support."
+    }
+  ],
+  "result": "no_owned_beta_queue; assist work deferred because active Beta request identities were not fully observable in this run",
+  "learning": {
+    "ownedQueueCount": 0,
+    "assistBusActiveForBeta": 4,
+    "frontier": {
+      "packetReady": 0,
+      "chiefReady": 0,
+      "canonical": 115,
+      "stalled": false
+    },
+    "changedStrategy": false,
+    "lesson": "Do not infer or reconstruct truncated Assist Bus requests from old ticker memory; exact request identity and input signature are required before helper work."
+  }
+}

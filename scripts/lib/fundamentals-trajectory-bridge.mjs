@@ -35,6 +35,10 @@ export function unknownFundamentalsBridge({ ticker, observation = null, asOf, re
   return emptyReference({ ticker, observation, asOf, status: "unknown", reasons: [reason] });
 }
 
+export function invalidFundamentalsBridge({ ticker, observation = null, asOf, reasons = ["bridge_index_invalid"] }) {
+  return emptyReference({ ticker, observation, asOf, status: "invalid", reasons });
+}
+
 /** Validate the entire immutable #10 record BEFORE returning even one trusted reference. */
 export function bridgeFundamentalsTruth({ ticker, asOf, observation = null, fundamentalsTruth = null }) {
   if (!fundamentalsTruth) return unknownFundamentalsBridge({ ticker, observation, asOf });

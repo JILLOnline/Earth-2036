@@ -209,7 +209,7 @@ test("33 historical amendment replay compares exact past hashes", () => {
   const old = truth(p, { asOf: PRIOR });
   const b = reference(old, obs, PRIOR);
   assert.equal(reconstructFundamentalsBridge(b, p).status, "reconstructed");
-  assert.equal(b.rawFactCount, 3); // first annual revenue + R&D
+  assert.equal(b.rawFactCount, 2); // first annual revenue + R&D
 });
 test("34 exact same inputs are deterministic", () => {
   assert.equal(reference(truth()).descriptorHash, reference(truth()).descriptorHash);
@@ -268,6 +268,7 @@ test("45 index asOf mismatch cannot import stale truth", () => {
 });
 test("46 mutated index hash marks affected refs invalid", () => {
   const index = createBridgeIndex({ asOf: CUTOFF, entries: { [TICKER]: { reference: validRef, auditProjection: { learningEligible: false, projectionHash: validRef.projectionHash } } } });
+  index.entries[TICKER].reference = clone(index.entries[TICKER].reference);
   index.entries[TICKER].reference.rawFactCount += 1;
   assert.equal(verifyBridgeIndex(index, { asOf: CUTOFF, observations: { TEST: obs } }).TEST.reference.status, "invalid");
 });
@@ -304,7 +305,7 @@ test("52 full capture and governance wiring are visibly nonblocking", async () =
   const workgraph = await readFile(new URL("../scripts/workgraph-sync.mjs", import.meta.url), "utf8");
   assert.ok(finalizer.includes("loadVerifiedBridgeIndex"));
   assert.ok(workgraph.includes("loadVerifiedBridgeIndex"));
-  const authority = finalizer.slice(finalizer.indexOf("const fullUniverseInput"), finalizer.indexOf("const finalizationDiagnostics"));
+  const authority = finalizer.match(/const fullUniverseInput = \{[\s\S]*?\n\};/)[0];
   assert.ok(!authority.includes("fundamentalsByTicker"));
   assert.ok(!finalizer.includes("if (trajectoryErrors"));
   assert.ok(!finalizer.includes("if (t0TrajectoryErrors"));

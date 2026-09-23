@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-23T06:17:29.916Z",
+  "updatedAt": "2026-09-23T11:04:44.158Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1214,6 +1214,54 @@
       "type": "market",
       "label": "regulated generation/grid investment",
       "description": "higher system load requires firm power and network capacity"
+    },
+    {
+      "id": "company:AAOI",
+      "type": "company",
+      "label": "Applied Optoelectronics, Inc.",
+      "description": "AAOI links AI/data-center bandwidth demand to high-speed optical transceiver manufacturing; management reported 800G volume more than doubled sequentially and expects demand to outpace production capacity through mid-2027."
+    },
+    {
+      "id": "market:AAOI-800g-1-6t-optical-transceiver-demand",
+      "type": "market",
+      "label": "800G/1.6T optical transceiver demand",
+      "description": "higher compute scale requires higher-bandwidth interconnects"
+    },
+    {
+      "id": "company:ABNB",
+      "type": "company",
+      "label": "Airbnb, Inc.",
+      "description": "Airbnb's structural advantage is an asset-light global marketplace matching fragmented lodging/experience supply to travel demand; 5.5M+ hosts and 2.5B+ cumulative guest arrivals support network density rather than ownership of physical accommodation."
+    },
+    {
+      "id": "market:ABNB-marketplace-liquidity-and-bookings",
+      "type": "market",
+      "label": "marketplace liquidity and bookings",
+      "description": "greater geographic and category density improves matching and supports more transactions"
+    },
+    {
+      "id": "company:AEP",
+      "type": "company",
+      "label": "American Electric Power Company, Inc.",
+      "description": "AEP controls a scarce grid bottleneck between accelerating data-center/industrial electricity demand and delivered power: its large transmission footprint plus regulated generation/distribution investment convert signed large-load demand into rate-base opportunity subject to regulatory and buildout execution."
+    },
+    {
+      "id": "market:AEP-transmission-generation-distribution-investment",
+      "type": "market",
+      "label": "transmission/generation/distribution investment",
+      "description": "signed large-load commitments require grid interconnection and capacity additions"
+    },
+    {
+      "id": "company:OKLO",
+      "type": "company",
+      "label": "Oklo Inc.",
+      "description": "Oklo addresses the firm-power bottleneck for electricity-intensive infrastructure through compact advanced nuclear, but the Groves criticality milestone is an execution analog rather than proof of commercial Aurora deployment."
+    },
+    {
+      "id": "market:OKLO-advanced-nuclear-opportunity",
+      "type": "market",
+      "label": "advanced nuclear opportunity",
+      "description": "24/7 electricity demand rewards dense dispatchable generation where grid capacity is constrained"
     }
   ],
   "edges": [
@@ -2802,6 +2850,66 @@
         "southerncompany.com|ratepayer-protection|2026-07-23"
       ],
       "observedAt": "2026-09-21T20:26:45Z"
+    },
+    {
+      "id": "edge:AAOI-structural-exposure",
+      "from": "company:AAOI",
+      "to": "market:AAOI-800g-1-6t-optical-transceiver-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 92,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:AAOI:2026Q2-10Q",
+        "sec:AAOI:2026Q2-results",
+        "sec:AAOI:2026-08-31-leases"
+      ],
+      "observedAt": "2026-09-21T18:27:49Z"
+    },
+    {
+      "id": "edge:ABNB-structural-exposure",
+      "from": "company:ABNB",
+      "to": "market:ABNB-marketplace-liquidity-and-bookings",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 90,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:ABNB:2026Q2-10Q"
+      ],
+      "observedAt": "2026-09-19T12:27:02Z"
+    },
+    {
+      "id": "edge:AEP-structural-exposure",
+      "from": "company:AEP",
+      "to": "market:AEP-transmission-generation-distribution-investment",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 94,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:AEP:2026Q2",
+        "sec:AEP:2026Q2-10Q"
+      ],
+      "observedAt": "2026-09-19T12:27:02Z"
+    },
+    {
+      "id": "edge:OKLO-structural-exposure",
+      "from": "company:OKLO",
+      "to": "market:OKLO-advanced-nuclear-opportunity",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "oklo:groves-first-criticality:2026-08-06",
+        "oklo:q2-2026:2026-08-07"
+      ],
+      "observedAt": "2026-09-19T10:24:20Z"
     }
   ],
   "structuralSignals": [
@@ -4764,6 +4872,82 @@
       "observedAt": "2026-09-21T20:26:45Z",
       "thesis": "SO links regulated generation/grid infrastructure to rising electricity demand; nuclear baseload and regulated investment can support reliability as large-load demand expands.",
       "falsifier": "forecast loads fail to contract/energize or regulators materially disallow recovery"
+    },
+    {
+      "id": "signal:AAOI-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:AAOI-800g-1-6t-optical-transceiver-demand",
+      "affectedNodeIds": [
+        "company:AAOI"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 92,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:AAOI:2026Q2-10Q",
+        "sec:AAOI:2026Q2-results",
+        "sec:AAOI:2026-08-31-leases"
+      ],
+      "observedAt": "2026-09-21T18:27:49Z",
+      "thesis": "AAOI links AI/data-center bandwidth demand to high-speed optical transceiver manufacturing; management reported 800G volume more than doubled sequentially and expects demand to outpace production capacity through mid-2027.",
+      "falsifier": "customer deployments shift materially to alternative architectures or AAOI demand weakens despite AI infrastructure growth"
+    },
+    {
+      "id": "signal:ABNB-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:ABNB-marketplace-liquidity-and-bookings",
+      "affectedNodeIds": [
+        "company:ABNB"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 90,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:ABNB:2026Q2-10Q"
+      ],
+      "observedAt": "2026-09-19T12:27:02Z",
+      "thesis": "Airbnb's structural advantage is an asset-light global marketplace matching fragmented lodging/experience supply to travel demand; 5.5M+ hosts and 2.5B+ cumulative guest arrivals support network density rather than ownership of physical accommodation.",
+      "falsifier": "nights growth persistently trails travel demand while active supply expands"
+    },
+    {
+      "id": "signal:AEP-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:AEP-transmission-generation-distribution-investment",
+      "affectedNodeIds": [
+        "company:AEP"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 94,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:AEP:2026Q2",
+        "sec:AEP:2026Q2-10Q"
+      ],
+      "observedAt": "2026-09-19T12:27:02Z",
+      "thesis": "AEP controls a scarce grid bottleneck between accelerating data-center/industrial electricity demand and delivered power: its large transmission footprint plus regulated generation/distribution investment convert signed large-load demand into rate-base opportunity subject to regulatory and buildout execution.",
+      "falsifier": "contracted load cancellations or interconnection delays materially reduce realized load"
+    },
+    {
+      "id": "signal:OKLO-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:OKLO-advanced-nuclear-opportunity",
+      "affectedNodeIds": [
+        "company:OKLO"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "oklo:groves-first-criticality:2026-08-06",
+        "oklo:q2-2026:2026-08-07"
+      ],
+      "observedAt": "2026-09-19T10:24:20Z",
+      "thesis": "Oklo addresses the firm-power bottleneck for electricity-intensive infrastructure through compact advanced nuclear, but the Groves criticality milestone is an execution analog rather than proof of commercial Aurora deployment.",
+      "falsifier": "cheaper substitutes satisfy reliability and permitting needs before Aurora deployment"
     }
   ],
   "roadmapMilestones": [

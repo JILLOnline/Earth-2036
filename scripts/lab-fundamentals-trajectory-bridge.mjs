@@ -148,6 +148,23 @@ for (const entity of entities) {
         ticker, observation: { ticker, cik }, asOf: cutoff, fundamentalsTruth: truth,
       });
       const historicKey = ticker + "@" + cutoff;
+      if (reference.status === "unknown") {
+        const wasPreviouslyValid = Boolean(manifest.historical[historicKey]?.truthHash);
+        const classified = wasPreviouslyValid
+          ? invalidFundamentalsBridge({
+              ticker, asOf: cutoff, observation: { ticker, cik },
+              reasons: ["historical_truth_unrecoverable: original facts now absent"],
+            })
+          : reference;
+        indexes.get(cutoff)[ticker] = {
+          reference: classified, auditProjection: fundamentalsAuditProjection(null, classified),
+        };
+        canaries.push({
+          ticker, asOf: cutoff, status: classified.status,
+          reason: classified.reason, rawFactCount: null,
+        });
+        continue;
+      }
       const prior = manifest.historical[historicKey];
       const reconstruction = reconstructFundamentalsBridge(reference, payload);
       const historicalDrift = prior && (

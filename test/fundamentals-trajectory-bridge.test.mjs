@@ -1,7 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
-import { buildFundamentalsTruth, validateFundamentalsTruth } from "../scripts/lib/sec-fundamentals-truth.mjs";
+import { readFile, writeFile, mkdir, mkdtemp, readdir, rm } from "node:fs/promises";
+import os from "node:os";
+import path from "node:path";
+import { spawnSync } from "node:child_process";
+import { buildFundamentalsTruth, validateFundamentalsTruth, truthHash } from "../scripts/lib/sec-fundamentals-truth.mjs";
 import {
   bridgeFundamentalsTruth, unknownFundamentalsBridge, invalidFundamentalsBridge,
   validateFundamentalsBridgeDescriptor, reconstructFundamentalsBridge, fundamentalsBridgeHealth,
@@ -321,4 +324,98 @@ test("54 no invalid reference may claim learning eligibility", () => {
   const ref = invalidFundamentalsBridge({ ticker: TICKER, asOf: CUTOFF });
   ref.learningEligible = true;
   assert.ok(validateFundamentalsBridgeDescriptor(ref).some((e) => e.includes("learning_eligible")));
+});
+
+test("55 storage/load rehearsal serializes and parses 250,000 actual compact rows", () => {
+  const rows = Array.from({ length: 250 }, (_, i) => ({
+    ticker: "C" + String(i).padStart(3, "0"),
+    truthState: { sec: { filingFingerprint: "source-" + i }, fundamentals: validRef },
+    learningEligibility: { filingState: true, fundamentalsRaw: true },
+  }));
+  let totalBytes = 0;
+  for (let tick = 0; tick < 1_000; tick++) {
+    const packed = JSON.stringify({ tick, rows });
+    totalBytes += Buffer.byteLength(packed);
+    const unpacked = JSON.parse(packed);
+    assert.equal(unpacked.rows.length, 250);
+    assert.equal(unpacked.rows[0].truthState.fundamentals.rawFactsHash, validRef.rawFactsHash);
+    assert.equal(packed.includes('"rawTruth":'), false);
+    assert.equal(packed.includes('"facts":'), false);
+  }
+  assert.ok(totalBytes < 1_000_000_000, "compact reference history must stay under 1 GB");
+});
+async function createOfflineCacheFixture() {
+  const root = await mkdtemp(path.join(os.tmpdir(), "earth2036-bridge-11-"));
+  const sample = payload();
+  const observations = JSON.parse(await readFile(new URL("../data/runtime/company-observations.json", import.meta.url), "utf8"));
+  const filingFingerprint = observations.candidates?.ETN?.filingFingerprint;
+  assert.ok(filingFingerprint, "trusted ETN fingerprint must exist");
+  const hash = truthHash(sample);
+  const archive = path.join("source", CIK, hash + ".json");
+  const archiveFile = path.join(root, archive);
+  await mkdir(path.dirname(archiveFile), { recursive: true });
+  await writeFile(archiveFile, JSON.stringify(sample) + "\n", "utf8");
+  await writeFile(path.join(root, "cache-manifest.json"), JSON.stringify({
+    contract: "earth2036-bridge-source-cache-v1",
+    companies: { ETN: { cik: CIK, filingFingerprint, payloadHash: hash, archivePath: archive, fetchedAt: CUTOFF } },
+    historical: {},
+  }), "utf8");
+  const run = () => spawnSync(process.execPath, [
+    new URL("../scripts/lab-fundamentals-trajectory-bridge.mjs", import.meta.url).pathname,
+    "--tickers", "ETN", "--limit", "1", "--as-of", CUTOFF, "--no-network",
+    "--strict", "--cache-dir", root,
+  ], { cwd: new URL("../", import.meta.url).pathname, encoding: "utf8", timeout: 30000 });
+  return { root, archiveFile, run };
+}
+test("56 offline sidecar persists and reuses audited #10 snapshots without SEC network", async () => {
+  const { root, run } = await createOfflineCacheFixture();
+  try {
+    const first = run();
+    assert.equal(first.status, 0, first.stderr + "\n" + first.stdout);
+    const result = JSON.parse(first.stdout);
+    assert.equal(result.unknown, 0);
+    assert.equal(result.invalid, 0);
+    assert.equal(result.sourceRefreshes, 0);
+    assert.equal(result.changedFactStates, 1);
+    const index = JSON.parse(await readFile(path.join(root, "current-index.json"), "utf8"));
+    assert.equal(index.entries.ETN.reference.status, "valid");
+    assert.deepEqual(verifyBridgeIndex(index, { asOf: CUTOFF, observations: { ETN: { cik: CIK } } }).ETN.reference, index.entries.ETN.reference);
+    const beforeArchive = await readdir(path.dirname(path.join(root, "source", CIK, "placeholder.json")));
+    const second = run();
+    assert.equal(second.status, 0, second.stderr + "\n" + second.stdout);
+    assert.equal(JSON.parse(second.stdout).changedFactStates, 0);
+    assert.deepEqual(await readdir(path.join(root, "source", CIK)), beforeArchive);
+    const immutableIndexes = await readdir(path.join(root, "indexes", CUTOFF.replace(/[^A-Za-z0-9]/g, "")));
+    assert.ok(immutableIndexes.length >= 1);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+test("57 corrupted cached source fails closed and never triggers an accidental SEC fetch", async () => {
+  const { root, archiveFile, run } = await createOfflineCacheFixture();
+  try {
+    await writeFile(archiveFile, JSON.stringify({ ...payload(), entityName: "corrupt" }), "utf8");
+    const failed = run();
+    assert.equal(failed.status, 1, "strict offline cache corruption must fail");
+    const report = JSON.parse(failed.stdout);
+    assert.equal(report.unknown, 1);
+    assert.equal(report.invalid, 0);
+    assert.equal(report.sourceRefreshes, 0);
+    assert.equal(report.canaries[0].status, "unknown");
+    assert.match(report.canaries[0].reason, /cached SEC source hash mismatch/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+test("58 future metric-map drift is separately reported without invalidating exact reconstructed raw truth", () => {
+  const old = clone(validRef);
+  old.projectionHash = "f".repeat(64);
+  old.reconstructionContract.expectedProjectionHash = old.projectionHash;
+  const { descriptorHash, ...core } = old;
+  old.descriptorHash = truthHash(core);
+  assert.deepEqual(validateFundamentalsBridgeDescriptor(old), []);
+  const result = reconstructFundamentalsBridge(old, payload());
+  assert.equal(result.status, "reconstructed");
+  assert.equal(result.projectionStatus, "drift");
+  assert.equal(result.truthHash, old.truthHash);
 });

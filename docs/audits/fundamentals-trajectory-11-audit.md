@@ -47,7 +47,7 @@ System displays separately published health from data/runtime/workgraph/shadow/f
 
 ## Audit exit gate
 
-1. Run 54 #11 adversarial unit/integration/storage invariants and all #10 + Trajectory tests.
+1. Run 59 #11 adversarial unit/integration/storage invariants and all #10 + Trajectory tests.
 2. Run ten-company live canary: AAPL, ETN, ASML, NVO, AMT, JPM, BRK.B, PL, EOSE and BKSY. External issuers never enter the production universe/index.
 3. Run AAPL/ASML five-date historical PIT rehearsal at 2021–2025 year-ends with independent hash reconstruction; do not count trial ticks.
 4. Run full Earth tests, typecheck, production build and autonomous dry run in separate canary CI. Failure affects only #11 PR, not production scheduler.
@@ -55,3 +55,9 @@ System displays separately published health from data/runtime/workgraph/shadow/f
 6. Inspect actual finalizer/dry-run output and baseline diffs for zero canonical, rank, Workgraph or tick-qualification influence.
 
 **Freeze only after these steps are observed to pass on GitHub, plus a reviewed live source-cache bootstrap and repeated drift canary.** #12 may begin only after explicit #11 freeze.
+
+## Source drift, scale and audit evidence
+
+The first independent #11 GitHub canary run passed all 54 original bridge tests, all 10 live sector canaries, 10/10 AAPL/ASML fixed-cutoff historical reconstructions, 192 full Earth tests, the production build and the non-writing engine dry run: https://github.com/JILLOnline/Earth-2036/actions/runs/35862258880 . The original 10 fixed-cutoff PIT truth hashes are pinned in config/fundamentals-bridge-historical-baseline-v1.json. The weekly independent shadow workflow rebuilds these histories and fails closed on any historical raw hash or fact count drift. It does not rewrite its baseline, change Earth state or count historical rehearsals toward T1000. A separately versioned audit is required to accept any future baseline replacement.
+
+Additional hardening adds actual serialize/parse of 250,000 compact reference rows, offline source cache integrity/persistence/reuse tests, source-cache corruption fail-closed testing, separately tracked projection drift, immutable content-addressed PIT index archives, and regression tests for pinned historical hashes. The **59-test expanded gate** must pass GitHub CI after these changes before declaring #11 frozen. The initial System health artifact continues to declare audit pending until separately published audited health is available. Ingestion is intentionally an isolated optional sidecar, not an unreviewed production schedule; a production durable source-archive bootstrap and live publication remain separate activation steps.

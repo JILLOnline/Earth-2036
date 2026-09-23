@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-23T17:19:04.402Z",
+  "updatedAt": "2026-09-23T18:19:52.665Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1406,6 +1406,18 @@
       "type": "market",
       "label": "GEN structural demand",
       "description": "Gen Digital links consumer digital dependence to cyber safety, identity protection and now financial-wellness tooling; the structural thesis is a shared consumer trust/distribution layer rather than a single-product security bottleneck."
+    },
+    {
+      "id": "company:GFS",
+      "type": "company",
+      "label": "GlobalFoundries",
+      "description": "GlobalFoundries occupies differentiated manufacturing links between AI optical connectivity, power management, specialty process capacity and resilient domestic semiconductor infrastructure rather than competing primarily at leading-edge logic."
+    },
+    {
+      "id": "market:GFS-gfs-structural-demand",
+      "type": "market",
+      "label": "GFS structural demand",
+      "description": "GlobalFoundries occupies differentiated manufacturing links between AI optical connectivity, power management, specialty process capacity and resilient domestic semiconductor infrastructure rather than competing primarily at leading-edge logic."
     }
   ],
   "edges": [
@@ -3229,6 +3241,23 @@
       "sourceIds": [
         "gen:q1-fy27",
         "gen:fy26-results"
+      ],
+      "observedAt": "2026-09-20T16:28:15Z"
+    },
+    {
+      "id": "edge:GFS-structural-exposure",
+      "from": "company:GFS",
+      "to": "market:GFS-gfs-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 90,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "gfs:marvell-sige-2026",
+        "gfs:commerce-quantum-award",
+        "gfs:mps-manufacturing",
+        "gfs:q2-2026-results"
       ],
       "observedAt": "2026-09-20T16:28:15Z"
     }
@@ -5493,6 +5522,27 @@
       ],
       "observedAt": "2026-09-20T16:28:15Z",
       "thesis": "Gen Digital links consumer digital dependence to cyber safety, identity protection and now financial-wellness tooling; the structural thesis is a shared consumer trust/distribution layer rather than a single-product security bottleneck.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:GFS-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:GFS-gfs-structural-demand",
+      "affectedNodeIds": [
+        "company:GFS"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 90,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "gfs:marvell-sige-2026",
+        "gfs:commerce-quantum-award",
+        "gfs:mps-manufacturing",
+        "gfs:q2-2026-results"
+      ],
+      "observedAt": "2026-09-20T16:28:15Z",
+      "thesis": "GlobalFoundries occupies differentiated manufacturing links between AI optical connectivity, power management, specialty process capacity and resilient domestic semiconductor infrastructure rather than competing primarily at leading-edge logic.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

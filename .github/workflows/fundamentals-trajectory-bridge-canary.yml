@@ -5,10 +5,12 @@ on:
     paths:
       - "config/fundamentals-trajectory-bridge-v1.json"
       - "config/trajectory-contract-v1.json"
+      - "config/fundamentals-bridge-historical-baseline-v1.json"
       - "scripts/lib/fundamentals-trajectory-bridge.mjs"
       - "scripts/lib/fundamentals-bridge-index.mjs"
       - "scripts/lib/trajectory-engine.mjs"
       - "scripts/lab-fundamentals-trajectory-bridge.mjs"
+      - "scripts/check-fundamentals-bridge-history.mjs"
       - "scripts/finalize-qualified-tick.mjs"
       - "scripts/workgraph-sync.mjs"
       - "scripts/lib/sec-fundamentals-truth.mjs"
@@ -18,6 +20,8 @@ on:
       - "app/system/page.tsx"
       - ".github/workflows/fundamentals-trajectory-bridge-canary.yml"
   workflow_dispatch:
+  schedule:
+    - cron: "23 5 * * 0"
 
 permissions:
   contents: read
@@ -62,6 +66,8 @@ jobs:
             --tickers AAPL,ASML --limit 2 --no-write --strict --historical \
             --walk-forward 2021-12-31T23:59:59.999Z,2022-12-31T23:59:59.999Z,2023-12-31T23:59:59.999Z,2024-12-31T23:59:59.999Z,2025-12-31T23:59:59.999Z \
             | tee bridge-historical.json
+      - name: "Pinned historical source drift check (fail closed, no substituted truth)"
+        run: node scripts/check-fundamentals-bridge-history.mjs bridge-historical.json
       - name: "Full Earth test suite"
         run: npm test
       - name: "Typecheck"

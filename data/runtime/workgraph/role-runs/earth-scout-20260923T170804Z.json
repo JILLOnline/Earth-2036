@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "role": "earth-scout",
+  "generatedAt": "2026-09-23T17:08:04Z",
+  "startingGitHead": "9760f19fb1d12adc2a96b123a0b3381da415f5bb",
+  "companiesInspected": ["IBM","MBLY","NBIS","SERV","SMR"],
+  "evidencePairsCompleted": 2,
+  "artifacts": [
+    "data/runtime/workgraph/evidence/SMR-20260923T170802Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/NBIS-20260923T170803Z-earth-scout.json"
+  ],
+  "assistAttempts": [
+    {"requestId":"assist:IBM:council-alpha:earth-scout:source-acquisition","inputSignature":"3eff206efd764748488e","outcome":"skipped_same_signature_prior_failure","newEvidencePaths":[],"sourcePathsAttempted":[]},
+    {"requestId":"assist:MBLY:council-alpha:earth-scout:source-acquisition","inputSignature":"b7397f4fefd33e2546f0","outcome":"no_materially_new_source_found_in_fresh_search","newEvidencePaths":[],"sourcePathsAttempted":["Mobileye Investor Relations recent releases"]},
+    {"requestId":"assist:NBIS:council-alpha:earth-scout:source-acquisition","inputSignature":"d8739970eab57bf3158b","outcome":"new_primary_evidence","newEvidencePaths":["data/runtime/workgraph/evidence/NBIS-20260923T170803Z-earth-scout.json"],"sourcePathsAttempted":["Nebius Newsroom September 2026 releases"]},
+    {"requestId":"assist:SERV:council-alpha:earth-scout:source-acquisition","inputSignature":"0ea4db1ef30388930410","outcome":"no_materially_new_source_found_in_fresh_search","newEvidencePaths":[],"sourcePathsAttempted":["Serve Robotics Investor Relations recent releases"]},
+    {"requestId":"assist:SMR:council-alpha:earth-scout:source-acquisition","inputSignature":"86cd51407a4e3bfbf212","outcome":"new_primary_evidence","newEvidencePaths":["data/runtime/workgraph/evidence/SMR-20260923T170802Z-earth-scout.json"],"sourcePathsAttempted":["NuScale Power September 2026 press releases"]}
+  ],
+  "blockers": ["MBLY and SERV fresh searches did not expose materially different source-addressed evidence beyond cumulative lineage in this run."],
+  "result": "Owned Scout queue was empty; assist capacity was redirected to Alpha source acquisition. Two materially different primary-source packages were persisted for NBIS and SMR. IBM unchanged failed signature was not retried.",
+  "repeatedBlocker": false,
+  "changedStrategy": "With zero owned queue, used Assist Bus frontier work and prioritized recent primary issuer sources not already represented by the latest Scout artifacts."
+}

@@ -24,6 +24,14 @@ const noNetwork = has("--no-network");
 const forceRefresh = has("--force-refresh");
 const strict = has("--strict");
 const bulkZip = arg("--bulk-zip");
+const external = arg("--external", "").split(",").filter(Boolean).map((pair) => {
+  const match = pair.match(/^([A-Z0-9.-]+):([0-9]{1,10})$/);
+  if (!match) throw new Error("External canary must use TICKER:CIK");
+  return { ticker: match[1], cik: match[2].padStart(10, "0") };
+});
+if (external.length && !noWrite && !historical) {
+  throw new Error("External issuers are canary-only: use --no-write or --historical");
+}
 const limit = Number(arg("--limit", "5"));
 const filter = new Set(arg("--tickers", "").split(",").map((v) => v.trim().toUpperCase()).filter(Boolean));
 if (!Number.isSafeInteger(limit) || limit < 1 || limit > 250) throw new Error("limit must be 1..250");
@@ -65,9 +73,10 @@ async function fetchCompanyFacts(cik) {
 function safeTicker(ticker) { return String(ticker).replace(/[^A-Z0-9.-]/g, "_"); }
 const registry = await readJson(path.join(ROOT, "data/runtime/entity-registry.json"), { candidates: [] });
 const observations = await readJson(path.join(ROOT, "data/runtime/company-observations.json"), { candidates: {} });
-const entities = (registry.candidates || [])
-  .filter((e) => e?.ticker && e?.cik && (!filter.size || filter.has(e.ticker)))
-  .slice(0, limit);
+const entities = [
+  ...(registry.candidates || []).filter((e) => e?.ticker && e?.cik && (!filter.size || filter.has(e.ticker))),
+  ...external,
+].slice(0, limit);
 if (!entities.length) throw new Error("No matching registry companies with trusted CIK");
 
 const manifestFile = path.join(cacheDir, "cache-manifest.json");

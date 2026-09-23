@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "AAOI",
   "workId": "t0:AAOI",
-  "generatedAt": "2026-09-23T00:09:41.272Z",
+  "generatedAt": "2026-09-23T00:18:55.923Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-06T00:00:00.000Z",
-    "end": "2026-09-21T18:27:49.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T18:27:49.000Z"
+    "end": "2026-09-23T00:20:50.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-23T00:20:50.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -53,6 +53,7 @@
     "data/runtime/workgraph/evidence/AAOI-20260919T053229Z-deep-resolver.json",
     "data/runtime/workgraph/evidence/AAOI-20260919T063451Z-deep-resolver.json",
     "data/runtime/workgraph/evidence/AAOI-20260919T073623Z-deep-resolver.json",
+    "data/runtime/workgraph/evidence/AAOI-20260923T002050Z-council-alpha.json",
     "data/runtime/workgraph/evidence/BETA-BATCH-20260921T182749Z-council-beta.json"
   ],
   "evidenceResolution": {
@@ -60,8 +61,8 @@
     "resolvedGateKinds": [
       "material_contradiction"
     ],
-    "activeEvidenceCount": 7,
-    "historicalEvidenceCount": 7
+    "activeEvidenceCount": 9,
+    "historicalEvidenceCount": 9
   },
   "factorEvidence": {
     "names": [
@@ -246,17 +247,18 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 12,
-    "uniqueSourceCount": 6,
-    "duplicatesCollapsed": 6,
+    "rawSourceCount": 20,
+    "uniqueSourceCount": 7,
+    "duplicatesCollapsed": 13,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:AAOI:2026Q2:8K-EX99.1",
       "resolver:AAOI:active",
       "resolver:AAOI:prior",
       "sec.gov|AAOI|2026Q2-10Q|2026-08-06",
-      "sec.gov|AAOI|2026Q2-results|2026-08-06",
-      "sec.gov|AAOI|Houston-leases|2026-08-31"
+      "sec.gov|AAOI|Houston-leases|2026-08-31",
+      "yahoo:AAOI:market:2026-09-23",
+      "sec.gov|AAOI|2026Q2-results|2026-08-06"
     ]
   },
   "sources": [
@@ -285,8 +287,21 @@
       "url": "https://www.sec.gov/Archives/edgar/data/1158114/000143774926026278/aaoi20260630_10q.htm",
       "kind": "primary",
       "primary": true,
-      "publishedAt": "2026-08-06",
       "originFingerprint": "sec.gov|AAOI|2026Q2-10Q|2026-08-06"
+    },
+    {
+      "sourceId": "sec:AAOI:2026-08-31-leases",
+      "url": "https://www.sec.gov/Archives/edgar/data/1158114/000168316826006862/aaoi_8k.htm",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "sec.gov|AAOI|Houston-leases|2026-08-31"
+    },
+    {
+      "sourceId": "market:Yahoo:AAOI:2026-09-23",
+      "url": "https://finance.yahoo.com/quote/AAOI/",
+      "kind": "market",
+      "primary": false,
+      "originFingerprint": "yahoo:AAOI:market:2026-09-23"
     },
     {
       "sourceId": "sec:AAOI:2026Q2-results",
@@ -295,20 +310,24 @@
       "primary": true,
       "publishedAt": "2026-08-06",
       "originFingerprint": "sec.gov|AAOI|2026Q2-results|2026-08-06"
-    },
-    {
-      "sourceId": "sec:AAOI:2026-08-31-leases",
-      "url": "https://www.sec.gov/Archives/edgar/data/1158114/000168316826006862/aaoi_8k.htm",
-      "kind": "primary",
-      "primary": true,
-      "publishedAt": "2026-08-31",
-      "originFingerprint": "sec.gov|AAOI|Houston-leases|2026-08-31"
     }
   ],
   "contradictions": [
     {
       "contradiction": "Record revenue and non-GAAP profitability coexist with a larger GAAP net loss and lower GAAP gross margin.",
       "material": true
+    },
+    {
+      "claim": "Record revenue/non-GAAP profitability versus wider GAAP loss and lower GAAP gross margin.",
+      "resolution": "Both are retained; scale acceleration is real but has not yet proven durable GAAP economics.",
+      "resolved": true,
+      "gating": false
+    },
+    {
+      "claim": "Record revenue/non-GAAP profitability versus wider GAAP loss and lower GAAP gross margin.",
+      "resolution": "Both are retained; scale acceleration is real but has not yet proven durable GAAP economics.",
+      "resolved": true,
+      "gating": false
     },
     {
       "contradiction": "Record revenue and non-GAAP profitability coexist with weaker GAAP profitability/margin evidence.",
@@ -321,6 +340,18 @@
       {
         "contradiction": "Record revenue and non-GAAP profitability coexist with a larger GAAP net loss and lower GAAP gross margin.",
         "material": true
+      },
+      {
+        "claim": "Record revenue/non-GAAP profitability versus wider GAAP loss and lower GAAP gross margin.",
+        "resolution": "Both are retained; scale acceleration is real but has not yet proven durable GAAP economics.",
+        "resolved": true,
+        "gating": false
+      },
+      {
+        "claim": "Record revenue/non-GAAP profitability versus wider GAAP loss and lower GAAP gross margin.",
+        "resolution": "Both are retained; scale acceleration is real but has not yet proven durable GAAP economics.",
+        "resolved": true,
+        "gating": false
       },
       {
         "contradiction": "Record revenue and non-GAAP profitability coexist with weaker GAAP profitability/margin evidence.",
@@ -338,6 +369,14 @@
       "gating": false
     },
     {
+      "item": "Customer-level committed demand, current qualified yields and supplier redundancy are not fully disclosed.",
+      "gating": false
+    },
+    {
+      "item": "Customer-level committed demand, current qualified yields and supplier redundancy are not fully disclosed.",
+      "gating": false
+    },
+    {
       "unknown": "Customer-level committed demand through mid-2027 and qualified yield trajectory are not fully disclosed.",
       "gating": false
     },
@@ -348,10 +387,10 @@
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": 92,
+  "confidence": 90,
   "preflight": {
     "passed": false,
     "failures": [

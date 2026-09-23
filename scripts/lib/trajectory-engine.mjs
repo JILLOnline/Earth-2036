@@ -130,7 +130,7 @@ export function buildTrajectoryFeatureRow(record, observation = null, workgraphR
   const fundamentals = supplied
     ? refErrors.length
       ? invalidFundamentalsBridge({ ticker, observation, asOf: referenceTime, reasons: refErrors })
-      : supplied
+      : structuredClone(supplied)
     : unknownFundamentalsBridge({ ticker, observation, asOf: referenceTime });
   const truthState = {
     ticker,

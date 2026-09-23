@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SERV",
   "workId": "t0:SERV",
-  "generatedAt": "2026-09-23T14:25:56.197Z",
+  "generatedAt": "2026-09-23T15:04:43.936Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-06T00:00:00.000Z",
-    "end": "2026-09-23T14:03:58.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-23T14:03:58.000Z"
+    "end": "2026-09-23T15:02:26.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-23T15:02:26.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -56,13 +56,14 @@
     "data/runtime/workgraph/evidence/SERV-20260923T112321Z-council-beta-assist.json",
     "data/runtime/workgraph/evidence/SERV-20260923T120417Z-earth-scout.json",
     "data/runtime/workgraph/evidence/SERV-20260923T132701Z-council-beta-assist.json",
-    "data/runtime/workgraph/evidence/SERV-20260923T140358Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/SERV-20260923T140358Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/SERV-20260923T150226Z-earth-scout.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 14,
-    "historicalEvidenceCount": 14
+    "activeEvidenceCount": 16,
+    "historicalEvidenceCount": 16
   },
   "factorEvidence": {
     "names": [
@@ -78,7 +79,8 @@
       "pricingPower",
       "executionQuality",
       "revenueDiversification",
-      "guidanceReset"
+      "guidanceReset",
+      "executionAgainstGuidance"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -160,7 +162,8 @@
     "pricingPower",
     "executionQuality",
     "revenueDiversification",
-    "guidanceReset"
+    "guidanceReset",
+    "executionAgainstGuidance"
   ],
   "riskEvidence": {
     "present": true,
@@ -233,7 +236,9 @@
         "gating": false
       },
       "Absolute revenue remains small relative to the company's operating-expense base.",
-      "The large revenue-guidance reset demonstrates material demand/execution uncertainty despite fleet and partnership expansion."
+      "The large revenue-guidance reset demonstrates material demand/execution uncertainty despite fleet and partnership expansion.",
+      "The company cut full-year 2026 revenue guidance to $9-$10 million because Uber Eats delivery volume was below expectations and projected second-half demand was removed.",
+      "Lower delivery volume through Uber Eats demonstrates customer/channel concentration and demand-conversion risk."
     ]
   },
   "risks": [
@@ -305,7 +310,9 @@
       "gating": false
     },
     "Absolute revenue remains small relative to the company's operating-expense base.",
-    "The large revenue-guidance reset demonstrates material demand/execution uncertainty despite fleet and partnership expansion."
+    "The large revenue-guidance reset demonstrates material demand/execution uncertainty despite fleet and partnership expansion.",
+    "The company cut full-year 2026 revenue guidance to $9-$10 million because Uber Eats delivery volume was below expectations and projected second-half demand was removed.",
+    "Lower delivery volume through Uber Eats demonstrates customer/channel concentration and demand-conversion risk."
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -337,9 +344,9 @@
     "partner-concentration -> demand-volatility"
   ],
   "sourceLineage": {
-    "rawSourceCount": 17,
-    "uniqueSourceCount": 6,
-    "duplicatesCollapsed": 11,
+    "rawSourceCount": 19,
+    "uniqueSourceCount": 7,
+    "duplicatesCollapsed": 12,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:SERV:2026Q2",
@@ -347,7 +354,8 @@
       "serve:2026-08-06:q2-results-revenue-cash-guidance-reset",
       "serve:2026-08-06:q2-results-revenue-mix-guidance-liquidity",
       "serve-ir|grubhub-wonder-expansion|2026-08-17",
-      "serve-ir|q2-2026-results|2026-08-06"
+      "serve-ir|q2-2026-results|2026-08-06",
+      "serve-ir|2026-08-06|q2-2026-results"
     ]
   },
   "sources": [
@@ -412,6 +420,22 @@
         "Cash and marketable securities were $240.4 million at June 30, 2026."
       ],
       "primary": false
+    },
+    {
+      "sourceId": "serve-ir:2026-q2-results",
+      "origin": "Serve Robotics Investor Relations / Q2 2026 results",
+      "url": "https://ir.serverobotics.com/news-releases/news-release-details/serve-robotics-announces-second-quarter-2026-results",
+      "publishedAt": "2026-08-06",
+      "accessedAt": "2026-09-23T15:02:26Z",
+      "originFingerprint": "serve-ir|2026-08-06|q2-2026-results",
+      "facts": [
+        "Q2 revenue was $3.2 million, up 404% year over year and 9% sequentially.",
+        "Recurring revenue exceeded 50% of total revenue and DoorDash-derived revenue grew nearly 50% sequentially.",
+        "Liquidity was $240.4 million at June 30, 2026.",
+        "FY2026 revenue guidance was revised to $9-$10 million due to lower-than-expected Uber Eats delivery volume and removal of projected second-half demand.",
+        "FY2026 non-GAAP operating expense guidance improved to $140-$150 million."
+      ],
+      "primary": false
     }
   ],
   "contradictions": [
@@ -461,10 +485,12 @@
       "material": true,
       "nextOwner": "council-alpha"
     },
-    "Strong reported year-over-year growth and DoorDash sequential growth coexist with a major full-year revenue-guidance reduction due to Uber Eats volume weakness."
+    "Strong reported year-over-year growth and DoorDash sequential growth coexist with a major full-year revenue-guidance reduction due to Uber Eats volume weakness.",
+    "Strong year-over-year growth and improving recurring mix coexist with a material reduction in full-year revenue expectations.",
+    "Operating expense guidance improved while revenue guidance deteriorated."
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 10,
+    "unresolvedMaterialCount": 12,
     "items": [
       {
         "contradiction": "Rapid platform expansion contrasts with lower-than-expected Uber Eats delivery volume that caused a full-year guidance cut.",
@@ -512,7 +538,9 @@
         "material": true,
         "nextOwner": "council-alpha"
       },
-      "Strong reported year-over-year growth and DoorDash sequential growth coexist with a major full-year revenue-guidance reduction due to Uber Eats volume weakness."
+      "Strong reported year-over-year growth and DoorDash sequential growth coexist with a major full-year revenue-guidance reduction due to Uber Eats volume weakness.",
+      "Strong year-over-year growth and improving recurring mix coexist with a material reduction in full-year revenue expectations.",
+      "Operating expense guidance improved while revenue guidance deteriorated."
     ]
   },
   "unknowns": [
@@ -565,11 +593,13 @@
       "nextOwner": "council-alpha"
     },
     "Durability and unit economics of each revenue stream are not established by headline growth alone.",
-    "Whether diversified recurring healthcare/advertising/software revenue can offset delivery-volume shortfalls in subsequent quarters."
+    "Whether diversified recurring healthcare/advertising/software revenue can offset delivery-volume shortfalls in subsequent quarters.",
+    "Durability of DoorDash growth and pace of replacement for lost Uber Eats volume remain unknown.",
+    "Whether new Grubhub and other verticals can offset the removed Uber Eats demand within the current planning horizon is not established."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 14
+    "nonGatingCount": 16
   },
   "gatingIssues": [],
   "confidence": 92,

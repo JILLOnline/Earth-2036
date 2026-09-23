@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { qualifiesT0Publication, qualifiesTick } from "./lib/runtime-gates.mjs";
 import { buildTrajectorySnapshot, validateTrajectorySnapshot } from "./lib/trajectory-engine.mjs";
+import { loadVerifiedBridgeIndex } from "./lib/fundamentals-bridge-index.mjs";
 
 const ROOT = process.cwd();
 const RUNTIME = path.join(ROOT, "data", "runtime");
@@ -110,6 +111,14 @@ const fullUniverseInput = {
   intelligenceIntegrityPassed,
 };
 
+// Optional shadow refs are read ONLY after canonical qualification inputs have been computed.
+// A missing, stale or invalid #11 index cannot alter T0/T1000 qualification.
+const fundamentalsByTicker = await loadVerifiedBridgeIndex({
+  file: path.join(ROOT, "data", "lab", "bridge", "current-index.json"),
+  asOf: state.lastCycleAt,
+  observations: observations?.candidates || {},
+  tickers: rankingRows.map((row) => row.ticker),
+});
 const finalizationDiagnostics = {
   cycleKey: state.cycleKey,
   councilPassed: effectiveCouncilPassed,
@@ -147,6 +156,7 @@ if (!manifest?.published) {
     rankings: rankingRows,
     observations: observations?.candidates || {},
     workgraphCompanies: workgraph?.companies || {},
+    fundamentalsByTicker,
     asOf: state.lastCycleAt,
     generatedAt: publishedAt,
     methodologyVersion: state.methodologyVersion,
@@ -266,6 +276,7 @@ const trajectoryBase = buildTrajectorySnapshot({
   rankings: rankingRows,
   observations: observations?.candidates || {},
   workgraphCompanies: workgraph?.companies || {},
+  fundamentalsByTicker,
   asOf: state.lastCycleAt,
   generatedAt: finalizedAt,
   methodologyVersion: state.methodologyVersion,

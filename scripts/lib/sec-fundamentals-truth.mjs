@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { FUNDAMENTAL_METRICS } from "./fundamental-metric-map.mjs";
 
 const NORMALIZED_FORMS = new Set([
-  "10-K","10-K/A","10-Q","10-Q/A","20-F","20-F/A","40-F","40-F/A","6-K","6-K/A"
+  "10-K","10-K/A","10-Q","10-Q/A","20-F","20-F/A","40-F","40-F/A"
 ]);
 
 function stable(value) {
@@ -82,7 +82,14 @@ function periodKey(fact) {
 
 function sortVersions(a, b) {
   return String(a.filed ?? "").localeCompare(String(b.filed ?? "")) ||
-    String(a.accn ?? "").localeCompare(String(b.accn ?? ""));
+    String(a.accn ?? "").localeCompare(String(b.accn ?? "")) ||
+    exactFactKey(a).localeCompare(exactFactKey(b));
+}
+
+function normalizeCik(value) {
+  if (value == null || value === "") return null;
+  const digits = String(value).replace(/\D/g, "");
+  return digits ? digits.padStart(10, "0") : null;
 }
 
 function sourceEligible(fact, asOfMs) {
@@ -140,13 +147,17 @@ export function latestContextVersions(facts) {
   const superseded = [];
   for (const list of groups.values()) {
     list.sort(sortVersions);
-    const winner = list.at(-1);
-    current.push(winner);
-    for (const fact of list.slice(0, -1)) {
+    const latestFiled = list.map((fact) => String(fact.filed ?? "")).sort().at(-1) ?? "";
+    const latest = list.filter((fact) => String(fact.filed ?? "") === latestFiled);
+    current.push(...latest);
+
+    const successorAccessions = [...new Set(latest.map((fact) => fact.accn).filter(Boolean))].sort();
+    for (const fact of list.filter((candidate) => String(candidate.filed ?? "") !== latestFiled)) {
       superseded.push({
         ...fact,
-        supersededBy: winner?.accn ?? null,
-        supersededByFiled: winner?.filed ?? null,
+        supersededBy: successorAccessions.length === 1 ? successorAccessions[0] : null,
+        supersededByFiled: latestFiled || null,
+        supersededByCandidates: successorAccessions,
       });
     }
   }
@@ -342,8 +353,19 @@ export function buildFundamentalsTruth(companyFacts, options = {}) {
     net_margin: deriveBinary("net_margin", metrics.net_income, metrics.revenue, (a,b) => b === 0 ? NaN : a / b),
   };
 
-  const companyCik = cik ?? (companyFacts?.cik != null ? String(companyFacts.cik).padStart(10,"0") : null);
-  const sourcePayloadHash = truthHash(companyFacts);
+  const sourceCik = normalizeCik(companyFacts?.cik);
+  const requestedCik = normalizeCik(cik);
+  if (requestedCik && sourceCik && requestedCik !== sourceCik) {
+    throw new Error("SEC Company Facts CIK mismatch: requested " + requestedCik + " but payload is " + sourceCik);
+  }
+  const companyCik = requestedCik ?? sourceCik;
+  const retrievedPayloadHash = truthHash(companyFacts);
+  const sourcePayloadHash = truthHash({
+    cik: companyCik,
+    entityName: companyFacts?.entityName ?? null,
+    asOf,
+    facts: rawFacts,
+  });
   const rawFactsHash = truthHash(rawFacts);
   const truthCore = {
     ticker,
@@ -383,6 +405,7 @@ export function buildFundamentalsTruth(companyFacts, options = {}) {
     primaryLearningAuthority:"rawTruth.facts",
     earthContextIncluded:false,
     retrievedAt,
+    retrievedPayloadHash,
     ...truthCore,
     audit:{
       rawFactCount:rawFacts.length,
@@ -421,7 +444,14 @@ export function validateFundamentalsTruth(record) {
 
   if (record?.rawTruth?.factCount !== (record?.rawTruth?.facts ?? []).length) errors.push("raw fact count mismatch");
   if (record?.rawTruth?.factsHash !== truthHash(record?.rawTruth?.facts ?? [])) errors.push("raw facts hash mismatch");
+  const expectedSourcePayloadHash=truthHash({
+    cik:record?.cik ?? null,
+    entityName:record?.entityName ?? null,
+    asOf:record?.asOf,
+    facts:record?.rawTruth?.facts ?? [],
+  });
   if (record?.sourcePayloadHash == null) errors.push("source payload hash missing");
+  else if (record.sourcePayloadHash !== expectedSourcePayloadHash) errors.push("point-in-time source payload hash mismatch");
 
   const truthCore={
     ticker:record?.ticker,

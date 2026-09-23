@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "contract": "earth2036-trajectory-contract-v1",
   "status": "t1000-truth-first-shadow-foundation",
   "system": "shadow",
@@ -11,7 +11,7 @@
     "prototypeHistoryCountsTowardTrial": false,
     "missingTrajectoryCaptureChangesQualifiedTick": false
   },
-  "featureSchemaVersion": "1.1.0",
+  "featureSchemaVersion": "1.2.0",
   "horizonsMonths": [
     12,
     24,
@@ -62,14 +62,19 @@
     "subjectiveSuccessLabelsAllowed": false,
     "modelMayDiscoverOutcomeClusters": true,
     "modelMayInferProbabilitiesOnlyAfterWalkForwardValidation": true,
-    "missingObservedDataPolicy": "unknown-not-favorable"
+    "missingObservedDataPolicy": "unknown-not-favorable",
+    "fundamentalsRawEligible": true,
+    "normalizedProjectionGroundTruth": false,
+    "modelsEnabledDuringBridge": false,
+    "forecastsEnabledDuringBridge": false
   },
   "pointInTimePolicy": {
     "enabled": true,
     "futureLeakageForbidden": true,
     "sourceCutoffMustNotExceedSnapshotAsOf": true,
     "snapshotsImmutable": true,
-    "laterOutcomesStoredSeparately": true
+    "laterOutcomesStoredSeparately": true,
+    "fundamentalsSourceCutoffMustMatchSnapshotAsOf": true
   },
   "forecastPolicy": {
     "placeholderForecastsAllowed": false,
@@ -89,6 +94,31 @@
     "mayChangeEarthScore": false,
     "mayChangeCanonicalRank": false,
     "mayPromoteWorkgraphState": false,
-    "methodologyPromotionRequires": "explicit versioned governance change plus CI, historical validation and Beast integrity"
+    "methodologyPromotionRequires": "explicit versioned governance change plus CI, historical validation and Beast integrity",
+    "mayChangeWorkgraphState": false,
+    "mayAffectTickQualification": false
+  },
+  "truthChannels": {
+    "secFilingState": {
+      "retained": true,
+      "learnerEligible": true
+    },
+    "fundamentalsRaw": {
+      "status": "optional-verified-reference",
+      "bridge": "earth2036-fundamentals-trajectory-bridge-v1",
+      "learnerEligible": true,
+      "missing": "unknown-not-zero",
+      "fullRawFactsInTick": false
+    },
+    "fundamentalsAuditProjection": {
+      "learnerEligible": false,
+      "authoritative": false
+    },
+    "earthContext": {
+      "learnerEligible": false
+    },
+    "modelOutput": {
+      "forecastsAllowedInBridgeV1": false
+    }
   }
 }

@@ -495,3 +495,15 @@ test("62 empty but valid Company Facts remains unknown, not invalid or favorable
     await rm(root, { recursive: true, force: true });
   }
 });
+
+test("63 human-readable SEC CIK and hash diagnostics are counted in System health", () => {
+  const refs = [
+    invalidFundamentalsBridge({ ticker: "CIK", asOf: CUTOFF, reasons: ["SEC source CIK mismatch"] }),
+    invalidFundamentalsBridge({ ticker: "HASH", asOf: CUTOFF, reasons: ["cached SEC source hash mismatch"] }),
+  ];
+  const health = fundamentalsBridgeHealth(refs);
+  assert.equal(health.companies, 2);
+  assert.equal(health.invalid, 2);
+  assert.equal(health.cikMismatches, 1);
+  assert.equal(health.hashFailures, 1);
+});

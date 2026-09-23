@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MBLY",
   "workId": "t0:MBLY",
-  "generatedAt": "2026-09-23T01:18:42.662Z",
+  "generatedAt": "2026-09-23T01:27:32.375Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-06T00:00:00.000Z",
-    "end": "2026-09-23T01:04:01.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-23T01:04:01.000Z"
+    "end": "2026-09-23T01:25:52.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-23T01:25:52.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -34,7 +34,8 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
+      "adversarial-red-team",
+      "adversarial-red-team-assist"
     ],
     "missing": [
       "source-integrity",
@@ -46,7 +47,8 @@
     "discovery-weak-signals",
     "expectations-execution",
     "structural-causal",
-    "adversarial-red-team"
+    "adversarial-red-team",
+    "adversarial-red-team-assist"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/MBLY-20260918T0500Z-earth-scout.json",
@@ -54,13 +56,14 @@
     "data/runtime/workgraph/evidence/MBLY-20260922T210226Z-earth-scout.json",
     "data/runtime/workgraph/evidence/MBLY-20260922T230501Z-earth-scout.json",
     "data/runtime/workgraph/evidence/MBLY-20260923T000511Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/MBLY-20260923T010401Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/MBLY-20260923T010401Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/MBLY-20260923T012552Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 12,
-    "historicalEvidenceCount": 12
+    "activeEvidenceCount": 13,
+    "historicalEvidenceCount": 13
   },
   "factorEvidence": {
     "names": [
@@ -259,7 +262,11 @@
         "risk": "Flat quarterly revenue and lower ASP/gross margin show mix and pricing pressure even as the annual outlook improved; part of operating-income improvement reflects an R&D incentive grant rather than purely operating leverage.",
         "sourceId": "issuer:MBLY:Q2-2026-results:2026-07-23",
         "gating": false
-      }
+      },
+      "Pipeline/design-win conversion is conditional rather than contracted volume.",
+      "Supplier dependence remains material despite active redundancy work.",
+      "Mentee and robotaxi expansion add capital-allocation and execution complexity.",
+      "Reported operating improvement requires normalization for the R&D-law incentive."
     ]
   },
   "risks": [
@@ -334,7 +341,11 @@
       "risk": "Flat quarterly revenue and lower ASP/gross margin show mix and pricing pressure even as the annual outlook improved; part of operating-income improvement reflects an R&D incentive grant rather than purely operating leverage.",
       "sourceId": "issuer:MBLY:Q2-2026-results:2026-07-23",
       "gating": false
-    }
+    },
+    "Pipeline/design-win conversion is conditional rather than contracted volume.",
+    "Supplier dependence remains material despite active redundancy work.",
+    "Mentee and robotaxi expansion add capital-allocation and execution complexity.",
+    "Reported operating improvement requires normalization for the R&D-law incentive."
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -390,6 +401,24 @@
         "to": "capital and execution burden",
         "mechanism": "acquisition, fleet operations and new-domain R&D consume cash and management attention",
         "falsifier": "new businesses reach milestones without degrading core returns"
+      },
+      {
+        "from": "OEM program nomination",
+        "to": "future EyeQ/ADAS revenue",
+        "mechanism": "production launch and OEM take-rate convert design wins into shipments",
+        "falsifier": "program timing, volume or sourcing changes before production"
+      },
+      {
+        "from": "supplier diversification",
+        "to": "supply-chain resilience",
+        "mechanism": "additional qualified foundry/manufacturing paths reduce single-partner dependency",
+        "falsifier": "qualification fails or critical components remain effectively single-sourced"
+      },
+      {
+        "from": "physical-AI and robotaxi expansion",
+        "to": "addressable capability",
+        "mechanism": "shared autonomy/AI assets may extend into new human-mobility and robotics needs",
+        "falsifier": "domain transfer, unit economics, safety approval or commercialization fail to scale"
       }
     ]
   },
@@ -435,6 +464,24 @@
       "to": "capital and execution burden",
       "mechanism": "acquisition, fleet operations and new-domain R&D consume cash and management attention",
       "falsifier": "new businesses reach milestones without degrading core returns"
+    },
+    {
+      "from": "OEM program nomination",
+      "to": "future EyeQ/ADAS revenue",
+      "mechanism": "production launch and OEM take-rate convert design wins into shipments",
+      "falsifier": "program timing, volume or sourcing changes before production"
+    },
+    {
+      "from": "supplier diversification",
+      "to": "supply-chain resilience",
+      "mechanism": "additional qualified foundry/manufacturing paths reduce single-partner dependency",
+      "falsifier": "qualification fails or critical components remain effectively single-sourced"
+    },
+    {
+      "from": "physical-AI and robotaxi expansion",
+      "to": "addressable capability",
+      "mechanism": "shared autonomy/AI assets may extend into new human-mobility and robotics needs",
+      "falsifier": "domain transfer, unit economics, safety approval or commercialization fail to scale"
     }
   ],
   "sourceLineage": {
@@ -672,11 +719,14 @@
       "unknown": "The release does not quantify realized economics from the newly awarded DMS program or future robotaxi/physical-AI programs; those remain forward execution items.",
       "gating": false,
       "nextOwner": "council-alpha"
-    }
+    },
+    "Future OEM program take-rates and timing are not contractually fixed.",
+    "Economic returns and steady-state capital intensity of the vertically integrated robotaxi operation remain unproven.",
+    "Humanoid commercialization economics remain unproven ahead of targeted 2028 series production."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 12
+    "nonGatingCount": 15
   },
   "gatingIssues": [],
   "confidence": 91,

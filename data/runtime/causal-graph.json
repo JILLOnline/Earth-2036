@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-22T20:16:44.198Z",
+  "updatedAt": "2026-09-23T06:17:29.916Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1166,6 +1166,54 @@
       "type": "market",
       "label": "AA structural demand",
       "description": "Alcoa's structural role links bauxite and alumina conversion to primary aluminum supply for transport, construction, power and industrial needs; the South32 asset acquisition can deepen upstream resource control and supply-chain integration if acquired assets perform as expected."
+    },
+    {
+      "id": "company:IONQ",
+      "type": "company",
+      "label": "IonQ, Inc.",
+      "description": "IonQ's structural thesis links semiconductor-style trapped-ion fabrication to repeatable quantum-system manufacturing, then to deployable systems and eventual useful fault-tolerant compute; the current evidence validates early manufacturing and commercial milestones, not the full chain."
+    },
+    {
+      "id": "market:IONQ-repeatable-trapped-ion-chip-production",
+      "type": "market",
+      "label": "repeatable trapped-ion chip production",
+      "description": "fabrication integration can shorten iteration cycles and increase manufacturing throughput"
+    },
+    {
+      "id": "company:PL",
+      "type": "company",
+      "label": "Planet Labs PBC",
+      "description": "Planet links persistent sovereign/defense need for timely Earth intelligence to a vertically operated satellite/data platform; Q2 revenue growth was driven primarily by defense and intelligence contract expansions, while constellation and ground-station costs remain the physical bottleneck to scaling."
+    },
+    {
+      "id": "market:PL-planet-data-and-satellite-services-revenue",
+      "type": "market",
+      "label": "Planet data and satellite-services revenue",
+      "description": "contract expansions and persistent imaging convert security/intelligence need into recurring data and service demand"
+    },
+    {
+      "id": "company:POWL",
+      "type": "company",
+      "label": "Powell Industries, Inc.",
+      "description": "Powell sits in the electrical-distribution path between generation/grid supply and large industrial/data-center loads; record orders and a >$400M data-center project indicate switchgear/electrical equipment is participating in the physical infrastructure bottleneck."
+    },
+    {
+      "id": "market:POWL-infrastructure-electrical-distribution",
+      "type": "market",
+      "label": "infrastructure:electrical-distribution",
+      "description": "Powell sits in the electrical-distribution path between generation/grid supply and large industrial/data-center loads; record orders and a >$400M data-center project indicate switchgear/electrical equipment is participating in the physical infrastructure bottleneck."
+    },
+    {
+      "id": "company:SO",
+      "type": "company",
+      "label": "The Southern Company",
+      "description": "SO links regulated generation/grid infrastructure to rising electricity demand; nuclear baseload and regulated investment can support reliability as large-load demand expands."
+    },
+    {
+      "id": "market:SO-regulated-generation-grid-investment",
+      "type": "market",
+      "label": "regulated generation/grid investment",
+      "description": "higher system load requires firm power and network capacity"
     }
   ],
   "edges": [
@@ -2696,6 +2744,64 @@
         "issuer:AA:Debt20260909"
       ],
       "observedAt": "2026-09-21T02:25:37Z"
+    },
+    {
+      "id": "edge:IONQ-structural-exposure",
+      "from": "company:IONQ",
+      "to": "market:IONQ-repeatable-trapped-ion-chip-production",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 84,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "ionq:superion-256:2026-09-08",
+        "ionq:q2-2026-results"
+      ],
+      "observedAt": "2026-09-19T08:22:12Z"
+    },
+    {
+      "id": "edge:PL-structural-exposure",
+      "from": "company:PL",
+      "to": "market:PL-planet-data-and-satellite-services-revenue",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:PL:2026Q2-10Q"
+      ],
+      "observedAt": "2026-09-19T12:27:02Z"
+    },
+    {
+      "id": "edge:POWL-structural-exposure",
+      "from": "company:POWL",
+      "to": "market:POWL-infrastructure-electrical-distribution",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 92,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:POWL:FY26Q3"
+      ],
+      "observedAt": "2026-09-21T00:24:18Z"
+    },
+    {
+      "id": "edge:SO-structural-exposure",
+      "from": "company:SO",
+      "to": "market:SO-regulated-generation-grid-investment",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 82,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "southerncompany.com|financials|q2-2026-earnings|2026-08",
+        "southerncompany.com|ratepayer-protection|2026-07-23"
+      ],
+      "observedAt": "2026-09-21T20:26:45Z"
     }
   ],
   "structuralSignals": [
@@ -4584,6 +4690,80 @@
       "observedAt": "2026-09-21T02:25:37Z",
       "thesis": "Alcoa's structural role links bauxite and alumina conversion to primary aluminum supply for transport, construction, power and industrial needs; the South32 asset acquisition can deepen upstream resource control and supply-chain integration if acquired assets perform as expected.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:IONQ-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:IONQ-repeatable-trapped-ion-chip-production",
+      "affectedNodeIds": [
+        "company:IONQ"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 84,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "ionq:superion-256:2026-09-08",
+        "ionq:q2-2026-results"
+      ],
+      "observedAt": "2026-09-19T08:22:12Z",
+      "thesis": "IonQ's structural thesis links semiconductor-style trapped-ion fabrication to repeatable quantum-system manufacturing, then to deployable systems and eventual useful fault-tolerant compute; the current evidence validates early manufacturing and commercial milestones, not the full chain.",
+      "falsifier": "yield, reliability or performance fails to scale"
+    },
+    {
+      "id": "signal:PL-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:PL-planet-data-and-satellite-services-revenue",
+      "affectedNodeIds": [
+        "company:PL"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:PL:2026Q2-10Q"
+      ],
+      "observedAt": "2026-09-19T12:27:02Z",
+      "thesis": "Planet links persistent sovereign/defense need for timely Earth intelligence to a vertically operated satellite/data platform; Q2 revenue growth was driven primarily by defense and intelligence contract expansions, while constellation and ground-station costs remain the physical bottleneck to scaling.",
+      "falsifier": "major sovereign programs fail to renew or backlog conversion materially weakens"
+    },
+    {
+      "id": "signal:POWL-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:POWL-infrastructure-electrical-distribution",
+      "affectedNodeIds": [
+        "company:POWL"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 92,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:POWL:FY26Q3"
+      ],
+      "observedAt": "2026-09-21T00:24:18Z",
+      "thesis": "Powell sits in the electrical-distribution path between generation/grid supply and large industrial/data-center loads; record orders and a >$400M data-center project indicate switchgear/electrical equipment is participating in the physical infrastructure bottleneck.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:SO-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:SO-regulated-generation-grid-investment",
+      "affectedNodeIds": [
+        "company:SO"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 82,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "southerncompany.com|financials|q2-2026-earnings|2026-08",
+        "southerncompany.com|ratepayer-protection|2026-07-23"
+      ],
+      "observedAt": "2026-09-21T20:26:45Z",
+      "thesis": "SO links regulated generation/grid infrastructure to rising electricity demand; nuclear baseload and regulated investment can support reliability as large-load demand expands.",
+      "falsifier": "forecast loads fail to contract/energize or regulators materially disallow recovery"
     }
   ],
   "roadmapMilestones": [

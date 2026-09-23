@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "HON",
   "workId": "t0:HON",
-  "generatedAt": "2026-09-23T22:07:28.522Z",
+  "generatedAt": "2026-09-23T22:19:56.904Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-03-19T00:00:00.000Z",
-    "end": "2026-09-20T19:25:31.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-20T19:25:31.000Z"
+    "end": "2026-09-23T22:16:55.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-23T22:16:55.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -34,29 +34,31 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
-    ],
-    "missing": [
+      "adversarial-red-team",
       "source-integrity",
       "company-underwriting"
     ],
-    "complete": false
+    "missing": [],
+    "complete": true
   },
   "perspectives": [
     "discovery-weak-signals",
     "expectations-execution",
     "structural-causal",
-    "adversarial-red-team"
+    "adversarial-red-team",
+    "source-integrity",
+    "company-underwriting"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/HON-20260919T210225Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/HON-20260920T192531Z-council-beta.json"
+    "data/runtime/workgraph/evidence/HON-20260920T192531Z-council-beta.json",
+    "data/runtime/workgraph/evidence/HON-20260923T221655Z-council-alpha.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -67,11 +69,23 @@
       "scenarioRobustness",
       "financialOperatingMomentum",
       "governancePower",
-      "pricingPower"
+      "pricingPower",
+      "thesisQuality"
     ],
     "byPerspective": {
-      "source-integrity": [],
-      "company-underwriting": [],
+      "source-integrity": [
+        "governancePower",
+        "alignment2036",
+        "crossDivisionLeverage"
+      ],
+      "company-underwriting": [
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "governancePower",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "scenarioRobustness"
+      ],
       "structural-causal": [],
       "discovery-weak-signals": [
         "alignment2036",
@@ -134,7 +148,8 @@
     "scenarioRobustness",
     "financialOperatingMomentum",
     "governancePower",
-    "pricingPower"
+    "pricingPower",
+    "thesisQuality"
   ],
   "riskEvidence": {
     "present": true,
@@ -149,7 +164,12 @@
       "cybersecurity and safety validation",
       "competitive substitution",
       "customer change-management friction",
-      "confidence inflation from issuer-led pilot evidence"
+      "confidence inflation from issuer-led pilot evidence",
+      "Post-spin comparability and stranded-cost/dis-synergy risk.",
+      "Portfolio separation dis-synergy",
+      "Cybersecurity/safety validation",
+      "Pilot-to-scale execution",
+      "Post-spin comparability"
     ]
   },
   "risks": [
@@ -163,13 +183,20 @@
     "cybersecurity and safety validation",
     "competitive substitution",
     "customer change-management friction",
-    "confidence inflation from issuer-led pilot evidence"
+    "confidence inflation from issuer-led pilot evidence",
+    "Post-spin comparability and stranded-cost/dis-synergy risk.",
+    "Portfolio separation dis-synergy",
+    "Cybersecurity/safety validation",
+    "Pilot-to-scale execution",
+    "Post-spin comparability"
   ],
   "dataConfidenceEvidence": {
-    "available": false,
+    "available": true,
     "factors": [],
-    "confidenceFloor": null,
-    "evidencePaths": []
+    "confidenceFloor": 78,
+    "evidencePaths": [
+      "data/runtime/workgraph/evidence/HON-20260923T221655Z-council-alpha.json"
+    ]
   },
   "primarySourcePresence": {
     "present": true,
@@ -233,16 +260,17 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 14,
-    "uniqueSourceCount": 5,
-    "duplicatesCollapsed": 9,
+    "rawSourceCount": 20,
+    "uniqueSourceCount": 6,
+    "duplicatesCollapsed": 14,
     "missingLineage": 0,
     "uniqueOrigins": [
       "honeywell.com|2026-06-29|hon-pureplay-spin-complete",
       "honeywell.com|2026-06-09|experion-cognition-autonomy",
       "investor.honeywell.com|2026-09-19|postspin-targets",
       "honeywell.com|2026-03-19|experion-operations-assistant",
-      "honeywell.com|2026-07-27|wws-divestiture"
+      "honeywell.com|2026-07-27|wws-divestiture",
+      "seekingalpha.com|HON|2026-09|postspin-q2-summary"
     ]
   },
   "sources": [
@@ -290,6 +318,13 @@
       "sourceType": "issuer-primary",
       "originFingerprint": "honeywell.com|2026-07-27|wws-divestiture",
       "primary": true
+    },
+    {
+      "sourceId": "hon:secondary:postspin-202609",
+      "url": "https://seekingalpha.com/article/4941195-honeywell-the-spinoff-is-complete-now-look-ahead-to-the-future",
+      "sourceType": "independent-secondary",
+      "originFingerprint": "seekingalpha.com|HON|2026-09|postspin-q2-summary",
+      "primary": false
     }
   ],
   "contradictions": [],
@@ -306,33 +341,25 @@
     "No evidence here establishes exclusive bottleneck control or superior economics versus all competing industrial automation stacks.",
     "Current post-spin leverage, stranded-cost realization and segment economics require Alpha-owned current financial evidence.",
     "Independent large-scale outcome data for Experion Cognition is not established here.",
-    "Customer concentration and autonomy-specific backlog quality are not established by the retrieved sources."
+    "Customer concentration and autonomy-specific backlog quality are not established by the retrieved sources.",
+    "Current post-spin primary financial statements were not retrieved in this run.",
+    "Direct primary post-spin Q2 financial statements and current valuation are required to source-address all 12 components without contaminating the record with pre-spin Honeywell economics."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 9
+    "nonGatingCount": 11
   },
   "gatingIssues": [],
-  "confidence": 84,
+  "confidence": 74,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_specialist_perspective:source-integrity",
-      "missing_specialist_perspective:company-underwriting",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence"
     ],
     "routing": [
-      {
-        "failure": "missing_specialist_perspective:source-integrity",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:company-underwriting",
-        "owner": "council-alpha"
-      },
       {
         "failure": "missing_factor_evidence",
         "owner": "council-alpha"

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "HII",
   "workId": "t0:HII",
-  "generatedAt": "2026-09-23T22:07:28.523Z",
+  "generatedAt": "2026-09-23T22:19:56.905Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-04T00:00:00.000Z",
-    "end": "2026-09-20T17:27:59.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-20T17:27:59.000Z"
+    "end": "2026-09-23T22:16:55.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-23T22:16:55.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -34,29 +34,31 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
-    ],
-    "missing": [
+      "adversarial-red-team",
       "source-integrity",
       "company-underwriting"
     ],
-    "complete": false
+    "missing": [],
+    "complete": true
   },
   "perspectives": [
     "discovery-weak-signals",
     "expectations-execution",
     "structural-causal",
-    "adversarial-red-team"
+    "adversarial-red-team",
+    "source-integrity",
+    "company-underwriting"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/HII-20260919T210225Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/HII-20260920T172759Z-council-beta.json"
+    "data/runtime/workgraph/evidence/HII-20260920T172759Z-council-beta.json",
+    "data/runtime/workgraph/evidence/HII-20260923T221655Z-council-alpha.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -72,8 +74,17 @@
       "governancePower"
     ],
     "byPerspective": {
-      "source-integrity": [],
-      "company-underwriting": [],
+      "source-integrity": [
+        "alignment2036",
+        "bottleneckControl",
+        "catalystScore"
+      ],
+      "company-underwriting": [
+        "alignment2036",
+        "bottleneckControl",
+        "catalystScore",
+        "scenarioRobustness"
+      ],
       "structural-causal": [
         "alignment2036",
         "bottleneckControl",
@@ -163,7 +174,12 @@
       "Program and customer concentration in U.S. government demand",
       "Labor and supplier bottlenecks",
       "Cost/schedule overrun exposure",
-      "Automation deployment value may lag headline commitment amounts"
+      "Automation deployment value may lag headline commitment amounts",
+      "Current evidence is issuer-heavy for operating claims.",
+      "Labor/supplier bottlenecks",
+      "Cost/schedule overruns",
+      "Government customer concentration",
+      "Margin and cash-conversion uncertainty"
     ]
   },
   "risks": [
@@ -174,13 +190,20 @@
     "Program and customer concentration in U.S. government demand",
     "Labor and supplier bottlenecks",
     "Cost/schedule overrun exposure",
-    "Automation deployment value may lag headline commitment amounts"
+    "Automation deployment value may lag headline commitment amounts",
+    "Current evidence is issuer-heavy for operating claims.",
+    "Labor/supplier bottlenecks",
+    "Cost/schedule overruns",
+    "Government customer concentration",
+    "Margin and cash-conversion uncertainty"
   ],
   "dataConfidenceEvidence": {
-    "available": false,
+    "available": true,
     "factors": [],
-    "confidenceFloor": null,
-    "evidencePaths": []
+    "confidenceFloor": 76,
+    "evidencePaths": [
+      "data/runtime/workgraph/evidence/HII-20260923T221655Z-council-alpha.json"
+    ]
   },
   "primarySourcePresence": {
     "present": true,
@@ -202,16 +225,17 @@
     "long-lead material funding -> earlier supply commitment -> future carrier construction readiness"
   ],
   "sourceLineage": {
-    "rawSourceCount": 18,
-    "uniqueSourceCount": 5,
-    "duplicatesCollapsed": 13,
+    "rawSourceCount": 24,
+    "uniqueSourceCount": 6,
+    "duplicatesCollapsed": 18,
     "missingLineage": 0,
     "uniqueOrigins": [
       "hii.com|2026-09-11|cvn82-336m-lltm",
       "hii.com|2026-08-06|robotics-up-to-900m",
       "hii.com|2026-08-04|ingalls-welding-automation",
       "hii.com|2026-09-15|army-airdrop-autonomy",
-      "hii.com|2026-09-04|shipbuilding-pace-strategy"
+      "hii.com|2026-09-04|shipbuilding-pace-strategy",
+      "marketbeat.com|HII|2026-09-23|price-valuation-earnings"
     ]
   },
   "sources": [
@@ -259,6 +283,13 @@
       "originFingerprint": "hii.com|2026-09-04|shipbuilding-pace-strategy",
       "sourceId": null,
       "primary": true
+    },
+    {
+      "sourceId": "hii:market:marketbeat-20260923",
+      "url": "https://www.marketbeat.com/stocks/NYSE/HII/",
+      "sourceType": "independent-market-data",
+      "originFingerprint": "marketbeat.com|HII|2026-09-23|price-valuation-earnings",
+      "primary": false
     }
   ],
   "contradictions": [],
@@ -274,33 +305,25 @@
     "Numeric margin and throughput uplift from automation",
     "Final CVN 82 authorization and contract economics",
     "Realized automation deployment pace and ROI",
-    "Future carrier contract economics and budget timing"
+    "Future carrier contract economics and budget timing",
+    "Current primary quarterly financial conversion was not retrieved in this run.",
+    "A source-addressed current primary quarterly financial record is required before financialOperatingMomentum, pricingPower, valuation and the complete 12-component score can be lawfully calibrated."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 8
+    "nonGatingCount": 10
   },
   "gatingIssues": [],
-  "confidence": 84,
+  "confidence": 72,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_specialist_perspective:source-integrity",
-      "missing_specialist_perspective:company-underwriting",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence"
     ],
     "routing": [
-      {
-        "failure": "missing_specialist_perspective:source-integrity",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:company-underwriting",
-        "owner": "council-alpha"
-      },
       {
         "failure": "missing_factor_evidence",
         "owner": "council-alpha"

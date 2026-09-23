@@ -199,6 +199,19 @@ if (!noWrite && !historical && has("--publish-health")) {
     changedThisCycle: changed, sourceRefreshes: refreshed, futureLeakage: 0,
     reconstructionFailures: canaries.filter((v) => v.status === "invalid").length,
     source: "local-verified-bridge-index", canonicalWriteAuthority: false,
+    companyDetails: Object.entries(indexes.get(asOf)).map(([ticker, entry]) => ({
+      ticker, status: entry.reference.status, truthHash: entry.reference.truthHash,
+      rawFactsHash: entry.reference.rawFactsHash, sourcePayloadHash: entry.reference.sourcePayloadHash,
+      projectionHash: entry.reference.projectionHash,
+      rawFactCount: entry.reference.rawFactCount,
+      currentCount: entry.reference.rawCurrentCount,
+      supersededCount: entry.reference.rawSupersededCount,
+      taxonomies: entry.reference.sourceTaxonomies,
+      cutoff: entry.reference.asOf,
+      latestSecFiling: (observations.candidates?.[ticker]?.filings || [])
+        .map((r) => r.filingDate).filter(Boolean).sort().at(-1) ?? null,
+      reconstructionState: "source-archive-indexed",
+    })).sort((a, b) => a.ticker.localeCompare(b.ticker)),
   };
   await writeJson(path.join(ROOT, "data/runtime/workgraph/shadow/fundamentals-bridge-health.json"), health);
 }

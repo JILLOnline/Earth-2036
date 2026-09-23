@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "role": "earth-scout",
+  "generatedAt": "2026-09-23T18:04:06Z",
+  "startingGitHead": "8dae9dedacb732756d9f85a0d60c58b37281addb",
+  "companiesInspected": ["IBM", "MBLY", "NBIS", "SERV"],
+  "evidencePairsCompleted": 1,
+  "artifacts": [
+    "data/runtime/workgraph/evidence/NBIS-20260923T180405Z-earth-scout.json"
+  ],
+  "assistAttempts": [
+    {
+      "requestId": "assist:IBM:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "3eff206efd764748488e",
+      "outcome": "skipped_same_signature_prior_failure",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    },
+    {
+      "requestId": "assist:MBLY:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "b7397f4fefd33e2546f0",
+      "outcome": "skipped_same_signature_prior_failure",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    },
+    {
+      "requestId": "assist:NBIS:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "96ab901c1acb452e6dbf",
+      "outcome": "new_primary_regulatory_evidence",
+      "newEvidencePaths": [
+        "data/runtime/workgraph/evidence/NBIS-20260923T180405Z-earth-scout.json"
+      ],
+      "sourcePathsAttempted": [
+        "SEC EDGAR Nebius Form 6-K dated 2026-08-24 and Exhibit 99.1 convertible-note closing"
+      ]
+    },
+    {
+      "requestId": "assist:SERV:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "0ea4db1ef30388930410",
+      "outcome": "skipped_same_signature_prior_failure",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    }
+  ],
+  "blockers": [
+    "IBM, MBLY and SERV retained unchanged input signatures with prior failed/no-new-source attempts, so they were not retried under the learning-loop guardrail.",
+    "Only assist requests whose current request identity/signature could be verified from the current Assist Bus were acted on; no speculative work was created for truncated/unverified requests."
+  ],
+  "result": "Owned Scout routing queue was zero. Assist capacity was redirected to Alpha source acquisition. One materially different SEC-filed NBIS capital-structure package was persisted; unchanged failed signatures were not repeated.",
+  "repeatedBlocker": false,
+  "changedStrategy": "For NBIS, moved away from the prior issuer-newsroom path to SEC-filed capital-structure evidence, adding completed financing, use-of-proceeds and dilution/overhang facts that Alpha can reuse without Scout performing numeric underwriting."
+}

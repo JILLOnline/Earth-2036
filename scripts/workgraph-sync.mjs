@@ -7,6 +7,7 @@ import { buildDigitalTwinShadow } from "./lib/digital-twin-engine.mjs";
 import { buildValueAllocationShadow } from "./lib/value-allocator.mjs";
 import { buildDependencyShadow } from "./lib/dependency-graph.mjs";
 import { buildTrajectorySnapshot, validateTrajectorySnapshot } from "./lib/trajectory-engine.mjs";
+import { loadVerifiedBridgeIndex } from "./lib/fundamentals-bridge-index.mjs";
 import { MIN_PUBLISHABLE_DATA_CONFIDENCE } from "./lib/runtime-gates.mjs";
 
 const ROOT = process.cwd();
@@ -232,10 +233,17 @@ await writeFile(
 const rankingState = await readJsonOr(path.join(ROOT, "data", "runtime", "current-ranking.json"), { rankings: [] });
 const observationsState = await readJsonOr(path.join(ROOT, "data", "runtime", "company-observations.json"), { candidates: {} });
 const trajectoryAsOf = rankingState?.capturedAt || scoreState?.updatedAt || now.toISOString();
+const fundamentalsByTicker = await loadVerifiedBridgeIndex({
+  file: path.join(ROOT, "data", "lab", "bridge", "current-index.json"),
+  asOf: trajectoryAsOf,
+  observations: observationsState?.candidates || {},
+  tickers: (rankingState?.rankings || []).map((row) => row.ticker),
+});
 const trajectoryShadowBase = buildTrajectorySnapshot({
   rankings: rankingState?.rankings || [],
   observations: observationsState?.candidates || {},
   workgraphCompanies: graph?.companies || {},
+  fundamentalsByTicker,
   asOf: trajectoryAsOf,
   generatedAt: now.toISOString(),
   methodologyVersion: rankingState?.methodologyVersion || methodologyVersion,

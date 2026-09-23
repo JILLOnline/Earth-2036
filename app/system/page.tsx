@@ -5,6 +5,7 @@ import integrityJson from "../../data/runtime/intelligence-integrity.json";
 import runtimeJson from "../../data/runtime/system-state.json";
 import queueJson from "../../data/runtime/evidence-review-queue.json";
 import workgraphMetricsJson from "../../data/runtime/workgraph/metrics.json";
+import bridgeHealthJson from "../../data/runtime/workgraph/shadow/fundamentals-bridge-health.json";
 import registryJson from "../../data/runtime/supervisors/registry.json";
 import { runtimeTime } from "../../lib/dashboard-runtime";
 import CouncilOperations from "../components/CouncilOperations";
@@ -40,6 +41,16 @@ const integrity = integrityJson as unknown as Integrity;
 const runtime = runtimeJson as typeof runtimeJson;
 const queue = queueJson as unknown as { unresolved: number; items: Array<{ id?: string; ticker?: string; form?: string; status?: string; filingDate?: string; detectedAt?: string; sourceUrl?: string }> };
 const workgraph = workgraphMetricsJson as unknown as WorkgraphMetrics;
+type BridgeCompany = { ticker: string; status: string; truthHash: string | null; rawFactsHash: string | null;
+  sourcePayloadHash: string | null; projectionHash: string | null; rawFactCount: number | null;
+  currentCount: number | null; supersededCount: number | null; taxonomies: string[];
+  cutoff: string | null; latestSecFiling: string | null; reconstructionState: string };
+type BridgeHealth = { status?: string; asOf?: string | null; generatedAt?: string | null;
+  companies: number; valid: number; unknown: number; invalid: number;
+  rawFactsReferenced: number; uniqueFactStates: number; changedThisCycle: number;
+  futureLeakage: number; cikMismatches: number; hashFailures: number;
+  projectionAuthority: number; canonicalWrites: number; companyDetails?: BridgeCompany[] };
+const bridge = bridgeHealthJson as unknown as BridgeHealth;
 const registry = registryJson as unknown as Registry;
 const pct = (value: number) => `${Math.round((Number(value) || 0) * 100)}%`;
 const healthy = (value?: string) => String(value).toLowerCase() === "healthy";
@@ -73,6 +84,47 @@ export default function SystemPage() {
         <Stat label="WORKGRAPH" value={`${canonical}/${workgraph.total}`} detail={chiefReady ? `${chiefReady} CHIEF READY` : "0 CHIEF READY"} />
         <Stat label="EVIDENCE" value={queue.unresolved} detail={queue.unresolved === 0 ? "QUEUE CLEAR" : "UNRESOLVED"} />
       </StatRail>
+
+      <Deck>
+        <DeckHeader
+          eyebrow={bridge.asOf ? "SHADOW · PIT " + runtimeTime(bridge.asOf) : "SHADOW · AUDIT PENDING"}
+          title="TRAJECTORY FUNDAMENTALS"
+          action={<Bubble active={bridge.companies > 0 && bridge.invalid === 0 && bridge.unknown === 0}>
+            {bridge.companies > 0 ? bridge.valid + "/" + bridge.companies + " VERIFIED" : "NO AUDITED INDEX"}
+          </Bubble>}
+        />
+        <div className="queueMatrix">
+          <div><b>VALID REFERENCES</b><span>{bridge.valid}</span><span>COMPANIES {bridge.companies}</span><Bubble active={bridge.valid > 0}>{bridge.valid}</Bubble><span>—</span></div>
+          <div><b>UNKNOWN / INVALID</b><span>{bridge.unknown} / {bridge.invalid}</span><span>MISSING STAYS UNKNOWN</span><Bubble active={bridge.invalid === 0 && bridge.companies > 0}>{bridge.invalid === 0 ? "NO ERRORS REPORTED" : "INVESTIGATE"}</Bubble><span>—</span></div>
+          <div><b>RAW FACTS REFERENCED</b><span>{bridge.rawFactsReferenced.toLocaleString()}</span><span>{bridge.uniqueFactStates} UNIQUE STATES</span><Bubble>{bridge.changedThisCycle} CHANGED</Bubble><span>—</span></div>
+          <div><b>INTEGRITY / AUTHORITY</b><span>{bridge.futureLeakage} FUTURE · {bridge.hashFailures} HASH</span><span>{bridge.cikMismatches} CIK · {bridge.projectionAuthority} PROJECTION</span><Bubble active={bridge.canonicalWrites === 0}>CANONICAL WRITES {bridge.canonicalWrites}</Bubble><span>—</span></div>
+        </div>
+        {bridge.companyDetails?.length ? (
+          <ProgressiveList className="systemRows">
+            {bridge.companyDetails.map((company) => (
+              <div key={company.ticker} className="systemRow">
+                <div className="systemIdentity">
+                  <b>{company.ticker}</b>
+                  <span>{(company.taxonomies || []).join(", ") || "NO TAXONOMY"} · {company.rawFactCount ?? "—"} RAW FACTS</span>
+                  <details>
+                    <summary>VIEW TRUTH REFERENCE</summary>
+                    <small>TRUTH {company.truthHash || "—"}</small><br />
+                    <small>RAW {company.rawFactsHash || "—"}</small><br />
+                    <small>SOURCE {company.sourcePayloadHash || "—"}</small><br />
+                    <small>PROJECTION (AUDIT ONLY) {company.projectionHash || "—"}</small><br />
+                    <small>CUTOFF {company.cutoff || "—"} · LAST FILING {company.latestSecFiling || "—"}</small><br />
+                    <small>CURRENT {company.currentCount ?? "—"} · SUPERSEDED {company.supersededCount ?? "—"}</small><br />
+                    <small>RECONSTRUCTION {company.reconstructionState}</small>
+                  </details>
+                </div>
+                <div className="systemMetrics"><Bubble active={company.status === "valid"}>{company.status.toUpperCase()}</Bubble></div>
+              </div>
+            ))}
+          </ProgressiveList>
+        ) : (
+          <div className="queueClear"><span>NO VERIFIED BRIDGE REFERENCES PUBLISHED</span><b>#11 AUDIT PENDING · EARTH PRODUCTION UNAFFECTED</b></div>
+        )}
+      </Deck>
 
       <section className="systemPair">
         <Deck>

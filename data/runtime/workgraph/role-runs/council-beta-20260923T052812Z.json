@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "role": "council-beta",
+  "generatedAt": "2026-09-23T05:28:12.103843Z",
+  "sourceCycleKey": null,
+  "startingGitHead": "8cd9b760f419bd545db4846f1c95a2d0141b0f57",
+  "operatingMode": "assist-mode",
+  "companiesInspected": [],
+  "betaPairsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [],
+  "blockers": [
+    {
+      "code": "assist_bus_payload_visibility_incomplete",
+      "exactDefect": "The current Assist Bus reports four active council-beta helper slots, but the connector response truncates before those request objects, so their requestId/inputSignature/exactQuestion cannot be verified without guessing. Acting without those fields would violate the workforce contract requirement that helpers provide only bounded requested analysis while root ownership remains unchanged.",
+      "lawfulNextEvidencePath": "Read the complete current data/runtime/workgraph/assist-bus.json (or a request-addressable projection) and process only active helperRole=council-beta requests whose exact requestId, inputSignature and question are visible; do not infer targets from old ticker memory."
+    }
+  ],
+  "result": "No owned Beta queue items were eligible. Assist mode was required because council-beta routing total was zero; four active Beta assist slots were reported, but their request records were not safely visible in the truncated Assist Bus payload. No evidence was fabricated and no other lane authority was assumed.",
+  "learning": {
+    "ownedQueueCount": 0,
+    "assistSlotsReported": 4,
+    "changedStrategy": "Avoided repeating old Beta ticker memory and refused to infer assist targets from summary counts; next run should consume exact active Assist Bus request records before analysis.",
+    "successDefinition": "Causal/risk support must be tied to a current requestId/inputSignature and materially reduce uncertainty or a root-owner blocker."
+  }
+}

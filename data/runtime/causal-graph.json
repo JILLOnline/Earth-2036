@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-23T20:17:54.641Z",
+  "updatedAt": "2026-09-23T21:18:44.284Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1430,6 +1430,18 @@
       "type": "market",
       "label": "GLW structural demand",
       "description": "Corning connects AI/data-center and broadband demand to a physical optical-connectivity bottleneck: fiber, dense cable and connector capacity are infrastructure inputs required as compute clusters and networks scale."
+    },
+    {
+      "id": "company:GNRC",
+      "type": "company",
+      "label": "Generac Holdings Inc.",
+      "description": "Generac Holdings Inc. structural-causal evidence"
+    },
+    {
+      "id": "market:GNRC-gnrc-structural-demand",
+      "type": "market",
+      "label": "GNRC structural demand",
+      "description": "Structural demand channel"
     }
   ],
   "edges": [
@@ -3290,6 +3302,23 @@
         "glw:meta-hickory-2026"
       ],
       "observedAt": "2026-09-20T16:28:15Z"
+    },
+    {
+      "id": "edge:GNRC-structural-exposure",
+      "from": "company:GNRC",
+      "to": "market:GNRC-gnrc-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 82,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "investors.generac.com|2026-06-02|hyperscale-global-supply",
+        "investors.generac.com|2026-02-19|enercon-acquisition",
+        "investors.generac.com|2026-01-05|sussex-capacity",
+        "investors.generac.com|2026-03-05|epc-power-data-center"
+      ],
+      "observedAt": "2026-09-20T17:27:59Z"
     }
   ],
   "structuralSignals": [
@@ -5595,6 +5624,27 @@
       ],
       "observedAt": "2026-09-20T16:28:15Z",
       "thesis": "Corning connects AI/data-center and broadband demand to a physical optical-connectivity bottleneck: fiber, dense cable and connector capacity are infrastructure inputs required as compute clusters and networks scale.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:GNRC-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:GNRC-gnrc-structural-demand",
+      "affectedNodeIds": [
+        "company:GNRC"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 82,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "investors.generac.com|2026-06-02|hyperscale-global-supply",
+        "investors.generac.com|2026-02-19|enercon-acquisition",
+        "investors.generac.com|2026-01-05|sussex-capacity",
+        "investors.generac.com|2026-03-05|epc-power-data-center"
+      ],
+      "observedAt": "2026-09-20T17:27:59Z",
+      "thesis": "Generac Holdings Inc. has a sourced structural demand path.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

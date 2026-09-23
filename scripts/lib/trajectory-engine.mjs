@@ -1,8 +1,9 @@
 import { createHash } from "node:crypto";
 import { REQUIRED_SCORE_COMPONENTS } from "./runtime-gates.mjs";
+import { invalidFundamentalsBridge, unknownFundamentalsBridge, validateFundamentalsBridgeDescriptor, fundamentalsBridgeHealth } from "./fundamentals-trajectory-bridge.mjs";
 
-export const TRAJECTORY_CONTRACT_VERSION = "1.1.0";
-export const TRAJECTORY_FEATURE_SCHEMA_VERSION = "1.1.0";
+export const TRAJECTORY_CONTRACT_VERSION = "1.2.0";
+export const TRAJECTORY_FEATURE_SCHEMA_VERSION = "1.2.0";
 export const TRAJECTORY_HORIZONS_MONTHS = Object.freeze([12, 24, 36, 60]);
 
 function finiteOrNull(value) {
@@ -118,12 +119,23 @@ function addUtcMonths(iso, months) {
   return date.toISOString();
 }
 
-export function buildTrajectoryFeatureRow(record, observation = null, workgraphRow = null) {
+export function buildTrajectoryFeatureRow(record, observation = null, workgraphRow = null, fundamentalsInput = null, asOf = null) {
   const ticker = record?.ticker ?? observation?.ticker ?? workgraphRow?.ticker ?? null;
   const sourceRefs = evidenceReferences(record);
+  const referenceTime = asOf ?? observation?.observedAt ?? null;
+  const supplied = fundamentalsInput?.reference ?? fundamentalsInput;
+  const refErrors = supplied
+    ? validateFundamentalsBridgeDescriptor(supplied, { ticker, cik: observation?.cik, asOf: referenceTime })
+    : [];
+  const fundamentals = supplied
+    ? refErrors.length
+      ? invalidFundamentalsBridge({ ticker, observation, asOf: referenceTime, reasons: refErrors })
+      : supplied
+    : unknownFundamentalsBridge({ ticker, observation, asOf: referenceTime });
   const truthState = {
     ticker,
     sec: filingTruthState(observation),
+    fundamentals,
   };
   const earthContext = earthAuditContext(record);
 
@@ -133,6 +145,16 @@ export function buildTrajectoryFeatureRow(record, observation = null, workgraphR
   if (!truthState.sec.cik) missingTruth.push("sec.cik");
   if (!truthState.sec.filingFingerprint) missingTruth.push("sec.filingFingerprint");
 
+  const learningEligibility = {
+    filingState: missingTruth.length === 0,
+    fundamentalsRaw: fundamentals.status === "valid" && fundamentals.learningEligible === true,
+    reason: fundamentals.status === "valid" ? null : fundamentals.reason,
+  };
+  const fundamentalsAuditProjection = {
+    learningEligible: false,
+    status: fundamentals.status === "valid" ? "audit-only" : fundamentals.status,
+    projectionHash: fundamentals.status === "valid" ? fundamentals.projectionHash : null,
+  };
   const provenance = {
     learningSource: "source-backed-observation-state",
     methodologyVersion: record?.methodologyVersion ?? record?.scoreBreakdown?.methodologyVersion ?? null,
@@ -153,6 +175,8 @@ export function buildTrajectoryFeatureRow(record, observation = null, workgraphR
     ticker,
     truthState,
     earthContext,
+    fundamentalsAuditProjection,
+    learningEligibility,
     truthComplete: missingTruth.length === 0,
     missingTruth,
     provenance,
@@ -163,6 +187,7 @@ export function buildTrajectorySnapshot({
   rankings,
   observations = {},
   workgraphCompanies = {},
+  fundamentalsByTicker = {},
   asOf,
   generatedAt = asOf,
   methodologyVersion = null,
@@ -176,7 +201,9 @@ export function buildTrajectorySnapshot({
     .map((record) => buildTrajectoryFeatureRow(
       record,
       observations?.[record?.ticker] ?? null,
-      workgraphCompanies?.[record?.ticker] ?? null
+      workgraphCompanies?.[record?.ticker] ?? null,
+      fundamentalsByTicker?.[record?.ticker] ?? null,
+      asOf
     ))
     .sort((a, b) => String(a.ticker).localeCompare(String(b.ticker)));
 
@@ -192,6 +219,10 @@ export function buildTrajectorySnapshot({
     learningPolicy: {
       primaryTrainingInput: "truthState",
       earthContextLearningEligible: false,
+      fundamentalsRawEligible: true,
+      normalizedProjectionGroundTruth: false,
+      modelsEnabled: false,
+      forecastsEnabled: false,
       subjectiveSuccessLabelsAllowed: false,
     },
     generatedAt,
@@ -209,6 +240,7 @@ export function buildTrajectorySnapshot({
     records: rows.length,
     truthCompleteRecords: rows.filter((row) => row.truthComplete).length,
     truthIncompleteRecords: rows.filter((row) => !row.truthComplete).length,
+    fundamentalsHealth: fundamentalsBridgeHealth(rows),
     rows,
   };
 
@@ -224,6 +256,8 @@ export function validateTrajectorySnapshot(snapshot) {
   if (snapshot.placeholderForecastsAllowed !== false) errors.push("placeholder forecasts must be forbidden");
   if (snapshot?.learningPolicy?.primaryTrainingInput !== "truthState") errors.push("trajectory learner must train from truthState");
   if (snapshot?.learningPolicy?.earthContextLearningEligible !== false) errors.push("Earth context must not be learning-eligible");
+  if (snapshot?.learningPolicy?.modelsEnabled !== false || snapshot?.learningPolicy?.forecastsEnabled !== false) errors.push("models and forecasts forbidden in bridge v1");
+  if (snapshot?.learningPolicy?.normalizedProjectionGroundTruth !== false) errors.push("projection cannot become learning truth");
   if (snapshot?.learningPolicy?.subjectiveSuccessLabelsAllowed !== false) errors.push("subjective success labels must be forbidden");
 
   const asOfMs = Date.parse(snapshot.asOf || "");
@@ -241,6 +275,21 @@ export function validateTrajectorySnapshot(snapshot) {
     seen.add(row?.ticker);
     if (row?.truthComplete !== true) {
       errors.push(`incomplete trajectory truth for ${row?.ticker || "unknown"}: ${(row?.missingTruth || []).join(",")}`);
+    }
+    const ref = row?.truthState?.fundamentals;
+    const bridgeErrors = validateFundamentalsBridgeDescriptor(ref, {
+      ticker: row?.ticker, cik: row?.truthState?.sec?.cik, asOf: snapshot.asOf,
+    });
+    for (const error of bridgeErrors) errors.push("fundamentals " + row?.ticker + ": " + error);
+    if (ref?.status === "valid" !== (row?.learningEligibility?.fundamentalsRaw === true)) {
+      errors.push("fundamentals eligibility mismatch for " + row?.ticker);
+    }
+    if (row?.learningEligibility?.filingState !== row?.truthComplete) {
+      errors.push("filing eligibility mismatch for " + row?.ticker);
+    }
+    if (row?.fundamentalsAuditProjection?.learningEligible !== false ||
+        row?.fundamentalsAuditProjection?.projectionHash !== (ref?.status === "valid" ? ref.projectionHash : null)) {
+      errors.push("projection authority/hash mismatch for " + row?.ticker);
     }
     if (row?.earthContext?.learningEligible !== false) {
       errors.push(`Earth context became learning-eligible for ${row?.ticker || "unknown"}`);
@@ -266,6 +315,7 @@ export function validateTrajectorySnapshot(snapshot) {
 
   if (snapshot.records !== (snapshot.rows || []).length) errors.push("trajectory record count mismatch");
   if (snapshot.truthCompleteRecords + snapshot.truthIncompleteRecords !== snapshot.records) errors.push("trajectory truth completeness count mismatch");
+  if (trajectoryHash(snapshot.fundamentalsHealth) !== trajectoryHash(fundamentalsBridgeHealth(snapshot.rows ?? []))) errors.push("fundamentals health mismatch");
 
   const { snapshotHash, validation, captureRole, mode, note, ...hashable } = snapshot;
   if (!snapshotHash || snapshotHash !== trajectoryHash(hashable)) errors.push("trajectory snapshot hash mismatch");

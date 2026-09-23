@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "contract": "workgraph-v2-role-run",
+  "role": "earth-scout",
+  "generatedAt": "2026-09-23T20:03:10Z",
+  "startingGitHead": "53b003d5b18ebafe0c1f8835baad69b3c28f374b",
+  "companiesInspected": ["NBIS"],
+  "evidencePairsCompleted": 1,
+  "artifacts": [
+    "data/runtime/workgraph/evidence/NBIS-20260923T200250Z-earth-scout.json"
+  ],
+  "assistAttempts": [
+    {
+      "requestId": "assist:NBIS:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "0d27d880186fd70c9cd9",
+      "outcome": "new_primary_governance_evidence",
+      "newEvidencePaths": [
+        "data/runtime/workgraph/evidence/NBIS-20260923T200250Z-earth-scout.json"
+      ],
+      "sourcePathsAttempted": [
+        "https://www.sec.gov/Archives/edgar/data/1513845/000110465926101076/tm2624077d1_6k.htm",
+        "https://www.sec.gov/Archives/edgar/data/1513845/000110465926101076/tm2624077d1_ex99-1.htm"
+      ]
+    }
+  ],
+  "blockers": [
+    "Scout owned routing queue was empty, so capacity shifted to active Assist Bus work.",
+    "IBM and MBLY active requests carried unchanged input signatures with prior skipped_same_signature_prior_failure outcomes; they were not retried because no changed input justified repeating the failed search path."
+  ],
+  "result": "assist_progress_new_primary_source",
+  "repeatedBlocker": false,
+  "changedStrategy": "With no owned Scout queue, prioritized an Alpha source-acquisition assist and deliberately moved away from repeated commercial/capacity searches to a materially different SEC governance source."
+}

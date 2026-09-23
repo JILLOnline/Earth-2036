@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "contract": "earth2036-role-run-v1",
+  "role": "council-alpha",
+  "generatedAt": "2026-09-23T14:17:13Z",
+  "sourceCycleKey": "20260923T1400Z",
+  "startingGitHead": "b0c65fdd52037a993f7d65f7c8410044a3a6edba",
+  "operatingMode": "closure-first-capacity-warning",
+  "companiesInspected": ["EXC", "MPWR", "MYRG", "FN"],
+  "alphaPairsCompleted": 0,
+  "scoreRecordsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [],
+  "result": "partial_blockers_narrowed_no_defensible_score_record",
+  "blockers": [
+    {
+      "ticker": "EXC",
+      "ownedFailures": ["missing_specialist_perspective:source-integrity", "missing_specialist_perspective:company-underwriting", "missing_factor_evidence", "missing_numeric_score_record", "missing_score_risk_evidence", "missing_data_confidence_evidence"],
+      "exactBlocker": "Cumulative packet has current issuer operating evidence and independent demand evidence, but no source-addressed current valuation input and no complete governance/capital-allocation evidence sufficient to calibrate all 12 Methodology 1.0 components without invention.",
+      "sourcePathsAttempted": ["existing packet lineage including Exelon Q2 2026 issuer results", "existing independent Reuters/MarketBeat lineage"],
+      "failedStrategy": "Reuse-only packet inspection cannot lawfully populate marketValuationOpportunity and governancePower.",
+      "changedStrategy": "Next Alpha pass must acquire current lawful valuation/market data plus SEC proxy/10-Q governance and capital-allocation evidence, then calibrate against methodology-1.0 anchors.",
+      "nextLawfulAction": "Acquire SEC filing/proxy plus current lawful market valuation source; source-address every factor before scoring."
+    },
+    {
+      "ticker": "MPWR",
+      "ownedFailures": ["missing_specialist_perspective:source-integrity", "missing_specialist_perspective:company-underwriting", "missing_factor_evidence", "missing_numeric_score_record", "missing_score_risk_evidence", "missing_data_confidence_evidence"],
+      "exactBlocker": "Packet contains strong operating, causal and supply-chain evidence but lacks a source-addressed current valuation assessment and complete current governance/capital-allocation evidence required for a defensible 12-component scoreRecord.",
+      "sourcePathsAttempted": ["existing issuer Q2 2026 results lineage", "existing SEC 10-Q/10-K lineage and foundry-partnership lineage"],
+      "failedStrategy": "Existing cumulative evidence is insufficient for marketValuationOpportunity and governancePower calibration.",
+      "changedStrategy": "Acquire current lawful market valuation evidence and current proxy/governance evidence before numeric completion.",
+      "nextLawfulAction": "Use current market source plus SEC DEF 14A/issuer governance materials, then source-address all factor/risk/confidence values."
+    },
+    {
+      "ticker": "MYRG",
+      "ownedFailures": ["missing_specialist_perspective:source-integrity", "missing_specialist_perspective:company-underwriting", "missing_factor_evidence", "missing_numeric_score_record", "missing_score_risk_evidence", "missing_data_confidence_evidence"],
+      "exactBlocker": "Primary Q2 filing and issuer results support operations/backlog and resolved the prior material contradiction, but current valuation, governance/capital-allocation, and customer/backlog concentration inputs are not sufficiently source-addressed to complete all 12 calibrated components.",
+      "sourcePathsAttempted": ["SEC 2026 Q2 10-Q lineage", "issuer Q2 2026 results lineage", "resolved Beta/Deep contradiction lineage"],
+      "failedStrategy": "Reuse-only evidence does not support marketValuationOpportunity/governancePower and concentration-sensitive pricing/scenario calibration at required precision.",
+      "changedStrategy": "Acquire current valuation plus proxy/governance and filing-level concentration details rather than re-litigating the resolved contradiction.",
+      "nextLawfulAction": "Use SEC DEF 14A/latest filing concentration disclosures and current lawful market valuation source; then calibrate all factors."
+    },
+    {
+      "ticker": "FN",
+      "ownedFailures": ["missing_specialist_perspective:source-integrity", "missing_specialist_perspective:company-underwriting", "missing_factor_evidence", "missing_numeric_score_record", "missing_score_risk_evidence", "missing_data_confidence_evidence"],
+      "exactBlocker": "Current packet collapses to one unique issuer origin, so source independence is weak; customer concentration/program mix, current valuation, and governance/capital-allocation evidence are insufficient for defensible scoring.",
+      "sourcePathsAttempted": ["existing Fabrinet FY2026 issuer-results lineage", "existing Beta causal/red-team interpretation of that lineage"],
+      "failedStrategy": "Single-origin reuse cannot satisfy source-integrity independence or support valuation/governance/concentration-sensitive numeric components.",
+      "changedStrategy": "Acquire SEC annual filing/proxy plus an independent current market/valuation source before scoring.",
+      "nextLawfulAction": "Use SEC 20-F/annual filing and proxy-equivalent governance disclosures plus current lawful market valuation source; add independent corroboration where available."
+    }
+  ],
+  "learning": {
+    "repeatedBlocker": "missing source-addressed valuation and governance inputs across top Alpha frontier",
+    "sourcePathsAttempted": ["cumulative packet lineage", "issuer primary results", "existing SEC filing lineage where present", "existing independent/causal evidence"],
+    "failedStrategy": "Treating cumulative operating evidence as sufficient for full numeric calibration.",
+    "changedStrategy": "Batch-acquire current valuation plus governance/proxy evidence for the ranked frontier before attempting scoreRecord completion.",
+    "nextLawfulAction": "On next run begin with EXC and MPWR current valuation + proxy/SEC governance acquisition, then MYRG and FN, preserving queue rank."
+  }
+}

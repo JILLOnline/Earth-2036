@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ROK",
   "workId": "t0:ROK",
-  "generatedAt": "2026-09-23T07:28:17.416Z",
+  "generatedAt": "2026-09-23T08:06:52.245Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-05-05T00:00:00.000Z",
-    "end": "2026-09-23T07:04:44.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-23T07:04:44.000Z"
+    "end": "2026-09-23T08:04:16.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-23T08:04:16.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -51,13 +51,14 @@
   "evidencePaths": [
     "data/runtime/workgraph/evidence/ROK-20260917T2000Z-council-beta-v1.json",
     "data/runtime/workgraph/evidence/ROK-20260918T0500Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/ROK-20260923T070444Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ROK-20260923T070444Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ROK-20260923T080416Z-earth-scout.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 6,
-    "historicalEvidenceCount": 6
+    "activeEvidenceCount": 8,
+    "historicalEvidenceCount": 8
   },
   "factorEvidence": {
     "names": [
@@ -208,6 +209,16 @@
       {
         "risk": "Some reported profitability improvement includes a one-time $20M Sensia dissolution gain and portfolio effects; these should not be treated as recurring operating performance.",
         "gating": false
+      },
+      {
+        "risk": "Management said margin gains were partly offset by input costs exceeding price realization, while short-term commercial-paper borrowings rose from $522M at September 2025 to $684M at June 2026.",
+        "sourceId": "sec:ROK:10q:2026q3",
+        "gating": false
+      },
+      {
+        "risk": "Management said margin gains were partly offset by input costs exceeding price realization, while short-term commercial-paper borrowings rose from $522M at September 2025 to $684M at June 2026.",
+        "sourceId": "sec:ROK:10q:2026q3",
+        "gating": false
       }
     ]
   },
@@ -243,6 +254,16 @@
     {
       "risk": "Some reported profitability improvement includes a one-time $20M Sensia dissolution gain and portfolio effects; these should not be treated as recurring operating performance.",
       "gating": false
+    },
+    {
+      "risk": "Management said margin gains were partly offset by input costs exceeding price realization, while short-term commercial-paper borrowings rose from $522M at September 2025 to $684M at June 2026.",
+      "sourceId": "sec:ROK:10q:2026q3",
+      "gating": false
+    },
+    {
+      "risk": "Management said margin gains were partly offset by input costs exceeding price realization, while short-term commercial-paper borrowings rose from $522M at September 2025 to $684M at June 2026.",
+      "sourceId": "sec:ROK:10q:2026q3",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -253,7 +274,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 5
+    "count": 6
   },
   "causalMapping": {
     "present": true,
@@ -361,16 +382,17 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 8,
-    "uniqueSourceCount": 5,
-    "duplicatesCollapsed": 3,
+    "rawSourceCount": 10,
+    "uniqueSourceCount": 6,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:ROK:2026Q2-10Q",
       "sec:ROK:2026Q3-10Q",
       "rockwell:2026-08-04:q3-fy26",
       "rok:2026q3:10q:working-capital",
-      "rok:2026q3:10q:sensia-debt-liquidity"
+      "rok:2026q3:10q:sensia-debt-liquidity",
+      "sec:1024478:2026q3:sales-margin-cash-debt"
     ]
   },
   "sources": [
@@ -413,6 +435,14 @@
       "publishedAt": "2026-08-04",
       "originFingerprint": "rok:2026q3:10q:sensia-debt-liquidity",
       "sourceId": null
+    },
+    {
+      "sourceId": "sec:ROK:10q:2026q3",
+      "url": "https://www.sec.gov/Archives/edgar/data/1024478/000102447826000030/rok-20260630.htm",
+      "kind": "primary-regulatory",
+      "primary": true,
+      "publishedAt": "2026-08-04",
+      "originFingerprint": "sec:1024478:2026q3:sales-margin-cash-debt"
     }
   ],
   "contradictions": [],
@@ -448,11 +478,21 @@
     {
       "unknown": "Scout does not determine normalized EPS, leverage ratios or canonical score impact; those remain Alpha-owned.",
       "gating": false
+    },
+    {
+      "unknown": "Scout does not determine normalized margin or leverage scoring; Alpha must map the source data into the locked rubric.",
+      "gating": false,
+      "nextOwner": "council-alpha"
+    },
+    {
+      "unknown": "Scout does not determine normalized margin or leverage scoring; Alpha must map the source data into the locked rubric.",
+      "gating": false,
+      "nextOwner": "council-alpha"
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 7
+    "nonGatingCount": 9
   },
   "gatingIssues": [],
   "confidence": 87,

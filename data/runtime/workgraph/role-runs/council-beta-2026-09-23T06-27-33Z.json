@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "role": "council-beta",
+  "generatedAt": "2026-09-23T06:27:33Z",
+  "startingGitHead": "a1e51634034fcb49904fcebdca51c639cb31747a",
+  "sourceCycleKey": null,
+  "operatingMode": "assist-only-no-owned-queue",
+  "companiesInspected": [],
+  "betaPairsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [],
+  "blockers": [
+    {
+      "defect": "assist_bus_active_beta_requests_not_individually_addressable_from_available connector response",
+      "detail": "The authoritative Beta routing queue is empty, while assist-bus summary reports four active council-beta helper slots. The available assist-bus fetch was truncated before those request objects, and repository code search did not surface the generated runtime request records. Acting without exact requestId/inputSignature/exactQuestion would violate the assist contract and could duplicate dormant or stale work.",
+      "lawfulNextEvidencePath": "Read the complete current data/runtime/workgraph/assist-bus.json request objects for helperRole=council-beta, then inspect each referenced packetPath/evidencePaths before producing bounded risk/structural support."
+    }
+  ],
+  "result": "No owned Beta work was eligible. Four Beta assist slots were reported active, but their exact request objects could not be safely recovered from the truncated runtime surface in this run; no speculative assist work was performed.",
+  "learning": {
+    "ownedQueueCount": 0,
+    "activeBetaAssistCount": 4,
+    "strategy": "Preserved root-owner authority and dormant-request guardrail rather than inferring assist targets from summary counts or prior ticker memory.",
+    "successSignal": "A subsequent run can address exact active Beta assist request objects and either reduce uncertainty with new evidence or return a precise changed blocker."
+  }
+}

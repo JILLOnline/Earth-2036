@@ -1,0 +1,31 @@
+{
+  "role": "council-beta",
+  "generatedAt": "2026-09-23T23:23:45Z",
+  "sourceCycleKey": "2026-09-23T23:15:49.350Z",
+  "companiesInspected": [],
+  "betaPairsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [],
+  "blockers": [
+    {
+      "scope": "assist-mode",
+      "defect": "The live Assist Bus reports four active council-beta helper slots, but the connector response truncates the request array before those council-beta request records, preventing lawful inspection of requestId, inputSignature, exactQuestion, packetPath, and priorAttempt. Acting without those fields would violate the workforce contract's bounded-helper and unchanged-input dormancy rules.",
+      "lawfulNextEvidencePath": "Read the four active helperRole=council-beta request objects from data/runtime/workgraph/assist-bus.json with a non-truncating/path-addressable reader, then inspect each referenced packetPath/current evidence before producing bounded assist evidence."
+    }
+  ],
+  "result": "no_owned_beta_queue; assist work deferred because active council-beta request identities were not safely recoverable from the truncated live Assist Bus payload",
+  "operatingMode": "assist-mode",
+  "startingGitHead": "62a7bb53f5c0346d246fd40736510695abc6e61b",
+  "learning": {
+    "ownedQueueCount": 0,
+    "activeCouncilBetaAssistSlots": 4,
+    "frontier": {
+      "packetReady": 2,
+      "chiefReady": 0,
+      "canonical": 119,
+      "stalled": false
+    },
+    "changedStrategy": false,
+    "lesson": "Do not infer assist targets from partial Assist Bus content; preserve exact request identity and input signature before helper work."
+  }
+}

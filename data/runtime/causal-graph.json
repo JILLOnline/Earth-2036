@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-23T16:26:23.735Z",
+  "updatedAt": "2026-09-23T17:19:04.402Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1382,6 +1382,30 @@
       "type": "market",
       "label": "specialty infrastructure demand",
       "description": "new generation/load cannot serve users without interconnection, transmission and distribution buildout"
+    },
+    {
+      "id": "company:GE",
+      "type": "company",
+      "label": "GE Aerospace",
+      "description": "GE Aerospace sits on a causal chain from air-travel/defense demand through engine deliveries and aftermarket uptime to constrained precision castings; acquiring CPP is a direct attempt to internalize a mission-critical casting bottleneck rather than merely add unrelated capacity."
+    },
+    {
+      "id": "market:GE-ge-structural-demand",
+      "type": "market",
+      "label": "GE structural demand",
+      "description": "GE Aerospace sits on a causal chain from air-travel/defense demand through engine deliveries and aftermarket uptime to constrained precision castings; acquiring CPP is a direct attempt to internalize a mission-critical casting bottleneck rather than merely add unrelated capacity."
+    },
+    {
+      "id": "company:GEN",
+      "type": "company",
+      "label": "Gen Digital",
+      "description": "Gen Digital links consumer digital dependence to cyber safety, identity protection and now financial-wellness tooling; the structural thesis is a shared consumer trust/distribution layer rather than a single-product security bottleneck."
+    },
+    {
+      "id": "market:GEN-gen-structural-demand",
+      "type": "market",
+      "label": "GEN structural demand",
+      "description": "Gen Digital links consumer digital dependence to cyber safety, identity protection and now financial-wellness tooling; the structural thesis is a shared consumer trust/distribution layer rather than a single-product security bottleneck."
     }
   ],
   "edges": [
@@ -3177,6 +3201,36 @@
         "pwr:2026q2:10q:2026-07-30"
       ],
       "observedAt": "2026-09-19T11:24:50Z"
+    },
+    {
+      "id": "edge:GE-structural-exposure",
+      "from": "company:GE",
+      "to": "market:GE-ge-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "ge:q2-2026-results",
+        "ge:cpp-acquisition"
+      ],
+      "observedAt": "2026-09-20T16:28:15Z"
+    },
+    {
+      "id": "edge:GEN-structural-exposure",
+      "from": "company:GEN",
+      "to": "market:GEN-gen-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 89,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "gen:q1-fy27",
+        "gen:fy26-results"
+      ],
+      "observedAt": "2026-09-20T16:28:15Z"
     }
   ],
   "structuralSignals": [
@@ -5402,6 +5456,44 @@
       "observedAt": "2026-09-19T11:24:50Z",
       "thesis": "Quanta is structurally exposed to the physical bottleneck between grid/load growth and usable power infrastructure: utilities and load centers require transmission, distribution, generation and specialty construction capacity, while Q2 2026 evidence shows demand converting into record backlog and revenue growth.",
       "falsifier": "utility/load-center capex remains strong while Quanta backlog and revenue contract materially"
+    },
+    {
+      "id": "signal:GE-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:GE-ge-structural-demand",
+      "affectedNodeIds": [
+        "company:GE"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "ge:q2-2026-results",
+        "ge:cpp-acquisition"
+      ],
+      "observedAt": "2026-09-20T16:28:15Z",
+      "thesis": "GE Aerospace sits on a causal chain from air-travel/defense demand through engine deliveries and aftermarket uptime to constrained precision castings; acquiring CPP is a direct attempt to internalize a mission-critical casting bottleneck rather than merely add unrelated capacity.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:GEN-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:GEN-gen-structural-demand",
+      "affectedNodeIds": [
+        "company:GEN"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 89,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "gen:q1-fy27",
+        "gen:fy26-results"
+      ],
+      "observedAt": "2026-09-20T16:28:15Z",
+      "thesis": "Gen Digital links consumer digital dependence to cyber safety, identity protection and now financial-wellness tooling; the structural thesis is a shared consumer trust/distribution layer rather than a single-product security bottleneck.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],
   "roadmapMilestones": [

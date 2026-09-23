@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ROK",
   "workId": "t0:ROK",
-  "generatedAt": "2026-09-23T06:28:53.952Z",
+  "generatedAt": "2026-09-23T07:06:21.241Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-05-05T00:00:00.000Z",
-    "end": "2026-09-18T21:25:56.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-18T21:25:56.000Z"
+    "end": "2026-09-23T07:04:44.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-23T07:04:44.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -50,13 +50,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/ROK-20260917T2000Z-council-beta-v1.json",
-    "data/runtime/workgraph/evidence/ROK-20260918T0500Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/ROK-20260918T0500Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/ROK-20260923T070444Z-earth-scout.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -71,7 +72,9 @@
       "risk",
       "dataConfidence",
       "Automation demand breadth",
-      "Execution and cash conversion"
+      "Execution and cash conversion",
+      "working-capital inventory discipline",
+      "portfolio simplification and financing context"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -89,6 +92,11 @@
           "name": "Automation demand breadth",
           "direction": "positive",
           "basis": "Growth spans semiconductor, data-center, warehouse and software/control exposure."
+        },
+        {
+          "name": "working-capital inventory discipline",
+          "direction": "positive",
+          "basis": "Inventory remained essentially flat across nine months despite stronger reported sales, reducing evidence of inventory-led growth."
         }
       ],
       "adversarial-red-team": [
@@ -104,6 +112,11 @@
           "name": "Execution and cash conversion",
           "direction": "positive",
           "basis": "Higher earnings, free cash flow and raised guidance corroborate operating momentum."
+        },
+        {
+          "name": "portfolio simplification and financing context",
+          "direction": "mixed",
+          "basis": "Sensia dissolution removed associated debt and simplified the portfolio, but short-term commercial paper remained meaningful relative to $479M cash."
         }
       ]
     }
@@ -157,7 +170,9 @@
     "risk",
     "dataConfidence",
     "Automation demand breadth",
-    "Execution and cash conversion"
+    "Execution and cash conversion",
+    "working-capital inventory discipline",
+    "portfolio simplification and financing context"
   ],
   "riskEvidence": {
     "present": true,
@@ -184,6 +199,14 @@
       },
       {
         "risk": "Some margin benefit came from the Sensia joint-venture dissolution, so not all improvement should be extrapolated organically.",
+        "gating": false
+      },
+      {
+        "risk": "Flat aggregate inventory does not prove channel inventory health or end-customer sell-through; root-owner underwriting should avoid that inference.",
+        "gating": false
+      },
+      {
+        "risk": "Some reported profitability improvement includes a one-time $20M Sensia dissolution gain and portfolio effects; these should not be treated as recurring operating performance.",
         "gating": false
       }
     ]
@@ -212,6 +235,14 @@
     {
       "risk": "Some margin benefit came from the Sensia joint-venture dissolution, so not all improvement should be extrapolated organically.",
       "gating": false
+    },
+    {
+      "risk": "Flat aggregate inventory does not prove channel inventory health or end-customer sell-through; root-owner underwriting should avoid that inference.",
+      "gating": false
+    },
+    {
+      "risk": "Some reported profitability improvement includes a one-time $20M Sensia dissolution gain and portfolio effects; these should not be treated as recurring operating performance.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -222,7 +253,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 3
+    "count": 5
   },
   "causalMapping": {
     "present": true,
@@ -263,6 +294,18 @@
         "to": "margin expansion",
         "mechanism": "higher volume and mix improve operating leverage",
         "falsifier": "price/cost pressure or demand slowdown reverses gains"
+      },
+      {
+        "from": "sales growth without aggregate inventory expansion",
+        "to": "working-capital quality signal",
+        "mechanism": "revenue growth is less likely to be explained by company-held inventory accumulation",
+        "falsifier": "channel inventories or future receivable quality deteriorate materially"
+      },
+      {
+        "from": "Sensia dissolution",
+        "to": "reported earnings and balance-sheet mix",
+        "mechanism": "asset/liability derecognition plus a transaction gain changes comparability with prior periods",
+        "falsifier": "none; this is a disclosed transaction effect requiring normalization rather than a forecast"
       }
     ]
   },
@@ -303,17 +346,31 @@
       "to": "margin expansion",
       "mechanism": "higher volume and mix improve operating leverage",
       "falsifier": "price/cost pressure or demand slowdown reverses gains"
+    },
+    {
+      "from": "sales growth without aggregate inventory expansion",
+      "to": "working-capital quality signal",
+      "mechanism": "revenue growth is less likely to be explained by company-held inventory accumulation",
+      "falsifier": "channel inventories or future receivable quality deteriorate materially"
+    },
+    {
+      "from": "Sensia dissolution",
+      "to": "reported earnings and balance-sheet mix",
+      "mechanism": "asset/liability derecognition plus a transaction gain changes comparability with prior periods",
+      "falsifier": "none; this is a disclosed transaction effect requiring normalization rather than a forecast"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 6,
-    "uniqueSourceCount": 3,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 5,
     "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:ROK:2026Q2-10Q",
       "sec:ROK:2026Q3-10Q",
-      "rockwell:2026-08-04:q3-fy26"
+      "rockwell:2026-08-04:q3-fy26",
+      "rok:2026q3:10q:working-capital",
+      "rok:2026q3:10q:sensia-debt-liquidity"
     ]
   },
   "sources": [
@@ -339,6 +396,22 @@
       "primary": true,
       "publishedAt": "2026-08-04",
       "originFingerprint": "rockwell:2026-08-04:q3-fy26",
+      "sourceId": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1024478/000102447826000030/rok-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-04",
+      "originFingerprint": "rok:2026q3:10q:working-capital",
+      "sourceId": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1024478/000102447826000030/rok-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-04",
+      "originFingerprint": "rok:2026q3:10q:sensia-debt-liquidity",
       "sourceId": null
     }
   ],
@@ -367,11 +440,19 @@
     {
       "unknown": "No canonical live valuation input is asserted.",
       "gating": false
+    },
+    {
+      "unknown": "Channel inventory and customer order quality are not quantified in this filing excerpt.",
+      "gating": false
+    },
+    {
+      "unknown": "Scout does not determine normalized EPS, leverage ratios or canonical score impact; those remain Alpha-owned.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 5
+    "nonGatingCount": 7
   },
   "gatingIssues": [],
   "confidence": 87,

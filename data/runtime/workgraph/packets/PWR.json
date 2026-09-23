@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "PWR",
   "workId": "t0:PWR",
-  "generatedAt": "2026-09-23T06:28:53.953Z",
+  "generatedAt": "2026-09-23T07:06:21.241Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-30T00:00:00.000Z",
-    "end": "2026-09-19T11:24:50.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-19T11:24:50.000Z"
+    "end": "2026-09-23T07:04:43.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-23T07:04:43.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -50,13 +50,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/PWR-20260918T1200Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/PWR-20260919T112450Z-council-beta.json"
+    "data/runtime/workgraph/evidence/PWR-20260919T112450Z-council-beta.json",
+    "data/runtime/workgraph/evidence/PWR-20260923T070443Z-earth-scout.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -66,7 +67,9 @@
       "scenarioRobustness",
       "substitutionResilience",
       "concentration risk",
-      "execution risk"
+      "execution risk",
+      "backlog growth with contract-quality caveat",
+      "cash generation and liquidity"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -93,6 +96,11 @@
           "name": "grid and load-center infrastructure exposure",
           "direction": "positive",
           "basis": "rapid revenue growth and record backlog indicate sustained demand for grid, generation and load-center construction capacity"
+        },
+        {
+          "name": "backlog growth with contract-quality caveat",
+          "direction": "mixed-positive",
+          "basis": "Large RPO/backlog growth supports demand visibility, while MSA/non-fixed-price components make headline backlog less firm than fully contracted obligations."
         }
       ],
       "adversarial-red-team": [
@@ -112,6 +120,11 @@
           "name": "execution and earnings conversion",
           "direction": "positive",
           "basis": "revenue growth translated into substantially higher GAAP and adjusted per-share earnings"
+        },
+        {
+          "name": "cash generation and liquidity",
+          "direction": "positive",
+          "basis": "Strong operating cash generation and available liquidity support execution of a capital-intensive growth and acquisition program."
         }
       ]
     }
@@ -160,7 +173,9 @@
     "scenarioRobustness",
     "substitutionResilience",
     "concentration risk",
-    "execution risk"
+    "execution risk",
+    "backlog growth with contract-quality caveat",
+    "cash generation and liquidity"
   ],
   "riskEvidence": {
     "present": true,
@@ -183,6 +198,14 @@
       },
       {
         "risk": "Acquisitions and project mix can obscure organic comparability and margin durability.",
+        "gating": false
+      },
+      {
+        "risk": "Backlog includes estimated MSA orders/renewals and non-fixed-price contracts; many customer contracts can be terminated on short notice, limiting the certainty implied by headline backlog.",
+        "gating": false
+      },
+      {
+        "risk": "Capital intensity and acquisition spending are substantial: six-month acquisition cash use was $930.3M and capex was $451.0M, while commercial paper outstanding was $448M at June 30.",
         "gating": false
       }
     ]
@@ -207,6 +230,14 @@
     {
       "risk": "Acquisitions and project mix can obscure organic comparability and margin durability.",
       "gating": false
+    },
+    {
+      "risk": "Backlog includes estimated MSA orders/renewals and non-fixed-price contracts; many customer contracts can be terminated on short notice, limiting the certainty implied by headline backlog.",
+      "gating": false
+    },
+    {
+      "risk": "Capital intensity and acquisition spending are substantial: six-month acquisition cash use was $930.3M and capex was $451.0M, while commercial paper outstanding was $448M at June 30.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -217,7 +248,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 4
   },
   "causalMapping": {
     "present": true,
@@ -251,6 +282,18 @@
         "to": "execution burden",
         "mechanism": "more simultaneous large projects increase labor, scheduling and working-capital demands",
         "falsifier": "Quanta sustains margin/cash conversion while backlog scales without material execution slippage"
+      },
+      {
+        "from": "rising utility/generation/large-load demand",
+        "to": "PWR backlog and RPO",
+        "mechanism": "customer infrastructure programs generate awarded work and performance obligations",
+        "falsifier": "RPO/backlog decline materially despite continued end-market capital programs"
+      },
+      {
+        "from": "higher operating income and working-capital conversion",
+        "to": "operating cash flow and funding capacity",
+        "mechanism": "cash generated from operations funds capex and strategic acquisitions alongside credit capacity",
+        "falsifier": "cash conversion deteriorates materially while acquisition/capex commitments remain elevated"
       }
     ]
   },
@@ -284,16 +327,30 @@
       "to": "execution burden",
       "mechanism": "more simultaneous large projects increase labor, scheduling and working-capital demands",
       "falsifier": "Quanta sustains margin/cash conversion while backlog scales without material execution slippage"
+    },
+    {
+      "from": "rising utility/generation/large-load demand",
+      "to": "PWR backlog and RPO",
+      "mechanism": "customer infrastructure programs generate awarded work and performance obligations",
+      "falsifier": "RPO/backlog decline materially despite continued end-market capital programs"
+    },
+    {
+      "from": "higher operating income and working-capital conversion",
+      "to": "operating cash flow and funding capacity",
+      "mechanism": "cash generated from operations funds capex and strategic acquisitions alongside credit capacity",
+      "falsifier": "cash conversion deteriorates materially while acquisition/capex commitments remain elevated"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 5,
-    "uniqueSourceCount": 2,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 4,
     "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "pwr:q2-2026:8k-ex991:2026-07-30",
-      "pwr:2026q2:10q:2026-07-30"
+      "pwr:2026q2:10q:2026-07-30",
+      "pwr:2026q2:10q:backlog-rpo-msa",
+      "pwr:2026q2:10q:cash-liquidity-debt"
     ]
   },
   "sources": [
@@ -311,6 +368,22 @@
       "primary": true,
       "publishedAt": "2026-07-30",
       "originFingerprint": "pwr:2026q2:10q:2026-07-30",
+      "sourceId": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1050915/000105091526000025/pwr-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-30",
+      "originFingerprint": "pwr:2026q2:10q:backlog-rpo-msa",
+      "sourceId": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1050915/000105091526000025/pwr-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-30",
+      "originFingerprint": "pwr:2026q2:10q:cash-liquidity-debt",
       "sourceId": null
     }
   ],
@@ -335,11 +408,19 @@
     {
       "unknown": "No independent canonical valuation/crowding conclusion is asserted.",
       "gating": false
+    },
+    {
+      "unknown": "The packet still requires root-owner numeric underwriting and confidence construction; this assist does not assign a score.",
+      "gating": false
+    },
+    {
+      "unknown": "No canonical leverage threshold or valuation conclusion is asserted by Scout.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
   "confidence": 92,

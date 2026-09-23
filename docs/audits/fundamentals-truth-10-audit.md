@@ -6,7 +6,7 @@ Audit target: merged Raw Fundamentals Truth Layer v1 (`d41cc955`).
 
 The original #10 implementation was directionally sound but the promised post-merge audit had not been completed before later Trajectory foundation work began. A first concurrent hardening pass landed on `main` as `5128c721`; this second pass re-audited that patch against the full requested matrix and closes the remaining gaps.
 
-**Disposition: audited lab foundation, pending green branch CI/live SEC canaries. Fundamentals remains disconnected from Trajectory training.**
+**Disposition: PASS — audited lab foundation merged to main as `fd22509b75d5b1ff200b03b323bfa42ede5584d6`. Fundamentals remains disconnected from Trajectory training.**
 
 ## Defects found and repaired
 
@@ -95,16 +95,24 @@ It also rebuilds AAPL and ASML at a fixed `2025-12-31T23:59:59.999Z` cutoff from
 
 Trajectory foundation work exists after #10 even though the original instruction was to stop before the audit. That sequencing rule was violated. The current Trajectory feature path is separate from Fundamentals Truth, so the #10 defects were not silently imported into Fundamentals-based training because that connection was never made. No new connection is introduced here.
 
-## Exit gate
+## Exit gate — satisfied
 
-Do not call #10 complete until the latest branch head passes:
-- dedicated 30-invariant Fundamentals Truth suite
-- expanded live SEC current canary
-- fixed-cutoff historical SEC canary
-- dependency audit
-- typecheck
-- full engine invariants
-- production build
-- autonomous engine dry-run
+Final validation before and after merge:
 
-Only then may this audit merge to `main`. A later Fundamentals→Trajectory connection remains a separate governed change.
+- dedicated 30-invariant Fundamentals Truth suite: **PASS**
+- expanded live SEC current canary: **PASS, 5/5 companies, 0 validation failures**
+  - ETN: 19,511 raw facts / 9,754 current-context facts / 8 named metrics observed
+  - AAPL: 25,135 / 12,458 / 10
+  - ASML: 11,381 / 5,804 / 10
+  - AMT: 32,664 / 17,657 / 9
+  - NVO: 4,216 / 1,998 / 7
+- fixed-cutoff historical reconstruction canary at 2025-12-31: **PASS, AAPL + ASML, 0 validation failures**
+- dependency audit: **PASS**
+- typecheck: **PASS**
+- full engine invariants: **PASS**
+- production build: **PASS**
+- autonomous engine dry-run: **PASS**
+- post-merge main CI on `fd22509b`: **PASS**
+- Pages dispatch from verified main push: **PASS**
+
+#10 is complete as the audited raw regulatory truth foundation. A later Fundamentals→Trajectory connection remains a separate governed change and is not authorized by this audit.

@@ -1,0 +1,82 @@
+name: Fundamentals Trajectory Bridge Canary
+
+on:
+  pull_request:
+    paths:
+      - "config/fundamentals-trajectory-bridge-v1.json"
+      - "config/trajectory-contract-v1.json"
+      - "scripts/lib/fundamentals-trajectory-bridge.mjs"
+      - "scripts/lib/fundamentals-bridge-index.mjs"
+      - "scripts/lib/trajectory-engine.mjs"
+      - "scripts/lab-fundamentals-trajectory-bridge.mjs"
+      - "scripts/finalize-qualified-tick.mjs"
+      - "scripts/workgraph-sync.mjs"
+      - "scripts/lib/sec-fundamentals-truth.mjs"
+      - "test/fundamentals-trajectory-bridge.test.mjs"
+      - "test/fundamentals-truth.test.mjs"
+      - "test/trajectory-engine.test.mjs"
+      - "app/system/page.tsx"
+      - ".github/workflows/fundamentals-trajectory-bridge-canary.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bridge-11-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  shadow-bridge-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+      - name: "#10 Fundamentals invariants"
+        run: node --test test/fundamentals-truth.test.mjs
+      - name: "#11 Adversarial bridge invariants and load test"
+        run: node --test test/fundamentals-trajectory-bridge.test.mjs
+      - name: "Trajectory 1.2 invariants"
+        run: node --test test/trajectory-engine.test.mjs
+      - name: "Live SEC canaries: fiscal, industrial, IFRS, REIT, bank, insurance, emerging and thin"
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/lab-fundamentals-trajectory-bridge.mjs \
+            --tickers AAPL,ETN,ASML,NVO,AMT,PL,EOSE,BKSY \
+            --external JPM:0000019617,BRK.B:0001067983 \
+            --limit 10 --no-write --strict | tee bridge-current.json
+      - name: "Five-date walk-forward: historical SEC truth never qualifies T1000"
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/lab-fundamentals-trajectory-bridge.mjs \
+            --tickers AAPL,ASML --limit 2 --no-write --strict --historical \
+            --walk-forward 2021-12-31T23:59:59.999Z,2022-12-31T23:59:59.999Z,2023-12-31T23:59:59.999Z,2024-12-31T23:59:59.999Z,2025-12-31T23:59:59.999Z \
+            | tee bridge-historical.json
+      - name: "Full Earth test suite"
+        run: npm test
+      - name: "Typecheck"
+        run: npm run typecheck
+      - name: "Production build"
+        run: npm run build
+      - name: "Autonomous dry run (no production writes)"
+        run: npm run engine:cycle
+      - name: "Retain canary attestations"
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bridge-11-canary-${{ github.run_id }}
+          path: |
+            bridge-current.json
+            bridge-historical.json
+          if-no-files-found: ignore
+          retention-days: 30

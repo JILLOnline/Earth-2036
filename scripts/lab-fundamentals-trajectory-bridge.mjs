@@ -144,13 +144,13 @@ for (const entity of entities) {
       const reconstruction = reconstructFundamentalsBridge(reference, payload);
       const historicalDrift = prior && (
         prior.truthHash !== reference.truthHash || prior.rawFactsHash !== reference.rawFactsHash ||
-        prior.sourcePayloadHash !== reference.sourcePayloadHash ||
-        prior.projectionHash !== reference.projectionHash
+        prior.sourcePayloadHash !== reference.sourcePayloadHash
       );
       if (reference.status !== "valid" || reconstruction.status !== "reconstructed" || historicalDrift) {
         throw new Error(historicalDrift ? "historical_truth_unrecoverable: recorded hash drift" :
           "bridge_validation_failed: " + [...reference.reason, ...reconstruction.reason].join("; "));
       }
+      const historicalProjectionDrift = Boolean(prior && prior.projectionHash !== reference.projectionHash);
       const auditProjection = fundamentalsAuditProjection(truth, reference);
       indexes.get(cutoff)[ticker] = { reference, auditProjection };
       if (!noWrite) {
@@ -160,16 +160,17 @@ for (const entity of entities) {
           if (!historical) manifest.companies[ticker].lastRawFactsHash = reference.rawFactsHash;
           changed++;
         }
-        manifest.historical[historicKey] = {
+        if (!prior) manifest.historical[historicKey] = {
           truthHash: reference.truthHash, rawFactsHash: reference.rawFactsHash,
           sourcePayloadHash: reference.sourcePayloadHash, projectionHash: reference.projectionHash,
-          archivePath, recordedAt: manifest.historical[historicKey]?.recordedAt ?? new Date().toISOString(),
+          archivePath, recordedAt: new Date().toISOString(),
         };
       }
       canaries.push({
         ticker, asOf: cutoff, status: "valid", rawFactCount: truth.rawTruth.factCount,
         taxonomies: truth.sourceTaxonomies, truthHash: reference.truthHash,
         reconstructed: reconstruction.status === "reconstructed",
+        projectionStatus: historicalProjectionDrift ? "drift-from-original-projection" : reconstruction.projectionStatus,
         normalizedObservedMetricCount: truth.audit.normalizedObservedMetricCount,
       });
     } catch (error) {
@@ -186,7 +187,14 @@ for (const [cutoff, entries] of indexes) {
     mode: historical ? "historical-rehearsal" : "live-shadow",
   });
   if (!noWrite) {
-    await writeJson(path.join(cacheDir, "indexes", cutoff.replace(/[^A-Za-z0-9]/g, "") + ".json"), index);
+    const indexFile = path.join(cacheDir, "indexes", cutoff.replace(/[^A-Za-z0-9]/g, ""), index.indexHash + ".json");
+    await mkdir(path.dirname(indexFile), { recursive: true });
+    const serialized = JSON.stringify(index, null, 2) + "\n";
+    try { await writeFile(indexFile, serialized, { encoding: "utf8", flag: "wx" }); }
+    catch (error) {
+      if (error?.code !== "EEXIST") throw error;
+      if ((await readFile(indexFile, "utf8")) !== serialized) throw new Error("immutable bridge-index hash collision");
+    }
     if (!historical && cutoff === asOf) await writeJson(path.join(cacheDir, "current-index.json"), index);
   }
   indexReports.push({ asOf: cutoff, ...fundamentalsBridgeHealth(Object.values(entries).map((e) => e.reference)), indexHash: index.indexHash });

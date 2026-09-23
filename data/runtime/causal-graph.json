@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-23T11:04:44.158Z",
+  "updatedAt": "2026-09-23T11:15:27.578Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1262,6 +1262,18 @@
       "type": "market",
       "label": "advanced nuclear opportunity",
       "description": "24/7 electricity demand rewards dense dispatchable generation where grid capacity is constrained"
+    },
+    {
+      "id": "company:ROK",
+      "type": "company",
+      "label": "Rockwell Automation",
+      "description": "Rockwell sits on the industrial-automation/OT control path linking manufacturing labor scarcity, productivity and reshoring to programmable control, software and connected production infrastructure."
+    },
+    {
+      "id": "market:ROK-automation-investment",
+      "type": "market",
+      "label": "automation investment",
+      "description": "Rockwell sits on the industrial-automation/OT control path linking manufacturing labor scarcity, productivity and reshoring to programmable control, software and connected production infrastructure."
     }
   ],
   "edges": [
@@ -2910,6 +2922,21 @@
         "oklo:q2-2026:2026-08-07"
       ],
       "observedAt": "2026-09-19T10:24:20Z"
+    },
+    {
+      "id": "edge:ROK-structural-exposure",
+      "from": "company:ROK",
+      "to": "market:ROK-automation-investment",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 87,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:ROK:2026Q2-10Q",
+        "sec:ROK:2026Q3-10Q"
+      ],
+      "observedAt": "2026-09-18T17:25:56-04:00"
     }
   ],
   "structuralSignals": [
@@ -4948,6 +4975,25 @@
       "observedAt": "2026-09-19T10:24:20Z",
       "thesis": "Oklo addresses the firm-power bottleneck for electricity-intensive infrastructure through compact advanced nuclear, but the Groves criticality milestone is an execution analog rather than proof of commercial Aurora deployment.",
       "falsifier": "cheaper substitutes satisfy reliability and permitting needs before Aurora deployment"
+    },
+    {
+      "id": "signal:ROK-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:ROK-automation-investment",
+      "affectedNodeIds": [
+        "company:ROK"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 87,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:ROK:2026Q2-10Q",
+        "sec:ROK:2026Q3-10Q"
+      ],
+      "observedAt": "2026-09-18T17:25:56-04:00",
+      "thesis": "Rockwell sits on the industrial-automation/OT control path linking manufacturing labor scarcity, productivity and reshoring to programmable control, software and connected production infrastructure.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],
   "roadmapMilestones": [

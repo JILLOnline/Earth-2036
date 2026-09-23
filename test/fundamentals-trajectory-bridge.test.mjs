@@ -399,10 +399,13 @@ test("57 corrupted cached source fails closed and never triggers an accidental S
     const failed = run();
     assert.equal(failed.status, 1, "strict offline cache corruption must fail");
     const report = JSON.parse(failed.stdout);
-    assert.equal(report.unknown, 1);
-    assert.equal(report.invalid, 0);
+    assert.equal(report.unknown, 0);
+    assert.equal(report.invalid, 1);
     assert.equal(report.sourceRefreshes, 0);
-    assert.equal(report.canaries[0].status, "unknown");
+    assert.equal(report.canaries[0].status, "invalid");
+    const index = JSON.parse(await readFile(path.join(root, "current-index.json"), "utf8"));
+    assert.equal(index.entries.ETN.reference.status, "invalid");
+    assert.equal(fundamentalsBridgeHealth(Object.values(index.entries).map((e) => e.reference)).invalid, 1);
     assert.match(report.canaries[0].reason, /cached SEC source hash mismatch/);
   } finally {
     await rm(root, { recursive: true, force: true });
@@ -439,4 +442,40 @@ test("59 pinned historical canaries detect silent source drift without counting 
   report.canaries[0].truthHash = baseline.samples[0].truthHash;
   report.trialEligible = true;
   assert.ok(validatePinnedBridgeHistory(report, baseline).includes("historical_canary_claimed_trial_or_wrong_contract"));
+});
+
+test("60 unavailable offline source appears as unknown in index and System health denominator", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "earth2036-bridge-11-missing-"));
+  try {
+    const result = spawnSync(process.execPath, [
+      new URL("../scripts/lab-fundamentals-trajectory-bridge.mjs", import.meta.url).pathname,
+      "--tickers", "ETN", "--limit", "1", "--as-of", CUTOFF,
+      "--no-network", "--strict", "--cache-dir", root,
+    ], { cwd: new URL("../", import.meta.url).pathname, encoding: "utf8", timeout: 30000 });
+    assert.equal(result.status, 1);
+    const report = JSON.parse(result.stdout);
+    assert.equal(report.unknown, 1);
+    assert.equal(report.invalid, 0);
+    const index = JSON.parse(await readFile(path.join(root, "current-index.json"), "utf8"));
+    assert.equal(index.entries.ETN.reference.status, "unknown");
+    const h = fundamentalsBridgeHealth(Object.values(index.entries).map((entry) => entry.reference));
+    assert.equal(h.companies, 1);
+    assert.equal(h.valid, 0);
+    assert.equal(h.unknown, 1);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+test("61 mixed index retains exact eligible/unknown/invalid population and never imputes facts", () => {
+  const raw = [
+    validRef,
+    unknownFundamentalsBridge({ ticker: "MISSING", asOf: CUTOFF }),
+    invalidFundamentalsBridge({ ticker: "BROKEN", asOf: CUTOFF, reasons: ["source hash mismatch"] }),
+  ];
+  const report = fundamentalsBridgeHealth(raw);
+  assert.deepEqual([report.companies, report.valid, report.unknown, report.invalid], [3,1,1,1]);
+  assert.equal(report.rawFactsReferenced, validRef.rawFactCount);
+  assert.equal(report.hashFailures, 1);
+  assert.equal(report.projectionAuthority, 0);
+  assert.equal(report.canonicalWrites, 0);
 });

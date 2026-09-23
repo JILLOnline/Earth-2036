@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "contract": "workgraph-v2-role-run",
+  "role": "earth-scout",
+  "generatedAt": "2026-09-23T23:03:14Z",
+  "startingGitHead": "dccdef50c4eb0b1f2290adeb89bf70b9222347ff",
+  "companiesInspected": ["HII", "HON", "IBM", "MBLY"],
+  "evidencePairsCompleted": 2,
+  "artifacts": [
+    "data/runtime/workgraph/evidence/HII-20260923T230314Z-earth-scout-assist.json",
+    "data/runtime/workgraph/evidence/HON-20260923T230314Z-earth-scout-assist.json"
+  ],
+  "assistAttempts": [
+    {
+      "requestId": "assist:HII:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "d796ce10a07081dcecfe",
+      "outcome": "new_primary_operating_evidence",
+      "newEvidencePaths": ["data/runtime/workgraph/evidence/HII-20260923T230314Z-earth-scout-assist.json"],
+      "sourcePathsAttempted": [
+        "https://www.sec.gov/Archives/edgar/data/1501585/000150158526000045/hii2026q2earningsrelease.htm",
+        "https://www.sec.gov/Archives/edgar/data/1501585/000150158526000047/hii-20260630.htm"
+      ]
+    },
+    {
+      "requestId": "assist:HON:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "172e2f90a2899cddafc6",
+      "outcome": "new_primary_postspin_operating_evidence",
+      "newEvidencePaths": ["data/runtime/workgraph/evidence/HON-20260923T230314Z-earth-scout-assist.json"],
+      "sourcePathsAttempted": ["https://www.sec.gov/Archives/edgar/data/773840/000077384026000120/exhibit99-q22026earningsre.htm"]
+    },
+    {
+      "requestId": "assist:IBM:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "3eff206efd764748488e",
+      "outcome": "skipped_same_signature_prior_failure",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    },
+    {
+      "requestId": "assist:MBLY:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "b7397f4fefd33e2546f0",
+      "outcome": "deferred_capacity_after_frontier_assists",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    }
+  ],
+  "blockers": [
+    "IBM active request has the same input signature as a documented prior failed attempt; retry suppressed under learning policy.",
+    "Remaining assist capacity was not used for repeated low-value searches after two packet-ready frontier assists produced reusable primary evidence."
+  ],
+  "result": "completed_frontier_assists",
+  "repeatedBlocker": true,
+  "changedStrategy": "With owned Scout queue empty, prioritized packet_ready Alpha assists. Used SEC-filed operating tables to expose cash-conversion and segment-dispersion facts directly reusable by Alpha rather than repeating prior broad issuer searches."
+}

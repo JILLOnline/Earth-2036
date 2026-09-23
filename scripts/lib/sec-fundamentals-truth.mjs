@@ -148,7 +148,8 @@ export function latestContextVersions(facts) {
     list.sort(sortVersions);
     const latestFiled = list.map((fact) => String(fact.filed ?? "")).sort().at(-1) ?? "";
     const latest = list.filter((fact) => String(fact.filed ?? "") === latestFiled);
-    current.push(...latest);
+    // Context views must not alias learner-authoritative raw fact objects in memory.
+    current.push(...latest.map((fact) => ({ ...fact })));
 
     const successorAccessions = [...new Set(latest.map((fact) => fact.accn).filter(Boolean))].sort();
     for (const fact of list.filter((candidate) => String(candidate.filed ?? "") !== latestFiled)) {

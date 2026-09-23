@@ -141,7 +141,7 @@ export function fundamentalsAuditProjection(fundamentalsTruth, reference) {
   };
 }
 
-/** Re-fetch/rebuild must match original PIT + projection identity; never substitute newer truth. */
+/** PIT raw identity is authoritative; detect later convenience-map drift separately. */
 export function reconstructFundamentalsBridge(reference, companyFacts) {
   const descriptorErrors = validateFundamentalsBridgeDescriptor(reference);
   if (descriptorErrors.length || reference.status !== "valid" || !companyFacts) {
@@ -161,11 +161,16 @@ export function reconstructFundamentalsBridge(reference, companyFacts) {
       ["truth_hash_drift", reference.truthHash, rebuilt.truthHash],
       ["raw_hash_drift", reference.rawFactsHash, rebuilt.rawTruth.factsHash],
       ["source_hash_drift", reference.sourcePayloadHash, rebuilt.sourcePayloadHash],
-      ["projection_hash_drift", reference.projectionHash, rebuilt.projectionHash],
     ]) if (expected !== actual) errors.push(name);
+    const projectionStatus = reference.projectionHash === rebuilt.projectionHash ? "exact" : "drift";
     return errors.length
-      ? { status: "historical_truth_unrecoverable", reason: errors }
-      : { status: "reconstructed", reason: [], rawFactCount: rebuilt.rawTruth.factCount, truthHash: rebuilt.truthHash };
+      ? { status: "historical_truth_unrecoverable", reason: errors, projectionStatus }
+      : {
+          status: "reconstructed", reason: [], rawFactCount: rebuilt.rawTruth.factCount,
+          truthHash: rebuilt.truthHash, projectionStatus,
+          historicalProjectionHash: reference.projectionHash,
+          rebuiltProjectionHash: rebuilt.projectionHash,
+        };
   } catch (error) {
     return { status: "historical_truth_unrecoverable", reason: [String(error?.message ?? error)] };
   }

@@ -175,3 +175,70 @@ test("metric freshness is mechanical metadata only",()=>{
   assert.equal(metric.freshness.periodEndAgeDays,91);
   assert.equal("stale" in metric.freshness,false);
 });
+
+
+test("same-day competing accessions remain ambiguous instead of lexicographic supersession",()=>{
+  const sample=payload();
+  sample.facts["us-gaap"].RevenueFromContractWithCustomerExcludingAssessedTax.units.USD.push(
+    {start:"2025-01-01",end:"2025-12-31",val:111,filed:"2026-03-01",accn:"Z9",form:"10-K/A",fy:2025,fp:"FY",frame:"CY2025"}
+  );
+  const metric=normalizeMetric(sample,"revenue","2026-04-01T00:00:00Z");
+  assert.equal(metric.latest.annual.status,"ambiguous_concepts");
+  assert.equal(metric.latest.annual.selected,null);
+  assert.ok(metric.currentFacts.some(f=>f.accn==="A2"));
+  assert.ok(metric.currentFacts.some(f=>f.accn==="Z9"));
+});
+
+test("same-accession duplicate contexts are not mislabeled as superseded",()=>{
+  const sample=payload();
+  sample.facts["us-gaap"].GrossProfit.units.USD.push(
+    {start:"2025-01-01",end:"2025-12-31",val:40,filed:"2026-02-01",accn:"A1",form:"10-K",fy:2025,fp:"FY",frame:"CY2025"}
+  );
+  const metric=normalizeMetric(sample,"gross_profit","2026-04-01T00:00:00Z");
+  assert.equal(metric.currentFacts.filter(f=>f.accn==="A1").length,2);
+  assert.equal(metric.supersededFacts.filter(f=>f.accn==="A1").length,0);
+  assert.equal(metric.latest.annual.status,"resolved");
+  assert.equal(metric.latest.annual.selected.val,40);
+});
+
+test("historical point-in-time hash is stable when future filings appear later",()=>{
+  const before=payload();
+  const after=payload();
+  after.facts["us-gaap"].InventoryNet.units.USD.push(
+    {end:"2026-12-31",val:999,filed:"2027-02-01",accn:"FUTURE1",form:"10-K",fy:2026,fp:"FY"}
+  );
+  const a=buildFundamentalsTruth(before,{ticker:"TEST",asOf:"2026-04-01T00:00:00Z"});
+  const b=buildFundamentalsTruth(after,{ticker:"TEST",asOf:"2026-04-01T00:00:00Z"});
+  assert.equal(a.rawTruth.factsHash,b.rawTruth.factsHash);
+  assert.equal(a.sourcePayloadHash,b.sourcePayloadHash);
+  assert.equal(a.truthHash,b.truthHash);
+  assert.notEqual(a.retrievedPayloadHash,b.retrievedPayloadHash);
+});
+
+test("foreign issuer 6-K facts stay raw but do not silently become normalized periodic fundamentals",()=>{
+  const sample=payload({facts:{
+    "ifrs-full":{
+      Revenue:{label:"Revenue",units:{EUR:[
+        {start:"2026-01-01",end:"2026-06-30",val:500,filed:"2026-07-20",accn:"F6K",form:"6-K",fy:2026,fp:"H1"}
+      ]}}
+    }
+  }});
+  const raw=extractAllStandardFacts(sample,"2026-08-01T00:00:00Z");
+  const normalized=extractMetricFacts(sample,"revenue","2026-08-01T00:00:00Z");
+  assert.ok(raw.some(f=>f.accn==="F6K"));
+  assert.equal(normalized.some(f=>f.accn==="F6K"),false);
+});
+
+test("CIK mismatch fails closed instead of mislabeling another filer",()=>{
+  assert.throws(
+    ()=>buildFundamentalsTruth(payload(),{ticker:"TEST",cik:"0000000001",asOf:"2026-04-01T00:00:00Z"}),
+    /CIK mismatch/
+  );
+});
+
+test("point-in-time source hash tampering is detected independently",()=>{
+  const truth=buildFundamentalsTruth(payload(),{ticker:"TEST",asOf:"2026-04-01T00:00:00Z"});
+  truth.sourcePayloadHash="0".repeat(64);
+  const errors=validateFundamentalsTruth(truth);
+  assert.ok(errors.includes("point-in-time source payload hash mismatch"));
+});

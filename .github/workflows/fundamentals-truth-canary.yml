@@ -6,6 +6,7 @@ on:
       - "config/fundamentals-truth-contract-v1.json"
       - "scripts/lib/fundamental-metric-map.mjs"
       - "scripts/lib/sec-fundamentals-truth.mjs"
+      - "scripts/lib/fundamentals-storage.mjs"
       - "scripts/lab-fundamentals-truth.mjs"
       - "test/fundamentals-truth.test.mjs"
       - "package.json"
@@ -29,7 +30,11 @@ jobs:
       - run: npm ci
       - name: Unit truth invariants
         run: node --test test/fundamentals-truth.test.mjs
-      - name: Live SEC Company Facts canary
+      - name: Live SEC Company Facts canary - current
         env:
           SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
-        run: npm run truth:fundamentals -- --tickers ETN,AAPL,ASML --limit 3 --no-write --audit-details
+        run: npm run truth:fundamentals -- --tickers ETN,AAPL,ASML,AMT,NVO --limit 5 --no-write --audit-details
+      - name: Live SEC Company Facts canary - historical reconstruction
+        env:
+          SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
+        run: npm run truth:fundamentals -- --tickers AAPL,ASML --limit 2 --as-of 2025-12-31T23:59:59.999Z --no-write --audit-details

@@ -345,9 +345,8 @@ test("55 storage/load rehearsal serializes and parses 250,000 actual compact row
   }
   assert.ok(totalBytes < 1_000_000_000, "compact reference history must stay under 1 GB");
 });
-async function createOfflineCacheFixture() {
+async function createOfflineCacheFixture(sample = payload()) {
   const root = await mkdtemp(path.join(os.tmpdir(), "earth2036-bridge-11-"));
-  const sample = payload();
   const observations = JSON.parse(await readFile(new URL("../data/runtime/company-observations.json", import.meta.url), "utf8"));
   const filingFingerprint = observations.candidates?.ETN?.filingFingerprint;
   assert.ok(filingFingerprint, "trusted ETN fingerprint must exist");
@@ -478,4 +477,21 @@ test("61 mixed index retains exact eligible/unknown/invalid population and never
   assert.equal(report.hashFailures, 1);
   assert.equal(report.projectionAuthority, 0);
   assert.equal(report.canonicalWrites, 0);
+});
+
+test("62 empty but valid Company Facts remains unknown, not invalid or favorable", async () => {
+  const { root, run } = await createOfflineCacheFixture({ cik: 1551182, entityName: "Empty Facts", facts: {} });
+  try {
+    const result = run();
+    assert.equal(result.status, 1, "strict audit alerts on unknown, while production continues");
+    const report = JSON.parse(result.stdout);
+    assert.equal(report.invalid, 0);
+    assert.equal(report.unknown, 1);
+    const index = JSON.parse(await readFile(path.join(root, "current-index.json"), "utf8"));
+    assert.equal(index.entries.ETN.reference.status, "unknown");
+    assert.equal(index.entries.ETN.reference.rawFactCount, null);
+    assert.equal(index.entries.ETN.reference.learningEligible, false);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
 });

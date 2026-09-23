@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 import path from "node:path";
 import { truthHash, buildFundamentalsTruth, validateFundamentalsTruth } from "./lib/sec-fundamentals-truth.mjs";
-import { bridgeFundamentalsTruth, fundamentalsAuditProjection, fundamentalsBridgeHealth, reconstructFundamentalsBridge } from "./lib/fundamentals-trajectory-bridge.mjs";
+import { bridgeFundamentalsTruth, unknownFundamentalsBridge, invalidFundamentalsBridge, fundamentalsAuditProjection, fundamentalsBridgeHealth, reconstructFundamentalsBridge } from "./lib/fundamentals-trajectory-bridge.mjs";
 import { createBridgeIndex } from "./lib/fundamentals-bridge-index.mjs";
 import { writeImmutableFundamentalsSnapshot } from "./lib/fundamentals-storage.mjs";
 
@@ -122,8 +122,16 @@ for (const entity of entities) {
     if (observation?.cik && String(observation.cik).padStart(10, "0") !== cik) throw new Error("observation CIK mismatch for " + ticker);
   } catch (error) {
     const reason = String(error?.message ?? error);
+    const isInvalid = /hash mismatch|CIK mismatch|source archive collision|immutable.*collision/i.test(reason);
     for (const cutoff of dateCutoffs) {
-      canaries.push({ ticker, asOf: cutoff, status: "unknown", reason });
+      const input = { ticker, asOf: cutoff, observation: { ticker, cik } };
+      const reference = isInvalid
+        ? invalidFundamentalsBridge({ ...input, reasons: [reason] })
+        : unknownFundamentalsBridge({ ...input, reason });
+      indexes.get(cutoff)[ticker] = {
+        reference, auditProjection: fundamentalsAuditProjection(null, reference),
+      };
+      canaries.push({ ticker, asOf: cutoff, status: isInvalid ? "invalid" : "unknown", reason });
     }
     continue;
   }
@@ -140,6 +148,23 @@ for (const entity of entities) {
         ticker, observation: { ticker, cik }, asOf: cutoff, fundamentalsTruth: truth,
       });
       const historicKey = ticker + "@" + cutoff;
+      if (reference.status === "unknown") {
+        const wasPreviouslyValid = Boolean(manifest.historical[historicKey]?.truthHash);
+        const classified = wasPreviouslyValid
+          ? invalidFundamentalsBridge({
+              ticker, asOf: cutoff, observation: { ticker, cik },
+              reasons: ["historical_truth_unrecoverable: original facts now absent"],
+            })
+          : reference;
+        indexes.get(cutoff)[ticker] = {
+          reference: classified, auditProjection: fundamentalsAuditProjection(null, classified),
+        };
+        canaries.push({
+          ticker, asOf: cutoff, status: classified.status,
+          reason: classified.reason, rawFactCount: null,
+        });
+        continue;
+      }
       const prior = manifest.historical[historicKey];
       const reconstruction = reconstructFundamentalsBridge(reference, payload);
       const historicalDrift = prior && (
@@ -174,7 +199,14 @@ for (const entity of entities) {
         normalizedObservedMetricCount: truth.audit.normalizedObservedMetricCount,
       });
     } catch (error) {
-      canaries.push({ ticker, asOf: cutoff, status: "invalid", reason: String(error?.message ?? error) });
+      const reason = String(error?.message ?? error);
+      const reference = invalidFundamentalsBridge({
+        ticker, asOf: cutoff, observation: { ticker, cik }, reasons: [reason],
+      });
+      indexes.get(cutoff)[ticker] = {
+        reference, auditProjection: fundamentalsAuditProjection(null, reference),
+      };
+      canaries.push({ ticker, asOf: cutoff, status: "invalid", reason });
     }
   }
   if (!bulkZip) await pause(140);
@@ -204,7 +236,8 @@ if (!noWrite && !historical && has("--publish-health")) {
   const health = {
     contract: "earth2036-fundamentals-bridge-health-v1", system: "shadow",
     asOf, generatedAt: new Date().toISOString(), ...fundamentalsBridgeHealth(Object.values(indexes.get(asOf)).map((e) => e.reference)),
-    changedThisCycle: changed, sourceRefreshes: refreshed, futureLeakage: 0,
+    changedThisCycle: changed, sourceRefreshes: refreshed,
+    futureLeakage: canaries.filter((v) => /future[\s_-]*(?:fact|filed|source|cutoff|leakage)/i.test(String(v.reason ?? ""))).length,
     reconstructionFailures: canaries.filter((v) => v.status === "invalid").length,
     source: "local-verified-bridge-index", canonicalWriteAuthority: false,
     companyDetails: Object.entries(indexes.get(asOf)).map(([ticker, entry]) => ({

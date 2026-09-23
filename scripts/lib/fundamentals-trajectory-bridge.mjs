@@ -186,8 +186,10 @@ export function fundamentalsBridgeHealth(refs) {
     invalid: values.filter((r) => r?.status === "invalid").length,
     rawFactsReferenced: values.reduce((n, r) => n + (r?.status === "valid" ? r.rawFactCount : 0), 0),
     uniqueFactStates: new Set(values.filter((r) => r?.status === "valid").map((r) => r.rawFactsHash)).size,
-    cikMismatches: values.filter((r) => r?.reason?.some((v) => v.includes("cik_mismatch"))).length,
-    hashFailures: values.filter((r) => r?.reason?.some((v) => v.includes("hash mismatch"))).length,
+    cikMismatches: values.filter((r) => r?.reason?.some((v) =>
+      String(v).toLowerCase().replace(/[\s-]+/g, "_").includes("cik_mismatch"))).length,
+    hashFailures: values.filter((r) => r?.reason?.some((v) =>
+      String(v).toLowerCase().replace(/[\s-]+/g, "_").includes("hash_mismatch"))).length,
     projectionAuthority: 0, canonicalWrites: 0,
   };
 }

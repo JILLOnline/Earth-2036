@@ -345,9 +345,8 @@ test("55 storage/load rehearsal serializes and parses 250,000 actual compact row
   }
   assert.ok(totalBytes < 1_000_000_000, "compact reference history must stay under 1 GB");
 });
-async function createOfflineCacheFixture() {
+async function createOfflineCacheFixture(sample = payload()) {
   const root = await mkdtemp(path.join(os.tmpdir(), "earth2036-bridge-11-"));
-  const sample = payload();
   const observations = JSON.parse(await readFile(new URL("../data/runtime/company-observations.json", import.meta.url), "utf8"));
   const filingFingerprint = observations.candidates?.ETN?.filingFingerprint;
   assert.ok(filingFingerprint, "trusted ETN fingerprint must exist");
@@ -399,10 +398,13 @@ test("57 corrupted cached source fails closed and never triggers an accidental S
     const failed = run();
     assert.equal(failed.status, 1, "strict offline cache corruption must fail");
     const report = JSON.parse(failed.stdout);
-    assert.equal(report.unknown, 1);
-    assert.equal(report.invalid, 0);
+    assert.equal(report.unknown, 0);
+    assert.equal(report.invalid, 1);
     assert.equal(report.sourceRefreshes, 0);
-    assert.equal(report.canaries[0].status, "unknown");
+    assert.equal(report.canaries[0].status, "invalid");
+    const index = JSON.parse(await readFile(path.join(root, "current-index.json"), "utf8"));
+    assert.equal(index.entries.ETN.reference.status, "invalid");
+    assert.equal(fundamentalsBridgeHealth(Object.values(index.entries).map((e) => e.reference)).invalid, 1);
     assert.match(report.canaries[0].reason, /cached SEC source hash mismatch/);
   } finally {
     await rm(root, { recursive: true, force: true });
@@ -439,4 +441,69 @@ test("59 pinned historical canaries detect silent source drift without counting 
   report.canaries[0].truthHash = baseline.samples[0].truthHash;
   report.trialEligible = true;
   assert.ok(validatePinnedBridgeHistory(report, baseline).includes("historical_canary_claimed_trial_or_wrong_contract"));
+});
+
+test("60 unavailable offline source appears as unknown in index and System health denominator", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "earth2036-bridge-11-missing-"));
+  try {
+    const result = spawnSync(process.execPath, [
+      new URL("../scripts/lab-fundamentals-trajectory-bridge.mjs", import.meta.url).pathname,
+      "--tickers", "ETN", "--limit", "1", "--as-of", CUTOFF,
+      "--no-network", "--strict", "--cache-dir", root,
+    ], { cwd: new URL("../", import.meta.url).pathname, encoding: "utf8", timeout: 30000 });
+    assert.equal(result.status, 1);
+    const report = JSON.parse(result.stdout);
+    assert.equal(report.unknown, 1);
+    assert.equal(report.invalid, 0);
+    const index = JSON.parse(await readFile(path.join(root, "current-index.json"), "utf8"));
+    assert.equal(index.entries.ETN.reference.status, "unknown");
+    const h = fundamentalsBridgeHealth(Object.values(index.entries).map((entry) => entry.reference));
+    assert.equal(h.companies, 1);
+    assert.equal(h.valid, 0);
+    assert.equal(h.unknown, 1);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+test("61 mixed index retains exact eligible/unknown/invalid population and never imputes facts", () => {
+  const raw = [
+    validRef,
+    unknownFundamentalsBridge({ ticker: "MISSING", asOf: CUTOFF }),
+    invalidFundamentalsBridge({ ticker: "BROKEN", asOf: CUTOFF, reasons: ["source hash mismatch"] }),
+  ];
+  const report = fundamentalsBridgeHealth(raw);
+  assert.deepEqual([report.companies, report.valid, report.unknown, report.invalid], [3,1,1,1]);
+  assert.equal(report.rawFactsReferenced, validRef.rawFactCount);
+  assert.equal(report.hashFailures, 1);
+  assert.equal(report.projectionAuthority, 0);
+  assert.equal(report.canonicalWrites, 0);
+});
+
+test("62 empty but valid Company Facts remains unknown, not invalid or favorable", async () => {
+  const { root, run } = await createOfflineCacheFixture({ cik: 1551182, entityName: "Empty Facts", facts: {} });
+  try {
+    const result = run();
+    assert.equal(result.status, 1, "strict audit alerts on unknown, while production continues");
+    const report = JSON.parse(result.stdout);
+    assert.equal(report.invalid, 0);
+    assert.equal(report.unknown, 1);
+    const index = JSON.parse(await readFile(path.join(root, "current-index.json"), "utf8"));
+    assert.equal(index.entries.ETN.reference.status, "unknown");
+    assert.equal(index.entries.ETN.reference.rawFactCount, null);
+    assert.equal(index.entries.ETN.reference.learningEligible, false);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("63 human-readable SEC CIK and hash diagnostics are counted in System health", () => {
+  const refs = [
+    invalidFundamentalsBridge({ ticker: "CIK", asOf: CUTOFF, reasons: ["SEC source CIK mismatch"] }),
+    invalidFundamentalsBridge({ ticker: "HASH", asOf: CUTOFF, reasons: ["cached SEC source hash mismatch"] }),
+  ];
+  const health = fundamentalsBridgeHealth(refs);
+  assert.equal(health.companies, 2);
+  assert.equal(health.invalid, 2);
+  assert.equal(health.cikMismatches, 1);
+  assert.equal(health.hashFailures, 1);
 });

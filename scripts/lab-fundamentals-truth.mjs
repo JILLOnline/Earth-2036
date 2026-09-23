@@ -1,6 +1,7 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { buildFundamentalsTruth, validateFundamentalsTruth } from "./lib/sec-fundamentals-truth.mjs";
+import { writeImmutableFundamentalsSnapshot } from "./lib/fundamentals-storage.mjs";
 
 const ROOT=process.cwd();
 const USER_AGENT=process.env.SEC_USER_AGENT || "JILLOnline Earth2036 info@jillonlinestore.com";
@@ -66,7 +67,8 @@ function auditSummary(truth){
         : {
             annual:latestSummary(metric.latest?.annual),
             quarter:latestSummary(metric.latest?.quarter),
-            yearToDate:latestSummary(metric.latest?.yearToDate)
+            yearToDate:latestSummary(metric.latest?.yearToDate),
+            transition:latestSummary(metric.latest?.transition)
           }
     };
   }
@@ -107,8 +109,12 @@ for(const entity of entities){
   });
   if(writeMode){
     const dir=path.join(ROOT,outputDir);
-    await mkdir(dir,{recursive:true});
-    await writeFile(path.join(dir,entity.ticker+".json"),JSON.stringify(truth,null,2)+"\n","utf8");
+    const persisted=await writeImmutableFundamentalsSnapshot(dir,truth);
+    results.at(-1).persistence={
+      written:persisted.written,
+      reused:persisted.reused,
+      file:path.relative(ROOT,persisted.file)
+    };
   }
   await new Promise(r=>setTimeout(r,125));
 }

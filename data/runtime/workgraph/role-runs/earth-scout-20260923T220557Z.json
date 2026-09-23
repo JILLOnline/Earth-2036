@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "contract": "workgraph-v2-role-run",
+  "role": "earth-scout",
+  "generatedAt": "2026-09-23T22:05:57Z",
+  "startingGitHead": "212faf6b1f7645aee1ae1f744375e2aa35e21ead",
+  "companiesInspected": ["IBM", "MBLY", "NBIS", "SERV"],
+  "evidencePairsCompleted": 1,
+  "artifacts": [
+    "data/runtime/workgraph/evidence/NBIS-20260923T220557Z-earth-scout.json"
+  ],
+  "assistAttempts": [
+    {
+      "requestId": "assist:IBM:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "3eff206efd764748488e",
+      "outcome": "skipped_same_signature_prior_failure",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    },
+    {
+      "requestId": "assist:MBLY:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "b7397f4fefd33e2546f0",
+      "outcome": "skipped_same_signature_prior_failure",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    },
+    {
+      "requestId": "assist:NBIS:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "224088701f3bb2fd4545",
+      "outcome": "new_reusable_evidence",
+      "newEvidencePaths": [
+        "data/runtime/workgraph/evidence/NBIS-20260923T220557Z-earth-scout.json"
+      ],
+      "sourcePathsAttempted": [
+        "https://nebius.com/newsroom/nebius-and-bloom-energy-partner-to-power-ai-infrastructure-build-out",
+        "https://nebius.com/newsroom/nebius-secures-approval-for-its-first-gigawatt-scale-ai-factory"
+      ]
+    },
+    {
+      "requestId": "assist:SERV:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "0ea4db1ef30388930410",
+      "outcome": "no_materially_new_source_found",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": [
+        "https://investors.serverobotics.com/news-releases/news-release-details/serve-launches-robot-delivery-with-wonder-adding-grubhub-its-growing",
+        "https://ir.serverobotics.com/"
+      ]
+    }
+  ],
+  "blockers": [
+    "IBM and MBLY active requests carried unchanged input signatures with prior failed attempts, so doctrine/workforce policy forbids blind retry.",
+    "SERV search surfaced the already-ingested August 17 expansion package and a current IR landing page without a newly dated, source-addressed operating fact sufficient to justify another artifact."
+  ],
+  "result": "Scout owned queue was empty, so capacity shifted to Alpha source-acquisition assists. One materially different NBIS site-and-power execution package was persisted; unchanged failed signatures were not retried and SERV was left without duplicate evidence.",
+  "repeatedBlocker": true,
+  "changedStrategy": "For NBIS, moved away from repeated financing/contract announcements to physical bottleneck evidence: municipal site approval and quantified behind-the-meter power procurement."
+}

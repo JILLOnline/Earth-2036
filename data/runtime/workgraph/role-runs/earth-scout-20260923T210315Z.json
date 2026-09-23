@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "role": "earth-scout",
+  "generatedAt": "2026-09-23T21:03:15Z",
+  "startingGitHead": "6f19145d779742c28da18ae47a32ad5879116170",
+  "companiesInspected": ["IBM", "MBLY", "NBIS"],
+  "evidencePairsCompleted": 1,
+  "artifacts": [
+    "data/runtime/workgraph/evidence/NBIS-20260923T210315Z-earth-scout.json"
+  ],
+  "assistAttempts": [
+    {
+      "requestId": "assist:IBM:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "3eff206efd764748488e",
+      "outcome": "skipped_same_signature_prior_failure",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    },
+    {
+      "requestId": "assist:MBLY:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "b7397f4fefd33e2546f0",
+      "outcome": "skipped_same_signature_prior_failure",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    },
+    {
+      "requestId": "assist:NBIS:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "c1727718bfd003676f41",
+      "outcome": "new_reusable_evidence",
+      "newEvidencePaths": [
+        "data/runtime/workgraph/evidence/NBIS-20260923T210315Z-earth-scout.json"
+      ],
+      "sourcePathsAttempted": [
+        "https://nebius.com/newsroom/nebius-group-announces-closing-of-private-offering-of-convertible-senior-notes-with-aggregate-gross-proceeds-of-approximately-5-75-billion"
+      ]
+    }
+  ],
+  "blockers": [
+    "IBM and MBLY active assists retained unchanged input signatures with prior failed attempts; retry suppressed by learning policy."
+  ],
+  "result": "Scout owned routing queue was empty, so capacity shifted to Alpha source-acquisition assists. One materially new NBIS executed-financing source was persisted; unchanged prior-failure assists were not repeated.",
+  "repeatedBlocker": true,
+  "changedStrategy": "Skipped unchanged failed IBM/MBLY signatures and moved to a fresh NBIS assist, targeting executed financing rather than repeating prior governance, partnership, secured-debt, spot-pricing, or contract evidence."
+}

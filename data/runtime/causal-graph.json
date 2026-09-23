@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-23T18:19:52.665Z",
+  "updatedAt": "2026-09-23T20:17:54.641Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1418,6 +1418,18 @@
       "type": "market",
       "label": "GFS structural demand",
       "description": "GlobalFoundries occupies differentiated manufacturing links between AI optical connectivity, power management, specialty process capacity and resilient domestic semiconductor infrastructure rather than competing primarily at leading-edge logic."
+    },
+    {
+      "id": "company:GLW",
+      "type": "company",
+      "label": "Corning Incorporated",
+      "description": "Corning connects AI/data-center and broadband demand to a physical optical-connectivity bottleneck: fiber, dense cable and connector capacity are infrastructure inputs required as compute clusters and networks scale."
+    },
+    {
+      "id": "market:GLW-glw-structural-demand",
+      "type": "market",
+      "label": "GLW structural demand",
+      "description": "Corning connects AI/data-center and broadband demand to a physical optical-connectivity bottleneck: fiber, dense cable and connector capacity are infrastructure inputs required as compute clusters and networks scale."
     }
   ],
   "edges": [
@@ -3258,6 +3270,24 @@
         "gfs:commerce-quantum-award",
         "gfs:mps-manufacturing",
         "gfs:q2-2026-results"
+      ],
+      "observedAt": "2026-09-20T16:28:15Z"
+    },
+    {
+      "id": "edge:GLW-structural-exposure",
+      "from": "company:GLW",
+      "to": "market:GLW-glw-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 90,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "glw:verizon-2026",
+        "glw:ecoc-2026",
+        "glw:meta-2026",
+        "glw:nvidia-2026",
+        "glw:meta-hickory-2026"
       ],
       "observedAt": "2026-09-20T16:28:15Z"
     }
@@ -5543,6 +5573,28 @@
       ],
       "observedAt": "2026-09-20T16:28:15Z",
       "thesis": "GlobalFoundries occupies differentiated manufacturing links between AI optical connectivity, power management, specialty process capacity and resilient domestic semiconductor infrastructure rather than competing primarily at leading-edge logic.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:GLW-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:GLW-glw-structural-demand",
+      "affectedNodeIds": [
+        "company:GLW"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 90,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "glw:verizon-2026",
+        "glw:ecoc-2026",
+        "glw:meta-2026",
+        "glw:nvidia-2026",
+        "glw:meta-hickory-2026"
+      ],
+      "observedAt": "2026-09-20T16:28:15Z",
+      "thesis": "Corning connects AI/data-center and broadband demand to a physical optical-connectivity bottleneck: fiber, dense cable and connector capacity are infrastructure inputs required as compute clusters and networks scale.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

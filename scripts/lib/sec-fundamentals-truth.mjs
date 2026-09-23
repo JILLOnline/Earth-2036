@@ -2,7 +2,8 @@ import { createHash } from "node:crypto";
 import { FUNDAMENTAL_METRICS } from "./fundamental-metric-map.mjs";
 
 const NORMALIZED_FORMS = new Set([
-  "10-K","10-K/A","10-Q","10-Q/A","20-F","20-F/A","40-F","40-F/A"
+  "10-K","10-K/A","10-Q","10-Q/A","10-KT","10-KT/A","10-QT","10-QT/A",
+  "20-F","20-F/A","40-F","40-F/A"
 ]);
 
 function stable(value) {
@@ -46,12 +47,12 @@ function calendarDayAge(asOf, value) {
   return Math.floor((a - b) / 86400000);
 }
 
-function compactFact({ taxonomy, tag, label, description, unit, fact }) {
+function compactFact({ taxonomy, tag, unit, fact }) {
+  // Company Facts concept labels/descriptions are not filing-time-versioned.
+  // Learner-authoritative raw truth therefore contains only time-addressable fact fields.
   return {
     taxonomy,
     tag,
-    label: label ?? null,
-    description: description ?? null,
     unit,
     val: fact?.val ?? null,
     start: fact?.start ?? null,
@@ -110,9 +111,7 @@ export function extractAllStandardFacts(companyFacts, asOf) {
       if (!concept?.units || typeof concept.units !== "object") continue;
       for (const [unit, values] of Object.entries(concept.units)) {
         for (const raw of Array.isArray(values) ? values : []) {
-          const fact = compactFact({
-            taxonomy, tag, label: concept.label, description: concept.description, unit, fact: raw
-          });
+          const fact = compactFact({ taxonomy, tag, unit, fact: raw });
           if (!sourceEligible(fact, asOfMs)) continue;
           const key = exactFactKey(fact);
           if (seen.has(key)) continue;
@@ -149,7 +148,8 @@ export function latestContextVersions(facts) {
     list.sort(sortVersions);
     const latestFiled = list.map((fact) => String(fact.filed ?? "")).sort().at(-1) ?? "";
     const latest = list.filter((fact) => String(fact.filed ?? "") === latestFiled);
-    current.push(...latest);
+    // Context views must not alias learner-authoritative raw fact objects in memory.
+    current.push(...latest.map((fact) => ({ ...fact })));
 
     const successorAccessions = [...new Set(latest.map((fact) => fact.accn).filter(Boolean))].sort();
     for (const fact of list.filter((candidate) => String(candidate.filed ?? "") !== latestFiled)) {
@@ -162,7 +162,7 @@ export function latestContextVersions(facts) {
     }
   }
 
-  current.sort((a,b) => contextKey(a).localeCompare(contextKey(b)));
+  current.sort((a,b) => contextKey(a).localeCompare(contextKey(b)) || sortVersions(a,b));
   superseded.sort((a,b) => contextKey(a).localeCompare(contextKey(b)) || sortVersions(a,b));
   return { current, superseded };
 }
@@ -172,8 +172,9 @@ function classifyDuration(fact) {
   if (days == null) return "unknown";
   const form = String(fact.form ?? "").replace(/\/A$/, "");
 
+  if (["10-KT","10-QT"].includes(form)) return "transition";
   if (["10-K","20-F","40-F"].includes(form)) return "annual";
-  if (["10-Q","6-K"].includes(form)) {
+  if (form === "10-Q") {
     if (days >= 60 && days <= 120) return "quarter";
     if (days > 120 && days <= 300) return "year_to_date";
     return "other_duration";
@@ -275,6 +276,7 @@ export function normalizeMetric(companyFacts, metricName, asOf) {
         annual: latestResolvedPeriod(current, "annual"),
         quarter: latestResolvedPeriod(current, "quarter"),
         yearToDate: latestResolvedPeriod(current, "year_to_date"),
+        transition: latestResolvedPeriod(current, "transition"),
       };
 
   return {
@@ -333,6 +335,33 @@ function deriveBinary(name, leftMetric, rightMetric, op) {
   };
 }
 
+function pointInTimeSourceCore({ cik, asOf, sourceTaxonomies, rawFactsHash, rawFactCount }) {
+  return {
+    cik,
+    asOf,
+    sourceTaxonomies,
+    rawFactsHash,
+    rawFactCount,
+  };
+}
+
+function pointInTimeTruthCore({ cik, asOf, sourceCutoff, sourcePayloadHash, rawFactsHash, rawFactCount }) {
+  return {
+    contract:"earth2036-fundamentals-truth-v1",
+    cik,
+    asOf,
+    sourceCutoff,
+    sourcePayloadHash,
+    rawFactsHash,
+    rawFactCount,
+  };
+}
+
+function recordHashable(record) {
+  const { recordHash, ...rest } = record ?? {};
+  return rest;
+}
+
 export function buildFundamentalsTruth(companyFacts, options = {}) {
   const { ticker, cik, asOf, retrievedAt = new Date().toISOString(), sourceUrl = null } = options;
   if (!ticker) throw new Error("ticker is required");
@@ -360,65 +389,91 @@ export function buildFundamentalsTruth(companyFacts, options = {}) {
   }
   const companyCik = requestedCik ?? sourceCik;
   const retrievedPayloadHash = truthHash(companyFacts);
-  const sourcePayloadHash = truthHash({
-    cik: companyCik,
-    entityName: companyFacts?.entityName ?? null,
-    asOf,
-    facts: rawFacts,
-  });
   const rawFactsHash = truthHash(rawFacts);
-  const truthCore = {
-    ticker,
+  const sourceTaxonomies = [...new Set(rawFacts.map((fact) => fact.taxonomy))].sort();
+
+  const sourcePayloadHash = truthHash(pointInTimeSourceCore({
     cik:companyCik,
-    entityName:companyFacts?.entityName ?? null,
     asOf,
-    sourceCutoff:asOf,
-    sourceUrl,
-    sourcePayloadHash,
-    sourceTaxonomies:Object.keys(companyFacts?.facts ?? {}).sort(),
-    rawTruth:{
-      learningAuthority:true,
-      factCount:rawFacts.length,
-      currentFactCount:currentRawFacts.length,
-      supersededFactCount:supersededRawFacts.length,
-      factsHash:rawFactsHash,
-      facts:rawFacts,
-      currentFacts:currentRawFacts,
-      supersededFacts:supersededRawFacts,
-    },
-    normalizedProjection:{
-      learningAuthority:false,
-      metrics,
-      derived,
-    },
+    sourceTaxonomies,
+    rawFactsHash,
+    rawFactCount:rawFacts.length,
+  }));
+
+  const contextViewHash = truthHash({
+    currentFacts:currentRawFacts,
+    supersededFacts:supersededRawFacts,
+  });
+  const normalizedProjection = {
+    learningAuthority:false,
+    metrics,
+    derived,
   };
+  const projectionHash = truthHash(normalizedProjection);
 
   const ambiguous = Object.values(metrics)
     .flatMap((metric) => metric.periods ?? [])
     .filter((period) => String(period.status).startsWith("ambiguous")).length;
 
-  return {
-    version:1,
+  const pitCore = pointInTimeTruthCore({
+    cik:companyCik,
+    asOf,
+    sourceCutoff:asOf,
+    sourcePayloadHash,
+    rawFactsHash,
+    rawFactCount:rawFacts.length,
+  });
+
+  const base = {
+    version:2,
     contract:"earth2036-fundamentals-truth-v1",
     canonicalWriteAuthority:false,
     learningSource:"observed-source-facts",
     primaryLearningAuthority:"rawTruth.facts",
     earthContextIncluded:false,
     retrievedAt,
+    ticker,
+    cik:companyCik,
+    entityName:companyFacts?.entityName ?? null,
+    asOf,
+    sourceCutoff:asOf,
+    sourceUrl,
     retrievedPayloadHash,
-    ...truthCore,
+    retrievedPayloadHashPointInTimeAuthority:false,
+    sourcePayloadHash,
+    sourcePayloadHashPointInTimeAuthority:true,
+    sourceTaxonomies,
+    rawTruth:{
+      learningAuthority:true,
+      factCount:rawFacts.length,
+      currentFactCount:currentRawFacts.length,
+      supersededFactCount:supersededRawFacts.length,
+      factsHash:rawFactsHash,
+      contextViewHash,
+      facts:rawFacts,
+      currentFacts:currentRawFacts,
+      supersededFacts:supersededRawFacts,
+    },
+    normalizedProjection,
+    projectionHash,
     audit:{
       rawFactCount:rawFacts.length,
       rawCurrentFactCount:currentRawFacts.length,
       rawSupersededFactCount:supersededRawFacts.length,
-      taxonomyCount:Object.keys(companyFacts?.facts ?? {}).length,
+      taxonomyCount:sourceTaxonomies.length,
       normalizedMetricCount:Object.keys(metrics).length,
       normalizedObservedMetricCount:Object.values(metrics).filter((m)=>m.status==="observed").length,
       normalizedMissingMetricCount:Object.values(metrics).filter((m)=>m.status==="missing").length,
       normalizedAmbiguousPeriodCount:ambiguous,
       derivedObservationCount:Object.values(derived).reduce((sum,m)=>sum+m.observations.length,0),
     },
-    truthHash:truthHash(truthCore),
+    truthHash:truthHash(pitCore),
+    truthHashScope:"raw-point-in-time-fact-state-only",
+  };
+
+  return {
+    ...base,
+    recordHash:truthHash(recordHashable(base)),
   };
 }
 
@@ -432,39 +487,52 @@ export function validateFundamentalsTruth(record) {
   if (!record?.ticker) errors.push("ticker missing");
   if (!record?.asOf || !Number.isFinite(Date.parse(record.asOf))) errors.push("invalid asOf");
   if (record?.sourceCutoff !== record?.asOf) errors.push("source cutoff must equal asOf");
+  if (record?.retrievedPayloadHashPointInTimeAuthority !== false) errors.push("retrieved payload hash must be provenance-only");
+  if (record?.sourcePayloadHashPointInTimeAuthority !== true) errors.push("point-in-time source hash authority missing");
 
   const asOfMs=Date.parse(record?.asOf ?? "");
   for (const fact of record?.rawTruth?.facts ?? []) {
     for (const field of ["taxonomy","tag","unit","filed","accn","form"]) {
       if (fact?.[field] == null || fact?.[field] === "") errors.push("raw source fact missing " + field);
     }
+    if ("label" in fact || "description" in fact) errors.push("untimestamped concept metadata leaked into raw fact");
     const filedMs=filedAvailabilityMs(fact?.filed);
     if (!Number.isFinite(filedMs) || filedMs > asOfMs) errors.push("raw truth contains future-filed fact");
   }
 
   if (record?.rawTruth?.factCount !== (record?.rawTruth?.facts ?? []).length) errors.push("raw fact count mismatch");
-  if (record?.rawTruth?.factsHash !== truthHash(record?.rawTruth?.facts ?? [])) errors.push("raw facts hash mismatch");
-  const expectedSourcePayloadHash=truthHash({
+  const recomputedRawFactsHash=truthHash(record?.rawTruth?.facts ?? []);
+  if (record?.rawTruth?.factsHash !== recomputedRawFactsHash) errors.push("raw facts hash mismatch");
+
+  const expectedTaxonomies=[...new Set((record?.rawTruth?.facts ?? []).map((fact)=>fact.taxonomy))].sort();
+  if (stableJson(record?.sourceTaxonomies ?? []) !== stableJson(expectedTaxonomies)) errors.push("source taxonomies are not point-in-time derived");
+
+  const expectedSourcePayloadHash=truthHash(pointInTimeSourceCore({
     cik:record?.cik ?? null,
-    entityName:record?.entityName ?? null,
     asOf:record?.asOf,
-    facts:record?.rawTruth?.facts ?? [],
-  });
-  if (record?.sourcePayloadHash == null) errors.push("source payload hash missing");
+    sourceTaxonomies:expectedTaxonomies,
+    rawFactsHash:recomputedRawFactsHash,
+    rawFactCount:(record?.rawTruth?.facts ?? []).length,
+  }));
+  if (!record?.sourcePayloadHash) errors.push("source payload hash missing");
   else if (record.sourcePayloadHash !== expectedSourcePayloadHash) errors.push("point-in-time source payload hash mismatch");
 
-  const truthCore={
-    ticker:record?.ticker,
+  if (record?.rawTruth?.contextViewHash !== truthHash({
+    currentFacts:record?.rawTruth?.currentFacts ?? [],
+    supersededFacts:record?.rawTruth?.supersededFacts ?? [],
+  })) errors.push("raw context view hash mismatch");
+
+  if (record?.projectionHash !== truthHash(record?.normalizedProjection ?? {})) errors.push("normalized projection hash mismatch");
+
+  const pitCore=pointInTimeTruthCore({
     cik:record?.cik,
-    entityName:record?.entityName,
     asOf:record?.asOf,
     sourceCutoff:record?.sourceCutoff,
-    sourceUrl:record?.sourceUrl,
-    sourcePayloadHash:record?.sourcePayloadHash,
-    sourceTaxonomies:record?.sourceTaxonomies,
-    rawTruth:record?.rawTruth,
-    normalizedProjection:record?.normalizedProjection,
-  };
-  if (!record?.truthHash || record.truthHash !== truthHash(truthCore)) errors.push("fundamentals truth hash mismatch");
+    sourcePayloadHash:expectedSourcePayloadHash,
+    rawFactsHash:recomputedRawFactsHash,
+    rawFactCount:(record?.rawTruth?.facts ?? []).length,
+  });
+  if (!record?.truthHash || record.truthHash !== truthHash(pitCore)) errors.push("fundamentals truth hash mismatch");
+  if (!record?.recordHash || record.recordHash !== truthHash(recordHashable(record))) errors.push("fundamentals record hash mismatch");
   return errors;
 }

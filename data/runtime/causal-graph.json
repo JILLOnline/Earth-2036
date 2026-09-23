@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-23T21:18:44.284Z",
+  "updatedAt": "2026-09-23T23:11:04.598Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1441,6 +1441,30 @@
       "id": "market:GNRC-gnrc-structural-demand",
       "type": "market",
       "label": "GNRC structural demand",
+      "description": "Structural demand channel"
+    },
+    {
+      "id": "company:GOOGL",
+      "type": "company",
+      "label": "Alphabet",
+      "description": "Alphabet structural-causal evidence"
+    },
+    {
+      "id": "market:GOOGL-googl-structural-demand",
+      "type": "market",
+      "label": "GOOGL structural demand",
+      "description": "Structural demand channel"
+    },
+    {
+      "id": "company:HEI",
+      "type": "company",
+      "label": "HEICO",
+      "description": "HEICO structural-causal evidence"
+    },
+    {
+      "id": "market:HEI-hei-structural-demand",
+      "type": "market",
+      "label": "HEI structural demand",
       "description": "Structural demand channel"
     }
   ],
@@ -3317,6 +3341,36 @@
         "investors.generac.com|2026-02-19|enercon-acquisition",
         "investors.generac.com|2026-01-05|sussex-capacity",
         "investors.generac.com|2026-03-05|epc-power-data-center"
+      ],
+      "observedAt": "2026-09-20T17:27:59Z"
+    },
+    {
+      "id": "edge:GOOGL-structural-exposure",
+      "from": "company:GOOGL",
+      "to": "market:GOOGL-googl-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 80,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "abc.xyz|2026-q4call|cloud48-backlog240-capex175-185",
+        "abc.xyz|2025-12-22|intersect-4.75b-multigw"
+      ],
+      "observedAt": "2026-09-20T17:27:59Z"
+    },
+    {
+      "id": "edge:HEI-structural-exposure",
+      "from": "company:HEI",
+      "to": "market:HEI-hei-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 82,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "heico:2026-08-25:fq3-results",
+        "heico:2026-07-16:senior-notes"
       ],
       "observedAt": "2026-09-20T17:27:59Z"
     }
@@ -5645,6 +5699,44 @@
       ],
       "observedAt": "2026-09-20T17:27:59Z",
       "thesis": "Generac Holdings Inc. has a sourced structural demand path.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:GOOGL-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:GOOGL-googl-structural-demand",
+      "affectedNodeIds": [
+        "company:GOOGL"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 80,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "abc.xyz|2026-q4call|cloud48-backlog240-capex175-185",
+        "abc.xyz|2025-12-22|intersect-4.75b-multigw"
+      ],
+      "observedAt": "2026-09-20T17:27:59Z",
+      "thesis": "Alphabet has a sourced structural demand path.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:HEI-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:HEI-hei-structural-demand",
+      "affectedNodeIds": [
+        "company:HEI"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 82,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "heico:2026-08-25:fq3-results",
+        "heico:2026-07-16:senior-notes"
+      ],
+      "observedAt": "2026-09-20T17:27:59Z",
+      "thesis": "HEICO has a sourced structural demand path.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

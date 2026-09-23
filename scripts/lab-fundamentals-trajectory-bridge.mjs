@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 import path from "node:path";
 import { truthHash, buildFundamentalsTruth, validateFundamentalsTruth } from "./lib/sec-fundamentals-truth.mjs";
-import { bridgeFundamentalsTruth, fundamentalsAuditProjection, fundamentalsBridgeHealth, reconstructFundamentalsBridge } from "./lib/fundamentals-trajectory-bridge.mjs";
+import { bridgeFundamentalsTruth, unknownFundamentalsBridge, invalidFundamentalsBridge, fundamentalsAuditProjection, fundamentalsBridgeHealth, reconstructFundamentalsBridge } from "./lib/fundamentals-trajectory-bridge.mjs";
 import { createBridgeIndex } from "./lib/fundamentals-bridge-index.mjs";
 import { writeImmutableFundamentalsSnapshot } from "./lib/fundamentals-storage.mjs";
 
@@ -122,8 +122,16 @@ for (const entity of entities) {
     if (observation?.cik && String(observation.cik).padStart(10, "0") !== cik) throw new Error("observation CIK mismatch for " + ticker);
   } catch (error) {
     const reason = String(error?.message ?? error);
+    const isInvalid = /hash mismatch|CIK mismatch|source archive collision|immutable.*collision/i.test(reason);
     for (const cutoff of dateCutoffs) {
-      canaries.push({ ticker, asOf: cutoff, status: "unknown", reason });
+      const input = { ticker, asOf: cutoff, observation: { ticker, cik } };
+      const reference = isInvalid
+        ? invalidFundamentalsBridge({ ...input, reasons: [reason] })
+        : unknownFundamentalsBridge({ ...input, reason });
+      indexes.get(cutoff)[ticker] = {
+        reference, auditProjection: fundamentalsAuditProjection(null, reference),
+      };
+      canaries.push({ ticker, asOf: cutoff, status: isInvalid ? "invalid" : "unknown", reason });
     }
     continue;
   }
@@ -174,7 +182,14 @@ for (const entity of entities) {
         normalizedObservedMetricCount: truth.audit.normalizedObservedMetricCount,
       });
     } catch (error) {
-      canaries.push({ ticker, asOf: cutoff, status: "invalid", reason: String(error?.message ?? error) });
+      const reason = String(error?.message ?? error);
+      const reference = invalidFundamentalsBridge({
+        ticker, asOf: cutoff, observation: { ticker, cik }, reasons: [reason],
+      });
+      indexes.get(cutoff)[ticker] = {
+        reference, auditProjection: fundamentalsAuditProjection(null, reference),
+      };
+      canaries.push({ ticker, asOf: cutoff, status: "invalid", reason });
     }
   }
   if (!bulkZip) await pause(140);

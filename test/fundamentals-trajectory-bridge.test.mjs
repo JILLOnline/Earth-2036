@@ -11,6 +11,7 @@ import {
 } from "../scripts/lib/fundamentals-trajectory-bridge.mjs";
 import { createBridgeIndex, verifyBridgeIndex } from "../scripts/lib/fundamentals-bridge-index.mjs";
 import { buildTrajectoryFeatureRow, buildTrajectorySnapshot, validateTrajectorySnapshot } from "../scripts/lib/trajectory-engine.mjs";
+import { validatePinnedBridgeHistory } from "../scripts/check-fundamentals-bridge-history.mjs";
 
 const CIK = "0001551182";
 const TICKER = "TEST";
@@ -418,4 +419,24 @@ test("58 future metric-map drift is separately reported without invalidating exa
   assert.equal(result.status, "reconstructed");
   assert.equal(result.projectionStatus, "drift");
   assert.equal(result.truthHash, old.truthHash);
+});
+
+test("59 pinned historical canaries detect silent source drift without counting T1000 ticks", async () => {
+  const baseline = JSON.parse(await readFile(new URL("../config/fundamentals-bridge-historical-baseline-v1.json", import.meta.url), "utf8"));
+  const periods = [...new Set(baseline.samples.map((r) => r.asOf))];
+  const report = {
+    contract: "earth2036-fundamentals-trajectory-bridge-v1",
+    historical: true, trialEligible: false, invalid: 0, unknown: 0,
+    canaries: baseline.samples.map((r) => ({ ...r, status: "valid", reconstructed: true })),
+    indexes: periods.map((asOf) => ({
+      asOf, valid: baseline.samples.filter((r) => r.asOf === asOf).length,
+      invalid: 0, unknown: 0, canonicalWrites: 0, projectionAuthority: 0,
+    })),
+  };
+  assert.deepEqual(validatePinnedBridgeHistory(report, baseline), []);
+  report.canaries[0].truthHash = "0".repeat(64);
+  assert.ok(validatePinnedBridgeHistory(report, baseline).some((v) => v.startsWith("historical_raw_truth_drift")));
+  report.canaries[0].truthHash = baseline.samples[0].truthHash;
+  report.trialEligible = true;
+  assert.ok(validatePinnedBridgeHistory(report, baseline).includes("historical_canary_claimed_trial_or_wrong_contract"));
 });

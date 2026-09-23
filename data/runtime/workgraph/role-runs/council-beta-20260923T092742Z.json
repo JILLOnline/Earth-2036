@@ -1,0 +1,26 @@
+{
+  "role": "council-beta",
+  "generatedAt": "2026-09-23T09:27:42Z",
+  "sourceCycleKey": "2026-09-23T09:15:31.669Z",
+  "companiesInspected": [],
+  "betaPairsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [],
+  "blockers": [
+    {
+      "defect": "assist_bus_active_beta_request_payload_not_retrievable_in_full",
+      "detail": "The authoritative Assist Bus reports four active council-beta helper slots, but the connector response truncates before those request objects, so requestId/inputSignature/exactQuestion cannot be verified without guessing.",
+      "lawfulNextEvidencePath": "Re-read data/runtime/workgraph/assist-bus.json with a retrieval path that exposes the council-beta request objects; then honor each exactQuestion and persist bounded assist evidence with requestId/inputSignature lineage."
+    }
+  ],
+  "result": "no_owned_beta_queue; assist work deferred because active request identities were not safely retrievable",
+  "operatingMode": "assist-only-capacity",
+  "startingGitHead": "98b0dc7e20e3e25c7acfb714931be7d9e34bf7dd",
+  "learning": {
+    "ownedQueueCount": 0,
+    "activeBetaAssistCount": 4,
+    "strategyChanged": true,
+    "lesson": "With zero owned Beta queue, spare capacity correctly pivots to Assist Bus work, but helper output must not be fabricated when authoritative request identity and input signature cannot be recovered.",
+    "successSignal": "A future run retrieves active council-beta request objects and either produces bounded risk/structural evidence or records a changed, exact blocker per request."
+  }
+}

@@ -1,17 +1,17 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "contract": "earth2036-fundamentals-truth-v1",
-  "status": "lab-audit",
+  "status": "audited-lab",
   "system": "lab",
   "canonicalWriteAuthority": false,
-  "purpose": "Preserve deterministic point-in-time SEC XBRL observations as machine truth. Human-selected financial metrics are convenience projections only; the learner retains access to the complete eligible standard-taxonomy fact set.",
+  "purpose": "Preserve deterministic point-in-time SEC XBRL observations as machine truth. Human-selected financial metrics are convenience projections only; the learner retains access to the complete eligible non-custom taxonomy fact set.",
   "authority": {
     "primary": "SEC EDGAR XBRL Company Facts API",
     "endpointTemplate": "https://data.sec.gov/api/xbrl/companyfacts/CIK##########.json",
     "bulkScalePath": "https://www.sec.gov/Archives/edgar/daily-index/xbrl/companyfacts.zip",
     "authenticationRequired": false,
     "sourceClass": "primary-regulatory",
-    "customTaxonomyPolicy": "Company Facts exposes standard taxonomy facts only. Extension-only disclosures remain absent/unknown rather than inferred."
+    "customTaxonomyPolicy": "Company Facts aggregates entity-wide facts from non-custom taxonomies. Extension-only disclosures remain absent/unknown rather than inferred."
   },
   "pointInTime": {
     "required": true,
@@ -19,21 +19,23 @@
     "rule": "A fact is eligible only when its SEC filed date is available by the requested asOf cutoff.",
     "preserveAllEligibleVersions": true,
     "sameDayPolicy": "conservative-end-of-UTC-day",
-    "note": "Company Facts exposes filing date, not EDGAR acceptance timestamp; same-day eligibility is therefore delayed until UTC day end."
+    "sameDayConflictPolicy": "retain-all-latest-day-versions-and-mark-conflict-ambiguous",
+    "note": "Company Facts exposes filing date in fact records rather than an acceptance timestamp; this layer delays same-day facts until UTC day end and never invents an ordering among conflicting same-day accessions."
   },
   "rawTruth": {
-    "learnerAuthority": "allEligibleStandardFacts",
-    "allowedTaxonomies": [
+    "learnerAuthority": "allEligibleNonCustomTaxonomyFacts",
+    "baselineTaxonomies": [
       "us-gaap",
       "ifrs-full",
       "dei",
       "srt"
     ],
-    "preserveUnknownStandardTaxonomies": true,
+    "preserveUnknownNonCustomTaxonomies": true,
     "preserveAllUnits": true,
     "preserveAllForms": true,
     "noSilentCurrencyConversion": true,
     "noHumanMetricFilterForLearning": true,
+    "excludeUntimestampedConceptMetadataFromLearning": true,
     "rawFactIdentity": [
       "taxonomy",
       "tag",
@@ -48,9 +50,14 @@
       "fp",
       "frame"
     ],
-    "payloadHashRequired": true,
-    "payloadHashSemantics": "sourcePayloadHash is computed only from point-in-time eligible facts plus filer identity/asOf; retrievedPayloadHash may reflect later SEC payload growth and is provenance-only.",
-    "rawFactsHashRequired": true
+    "retrievedPayloadHashRequired": true,
+    "retrievedPayloadHashPointInTimeAuthority": false,
+    "sourcePayloadHashRequired": true,
+    "sourcePayloadHashSemantics": "CIK + asOf + point-in-time taxonomy set + eligible raw facts hash/count only",
+    "rawFactsHashRequired": true,
+    "truthHashScope": "raw point-in-time fact state only",
+    "projectionHashSeparate": true,
+    "recordHashSeparate": true
   },
   "normalizedProjection": {
     "learningAuthority": false,
@@ -81,11 +88,16 @@
       "10-K/A",
       "10-Q",
       "10-Q/A",
+      "10-KT",
+      "10-KT/A",
+      "10-QT",
+      "10-QT/A",
       "20-F",
       "20-F/A",
       "40-F",
       "40-F/A"
     ],
+    "transitionFormsAreSeparatePeriodClass": true,
     "excludeFromNormalized": [
       "8-K",
       "8-K/A",
@@ -98,22 +110,34 @@
   "amendmentPolicy": {
     "historyImmutable": true,
     "sameEconomicContext": "taxonomy + tag + unit + start + end",
-    "currentVersion": "latest eligible filed/accession for the same economic context",
-    "supersededVersionsPreserved": true,
-    "note": "Later comparative filings may supersede the same economic fact while original versions remain visible."
+    "currentVersion": "all versions on the latest eligible filed date for the same economic context",
+    "strictlyOlderFiledDatesAreSuperseded": true,
+    "sameDayConflictsRemainCurrentAndAmbiguous": true,
+    "supersededVersionsPreserved": true
+  },
+  "identity": {
+    "cikMismatchPolicy": "fail-closed",
+    "tickerAndEntityNameAreRecordMetadataNotTruthIdentity": true
+  },
+  "persistence": {
+    "mode": "immutable-content-addressed-snapshots",
+    "pathShape": "ticker/asOf/truthHash.json",
+    "overwriteForbidden": true,
+    "gitTrackedRuntimeSnapshots": false
   },
   "missingData": {
     "missingMeans": "unknown",
     "zeroImputationForbidden": true,
     "favorableImputationForbidden": true,
-    "extensionOnlyMeans": "unknown"
+    "extensionOnlyMeans": "unknown",
+    "sectorSpecificProjectionGapMeans": "unknown-not-zero"
   },
   "governance": {
     "mayChangeEarthScore": false,
     "mayChangeCanonicalRank": false,
     "mayChangeWorkgraphState": false,
     "mayAffectT0Qualification": false,
-    "mayTrainTrajectoryDirectlyBeforeAudit": false,
-    "promotionRequires": "separate audit and explicit governance change"
+    "mayTrainTrajectoryDirectly": false,
+    "promotionRequires": "separate explicit governance change after the audited lab layer passes CI and live canaries"
   }
 }

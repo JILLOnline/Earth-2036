@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "role": "earth-scout",
+  "generatedAt": "2026-09-24T09:05:14Z",
+  "startingGitHead": "2246b708bbecd00136cf151380fb5690c3ae889c",
+  "companiesInspected": ["NBIS", "IBM", "MBLY"],
+  "evidencePairsCompleted": 1,
+  "artifacts": [
+    "data/runtime/workgraph/evidence/NBIS-20260924T090514Z-earth-scout-assist.json"
+  ],
+  "assistAttempts": [
+    {
+      "requestId": "assist:NBIS:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "b63b28aefa75033a4660",
+      "outcome": "completed_new_source_addressed_evidence",
+      "newEvidencePaths": ["data/runtime/workgraph/evidence/NBIS-20260924T090514Z-earth-scout-assist.json"],
+      "sourcePathsAttempted": [
+        "https://nebius.com/newsroom/nebius-signs-new-ai-infrastructure-agreement-with-meta",
+        "https://nebius.com/newsroom/nebius-raises-775-million-in-first-secured-debt-financing-to-accelerate-global-buildout",
+        "https://nebius.com/newsroom/nebius-group-announces-closing-of-private-offering-of-convertible-senior-notes-with-aggregate-gross-proceeds-of-approximately-4-3-billion"
+      ]
+    },
+    {
+      "requestId": "assist:IBM:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "3eff206efd764748488e",
+      "outcome": "skipped_same_signature_prior_failure",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    },
+    {
+      "requestId": "assist:MBLY:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "0347eb498d14b745a90e",
+      "outcome": "skipped_same_signature_prior_failure",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    }
+  ],
+  "blockers": [
+    "IBM and MBLY active assist requests retained unchanged input signatures with prior failed/skipped attempts; retry prohibited by learning policy.",
+    "Scout routing queue is zero; assist mode used instead."
+  ],
+  "result": "assist_evidence_added",
+  "repeatedBlocker": "unchanged_failed_assist_signatures",
+  "changedStrategy": "Selected NBIS, the highest-priority visible Alpha assist without a prior attempt, and acquired primary issuer evidence addressing contracted demand, financing capacity and execution instead of repeating dormant search paths."
+}

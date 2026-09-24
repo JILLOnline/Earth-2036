@@ -22,7 +22,9 @@ permissions:
 
 concurrency:
   group: fundamentals-trajectory-bridge-live
-  cancel-in-progress: true
+  # A first 250-company bootstrap can be longer than a normal incremental pass.
+  # Newer Scheduler dispatches queue instead of starving the durable archive.
+  cancel-in-progress: false
 
 jobs:
   live-shadow-bootstrap:
@@ -72,7 +74,25 @@ jobs:
             mkdir -p /tmp/bridge-restore data/lab
             gh release download "$latest_tag" --repo "${{ github.repository }}" \
               --pattern "bridge-cache.tar.gz" --dir /tmp/bridge-restore
+
+            release_body=$(gh release view "$latest_tag" --repo "${{ github.repository }}" --json body --jq '.body // ""')
+            expected_sha=$(printf '%s\n' "$release_body" | sed -n 's/.*SHA256: \([a-f0-9]\{64\}\).*/\1/p' | head -1)
+            test -n "$expected_sha"
+            actual_sha=$(sha256sum /tmp/bridge-restore/bridge-cache.tar.gz | awk '{print $1}')
+            if [ "$actual_sha" != "$expected_sha" ]; then
+              echo "Durable archive SHA256 mismatch for $latest_tag." >&2
+              exit 1
+            fi
+
+            published_tag=$(jq -r '.archiveTag // empty' data/runtime/workgraph/shadow/fundamentals-bridge-health.json)
+            published_sha=$(jq -r '.archiveSha256 // empty' data/runtime/workgraph/shadow/fundamentals-bridge-health.json)
+            if [ "$published_tag" = "$latest_tag" ] && [ -n "$published_sha" ] && [ "$published_sha" != "$actual_sha" ]; then
+              echo "Committed bridge health disagrees with durable release SHA256." >&2
+              exit 1
+            fi
+
             tar -xzf /tmp/bridge-restore/bridge-cache.tar.gz -C data/lab
+            echo "archive_sha=$actual_sha" >> "$GITHUB_OUTPUT"
             echo "restored=true" >> "$GITHUB_OUTPUT"
             echo "source_mode=incremental-fingerprint" >> "$GITHUB_OUTPUT"
           else
@@ -121,7 +141,15 @@ jobs:
             archive_tag="fundamentals-cache-$(date -u +'%Y%m%dT%H%M%SZ')-${GITHUB_RUN_ID}"
             archive_sha=$(sha256sum "$archive_file" | awk '{print $1}')
             manifest_sha=$(sha256sum data/lab/bridge/cache-manifest.json | awk '{print $1}')
-            gh release create "$archive_tag"               "$archive_file#bridge-cache.tar.gz"               --repo "${{ github.repository }}"               --target main               --title "Earth 2036 Fundamentals source cache ${{ steps.cutoff.outputs.asof }}"               --notes "Immutable SEC Company Facts source archive for #11 shadow bridge. SHA256: $archive_sha. Manifest SHA256: $manifest_sha. Canonical authority: none."               --latest=false
+            printf '%s  %s\n' "$archive_sha" "bridge-cache.tar.gz" > /tmp/bridge-cache.tar.gz.sha256
+            gh release create "$archive_tag" \
+              "$archive_file#bridge-cache.tar.gz" \
+              "/tmp/bridge-cache.tar.gz.sha256#bridge-cache.tar.gz.sha256" \
+              --repo "${{ github.repository }}" \
+              --target main \
+              --title "Earth 2036 Fundamentals source cache ${{ steps.cutoff.outputs.asof }}" \
+              --notes "Immutable SEC Company Facts source archive for #11 shadow bridge. SHA256: $archive_sha. Manifest SHA256: $manifest_sha. Canonical authority: none." \
+              --latest=false
           else
             test -f /tmp/bridge-restore/bridge-cache.tar.gz
             cp /tmp/bridge-restore/bridge-cache.tar.gz "$archive_file"

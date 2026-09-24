@@ -262,6 +262,7 @@ test("GitHub workflows use Node-24-compatible checkout/setup actions", async () 
     ".github/workflows/earth2036-workgraph-reconcile.yml",
     ".github/workflows/earth2036-ci.yml",
     ".github/workflows/earth2036-pages.yml",
+    ".github/workflows/fundamentals-bridge-live-bootstrap.yml",
   ]) {
     const text = await source(path);
     if (text.includes("actions/checkout@")) assert.ok(text.includes("actions/checkout@v5"));
@@ -276,6 +277,20 @@ test("Workgraph exposes effective adaptive backlog separately from raw preflight
   assert.ok(sync.includes("metrics.effectiveOwnerBacklog"));
   assert.ok(sync.includes("metrics.routingQueueCounts"));
   assert.ok(system.includes("effectiveOwnerBacklog ?? workgraph.ownerBacklog"));
+});
+
+test("Fundamentals bridge production consumers use the committed verified shadow index", async () => {
+  const sync = await source("scripts/workgraph-sync.mjs");
+  const finalizer = await source("scripts/finalize-qualified-tick.mjs");
+  for (const text of [sync, finalizer]) {
+    assert.ok(text.includes('"shadow", "fundamentals-bridge-index.json"'));
+    assert.equal(text.includes('"lab", "bridge", "current-index.json"'), false);
+  }
+  const bootstrap = await source(".github/workflows/fundamentals-bridge-live-bootstrap.yml");
+  assert.ok(bootstrap.includes("companyfacts.zip"));
+  assert.ok(bootstrap.includes("fundamentals-source-"));
+  assert.ok(bootstrap.includes("weekly-full-drift"));
+  assert.ok(bootstrap.includes("gh release create"));
 });
 
 test("canonical causal promotion refreshes graph-level freshness metadata", async () => {

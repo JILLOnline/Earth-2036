@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "AAPL",
   "workId": "t0:AAPL",
-  "generatedAt": "2026-09-24T22:45:47.858Z",
+  "generatedAt": "2026-09-24T23:05:03.533Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-30T00:00:00.000Z",
-    "end": "2026-09-22T01:25:56.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-22T01:25:56.000Z"
+    "end": "2026-09-24T23:03:34.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-24T23:03:34.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -50,13 +50,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/AAPL-20260919T050657Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/AAPL-20260922T012556Z-council-beta.json"
+    "data/runtime/workgraph/evidence/AAPL-20260922T012556Z-council-beta.json",
+    "data/runtime/workgraph/evidence/AAPL-20260924T230334Z-earth-scout-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 5,
+    "historicalEvidenceCount": 5
   },
   "factorEvidence": {
     "names": [
@@ -97,6 +98,10 @@
         "financialOperatingMomentum",
         "pricingPower",
         "scenarioRobustness",
+        "catalystScore",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower",
         "catalystScore"
       ]
     }
@@ -171,6 +176,10 @@
       {
         "risk": "Competitive/substitution response to Siri AI cannot be adjudicated from the present issuer release.",
         "gating": false
+      },
+      {
+        "risk": "Headline margin and EPS contain a quantified temporary tariff-refund tailwind and should not be treated as fully recurring operating improvement.",
+        "gating": false
       }
     ]
   },
@@ -194,6 +203,10 @@
     {
       "risk": "Competitive/substitution response to Siri AI cannot be adjudicated from the present issuer release.",
       "gating": false
+    },
+    {
+      "risk": "Headline margin and EPS contain a quantified temporary tariff-refund tailwind and should not be treated as fully recurring operating improvement.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -204,7 +217,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 2
   },
   "causalMapping": {
     "present": true,
@@ -220,12 +233,13 @@
     "Siri AI capability->potential device/service utility->possible successor engagement/monetization bottleneck"
   ],
   "sourceLineage": {
-    "rawSourceCount": 4,
-    "uniqueSourceCount": 1,
+    "rawSourceCount": 5,
+    "uniqueSourceCount": 2,
     "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:AAPL:FY26Q3:Newsroom"
+      "issuer:AAPL:FY26Q3:Newsroom",
+      "issuer:AAPL:FY26Q3:Newsroom:2026-07-30"
     ]
   },
   "sources": [
@@ -236,6 +250,14 @@
       "primary": true,
       "publishedAt": "2026-07-30",
       "originFingerprint": "issuer:AAPL:FY26Q3:Newsroom"
+    },
+    {
+      "sourceId": "issuer:AAPL:FY26Q3:2026-07-30",
+      "url": "https://www.apple.com/newsroom/2026/07/apple-reports-third-quarter-results/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-30",
+      "originFingerprint": "issuer:AAPL:FY26Q3:Newsroom:2026-07-30"
     }
   ],
   "contradictions": [
@@ -247,10 +269,15 @@
       "contradiction": "Record EPS and margin coexist with a material temporary tariff-refund benefit; recurring profitability should therefore be evaluated net of that benefit.",
       "material": true,
       "resolution": "clarified_not_falsified: temporary benefit is explicitly quantified and does not negate broad revenue growth, but remains relevant to normalized margin expectations"
+    },
+    {
+      "contradiction": "Record headline profitability coexists with a material temporary tariff-refund benefit; this qualifies, rather than falsifies, the strong consolidated execution signal.",
+      "material": true,
+      "resolution": "source_quantified_temporary_component"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 3,
     "items": [
       {
         "contradiction": "Record EPS and margin include a meaningful temporary tariff-refund benefit.",
@@ -260,6 +287,11 @@
         "contradiction": "Record EPS and margin coexist with a material temporary tariff-refund benefit; recurring profitability should therefore be evaluated net of that benefit.",
         "material": true,
         "resolution": "clarified_not_falsified: temporary benefit is explicitly quantified and does not negate broad revenue growth, but remains relevant to normalized margin expectations"
+      },
+      {
+        "contradiction": "Record headline profitability coexists with a material temporary tariff-refund benefit; this qualifies, rather than falsifies, the strong consolidated execution signal.",
+        "material": true,
+        "resolution": "source_quantified_temporary_component"
       }
     ]
   },
@@ -279,11 +311,19 @@
     {
       "unknown": "Current dilution, financing, governance and customer/supplier concentration risks are not established by this single quarterly source and remain for source-integrity/underwriting evidence rather than being inferred.",
       "gating": false
+    },
+    {
+      "unknown": "This source does not quantify incremental revenue or adoption attributable specifically to Siri AI.",
+      "gating": false
+    },
+    {
+      "unknown": "This evidence is source acquisition only; Alpha retains authority for numeric underwriting, score risk and data-confidence construction.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
   "confidence": 82,

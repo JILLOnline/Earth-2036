@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-24T08:16:04.150Z",
+  "updatedAt": "2026-09-24T09:20:42.923Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1562,6 +1562,18 @@
       "type": "market",
       "label": "Customer-Back Innovation",
       "description": "decentralized teams design differentiated solutions around specific customer needs"
+    },
+    {
+      "id": "company:JBL",
+      "type": "company",
+      "label": "Jabil Inc.",
+      "description": "Jabil is moving deeper into the physical AI-infrastructure chain: manufacturing/integration is being complemented by Hanley critical-power capabilities, Mikros thermal capability and planned rack/power/thermal manufacturing expansion, linking compute demand to power, cooling, networking and deployment bottlenecks."
+    },
+    {
+      "id": "market:JBL-power-and-thermal-demand",
+      "type": "market",
+      "label": "power and thermal demand",
+      "description": "higher rack density increases electrical distribution and heat-removal requirements"
     }
   ],
   "edges": [
@@ -3590,6 +3602,22 @@
       "sourceIds": [
         "itw-ir:2026-07-28:q2-results-guidance",
         "itw-ir:2026-02-03:fy2025-results"
+      ],
+      "observedAt": "2026-09-20T21:27:25Z"
+    },
+    {
+      "id": "edge:JBL-structural-exposure",
+      "from": "company:JBL",
+      "to": "market:JBL-power-and-thermal-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "jabil-ir:2025-11-04:hanley-agreement",
+        "jabil-ir:2026-06-15:adani-ai-infrastructure",
+        "jabil-ir:2025-06-17:us-ai-manufacturing"
       ],
       "observedAt": "2026-09-20T21:27:25Z"
     }
@@ -6111,6 +6139,26 @@
       ],
       "observedAt": "2026-09-20T21:27:25Z",
       "thesis": "ITW's seven-segment model links specialized industrial tools/equipment to recurring human needs for production, maintenance, food service, transportation, construction and measurement; decentralized Customer-Back Innovation is the mechanism intended to convert application-specific pain points into differentiated products.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:JBL-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:JBL-power-and-thermal-demand",
+      "affectedNodeIds": [
+        "company:JBL"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "jabil-ir:2025-11-04:hanley-agreement",
+        "jabil-ir:2026-06-15:adani-ai-infrastructure",
+        "jabil-ir:2025-06-17:us-ai-manufacturing"
+      ],
+      "observedAt": "2026-09-20T21:27:25Z",
+      "thesis": "Jabil is moving deeper into the physical AI-infrastructure chain: manufacturing/integration is being complemented by Hanley critical-power capabilities, Mikros thermal capability and planned rack/power/thermal manufacturing expansion, linking compute demand to power, cooling, networking and deployment bottlenecks.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

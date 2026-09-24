@@ -114,7 +114,7 @@ const fullUniverseInput = {
 // Optional shadow refs are read ONLY after canonical qualification inputs have been computed.
 // A missing, stale or invalid #11 index cannot alter T0/T1000 qualification.
 const fundamentalsByTicker = await loadVerifiedBridgeIndex({
-  file: path.join(ROOT, "data", "lab", "bridge", "current-index.json"),
+  file: path.join(RUNTIME, "workgraph", "shadow", "fundamentals-bridge-index.json"),
   asOf: state.lastCycleAt,
   observations: observations?.candidates || {},
   tickers: rankingRows.map((row) => row.ticker),

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-24T13:15:14.162Z",
+  "updatedAt": "2026-09-24T14:16:25.542Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1610,6 +1610,18 @@
       "type": "market",
       "label": "optical interconnect intensity",
       "description": "electrical reach/power constraints make optical links increasingly necessary as clusters scale"
+    },
+    {
+      "id": "company:TER",
+      "type": "company",
+      "label": "Teradyne, Inc.",
+      "description": "Teradyne occupies a test bottleneck downstream of AI compute, HBM/DRAM and semiconductor production; Q2 2026 Semiconductor Test reached a second consecutive record quarter and memory revenue exceeded $200M for a third consecutive quarter."
+    },
+    {
+      "id": "market:TER-semiconductor-test-intensity",
+      "type": "market",
+      "label": "semiconductor test intensity",
+      "description": "Teradyne occupies a test bottleneck downstream of AI compute, HBM/DRAM and semiconductor production; Q2 2026 Semiconductor Test reached a second consecutive record quarter and memory revenue exceeded $200M for a third consecutive quarter."
     }
   ],
   "edges": [
@@ -3703,6 +3715,21 @@
         "lumentum:2026-08-11:fy2026-results"
       ],
       "observedAt": "2026-09-19T09:24:55Z"
+    },
+    {
+      "id": "edge:TER-structural-exposure",
+      "from": "company:TER",
+      "to": "market:TER-semiconductor-test-intensity",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:TER:2026Q2-10Q",
+        "issuer:TER:2025-10K"
+      ],
+      "observedAt": "2026-09-18T17:25:56-04:00"
     }
   ],
   "structuralSignals": [
@@ -6302,6 +6329,25 @@
       "observedAt": "2026-09-19T09:24:55Z",
       "thesis": "AI scale-up and scale-out architectures increase the need for high-bandwidth, power-efficient optical connectivity; Lumentum's laser and InP capacity therefore sits on a physical connectivity bottleneck rather than merely an application-layer AI theme.",
       "falsifier": "new electrical or alternative photonic architectures materially reduce external laser/component intensity"
+    },
+    {
+      "id": "signal:TER-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:TER-semiconductor-test-intensity",
+      "affectedNodeIds": [
+        "company:TER"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:TER:2026Q2-10Q",
+        "issuer:TER:2025-10K"
+      ],
+      "observedAt": "2026-09-18T17:25:56-04:00",
+      "thesis": "Teradyne occupies a test bottleneck downstream of AI compute, HBM/DRAM and semiconductor production; Q2 2026 Semiconductor Test reached a second consecutive record quarter and memory revenue exceeded $200M for a third consecutive quarter.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],
   "roadmapMilestones": [

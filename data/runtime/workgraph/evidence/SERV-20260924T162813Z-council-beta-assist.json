@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "contract": "workgraph-v2-assist-evidence",
+  "ticker": "SERV",
+  "workId": "t0:SERV",
+  "role": "council-beta",
+  "generatedAt": "2026-09-24T16:28:13Z",
+  "assist": {
+    "requestId": "assist:SERV:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "1a93e427af1a04f66760",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support"
+  },
+  "lineage": {
+    "startingGitHead": "09a1593e991b06d5c34605816c2f3c9aa6b97c2e",
+    "supersedes": [],
+    "inputEvidence": [
+      "data/runtime/workgraph/evidence/SERV-20260922T102404Z-council-beta.json"
+    ],
+    "strategy": "Changed source class from issuer operating/partner updates to SEC financing disclosure to isolate shareholder-funding and dilution risk without altering Alpha numeric underwriting."
+  },
+  "sources": [
+    {
+      "sourceId": "regulatory:SEC:SERV:424B5:2026-05-14",
+      "url": "https://www.sec.gov/Archives/edgar/data/1832483/000121390026056827/ea0290442-424b5_serve.htm",
+      "kind": "regulatory-primary",
+      "primary": true,
+      "publishedAt": "2026-05-14",
+      "originFingerprint": "sec.gov|CIK1832483|424B5|2026-05-14|000121390026056827"
+    }
+  ],
+  "observedWeaknesses": [
+    {
+      "observation": "Serve disclosed that 1,027,000 shares had been issued on April 1, 2026 under its prior controlled-equity program at a weighted-average $8.22 per share, and the May prospectus supplement modeled a further $150 million common-stock sale with immediate dilution to purchasers.",
+      "sourceId": "regulatory:SEC:SERV:424B5:2026-05-14",
+      "whyItMatters": "The filing demonstrates that equity issuance is an actual financing mechanism, not merely a hypothetical risk, while the company is still scaling a business whose current packet shows negative gross economics and demand-utilization uncertainty."
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Continued reliance on equity funding before durable positive unit economics can transfer commercialization risk to shareholders through dilution.",
+      "sourceId": "regulatory:SEC:SERV:424B5:2026-05-14",
+      "gating": false
+    },
+    {
+      "risk": "A strong liquidity position should not be interpreted as proof that robot deployment has become self-funding; source-addressed equity issuance shows external capital has supported scale-up.",
+      "sourceId": "regulatory:SEC:SERV:424B5:2026-05-14",
+      "gating": false
+    }
+  ],
+  "falsifiers": [
+    {
+      "condition": "Subsequent source-addressed reporting shows sustained positive gross/contribution economics and operating cash generation sufficient to fund fleet growth without material incremental equity issuance.",
+      "effect": "Would materially reduce financing/dilution risk."
+    }
+  ],
+  "improvementPaths": [
+    "Track share-count growth and capital raised alongside per-robot utilization, gross margin and operating cash conversion so financing capacity is separated from self-funded operating progress."
+  ],
+  "unknowns": [
+    {
+      "unknown": "The filing does not establish how much future equity funding will actually be required; that depends on deployment pace, unit economics, cash burn and alternative financing.",
+      "gating": false,
+      "nextOwner": "council-alpha"
+    }
+  ],
+  "contradictions": [],
+  "confidence": 0.97,
+  "recommendedNextOwner": "council-alpha",
+  "recommendedNextState": "researching",
+  "recommendation": "Use as source-addressed financing/dilution risk evidence. Do not infer a numeric risk score or assume future issuance equals the modeled offering amount."
+}

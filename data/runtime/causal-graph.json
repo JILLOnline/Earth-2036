@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-24T14:16:25.542Z",
+  "updatedAt": "2026-09-24T15:19:48.266Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1622,6 +1622,18 @@
       "type": "market",
       "label": "semiconductor test intensity",
       "description": "Teradyne occupies a test bottleneck downstream of AI compute, HBM/DRAM and semiconductor production; Q2 2026 Semiconductor Test reached a second consecutive record quarter and memory revenue exceeded $200M for a third consecutive quarter."
+    },
+    {
+      "id": "company:MRVL",
+      "type": "company",
+      "label": "Marvell Technology, Inc.",
+      "description": "Marvell is positioned across two AI-infrastructure bottlenecks: custom compute silicon and high-speed connectivity/electro-optics. Q2 FY2027 data-center revenue was $2.172B, 79% of company revenue, with 46% year-over-year growth."
+    },
+    {
+      "id": "market:MRVL-custom-silicon-demand",
+      "type": "market",
+      "label": "custom silicon demand",
+      "description": "hyperscalers optimize compute and attach functions for workload, power and cost"
     }
   ],
   "edges": [
@@ -3730,6 +3742,22 @@
         "issuer:TER:2025-10K"
       ],
       "observedAt": "2026-09-18T17:25:56-04:00"
+    },
+    {
+      "id": "edge:MRVL-structural-exposure",
+      "from": "company:MRVL",
+      "to": "market:MRVL-custom-silicon-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 94,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "marvell-ir:2026-08:q2-fy2027",
+        "marvell-sec:2026-08-28:q2-fy2027-10q",
+        "marvell-sec:2026-05-13:def14a"
+      ],
+      "observedAt": "2026-09-19T09:24:55Z"
     }
   ],
   "structuralSignals": [
@@ -6348,6 +6376,26 @@
       "observedAt": "2026-09-18T17:25:56-04:00",
       "thesis": "Teradyne occupies a test bottleneck downstream of AI compute, HBM/DRAM and semiconductor production; Q2 2026 Semiconductor Test reached a second consecutive record quarter and memory revenue exceeded $200M for a third consecutive quarter.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:MRVL-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:MRVL-custom-silicon-demand",
+      "affectedNodeIds": [
+        "company:MRVL"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 94,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "marvell-ir:2026-08:q2-fy2027",
+        "marvell-sec:2026-08-28:q2-fy2027-10q",
+        "marvell-sec:2026-05-13:def14a"
+      ],
+      "observedAt": "2026-09-19T09:24:55Z",
+      "thesis": "Marvell is positioned across two AI-infrastructure bottlenecks: custom compute silicon and high-speed connectivity/electro-optics. Q2 FY2027 data-center revenue was $2.172B, 79% of company revenue, with 46% year-over-year growth.",
+      "falsifier": "general-purpose merchant silicon regains economic advantage or Marvell loses design wins"
     }
   ],
   "roadmapMilestones": [

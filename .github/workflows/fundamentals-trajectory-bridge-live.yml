@@ -1,0 +1,184 @@
+name: Fundamentals Trajectory Bridge Live Bootstrap
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/fundamentals-trajectory-bridge-live.yml"
+      - "config/fundamentals-trajectory-bridge-v1.json"
+      - "scripts/lab-fundamentals-trajectory-bridge.mjs"
+      - "scripts/check-live-fundamentals-bridge.mjs"
+      - "scripts/lib/fundamentals-trajectory-bridge.mjs"
+      - "scripts/lib/fundamentals-bridge-index.mjs"
+      - "scripts/workgraph-sync.mjs"
+      - "scripts/finalize-qualified-tick.mjs"
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: fundamentals-trajectory-bridge-live
+  cancel-in-progress: true
+
+jobs:
+  live-shadow-bootstrap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 10
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - run: npm ci
+
+      - name: Verify bridge invariants before live publication
+        run: |
+          set -euo pipefail
+          node --test test/fundamentals-truth.test.mjs
+          node --test test/fundamentals-trajectory-bridge.test.mjs
+          node --test test/trajectory-engine.test.mjs
+
+      - name: Resolve exact live cutoff
+        id: cutoff
+        run: |
+          set -euo pipefail
+          asof=$(jq -r '.lastCycleAt // empty' data/runtime/system-state.json)
+          test -n "$asof"
+          echo "asof=$asof" >> "$GITHUB_OUTPUT"
+          echo "base_head=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Restore latest durable SEC source archive
+        id: restore
+        run: |
+          set -euo pipefail
+          latest_tag=$(gh release list --repo "${{ github.repository }}" --limit 100 --json tagName,createdAt             --jq '[.[] | select(.tagName | startswith("fundamentals-cache-"))][0].tagName // ""')
+          echo "tag=$latest_tag" >> "$GITHUB_OUTPUT"
+          if [ -n "$latest_tag" ]; then
+            mkdir -p /tmp/bridge-restore data/lab
+            gh release download "$latest_tag" --repo "${{ github.repository }}"               --pattern "bridge-cache.tar.gz" --dir /tmp/bridge-restore
+            tar -xzf /tmp/bridge-restore/bridge-cache.tar.gz -C data/lab
+            echo "restored=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "restored=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build 250-company point-in-time bridge
+        id: bridge
+        run: |
+          set -euo pipefail
+          node scripts/lab-fundamentals-trajectory-bridge.mjs             --limit 250             --as-of "${{ steps.cutoff.outputs.asof }}"             --publish-health | tee /tmp/bridge-live.json
+          test "$(jq -r '.companies' /tmp/bridge-live.json)" = "250"
+          test "$(jq -r '.invalid' /tmp/bridge-live.json)" = "0"
+          echo "refreshes=$(jq -r '.sourceRefreshes' /tmp/bridge-live.json)" >> "$GITHUB_OUTPUT"
+          echo "unknown=$(jq -r '.unknown' /tmp/bridge-live.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Persist immutable SEC source archive when source state changes
+        id: archive
+        run: |
+          set -euo pipefail
+          prior_tag="${{ steps.restore.outputs.tag }}"
+          refreshes="${{ steps.bridge.outputs.refreshes }}"
+          archive_file="/tmp/bridge-cache.tar.gz"
+          archive_tag="$prior_tag"
+
+          if [ -z "$prior_tag" ] || [ "$refreshes" -gt 0 ]; then
+            tar -C data/lab -czf "$archive_file" bridge
+            archive_tag="fundamentals-cache-$(date -u +'%Y%m%dT%H%M%SZ')-${GITHUB_RUN_ID}"
+            archive_sha=$(sha256sum "$archive_file" | awk '{print $1}')
+            manifest_sha=$(sha256sum data/lab/bridge/cache-manifest.json | awk '{print $1}')
+            gh release create "$archive_tag"               "$archive_file#bridge-cache.tar.gz"               --repo "${{ github.repository }}"               --target main               --title "Earth 2036 Fundamentals source cache ${{ steps.cutoff.outputs.asof }}"               --notes "Immutable SEC Company Facts source archive for #11 shadow bridge. SHA256: $archive_sha. Manifest SHA256: $manifest_sha. Canonical authority: none."               --latest=false
+          else
+            test -f /tmp/bridge-restore/bridge-cache.tar.gz
+            cp /tmp/bridge-restore/bridge-cache.tar.gz "$archive_file"
+            archive_sha=$(sha256sum "$archive_file" | awk '{print $1}')
+            manifest_sha=$(sha256sum data/lab/bridge/cache-manifest.json | awk '{print $1}')
+          fi
+
+          echo "tag=$archive_tag" >> "$GITHUB_OUTPUT"
+          echo "sha=$archive_sha" >> "$GITHUB_OUTPUT"
+          echo "manifest_sha=$manifest_sha" >> "$GITHUB_OUTPUT"
+
+      - name: Stage compact live index and health
+        run: |
+          set -euo pipefail
+          cp data/lab/bridge/current-index.json /tmp/fundamentals-bridge-index.json
+          jq             --arg status "live-bootstrap-verified"             --arg tag "${{ steps.archive.outputs.tag }}"             --arg asset "bridge-cache.tar.gz"             --arg sha "${{ steps.archive.outputs.sha }}"             --arg manifest "${{ steps.archive.outputs.manifest_sha }}"             '. + {
+              status: $status,
+              archiveTag: $tag,
+              archiveAsset: $asset,
+              archiveSha256: $sha,
+              archiveManifestSha256: $manifest,
+              archivePathPattern: "bridge/source/<CIK>/<sourcePayloadHash>.json",
+              durableArchive: true
+            }'             data/runtime/workgraph/shadow/fundamentals-bridge-health.json             > /tmp/fundamentals-bridge-health.json
+
+      - name: Publish only if machine cutoff is still current
+        id: publish
+        run: |
+          set -euo pipefail
+          git config user.name "earth2036-fundamentals[bot]"
+          git config user.email "earth2036-fundamentals@users.noreply.github.com"
+
+          published=""
+          for attempt in 1 2 3; do
+            git fetch --no-tags --depth=20 origin main
+            remote_asof=$(git show origin/main:data/runtime/system-state.json | jq -r '.lastCycleAt // empty')
+            if [ "$remote_asof" != "${{ steps.cutoff.outputs.asof }}" ]; then
+              echo "Machine cutoff advanced from ${{ steps.cutoff.outputs.asof }} to $remote_asof; discard stale bridge publication."
+              echo "published=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            git reset --hard origin/main
+            mkdir -p data/runtime/workgraph/shadow
+            cp /tmp/fundamentals-bridge-index.json data/runtime/workgraph/shadow/fundamentals-bridge-index.json
+            cp /tmp/fundamentals-bridge-health.json data/runtime/workgraph/shadow/fundamentals-bridge-health.json
+
+            node scripts/check-live-fundamentals-bridge.mjs
+            git add data/runtime/workgraph/shadow/fundamentals-bridge-index.json                     data/runtime/workgraph/shadow/fundamentals-bridge-health.json
+            if git diff --cached --quiet; then
+              published=$(git rev-parse HEAD)
+              break
+            fi
+            git commit -m "Earth 2036 publish audited live fundamentals bridge"
+            published=$(git rev-parse HEAD)
+            if git push origin HEAD:main; then
+              break
+            fi
+            published=""
+          done
+
+          if [ -z "$published" ]; then
+            echo "Unable to publish live bridge after 3 race-safe attempts." >&2
+            exit 1
+          fi
+          echo "published=true" >> "$GITHUB_OUTPUT"
+          echo "published_head=$published" >> "$GITHUB_OUTPUT"
+
+      - name: Refresh shadow trajectory and public observability
+        if: steps.publish.outputs.published == 'true'
+        run: |
+          set -euo pipefail
+          gh workflow run earth2036-workgraph-reconcile.yml --repo "${{ github.repository }}" --ref main
+          gh workflow run earth2036-pages.yml --repo "${{ github.repository }}" --ref main             -f source_sha="${{ steps.publish.outputs.published_head }}"
+
+      - name: Retain compact bootstrap attestation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fundamentals-live-bootstrap-${{ github.run_id }}
+          path: /tmp/bridge-live.json
+          if-no-files-found: ignore
+          retention-days: 30

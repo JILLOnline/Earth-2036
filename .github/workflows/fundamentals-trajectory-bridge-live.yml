@@ -5,7 +5,6 @@ on:
   push:
     branches: [main]
     paths:
-      - ".github/workflows/fundamentals-trajectory-bridge-live.yml"
       - "config/fundamentals-trajectory-bridge-v1.json"
       - "scripts/lab-fundamentals-trajectory-bridge.mjs"
       - "scripts/check-live-fundamentals-bridge.mjs"
@@ -190,12 +189,13 @@ jobs:
           echo "published=true" >> "$GITHUB_OUTPUT"
           echo "published_head=$published" >> "$GITHUB_OUTPUT"
 
-      - name: Refresh shadow trajectory and public observability
+      - name: Refresh coherent shadow projection
         if: steps.publish.outputs.published == 'true'
         run: |
           set -euo pipefail
+          # Reconcile owns the final public projection. It rematerializes Trajectory
+          # and then dispatches Pages from the newest coherent main SHA.
           gh workflow run earth2036-workgraph-reconcile.yml --repo "${{ github.repository }}" --ref main
-          gh workflow run earth2036-pages.yml --repo "${{ github.repository }}" --ref main             -f source_sha="${{ steps.publish.outputs.published_head }}"
 
       - name: Retain compact bootstrap attestation
         if: always()

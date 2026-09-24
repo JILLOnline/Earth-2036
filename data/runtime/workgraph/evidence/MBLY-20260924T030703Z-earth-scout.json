@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "contract": "workgraph-v2-evidence",
+  "ticker": "MBLY",
+  "workId": "t0:MBLY",
+  "role": "earth-scout",
+  "generatedAt": "2026-09-24T03:07:03Z",
+  "assist": {
+    "requestId": "assist:MBLY:council-alpha:earth-scout:source-acquisition",
+    "inputSignature": "783c712cf3d840480987",
+    "rootOwner": "council-alpha",
+    "capability": "source-acquisition"
+  },
+  "perspectives": ["discovery-weak-signals", "expectations-execution"],
+  "sources": [
+    {
+      "sourceId": "regulatory:SEC:MBLY:2026Q1-10Q",
+      "origin": "SEC",
+      "url": "https://www.sec.gov/Archives/edgar/data/1910139/000110465926047712/mbly-20260328x10q.htm",
+      "publishedAt": "2026-05-01",
+      "originFingerprint": "sec:1910139:2026q1:10-q:20260328",
+      "type": "primary-regulatory"
+    }
+  ],
+  "observations": [
+    {
+      "fact": "For the three months ended March 28, 2026 Mobileye reported $558 million revenue versus $438 million in the comparable 2025 quarter; EyeQ SoC sales represented about 92% of revenue.",
+      "sourceId": "regulatory:SEC:MBLY:2026Q1-10Q"
+    },
+    {
+      "fact": "Four disclosed major-customer buckets each represented at least 10% of Q1 2026 revenue: 25%, 18%, 17%, and 15%, respectively.",
+      "sourceId": "regulatory:SEC:MBLY:2026Q1-10Q"
+    },
+    {
+      "fact": "Q1 2026 shipment-destination revenue included $130 million USA, $113 million China, $77 million Germany and $66 million South Korea, demonstrating geographic breadth but material country exposure.",
+      "sourceId": "regulatory:SEC:MBLY:2026Q1-10Q"
+    }
+  ],
+  "factors": [
+    {
+      "name": "financialOperatingMomentum",
+      "direction": "positive-with-concentration-caveat",
+      "basis": "Primary SEC filing shows Q1 revenue growth of roughly 27% year over year, while the revenue model remains highly concentrated in EyeQ SoCs and a small set of major customers.",
+      "sourceIds": ["regulatory:SEC:MBLY:2026Q1-10Q"]
+    },
+    {
+      "name": "scenarioRobustness",
+      "direction": "mixed",
+      "basis": "Revenue is geographically distributed, but customer concentration and 92% EyeQ SoC revenue dependence create correlated execution risk if major OEM/Tier-1 programs or core SoC demand weaken.",
+      "sourceIds": ["regulatory:SEC:MBLY:2026Q1-10Q"]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Customer concentration is material: the four disclosed >=10% customer buckets sum to 75% of Q1 2026 revenue; Alpha should preserve this as concentration evidence rather than infer diversification from the broad OEM pipeline.",
+      "sourceId": "regulatory:SEC:MBLY:2026Q1-10Q",
+      "gating": false
+    },
+    {
+      "risk": "Core-product concentration remains material because EyeQ SoC sales represented approximately 92% of Q1 2026 revenue.",
+      "sourceId": "regulatory:SEC:MBLY:2026Q1-10Q",
+      "gating": false
+    }
+  ],
+  "contradictions": [
+    {
+      "statement": "Strategic expansion into robotaxi and humanoid robotics broadens future optionality, but current reported revenue remains overwhelmingly EyeQ SoC-derived; optionality should not be treated as present diversification.",
+      "status": "bounded",
+      "sourceIds": ["regulatory:SEC:MBLY:2026Q1-10Q"]
+    }
+  ],
+  "unknowns": [
+    "The filing anonymizes major customers, so customer-specific dependency cannot be assigned without separate defensible lineage.",
+    "This artifact does not provide current market-price/valuation evidence and must not be used to manufacture a marketValuationOpportunity score."
+  ],
+  "confidence": "high for filed revenue mix and concentration facts; moderate for factor interpretation",
+  "recommendedNextOwner": "council-alpha",
+  "recommendedNextState": "researching",
+  "lineage": {
+    "startingGitHead": "f92a0021fdb1747ef0cb0dbd7892a2db68efea35",
+    "supersedes": [],
+    "packetPath": "data/runtime/workgraph/packets/MBLY.json",
+    "sourcePathsAlreadyTried": ["issuer Mobileye releases already present in cumulative packet lineage"],
+    "strategyChange": "Added an independent primary regulatory filing rather than repeating issuer press-release acquisition paths."
+  }
+}

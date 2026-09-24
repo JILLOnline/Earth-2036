@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-24T09:20:42.923Z",
+  "updatedAt": "2026-09-24T10:19:41.594Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1574,6 +1574,18 @@
       "type": "market",
       "label": "power and thermal demand",
       "description": "higher rack density increases electrical distribution and heat-removal requirements"
+    },
+    {
+      "id": "company:KEYS",
+      "type": "company",
+      "label": "Keysight Technologies",
+      "description": "Keysight occupies a design-validation bottleneck between increasingly complex electronic/communications architectures and deployable products: design, emulation and physical test reduce uncertainty before customers commit systems to production or operation."
+    },
+    {
+      "id": "market:KEYS-test-emulation-demand",
+      "type": "market",
+      "label": "test/emulation demand",
+      "description": "engineers need earlier validation to reduce design and deployment risk"
     }
   ],
   "edges": [
@@ -3618,6 +3630,21 @@
         "jabil-ir:2025-11-04:hanley-agreement",
         "jabil-ir:2026-06-15:adani-ai-infrastructure",
         "jabil-ir:2025-06-17:us-ai-manufacturing"
+      ],
+      "observedAt": "2026-09-20T21:27:25Z"
+    },
+    {
+      "id": "edge:KEYS-structural-exposure",
+      "from": "company:KEYS",
+      "to": "market:KEYS-test-emulation-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 92,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "keysight-ir:2026-08-18:q3-results",
+        "keysight-ir:2026-05-19:q2-results"
       ],
       "observedAt": "2026-09-20T21:27:25Z"
     }
@@ -6159,6 +6186,25 @@
       ],
       "observedAt": "2026-09-20T21:27:25Z",
       "thesis": "Jabil is moving deeper into the physical AI-infrastructure chain: manufacturing/integration is being complemented by Hanley critical-power capabilities, Mikros thermal capability and planned rack/power/thermal manufacturing expansion, linking compute demand to power, cooling, networking and deployment bottlenecks.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:KEYS-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:KEYS-test-emulation-demand",
+      "affectedNodeIds": [
+        "company:KEYS"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 92,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "keysight-ir:2026-08-18:q3-results",
+        "keysight-ir:2026-05-19:q2-results"
+      ],
+      "observedAt": "2026-09-20T21:27:25Z",
+      "thesis": "Keysight occupies a design-validation bottleneck between increasingly complex electronic/communications architectures and deployable products: design, emulation and physical test reduce uncertainty before customers commit systems to production or operation.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

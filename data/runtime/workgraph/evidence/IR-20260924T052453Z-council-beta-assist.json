@@ -1,0 +1,83 @@
+[
+  {
+    "version": 1,
+    "ticker": "IR",
+    "entityId": "IR",
+    "company": "Ingersoll Rand Inc.",
+    "workId": "t0:IR",
+    "role": "council-beta",
+    "perspective": "risk-source-support",
+    "generatedAt": "2026-09-24T05:24:53Z",
+    "assist": {
+      "requestId": "assist:IR:council-alpha:council-beta:risk-source-support",
+      "inputSignature": "b1eb03631fd0efd2732c",
+      "rootOwner": "council-alpha",
+      "capability": "risk-source-support"
+    },
+    "claims": [
+      {
+        "claim": "Ingersoll Rand's Q2 2026 SEC filing shows continued acquisition deployment: Scinomix was acquired for $46.4 million cash and Fox for $75.0 million cash, with the stated thesis relying on combining acquired offerings with existing technologies into broader end-to-end solutions.",
+        "status": "supported"
+      },
+      {
+        "claim": "This primary-source evidence supports a bounded execution-risk test: acquisition spend is observable, while value creation still depends on integration and successful combination of technologies; the filing does not by itself establish failed integration or value destruction.",
+        "status": "supported-interpretation"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "ir-sec-2026q2-10q-acquisitions",
+        "url": "https://www.sec.gov/Archives/edgar/data/1699150/000162828026051415/iri-20260630.htm",
+        "kind": "primary",
+        "primary": true,
+        "publishedAt": "2026-08-05",
+        "originFingerprint": "sec:1699150:2026q2-10q:note2-acquisitions"
+      }
+    ],
+    "affectedFactors": [
+      {
+        "name": "acquisitionExecutionRisk",
+        "direction": "risk",
+        "basis": "Cash-funded bolt-ons create a measurable capital-allocation and integration dependency; the disclosed strategic benefit requires combining acquired and existing technologies."
+      },
+      {
+        "name": "crossDivisionLeverage",
+        "direction": "mixed",
+        "basis": "The intended end-to-end solution benefit is plausible and explicitly stated, but realization remains an execution outcome rather than a filing-established fact."
+      }
+    ],
+    "causalEdges": [
+      {
+        "from": "cash-funded bolt-on acquisitions",
+        "to": "broader end-to-end customer solutions",
+        "mechanism": "integration of acquired automation/flow technologies with existing portfolio capabilities",
+        "falsifier": "post-acquisition disclosures show weak cross-selling, impairment, margin dilution, customer attrition, or failure to integrate the acquired capabilities"
+      }
+    ],
+    "risks": [
+      {
+        "risk": "Repeated bolt-on capital deployment can compound integration burden if expected portfolio combination and cross-selling do not materialize.",
+        "gating": false
+      }
+    ],
+    "contradictions": [],
+    "unknowns": [
+      {
+        "unknown": "The Q2 filing establishes acquisition consideration and strategic rationale but does not isolate realized post-close synergy, return on invested capital, or integration costs for these transactions.",
+        "gating": false
+      }
+    ],
+    "gatingIssues": [],
+    "confidence": 91,
+    "recommendedNextState": "researching",
+    "recommendedOwner": "council-alpha",
+    "lineage": {
+      "packetPath": "data/runtime/workgraph/packets/IR.json",
+      "reuses": [
+        "data/runtime/workgraph/evidence/IR-20260920T202216Z-council-beta.json",
+        "data/runtime/workgraph/evidence/IR-20260924T051329Z-council-alpha.json"
+      ],
+      "supersedes": null
+    }
+  }
+]

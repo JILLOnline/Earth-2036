@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "contract": "workgraph-v2-role-run",
+  "role": "earth-scout",
+  "generatedAt": "2026-09-24T11:07:32Z",
+  "startingGitHead": "2f5cd6ac42c7f435a89cb360c0e6a96ae88d055e",
+  "companiesInspected": ["IBM", "MBLY", "NBIS"],
+  "evidencePairsCompleted": 1,
+  "artifacts": [
+    "data/runtime/workgraph/evidence/NBIS-20260924T110732Z-earth-scout-assist.json"
+  ],
+  "assistAttempts": [
+    {
+      "requestId": "assist:IBM:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "3eff206efd764748488e",
+      "outcome": "skipped_same_signature_prior_failure",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    },
+    {
+      "requestId": "assist:MBLY:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "0347eb498d14b745a90e",
+      "outcome": "skipped_same_signature_prior_failure",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    },
+    {
+      "requestId": "assist:NBIS:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "c52bab5e7d8f97a4f0b9",
+      "outcome": "new_source_addressed_evidence",
+      "newEvidencePaths": [
+        "data/runtime/workgraph/evidence/NBIS-20260924T110732Z-earth-scout-assist.json"
+      ],
+      "sourcePathsAttempted": [
+        "https://nebius.com/newsroom/nebius-and-bloom-energy-partner-to-power-ai-infrastructure-build-out",
+        "https://nebius.com/newsroom/palantir-and-nebius-partner-to-deliver-a-complete-sovereign-ai-stack-to-palantir-customers",
+        "https://www.sec.gov/Archives/edgar/data/1513845/000110465926105749/tm2624958d1_6k.htm"
+      ]
+    }
+  ],
+  "result": "assist_evidence_added",
+  "blockers": [
+    "IBM and MBLY active assist requests retained unchanged failed input signatures from the prior Scout run and were not retried.",
+    "NBIS power evidence is prospective; commissioning and realized operating economics remain unknown and belong in subsequent source acquisition/Alpha underwriting."
+  ],
+  "repeatedBlocker": false,
+  "changedStrategy": "With owned Scout routing at zero, shifted capacity to active Alpha assists and used a materially different power-infrastructure primary source for NBIS rather than repeating prior financing/results/partnership searches."
+}

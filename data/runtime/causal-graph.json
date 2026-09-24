@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-24T07:20:17.181Z",
+  "updatedAt": "2026-09-24T08:16:04.150Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1550,6 +1550,18 @@
       "type": "market",
       "label": "accelerated-compute demand",
       "description": "larger training and inference workloads require GPU compute, power and data-center capacity"
+    },
+    {
+      "id": "company:ITW",
+      "type": "company",
+      "label": "Illinois Tool Works",
+      "description": "ITW's seven-segment model links specialized industrial tools/equipment to recurring human needs for production, maintenance, food service, transportation, construction and measurement; decentralized Customer-Back Innovation is the mechanism intended to convert application-specific pain points into differentiated products."
+    },
+    {
+      "id": "market:ITW-customer-back-innovation",
+      "type": "market",
+      "label": "Customer-Back Innovation",
+      "description": "decentralized teams design differentiated solutions around specific customer needs"
     }
   ],
   "edges": [
@@ -3565,6 +3577,21 @@
         "iren:2025-11-03:microsoft-9.7b"
       ],
       "observedAt": "2026-09-20T20:22:16Z"
+    },
+    {
+      "id": "edge:ITW-structural-exposure",
+      "from": "company:ITW",
+      "to": "market:ITW-customer-back-innovation",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "itw-ir:2026-07-28:q2-results-guidance",
+        "itw-ir:2026-02-03:fy2025-results"
+      ],
+      "observedAt": "2026-09-20T21:27:25Z"
     }
   ],
   "structuralSignals": [
@@ -6066,6 +6093,25 @@
       "observedAt": "2026-09-20T20:22:16Z",
       "thesis": "IREN's core structural bridge is power/data-center infrastructure to scarce accelerated-compute capacity serving hyperscaler AI demand; the Microsoft agreement supplies customer-linked evidence for that bridge.",
       "falsifier": "compute-efficiency gains or demand slowdown materially reduce required external capacity"
+    },
+    {
+      "id": "signal:ITW-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:ITW-customer-back-innovation",
+      "affectedNodeIds": [
+        "company:ITW"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "itw-ir:2026-07-28:q2-results-guidance",
+        "itw-ir:2026-02-03:fy2025-results"
+      ],
+      "observedAt": "2026-09-20T21:27:25Z",
+      "thesis": "ITW's seven-segment model links specialized industrial tools/equipment to recurring human needs for production, maintenance, food service, transportation, construction and measurement; decentralized Customer-Back Innovation is the mechanism intended to convert application-specific pain points into differentiated products.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],
   "roadmapMilestones": [

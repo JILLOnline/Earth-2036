@@ -47,8 +47,19 @@ jobs:
               print(f'machine_age_seconds={age}')
               print(f'machine_stale={str(age>3900).lower()}')
               print(f'last_cycle_at={stamp}')
+          alerts=metrics.get("healthAlerts") or []
+          critical_prefixes=(
+              "t0_canonical_stalled_over_2h_with_chief_ready:",
+              "t0_frontier_stalled_over_2h_without_chief_ready:",
+              "owner_stale_with_backlog:",
+          )
+          critical=[a for a in alerts if str(a).startswith(critical_prefixes)]
+          attention=[a for a in alerts if a not in critical]
           print(f'workgraph_healthy={str(bool(metrics.get("healthy"))).lower()}')
-          print(f'workgraph_alert_count={len(metrics.get("healthAlerts") or [])}')
+          print(f'workgraph_alert_count={len(alerts)}')
+          print(f'workgraph_critical_count={len(critical)}')
+          print(f'workgraph_attention_count={len(attention)}')
+          print(f'workgraph_critical={str(bool(critical)).lower()}')
           PY
 
       - name: Check GitHub-native execution plane
@@ -57,6 +68,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           LAST_CYCLE_AT: ${{ steps.freshness.outputs.last_cycle_at }}
           WORKGRAPH_HEALTHY: ${{ steps.freshness.outputs.workgraph_healthy }}
+          WORKGRAPH_CRITICAL: ${{ steps.freshness.outputs.workgraph_critical }}
         run: |
           set -euo pipefail
           latest() {
@@ -83,7 +95,9 @@ jobs:
           if [ "$pages_conclusion" != "success" ]; then unhealthy=true; fi
           if [ "$reconcile_conclusion" != "missing" ] && [ "$reconcile_conclusion" != "success" ]; then unhealthy=true; fi
           if [ "$ci_conclusion" != "missing" ] && [ "$ci_conclusion" != "success" ]; then unhealthy=true; fi
-          if [ "$WORKGRAPH_HEALTHY" != "true" ]; then unhealthy=true; fi
+          # Ordinary zero-closure warnings are productivity ATTENTION, not an execution-plane outage.
+          # Fail the watchdog only for Workgraph conditions that indicate stalled frontier or stale ownership.
+          if [ "$WORKGRAPH_CRITICAL" = "true" ]; then unhealthy=true; fi
 
           pages_stale=false
           if [ -n "$pages_created" ]; then
@@ -131,5 +145,5 @@ jobs:
       - name: Fail closed on unhealthy GitHub-native plane
         if: steps.execution.outputs.unhealthy == 'true'
         run: |
-          echo "Earth 2036 unhealthy: scheduler=${{ steps.execution.outputs.scheduler_conclusion }}, pages=${{ steps.execution.outputs.pages_conclusion }}, reconcile=${{ steps.execution.outputs.reconcile_conclusion }}, ci=${{ steps.execution.outputs.ci_conclusion }}, pages_stale=${{ steps.execution.outputs.pages_stale }}, workgraph=${{ steps.freshness.outputs.workgraph_healthy }}." >&2
+          echo "Earth 2036 execution-plane unhealthy: scheduler=${{ steps.execution.outputs.scheduler_conclusion }}, pages=${{ steps.execution.outputs.pages_conclusion }}, reconcile=${{ steps.execution.outputs.reconcile_conclusion }}, ci=${{ steps.execution.outputs.ci_conclusion }}, pages_stale=${{ steps.execution.outputs.pages_stale }}, workgraph_critical=${{ steps.freshness.outputs.workgraph_critical }}, attention=${{ steps.freshness.outputs.workgraph_attention_count }}." >&2
           exit 1

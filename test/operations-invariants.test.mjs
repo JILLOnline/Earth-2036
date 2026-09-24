@@ -28,13 +28,18 @@ test("hourly scheduler runs targeted invariants and does not duplicate full CI",
   assert.ok(text.includes("git merge-base --is-ancestor"));
 });
 
-test("watchdog checks GitHub-native scheduler, Pages, reconcile, CI and Workgraph health", async () => {
+test("watchdog checks execution-plane health while separating critical Workgraph failure from productivity attention", async () => {
   const text = await source(".github/workflows/earth2036-watchdog.yml");
   assert.ok(text.includes("earth2036-scheduler.yml"));
   assert.ok(text.includes("earth2036-pages.yml"));
   assert.ok(text.includes("earth2036-workgraph-reconcile.yml"));
   assert.ok(text.includes("earth2036-ci.yml"));
   assert.ok(text.includes("workgraph_healthy"));
+  assert.ok(text.includes("workgraph_critical"));
+  assert.ok(text.includes("workgraph_attention_count"));
+  assert.ok(text.includes("owner_stale_with_backlog:"));
+  assert.ok(text.includes("t0_frontier_stalled_over_2h_without_chief_ready:"));
+  assert.equal(text.includes('if [ "$WORKGRAPH_HEALTHY" != "true" ]; then unhealthy=true; fi'), false);
 });
 
 test("completed worker receipts trigger one burst-safe Workgraph reconciliation", async () => {

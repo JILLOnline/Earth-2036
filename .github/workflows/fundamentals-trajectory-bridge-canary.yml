@@ -76,6 +76,8 @@ jobs:
         run: npm run build
       - name: "Autonomous dry run (no production writes)"
         run: npm run engine:cycle
+      - name: "Verify bounded worker control surfaces"
+        run: node scripts/check-worker-control-surface.mjs
       - name: "Retain canary attestations"
         if: always()
         uses: actions/upload-artifact@v4

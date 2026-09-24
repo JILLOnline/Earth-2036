@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { applyPacketState, buildRoutingQueues, compilePromotionPacket, computeWorkgraphMetrics, loadRoleRuns, loadStructuredEvidence, migrateLegacyQueue, validateWorkgraph, writeWorkgraphArtifacts } from "./lib/workgraph-v2.mjs";
 import { auditCalibrationRecord, buildPacketCalibrationGuidance, CALIBRATION_REGISTRY } from "./lib/calibration-engine.mjs";
@@ -178,43 +178,194 @@ metrics.effectiveOwnerBacklog = {
 await writeWorkgraphArtifacts(ROOT, graph, packets, metrics, routingQueues);
 
 const assistBus = buildAssistRequests(graph, packets, roleRuns, now.toISOString());
-const shadowDir = path.join(ROOT, "data", "runtime", "workgraph", "shadow");
+const workgraphDir = path.join(ROOT, "data", "runtime", "workgraph");
+const shadowDir = path.join(workgraphDir, "shadow");
+const workerViewDir = path.join(workgraphDir, "worker-view");
 await mkdir(shadowDir, { recursive: true });
-await writeFile(
-  path.join(ROOT, "data", "runtime", "workgraph", "assist-bus.json"),
-  `${JSON.stringify(assistBus, null, 2)}\n`,
-  "utf8"
-);
+await mkdir(workerViewDir, { recursive: true });
+
+async function writeJsonArtifact(file, value) {
+  await mkdir(path.dirname(file), { recursive: true });
+  await writeFile(file, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function compactRoutingItem(item) {
+  return {
+    rank: item.rank,
+    ticker: item.ticker,
+    workId: item.workId,
+    state: item.state,
+    packetPath: item.packetPath,
+    ownedFailures: item.ownedFailures || [],
+    allFailures: item.allFailures || [],
+    otherOwners: item.otherOwners || [],
+    evidencePaths: (item.evidencePaths || []).slice(-16),
+    specialistCoverage: item.specialistCoverage || null,
+  };
+}
+
+function compactAssistRequest(request) {
+  return {
+    requestId: request.requestId,
+    inputSignature: request.inputSignature,
+    ticker: request.ticker,
+    workId: request.workId,
+    sourceState: request.sourceState,
+    rootOwner: request.rootOwner,
+    helperRole: request.helperRole,
+    capability: request.capability,
+    exactQuestion: request.exactQuestion,
+    failures: request.failures,
+    packetPath: request.packetPath,
+    evidencePaths: (request.evidencePaths || []).slice(-24),
+    successCondition: request.successCondition,
+    priority: request.priority,
+    status: request.status,
+    priorAttempt: request.priorAttempt || null,
+  };
+}
+
+await writeJsonArtifact(path.join(workgraphDir, "assist-bus.json"), assistBus);
+const assistViewDir = path.join(workerViewDir, "assist");
+await mkdir(assistViewDir, { recursive: true });
+const helperRoles = ["earth-scout", "council-alpha", "council-beta", "deep-resolver"];
+for (const role of helperRoles) {
+  await writeJsonArtifact(path.join(assistViewDir, `${role}.json`), {
+    version: 1,
+    contract: "earth2036-worker-assist-view-v1",
+    generatedAt: assistBus.generatedAt,
+    helperRole: role,
+    sourceContract: assistBus.contract,
+    active: assistBus.byHelper?.[role] || 0,
+    totalActive: assistBus.active,
+    totalDormant: assistBus.dormant,
+    totalQueued: assistBus.queued || 0,
+    requests: (assistBus.requests || [])
+      .filter((request) => request.helperRole === role && request.status === "active")
+      .map(compactAssistRequest),
+  });
+}
+await writeJsonArtifact(path.join(assistViewDir, "summary.json"), {
+  version: 1,
+  contract: "earth2036-worker-assist-summary-v1",
+  generatedAt: assistBus.generatedAt,
+  sourceContract: assistBus.contract,
+  active: assistBus.active,
+  dormant: assistBus.dormant,
+  queued: assistBus.queued || 0,
+  total: assistBus.total,
+  byHelper: assistBus.byHelper,
+  activeRequests: (assistBus.requests || [])
+    .filter((request) => request.status === "active")
+    .map(compactAssistRequest),
+});
+
+const routingViewDir = path.join(workerViewDir, "routing");
+await mkdir(routingViewDir, { recursive: true });
+for (const role of helperRoles) {
+  const queue = routingQueues?.[role] || { total: 0, items: [] };
+  const maxItems = role === "council-alpha" ? 12 : role === "deep-resolver" ? 10 : 8;
+  await writeJsonArtifact(path.join(routingViewDir, `${role}.json`), {
+    version: 1,
+    contract: "earth2036-worker-routing-view-v1",
+    generatedAt: queue.generatedAt || now.toISOString(),
+    role,
+    selectionPolicy: queue.selectionPolicy || "closure-first-deterministic",
+    total: queue.total || 0,
+    visible: Math.min(maxItems, queue.total || 0),
+    items: (queue.items || []).slice(0, maxItems).map(compactRoutingItem),
+    sourcePath: `data/runtime/workgraph/routing/${role}.json`,
+  });
+}
 
 const canonicalCalibrationAudits = Object.entries(scoreState?.candidates || {})
   .map(([ticker, record]) => auditCalibrationRecord({ ticker, ...record }));
 const frontierCalibrationGuidance = packets
   .filter((packet) => ["packet_ready", "chief_ready"].includes(graph.companies?.[packet.ticker]?.state))
   .map(buildPacketCalibrationGuidance);
+const calibrationAuditDir = path.join(shadowDir, "calibration-audits");
+await rm(calibrationAuditDir, { recursive: true, force: true });
+await mkdir(calibrationAuditDir, { recursive: true });
+for (const audit of canonicalCalibrationAudits) {
+  if (!audit?.ticker) continue;
+  await writeJsonArtifact(path.join(calibrationAuditDir, `${audit.ticker}.json`), audit);
+}
 const calibrationShadow = {
   version: 1,
-  contract: "earth2036-calibration-shadow-v1",
+  contract: "earth2036-calibration-shadow-v2",
+  storageMode: "sharded-v1",
   generatedAt: now.toISOString(),
   methodologyVersion: CALIBRATION_REGISTRY.version,
   calibrationVersion: CALIBRATION_REGISTRY.calibrationVersion,
   canonicalWriteAuthority: false,
   canonicalRecordsAudited: canonicalCalibrationAudits.length,
   canonicalRecordsPassingContract: canonicalCalibrationAudits.filter((row) => row.passed).length,
-  canonicalAudits: canonicalCalibrationAudits,
+  canonicalAuditIndex: canonicalCalibrationAudits.map((row) => ({
+    ticker: row.ticker,
+    passed: row.passed,
+    reasons: row.reasons || [],
+    shardPath: row.ticker ? `data/runtime/workgraph/shadow/calibration-audits/${row.ticker}.json` : null,
+  })),
   frontierGuidance: frontierCalibrationGuidance,
 };
-await writeFile(
-  path.join(shadowDir, "calibration.json"),
-  `${JSON.stringify(calibrationShadow, null, 2)}\n`,
-  "utf8"
-);
+await writeJsonArtifact(path.join(shadowDir, "calibration.json"), calibrationShadow);
+await writeJsonArtifact(path.join(workerViewDir, "calibration-summary.json"), {
+  version: 1,
+  contract: "earth2036-worker-calibration-view-v1",
+  generatedAt: calibrationShadow.generatedAt,
+  methodologyVersion: calibrationShadow.methodologyVersion,
+  calibrationVersion: calibrationShadow.calibrationVersion,
+  canonicalWriteAuthority: false,
+  canonicalRecordsAudited: calibrationShadow.canonicalRecordsAudited,
+  canonicalRecordsPassingContract: calibrationShadow.canonicalRecordsPassingContract,
+  frontierGuidance: calibrationShadow.frontierGuidance,
+});
 
 const digitalTwinShadow = buildDigitalTwinShadow(graph, packets, now.toISOString());
-await writeFile(
-  path.join(shadowDir, "digital-twins.json"),
-  `${JSON.stringify(digitalTwinShadow, null, 2)}\n`,
-  "utf8"
-);
+const digitalTwinDir = path.join(shadowDir, "digital-twins");
+await rm(digitalTwinDir, { recursive: true, force: true });
+await mkdir(digitalTwinDir, { recursive: true });
+for (const twin of digitalTwinShadow.twins || []) {
+  if (!twin?.ticker) continue;
+  await writeJsonArtifact(path.join(digitalTwinDir, `${twin.ticker}.json`), twin);
+}
+const digitalTwinEntries = (digitalTwinShadow.twins || []).map((twin) => ({
+  ticker: twin.ticker,
+  workId: twin.workId,
+  inputSignature: twin.inputSignature,
+  sourceState: twin.sourceState,
+  preflightPassed: twin.representationQuality?.preflightPassed === true,
+  primarySourceCount: twin.representationQuality?.primarySourceCount || 0,
+  missingPerspectives: twin.representationQuality?.missingPerspectives || [],
+  preflightFailures: twin.constraintSignals?.preflightFailures || [],
+  improvementQuestions: (twin.improvementWindows || []).map((row) => row.question),
+  shardPath: twin.ticker ? `data/runtime/workgraph/shadow/digital-twins/${twin.ticker}.json` : null,
+}));
+const digitalTwinIndex = {
+  version: digitalTwinShadow.version,
+  contract: "earth2036-digital-twin-shadow-index-v2",
+  generatedAt: digitalTwinShadow.generatedAt,
+  canonicalWriteAuthority: false,
+  total: digitalTwinShadow.total,
+  entries: digitalTwinEntries,
+};
+await writeJsonArtifact(path.join(shadowDir, "digital-twins.json"), digitalTwinIndex);
+await writeJsonArtifact(path.join(workerViewDir, "digital-twins-index.json"), digitalTwinIndex);
+
+const betaRelevantTickers = new Set([
+  ...((routingQueues?.["council-beta"]?.items || []).slice(0, 6).map((row) => row.ticker)),
+  ...((assistBus.requests || [])
+    .filter((request) => request.helperRole === "council-beta" && request.status === "active")
+    .map((request) => request.ticker)),
+]);
+await writeJsonArtifact(path.join(workerViewDir, "council-beta-digital-twins.json"), {
+  version: 1,
+  contract: "earth2036-worker-digital-twin-view-v1",
+  generatedAt: digitalTwinShadow.generatedAt,
+  canonicalWriteAuthority: false,
+  tickers: [...betaRelevantTickers],
+  twins: (digitalTwinShadow.twins || []).filter((twin) => betaRelevantTickers.has(twin.ticker)),
+});
 
 const valueAllocationShadow = buildValueAllocationShadow(graph, packets, assistBus, metrics, now.toISOString());
 await writeFile(
@@ -224,11 +375,44 @@ await writeFile(
 );
 
 const dependencyShadow = buildDependencyShadow(assistBus, now.toISOString());
-await writeFile(
-  path.join(shadowDir, "dependencies.json"),
-  `${JSON.stringify(dependencyShadow, null, 2)}\n`,
-  "utf8"
-);
+await writeJsonArtifact(path.join(shadowDir, "dependencies.json"), dependencyShadow);
+await writeJsonArtifact(path.join(workerViewDir, "command-summary.json"), {
+  version: 1,
+  contract: "earth2036-worker-command-summary-v1",
+  generatedAt: now.toISOString(),
+  canonicalWriteAuthority: false,
+  workgraph: {
+    total: metrics.total,
+    counts: metrics.counts,
+    healthy: metrics.healthy,
+    healthAlerts: metrics.healthAlerts || [],
+    canonicalProgressAgeHours: metrics.canonicalProgressAgeHours,
+    effectiveOwnerBacklog: metrics.effectiveOwnerBacklog || metrics.ownerBacklog || {},
+    routingQueueCounts: metrics.routingQueueCounts || {},
+  },
+  assist: {
+    active: assistBus.active,
+    dormant: assistBus.dormant,
+    queued: assistBus.queued || 0,
+    byHelper: assistBus.byHelper,
+  },
+  dependencies: {
+    healthy: dependencyShadow.healthy,
+    roleCycles: dependencyShadow.roleCycles || [],
+    deadlocks: dependencyShadow.deadlocks || [],
+  },
+  allocation: {
+    capacityPlan: valueAllocationShadow.capacityPlan,
+    top: (valueAllocationShadow.attentionQueue || valueAllocationShadow.top || []).slice(0, 20),
+  },
+  workerViews: {
+    assistSummary: "data/runtime/workgraph/worker-view/assist/summary.json",
+    calibration: "data/runtime/workgraph/worker-view/calibration-summary.json",
+    digitalTwins: "data/runtime/workgraph/worker-view/digital-twins-index.json",
+    betaDigitalTwins: "data/runtime/workgraph/worker-view/council-beta-digital-twins.json",
+    routing: Object.fromEntries(helperRoles.map((role) => [role, `data/runtime/workgraph/worker-view/routing/${role}.json`])),
+  },
+});
 
 const rankingState = await readJsonOr(path.join(ROOT, "data", "runtime", "current-ranking.json"), { rankings: [] });
 const observationsState = await readJsonOr(path.join(ROOT, "data", "runtime", "company-observations.json"), { candidates: {} });

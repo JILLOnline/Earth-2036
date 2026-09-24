@@ -418,7 +418,7 @@ const rankingState = await readJsonOr(path.join(ROOT, "data", "runtime", "curren
 const observationsState = await readJsonOr(path.join(ROOT, "data", "runtime", "company-observations.json"), { candidates: {} });
 const trajectoryAsOf = rankingState?.capturedAt || scoreState?.updatedAt || now.toISOString();
 const fundamentalsByTicker = await loadVerifiedBridgeIndex({
-  file: path.join(ROOT, "data", "lab", "bridge", "current-index.json"),
+  file: path.join(ROOT, "data", "runtime", "workgraph", "shadow", "fundamentals-bridge-index.json"),
   asOf: trajectoryAsOf,
   observations: observationsState?.candidates || {},
   tickers: (rankingState?.rankings || []).map((row) => row.ticker),

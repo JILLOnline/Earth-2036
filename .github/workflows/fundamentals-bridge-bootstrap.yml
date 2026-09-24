@@ -4,6 +4,15 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "17 4 * * *"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/fundamentals-bridge-bootstrap.yml"
+      - "scripts/validate-fundamentals-bridge-bootstrap.mjs"
+      - "scripts/lab-fundamentals-trajectory-bridge.mjs"
+      - "scripts/workgraph-sync.mjs"
+      - "scripts/finalize-qualified-tick.mjs"
+      - "config/fundamentals-trajectory-bridge-v1.json"
   pull_request:
     paths:
       - ".github/workflows/fundamentals-bridge-bootstrap.yml"

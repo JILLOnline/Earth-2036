@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "contract": "workgraph-v2-evidence",
+  "ticker": "NBIS",
+  "workId": "t0:NBIS",
+  "role": "earth-scout",
+  "generatedAt": "2026-09-24T00:02:29Z",
+  "assist": {
+    "requestId": "assist:NBIS:council-alpha:earth-scout:source-acquisition",
+    "inputSignature": "50e6ac65235adce0e772",
+    "rootOwner": "council-alpha",
+    "capability": "source-acquisition"
+  },
+  "perspectives": ["discovery-weak-signals", "expectations-execution"],
+  "lineage": {
+    "startingGitHead": "6c311b36058f2a057e5b5d26379914b08206aee6",
+    "originFingerprints": [
+      "sec:NBIS:20-F:2025:pricing-pressure-long-contract-demand-risk",
+      "issuer:NBIS:convertible-notes-close:2026-08-24"
+    ],
+    "supersedes": []
+  },
+  "sources": [
+    {
+      "sourceId": "sec:NBIS:20-F:2025",
+      "type": "primary-regulatory",
+      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926052948/nbis-20251231x20f.htm",
+      "observedFacts": [
+        "Nebius states it has limited experience delivering and managing longer-term customer contracts, creating operational, financial and contractual risk.",
+        "Nebius states lower-compute AI models could reduce or alter demand for its offerings.",
+        "Nebius states evolving industry pricing pressure and sustained price reductions may reduce margins.",
+        "Nebius states excess AI infrastructure capacity could cause pricing pressure, lower utilization, longer sales cycles, contract renegotiations or impairments if expected workloads do not materialize."
+      ]
+    },
+    {
+      "sourceId": "issuer:NBIS:convertible-notes-close:2026-08-24",
+      "type": "primary-issuer",
+      "url": "https://nebius.com/newsroom/nebius-group-announces-closing-of-private-offering-of-convertible-senior-notes-with-aggregate-gross-proceeds-of-approximately-5-75-billion",
+      "observedFacts": [
+        "Nebius closed $5.75 billion aggregate principal of convertible senior notes in August 2026.",
+        "The company said proceeds are intended for data-center buildout, full-stack AI cloud investment, footprint expansion, GPU procurement and general corporate purposes."
+      ]
+    }
+  ],
+  "factors": [
+    {
+      "name": "pricingPower",
+      "direction": "mixed",
+      "basis": "The regulatory filing explicitly identifies industry pricing pressure and sustained price reductions as margin risks; this is source-addressed evidence against assuming durable pricing power."
+    },
+    {
+      "name": "substitutionResilience",
+      "direction": "mixed",
+      "basis": "The filing identifies lower-compute generative-AI/inference models as a demand risk, creating a concrete technology-substitution falsifier."
+    },
+    {
+      "name": "financialOperatingMomentum",
+      "direction": "mixed",
+      "basis": "Large new convertible financing expands buildout capacity but increases the importance of utilization, contract delivery and capital-efficiency evidence; financing itself is not operating performance."
+    }
+  ],
+  "risks": [
+    "Long-duration customer contracts add execution and contractual risk because the issuer says its experience managing them is limited.",
+    "Industry overcapacity or lower-compute model architectures could pressure utilization and pricing.",
+    "The August 2026 convertible financing materially expands capital available for growth but creates repayment/dilution exposure and does not prove returns on deployed capital."
+  ],
+  "contradictions": [
+    "Large contracted demand and rapid buildout support demand visibility, while the issuer's own 20-F warns that industry overcapacity, pricing pressure and contract execution can still impair utilization and margins."
+  ],
+  "unknowns": [
+    "Current realized pricing per unit of compute and renewal pricing versus prior contracts.",
+    "Incremental return on invested capital for capacity funded by the August 2026 notes.",
+    "Customer-level utilization and margin contribution for long-duration contracted capacity."
+  ],
+  "confidence": "high for stated regulatory/financing facts; medium for underwriting implications",
+  "recommendedNextOwner": "council-alpha",
+  "recommendedNextState": "researching",
+  "value": "Adds materially different primary regulatory evidence for pricingPower/substitutionResilience and current capital-structure evidence that Alpha can source-address without Scout assigning numeric scores."
+}

@@ -82,6 +82,9 @@ jobs:
       - name: Verify bounded worker control surfaces
         if: steps.scope.outputs.run_engine == 'true'
         run: node scripts/check-worker-control-surface.mjs
+      - name: Runtime coherence smoke
+        if: steps.scope.outputs.run_engine == 'true'
+        run: npm run smoke:runtime
       - name: Dispatch Pages after verified main push
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:

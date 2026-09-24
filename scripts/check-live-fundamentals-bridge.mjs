@@ -32,8 +32,12 @@ if (health.asOf !== state.lastCycleAt) errors.push("health_not_exact_current_mac
 if (Number(health.companies) !== 250) errors.push("health_population_not_250");
 if (Number(health.valid || 0) + Number(health.unknown || 0) + Number(health.invalid || 0) !== 250) errors.push("health_denominator_mismatch");
 if (Number(health.invalid || 0) !== 0) errors.push("invalid_live_bridge_references");
+if (Number(health.futureLeakage || 0) !== 0) errors.push("future_leakage_detected");
+if (Number(health.cikMismatches || 0) !== 0) errors.push("cik_mismatch_detected");
+if (Number(health.hashFailures || 0) !== 0) errors.push("hash_failure_detected");
+if (Number(health.projectionAuthority || 0) !== 0) errors.push("projection_authority_violation");
 if (Number(health.canonicalWrites || 0) !== 0 || health.canonicalWriteAuthority !== false) errors.push("canonical_authority_violation");
-if (!health.archiveTag || !health.archiveAsset || !/^[a-f0-9]{64}$/.test(String(health.archiveSha256 || ""))) errors.push("durable_archive_attestation_missing");
+if (health.durableArchive !== true || !health.archiveTag || !health.archiveAsset || !/^[a-f0-9]{64}$/.test(String(health.archiveSha256 || ""))) errors.push("durable_archive_attestation_missing");
 if (governance.canonicalWriteAuthority !== false || governance.mayChangeEarthScore !== false ||
     governance.mayChangeCanonicalRank !== false || governance.mayChangeWorkgraphState !== false ||
     governance.mayAffectTickQualification !== false || governance.mayGenerateForecasts !== false ||

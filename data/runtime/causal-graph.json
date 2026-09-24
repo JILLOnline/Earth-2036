@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-24T10:19:41.594Z",
+  "updatedAt": "2026-09-24T12:30:09.541Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1586,6 +1586,18 @@
       "type": "market",
       "label": "test/emulation demand",
       "description": "engineers need earlier validation to reduce design and deployment risk"
+    },
+    {
+      "id": "company:KTOS",
+      "type": "company",
+      "label": "Kratos Defense & Security Solutions",
+      "description": "Kratos' structural position links low-cost unmanned aircraft, propulsion/hypersonic systems, satellite/ground communications and microwave electronics to defense demand for affordable autonomous mass, resilient communications and contested-environment infrastructure; current production expansion indicates the binding challenge is increasingly industrial scaling and profitable conversion rather than demonstration alone."
+    },
+    {
+      "id": "market:KTOS-autonomous-mass-and-contested-environment-mission-capability",
+      "type": "market",
+      "label": "autonomous mass and contested-environment mission capability",
+      "description": "lower-cost unmanned aircraft, propulsion, communications and mission hardware expand deployable capacity"
     }
   ],
   "edges": [
@@ -3647,6 +3659,22 @@
         "keysight-ir:2026-05-19:q2-results"
       ],
       "observedAt": "2026-09-20T21:27:25Z"
+    },
+    {
+      "id": "edge:KTOS-structural-exposure",
+      "from": "company:KTOS",
+      "to": "market:KTOS-autonomous-mass-and-contested-environment-mission-capability",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 86,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:KTOS:ir",
+        "issuer:KTOS:2025-results",
+        "sec:KTOS:2025-annual"
+      ],
+      "observedAt": "2026-09-20T22:24:46Z"
     }
   ],
   "structuralSignals": [
@@ -6205,6 +6233,26 @@
       ],
       "observedAt": "2026-09-20T21:27:25Z",
       "thesis": "Keysight occupies a design-validation bottleneck between increasingly complex electronic/communications architectures and deployable products: design, emulation and physical test reduce uncertainty before customers commit systems to production or operation.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:KTOS-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:KTOS-autonomous-mass-and-contested-environment-mission-capability",
+      "affectedNodeIds": [
+        "company:KTOS"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 86,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:KTOS:ir",
+        "issuer:KTOS:2025-results",
+        "sec:KTOS:2025-annual"
+      ],
+      "observedAt": "2026-09-20T22:24:46Z",
+      "thesis": "Kratos' structural position links low-cost unmanned aircraft, propulsion/hypersonic systems, satellite/ground communications and microwave electronics to defense demand for affordable autonomous mass, resilient communications and contested-environment infrastructure; current production expansion indicates the binding challenge is increasingly industrial scaling and profitable conversion rather than demonstration alone.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

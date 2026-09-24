@@ -1,0 +1,298 @@
+name: Fundamentals Bridge Live Bootstrap
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/fundamentals-bridge-live-bootstrap.yml"
+  schedule:
+    - cron: "47 6 * * *"
+    - cron: "17 7 * * 0"
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: fundamentals-bridge-live-bootstrap
+  cancel-in-progress: false
+
+jobs:
+  live-refresh:
+    if: github.event_name != 'schedule' || github.event.schedule == '47 6 * * *'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
+      SEC_BULK_URL: "https://www.sec.gov/Archives/edgar/daily-index/xbrl/companyfacts.zip"
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 50
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - run: npm ci
+
+      - name: Resolve exact Trajectory cutoff
+        id: cutoff
+        shell: bash
+        run: |
+          set -euo pipefail
+          as_of=$(node - <<'NODE'
+          const fs = require("fs");
+          const ranking = JSON.parse(fs.readFileSync("data/runtime/current-ranking.json", "utf8"));
+          const score = JSON.parse(fs.readFileSync("data/runtime/score-state.json", "utf8"));
+          const value = ranking.capturedAt || score.updatedAt;
+          if (!value || !Number.isFinite(Date.parse(value))) throw new Error("No valid live Trajectory cutoff");
+          process.stdout.write(value);
+          NODE
+          )
+          echo "as_of=$as_of" >> "$GITHUB_OUTPUT"
+
+      - name: Restore durable source cache or bootstrap from SEC bulk
+        id: source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/lab/bridge
+          manifest="data/runtime/workgraph/shadow/fundamentals-source-archive.json"
+          mode="initial-bulk"
+          if [ -f "$manifest" ]; then
+            tag=$(jq -r '.releaseTag // empty' "$manifest")
+            asset=$(jq -r '.assetName // empty' "$manifest")
+            expected_sha=$(jq -r '.archiveSha256 // empty' "$manifest")
+            if [ -n "$tag" ] && [ -n "$asset" ] && [ -n "$expected_sha" ]; then
+              mkdir -p /tmp/fundamentals-prior
+              gh release download "$tag" --repo "${{ github.repository }}" --pattern "$asset" --dir /tmp/fundamentals-prior
+              echo "$expected_sha  /tmp/fundamentals-prior/$asset" | sha256sum -c -
+              tar -xzf "/tmp/fundamentals-prior/$asset" -C data/lab/bridge
+              node - <<'NODE'
+              const fs = require("fs");
+              const manifest = JSON.parse(fs.readFileSync("data/runtime/workgraph/shadow/fundamentals-source-archive.json","utf8"));
+              const companies = Object.fromEntries((manifest.entries || []).map((row) => [row.ticker, {
+                cik: row.cik,
+                filingFingerprint: row.filingFingerprint ?? null,
+                payloadHash: row.sourcePayloadHash,
+                archivePath: row.archivePath,
+                fetchedAt: manifest.generatedAt,
+                lastRawFactsHash: row.lastRawFactsHash ?? null,
+              }]));
+              fs.writeFileSync("data/lab/bridge/cache-manifest.json", JSON.stringify({
+                contract: "earth2036-bridge-source-cache-v1",
+                companies,
+                historical: {},
+              }, null, 2) + "\n");
+              NODE
+              mode="incremental-fingerprint"
+            fi
+          fi
+
+          if [ "$mode" = "initial-bulk" ]; then
+            curl --fail --location --retry 4 --retry-delay 2 \
+              -A "$SEC_USER_AGENT" -H "Accept: application/zip" \
+              "$SEC_BULK_URL" -o /tmp/companyfacts.zip
+            unzip -tq /tmp/companyfacts.zip >/dev/null
+          fi
+          echo "mode=$mode" >> "$GITHUB_OUTPUT"
+
+      - name: Build complete 250-company bridge shadow
+        env:
+          AS_OF: ${{ steps.cutoff.outputs.as_of }}
+          MODE: ${{ steps.source.outputs.mode }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$MODE" = "initial-bulk" ]; then
+            node scripts/lab-fundamentals-trajectory-bridge.mjs \
+              --cache-dir data/lab/bridge --limit 250 --bulk-zip /tmp/companyfacts.zip \
+              --as-of "$AS_OF" --publish-health | tee bridge-live-bootstrap.json
+          else
+            node scripts/lab-fundamentals-trajectory-bridge.mjs \
+              --cache-dir data/lab/bridge --limit 250 \
+              --as-of "$AS_OF" --publish-health | tee bridge-live-bootstrap.json
+          fi
+
+      - name: Build immutable selected-source archive and publish runtime metadata
+        id: publication
+        env:
+          AS_OF: ${{ steps.cutoff.outputs.as_of }}
+          MODE: ${{ steps.source.outputs.mode }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_set_hash=$(node --input-type=module - <<'NODE'
+          import { readFile } from "node:fs/promises";
+          import { sourceSetHash } from "./scripts/lib/fundamentals-bootstrap-publication.mjs";
+          const manifest = JSON.parse(await readFile("data/lab/bridge/cache-manifest.json","utf8"));
+          process.stdout.write(sourceSetHash(manifest));
+          NODE
+          )
+          short="${source_set_hash:0:20}"
+          tag="fundamentals-source-$short"
+          asset="fundamentals-source-$short.tar.gz"
+          archive="/tmp/$asset"
+          tar --sort=name --mtime='@0' --owner=0 --group=0 --numeric-owner -I 'gzip -n' \
+            -cf "$archive" -C data/lab/bridge source
+
+          args=(
+            --cache-dir data/lab/bridge
+            --archive-file "$archive"
+            --release-tag "$tag"
+            --asset-name "$asset"
+            --source-url "$SEC_BULK_URL"
+          )
+          if [ "$MODE" = "initial-bulk" ]; then
+            args+=(--bulk-zip /tmp/companyfacts.zip)
+          fi
+          node scripts/publish-fundamentals-bridge-bootstrap.mjs "${args[@]}" | tee bridge-publication.json
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "asset=$asset" >> "$GITHUB_OUTPUT"
+          echo "archive=$archive" >> "$GITHUB_OUTPUT"
+
+      - name: Verify #10/#11 truth and production build
+        run: |
+          set -euo pipefail
+          node --test \
+            test/fundamentals-truth.test.mjs \
+            test/fundamentals-trajectory-bridge.test.mjs \
+            test/fundamentals-bootstrap-publication.test.mjs \
+            test/trajectory-engine.test.mjs
+          npm run typecheck
+          npm run build
+
+      - name: Persist immutable raw SEC source archive as GitHub Release asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.publication.outputs.tag }}
+          ASSET: ${{ steps.publication.outputs.asset }}
+          ARCHIVE: ${{ steps.publication.outputs.archive }}
+          AS_OF: ${{ steps.cutoff.outputs.as_of }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" --repo "${{ github.repository }}" >/dev/null 2>&1; then
+            mkdir -p /tmp/release-verify
+            gh release download "$TAG" --repo "${{ github.repository }}" --pattern "$ASSET" --dir /tmp/release-verify
+            test "$(sha256sum "$ARCHIVE" | awk '{print $1}')" = "$(sha256sum "/tmp/release-verify/$ASSET" | awk '{print $1}')"
+          else
+            gh release create "$TAG" "$ARCHIVE#SEC Company Facts selected source archive" \
+              --repo "${{ github.repository }}" --target "$(git rev-parse HEAD)" \
+              --title "Earth 2036 Fundamentals Source $TAG" \
+              --notes "Immutable SEC Company Facts source archive for the #11 live shadow bridge. Cutoff: $AS_OF. No canonical/rank/tick authority."
+          fi
+
+      - name: Commit compact verified bridge index and archive pointer
+        id: persist
+        env:
+          GH_TOKEN: ${{ github.token }}
+          AS_OF: ${{ steps.cutoff.outputs.as_of }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "earth2036-fundamentals[bot]"
+          git config user.email "earth2036-fundamentals@users.noreply.github.com"
+          git add \
+            data/runtime/workgraph/shadow/fundamentals-bridge-index.json \
+            data/runtime/workgraph/shadow/fundamentals-bridge-health.json \
+            data/runtime/workgraph/shadow/fundamentals-source-archive.json
+          if git diff --cached --quiet; then
+            echo "published_head=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "Earth 2036 #11 live fundamentals bridge refresh $AS_OF"
+          for attempt in 1 2 3; do
+            git fetch --no-tags origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              echo "published_head=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          done
+          echo "Unable to persist verified fundamentals bridge after 3 attempts." >&2
+          exit 1
+
+      - name: Refresh Workgraph and browser projection from published bridge
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PUBLISHED_HEAD: ${{ steps.persist.outputs.published_head }}
+        run: |
+          set -euo pipefail
+          gh workflow run earth2036-workgraph-reconcile.yml --repo "${{ github.repository }}" --ref main
+          gh workflow run earth2036-pages.yml --repo "${{ github.repository }}" --ref main -f source_sha="$PUBLISHED_HEAD"
+
+      - name: Retain live bootstrap attestation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fundamentals-bridge-live-${{ github.run_id }}
+          path: |
+            bridge-live-bootstrap.json
+            bridge-publication.json
+            data/runtime/workgraph/shadow/fundamentals-bridge-health.json
+            data/runtime/workgraph/shadow/fundamentals-source-archive.json
+          if-no-files-found: ignore
+          retention-days: 30
+
+  weekly-full-drift:
+    if: github.event_name == 'schedule' && github.event.schedule == '17 7 * * 0'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
+      SEC_BULK_URL: "https://www.sec.gov/Archives/edgar/daily-index/xbrl/companyfacts.zip"
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+      - name: Full SEC bulk drift canary across all 250
+        shell: bash
+        run: |
+          set -euo pipefail
+          as_of=$(node - <<'NODE'
+          const fs = require("fs");
+          const ranking = JSON.parse(fs.readFileSync("data/runtime/current-ranking.json","utf8"));
+          const score = JSON.parse(fs.readFileSync("data/runtime/score-state.json","utf8"));
+          process.stdout.write(ranking.capturedAt || score.updatedAt);
+          NODE
+          )
+          curl --fail --location --retry 4 --retry-delay 2 \
+            -A "$SEC_USER_AGENT" -H "Accept: application/zip" \
+            "$SEC_BULK_URL" -o /tmp/companyfacts.zip
+          unzip -tq /tmp/companyfacts.zip >/dev/null
+          node scripts/lab-fundamentals-trajectory-bridge.mjs \
+            --cache-dir /tmp/earth2036-bridge-drift --limit 250 --bulk-zip /tmp/companyfacts.zip \
+            --as-of "$as_of" | tee bridge-full-drift.json
+          node --input-type=module - <<'NODE'
+          import { readFile } from "node:fs/promises";
+          import { fundamentalsBridgeHealth } from "./scripts/lib/fundamentals-trajectory-bridge.mjs";
+          const index = JSON.parse(await readFile("/tmp/earth2036-bridge-drift/current-index.json","utf8"));
+          const refs = Object.values(index.entries || {}).map((entry) => entry.reference);
+          const health = fundamentalsBridgeHealth(refs);
+          if (health.companies !== 250 || health.invalid !== 0 || health.canonicalWrites !== 0 || health.projectionAuthority !== 0) {
+            throw new Error("Full-universe fundamentals drift canary failed: " + JSON.stringify(health));
+          }
+          console.log(JSON.stringify({ passed: true, ...health }, null, 2));
+          NODE
+          node --test test/fundamentals-truth.test.mjs test/fundamentals-trajectory-bridge.test.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fundamentals-bridge-full-drift-${{ github.run_id }}
+          path: bridge-full-drift.json
+          if-no-files-found: ignore
+          retention-days: 30

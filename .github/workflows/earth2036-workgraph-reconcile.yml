@@ -144,3 +144,41 @@ jobs:
 
           echo "Beast/source-mesh gate remains closed; persisting non-canonical Workgraph state and routing only."
           exit 0
+
+      - name: Recover stale source cycle and refresh browser projection
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          state_json=$(gh api "repos/${{ github.repository }}/contents/data/runtime/system-state.json?ref=main" --jq .content | tr -d '\n' | base64 -d)
+          last_cycle=$(jq -r '.lastCycleAt // ""' <<<"$state_json")
+          now_epoch=$(date -u +%s)
+          machine_age=999999
+          if [ -n "$last_cycle" ]; then
+            machine_age=$((now_epoch - $(date -d "$last_cycle" +%s)))
+          fi
+
+          if [ "$machine_age" -gt 3300 ]; then
+            active_scheduler=$(gh run list --repo "${{ github.repository }}" --workflow earth2036-scheduler.yml --limit 10 --json status --jq '[.[] | select(.status == "in_progress" or .status == "queued")] | length')
+            if [ "$active_scheduler" = "0" ]; then
+              gh workflow run earth2036-scheduler.yml --repo "${{ github.repository }}" --ref main
+              echo "Dispatched Scheduler because machine source state is ${machine_age}s old."
+            fi
+          fi
+
+          latest_pages=$(gh run list --repo "${{ github.repository }}" --workflow earth2036-pages.yml --branch main --limit 1 --json status,createdAt,headSha --jq '.[0] // {}')
+          pages_status=$(jq -r '.status // "missing"' <<<"$latest_pages")
+          pages_created=$(jq -r '.createdAt // ""' <<<"$latest_pages")
+          pages_age=999999
+          if [ -n "$pages_created" ]; then
+            pages_age=$((now_epoch - $(date -d "$pages_created" +%s)))
+          fi
+          active_pages=$(gh run list --repo "${{ github.repository }}" --workflow earth2036-pages.yml --limit 10 --json status --jq '[.[] | select(.status == "in_progress" or .status == "queued")] | length')
+
+          if [ "$active_pages" = "0" ] && { [ "$pages_status" = "missing" ] || [ "$pages_age" -gt 1200 ]; }; then
+            current_main=$(gh api "repos/${{ github.repository }}/commits/main" --jq .sha)
+            gh workflow run earth2036-pages.yml --repo "${{ github.repository }}" --ref main -f source_sha="$current_main"
+            echo "Dispatched bounded operational Pages refresh for $current_main."
+          fi

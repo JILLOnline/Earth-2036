@@ -507,3 +507,26 @@ test("63 human-readable SEC CIK and hash diagnostics are counted in System healt
   assert.equal(health.cikMismatches, 1);
   assert.equal(health.hashFailures, 1);
 });
+
+
+test("64 live bridge bootstrap verifies immutable archive and preserves authority firewall", async () => {
+  const workflow = await readFile(new URL("../.github/workflows/fundamentals-trajectory-bridge-live.yml", import.meta.url), "utf8");
+  const checker = await readFile(new URL("../scripts/check-live-fundamentals-bridge.mjs", import.meta.url), "utf8");
+  const scheduler = await readFile(new URL("../.github/workflows/earth2036-scheduler.yml", import.meta.url), "utf8");
+  const finalizer = await readFile(new URL("../scripts/finalize-qualified-tick.mjs", import.meta.url), "utf8");
+  const sync = await readFile(new URL("../scripts/workgraph-sync.mjs", import.meta.url), "utf8");
+
+  assert.ok(workflow.includes("--limit 250"));
+  assert.ok(workflow.includes("expected_sha="));
+  assert.ok(workflow.includes("actual_sha="));
+  assert.ok(workflow.includes("Durable archive SHA256 mismatch"));
+  assert.ok(workflow.includes("bridge-cache.tar.gz.sha256"));
+  assert.ok(checker.includes("future_leakage_detected"));
+  assert.ok(checker.includes("cik_mismatch_detected"));
+  assert.ok(checker.includes("hash_failure_detected"));
+  assert.ok(checker.includes("projection_authority_violation"));
+  assert.ok(checker.includes("canonical_authority_violation"));
+  assert.ok(scheduler.includes("fundamentals-trajectory-bridge-live.yml"));
+  assert.ok(finalizer.includes("fundamentals-bridge-index.json"));
+  assert.ok(sync.includes("LIVE_BRIDGE_INDEX_PATH"));
+});

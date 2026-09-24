@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "role": "council-alpha",
+  "generatedAt": "2026-09-24T01:13:25Z",
+  "ticker": "IR",
+  "company": "Ingersoll Rand",
+  "workId": "t0:IR",
+  "sourceCycleKey": "2026-09-24T01:08:26.911Z",
+  "calibrationVersion": "1.0.0-calibration-a",
+  "status": "blocked_score_record",
+  "perspectives": ["source-integrity", "company-underwriting"],
+  "source-integrity": {
+    "identityTradability": "validated in current packet: NYSE IR, CIK 0001699150",
+    "provenance": "Reused SEC-filed Q2 operating evidence and current independent valuation from prior Alpha; changed strategy to SEC entity/proxy path for governance rather than repeating quarterly results.",
+    "freshness": "Q2 2026 operating evidence and 2026-09-23 valuation remain current; SEC entity index confirms a 2026 definitive proxy is available.",
+    "duplicateOriginCollapse": "Issuer earnings release and SEC-filed exhibit are treated as one economic origin.",
+    "sourceIndependence": "Independent market valuation remains distinct from issuer/SEC operating evidence.",
+    "rawVsDerivedConsistency": "No new contradiction identified; operating growth, liquidity and M&A dependence remain consistent with packet evidence.",
+    "gating": true
+  },
+  "company-underwriting": {
+    "evidenceClaims": [
+      "Prior Alpha evidence established Q2 orders of $2.043 billion, revenue of $2.049 billion, adjusted EBITDA of $520 million, free cash flow of $269 million and $3.8 billion liquidity.",
+      "Independent market evidence previously established about $29.55 billion market capitalization on 2026-09-23.",
+      "SEC entity records confirm a 2026 definitive proxy is available, providing the exact lawful path for governance/incentive extraction rather than treating governance as generically unavailable."
+    ],
+    "scoreRecord": null,
+    "gatingDefect": "The remaining hard score gate is now limited to source-addressed governancePower and supplyChainResilience plus valuation normalization against net debt/share count. Existing evidence is sufficient to calibrate several operating/causal components but not all 12 without manufacturing the missing two bands.",
+    "nextLawfulSourcePath": "Extract board/incentive/capital-allocation facts from the April 23, 2026 DEF 14A; extract supplier/geographic concentration and debt/share-count data from the latest 10-K/10-Q. Then combine with the existing independent market-cap observation and complete all 12 calibrated components.",
+    "recommendedNextState": "researching",
+    "nextOwner": "council-alpha"
+  },
+  "sourceIds": {
+    "ir-sec-entity": "https://www.sec.gov/edgar/browse/?CIK=1158780&owner=exclude",
+    "ir-q2-2026-sec": "https://www.sec.gov/Archives/edgar/data/1699150/000162828026051068/ir2026q2ex991.htm",
+    "ir-market-2026-09-23": "https://www.investing.com/equities/ingersoll-rand"
+  },
+  "sourcePathsAttempted": ["SEC entity/proxy index", "reused direct SEC Q2 exhibit", "reused independent current market valuation"],
+  "failedStrategy": "Prior run stopped with generic governance and supply-chain gaps after adding operating and valuation evidence.",
+  "changedStrategy": "Located the exact SEC proxy path and reduced the blocker to extraction of proxy governance, supplier/geographic dependencies and net-debt/share-count normalization.",
+  "repeatedBlocker": false,
+  "contradictions": [{"claim":"Revenue growth outpaced adjusted EBITDA growth.","resolution":"Treat momentum as positive but not uniformly margin-expansive.","resolved":true}],
+  "unknowns": ["Proxy facts have not yet been extracted into factor evidence.", "Critical supplier/geographic redundancy remains unscored pending filing extraction."],
+  "confidence": 83,
+  "lineage": {"packetPath": "data/runtime/workgraph/packets/IR.json", "supersedes": "data/runtime/workgraph/evidence/IR-20260924T001603Z-council-alpha.json"}
+}

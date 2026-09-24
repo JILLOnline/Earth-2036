@@ -507,3 +507,21 @@ test("63 human-readable SEC CIK and hash diagnostics are counted in System healt
   assert.equal(health.cikMismatches, 1);
   assert.equal(health.hashFailures, 1);
 });
+
+
+test("64 production bootstrap is durable, shadow-only, and consumed from committed runtime index", async () => {
+  const finalizer = await readFile(new URL("../scripts/finalize-qualified-tick.mjs", import.meta.url), "utf8");
+  const sync = await readFile(new URL("../scripts/workgraph-sync.mjs", import.meta.url), "utf8");
+  const workflow = await readFile(new URL("../.github/workflows/fundamentals-bridge-bootstrap.yml", import.meta.url), "utf8");
+  const validator = await readFile(new URL("../scripts/validate-fundamentals-bridge-bootstrap.mjs", import.meta.url), "utf8");
+  assert.ok(finalizer.includes("fundamentals-bridge-index.json"));
+  assert.equal(finalizer.includes('data", "lab", "bridge", "current-index.json'), false);
+  assert.ok(sync.includes("BRIDGE_INDEX_PATH"));
+  assert.ok(sync.includes("systemState?.lastCycleAt"));
+  assert.ok(workflow.includes("--limit 250"));
+  assert.ok(workflow.includes("gh release create"));
+  assert.ok(workflow.includes("fundamentals-source-cache.tar.gz.sha256"));
+  assert.ok(validator.includes("canonicalWriteAuthority: false"));
+  assert.ok(validator.includes("trialEligible: false"));
+  assert.ok(validator.includes("statuses.invalid !== 0"));
+});

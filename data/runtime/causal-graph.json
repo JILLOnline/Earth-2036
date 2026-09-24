@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-24T04:18:13.132Z",
+  "updatedAt": "2026-09-24T05:16:20.902Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1478,6 +1478,30 @@
       "type": "market",
       "label": "utility demand for automated lateral protection",
       "description": "automatic clearing of temporary faults and remote visibility can reduce sustained outages, restoration time and truck rolls"
+    },
+    {
+      "id": "company:INVZ",
+      "type": "company",
+      "label": "Innoviz Technologies Ltd.",
+      "description": "Innoviz's automotive-grade LiDAR capability can bridge from long-cycle vehicle qualification into defense/security sensing needs, where counter-UAS and perimeter applications create a second demand path."
+    },
+    {
+      "id": "market:INVZ-high-resolution-3d-perception-demand",
+      "type": "market",
+      "label": "high-resolution 3D perception demand",
+      "description": "vehicles and defense systems require reliable object/location information under operational constraints"
+    },
+    {
+      "id": "company:ISRG",
+      "type": "company",
+      "label": "Intuitive Surgical, Inc.",
+      "description": "Intuitive's installed da Vinci/Ion base and recurring procedure-driven instruments revenue create a reinforcing platform loop: hospital capital/lease adoption enables procedure capacity, procedure growth drives consumables and service demand, and utilization supports further platform adoption."
+    },
+    {
+      "id": "market:ISRG-procedure-capacity-and-clinician-workflow-adoption",
+      "type": "market",
+      "label": "procedure capacity and clinician workflow adoption",
+      "description": "systems placed into hospitals enable robotic procedures"
     }
   ],
   "edges": [
@@ -3400,6 +3424,36 @@
         "hubbell:2026-05-04:linedefender-scm"
       ],
       "observedAt": "2026-09-20T20:22:16Z"
+    },
+    {
+      "id": "edge:INVZ-structural-exposure",
+      "from": "company:INVZ",
+      "to": "market:INVZ-high-resolution-3d-perception-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 90,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "innoviz-ir:2026-08-05:q2-results",
+        "innoviz-ir:2026-07-30:defense-orders"
+      ],
+      "observedAt": "2026-09-20T20:22:16Z"
+    },
+    {
+      "id": "edge:ISRG-structural-exposure",
+      "from": "company:ISRG",
+      "to": "market:ISRG-procedure-capacity-and-clinician-workflow-adoption",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "isrg:2026-04-21:q1-results",
+        "isrg:2026-07-21:q2-10q"
+      ],
+      "observedAt": "2026-09-20T21:27:25Z"
     }
   ],
   "structuralSignals": [
@@ -5784,6 +5838,44 @@
       "observedAt": "2026-09-20T20:22:16Z",
       "thesis": "LineDefender converts a grid-reliability need into automated lateral fault isolation and remote restoration; a dedicated scalable U.S. facility links utility pilot validation to production capacity.",
       "falsifier": "utilities do not realize operational benefits at scale or competing architectures deliver superior lifecycle economics"
+    },
+    {
+      "id": "signal:INVZ-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:INVZ-high-resolution-3d-perception-demand",
+      "affectedNodeIds": [
+        "company:INVZ"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 90,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "innoviz-ir:2026-08-05:q2-results",
+        "innoviz-ir:2026-07-30:defense-orders"
+      ],
+      "observedAt": "2026-09-20T20:22:16Z",
+      "thesis": "Innoviz's automotive-grade LiDAR capability can bridge from long-cycle vehicle qualification into defense/security sensing needs, where counter-UAS and perimeter applications create a second demand path.",
+      "falsifier": "alternative sensor stacks meet required performance at materially better lifecycle economics"
+    },
+    {
+      "id": "signal:ISRG-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:ISRG-procedure-capacity-and-clinician-workflow-adoption",
+      "affectedNodeIds": [
+        "company:ISRG"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "isrg:2026-04-21:q1-results",
+        "isrg:2026-07-21:q2-10q"
+      ],
+      "observedAt": "2026-09-20T21:27:25Z",
+      "thesis": "Intuitive's installed da Vinci/Ion base and recurring procedure-driven instruments revenue create a reinforcing platform loop: hospital capital/lease adoption enables procedure capacity, procedure growth drives consumables and service demand, and utilization supports further platform adoption.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],
   "roadmapMilestones": [

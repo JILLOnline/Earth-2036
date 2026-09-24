@@ -14,6 +14,8 @@ const ROOT = process.cwd();
 const LEGACY_PATH = path.join(ROOT, "data", "runtime", "supervisors", "t0-bootstrap-queue.json");
 const REGISTRY_PATH = path.join(ROOT, "data", "runtime", "entity-registry.json");
 const SCORE_STATE_PATH = path.join(ROOT, "data", "runtime", "score-state.json");
+const SYSTEM_STATE_PATH = path.join(ROOT, "data", "runtime", "system-state.json");
+const BRIDGE_INDEX_PATH = path.join(ROOT, "data", "runtime", "workgraph", "shadow", "fundamentals-bridge-index.json");
 const STATE_PATH = path.join(ROOT, "data", "runtime", "workgraph", "state.json");
 const LEARNING_PATH = path.join(ROOT, "data", "runtime", "workgraph", "learning-state.json");
 
@@ -416,9 +418,12 @@ await writeJsonArtifact(path.join(workerViewDir, "command-summary.json"), {
 
 const rankingState = await readJsonOr(path.join(ROOT, "data", "runtime", "current-ranking.json"), { rankings: [] });
 const observationsState = await readJsonOr(path.join(ROOT, "data", "runtime", "company-observations.json"), { candidates: {} });
-const trajectoryAsOf = rankingState?.capturedAt || scoreState?.updatedAt || now.toISOString();
+const systemState = await readJsonOr(SYSTEM_STATE_PATH, {});
+// The live bridge is keyed to the authoritative machine cycle. Workgraph and finalizer
+// therefore consume the same PIT cutoff instead of silently drifting to a promotion timestamp.
+const trajectoryAsOf = systemState?.lastCycleAt || rankingState?.capturedAt || scoreState?.updatedAt || now.toISOString();
 const fundamentalsByTicker = await loadVerifiedBridgeIndex({
-  file: path.join(ROOT, "data", "lab", "bridge", "current-index.json"),
+  file: BRIDGE_INDEX_PATH,
   asOf: trajectoryAsOf,
   observations: observationsState?.candidates || {},
   tickers: (rankingState?.rankings || []).map((row) => row.ticker),

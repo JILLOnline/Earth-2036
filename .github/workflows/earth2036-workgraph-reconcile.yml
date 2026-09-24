@@ -179,14 +179,42 @@ jobs:
           latest_pages=$(gh run list --repo "${{ github.repository }}" --workflow earth2036-pages.yml --branch main --limit 1 --json status,createdAt,headSha --jq '.[0] // {}')
           pages_status=$(jq -r '.status // "missing"' <<<"$latest_pages")
           pages_created=$(jq -r '.createdAt // ""' <<<"$latest_pages")
+          pages_head=$(jq -r '.headSha // ""' <<<"$latest_pages")
           pages_age=999999
           if [ -n "$pages_created" ]; then
             pages_age=$((now_epoch - $(date -d "$pages_created" +%s)))
           fi
+
+          current_main=$(gh api "repos/${{ github.repository }}/commits/main" --jq .sha)
+          critical_projection_changed=false
+          if [ -n "$pages_head" ] && [ "$pages_head" != "$current_main" ]; then
+            git fetch --no-tags --depth=100 origin main
+            if git cat-file -e "$pages_head^{commit}" 2>/dev/null; then
+              if git diff --name-only "$pages_head" "$current_main" -- \
+                  data/runtime/system-state.json \
+                  data/runtime/current-ranking.json \
+                  data/runtime/score-state.json \
+                  data/runtime/source-health.json \
+                  data/runtime/intelligence-integrity.json \
+                  data/runtime/workgraph/metrics.json \
+                  data/runtime/workgraph/shadow/fundamentals-bridge-health.json \
+                  data/runtime/workgraph/shadow/trajectory.json | grep -q .; then
+                critical_projection_changed=true
+              fi
+            else
+              # If the deployed provenance SHA is no longer locally reachable, prefer
+              # a truthful refresh over assuming the browser is current.
+              critical_projection_changed=true
+            fi
+          fi
+
           active_pages=$(gh run list --repo "${{ github.repository }}" --workflow earth2036-pages.yml --limit 10 --json status --jq '[.[] | select(.status == "in_progress" or .status == "queued")] | length')
 
-          if [ "$active_pages" = "0" ] && { [ "$pages_status" = "missing" ] || [ "$pages_age" -gt 1200 ]; }; then
-            current_main=$(gh api "repos/${{ github.repository }}/commits/main" --jq .sha)
+          if [ "$active_pages" = "0" ] && { \
+              [ "$pages_status" = "missing" ] || \
+              [ "$critical_projection_changed" = "true" ] || \
+              [ "$pages_age" -gt 1200 ]; \
+            }; then
             gh workflow run earth2036-pages.yml --repo "${{ github.repository }}" --ref main -f source_sha="$current_main"
-            echo "Dispatched bounded operational Pages refresh for $current_main."
+            echo "Dispatched coherent Pages refresh for $current_main (critical_change=$critical_projection_changed, age=${pages_age}s)."
           fi

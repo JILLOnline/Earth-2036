@@ -1,0 +1,221 @@
+name: Fundamentals Live Universe Bootstrap
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 4 * * *"
+  pull_request:
+    paths:
+      - ".github/workflows/fundamentals-bridge-bootstrap.yml"
+      - "scripts/lab-fundamentals-trajectory-bridge.mjs"
+      - "scripts/validate-fundamentals-bridge-bootstrap.mjs"
+      - "scripts/lib/fundamentals-trajectory-bridge.mjs"
+      - "scripts/lib/fundamentals-bridge-index.mjs"
+      - "scripts/workgraph-sync.mjs"
+      - "scripts/finalize-qualified-tick.mjs"
+      - "config/fundamentals-trajectory-bridge-v1.json"
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: fundamentals-live-bootstrap
+  cancel-in-progress: false
+
+jobs:
+  contract:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+      - run: node --test test/fundamentals-truth.test.mjs test/fundamentals-trajectory-bridge.test.mjs test/trajectory-engine.test.mjs
+      - run: npm run typecheck
+      - run: npm run build
+
+  bootstrap:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 50
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - run: npm ci
+
+      - name: Hydrate latest verified immutable SEC source cache
+        id: hydrate
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/lab/bridge /tmp/bridge-release
+          latest_tag=$(gh release list --repo "${{ github.repository }}" --limit 100 --json tagName,createdAt \
+            --jq '[.[] | select(.tagName | startswith("fundamentals-source-"))] | sort_by(.createdAt) | reverse | .[0].tagName // ""')
+          echo "source_tag=$latest_tag" >> "$GITHUB_OUTPUT"
+          if [ -z "$latest_tag" ]; then
+            echo "No prior immutable source-cache release; performing first bootstrap."
+            exit 0
+          fi
+          gh release download "$latest_tag" --repo "${{ github.repository }}" \
+            --pattern "fundamentals-source-cache.tar.gz" \
+            --pattern "fundamentals-source-cache.tar.gz.sha256" \
+            --dir /tmp/bridge-release
+          (
+            cd /tmp/bridge-release
+            sha256sum -c fundamentals-source-cache.tar.gz.sha256
+          )
+          tar -xzf /tmp/bridge-release/fundamentals-source-cache.tar.gz -C data/lab/bridge
+          echo "Hydrated source cache from $latest_tag."
+
+      - name: Resolve exact machine-cycle PIT cutoff
+        id: cutoff
+        shell: bash
+        run: |
+          set -euo pipefail
+          as_of=$(node -e 'const s=require("./data/runtime/system-state.json"); if(!s.lastCycleAt) process.exit(2); process.stdout.write(s.lastCycleAt)')
+          echo "as_of=$as_of" >> "$GITHUB_OUTPUT"
+          echo "Using PIT cutoff $as_of"
+
+      - name: Build all 250 Fundamentals truth references
+        shell: bash
+        env:
+          AS_OF: ${{ steps.cutoff.outputs.as_of }}
+        run: |
+          set -euo pipefail
+          node scripts/lab-fundamentals-trajectory-bridge.mjs \
+            --as-of "$AS_OF" \
+            --limit 250 \
+            --publish-health \
+            --cache-dir data/lab/bridge \
+            | tee /tmp/fundamentals-live-bootstrap.json
+
+      - name: Validate full universe before archive publication
+        env:
+          AS_OF: ${{ steps.cutoff.outputs.as_of }}
+        run: |
+          node scripts/validate-fundamentals-bridge-bootstrap.mjs \
+            --as-of "$AS_OF" --cache-dir data/lab/bridge
+
+      - name: Publish immutable source archive release
+        id: archive
+        shell: bash
+        env:
+          AS_OF: ${{ steps.cutoff.outputs.as_of }}
+        run: |
+          set -euo pipefail
+          tar -czf /tmp/fundamentals-source-cache.tar.gz -C data/lab/bridge .
+          (
+            cd /tmp
+            sha256sum fundamentals-source-cache.tar.gz > fundamentals-source-cache.tar.gz.sha256
+          )
+          archive_sha=$(cut -d' ' -f1 /tmp/fundamentals-source-cache.tar.gz.sha256)
+          index_hash=$(node -e 'const i=require("./data/lab/bridge/current-index.json"); process.stdout.write(i.indexHash)')
+          stamp=$(date -u +'%Y%m%dT%H%M%SZ')
+          tag="fundamentals-source-${stamp}-${index_hash:0:12}"
+          gh release create "$tag" --repo "${{ github.repository }}" --target "${GITHUB_SHA}" \
+            --title "Fundamentals source archive ${AS_OF}" \
+            --notes "Immutable #11 SEC Company Facts source-cache archive for PIT cutoff ${AS_OF}. Shadow only; no score, rank, Workgraph, canonical or tick authority." \
+            /tmp/fundamentals-source-cache.tar.gz \
+            /tmp/fundamentals-source-cache.tar.gz.sha256
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "sha256=$archive_sha" >> "$GITHUB_OUTPUT"
+
+      - name: Verify machine cutoff is still current
+        env:
+          AS_OF: ${{ steps.cutoff.outputs.as_of }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          remote_as_of=$(gh api "repos/${{ github.repository }}/contents/data/runtime/system-state.json?ref=main" \
+            --jq .content | tr -d '\n' | base64 -d | jq -r '.lastCycleAt // ""')
+          if [ "$remote_as_of" != "$AS_OF" ]; then
+            echo "Machine advanced from $AS_OF to $remote_as_of. Archive remains immutable evidence, but stale index will not be published." >&2
+            exit 1
+          fi
+
+      - name: Publish compact verified index and health to main
+        id: persist
+        env:
+          AS_OF: ${{ steps.cutoff.outputs.as_of }}
+          ARCHIVE_TAG: ${{ steps.archive.outputs.tag }}
+          ARCHIVE_SHA: ${{ steps.archive.outputs.sha256 }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/validate-fundamentals-bridge-bootstrap.mjs \
+            --as-of "$AS_OF" --cache-dir data/lab/bridge \
+            --publish-runtime --archive-tag "$ARCHIVE_TAG" --archive-sha256 "$ARCHIVE_SHA"
+
+          cp data/runtime/workgraph/shadow/fundamentals-bridge-index.json /tmp/fundamentals-bridge-index.json
+          cp data/runtime/workgraph/shadow/fundamentals-bridge-health.json /tmp/fundamentals-bridge-health.json
+
+          git config user.name "earth2036-fundamentals[bot]"
+          git config user.email "earth2036-fundamentals@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            git fetch --no-tags --depth=50 origin main
+            git reset --hard origin/main
+
+            remote_as_of=$(node -e 'const s=require("./data/runtime/system-state.json"); process.stdout.write(s.lastCycleAt || "")')
+            if [ "$remote_as_of" != "$AS_OF" ]; then
+              echo "Machine cutoff changed before compact-index persistence; refusing stale publication." >&2
+              exit 1
+            fi
+
+            cp /tmp/fundamentals-bridge-index.json data/runtime/workgraph/shadow/fundamentals-bridge-index.json
+            cp /tmp/fundamentals-bridge-health.json data/runtime/workgraph/shadow/fundamentals-bridge-health.json
+
+            git add data/runtime/workgraph/shadow/fundamentals-bridge-index.json \
+                    data/runtime/workgraph/shadow/fundamentals-bridge-health.json
+            if git diff --cached --quiet; then
+              echo "published_head=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            git commit -m "#11 publish verified 250-company fundamentals bridge"
+            published_head=$(git rev-parse HEAD)
+            if git push origin HEAD:main; then
+              echo "published_head=$published_head" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          done
+
+          echo "Could not persist compact bridge index after 3 races." >&2
+          exit 1
+
+      - name: Reconcile shadow consumption and publish exact health projection
+        env:
+          PUBLISHED_HEAD: ${{ steps.persist.outputs.published_head }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$PUBLISHED_HEAD"
+          gh workflow run earth2036-workgraph-reconcile.yml --repo "${{ github.repository }}" --ref main
+          gh workflow run earth2036-pages.yml --repo "${{ github.repository }}" --ref main -f source_sha="$PUBLISHED_HEAD"
+
+      - name: Retain bootstrap attestation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fundamentals-live-bootstrap-${{ github.run_id }}
+          path: /tmp/fundamentals-live-bootstrap.json
+          if-no-files-found: ignore
+          retention-days: 30

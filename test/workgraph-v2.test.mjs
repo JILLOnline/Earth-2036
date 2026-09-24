@@ -826,6 +826,22 @@ test("assist bus sleeps an unchanged failed request and reactivates when packet 
   assert.equal(skippedDormant.active, 0);
   assert.equal(skippedDormant.dormant, 1);
 
+  for (const outcome of ["no_new_material_evidence", "existing_lineage_already_contains_candidate_source"]) {
+    const semanticNoProgressRuns = [{
+      role: "earth-scout",
+      generatedAt: "2026-09-19T14:07:00Z",
+      assistAttempts: [{
+        requestId: request.requestId,
+        inputSignature: request.inputSignature,
+        outcome,
+        newEvidencePaths: [],
+      }],
+    }];
+    const semanticDormant = buildAssistRequests(graph, [packet], semanticNoProgressRuns, "2026-09-19T14:12:00Z");
+    assert.equal(semanticDormant.active, 0, outcome);
+    assert.equal(semanticDormant.dormant, 1, outcome);
+  }
+
   const changedPacket = { ...packet, evidencePaths: ["evidence/a.json", "evidence/new.json"] };
   const reactivated = buildAssistRequests(graph, [changedPacket], roleRuns, "2026-09-19T14:20:00Z");
   assert.equal(reactivated.active, 1);

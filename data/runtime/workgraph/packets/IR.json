@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "IR",
   "workId": "t0:IR",
-  "generatedAt": "2026-09-24T05:07:42.413Z",
+  "generatedAt": "2026-09-24T05:16:17.399Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-12T00:00:00.000Z",
-    "end": "2026-09-24T03:16:22.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-24T03:16:22.000Z"
+    "end": "2026-09-24T05:13:29.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-24T05:13:29.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -34,33 +34,35 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
-    ],
-    "missing": [
+      "adversarial-red-team",
       "source-integrity",
       "company-underwriting"
     ],
-    "complete": false
+    "missing": [],
+    "complete": true
   },
   "perspectives": [
     "discovery-weak-signals",
     "expectations-execution",
     "structural-causal",
-    "adversarial-red-team"
+    "adversarial-red-team",
+    "source-integrity",
+    "company-underwriting"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/IR-20260919T220531Z-earth-scout.json",
     "data/runtime/workgraph/evidence/IR-20260920T202216Z-council-beta.json",
-    "data/runtime/workgraph/evidence/IR-20260924T031622Z-council-alpha.json"
+    "data/runtime/workgraph/evidence/IR-20260924T051329Z-council-alpha.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
       "data/runtime/workgraph/evidence/IR-20260924T001603Z-council-alpha.json",
-      "data/runtime/workgraph/evidence/IR-20260924T011325Z-council-alpha.json"
+      "data/runtime/workgraph/evidence/IR-20260924T011325Z-council-alpha.json",
+      "data/runtime/workgraph/evidence/IR-20260924T031622Z-council-alpha.json"
     ],
     "resolvedGateKinds": [],
     "activeEvidenceCount": 6,
-    "historicalEvidenceCount": 10
+    "historicalEvidenceCount": 12
   },
   "factorEvidence": {
     "names": [
@@ -71,11 +73,18 @@
       "pricingPower",
       "acquisitionExecutionRisk",
       "confidenceInflation",
-      "financingRisk"
+      "financingRisk",
+      "supplyChainResilience"
     ],
     "byPerspective": {
       "source-integrity": [],
-      "company-underwriting": [],
+      "company-underwriting": [
+        {
+          "name": "supplyChainResilience",
+          "direction": "mixed",
+          "basis": "Broad raw-material availability is offset by explicit single-source engineered components and limited long-term supplier contracting."
+        }
+      ],
       "structural-causal": [
         {
           "name": "bottleneckControl",
@@ -171,7 +180,8 @@
     "pricingPower",
     "acquisitionExecutionRisk",
     "confidenceInflation",
-    "financingRisk"
+    "financingRisk",
+    "supplyChainResilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -202,6 +212,10 @@
       },
       {
         "risk": "Long-cycle blower/vacuum project timing can create order volatility independent of long-run end-market need.",
+        "gating": false
+      },
+      {
+        "risk": "Single-source castings, motors and engineered components can disrupt customer commitments.",
         "gating": false
       }
     ]
@@ -234,17 +248,23 @@
     {
       "risk": "Long-cycle blower/vacuum project timing can create order volatility independent of long-run end-market need.",
       "gating": false
+    },
+    {
+      "risk": "Single-source castings, motors and engineered components can disrupt customer commitments.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
-    "available": false,
+    "available": true,
     "factors": [],
-    "confidenceFloor": null,
-    "evidencePaths": []
+    "confidenceFloor": 88,
+    "evidencePaths": [
+      "data/runtime/workgraph/evidence/IR-20260924T051329Z-council-alpha.json"
+    ]
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 4
+    "count": 6
   },
   "causalMapping": {
     "present": true,
@@ -290,15 +310,19 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 7,
-    "uniqueSourceCount": 4,
-    "duplicatesCollapsed": 3,
+    "rawSourceCount": 12,
+    "uniqueSourceCount": 8,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "irco:2026-08-03:lone-star-acquisition",
       "irco:2026-04-28:q1-results",
       "irco:2026-02-12:fy25-results-guidance",
-      "irco:2026-07-30:q2-results"
+      "irco:2026-07-30:q2-results",
+      "irco:q2-2026",
+      "sec:1699150:2026-proxy",
+      "stockanalysis:ir:2026-09-23",
+      "sec-filing-mirror:1699150:2025-10k"
     ]
   },
   "sources": [
@@ -333,24 +357,40 @@
       "publishedAt": "2026-07-30",
       "originFingerprint": "irco:2026-07-30:q2-results",
       "sourceId": null
+    },
+    {
+      "sourceId": "ir-q2-2026",
+      "url": "https://investors.irco.com/news/news-details/2026/Ingersoll-Rand-Reports-Second-Quarter-2026-Results/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "irco:q2-2026"
+    },
+    {
+      "sourceId": "ir-2026-proxy",
+      "url": "https://www.sec.gov/Archives/edgar/data/1699150/000114036126016726/ny20063676x1_def14a.htm",
+      "kind": "primary",
+      "primary": true,
+      "originFingerprint": "sec:1699150:2026-proxy"
+    },
+    {
+      "sourceId": "ir-market-2026-09-23",
+      "url": "https://stockanalysis.com/stocks/ir/market-cap/",
+      "kind": "independent",
+      "primary": false,
+      "originFingerprint": "stockanalysis:ir:2026-09-23"
+    },
+    {
+      "sourceId": "ir-2025-10k-supply",
+      "url": "https://www.secinfo.com/d1HM3n.N8d6.htm",
+      "kind": "independent-filing-mirror",
+      "primary": false,
+      "originFingerprint": "sec-filing-mirror:1699150:2025-10k"
     }
   ],
   "contradictions": [
     {
       "claim": "Strong revenue/order growth versus slower EBITDA growth and segment margin pressure.",
       "resolution": "Growth is real, but current evidence supports a mixed rather than uniformly expanding-margin execution picture.",
-      "resolved": true,
-      "gating": false
-    },
-    {
-      "claim": "Revenue growth outpaced adjusted EBITDA growth.",
-      "resolution": "Treat momentum as positive but not uniformly margin-expansive.",
-      "resolved": true,
-      "gating": false
-    },
-    {
-      "claim": "Revenue growth outpaced adjusted EBITDA growth.",
-      "resolution": "Treat momentum as positive but not uniformly margin-expansive.",
       "resolved": true,
       "gating": false
     }
@@ -361,18 +401,6 @@
       {
         "claim": "Strong revenue/order growth versus slower EBITDA growth and segment margin pressure.",
         "resolution": "Growth is real, but current evidence supports a mixed rather than uniformly expanding-margin execution picture.",
-        "resolved": true,
-        "gating": false
-      },
-      {
-        "claim": "Revenue growth outpaced adjusted EBITDA growth.",
-        "resolution": "Treat momentum as positive but not uniformly margin-expansive.",
-        "resolved": true,
-        "gating": false
-      },
-      {
-        "claim": "Revenue growth outpaced adjusted EBITDA growth.",
-        "resolution": "Treat momentum as positive but not uniformly margin-expansive.",
         "resolved": true,
         "gating": false
       }
@@ -395,34 +423,33 @@
       "unknown": "Lone Star post-close retention, synergy capture and return on invested capital are not yet observable.",
       "gating": false
     },
-    "Critical supplier/geographic redundancy remains unscored pending filing extraction.",
-    "Critical supplier/geographic redundancy remains unscored pending filing extraction."
+    {
+      "unknown": "A complete 12-component source-addressed score record still requires assembling the already-supported non-supply components into the Workgraph schema; the former supply-chain evidence absence is resolved.",
+      "gating": true
+    }
   ],
   "unknownDisposition": {
-    "gatingCount": 0,
-    "nonGatingCount": 6
+    "gatingCount": 1,
+    "nonGatingCount": 4
   },
-  "gatingIssues": [],
+  "gatingIssues": [
+    {
+      "issue": "missing_complete_score_record_assembly_after_supply_gate_resolved",
+      "nextLawfulSourcePath": "Reuse Q2/proxy/valuation evidence already in lineage and this 2025 10-K supplier disclosure; calibrate all 12 components under methodology-1.0 without reopening source acquisition."
+    }
+  ],
   "confidence": 87,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_specialist_perspective:source-integrity",
-      "missing_specialist_perspective:company-underwriting",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence"
+      "missing_data_confidence_evidence",
+      "unresolved_gating_issue",
+      "unresolved_gating_unknown"
     ],
     "routing": [
-      {
-        "failure": "missing_specialist_perspective:source-integrity",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:company-underwriting",
-        "owner": "council-alpha"
-      },
       {
         "failure": "missing_factor_evidence",
         "owner": "council-alpha"
@@ -438,6 +465,14 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
+      },
+      {
+        "failure": "unresolved_gating_issue",
+        "owner": "deep-resolver"
+      },
+      {
+        "failure": "unresolved_gating_unknown",
+        "owner": "deep-resolver"
       }
     ]
   }

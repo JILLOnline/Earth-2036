@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-23T23:11:04.598Z",
+  "updatedAt": "2026-09-24T04:18:13.132Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1466,6 +1466,18 @@
       "type": "market",
       "label": "HEI structural demand",
       "description": "Structural demand channel"
+    },
+    {
+      "id": "company:HUBB",
+      "type": "company",
+      "label": "Hubbell Incorporated",
+      "description": "LineDefender converts a grid-reliability need into automated lateral fault isolation and remote restoration; a dedicated scalable U.S. facility links utility pilot validation to production capacity."
+    },
+    {
+      "id": "market:HUBB-utility-demand-for-automated-lateral-protection",
+      "type": "market",
+      "label": "utility demand for automated lateral protection",
+      "description": "automatic clearing of temporary faults and remote visibility can reduce sustained outages, restoration time and truck rolls"
     }
   ],
   "edges": [
@@ -3373,6 +3385,21 @@
         "heico:2026-07-16:senior-notes"
       ],
       "observedAt": "2026-09-20T17:27:59Z"
+    },
+    {
+      "id": "edge:HUBB-structural-exposure",
+      "from": "company:HUBB",
+      "to": "market:HUBB-utility-demand-for-automated-lateral-protection",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "hubbell:2026-09-03:linedefender-facility",
+        "hubbell:2026-05-04:linedefender-scm"
+      ],
+      "observedAt": "2026-09-20T20:22:16Z"
     }
   ],
   "structuralSignals": [
@@ -5738,6 +5765,25 @@
       "observedAt": "2026-09-20T17:27:59Z",
       "thesis": "HEICO has a sourced structural demand path.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:HUBB-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:HUBB-utility-demand-for-automated-lateral-protection",
+      "affectedNodeIds": [
+        "company:HUBB"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "hubbell:2026-09-03:linedefender-facility",
+        "hubbell:2026-05-04:linedefender-scm"
+      ],
+      "observedAt": "2026-09-20T20:22:16Z",
+      "thesis": "LineDefender converts a grid-reliability need into automated lateral fault isolation and remote restoration; a dedicated scalable U.S. facility links utility pilot validation to production capacity.",
+      "falsifier": "utilities do not realize operational benefits at scale or competing architectures deliver superior lifecycle economics"
     }
   ],
   "roadmapMilestones": [

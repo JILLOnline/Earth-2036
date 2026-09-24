@@ -121,6 +121,8 @@ export function buildAssistRequests(graph, packets, roleRuns = [], nowIso = new 
         "unavailable",
         "blocked",
         "no_new_evidence",
+        "no_new_material_evidence",
+        "existing_lineage_already_contains_candidate_source",
         "skipped_same_signature_prior_failure",
         "skipped_unchanged_input",
       ]);

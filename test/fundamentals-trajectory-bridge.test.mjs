@@ -507,3 +507,5 @@ test("63 human-readable SEC CIK and hash diagnostics are counted in System healt
   assert.equal(health.cikMismatches, 1);
   assert.equal(health.hashFailures, 1);
 });
+
+// #11 current-main retest marker

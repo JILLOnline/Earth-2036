@@ -1,0 +1,116 @@
+[
+  {
+    "version": 1,
+    "ticker": "IREN",
+    "entityId": "IREN",
+    "company": "IREN Limited",
+    "workId": "t0:IREN",
+    "role": "council-beta",
+    "perspective": "risk-source-support",
+    "generatedAt": "2026-09-24T06:23:24Z",
+    "assist": {
+      "requestId": "assist:IREN:council-alpha:council-beta:risk-source-support",
+      "inputSignature": "0fcbbfbcb3538853423d",
+      "rootOwner": "council-alpha",
+      "capability": "risk-source-support"
+    },
+    "claims": [
+      {
+        "claim": "IREN's FY2026 10-K reports $7.976 billion principal amount of outstanding indebtedness at June 30, 2026, including $6.746 billion of convertible notes, while stating that additional capital will be required for AI data-center construction and equipment.",
+        "status": "supported"
+      },
+      {
+        "claim": "The filing describes approximately $3.6 billion of secured GPU financing for the Microsoft deployment with debt-service coverage requirements, mandatory-prepayment triggers, restricted cash and limits on subsidiary distributions; insufficient underlying cash flow or covenant failure can permit acceleration and enforcement against secured assets.",
+        "status": "supported"
+      },
+      {
+        "claim": "IREN states it may commit to GPUs and site development before related asset-backed financing is arranged and, in some cases, before customer contracts are executed, creating a timing mismatch between capital commitments and contracted cash flows rather than evidence that the build will fail.",
+        "status": "supported"
+      },
+      {
+        "claim": "FY2026 operating-asset/liability cash movement included a $1.842 billion increase in deferred revenue from AI Cloud customer prepayments; this is a funding strength, but it also means cash generation and recognized revenue should not be conflated because service recognition follows deployment and acceptance.",
+        "status": "supported-interpretation"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "iren-fy26-sec-10k-capital-covenants",
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/iren-20260630.htm",
+        "kind": "primary",
+        "primary": true,
+        "publishedAt": "2026-08-28",
+        "originFingerprint": "sec:1878848:fy2026-10k:debt-liquidity-gpu-financing"
+      }
+    ],
+    "affectedFactors": [
+      {
+        "name": "financingRisk",
+        "direction": "risk",
+        "basis": "Large outstanding debt and continuing capital needs make execution sensitive to financing availability, covenant compliance and deployment cash flows."
+      },
+      {
+        "name": "scenarioRobustness",
+        "direction": "mixed",
+        "basis": "Customer prepayments and committed project financing improve funding resilience, while financing conditions and covenant triggers remain successor bottlenecks."
+      },
+      {
+        "name": "confidenceInflation",
+        "direction": "risk",
+        "basis": "Deferred revenue/prepayments and contracted ARR are economically relevant funding/demand signals but are not equivalent to recognized revenue or realized margin."
+      },
+      {
+        "name": "supplyChainResilience",
+        "direction": "mixed-risk",
+        "basis": "Constrained GPU supply can require commitments before financing or customer contracting is complete, transferring timing risk into the capital structure."
+      }
+    ],
+    "causalEdges": [
+      {
+        "from": "GPU and site commitments",
+        "to": "financing and liquidity demand",
+        "mechanism": "long-lead hardware and construction can require capital commitments before financing and customer cash flows are fully synchronized",
+        "falsifier": "deployment-level evidence shows committed financing, prepayments and operating cash flows consistently cover required capex before obligations become due"
+      },
+      {
+        "from": "customer contract cash flows",
+        "to": "secured GPU debt service",
+        "mechanism": "project financing is supported by financed GPUs and associated customer cash flows, so deployment performance and collections affect covenant and debt-service resilience",
+        "falsifier": "sustained covenant headroom and debt-service coverage remain strong through commissioning and utilization ramps"
+      }
+    ],
+    "risks": [
+      {
+        "risk": "Financing timing can lag GPU/site commitments, increasing liquidity sensitivity during rapid expansion.",
+        "gating": false
+      },
+      {
+        "risk": "Project-level covenant or cash-flow underperformance can restrict distributions or lead to acceleration/enforcement against secured assets.",
+        "gating": false
+      },
+      {
+        "risk": "Convertible debt and future equity/equity-linked financing can dilute existing shareholders even when project funding remains available.",
+        "gating": false
+      }
+    ],
+    "contradictions": [],
+    "unknowns": [
+      {
+        "unknown": "Current covenant headroom, realized debt-service coverage and phase-level customer acceptance after June 30, 2026 are not quantified in this filing.",
+        "gating": false
+      }
+    ],
+    "gatingIssues": [],
+    "confidence": 97,
+    "recommendedNextState": "packet_ready",
+    "recommendedOwner": "council-alpha",
+    "lineage": {
+      "packetPath": "data/runtime/workgraph/packets/IREN.json",
+      "reuses": [
+        "data/runtime/workgraph/evidence/IREN-20260924T052453Z-council-beta-assist.json",
+        "data/runtime/workgraph/evidence/IREN-20260924T051330Z-council-alpha.json",
+        "data/runtime/workgraph/evidence/IREN-20260924T060403Z-earth-scout-assist.json"
+      ],
+      "supersedes": null
+    }
+  }
+]

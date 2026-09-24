@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-24T05:16:20.902Z",
+  "updatedAt": "2026-09-24T05:45:51.452Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1502,6 +1502,30 @@
       "type": "market",
       "label": "procedure capacity and clinician workflow adoption",
       "description": "systems placed into hospitals enable robotic procedures"
+    },
+    {
+      "id": "company:HII",
+      "type": "company",
+      "label": "Huntington Ingalls Industries",
+      "description": "Huntington Ingalls Industries structural-causal evidence"
+    },
+    {
+      "id": "market:HII-hii-structural-demand",
+      "type": "market",
+      "label": "HII structural demand",
+      "description": "Structural demand channel"
+    },
+    {
+      "id": "company:HON",
+      "type": "company",
+      "label": "Honeywell",
+      "description": "Honeywell structural-causal evidence"
+    },
+    {
+      "id": "market:HON-site-specific-operating-data-and-integration-context",
+      "type": "market",
+      "label": "site-specific operating data and integration context",
+      "description": "existing control-system deployment supplies operational context and lowers integration friction"
     }
   ],
   "edges": [
@@ -3454,6 +3478,40 @@
         "isrg:2026-07-21:q2-10q"
       ],
       "observedAt": "2026-09-20T21:27:25Z"
+    },
+    {
+      "id": "edge:HII-structural-exposure",
+      "from": "company:HII",
+      "to": "market:HII-hii-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 86,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "hii.com|2026-09-11|cvn82-336m-lltm",
+        "hii.com|2026-08-06|robotics-up-to-900m",
+        "hii.com|2026-08-04|ingalls-welding-automation",
+        "hii.com|2026-09-04|shipbuilding-pace-strategy"
+      ],
+      "observedAt": "2026-09-20T17:27:59Z"
+    },
+    {
+      "id": "edge:HON-structural-exposure",
+      "from": "company:HON",
+      "to": "market:HON-site-specific-operating-data-and-integration-context",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 87,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:HON:spin:20260629",
+        "issuer:HON:cognition:20260609",
+        "issuer:HON:operations-assistant:20260319",
+        "issuer:HON:wws-sale:20260727"
+      ],
+      "observedAt": "2026-09-20T19:25:31Z"
     }
   ],
   "structuralSignals": [
@@ -5875,6 +5933,48 @@
       ],
       "observedAt": "2026-09-20T21:27:25Z",
       "thesis": "Intuitive's installed da Vinci/Ion base and recurring procedure-driven instruments revenue create a reinforcing platform loop: hospital capital/lease adoption enables procedure capacity, procedure growth drives consumables and service demand, and utilization supports further platform adoption.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:HII-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:HII-hii-structural-demand",
+      "affectedNodeIds": [
+        "company:HII"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 86,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "hii.com|2026-09-11|cvn82-336m-lltm",
+        "hii.com|2026-08-06|robotics-up-to-900m",
+        "hii.com|2026-08-04|ingalls-welding-automation",
+        "hii.com|2026-09-04|shipbuilding-pace-strategy"
+      ],
+      "observedAt": "2026-09-20T17:27:59Z",
+      "thesis": "Huntington Ingalls Industries has a sourced structural demand path.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:HON-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:HON-site-specific-operating-data-and-integration-context",
+      "affectedNodeIds": [
+        "company:HON"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 87,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:HON:spin:20260629",
+        "issuer:HON:cognition:20260609",
+        "issuer:HON:operations-assistant:20260319",
+        "issuer:HON:wws-sale:20260727"
+      ],
+      "observedAt": "2026-09-20T19:25:31Z",
+      "thesis": "Honeywell has a sourced structural demand path.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

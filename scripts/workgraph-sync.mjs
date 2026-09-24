@@ -189,6 +189,21 @@ async function writeJsonArtifact(file, value) {
   await writeFile(file, `${JSON.stringify(value, null, 2)}\n`, "utf8");
 }
 
+function compactRoutingItem(item) {
+  return {
+    rank: item.rank,
+    ticker: item.ticker,
+    workId: item.workId,
+    state: item.state,
+    packetPath: item.packetPath,
+    ownedFailures: item.ownedFailures || [],
+    allFailures: item.allFailures || [],
+    otherOwners: item.otherOwners || [],
+    evidencePaths: (item.evidencePaths || []).slice(-16),
+    specialistCoverage: item.specialistCoverage || null,
+  };
+}
+
 function compactAssistRequest(request) {
   return {
     requestId: request.requestId,
@@ -244,6 +259,24 @@ await writeJsonArtifact(path.join(assistViewDir, "summary.json"), {
     .filter((request) => request.status === "active")
     .map(compactAssistRequest),
 });
+
+const routingViewDir = path.join(workerViewDir, "routing");
+await mkdir(routingViewDir, { recursive: true });
+for (const role of helperRoles) {
+  const queue = routingQueues?.[role] || { total: 0, items: [] };
+  const maxItems = role === "council-alpha" ? 12 : role === "deep-resolver" ? 10 : 8;
+  await writeJsonArtifact(path.join(routingViewDir, `${role}.json`), {
+    version: 1,
+    contract: "earth2036-worker-routing-view-v1",
+    generatedAt: queue.generatedAt || now.toISOString(),
+    role,
+    selectionPolicy: queue.selectionPolicy || "closure-first-deterministic",
+    total: queue.total || 0,
+    visible: Math.min(maxItems, queue.total || 0),
+    items: (queue.items || []).slice(0, maxItems).map(compactRoutingItem),
+    sourcePath: `data/runtime/workgraph/routing/${role}.json`,
+  });
+}
 
 const canonicalCalibrationAudits = Object.entries(scoreState?.candidates || {})
   .map(([ticker, record]) => auditCalibrationRecord({ ticker, ...record }));
@@ -377,6 +410,7 @@ await writeJsonArtifact(path.join(workerViewDir, "command-summary.json"), {
     calibration: "data/runtime/workgraph/worker-view/calibration-summary.json",
     digitalTwins: "data/runtime/workgraph/worker-view/digital-twins-index.json",
     betaDigitalTwins: "data/runtime/workgraph/worker-view/council-beta-digital-twins.json",
+    routing: Object.fromEntries(helperRoles.map((role) => [role, `data/runtime/workgraph/worker-view/routing/${role}.json`])),
   },
 });
 

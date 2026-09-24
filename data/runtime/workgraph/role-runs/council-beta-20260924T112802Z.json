@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "role": "council-beta",
+  "generatedAt": "2026-09-24T11:28:02Z",
+  "sourceCycleKey": "2026-09-24T11:15:54.895Z",
+  "companiesInspected": [],
+  "betaPairsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [],
+  "blockers": [
+    {
+      "type": "assist_bus_request_visibility",
+      "detail": "Owned council-beta routing queue is empty, while Assist Bus summary reports four active council-beta helper slots. The available Assist Bus read was truncated before the council-beta request records, so their requestId/inputSignature/exactQuestion could not be verified without guessing.",
+      "lawfulNextPath": "Read the current Assist Bus through a bounded/per-request surface that exposes the four active helperRole=council-beta records, then attempt only those requests whose input signatures are new or changed."
+    },
+    {
+      "type": "shadow_representation_unavailable",
+      "detail": "data/runtime/workgraph/shadow/digital-twins.json is currently empty, so no shadow constraints or bridge-input candidates were used as facts or evidence.",
+      "lawfulNextPath": "Use Digital Twin representation aids only after a non-empty current shadow artifact is published; never substitute shadow state for source-backed evidence."
+    }
+  ],
+  "result": "no_owned_work_assist_records_not_safely_visible",
+  "operatingMode": "assist-only-idle-queue",
+  "startingGitHead": "e93a9322d44b5c39deed2b57ca244be885a08bc4",
+  "learning": {
+    "ownedQueueCount": 0,
+    "assistBusActiveCouncilBetaSummaryCount": 4,
+    "strategy": "Do not infer or retry assists from stale ticker memory when the current request identity and input signature cannot be verified.",
+    "changedStrategy": false,
+    "successDefinition": "bounded structural/risk support that changes a verified assist input or precisely reduces uncertainty without taking Alpha ownership"
+  }
+}

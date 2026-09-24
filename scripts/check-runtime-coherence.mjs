@@ -52,11 +52,20 @@ if (bridgeHealth?.status === "live-bootstrap-verified") {
       Number(bridgeHealth?.projectionAuthority || 0) !== 0) {
     errors.push("fundamentals_bridge_health_invalid");
   }
-  if (trajectory?.asOf !== bridgeHealth?.asOf) {
-    errors.push(`trajectory_bridge_cutoff_mismatch:${trajectory?.asOf}/${bridgeHealth?.asOf}`);
-  }
+  const exactBridgeCutoff = trajectory?.asOf === bridgeHealth?.asOf;
+  const validFundamentals = trajectoryRows.filter((row) => row?.truthState?.fundamentals?.status === "valid");
   const invalidFundamentals = trajectoryRows.filter((row) => row?.truthState?.fundamentals?.status === "invalid");
   if (invalidFundamentals.length) errors.push(`trajectory_invalid_fundamentals:${invalidFundamentals.length}`);
+  if (!exactBridgeCutoff) {
+    // A newer machine cutoff may legitimately outrun the last published bridge.
+    // Fail closed: stale fundamentals must be excluded from the newer snapshot,
+    // never imported by relaxing or rewriting the bridge cutoff.
+    if (validFundamentals.length) {
+      errors.push(`stale_bridge_truth_imported:${validFundamentals.length}:${trajectory?.asOf}/${bridgeHealth?.asOf}`);
+    }
+    const staleEligible = trajectoryRows.filter((row) => row?.learningEligibility?.fundamentalsRaw === true);
+    if (staleEligible.length) errors.push(`stale_bridge_learning_enabled:${staleEligible.length}`);
+  }
 }
 
 const report = {
@@ -68,6 +77,9 @@ const report = {
   trajectoryAsOf: trajectory?.asOf || null,
   bridgeStatus: bridgeHealth?.status || null,
   bridgeAsOf: bridgeHealth?.asOf || null,
+  exactBridgeCutoff: trajectory?.asOf === bridgeHealth?.asOf,
+  validFundamentals: trajectoryRows.filter((row) => row?.truthState?.fundamentals?.status === "valid").length,
+  fundamentalsLearningEligible: trajectoryRows.filter((row) => row?.learningEligibility?.fundamentalsRaw === true).length,
   modelsEnabled: trajectory?.learningPolicy?.modelsEnabled ?? null,
   forecastsEnabled: trajectory?.learningPolicy?.forecastsEnabled ?? null,
   errors,

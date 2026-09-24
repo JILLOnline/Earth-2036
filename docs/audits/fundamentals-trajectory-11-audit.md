@@ -69,3 +69,12 @@ A subsequent audit exposed a health-denominator issue: the sidecar originally in
 Empty but structurally valid Company Facts with no eligible PIT raw facts remains explicitly unknown. If previously pinned historical truth disappears from later source payloads, the historic reference instead becomes invalid/historical_truth_unrecoverable without substituting an empty snapshot. This distinction is covered by the 62nd offline regression test.
 
 System health normalizes human-readable and machine-coded CIK/hash failure reasons and derives future-leakage counts from actual canary failures instead of reporting unconditional zero. The 63rd invariant verifies error-counter truthfulness.
+
+
+## Live-universe activation path
+
+The production activation path is now implemented but remains **unfrozen until its first full live bootstrap is observed on GitHub**. `.github/workflows/fundamentals-bridge-bootstrap.yml` builds all 250 bridge references at the exact authoritative machine-cycle cutoff, allows explicit `unknown` fundamentals, rejects any `invalid` reference or non-zero future-leakage/CIK/hash/projection/canonical-authority counter, and publishes no compact runtime index until an immutable source-cache archive has been created.
+
+Raw SEC Company Facts remain outside normal repository commits. The bootstrap hydrates the latest content-addressed source cache from a GitHub release asset, verifies its SHA-256, refreshes only issuers whose filing fingerprint requires it, creates a new immutable release archive, then publishes only the compact verified index and non-ranking health metadata under `data/runtime/workgraph/shadow/`. Workgraph and the deterministic finalizer consume that committed shadow index at exact `system-state.lastCycleAt`; a stale/as-of-mismatched index becomes unavailable rather than being substituted.
+
+This activation path does **not** change Earth Score, ranks, Workgraph promotion, T0/T1000 qualification, canonical state, model training or forecasts. Formal #11 freeze still requires a successful 250-company bootstrap, durable archive attestation, green full CI/canaries, and inspection of the published health/index. #12 remains prohibited until that evidence is recorded.

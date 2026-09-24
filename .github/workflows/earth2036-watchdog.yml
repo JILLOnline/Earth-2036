@@ -60,7 +60,9 @@ jobs:
         run: |
           set -euo pipefail
           latest() {
-            gh run list --repo "${{ github.repository }}" --workflow "$1" --branch main --limit 20               --json databaseId,status,conclusion,createdAt               --jq '[.[] | select(.status == "completed" and .conclusion != "cancelled")][0]'
+            gh run list --repo "${{ github.repository }}" --workflow "$1" --branch main --limit 20 \
+              --json databaseId,status,conclusion,createdAt,headSha \
+              --jq '[.[] | select(.status == "completed" and .conclusion != "cancelled")][0]'
           }
 
           scheduler=$(latest earth2036-scheduler.yml)
@@ -73,6 +75,8 @@ jobs:
           reconcile_conclusion=$(jq -r '.conclusion // "missing"' <<<"$reconcile")
           ci_conclusion=$(jq -r '.conclusion // "missing"' <<<"$ci")
           pages_created=$(jq -r '.createdAt // ""' <<<"$pages")
+          pages_head=$(jq -r '.headSha // ""' <<<"$pages")
+          main_head=$(gh api "repos/${{ github.repository }}/commits/main" --jq .sha)
 
           unhealthy=false
           if [ "$scheduler_conclusion" != "success" ]; then unhealthy=true; fi
@@ -82,10 +86,16 @@ jobs:
           if [ "$WORKGRAPH_HEALTHY" != "true" ]; then unhealthy=true; fi
 
           pages_stale=false
-          if [ -n "$LAST_CYCLE_AT" ] && [ -n "$pages_created" ]; then
-            cycle_epoch=$(date -d "$LAST_CYCLE_AT" +%s)
+          if [ -n "$pages_created" ]; then
             pages_epoch=$(date -d "$pages_created" +%s)
-            if [ $((cycle_epoch - pages_epoch)) -gt 5400 ]; then pages_stale=true; unhealthy=true; fi
+            now_epoch=$(date -u +%s)
+            if [ "$pages_head" != "$main_head" ] && [ $((now_epoch - pages_epoch)) -gt 1200 ]; then
+              pages_stale=true
+              unhealthy=true
+            fi
+          elif [ -n "$LAST_CYCLE_AT" ]; then
+            pages_stale=true
+            unhealthy=true
           fi
 
           echo "scheduler_conclusion=$scheduler_conclusion" >> "$GITHUB_OUTPUT"
@@ -104,6 +114,18 @@ jobs:
           active=$(gh run list --repo "${{ github.repository }}" --workflow earth2036-scheduler.yml --limit 10 --json status --jq '[.[] | select(.status == "in_progress" or .status == "queued")] | length')
           if [ "$active" = "0" ]; then
             gh workflow run earth2036-scheduler.yml --repo "${{ github.repository }}" --ref main
+          fi
+
+      - name: Refresh stale Pages projection when idle
+        if: steps.execution.outputs.pages_stale == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          active=$(gh run list --repo "${{ github.repository }}" --workflow earth2036-pages.yml --limit 10 --json status --jq '[.[] | select(.status == "in_progress" or .status == "queued")] | length')
+          if [ "$active" = "0" ]; then
+            main_head=$(gh api "repos/${{ github.repository }}/commits/main" --jq .sha)
+            gh workflow run earth2036-pages.yml --repo "${{ github.repository }}" --ref main -f source_sha="$main_head"
           fi
 
       - name: Fail closed on unhealthy GitHub-native plane

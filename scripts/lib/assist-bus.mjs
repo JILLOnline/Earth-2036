@@ -117,7 +117,14 @@ export function buildAssistRequests(graph, packets, roleRuns = [], nowIso = new 
   const enriched = requests
     .map((request) => {
       const prior = latestAttempt(roleRuns, request.requestId, request.inputSignature);
-      const unchangedFailure = prior && ["unavailable","blocked","no_new_evidence"].includes(prior.outcome);
+      const dormantOutcomes = new Set([
+        "unavailable",
+        "blocked",
+        "no_new_evidence",
+        "skipped_same_signature_prior_failure",
+        "skipped_unchanged_input",
+      ]);
+      const unchangedFailure = prior && dormantOutcomes.has(String(prior.outcome || ""));
       return {
         ...request,
         status: unchangedFailure ? "dormant_until_input_changes" : "candidate",

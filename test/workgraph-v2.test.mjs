@@ -812,6 +812,20 @@ test("assist bus sleeps an unchanged failed request and reactivates when packet 
   assert.equal(dormant.active, 0);
   assert.equal(dormant.dormant, 1);
 
+  const skippedRuns = [{
+    role: "earth-scout",
+    generatedAt: "2026-09-19T14:06:00Z",
+    assistAttempts: [{
+      requestId: request.requestId,
+      inputSignature: request.inputSignature,
+      outcome: "skipped_same_signature_prior_failure",
+      newEvidencePaths: [],
+    }],
+  }];
+  const skippedDormant = buildAssistRequests(graph, [packet], skippedRuns, "2026-09-19T14:11:00Z");
+  assert.equal(skippedDormant.active, 0);
+  assert.equal(skippedDormant.dormant, 1);
+
   const changedPacket = { ...packet, evidencePaths: ["evidence/a.json", "evidence/new.json"] };
   const reactivated = buildAssistRequests(graph, [changedPacket], roleRuns, "2026-09-19T14:20:00Z");
   assert.equal(reactivated.active, 1);

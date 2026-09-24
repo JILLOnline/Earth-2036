@@ -16,6 +16,8 @@ const REGISTRY_PATH = path.join(ROOT, "data", "runtime", "entity-registry.json")
 const SCORE_STATE_PATH = path.join(ROOT, "data", "runtime", "score-state.json");
 const STATE_PATH = path.join(ROOT, "data", "runtime", "workgraph", "state.json");
 const LEARNING_PATH = path.join(ROOT, "data", "runtime", "workgraph", "learning-state.json");
+const SYSTEM_STATE_PATH = path.join(ROOT, "data", "runtime", "system-state.json");
+const LIVE_BRIDGE_INDEX_PATH = path.join(ROOT, "data", "runtime", "workgraph", "shadow", "fundamentals-bridge-index.json");
 
 async function readJson(file) { return JSON.parse(await readFile(file, "utf8")); }
 async function readJsonOr(file, fallback) {
@@ -131,6 +133,7 @@ function deriveLearningState(existing, metrics, packets, routingQueues, roleRuns
 
 const registry = await readJson(REGISTRY_PATH);
 const scoreState = await readJson(SCORE_STATE_PATH);
+const systemState = await readJsonOr(SYSTEM_STATE_PATH, null);
 const methodologyVersion = scoreState?.methodologyVersion || null;
 const registryByTicker = Object.fromEntries((registry?.candidates || []).filter((row) => row?.ticker).map((row) => [row.ticker, row]));
 
@@ -416,9 +419,9 @@ await writeJsonArtifact(path.join(workerViewDir, "command-summary.json"), {
 
 const rankingState = await readJsonOr(path.join(ROOT, "data", "runtime", "current-ranking.json"), { rankings: [] });
 const observationsState = await readJsonOr(path.join(ROOT, "data", "runtime", "company-observations.json"), { candidates: {} });
-const trajectoryAsOf = rankingState?.capturedAt || scoreState?.updatedAt || now.toISOString();
+const trajectoryAsOf = systemState?.lastCycleAt || rankingState?.capturedAt || scoreState?.updatedAt || now.toISOString();
 const fundamentalsByTicker = await loadVerifiedBridgeIndex({
-  file: path.join(ROOT, "data", "lab", "bridge", "current-index.json"),
+  file: LIVE_BRIDGE_INDEX_PATH,
   asOf: trajectoryAsOf,
   observations: observationsState?.candidates || {},
   tickers: (rankingState?.rankings || []).map((row) => row.ticker),

@@ -262,6 +262,7 @@ test("GitHub workflows use Node-24-compatible checkout/setup actions", async () 
     ".github/workflows/earth2036-workgraph-reconcile.yml",
     ".github/workflows/earth2036-ci.yml",
     ".github/workflows/earth2036-pages.yml",
+    ".github/workflows/fundamentals-trajectory-bridge-live.yml",
   ]) {
     const text = await source(path);
     if (text.includes("actions/checkout@")) assert.ok(text.includes("actions/checkout@v5"));
@@ -276,6 +277,17 @@ test("Workgraph exposes effective adaptive backlog separately from raw preflight
   assert.ok(sync.includes("metrics.effectiveOwnerBacklog"));
   assert.ok(sync.includes("metrics.routingQueueCounts"));
   assert.ok(system.includes("effectiveOwnerBacklog ?? workgraph.ownerBacklog"));
+});
+
+test("Fundamentals live bridge is bulk-first, fingerprint-incremental and has a full-universe drift canary", async () => {
+  const live = await source(".github/workflows/fundamentals-trajectory-bridge-live.yml");
+  assert.ok(live.includes('companyfacts.zip'));
+  assert.ok(live.includes('--bulk-zip /tmp/companyfacts.zip'));
+  assert.ok(live.includes('source_mode=incremental-fingerprint'));
+  assert.ok(live.includes('weekly-full-drift'));
+  assert.ok(live.includes('cron: "17 7 * * 0"'));
+  assert.ok(live.includes('health.companies !== 250'));
+  assert.ok(live.includes('health.invalid !== 0'));
 });
 
 test("canonical causal promotion refreshes graph-level freshness metadata", async () => {

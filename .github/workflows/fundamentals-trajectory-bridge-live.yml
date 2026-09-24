@@ -13,6 +13,8 @@ on:
       - "scripts/lib/fundamentals-bridge-index.mjs"
       - "scripts/workgraph-sync.mjs"
       - "scripts/finalize-qualified-tick.mjs"
+  schedule:
+    - cron: "17 7 * * 0"
 
 permissions:
   contents: write
@@ -24,6 +26,7 @@ concurrency:
 
 jobs:
   live-shadow-bootstrap:
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
@@ -67,22 +70,42 @@ jobs:
           echo "tag=$latest_tag" >> "$GITHUB_OUTPUT"
           if [ -n "$latest_tag" ]; then
             mkdir -p /tmp/bridge-restore data/lab
-            gh release download "$latest_tag" --repo "${{ github.repository }}"               --pattern "bridge-cache.tar.gz" --dir /tmp/bridge-restore
+            gh release download "$latest_tag" --repo "${{ github.repository }}" \
+              --pattern "bridge-cache.tar.gz" --dir /tmp/bridge-restore
             tar -xzf /tmp/bridge-restore/bridge-cache.tar.gz -C data/lab
             echo "restored=true" >> "$GITHUB_OUTPUT"
+            echo "source_mode=incremental-fingerprint" >> "$GITHUB_OUTPUT"
           else
+            curl --fail --location --retry 4 --retry-delay 2 \
+              -A "$SEC_USER_AGENT" -H "Accept: application/zip" \
+              "https://www.sec.gov/Archives/edgar/daily-index/xbrl/companyfacts.zip" \
+              -o /tmp/companyfacts.zip
+            unzip -tq /tmp/companyfacts.zip >/dev/null
             echo "restored=false" >> "$GITHUB_OUTPUT"
+            echo "source_mode=initial-sec-bulk" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Build 250-company point-in-time bridge
         id: bridge
         run: |
           set -euo pipefail
-          node scripts/lab-fundamentals-trajectory-bridge.mjs             --limit 250             --as-of "${{ steps.cutoff.outputs.asof }}"             --publish-health | tee /tmp/bridge-live.json
+          if [ "${{ steps.restore.outputs.restored }}" = "true" ]; then
+            node scripts/lab-fundamentals-trajectory-bridge.mjs \
+              --limit 250 \
+              --as-of "${{ steps.cutoff.outputs.asof }}" \
+              --publish-health | tee /tmp/bridge-live.json
+          else
+            node scripts/lab-fundamentals-trajectory-bridge.mjs \
+              --limit 250 \
+              --bulk-zip /tmp/companyfacts.zip \
+              --as-of "${{ steps.cutoff.outputs.asof }}" \
+              --publish-health | tee /tmp/bridge-live.json
+          fi
           test "$(jq -r '.companies' /tmp/bridge-live.json)" = "250"
           test "$(jq -r '.invalid' /tmp/bridge-live.json)" = "0"
           echo "refreshes=$(jq -r '.sourceRefreshes' /tmp/bridge-live.json)" >> "$GITHUB_OUTPUT"
           echo "unknown=$(jq -r '.unknown' /tmp/bridge-live.json)" >> "$GITHUB_OUTPUT"
+          echo "source_mode=${{ steps.restore.outputs.source_mode }}" >> "$GITHUB_OUTPUT"
 
       - name: Persist immutable SEC source archive when source state changes
         id: archive
@@ -180,5 +203,70 @@ jobs:
         with:
           name: fundamentals-live-bootstrap-${{ github.run_id }}
           path: /tmp/bridge-live.json
+          if-no-files-found: ignore
+          retention-days: 30
+
+
+  weekly-full-drift:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - run: npm ci
+
+      - name: Download SEC nightly bulk Company Facts
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 4 --retry-delay 2 \
+            -A "$SEC_USER_AGENT" -H "Accept: application/zip" \
+            "https://www.sec.gov/Archives/edgar/daily-index/xbrl/companyfacts.zip" \
+            -o /tmp/companyfacts.zip
+          unzip -tq /tmp/companyfacts.zip >/dev/null
+
+      - name: Rebuild all 250 independently and fail closed on drift defects
+        run: |
+          set -euo pipefail
+          asof=$(jq -r '.lastCycleAt // empty' data/runtime/system-state.json)
+          test -n "$asof"
+          node scripts/lab-fundamentals-trajectory-bridge.mjs \
+            --cache-dir /tmp/earth2036-bridge-full-drift \
+            --limit 250 \
+            --bulk-zip /tmp/companyfacts.zip \
+            --as-of "$asof" | tee /tmp/bridge-full-drift.json
+
+          node --input-type=module - <<'NODE'
+          import { readFile } from "node:fs/promises";
+          import { fundamentalsBridgeHealth } from "./scripts/lib/fundamentals-trajectory-bridge.mjs";
+          const index = JSON.parse(await readFile("/tmp/earth2036-bridge-full-drift/current-index.json", "utf8"));
+          const refs = Object.values(index.entries || {}).map((entry) => entry.reference);
+          const health = fundamentalsBridgeHealth(refs);
+          if (health.companies !== 250 || health.invalid !== 0 ||
+              health.canonicalWrites !== 0 || health.projectionAuthority !== 0 ||
+              health.cikMismatches !== 0 || health.hashFailures !== 0) {
+            throw new Error("Full-universe fundamentals drift canary failed: " + JSON.stringify(health));
+          }
+          console.log(JSON.stringify({ contract: "earth2036-fundamentals-full-drift-v1", passed: true, ...health }, null, 2));
+          NODE
+
+          node --test test/fundamentals-truth.test.mjs test/fundamentals-trajectory-bridge.test.mjs
+
+      - name: Retain full-drift attestation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fundamentals-full-drift-${{ github.run_id }}
+          path: /tmp/bridge-full-drift.json
           if-no-files-found: ignore
           retention-days: 30

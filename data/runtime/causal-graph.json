@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-24T06:47:14.082Z",
+  "updatedAt": "2026-09-24T07:20:17.181Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1538,6 +1538,18 @@
       "type": "market",
       "label": "reliable flow creation and aeration demand",
       "description": "treatment and industrial processes require controlled movement of air, gas and liquids"
+    },
+    {
+      "id": "company:IREN",
+      "type": "company",
+      "label": "IREN Limited",
+      "description": "IREN's core structural bridge is power/data-center infrastructure to scarce accelerated-compute capacity serving hyperscaler AI demand; the Microsoft agreement supplies customer-linked evidence for that bridge."
+    },
+    {
+      "id": "market:IREN-accelerated-compute-demand",
+      "type": "market",
+      "label": "accelerated-compute demand",
+      "description": "larger training and inference workloads require GPU compute, power and data-center capacity"
     }
   ],
   "edges": [
@@ -3537,6 +3549,20 @@
       "sourceIds": [
         "irco:2026-08-03:lone-star-acquisition",
         "irco:2026-07-30:q2-results"
+      ],
+      "observedAt": "2026-09-20T20:22:16Z"
+    },
+    {
+      "id": "edge:IREN-structural-exposure",
+      "from": "company:IREN",
+      "to": "market:IREN-accelerated-compute-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 83,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "iren:2025-11-03:microsoft-9.7b"
       ],
       "observedAt": "2026-09-20T20:22:16Z"
     }
@@ -6022,6 +6048,24 @@
       "observedAt": "2026-09-20T20:22:16Z",
       "thesis": "Ingersoll Rand's blower/compressor and service capabilities map directly into water/wastewater aeration and broader mission-critical industrial flow needs; Lone Star expands technology breadth, rental and aftermarket capability.",
       "falsifier": "end-market project demand structurally weakens or substitute processes materially reduce equipment/service intensity"
+    },
+    {
+      "id": "signal:IREN-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:IREN-accelerated-compute-demand",
+      "affectedNodeIds": [
+        "company:IREN"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 83,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "iren:2025-11-03:microsoft-9.7b"
+      ],
+      "observedAt": "2026-09-20T20:22:16Z",
+      "thesis": "IREN's core structural bridge is power/data-center infrastructure to scarce accelerated-compute capacity serving hyperscaler AI demand; the Microsoft agreement supplies customer-linked evidence for that bridge.",
+      "falsifier": "compute-efficiency gains or demand slowdown materially reduce required external capacity"
     }
   ],
   "roadmapMilestones": [

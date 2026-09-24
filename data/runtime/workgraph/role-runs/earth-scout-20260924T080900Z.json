@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "contract": "earth2036-workgraph-role-run-v1",
+  "role": "earth-scout",
+  "generatedAt": "2026-09-24T08:09:00Z",
+  "startingGitHead": "fc0061e129458a42563f65de7d6d39f538bc997f",
+  "companiesInspected": ["IBM", "MBLY", "NBIS", "SERV"],
+  "evidencePairsCompleted": 1,
+  "artifacts": [
+    "data/runtime/workgraph/evidence/NBIS-20260924T080417Z-earth-scout.json"
+  ],
+  "result": "assist_first_source_acquisition_with_dormant_signature_skips",
+  "blockers": [
+    "IBM assist input signature 3eff206efd764748488e already had a same-signature failed/skipped prior attempt; policy forbids repeating unchanged failed work.",
+    "MBLY assist input signature 0347eb498d14b745a90e already had a same-signature failed/skipped prior attempt; policy forbids repeating unchanged failed work.",
+    "SERV assist input signature e77483edc6718a95caa1 already had a no-materially-different-source prior attempt; policy forbids repeating unchanged failed work."
+  ],
+  "assistAttempts": [
+    {
+      "requestId": "assist:IBM:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "3eff206efd764748488e",
+      "outcome": "skipped_same_signature_prior_failure",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    },
+    {
+      "requestId": "assist:MBLY:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "0347eb498d14b745a90e",
+      "outcome": "skipped_same_signature_prior_failure",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    },
+    {
+      "requestId": "assist:NBIS:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "0e6164bc42156a5d6a6c",
+      "outcome": "new_counterparty_primary_evidence",
+      "newEvidencePaths": [
+        "data/runtime/workgraph/evidence/NBIS-20260924T080417Z-earth-scout.json"
+      ],
+      "sourcePathsAttempted": [
+        "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-and-Nebius-Partner-to-Scale-Full-Stack-AI-Cloud/"
+      ]
+    },
+    {
+      "requestId": "assist:SERV:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "e77483edc6718a95caa1",
+      "outcome": "skipped_same_signature_prior_failure",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    }
+  ],
+  "repeatedBlocker": "unchanged_failed_assist_input_signatures",
+  "changedStrategy": "Prioritized the one active Alpha assist with no recorded prior attempt and used a materially different counterparty-primary source rather than repeating issuer-only searches."
+}

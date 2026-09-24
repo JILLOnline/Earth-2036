@@ -3,8 +3,8 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "IREN",
   "workId": "t0:IREN",
-  "generatedAt": "2026-09-24T05:16:17.391Z",
-  "sourceState": "researching",
+  "generatedAt": "2026-09-24T05:26:58.991Z",
+  "sourceState": "packet_ready",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
     "ticker": "IREN",
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2025-11-03T00:00:00.000Z",
-    "end": "2026-09-24T05:13:30.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-24T05:13:30.000Z"
+    "end": "2026-09-24T05:24:53.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-24T05:24:53.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -36,7 +36,8 @@
       "structural-causal",
       "adversarial-red-team",
       "source-integrity",
-      "company-underwriting"
+      "company-underwriting",
+      "risk-source-support"
     ],
     "missing": [],
     "complete": true
@@ -47,12 +48,14 @@
     "structural-causal",
     "adversarial-red-team",
     "source-integrity",
-    "company-underwriting"
+    "company-underwriting",
+    "risk-source-support"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/IREN-20260919T220531Z-earth-scout.json",
     "data/runtime/workgraph/evidence/IREN-20260920T202216Z-council-beta.json",
-    "data/runtime/workgraph/evidence/IREN-20260924T051330Z-council-alpha.json"
+    "data/runtime/workgraph/evidence/IREN-20260924T051330Z-council-alpha.json",
+    "data/runtime/workgraph/evidence/IREN-20260924T052453Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
@@ -60,8 +63,8 @@
       "data/runtime/workgraph/evidence/IREN-20260924T011325Z-council-alpha.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 6,
-    "historicalEvidenceCount": 10
+    "activeEvidenceCount": 7,
+    "historicalEvidenceCount": 11
   },
   "factorEvidence": {
     "names": [
@@ -216,6 +219,18 @@
       {
         "risk": "Large capital commitments, debt/equity financing and share-count expansion create financing/dilution risk despite strong liquidity.",
         "gating": false
+      },
+      {
+        "risk": "Revenue conversion can lag headline contracted capacity when commissioning or acceptance is delayed while capital obligations continue.",
+        "gating": false
+      },
+      {
+        "risk": "Customer concentration links infrastructure financing resilience to a small number of counterparties and deployment outcomes.",
+        "gating": false
+      },
+      {
+        "risk": "Rapid GPU obsolescence and limited supplier availability can raise replacement capital needs or weaken utilization economics.",
+        "gating": false
       }
     ]
   },
@@ -251,6 +266,18 @@
     {
       "risk": "Large capital commitments, debt/equity financing and share-count expansion create financing/dilution risk despite strong liquidity.",
       "gating": false
+    },
+    {
+      "risk": "Revenue conversion can lag headline contracted capacity when commissioning or acceptance is delayed while capital obligations continue.",
+      "gating": false
+    },
+    {
+      "risk": "Customer concentration links infrastructure financing resilience to a small number of counterparties and deployment outcomes.",
+      "gating": false
+    },
+    {
+      "risk": "Rapid GPU obsolescence and limited supplier availability can raise replacement capital needs or weaken utilization economics.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -263,7 +290,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
     "present": true,
@@ -285,6 +312,18 @@
         "to": "recurring AI cloud revenue",
         "mechanism": "commissioned contracted capacity converts infrastructure into customer service revenue",
         "falsifier": "phases slip materially, contract terms change, or delivered economics fail to support expected returns"
+      },
+      {
+        "from": "contracted AI compute demand",
+        "to": "recognized AI Cloud revenue",
+        "mechanism": "GPU procurement, construction, power/grid availability, commissioning, placement in service and customer acceptance must occur before revenue generally begins",
+        "falsifier": "phase-by-phase evidence shows timely commissioning and acceptance with financing matched to customer contracts and realized economics"
+      },
+      {
+        "from": "limited GPU/networking suppliers and rapid hardware cycles",
+        "to": "deployment economics and schedule resilience",
+        "mechanism": "scarcity, delays or obsolescence can increase capex, delay service start or impair hardware utilization",
+        "falsifier": "diversified procurement, on-time delivery and sustained utilization demonstrate the constraint is immaterial in realized deployments"
       }
     ]
   },
@@ -306,17 +345,30 @@
       "to": "recurring AI cloud revenue",
       "mechanism": "commissioned contracted capacity converts infrastructure into customer service revenue",
       "falsifier": "phases slip materially, contract terms change, or delivered economics fail to support expected returns"
+    },
+    {
+      "from": "contracted AI compute demand",
+      "to": "recognized AI Cloud revenue",
+      "mechanism": "GPU procurement, construction, power/grid availability, commissioning, placement in service and customer acceptance must occur before revenue generally begins",
+      "falsifier": "phase-by-phase evidence shows timely commissioning and acceptance with financing matched to customer contracts and realized economics"
+    },
+    {
+      "from": "limited GPU/networking suppliers and rapid hardware cycles",
+      "to": "deployment economics and schedule resilience",
+      "mechanism": "scarcity, delays or obsolescence can increase capex, delay service start or impair hardware utilization",
+      "falsifier": "diversified procurement, on-time delivery and sustained utilization demonstrate the constraint is immaterial in realized deployments"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 8,
-    "uniqueSourceCount": 3,
+    "rawSourceCount": 9,
+    "uniqueSourceCount": 4,
     "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "iren:2025-11-03:microsoft-9.7b",
       "sec:1878848:fy2026-10k",
-      "stockanalysis:iren:2026-09-23"
+      "stockanalysis:iren:2026-09-23",
+      "sec:1878848:fy2026-10k:risk-and-performance"
     ]
   },
   "sources": [
@@ -341,6 +393,14 @@
       "kind": "independent",
       "primary": false,
       "originFingerprint": "stockanalysis:iren:2026-09-23"
+    },
+    {
+      "sourceId": "iren-fy26-sec-10k-risk",
+      "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/iren-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-28",
+      "originFingerprint": "sec:1878848:fy2026-10k:risk-and-performance"
     }
   ],
   "contradictions": [
@@ -382,11 +442,15 @@
     {
       "unknown": "Governance/related-party stewardship facts remain the sole identified source-addressed score-input gap before a complete 12-component record can be assembled.",
       "gating": true
+    },
+    {
+      "unknown": "Current realized margins and acceptance status by major deployment phase remain necessary to determine whether these disclosed risks are being reduced in practice.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 1,
-    "nonGatingCount": 4
+    "nonGatingCount": 5
   },
   "gatingIssues": [
     {

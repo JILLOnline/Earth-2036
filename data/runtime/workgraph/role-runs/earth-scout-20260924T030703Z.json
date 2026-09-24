@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "role": "earth-scout",
+  "generatedAt": "2026-09-24T03:07:03Z",
+  "startingGitHead": "f92a0021fdb1747ef0cb0dbd7892a2db68efea35",
+  "companiesInspected": ["IBM", "MBLY"],
+  "evidencePairsCompleted": 1,
+  "artifacts": ["data/runtime/workgraph/evidence/MBLY-20260924T030703Z-earth-scout.json"],
+  "assistAttempts": [
+    {
+      "requestId": "assist:IBM:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "3eff206efd764748488e",
+      "outcome": "skipped_same_signature_prior_failure",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    },
+    {
+      "requestId": "assist:MBLY:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "783c712cf3d840480987",
+      "outcome": "new_independent_primary_regulatory_evidence",
+      "newEvidencePaths": ["data/runtime/workgraph/evidence/MBLY-20260924T030703Z-earth-scout.json"],
+      "sourcePathsAttempted": ["SEC Mobileye Q1 2026 Form 10-Q"]
+    }
+  ],
+  "blockers": [
+    "IBM unchanged input signature had a prior failed Scout attempt and was not retried under the learning policy."
+  ],
+  "result": "Scout owned routing queue was zero. Assist mode prioritized Alpha source acquisition. Added independent SEC-filed MBLY revenue-mix and customer-concentration evidence that Alpha can reuse immediately; did not create numeric underwriting or causal judgment.",
+  "repeatedBlocker": true,
+  "changedStrategy": "For MBLY, moved away from repeatedly mined issuer press releases and acquired materially different primary regulatory evidence."
+}

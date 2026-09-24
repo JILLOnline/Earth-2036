@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - "data/runtime/workgraph/role-runs/**"
+      - ".github/workflows/earth2036-workgraph-reconcile.yml"
+      - "scripts/check-runtime-coherence.mjs"
   workflow_dispatch:
 
 permissions:
@@ -96,8 +98,14 @@ jobs:
             node scripts/promote-chief-ready.mjs
             node scripts/mark-council-pending.mjs
 
-            # Re-audit the staged canonical result. Any failure discards promotion,
-            # while the already-pushed non-canonical routing remains available.
+            # Canonical promotion changes the authoritative population. Refresh every
+            # shadow/worker projection immediately so Trajectory, Digital Twin,
+            # Calibration and command views describe the same canonical state.
+            npm run workgraph:sync
+            npm run smoke:runtime
+
+            # Re-audit the fully refreshed staged canonical result. Any failure
+            # discards promotion while the already-pushed non-canonical routing remains.
             if ! node scripts/beast-audit.mjs; then
               echo "Post-promotion Beast audit failed; persisting non-canonical Workgraph state and routing only."
               exit 0

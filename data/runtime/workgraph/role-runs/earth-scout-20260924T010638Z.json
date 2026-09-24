@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "role": "earth-scout",
+  "generatedAt": "2026-09-24T01:06:38Z",
+  "startingGitHead": "dc86a43b2f69508f693aac724c1332ebceb77f74",
+  "companiesInspected": ["IBM","MBLY","NBIS","SERV"],
+  "evidencePairsCompleted": 3,
+  "artifacts": [
+    "data/runtime/workgraph/evidence/NBIS-20260924T010635Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/MBLY-20260924T010636Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/SERV-20260924T010637Z-earth-scout.json"
+  ],
+  "assistAttempts": [
+    {"requestId":"assist:IBM:council-alpha:earth-scout:source-acquisition","inputSignature":"3eff206efd764748488e","outcome":"skipped_same_signature_prior_failure","newEvidencePaths":[],"sourcePathsAttempted":[]},
+    {"requestId":"assist:MBLY:council-alpha:earth-scout:source-acquisition","inputSignature":"b7397f4fefd33e2546f0","outcome":"completed_new_primary_execution_evidence","newEvidencePaths":["data/runtime/workgraph/evidence/MBLY-20260924T010636Z-earth-scout.json"],"sourcePathsAttempted":["https://ir.mobileye.com/news-releases/news-release-details/mobileye-establish-vertically-integrated-robotaxi-business"]},
+    {"requestId":"assist:NBIS:council-alpha:earth-scout:source-acquisition","inputSignature":"8a67bbfcedb0c5354468","outcome":"completed_new_primary_distribution_evidence","newEvidencePaths":["data/runtime/workgraph/evidence/NBIS-20260924T010635Z-earth-scout.json"],"sourcePathsAttempted":["https://nebius.com/newsroom/palantir-and-nebius-partner-to-deliver-a-complete-sovereign-ai-stack-to-palantir-customers"]},
+    {"requestId":"assist:SERV:council-alpha:earth-scout:source-acquisition","inputSignature":"0ea4db1ef30388930410","outcome":"completed_primary_q2_mix_liquidity_evidence","newEvidencePaths":["data/runtime/workgraph/evidence/SERV-20260924T010637Z-earth-scout.json"],"sourcePathsAttempted":["https://ir.serverobotics.com/news-releases/news-release-details/serve-robotics-announces-second-quarter-2026-results"]}
+  ],
+  "blockers": ["Owned Scout routing queue was zero; Assist Bus response exposed six active Scout requests but connector output truncation prevented safe identification of the final two request records in this run, so no guessed work was performed."],
+  "result": "assist_mode_three_new_reusable_primary_evidence_packages_one_known_repeat_skipped",
+  "repeatedBlocker": "IBM request retained the same input signature as a prior failed attempt and was not retried.",
+  "changedStrategy": "With zero owned Scout queue, shifted capacity to Alpha source-acquisition assists and selected materially different primary sources rather than repeating prior searches."
+}

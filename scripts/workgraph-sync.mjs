@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { applyPacketState, buildRoutingQueues, compilePromotionPacket, computeWorkgraphMetrics, loadRoleRuns, loadStructuredEvidence, migrateLegacyQueue, validateWorkgraph, writeWorkgraphArtifacts } from "./lib/workgraph-v2.mjs";
 import { auditCalibrationRecord, buildPacketCalibrationGuidance, CALIBRATION_REGISTRY } from "./lib/calibration-engine.mjs";
@@ -251,6 +251,7 @@ const frontierCalibrationGuidance = packets
   .filter((packet) => ["packet_ready", "chief_ready"].includes(graph.companies?.[packet.ticker]?.state))
   .map(buildPacketCalibrationGuidance);
 const calibrationAuditDir = path.join(shadowDir, "calibration-audits");
+await rm(calibrationAuditDir, { recursive: true, force: true });
 await mkdir(calibrationAuditDir, { recursive: true });
 for (const audit of canonicalCalibrationAudits) {
   if (!audit?.ticker) continue;
@@ -258,7 +259,8 @@ for (const audit of canonicalCalibrationAudits) {
 }
 const calibrationShadow = {
   version: 1,
-  contract: "earth2036-calibration-shadow-v1",
+  contract: "earth2036-calibration-shadow-v2",
+  storageMode: "sharded-v1",
   generatedAt: now.toISOString(),
   methodologyVersion: CALIBRATION_REGISTRY.version,
   calibrationVersion: CALIBRATION_REGISTRY.calibrationVersion,
@@ -288,6 +290,7 @@ await writeJsonArtifact(path.join(workerViewDir, "calibration-summary.json"), {
 
 const digitalTwinShadow = buildDigitalTwinShadow(graph, packets, now.toISOString());
 const digitalTwinDir = path.join(shadowDir, "digital-twins");
+await rm(digitalTwinDir, { recursive: true, force: true });
 await mkdir(digitalTwinDir, { recursive: true });
 for (const twin of digitalTwinShadow.twins || []) {
   if (!twin?.ticker) continue;

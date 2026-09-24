@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "NBIS",
   "workId": "t0:NBIS",
-  "generatedAt": "2026-09-24T01:30:47.542Z",
+  "generatedAt": "2026-09-24T02:07:46.638Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-03-03T00:00:00.000Z",
-    "end": "2026-09-24T01:06:35.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-24T01:06:35.000Z"
+    "end": "2026-09-24T02:05:50.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-24T02:05:50.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -80,13 +80,14 @@
     "data/runtime/workgraph/evidence/NBIS-20260923T210315Z-earth-scout.json",
     "data/runtime/workgraph/evidence/NBIS-20260923T220557Z-earth-scout.json",
     "data/runtime/workgraph/evidence/NBIS-20260924T000229Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/NBIS-20260924T010635Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/NBIS-20260924T010635Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/NBIS-20260924T020550Z-earth-scout.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 59,
-    "historicalEvidenceCount": 59
+    "activeEvidenceCount": 61,
+    "historicalEvidenceCount": 61
   },
   "factorEvidence": {
     "names": [
@@ -113,7 +114,9 @@
       "supplyChainResilience",
       "governancePower",
       "pricingPower",
-      "financialOperatingMomentum"
+      "financialOperatingMomentum",
+      "contractBackedFinancing",
+      "contractedDemand"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -229,7 +232,9 @@
     "supplyChainResilience",
     "governancePower",
     "pricingPower",
-    "financialOperatingMomentum"
+    "financialOperatingMomentum",
+    "contractBackedFinancing",
+    "contractedDemand"
   ],
   "riskEvidence": {
     "present": true,
@@ -431,7 +436,9 @@
       "Industry overcapacity or lower-compute model architectures could pressure utilization and pricing.",
       "The August 2026 convertible financing materially expands capital available for growth but creates repayment/dilution exposure and does not prove returns on deployed capital.",
       "Partnership status and preferred-provider positioning do not establish realized revenue, customer adoption, pricing or margins.",
-      "Integration timing and conversion from preferred partner status to paid workloads are unquantified."
+      "Integration timing and conversion from preferred partner status to paid workloads are unquantified.",
+      "Secured financing encumbers GPU infrastructure and depends on contracted cash flows; large forward commitments still require buildout, delivery and utilization execution.",
+      "Power, construction, GPU delivery and commissioning remain execution dependencies."
     ]
   },
   "risks": [
@@ -632,7 +639,9 @@
     "Industry overcapacity or lower-compute model architectures could pressure utilization and pricing.",
     "The August 2026 convertible financing materially expands capital available for growth but creates repayment/dilution exposure and does not prove returns on deployed capital.",
     "Partnership status and preferred-provider positioning do not establish realized revenue, customer adoption, pricing or margins.",
-    "Integration timing and conversion from preferred partner status to paid workloads are unquantified."
+    "Integration timing and conversion from preferred partner status to paid workloads are unquantified.",
+    "Secured financing encumbers GPU infrastructure and depends on contracted cash flows; large forward commitments still require buildout, delivery and utilization execution.",
+    "Power, construction, GPU delivery and commissioning remain execution dependencies."
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -712,9 +721,9 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 67,
-    "uniqueSourceCount": 30,
-    "duplicatesCollapsed": 37,
+    "rawSourceCount": 71,
+    "uniqueSourceCount": 32,
+    "duplicatesCollapsed": 39,
     "missingLineage": 0,
     "uniqueOrigins": [
       "nebius:meta-ai-infrastructure:2026-03-16",
@@ -746,7 +755,9 @@
       "issuer-nebius|NBIS|2026-03-03|independence-missouri|1.2gw-approval",
       "sec:NBIS:20-F:2025",
       "issuer:NBIS:convertible-notes-close:2026-08-24",
-      "nebius-newsroom|2026-09-08|palantir-preferred-sovereign-ai-infrastructure"
+      "nebius-newsroom|2026-09-08|palantir-preferred-sovereign-ai-infrastructure",
+      "nebius-newsroom|2026-07-17|775m-secured-gpu-contract-cashflows",
+      "nebius-newsroom|2026-03-16|meta-12b-dedicated-15b-additional-capacity"
     ]
   },
   "sources": [
@@ -1062,6 +1073,34 @@
         "The announcement did not disclose contract value, committed capacity or realized revenue."
       ],
       "primary": false
+    },
+    {
+      "sourceId": "nebius-newsroom:2026-07-17-secured-financing",
+      "origin": "Nebius Newsroom / first secured debt financing",
+      "url": "https://nebius.com/newsroom/nebius-raises-775-million-in-first-secured-debt-financing-to-accelerate-global-buildout",
+      "publishedAt": "2026-07-17",
+      "accessedAt": "2026-09-24T02:05:50Z",
+      "originFingerprint": "nebius-newsroom|2026-07-17|775m-secured-gpu-contract-cashflows",
+      "facts": [
+        "Approximately $775 million senior secured facility.",
+        "Facility is backed by deployed GPU infrastructure and contracted cash flows from an investment-grade customer.",
+        "Maturity is October 31, 2030 and pricing is SOFR + 2.50%.",
+        "Issuer states facility plus customer cash flows covers more than 100% of capex for the underlying GPU deployment."
+      ],
+      "primary": false
+    },
+    {
+      "sourceId": "nebius-newsroom:2026-03-16-meta-agreement",
+      "origin": "Nebius Newsroom / Meta AI infrastructure agreement",
+      "url": "https://nebius.com/newsroom/nebius-signs-new-ai-infrastructure-agreement-with-meta",
+      "publishedAt": "2026-03-16",
+      "accessedAt": "2026-09-24T02:05:50Z",
+      "originFingerprint": "nebius-newsroom|2026-03-16|meta-12b-dedicated-15b-additional-capacity",
+      "facts": [
+        "Five-year agreement includes $12 billion of dedicated capacity beginning in early 2027.",
+        "Meta committed to purchase additional available compute capacity up to $15 billion over five years subject to capacity availability."
+      ],
+      "primary": false
     }
   ],
   "contradictions": [
@@ -1085,10 +1124,11 @@
     },
     "Large contracted demand and rapid buildout support demand visibility, while the issuer's own 20-F warns that industry overcapacity, pricing pressure and contract execution can still impair utilization and margins.",
     "Large contracted demand and rapid buildout support demand visibility, while the issuer's own 20-F warns that industry overcapacity, pricing pressure and contract execution can still impair utilization and margins.",
-    "The partnership broadens enterprise distribution while prior issuer risk disclosures still identify pricing pressure, utilization and long-contract execution as material risks."
+    "The partnership broadens enterprise distribution while prior issuer risk disclosures still identify pricing pressure, utilization and long-contract execution as material risks.",
+    "Contracted demand and financing improve visibility while simultaneously increasing execution dependence on timely infrastructure deployment and customer concentration."
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 5,
+    "unresolvedMaterialCount": 6,
     "items": [
       {
         "claim": "High demand visibility versus uncertain project returns",
@@ -1110,7 +1150,8 @@
       },
       "Large contracted demand and rapid buildout support demand visibility, while the issuer's own 20-F warns that industry overcapacity, pricing pressure and contract execution can still impair utilization and margins.",
       "Large contracted demand and rapid buildout support demand visibility, while the issuer's own 20-F warns that industry overcapacity, pricing pressure and contract execution can still impair utilization and margins.",
-      "The partnership broadens enterprise distribution while prior issuer risk disclosures still identify pricing pressure, utilization and long-contract execution as material risks."
+      "The partnership broadens enterprise distribution while prior issuer risk disclosures still identify pricing pressure, utilization and long-contract execution as material risks.",
+      "Contracted demand and financing improve visibility while simultaneously increasing execution dependence on timely infrastructure deployment and customer concentration."
     ]
   },
   "unknowns": [
@@ -1303,11 +1344,13 @@
     "Incremental return on invested capital for capacity funded by the August 2026 notes.",
     "Customer-level utilization and margin contribution for long-duration contracted capacity.",
     "No contract value, committed capacity, customer count, revenue timing or margin contribution was disclosed.",
-    "Integration completion date and first paid workload timing are unknown."
+    "Integration completion date and first paid workload timing are unknown.",
+    "The July financing announcement does not identify the investment-grade customer, detailed amortization schedule, covenant package or project-level return on invested capital.",
+    "Realized project economics and utilization after commissioning remain unknown."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 62
+    "nonGatingCount": 64
   },
   "gatingIssues": [],
   "confidence": 90,

@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "contract": "workgraph-v2-role-run",
+  "role": "earth-scout",
+  "generatedAt": "2026-09-24T10:04:45Z",
+  "startingGitHead": "21c0b27dfc9c63a3aa4eaddb48aa88cf27d40a57",
+  "companiesInspected": ["IBM", "MBLY", "NBIS", "SERV"],
+  "evidencePairsCompleted": 1,
+  "artifacts": [
+    "data/runtime/workgraph/evidence/NBIS-20260924T100445Z-earth-scout-assist.json"
+  ],
+  "assistAttempts": [
+    {
+      "requestId": "assist:IBM:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "3eff206efd764748488e",
+      "outcome": "skipped_same_signature_prior_failure",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    },
+    {
+      "requestId": "assist:MBLY:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "0347eb498d14b745a90e",
+      "outcome": "skipped_same_signature_prior_failure",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    },
+    {
+      "requestId": "assist:NBIS:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "33c7a1ba9497aae3e3b3",
+      "outcome": "completed_new_regulatory_and_financing_evidence",
+      "newEvidencePaths": [
+        "data/runtime/workgraph/evidence/NBIS-20260924T100445Z-earth-scout-assist.json"
+      ],
+      "sourcePathsAttempted": [
+        "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-2.htm",
+        "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_ex99-1.htm",
+        "https://nebius.com/newsroom/nebius-group-announces-closing-of-private-offering-of-convertible-senior-notes-with-aggregate-gross-proceeds-of-approximately-5-75-billion"
+      ]
+    },
+    {
+      "requestId": "assist:SERV:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "e77483edc6718a95caa1",
+      "outcome": "skipped_same_signature_prior_failure",
+      "newEvidencePaths": [],
+      "sourcePathsAttempted": []
+    }
+  ],
+  "result": "assist_evidence_added",
+  "blockers": [
+    "IBM, MBLY and SERV retained unchanged failed input signatures; repeated search was intentionally avoided under the learning contract."
+  ],
+  "repeatedBlocker": "unchanged_failed_assist_signatures",
+  "changedStrategy": "With owned Scout queue empty, prioritized active Alpha assists; skipped unchanged failed signatures and used a materially different SEC-furnished Q2 2026 filing plus later financing close for NBIS instead of repeating prior contract-announcement searches."
+}

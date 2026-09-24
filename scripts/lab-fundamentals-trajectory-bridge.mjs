@@ -235,7 +235,7 @@ if (!noWrite) await writeJson(manifestFile, manifest);
 if (!noWrite && !historical && has("--publish-health")) {
   const health = {
     contract: "earth2036-fundamentals-bridge-health-v1", system: "shadow",
-    asOf, generatedAt: new Date().toISOString(), ...fundamentalsBridgeHealth(Object.values(indexes.get(asOf)).map((e) => e.reference)),
+    status: "live-shadow-bootstrap", asOf, generatedAt: new Date().toISOString(), ...fundamentalsBridgeHealth(Object.values(indexes.get(asOf)).map((e) => e.reference)),
     changedThisCycle: changed, sourceRefreshes: refreshed,
     futureLeakage: canaries.filter((v) => /future[\s_-]*(?:fact|filed|source|cutoff|leakage)/i.test(String(v.reason ?? ""))).length,
     reconstructionFailures: canaries.filter((v) => v.status === "invalid").length,

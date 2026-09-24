@@ -1,0 +1,111 @@
+[
+  {
+    "version": 1,
+    "ticker": "IREN",
+    "entityId": "IREN",
+    "company": "IREN Limited",
+    "workId": "t0:IREN",
+    "role": "council-beta",
+    "perspective": "risk-source-support",
+    "generatedAt": "2026-09-24T05:24:53Z",
+    "assist": {
+      "requestId": "assist:IREN:council-alpha:council-beta:risk-source-support",
+      "inputSignature": "645cefb8f91dcc60fed0",
+      "rootOwner": "council-alpha",
+      "capability": "risk-source-support"
+    },
+    "claims": [
+      {
+        "claim": "IREN's FY2026 10-K states AI Cloud Services revenue generally begins only after compute is delivered, commissioned, placed in service and accepted where applicable, making commissioning and acceptance direct conversion gates between contracted demand and recognized revenue.",
+        "status": "supported"
+      },
+      {
+        "claim": "The same filing identifies significant customer concentration, dependence on limited GPU/networking/storage suppliers, rapid hardware obsolescence, grid/power constraints, and a need to match customer contracts, capital expenditures, power commitments and financing.",
+        "status": "supported"
+      },
+      {
+        "claim": "IREN disclosed a $702.6 million FY2026 net loss and substantial continuing capital requirements while transitioning toward AI Cloud Services; these facts strengthen financing/execution downside evidence without establishing that contracted deployments will fail.",
+        "status": "supported-interpretation"
+      }
+    ],
+    "sources": [
+      {
+        "sourceId": "iren-fy26-sec-10k-risk",
+        "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000052/iren-20260630.htm",
+        "kind": "primary",
+        "primary": true,
+        "publishedAt": "2026-08-28",
+        "originFingerprint": "sec:1878848:fy2026-10k:risk-and-performance"
+      }
+    ],
+    "affectedFactors": [
+      {
+        "name": "financingRisk",
+        "direction": "risk",
+        "basis": "Large AI infrastructure and equipment commitments require continued capital while revenue conversion depends on commissioning and customer acceptance."
+      },
+      {
+        "name": "concentrationRisk",
+        "direction": "risk",
+        "basis": "The company explicitly reports significant AI Cloud customer concentration and counterparty exposure."
+      },
+      {
+        "name": "supplyChainResilience",
+        "direction": "mixed-risk",
+        "basis": "GPU, networking and storage supply depends on a limited supplier set while rapid hardware change can shorten useful economic life."
+      },
+      {
+        "name": "confidenceInflation",
+        "direction": "risk",
+        "basis": "Contracted capacity should not be equated with recognized revenue before delivery, commissioning, service placement and acceptance conditions are met."
+      }
+    ],
+    "causalEdges": [
+      {
+        "from": "contracted AI compute demand",
+        "to": "recognized AI Cloud revenue",
+        "mechanism": "GPU procurement, construction, power/grid availability, commissioning, placement in service and customer acceptance must occur before revenue generally begins",
+        "falsifier": "phase-by-phase evidence shows timely commissioning and acceptance with financing matched to customer contracts and realized economics"
+      },
+      {
+        "from": "limited GPU/networking suppliers and rapid hardware cycles",
+        "to": "deployment economics and schedule resilience",
+        "mechanism": "scarcity, delays or obsolescence can increase capex, delay service start or impair hardware utilization",
+        "falsifier": "diversified procurement, on-time delivery and sustained utilization demonstrate the constraint is immaterial in realized deployments"
+      }
+    ],
+    "risks": [
+      {
+        "risk": "Revenue conversion can lag headline contracted capacity when commissioning or acceptance is delayed while capital obligations continue.",
+        "gating": false
+      },
+      {
+        "risk": "Customer concentration links infrastructure financing resilience to a small number of counterparties and deployment outcomes.",
+        "gating": false
+      },
+      {
+        "risk": "Rapid GPU obsolescence and limited supplier availability can raise replacement capital needs or weaken utilization economics.",
+        "gating": false
+      }
+    ],
+    "contradictions": [],
+    "unknowns": [
+      {
+        "unknown": "Current realized margins and acceptance status by major deployment phase remain necessary to determine whether these disclosed risks are being reduced in practice.",
+        "gating": false
+      }
+    ],
+    "gatingIssues": [],
+    "confidence": 95,
+    "recommendedNextState": "researching",
+    "recommendedOwner": "council-alpha",
+    "lineage": {
+      "packetPath": "data/runtime/workgraph/packets/IREN.json",
+      "reuses": [
+        "data/runtime/workgraph/evidence/IREN-20260920T202216Z-council-beta.json",
+        "data/runtime/workgraph/evidence/IREN-20260924T051330Z-council-alpha.json"
+      ],
+      "supersedes": null
+    }
+  }
+]

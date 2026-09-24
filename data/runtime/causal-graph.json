@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-24T05:45:51.452Z",
+  "updatedAt": "2026-09-24T06:47:14.082Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1526,6 +1526,18 @@
       "type": "market",
       "label": "site-specific operating data and integration context",
       "description": "existing control-system deployment supplies operational context and lowers integration friction"
+    },
+    {
+      "id": "company:IR",
+      "type": "company",
+      "label": "Ingersoll Rand Inc.",
+      "description": "Ingersoll Rand's blower/compressor and service capabilities map directly into water/wastewater aeration and broader mission-critical industrial flow needs; Lone Star expands technology breadth, rental and aftermarket capability."
+    },
+    {
+      "id": "market:IR-reliable-flow-creation-and-aeration-demand",
+      "type": "market",
+      "label": "reliable flow creation and aeration demand",
+      "description": "treatment and industrial processes require controlled movement of air, gas and liquids"
     }
   ],
   "edges": [
@@ -3512,6 +3524,21 @@
         "issuer:HON:wws-sale:20260727"
       ],
       "observedAt": "2026-09-20T19:25:31Z"
+    },
+    {
+      "id": "edge:IR-structural-exposure",
+      "from": "company:IR",
+      "to": "market:IR-reliable-flow-creation-and-aeration-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "irco:2026-08-03:lone-star-acquisition",
+        "irco:2026-07-30:q2-results"
+      ],
+      "observedAt": "2026-09-20T20:22:16Z"
     }
   ],
   "structuralSignals": [
@@ -5976,6 +6003,25 @@
       "observedAt": "2026-09-20T19:25:31Z",
       "thesis": "Honeywell has a sourced structural demand path.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:IR-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:IR-reliable-flow-creation-and-aeration-demand",
+      "affectedNodeIds": [
+        "company:IR"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "irco:2026-08-03:lone-star-acquisition",
+        "irco:2026-07-30:q2-results"
+      ],
+      "observedAt": "2026-09-20T20:22:16Z",
+      "thesis": "Ingersoll Rand's blower/compressor and service capabilities map directly into water/wastewater aeration and broader mission-critical industrial flow needs; Lone Star expands technology breadth, rental and aftermarket capability.",
+      "falsifier": "end-market project demand structurally weakens or substitute processes materially reduce equipment/service intensity"
     }
   ],
   "roadmapMilestones": [

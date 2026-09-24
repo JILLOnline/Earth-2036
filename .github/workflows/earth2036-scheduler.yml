@@ -89,4 +89,5 @@ jobs:
           git fetch --no-tags --depth=50 origin main
           git merge-base --is-ancestor "$PERSISTED_HEAD" origin/main
           gh workflow run earth2036-pages.yml --repo "${{ github.repository }}" --ref main -f source_sha="$PERSISTED_HEAD"
-          echo "Published machine snapshot request for $PERSISTED_HEAD; newer minion commits may remain on main."
+          gh workflow run fundamentals-trajectory-bridge-live.yml --repo "${{ github.repository }}" --ref main
+          echo "Published machine snapshot request for $PERSISTED_HEAD and dispatched the non-canonical #11 live bridge; newer minion commits may remain on main."

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "AAPL",
   "workId": "t0:AAPL",
-  "generatedAt": "2026-09-25T00:43:50.063Z",
+  "generatedAt": "2026-09-25T01:05:26.674Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-30T00:00:00.000Z",
-    "end": "2026-09-25T00:09:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-25T00:09:00.000Z"
+    "end": "2026-09-25T01:03:36.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-25T01:03:36.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -52,13 +52,14 @@
     "data/runtime/workgraph/evidence/AAPL-20260919T050657Z-earth-scout.json",
     "data/runtime/workgraph/evidence/AAPL-20260922T012556Z-council-beta.json",
     "data/runtime/workgraph/evidence/AAPL-20260924T230334Z-earth-scout-assist.json",
-    "data/runtime/workgraph/evidence/AAPL-20260925T000900Z-earth-scout-assist.json"
+    "data/runtime/workgraph/evidence/AAPL-20260925T000900Z-earth-scout-assist.json",
+    "data/runtime/workgraph/evidence/AAPL-20260925T010336Z-earth-scout-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 6,
-    "historicalEvidenceCount": 6
+    "activeEvidenceCount": 7,
+    "historicalEvidenceCount": 7
   },
   "factorEvidence": {
     "names": [
@@ -108,7 +109,10 @@
         "financialOperatingMomentum",
         "pricingPower",
         "scenarioRobustness",
-        "supplyChainResilience"
+        "supplyChainResilience",
+        "supplyChainResilience",
+        "scenarioRobustness",
+        "financialOperatingMomentum"
       ]
     }
   },
@@ -191,6 +195,10 @@
       {
         "risk": "Tariff policy and reciprocal measures remain an operating and supply-chain uncertainty; the filing discusses these measures but does not establish a stable long-run tariff regime.",
         "gating": false
+      },
+      {
+        "risk": "The $57.0B manufacturing purchase-obligation base creates substantial near-term committed procurement exposure; the filing does not by itself establish how flexibly those obligations can be resized under a demand or supply shock.",
+        "gating": false
       }
     ]
   },
@@ -222,6 +230,10 @@
     {
       "risk": "Tariff policy and reciprocal measures remain an operating and supply-chain uncertainty; the filing discusses these measures but does not establish a stable long-run tariff regime.",
       "gating": false
+    },
+    {
+      "risk": "The $57.0B manufacturing purchase-obligation base creates substantial near-term committed procurement exposure; the filing does not by itself establish how flexibly those obligations can be resized under a demand or supply shock.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -232,7 +244,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 3
+    "count": 4
   },
   "causalMapping": {
     "present": true,
@@ -248,14 +260,15 @@
     "Siri AI capability->potential device/service utility->possible successor engagement/monetization bottleneck"
   ],
   "sourceLineage": {
-    "rawSourceCount": 6,
-    "uniqueSourceCount": 3,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 4,
     "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:AAPL:FY26Q3:Newsroom",
       "issuer:AAPL:FY26Q3:Newsroom:2026-07-30",
-      "sec:AAPL:10-Q:000032019326000020"
+      "sec:AAPL:10-Q:000032019326000020",
+      "sec:AAPL:10-Q:000032019326000020:liquidity-manufacturing-obligations"
     ]
   },
   "sources": [
@@ -282,6 +295,14 @@
       "primary": true,
       "publishedAt": "2026-07-31",
       "originFingerprint": "sec:AAPL:10-Q:000032019326000020"
+    },
+    {
+      "sourceId": "sec:AAPL:10-Q:2026Q3:000032019326000020:liquidity-manufacturing-obligations",
+      "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-31",
+      "originFingerprint": "sec:AAPL:10-Q:000032019326000020:liquidity-manufacturing-obligations"
     }
   ],
   "contradictions": [
@@ -303,10 +324,15 @@
       "contradiction": "Very strong reported gross-margin performance coexists with tariff-related policy volatility and previously disclosed temporary tariff-refund benefits, so recurring margin quality requires Alpha normalization rather than headline extrapolation.",
       "material": true,
       "resolution": "source_addressed_for_alpha_normalization"
+    },
+    {
+      "contradiction": "Apple describes diversified component sourcing and adequate liquidity while simultaneously carrying $57.0B of manufacturing purchase obligations, $56.2B due within 12 months; this is resilience capacity plus meaningful execution commitment rather than evidence of either pure flexibility or pure fragility.",
+      "material": true,
+      "resolution": "source_addressed_for_alpha_supply_chain_and_risk_normalization"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 4,
+    "unresolvedMaterialCount": 5,
     "items": [
       {
         "contradiction": "Record EPS and margin include a meaningful temporary tariff-refund benefit.",
@@ -326,6 +352,11 @@
         "contradiction": "Very strong reported gross-margin performance coexists with tariff-related policy volatility and previously disclosed temporary tariff-refund benefits, so recurring margin quality requires Alpha normalization rather than headline extrapolation.",
         "material": true,
         "resolution": "source_addressed_for_alpha_normalization"
+      },
+      {
+        "contradiction": "Apple describes diversified component sourcing and adequate liquidity while simultaneously carrying $57.0B of manufacturing purchase obligations, $56.2B due within 12 months; this is resilience capacity plus meaningful execution commitment rather than evidence of either pure flexibility or pure fragility.",
+        "material": true,
+        "resolution": "source_addressed_for_alpha_supply_chain_and_risk_normalization"
       }
     ]
   },
@@ -361,11 +392,19 @@
     {
       "unknown": "The filing does not by itself establish the durability of current tariff treatment or quantify future policy changes.",
       "gating": false
+    },
+    {
+      "unknown": "The filing excerpt does not quantify supplier-by-supplier concentration, cancellation rights, geographic concentration, or the portion of manufacturing obligations that is non-cancellable.",
+      "gating": false
+    },
+    {
+      "unknown": "Scout does not convert these obligations into Alpha numeric underwriting, score-risk or data-confidence values.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 8
+    "nonGatingCount": 10
   },
   "gatingIssues": [],
   "confidence": 82,

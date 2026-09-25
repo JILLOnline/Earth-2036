@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "contract": "earth2036-workgraph-evidence-v1",
+  "ticker": "MBLY",
+  "workId": "t0:MBLY",
+  "generatedAt": "2026-09-25T18:26:35Z",
+  "role": "council-beta",
+  "perspective": "adversarial-red-team-assist",
+  "rootOwner": "council-alpha",
+  "assist": {
+    "requestId": "assist:MBLY:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "8c3090246b86089ad906",
+    "capability": "risk-source-support",
+    "exactQuestion": "Acquire source-addressed downside, execution-risk and falsifier evidence Alpha can reuse without setting Alpha's numeric risk or score."
+  },
+  "sources": [
+    {
+      "sourceId": "regulatory:SEC:MBLY:8-K:2026-09-10:principal-operating-officer",
+      "type": "primary-regulatory",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "url": "https://www.sec.gov/Archives/edgar/data/1910139/000110465926106535/tm2624975d2_8k.htm",
+      "originFingerprint": "SEC|CIK0001910139|8-K|2026-09-10|Item5.02|KobiOhayon-principal-operating-officer"
+    }
+  ],
+  "claims": [
+    {
+      "claim": "The September 3 designation of long-serving COO Kobi Ohayon as principal operating officer is continuity evidence, not evidence that Mobileye's CEO succession uncertainty has been resolved.",
+      "sourceId": "regulatory:SEC:MBLY:8-K:2026-09-10:principal-operating-officer",
+      "observed": true
+    },
+    {
+      "claim": "Because the filing explicitly states that Ohayon's duties, employment status and compensation did not change, treating the designation as a new operating catalyst would inflate confidence beyond the source.",
+      "sourceId": "regulatory:SEC:MBLY:8-K:2026-09-10:principal-operating-officer",
+      "observed": true
+    }
+  ],
+  "affectedFactors": [
+    {
+      "name": "governancePower",
+      "direction": "mixed-neutral",
+      "basis": "Operating leadership continuity is observable, while CEO succession remains unresolved and should stay separate from evidence of execution improvement."
+    },
+    {
+      "name": "executionMonitoring",
+      "direction": "neutral-positive",
+      "basis": "Formal principal-operating-officer designation improves accountability visibility but does not demonstrate changed operating capability."
+    }
+  ],
+  "causalEdges": [
+    {
+      "from": "formal operating-leadership continuity",
+      "to": "execution resilience during CEO transition",
+      "status": "supportive-but-not-sufficient",
+      "falsifier": "A material operating-leadership departure, disclosed responsibility gap, or deterioration attributable to transition would weaken the continuity interpretation."
+    }
+  ],
+  "risks": [
+    {
+      "risk": "CEO succession remains an unresolved governance/execution uncertainty; the COO designation does not close it.",
+      "gating": false,
+      "sourceId": "regulatory:SEC:MBLY:8-K:2026-09-10:principal-operating-officer"
+    },
+    {
+      "risk": "Confidence inflation would occur if a recognition of existing responsibilities were scored as a new operating capability or catalyst.",
+      "gating": false,
+      "sourceId": "regulatory:SEC:MBLY:8-K:2026-09-10:principal-operating-officer"
+    }
+  ],
+  "contradictions": [],
+  "unknowns": [
+    "Successor CEO identity and appointment timing remain undisclosed in this source.",
+    "No financial or operating impact from the designation is quantified."
+  ],
+  "gatingStatus": {
+    "betaBlocker": false,
+    "rootOwnerFailureAddressed": "missing_score_risk_evidence",
+    "closureEffect": "Provides source-addressed risk/falsifier evidence for Alpha reuse but does not create or set Alpha numeric risk or score."
+  },
+  "confidence": "high",
+  "recommendedNextState": "researching",
+  "recommendedNextOwner": "council-alpha",
+  "recommendation": "Use the SEC filing to keep succession uncertainty distinct from operating-continuity evidence. Do not infer numeric risk, score, or catalyst value from this assist.",
+  "lineage": {
+    "sourcePacket": "data/runtime/workgraph/packets/MBLY.json",
+    "inputSignature": "8c3090246b86089ad906",
+    "reusedEvidencePaths": [
+      "data/runtime/workgraph/evidence/MBLY-20260925T180644Z-earth-scout-assist.json"
+    ],
+    "supersedes": []
+  }
+}

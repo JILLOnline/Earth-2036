@@ -4,8 +4,8 @@
   "canonicalWriteAuthority": false,
   "ticker": "MRCY",
   "workId": "t0:MRCY",
-  "inputSignature": "aaee0660636be7b358ea2734",
-  "sourceState": "researching",
+  "inputSignature": "395d2c3a8b93296ef89f6df3",
+  "sourceState": "chief_ready",
   "identity": {
     "ticker": "MRCY",
     "company": "Mercury Systems",
@@ -29,32 +29,38 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
-    ],
-    "missingPerspectives": [
+      "adversarial-red-team",
       "source-integrity",
       "company-underwriting"
     ],
-    "primarySourceCount": 5,
+    "missingPerspectives": [],
+    "primarySourceCount": 10,
     "sourceLineage": {
-      "rawSourceCount": 8,
-      "uniqueSourceCount": 5,
-      "duplicatesCollapsed": 3,
+      "rawSourceCount": 20,
+      "uniqueSourceCount": 12,
+      "duplicatesCollapsed": 8,
       "missingLineage": 0,
       "uniqueOrigins": [
         "mrcy-ir:fy26-q3-results",
         "sec:mrcy:10k:20260703",
         "mrcy-ir:fy26-results",
         "mrcy-ir:builsecure-order:20260528",
-        "mrcy-ir:palantir-factory:20260803"
+        "mrcy-ir:palantir-factory:20260803",
+        "stockanalysis:mrcy:20260925",
+        "sec:MRCY:10K:20260703",
+        "issuer:MRCY:FY26",
+        "issuer:MRCY:BuiltSECURE:20260528",
+        "issuer:MRCY:Palantir:20260803",
+        "issuer:MRCY:Q3FY26",
+        "market:MRCY:20260925"
       ]
     },
     "evidenceWindow": {
       "start": "2026-05-05T00:00:00.000Z",
-      "end": "2026-09-21T06:27:57.000Z",
-      "latestEvidenceGeneratedAt": "2026-09-21T06:27:57.000Z"
+      "end": "2026-09-25T13:16:50.000Z",
+      "latestEvidenceGeneratedAt": "2026-09-25T13:16:50.000Z"
     },
-    "preflightPassed": false
+    "preflightPassed": true
   },
   "capabilitySignals": [
     "defense electronics demand visibility",
@@ -71,7 +77,8 @@
       "Backlog is demand visibility, not guaranteed margin or cash conversion; program timing and execution remain material.",
       "Adjusted EBITDA growth can overstate economic recovery if working-capital intensity, program charges or cash conversion remain weak.",
       "Defense customer/program concentration and procurement timing can delay backlog conversion.",
-      "Commercial compute advances can reduce differentiation unless Mercury sustains security, qualification and integration advantages."
+      "Commercial compute advances can reduce differentiation unless Mercury sustains security, qualification and integration advantages.",
+      "Backlog conversion and cash-flow normalization remain unproven across a full recovery cycle."
     ],
     "unknowns": [
       "Program-level backlog composition and cancellation/deferral sensitivity are not fully disclosed in this release.",
@@ -83,14 +90,7 @@
       "Record backlog and stronger adjusted EBITDA coexist with a FY26 GAAP loss and lower full-year free cash flow."
     ],
     "gatingIssues": [],
-    "preflightFailures": [
-      "missing_specialist_perspective:source-integrity",
-      "missing_specialist_perspective:company-underwriting",
-      "missing_factor_evidence",
-      "missing_numeric_score_record",
-      "missing_score_risk_evidence",
-      "missing_data_confidence_evidence"
-    ]
+    "preflightFailures": []
   },
   "causalContext": {
     "mapped": true,
@@ -112,41 +112,28 @@
         "to": "need:secure-real-time-mission-compute",
         "relationship": "serves",
         "direction": 1
+      },
+      {
+        "from": "company:MRCY",
+        "to": "technology:secure-rugged-edge-compute",
+        "relationship": "integrates_and_supplies",
+        "direction": 1
+      },
+      {
+        "from": "technology:secure-rugged-edge-compute",
+        "to": "infrastructure:defense-platforms",
+        "relationship": "enables_mission_processing",
+        "direction": 1
+      },
+      {
+        "from": "infrastructure:defense-platforms",
+        "to": "need:secure-real-time-mission-compute",
+        "relationship": "serves",
+        "direction": 1
       }
     ]
   },
-  "improvementWindows": [
-    {
-      "failure": "missing_specialist_perspective:source-integrity",
-      "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:source-integrity?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_specialist_perspective:company-underwriting",
-      "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_factor_evidence",
-      "question": "Which required methodology factor still lacks source-addressed evidence?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_numeric_score_record",
-      "question": "Which source-addressed factor assessments are still required before a reproducible score can be constructed?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_score_risk_evidence",
-      "question": "Which material risks require source-addressed quantitative treatment?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_data_confidence_evidence",
-      "question": "Which evidence-quality dimensions remain insufficiently supported?",
-      "stance": "improvement-oriented"
-    }
-  ],
+  "improvementWindows": [],
   "bridgeInputs": {
     "capabilityCandidates": [
       "defense electronics demand visibility",
@@ -165,7 +152,8 @@
       "Backlog is demand visibility, not guaranteed margin or cash conversion; program timing and execution remain material.",
       "Adjusted EBITDA growth can overstate economic recovery if working-capital intensity, program charges or cash conversion remain weak.",
       "Defense customer/program concentration and procurement timing can delay backlog conversion.",
-      "Commercial compute advances can reduce differentiation unless Mercury sustains security, qualification and integration advantages."
+      "Commercial compute advances can reduce differentiation unless Mercury sustains security, qualification and integration advantages.",
+      "Backlog conversion and cash-flow normalization remain unproven across a full recovery cycle."
     ],
     "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
   },

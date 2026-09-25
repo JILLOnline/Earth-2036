@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-25T22:18:32.382Z",
+  "updatedAt": "2026-09-25T23:19:12.512Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1742,6 +1742,18 @@
       "type": "market",
       "label": "regulated grid and generation investment",
       "description": "more load requires dependable generation, transmission/distribution and storage capacity"
+    },
+    {
+      "id": "company:NFLX",
+      "type": "company",
+      "label": "Netflix, Inc.",
+      "description": "Netflix's structural chain runs from global consumer demand for entertainment through distribution software, recommendation/discovery and content/IP to engagement and monetization; expanded owned IP can strengthen the chain but does not remove competition for attention."
+    },
+    {
+      "id": "market:NFLX-engagement-and-monetization-options",
+      "type": "market",
+      "label": "engagement and monetization options",
+      "description": "distinctive franchises can support viewing, retention, licensing and extensions"
     }
   ],
   "edges": [
@@ -3999,6 +4011,21 @@
       "sourceIds": [
         "nextera:2026-05-18:dominion-combination",
         "nextera:2026-07-24:q2-2026"
+      ],
+      "observedAt": "2026-09-21T05:24:00Z"
+    },
+    {
+      "id": "edge:NFLX-structural-exposure",
+      "from": "company:NFLX",
+      "to": "market:NFLX-engagement-and-monetization-options",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 86,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "netflix:2026-01-20:wbd-all-cash",
+        "stockstofind:2026-07-16:nflx-q2-2026-summary"
       ],
       "observedAt": "2026-09-21T05:24:00Z"
     }
@@ -6810,6 +6837,25 @@
       "observedAt": "2026-09-21T05:24:00Z",
       "thesis": "NextEra's structural role links rising electricity demand to regulated grid/generation investment and contracted renewables/storage; the proposed Dominion combination would enlarge the regulated asset/customer platform but is not required for the standalone causal chain to exist.",
       "falsifier": "load growth fails to materialize or regulators disallow required investment economics"
+    },
+    {
+      "id": "signal:NFLX-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:NFLX-engagement-and-monetization-options",
+      "affectedNodeIds": [
+        "company:NFLX"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 86,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "netflix:2026-01-20:wbd-all-cash",
+        "stockstofind:2026-07-16:nflx-q2-2026-summary"
+      ],
+      "observedAt": "2026-09-21T05:24:00Z",
+      "thesis": "Netflix's structural chain runs from global consumer demand for entertainment through distribution software, recommendation/discovery and content/IP to engagement and monetization; expanded owned IP can strengthen the chain but does not remove competition for attention.",
+      "falsifier": "incremental IP fails to improve engagement or economics after integration"
     }
   ],
   "roadmapMilestones": [

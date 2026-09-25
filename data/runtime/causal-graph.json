@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-25T21:45:51.758Z",
+  "updatedAt": "2026-09-25T22:18:32.382Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1718,6 +1718,30 @@
       "type": "market",
       "label": "technology:hyperscale-ai-cloud",
       "description": "Microsoft links hyperscale compute infrastructure and frontier-model capacity to enterprise software, developer tools and cloud services; Azure scale and 30M+ paid Microsoft 365 Copilot seats show demand on both infrastructure and application layers."
+    },
+    {
+      "id": "company:MTZ",
+      "type": "company",
+      "label": "MasTec, Inc.",
+      "description": "MasTec is a build-and-maintain bridge between capital, skilled field labor/electrical capability and physical communications, power, pipeline, clean-energy and data-center infrastructure; Q2 2026 backlog of $21.4B and Superior's data-center electrical capability broaden exposure to grid and compute buildout."
+    },
+    {
+      "id": "market:MTZ-resource-skilled-infrastructure-labor-and-execution",
+      "type": "market",
+      "label": "resource:skilled-infrastructure-labor-and-execution",
+      "description": "MasTec is a build-and-maintain bridge between capital, skilled field labor/electrical capability and physical communications, power, pipeline, clean-energy and data-center infrastructure; Q2 2026 backlog of $21.4B and Superior's data-center electrical capability broaden exposure to grid and compute buildout."
+    },
+    {
+      "id": "company:NEE",
+      "type": "company",
+      "label": "NextEra Energy, Inc.",
+      "description": "NextEra's structural role links rising electricity demand to regulated grid/generation investment and contracted renewables/storage; the proposed Dominion combination would enlarge the regulated asset/customer platform but is not required for the standalone causal chain to exist."
+    },
+    {
+      "id": "market:NEE-regulated-grid-and-generation-investment",
+      "type": "market",
+      "label": "regulated grid and generation investment",
+      "description": "more load requires dependable generation, transmission/distribution and storage capacity"
     }
   ],
   "edges": [
@@ -3947,6 +3971,36 @@
         "issuer:MSFT:FY26Q4-call"
       ],
       "observedAt": "2026-09-21T00:24:18Z"
+    },
+    {
+      "id": "edge:MTZ-structural-exposure",
+      "from": "company:MTZ",
+      "to": "market:MTZ-resource-skilled-infrastructure-labor-and-execution",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 90,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:MTZ:2026Q2",
+        "issuer:MTZ:10Q:2026Q2"
+      ],
+      "observedAt": "2026-09-21T06:27:57Z"
+    },
+    {
+      "id": "edge:NEE-structural-exposure",
+      "from": "company:NEE",
+      "to": "market:NEE-regulated-grid-and-generation-investment",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 92,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "nextera:2026-05-18:dominion-combination",
+        "nextera:2026-07-24:q2-2026"
+      ],
+      "observedAt": "2026-09-21T05:24:00Z"
     }
   ],
   "structuralSignals": [
@@ -6718,6 +6772,44 @@
       "observedAt": "2026-09-21T00:24:18Z",
       "thesis": "Microsoft links hyperscale compute infrastructure and frontier-model capacity to enterprise software, developer tools and cloud services; Azure scale and 30M+ paid Microsoft 365 Copilot seats show demand on both infrastructure and application layers.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:MTZ-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:MTZ-resource-skilled-infrastructure-labor-and-execution",
+      "affectedNodeIds": [
+        "company:MTZ"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 90,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:MTZ:2026Q2",
+        "issuer:MTZ:10Q:2026Q2"
+      ],
+      "observedAt": "2026-09-21T06:27:57Z",
+      "thesis": "MasTec is a build-and-maintain bridge between capital, skilled field labor/electrical capability and physical communications, power, pipeline, clean-energy and data-center infrastructure; Q2 2026 backlog of $21.4B and Superior's data-center electrical capability broaden exposure to grid and compute buildout.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:NEE-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:NEE-regulated-grid-and-generation-investment",
+      "affectedNodeIds": [
+        "company:NEE"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 92,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "nextera:2026-05-18:dominion-combination",
+        "nextera:2026-07-24:q2-2026"
+      ],
+      "observedAt": "2026-09-21T05:24:00Z",
+      "thesis": "NextEra's structural role links rising electricity demand to regulated grid/generation investment and contracted renewables/storage; the proposed Dominion combination would enlarge the regulated asset/customer platform but is not required for the standalone causal chain to exist.",
+      "falsifier": "load growth fails to materialize or regulators disallow required investment economics"
     }
   ],
   "roadmapMilestones": [

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ACLS",
   "workId": "t0:ACLS",
-  "generatedAt": "2026-09-25T01:49:36.840Z",
+  "generatedAt": "2026-09-25T02:04:27.614Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2025-08-20T00:00:00.000Z",
-    "end": "2026-09-22T03:25:45.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-22T03:25:45.000Z"
+    "end": "2026-09-25T02:03:01.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-25T02:03:01.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -50,13 +50,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/ACLS-20260919T060641Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/ACLS-20260922T0325Z-council-beta.json"
+    "data/runtime/workgraph/evidence/ACLS-20260922T0325Z-council-beta.json",
+    "data/runtime/workgraph/evidence/ACLS-20260925T020301Z-earth-scout-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 5,
+    "historicalEvidenceCount": 5
   },
   "factorEvidence": {
     "names": [
@@ -100,7 +101,10 @@
       "expectations-execution": [
         "financialOperatingMomentum",
         "pricingPower",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower"
       ]
     }
   },
@@ -184,6 +188,10 @@
       {
         "risk": "Merger benefits are management expectations rather than realized evidence until regulatory close and integration; treat TAM/cross-selling claims as hypotheses, not present causal proof.",
         "gating": false
+      },
+      {
+        "risk": "Systems revenue remained below the prior-year six-month level, so stronger installed-base/Aftermarket activity does not establish a broad capital-equipment upcycle.",
+        "gating": false
       }
     ]
   },
@@ -215,6 +223,10 @@
     {
       "risk": "Merger benefits are management expectations rather than realized evidence until regulatory close and integration; treat TAM/cross-selling claims as hypotheses, not present causal proof.",
       "gating": false
+    },
+    {
+      "risk": "Systems revenue remained below the prior-year six-month level, so stronger installed-base/Aftermarket activity does not establish a broad capital-equipment upcycle.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -225,7 +237,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 7
+    "count": 8
   },
   "causalMapping": {
     "present": true,
@@ -275,8 +287,8 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 10,
-    "uniqueSourceCount": 7,
+    "rawSourceCount": 11,
+    "uniqueSourceCount": 8,
     "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
@@ -286,7 +298,8 @@
       "issuer:ACLS:VECO-merger:20251001",
       "sec:ACLS:2026Q2:10Q",
       "sec:ACLS:2025:10K",
-      "issuer:ACLS:VECO-vote:20260206"
+      "issuer:ACLS:VECO-vote:20260206",
+      "sec:ACLS:10-Q:000110465926091999:aftermarket-systems-mix"
     ]
   },
   "sources": [
@@ -345,6 +358,14 @@
       "primary": true,
       "publishedAt": "2026-02-06",
       "originFingerprint": "issuer:ACLS:VECO-vote:20260206"
+    },
+    {
+      "sourceId": "sec:ACLS:10-Q:2026Q2:000110465926091999",
+      "url": "https://www.sec.gov/Archives/edgar/data/1113232/000110465926091999/acls-20260630x10q.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08",
+      "originFingerprint": "sec:ACLS:10-Q:000110465926091999:aftermarket-systems-mix"
     }
   ],
   "contradictions": [
@@ -356,10 +377,15 @@
       "contradiction": "Revenue recovery coexists with weaker year-over-year margin percentages; this narrows the thesis to recovery-with-profitability-to-be-proven rather than a fully demonstrated operating recovery.",
       "material": true,
       "resolution": "Beta does not treat the contradiction as falsifying because volume recovery and margin recovery can occur at different points in a capex cycle; Deep Resolver should close only when source-addressed mix/cost evidence explains the margin gap or demonstrates persistence."
+    },
+    {
+      "contradiction": "Strong Aftermarket growth coexists with weaker six-month systems revenue, indicating installed-base utilization/service strength without equivalent evidence of broad customer capex acceleration.",
+      "material": true,
+      "resolution": "source_addressed_for_alpha_segment_normalization"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 3,
     "items": [
       {
         "contradiction": "Top-line execution is improving while profitability percentages remain below the prior-year quarter.",
@@ -369,6 +395,11 @@
         "contradiction": "Revenue recovery coexists with weaker year-over-year margin percentages; this narrows the thesis to recovery-with-profitability-to-be-proven rather than a fully demonstrated operating recovery.",
         "material": true,
         "resolution": "Beta does not treat the contradiction as falsifying because volume recovery and margin recovery can occur at different points in a capex cycle; Deep Resolver should close only when source-addressed mix/cost evidence explains the margin gap or demonstrates persistence."
+      },
+      {
+        "contradiction": "Strong Aftermarket growth coexists with weaker six-month systems revenue, indicating installed-base utilization/service strength without equivalent evidence of broad customer capex acceleration.",
+        "material": true,
+        "resolution": "source_addressed_for_alpha_segment_normalization"
       }
     ]
   },
@@ -396,11 +427,19 @@
     {
       "unknown": "Realized Veeco integration costs, retention, cross-selling and synergy capture remain unknown before completion/integration.",
       "gating": false
+    },
+    {
+      "unknown": "Scout does not translate revenue mix into Alpha numeric underwriting, score-risk or data-confidence values.",
+      "gating": false
+    },
+    {
+      "unknown": "The cited filing alone does not establish durability of customer capex recovery beyond the reported period.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 6
+    "nonGatingCount": 8
   },
   "gatingIssues": [],
   "confidence": 91,

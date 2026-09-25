@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ADM",
   "workId": "t0:ADM",
-  "generatedAt": "2026-09-25T01:49:36.850Z",
+  "generatedAt": "2026-09-25T02:04:27.619Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2025-01-01T00:00:00.000Z",
-    "end": "2026-09-22T04:22:06.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-22T04:22:06.000Z"
+    "end": "2026-09-25T02:03:01.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-25T02:03:01.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -50,13 +50,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/ADM-20260919T060641Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/ADM-20260922T042206Z-council-beta.json"
+    "data/runtime/workgraph/evidence/ADM-20260922T042206Z-council-beta.json",
+    "data/runtime/workgraph/evidence/ADM-20260925T020301Z-earth-scout-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 5,
+    "historicalEvidenceCount": 5
   },
   "factorEvidence": {
     "names": [
@@ -96,6 +97,9 @@
         "dataConfidence"
       ],
       "expectations-execution": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "supplyChainResilience",
         "financialOperatingMomentum",
         "scenarioRobustness",
         "supplyChainResilience"
@@ -181,6 +185,10 @@
       {
         "risk": "Prior segment-disclosure control weakness raises the value of independent filing-level reconciliation when Alpha constructs numeric score evidence.",
         "gating": false
+      },
+      {
+        "risk": "A substantial portion of liquidity is committed credit capacity rather than cash on hand; availability does not itself establish future operating profitability or commodity-cycle resilience.",
+        "gating": false
       }
     ]
   },
@@ -212,6 +220,10 @@
     {
       "risk": "Prior segment-disclosure control weakness raises the value of independent filing-level reconciliation when Alpha constructs numeric score evidence.",
       "gating": false
+    },
+    {
+      "risk": "A substantial portion of liquidity is committed credit capacity rather than cash on hand; availability does not itself establish future operating profitability or commodity-cycle resilience.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -222,7 +234,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 5
+    "count": 6
   },
   "causalMapping": {
     "present": true,
@@ -268,8 +280,8 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 7,
-    "uniqueSourceCount": 5,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 6,
     "duplicatesCollapsed": 2,
     "missingLineage": 0,
     "uniqueOrigins": [
@@ -277,7 +289,8 @@
       "issuer:ADM:2026Q2:20260804",
       "issuer:ADM:crush-expansion:20260730",
       "issuer:ADM:2025FY:202602",
-      "sec:7084:10k:2024"
+      "sec:7084:10k:2024",
+      "sec:ADM:10-Q:000000708426000042:liquidity-credit-capacity"
     ]
   },
   "sources": [
@@ -320,6 +333,14 @@
       "primary": true,
       "publishedAt": "2025",
       "originFingerprint": "sec:7084:10k:2024"
+    },
+    {
+      "sourceId": "sec:ADM:10-Q:2026Q2:000000708426000042",
+      "url": "https://www.sec.gov/Archives/edgar/data/7084/000000708426000042/adm-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08",
+      "originFingerprint": "sec:ADM:10-Q:000000708426000042:liquidity-credit-capacity"
     }
   ],
   "contradictions": [
@@ -341,10 +362,15 @@
       "contradiction": "Headline Q2 profit growth is partly explained by timing effects and policy-sensitive economics rather than solely durable execution.",
       "material": true,
       "disposition": "resolved_as_earnings-quality adjustment; Alpha should normalize rather than reject evidence"
+    },
+    {
+      "contradiction": "ADM carries only $1.1B cash while reporting $10.0B unused credit lines, indicating meaningful liquidity capacity but material reliance on financing access rather than cash alone.",
+      "material": true,
+      "resolution": "source_addressed_for_alpha_liquidity_normalization"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 3,
     "items": [
       {
         "contradiction": "Strong segment profit growth includes meaningful favorable timing/mark-to-market effects and policy-sensitive economics.",
@@ -364,6 +390,11 @@
         "contradiction": "Headline Q2 profit growth is partly explained by timing effects and policy-sensitive economics rather than solely durable execution.",
         "material": true,
         "disposition": "resolved_as_earnings-quality adjustment; Alpha should normalize rather than reject evidence"
+      },
+      {
+        "contradiction": "ADM carries only $1.1B cash while reporting $10.0B unused credit lines, indicating meaningful liquidity capacity but material reliance on financing access rather than cash alone.",
+        "material": true,
+        "resolution": "source_addressed_for_alpha_liquidity_normalization"
       }
     ]
   },
@@ -387,11 +418,19 @@
     {
       "unknown": "Long-run industry response to announced crush additions and competing low-carbon fuel pathways remains uncertain.",
       "gating": false
+    },
+    {
+      "unknown": "Scout does not convert liquidity capacity into Alpha numeric underwriting, risk or data-confidence values.",
+      "gating": false
+    },
+    {
+      "unknown": "This source excerpt does not establish future borrowing costs or stress-case facility availability.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 5
+    "nonGatingCount": 7
   },
   "gatingIssues": [],
   "confidence": 92,

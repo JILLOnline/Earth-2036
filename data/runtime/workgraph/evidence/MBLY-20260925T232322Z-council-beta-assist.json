@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "contract": "earth2036-workgraph-evidence-v1",
+  "ticker": "MBLY",
+  "workId": "t0:MBLY",
+  "perspective": "adversarial-red-team-assist",
+  "role": "council-beta",
+  "generatedAt": "2026-09-25T23:23:22Z",
+  "assist": {
+    "requestId": "assist:MBLY:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "2b3c8d4f277fca84fc89",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support"
+  },
+  "sources": [
+    {
+      "sourceId": "regulatory:SEC:MBLY:8-K:2026-09-10",
+      "type": "regulatory-primary",
+      "url": "https://www.sec.gov/Archives/edgar/data/1910139/000110465926106535/tm2624975d2_8k.htm",
+      "publishedAt": "2026-09-10",
+      "originFingerprint": "sec-edgar|1910139|0001104659-26-106535|8-k|2026-09-10",
+      "reusedFrom": "data/runtime/workgraph/evidence/MBLY-20260925T230211Z-earth-scout-assist.json"
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Mobileye's board formally designated long-tenured COO Yaacov Kobi Ohayon as principal operating officer while stating that the designation did not change his duties, employment status or compensation. The evidence improves accountability mapping but is not evidence of improved operating performance or changed decision rights.",
+      "sourceIds": ["regulatory:SEC:MBLY:8-K:2026-09-10"],
+      "affectedFactors": ["governancePower", "executionMonitoring", "dataConfidence"]
+    }
+  ],
+  "causalEdges": [
+    "formal principal-operating-officer designation -> clearer disclosed operating accountability -> better governance/execution observability -> no automatic change in operating capability because disclosed duties were unchanged"
+  ],
+  "risks": [
+    {
+      "risk": "Confidence inflation would result if the formal title/designation were treated as evidence that operating execution, succession resilience or decision rights improved; the filing explicitly says existing duties and compensation were unchanged.",
+      "gating": false,
+      "improvementPath": "Alpha should treat the designation as governance/accountability context only and require operating KPIs or explicit succession/decision-right disclosures for any stronger underwriting inference."
+    }
+  ],
+  "contradictions": [
+    "The designation clarifies who is formally recognized as principal operating officer, but because the filing says duties did not change it does not resolve previously documented leadership-transition uncertainty or Intel controlling-shareholder concentration."
+  ],
+  "unknowns": [
+    "The filing does not establish whether practical decision rights changed beyond formal Section 16 treatment.",
+    "No operating KPI change is attributable to the designation in this source."
+  ],
+  "falsifiers": [
+    "Subsequent primary disclosure showing materially expanded operating authority, succession responsibilities or changed compensation tied to the designation would weaken the current conclusion that this is primarily formal recognition of existing responsibilities.",
+    "Demonstrated operating KPI improvement causally tied to changed authority would support a stronger execution interpretation, but that evidence is not present here."
+  ],
+  "gatingStatus": "non_gating_support_for_alpha_risk_evidence",
+  "confidence": "high_on_disclosed_role_status; low_on_any_operating-performance_implication",
+  "recommendedNextOwner": "council-alpha",
+  "recommendedNextState": "researching",
+  "lineage": {
+    "sourcePacket": "data/runtime/workgraph/packets/MBLY.json",
+    "inputSignature": "2b3c8d4f277fca84fc89",
+    "sourceEvidencePaths": [
+      "data/runtime/workgraph/evidence/MBLY-20260925T230211Z-earth-scout-assist.json",
+      "data/runtime/workgraph/evidence/MBLY-20260925T222712Z-council-beta-assist.json"
+    ],
+    "supersedes": []
+  }
+}

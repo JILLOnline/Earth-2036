@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MBLY",
   "workId": "t0:MBLY",
-  "generatedAt": "2026-09-25T10:19:02.148Z",
+  "generatedAt": "2026-09-25T10:24:57.783Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-06T00:00:00.000Z",
-    "end": "2026-09-25T10:08:27.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-25T10:08:27.000Z"
+    "end": "2026-09-25T10:23:35.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-25T10:23:35.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -81,13 +81,14 @@
     "data/runtime/workgraph/evidence/MBLY-20260924T030703Z-earth-scout.json",
     "data/runtime/workgraph/evidence/MBLY-20260924T132739Z-council-beta-assist.json",
     "data/runtime/workgraph/evidence/MBLY-20260924T142755Z-council-beta-assist.json",
-    "data/runtime/workgraph/evidence/MBLY-20260925T100827Z-earth-scout-assist.json"
+    "data/runtime/workgraph/evidence/MBLY-20260925T100827Z-earth-scout-assist.json",
+    "data/runtime/workgraph/evidence/MBLY-20260925T102335Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 51,
-    "historicalEvidenceCount": 51
+    "activeEvidenceCount": 52,
+    "historicalEvidenceCount": 52
   },
   "factorEvidence": {
     "names": [
@@ -464,6 +465,18 @@
         "risk": "Testing-permit share is not equivalent to commercial deployment share, contracted volume, revenue or profitability and should not be scored as such.",
         "sourceId": "issuer:MBLY:Germany-L4-KBA:2026-09-10",
         "gating": false
+      },
+      {
+        "risk": "Testing-permit share can inflate confidence if interpreted as commercial deployment share, contracted volume, revenue, margin or profitability.",
+        "sourceId": "issuer:MBLY:Germany-L4-KBA:2026-09-10",
+        "gating": false,
+        "improvementPath": "Track conversion from permitted testing into named production deployments, fleet scale and reported economics."
+      },
+      {
+        "risk": "The >60% figure is issuer-mediated attribution to KBA data rather than independently reproduced regulatory data in this bounded assist.",
+        "sourceId": "issuer:MBLY:Germany-L4-KBA:2026-09-10",
+        "gating": false,
+        "improvementPath": "Alpha may seek the underlying KBA permit dataset if independent confirmation materially changes confidence."
       }
     ]
   },
@@ -693,6 +706,18 @@
       "risk": "Testing-permit share is not equivalent to commercial deployment share, contracted volume, revenue or profitability and should not be scored as such.",
       "sourceId": "issuer:MBLY:Germany-L4-KBA:2026-09-10",
       "gating": false
+    },
+    {
+      "risk": "Testing-permit share can inflate confidence if interpreted as commercial deployment share, contracted volume, revenue, margin or profitability.",
+      "sourceId": "issuer:MBLY:Germany-L4-KBA:2026-09-10",
+      "gating": false,
+      "improvementPath": "Track conversion from permitted testing into named production deployments, fleet scale and reported economics."
+    },
+    {
+      "risk": "The >60% figure is issuer-mediated attribution to KBA data rather than independently reproduced regulatory data in this bounded assist.",
+      "sourceId": "issuer:MBLY:Germany-L4-KBA:2026-09-10",
+      "gating": false,
+      "improvementPath": "Alpha may seek the underlying KBA permit dataset if independent confirmation materially changes confidence."
     }
   ],
   "dataConfidenceEvidence": {
@@ -773,6 +798,18 @@
         "to": "future revenue",
         "mechanism": "launch and take-rate convert design wins to shipments",
         "falsifier": "program timing, volume or sourcing changes"
+      },
+      {
+        "from": "Mobileye Drive autonomy stack",
+        "to": "German SAE L4 testing footprint",
+        "mechanism": "vehicles using the stack obtain and operate under valid testing permits",
+        "status": "observed-via-issuer-attributed-regulatory-data"
+      },
+      {
+        "from": "L4 testing footprint",
+        "to": "commercial monetization",
+        "mechanism": "testing can support validation and customer confidence but requires subsequent production deployment, utilization and economics",
+        "status": "unproven"
       }
     ]
   },
@@ -842,12 +879,24 @@
       "to": "future revenue",
       "mechanism": "launch and take-rate convert design wins to shipments",
       "falsifier": "program timing, volume or sourcing changes"
+    },
+    {
+      "from": "Mobileye Drive autonomy stack",
+      "to": "German SAE L4 testing footprint",
+      "mechanism": "vehicles using the stack obtain and operate under valid testing permits",
+      "status": "observed-via-issuer-attributed-regulatory-data"
+    },
+    {
+      "from": "L4 testing footprint",
+      "to": "commercial monetization",
+      "mechanism": "testing can support validation and customer confidence but requires subsequent production deployment, utilization and economics",
+      "status": "unproven"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 64,
+    "rawSourceCount": 65,
     "uniqueSourceCount": 33,
-    "duplicatesCollapsed": 31,
+    "duplicatesCollapsed": 32,
     "missingLineage": 0,
     "uniqueOrigins": [
       "mobileye:2026-07-23:q2-2026",
@@ -1508,11 +1557,16 @@
       "unknown": "The underlying KBA dataset was not independently reproduced in this bounded assist, so the >60% figure retains issuer-mediated regulatory attribution.",
       "gating": false,
       "nextOwner": "council-alpha"
+    },
+    {
+      "unknown": "Commercial revenue, fleet scale, customer economics and conversion attributable to the German L4 permits remain undisclosed.",
+      "gating": false,
+      "nextOwner": "council-alpha"
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 54
+    "nonGatingCount": 55
   },
   "gatingIssues": [],
   "confidence": 88,

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "AAPL",
   "workId": "t0:AAPL",
-  "generatedAt": "2026-09-24T23:49:05.162Z",
+  "generatedAt": "2026-09-25T00:09:22.798Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-30T00:00:00.000Z",
-    "end": "2026-09-24T23:03:34.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-24T23:03:34.000Z"
+    "end": "2026-09-25T00:09:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-25T00:09:00.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -51,13 +51,14 @@
   "evidencePaths": [
     "data/runtime/workgraph/evidence/AAPL-20260919T050657Z-earth-scout.json",
     "data/runtime/workgraph/evidence/AAPL-20260922T012556Z-council-beta.json",
-    "data/runtime/workgraph/evidence/AAPL-20260924T230334Z-earth-scout-assist.json"
+    "data/runtime/workgraph/evidence/AAPL-20260924T230334Z-earth-scout-assist.json",
+    "data/runtime/workgraph/evidence/AAPL-20260925T000900Z-earth-scout-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 5,
-    "historicalEvidenceCount": 5
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -69,7 +70,8 @@
       "catalystScore",
       "substitutionResilience",
       "bottleneckControl",
-      "governancePower"
+      "governancePower",
+      "supplyChainResilience"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -102,7 +104,11 @@
         "financialOperatingMomentum",
         "scenarioRobustness",
         "pricingPower",
-        "catalystScore"
+        "catalystScore",
+        "financialOperatingMomentum",
+        "pricingPower",
+        "scenarioRobustness",
+        "supplyChainResilience"
       ]
     }
   },
@@ -152,7 +158,8 @@
     "catalystScore",
     "substitutionResilience",
     "bottleneckControl",
-    "governancePower"
+    "governancePower",
+    "supplyChainResilience"
   ],
   "riskEvidence": {
     "present": true,
@@ -179,6 +186,10 @@
       },
       {
         "risk": "Headline margin and EPS contain a quantified temporary tariff-refund tailwind and should not be treated as fully recurring operating improvement.",
+        "gating": false
+      },
+      {
+        "risk": "Tariff policy and reciprocal measures remain an operating and supply-chain uncertainty; the filing discusses these measures but does not establish a stable long-run tariff regime.",
         "gating": false
       }
     ]
@@ -207,6 +218,10 @@
     {
       "risk": "Headline margin and EPS contain a quantified temporary tariff-refund tailwind and should not be treated as fully recurring operating improvement.",
       "gating": false
+    },
+    {
+      "risk": "Tariff policy and reciprocal measures remain an operating and supply-chain uncertainty; the filing discusses these measures but does not establish a stable long-run tariff regime.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -217,7 +232,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
     "present": true,
@@ -233,13 +248,14 @@
     "Siri AI capability->potential device/service utility->possible successor engagement/monetization bottleneck"
   ],
   "sourceLineage": {
-    "rawSourceCount": 5,
-    "uniqueSourceCount": 2,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 3,
     "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:AAPL:FY26Q3:Newsroom",
-      "issuer:AAPL:FY26Q3:Newsroom:2026-07-30"
+      "issuer:AAPL:FY26Q3:Newsroom:2026-07-30",
+      "sec:AAPL:10-Q:000032019326000020"
     ]
   },
   "sources": [
@@ -258,6 +274,14 @@
       "primary": true,
       "publishedAt": "2026-07-30",
       "originFingerprint": "issuer:AAPL:FY26Q3:Newsroom:2026-07-30"
+    },
+    {
+      "sourceId": "sec:AAPL:10-Q:2026Q3:000032019326000020",
+      "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-31",
+      "originFingerprint": "sec:AAPL:10-Q:000032019326000020"
     }
   ],
   "contradictions": [
@@ -274,10 +298,15 @@
       "contradiction": "Record headline profitability coexists with a material temporary tariff-refund benefit; this qualifies, rather than falsifies, the strong consolidated execution signal.",
       "material": true,
       "resolution": "source_quantified_temporary_component"
+    },
+    {
+      "contradiction": "Very strong reported gross-margin performance coexists with tariff-related policy volatility and previously disclosed temporary tariff-refund benefits, so recurring margin quality requires Alpha normalization rather than headline extrapolation.",
+      "material": true,
+      "resolution": "source_addressed_for_alpha_normalization"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 3,
+    "unresolvedMaterialCount": 4,
     "items": [
       {
         "contradiction": "Record EPS and margin include a meaningful temporary tariff-refund benefit.",
@@ -292,6 +321,11 @@
         "contradiction": "Record headline profitability coexists with a material temporary tariff-refund benefit; this qualifies, rather than falsifies, the strong consolidated execution signal.",
         "material": true,
         "resolution": "source_quantified_temporary_component"
+      },
+      {
+        "contradiction": "Very strong reported gross-margin performance coexists with tariff-related policy volatility and previously disclosed temporary tariff-refund benefits, so recurring margin quality requires Alpha normalization rather than headline extrapolation.",
+        "material": true,
+        "resolution": "source_addressed_for_alpha_normalization"
       }
     ]
   },
@@ -319,11 +353,19 @@
     {
       "unknown": "This evidence is source acquisition only; Alpha retains authority for numeric underwriting, score risk and data-confidence construction.",
       "gating": false
+    },
+    {
+      "unknown": "This Scout assist does not construct Alpha numeric underwriting, score-risk, valuation, or data-confidence judgments.",
+      "gating": false
+    },
+    {
+      "unknown": "The filing does not by itself establish the durability of current tariff treatment or quantify future policy changes.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 6
+    "nonGatingCount": 8
   },
   "gatingIssues": [],
   "confidence": 82,

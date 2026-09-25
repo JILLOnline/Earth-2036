@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-25T04:14:36.484Z",
+  "updatedAt": "2026-09-25T10:19:01.244Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1670,6 +1670,18 @@
       "type": "market",
       "label": "semiconductor and advanced electronics manufacturing complexity",
       "description": "MKS sits upstream of semiconductor and advanced electronics manufacturing: rising AI-compute complexity increases process-control, vacuum/photonics and advanced circuit-board requirements, which can translate into bookings and revenue when customers expand manufacturing capacity."
+    },
+    {
+      "id": "company:MOS",
+      "type": "company",
+      "label": "Mosaic",
+      "description": "Mosaic sits in a food-system causal chain where crop yields require nutrient replacement, linking mined/processed phosphate and potash to agricultural productivity and human food needs; this gives the products structural utility but not immunity from commodity cycles."
+    },
+    {
+      "id": "market:MOS-phosphate-potash-demand",
+      "type": "market",
+      "label": "phosphate/potash demand",
+      "description": "harvested crops remove nutrients that must be replenished to sustain productive yields"
     }
   ],
   "edges": [
@@ -3838,6 +3850,21 @@
         "mksi-ir:2026-q1-results"
       ],
       "observedAt": "2026-09-21T04:26:26Z"
+    },
+    {
+      "id": "edge:MOS-structural-exposure",
+      "from": "company:MOS",
+      "to": "market:MOS-phosphate-potash-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 89,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "mos-ir:2026-01-21:brazil-curtailment",
+        "mos-ir:2026-08-27:dividend"
+      ],
+      "observedAt": "2026-09-21T05:24:00Z"
     }
   ],
   "structuralSignals": [
@@ -6532,6 +6559,25 @@
       "observedAt": "2026-09-21T04:26:26Z",
       "thesis": "MKS sits upstream of semiconductor and advanced electronics manufacturing: rising AI-compute complexity increases process-control, vacuum/photonics and advanced circuit-board requirements, which can translate into bookings and revenue when customers expand manufacturing capacity.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:MOS-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:MOS-phosphate-potash-demand",
+      "affectedNodeIds": [
+        "company:MOS"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 89,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "mos-ir:2026-01-21:brazil-curtailment",
+        "mos-ir:2026-08-27:dividend"
+      ],
+      "observedAt": "2026-09-21T05:24:00Z",
+      "thesis": "Mosaic sits in a food-system causal chain where crop yields require nutrient replacement, linking mined/processed phosphate and potash to agricultural productivity and human food needs; this gives the products structural utility but not immunity from commodity cycles.",
+      "falsifier": "agronomic substitution or efficiency materially reduces required purchased nutrient intensity without yield loss"
     }
   ],
   "roadmapMilestones": [

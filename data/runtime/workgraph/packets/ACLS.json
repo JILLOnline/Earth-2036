@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ACLS",
   "workId": "t0:ACLS",
-  "generatedAt": "2026-09-25T02:43:36.459Z",
+  "generatedAt": "2026-09-25T03:07:03.386Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2025-08-20T00:00:00.000Z",
-    "end": "2026-09-25T02:03:01.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-25T02:03:01.000Z"
+    "end": "2026-09-25T03:05:39.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-25T03:05:39.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -51,13 +51,14 @@
   "evidencePaths": [
     "data/runtime/workgraph/evidence/ACLS-20260919T060641Z-earth-scout.json",
     "data/runtime/workgraph/evidence/ACLS-20260922T0325Z-council-beta.json",
-    "data/runtime/workgraph/evidence/ACLS-20260925T020301Z-earth-scout-assist.json"
+    "data/runtime/workgraph/evidence/ACLS-20260925T020301Z-earth-scout-assist.json",
+    "data/runtime/workgraph/evidence/ACLS-20260925T030539Z-earth-scout-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 5,
-    "historicalEvidenceCount": 5
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -104,7 +105,11 @@
         "scenarioRobustness",
         "financialOperatingMomentum",
         "scenarioRobustness",
-        "pricingPower"
+        "pricingPower",
+        "supplyChainResilience",
+        "scenarioRobustness",
+        "alignment2036",
+        "financialOperatingMomentum"
       ]
     }
   },
@@ -192,6 +197,10 @@
       {
         "risk": "Systems revenue remained below the prior-year six-month level, so stronger installed-base/Aftermarket activity does not establish a broad capital-equipment upcycle.",
         "gating": false
+      },
+      {
+        "risk": "The $35 million Korea facility is a planned capital investment; announced capacity expansion does not establish realized utilization, returns, or demand durability.",
+        "gating": false
       }
     ]
   },
@@ -227,6 +236,10 @@
     {
       "risk": "Systems revenue remained below the prior-year six-month level, so stronger installed-base/Aftermarket activity does not establish a broad capital-equipment upcycle.",
       "gating": false
+    },
+    {
+      "risk": "The $35 million Korea facility is a planned capital investment; announced capacity expansion does not establish realized utilization, returns, or demand durability.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -237,7 +250,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 8
+    "count": 9
   },
   "causalMapping": {
     "present": true,
@@ -287,8 +300,8 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 11,
-    "uniqueSourceCount": 8,
+    "rawSourceCount": 12,
+    "uniqueSourceCount": 9,
     "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
@@ -299,7 +312,8 @@
       "sec:ACLS:2026Q2:10Q",
       "sec:ACLS:2025:10K",
       "issuer:ACLS:VECO-vote:20260206",
-      "sec:ACLS:10-Q:000110465926091999:aftermarket-systems-mix"
+      "sec:ACLS:10-Q:000110465926091999:aftermarket-systems-mix",
+      "issuer:ACLS:Pyeongtaek-manufacturing:20260908"
     ]
   },
   "sources": [
@@ -366,6 +380,14 @@
       "primary": true,
       "publishedAt": "2026-08",
       "originFingerprint": "sec:ACLS:10-Q:000110465926091999:aftermarket-systems-mix"
+    },
+    {
+      "sourceId": "issuer:ACLS:Pyeongtaek-manufacturing:20260908",
+      "url": "https://investor.axcelis.com/news-releases/news-release-details/axcelis-build-new-manufacturing-facility-pyeongtaek-korea",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-08",
+      "originFingerprint": "issuer:ACLS:Pyeongtaek-manufacturing:20260908"
     }
   ],
   "contradictions": [
@@ -382,10 +404,15 @@
       "contradiction": "Strong Aftermarket growth coexists with weaker six-month systems revenue, indicating installed-base utilization/service strength without equivalent evidence of broad customer capex acceleration.",
       "material": true,
       "resolution": "source_addressed_for_alpha_segment_normalization"
+    },
+    {
+      "contradiction": "Axcelis is committing new manufacturing capital while systems revenue in the existing Q2 evidence remained below the prior-year six-month level.",
+      "material": true,
+      "resolution": "source_addressed_for_alpha_capacity_demand_normalization"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 3,
+    "unresolvedMaterialCount": 4,
     "items": [
       {
         "contradiction": "Top-line execution is improving while profitability percentages remain below the prior-year quarter.",
@@ -400,6 +427,11 @@
         "contradiction": "Strong Aftermarket growth coexists with weaker six-month systems revenue, indicating installed-base utilization/service strength without equivalent evidence of broad customer capex acceleration.",
         "material": true,
         "resolution": "source_addressed_for_alpha_segment_normalization"
+      },
+      {
+        "contradiction": "Axcelis is committing new manufacturing capital while systems revenue in the existing Q2 evidence remained below the prior-year six-month level.",
+        "material": true,
+        "resolution": "source_addressed_for_alpha_capacity_demand_normalization"
       }
     ]
   },
@@ -435,11 +467,19 @@
     {
       "unknown": "The cited filing alone does not establish durability of customer capex recovery beyond the reported period.",
       "gating": false
+    },
+    {
+      "unknown": "The issuer release does not quantify incremental tool capacity, expected revenue contribution, project completion timing, or return on invested capital.",
+      "gating": false
+    },
+    {
+      "unknown": "Scout does not convert this capacity signal into Alpha numeric underwriting, score-risk or data-confidence values.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 8
+    "nonGatingCount": 10
   },
   "gatingIssues": [],
   "confidence": 91,

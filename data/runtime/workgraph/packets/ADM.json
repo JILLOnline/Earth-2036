@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ADM",
   "workId": "t0:ADM",
-  "generatedAt": "2026-09-25T02:43:36.467Z",
+  "generatedAt": "2026-09-25T03:07:03.392Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -18,8 +18,8 @@
   },
   "evidenceWindow": {
     "start": "2025-01-01T00:00:00.000Z",
-    "end": "2026-09-25T02:03:01.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-25T02:03:01.000Z"
+    "end": "2026-09-25T03:05:39.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-25T03:05:39.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -51,13 +51,14 @@
   "evidencePaths": [
     "data/runtime/workgraph/evidence/ADM-20260919T060641Z-earth-scout.json",
     "data/runtime/workgraph/evidence/ADM-20260922T042206Z-council-beta.json",
-    "data/runtime/workgraph/evidence/ADM-20260925T020301Z-earth-scout-assist.json"
+    "data/runtime/workgraph/evidence/ADM-20260925T020301Z-earth-scout-assist.json",
+    "data/runtime/workgraph/evidence/ADM-20260925T030539Z-earth-scout-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 5,
-    "historicalEvidenceCount": 5
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -70,7 +71,8 @@
       "alignment2036",
       "crossDivisionLeverage",
       "governancePower",
-      "dataConfidence"
+      "dataConfidence",
+      "catalystScore"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -102,7 +104,11 @@
         "supplyChainResilience",
         "financialOperatingMomentum",
         "scenarioRobustness",
-        "supplyChainResilience"
+        "supplyChainResilience",
+        "alignment2036",
+        "catalystScore",
+        "crossDivisionLeverage",
+        "scenarioRobustness"
       ]
     }
   },
@@ -153,7 +159,8 @@
     "alignment2036",
     "crossDivisionLeverage",
     "governancePower",
-    "dataConfidence"
+    "dataConfidence",
+    "catalystScore"
   ],
   "riskEvidence": {
     "present": true,
@@ -188,6 +195,10 @@
       },
       {
         "risk": "A substantial portion of liquidity is committed credit capacity rather than cash on hand; availability does not itself establish future operating profitability or commodity-cycle resilience.",
+        "gating": false
+      },
+      {
+        "risk": "The carbon-removal credits are not yet certified or issued; market demand, realized pricing, audit outcome and economic contribution remain unproven.",
         "gating": false
       }
     ]
@@ -224,6 +235,10 @@
     {
       "risk": "A substantial portion of liquidity is committed credit capacity rather than cash on hand; availability does not itself establish future operating profitability or commodity-cycle resilience.",
       "gating": false
+    },
+    {
+      "risk": "The carbon-removal credits are not yet certified or issued; market demand, realized pricing, audit outcome and economic contribution remain unproven.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -234,7 +249,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 6
+    "count": 7
   },
   "causalMapping": {
     "present": true,
@@ -280,8 +295,8 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 8,
-    "uniqueSourceCount": 6,
+    "rawSourceCount": 9,
+    "uniqueSourceCount": 7,
     "duplicatesCollapsed": 2,
     "missingLineage": 0,
     "uniqueOrigins": [
@@ -290,7 +305,8 @@
       "issuer:ADM:crush-expansion:20260730",
       "issuer:ADM:2025FY:202602",
       "sec:7084:10k:2024",
-      "sec:ADM:10-Q:000000708426000042:liquidity-credit-capacity"
+      "sec:ADM:10-Q:000000708426000042:liquidity-credit-capacity",
+      "issuer:ADM:Columbus-carbon-removal:20260921"
     ]
   },
   "sources": [
@@ -341,6 +357,14 @@
       "primary": true,
       "publishedAt": "2026-08",
       "originFingerprint": "sec:ADM:10-Q:000000708426000042:liquidity-credit-capacity"
+    },
+    {
+      "sourceId": "issuer:ADM:Columbus-carbon-removal:20260921",
+      "url": "https://www.adm.com/en-us/news/news-releases/2026/9/adm-plans-entry-into-voluntary-carbon-market-with-over-800000-tons-of-annual-removal-capacity/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-21",
+      "originFingerprint": "issuer:ADM:Columbus-carbon-removal:20260921"
     }
   ],
   "contradictions": [
@@ -367,10 +391,15 @@
       "contradiction": "ADM carries only $1.1B cash while reporting $10.0B unused credit lines, indicating meaningful liquidity capacity but material reliance on financing access rather than cash alone.",
       "material": true,
       "resolution": "source_addressed_for_alpha_liquidity_normalization"
+    },
+    {
+      "contradiction": "ADM describes a large operating carbon-capture capacity, but the monetization pathway remains conditional on third-party certification and audit completion.",
+      "material": true,
+      "resolution": "source_addressed_for_alpha_catalyst_probability_normalization"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 3,
+    "unresolvedMaterialCount": 4,
     "items": [
       {
         "contradiction": "Strong segment profit growth includes meaningful favorable timing/mark-to-market effects and policy-sensitive economics.",
@@ -395,6 +424,11 @@
         "contradiction": "ADM carries only $1.1B cash while reporting $10.0B unused credit lines, indicating meaningful liquidity capacity but material reliance on financing access rather than cash alone.",
         "material": true,
         "resolution": "source_addressed_for_alpha_liquidity_normalization"
+      },
+      {
+        "contradiction": "ADM describes a large operating carbon-capture capacity, but the monetization pathway remains conditional on third-party certification and audit completion.",
+        "material": true,
+        "resolution": "source_addressed_for_alpha_catalyst_probability_normalization"
       }
     ]
   },
@@ -426,11 +460,19 @@
     {
       "unknown": "This source excerpt does not establish future borrowing costs or stress-case facility availability.",
       "gating": false
+    },
+    {
+      "unknown": "The release does not disclose expected carbon-credit price, revenue, margin, customer commitments or project-level return economics.",
+      "gating": false
+    },
+    {
+      "unknown": "Scout does not translate announced removal capacity into Alpha numeric underwriting, risk or data-confidence values.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 7
+    "nonGatingCount": 9
   },
   "gatingIssues": [],
   "confidence": 92,

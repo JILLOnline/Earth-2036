@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-25T10:19:01.244Z",
+  "updatedAt": "2026-09-25T12:19:26.905Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1682,6 +1682,18 @@
       "type": "market",
       "label": "phosphate/potash demand",
       "description": "harvested crops remove nutrients that must be replenished to sustain productive yields"
+    },
+    {
+      "id": "company:MP",
+      "type": "company",
+      "label": "MP Materials",
+      "description": "MP Materials occupies a strategic chain from rare-earth ore through separated NdPr to magnets used in motors and defense/industrial systems, linking domestic resource processing to electrification, automation and national supply resilience."
+    },
+    {
+      "id": "market:MP-high-performance-magnet-demand",
+      "type": "market",
+      "label": "high-performance magnet demand",
+      "description": "motors and strategic systems require compact high-strength magnetic materials"
     }
   ],
   "edges": [
@@ -3863,6 +3875,20 @@
       "sourceIds": [
         "mos-ir:2026-01-21:brazil-curtailment",
         "mos-ir:2026-08-27:dividend"
+      ],
+      "observedAt": "2026-09-21T05:24:00Z"
+    },
+    {
+      "id": "edge:MP-structural-exposure",
+      "from": "company:MP",
+      "to": "market:MP-high-performance-magnet-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 93,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "mp-ir:2026-q2-results"
       ],
       "observedAt": "2026-09-21T05:24:00Z"
     }
@@ -6578,6 +6604,24 @@
       "observedAt": "2026-09-21T05:24:00Z",
       "thesis": "Mosaic sits in a food-system causal chain where crop yields require nutrient replacement, linking mined/processed phosphate and potash to agricultural productivity and human food needs; this gives the products structural utility but not immunity from commodity cycles.",
       "falsifier": "agronomic substitution or efficiency materially reduces required purchased nutrient intensity without yield loss"
+    },
+    {
+      "id": "signal:MP-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:MP-high-performance-magnet-demand",
+      "affectedNodeIds": [
+        "company:MP"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 93,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "mp-ir:2026-q2-results"
+      ],
+      "observedAt": "2026-09-21T05:24:00Z",
+      "thesis": "MP Materials occupies a strategic chain from rare-earth ore through separated NdPr to magnets used in motors and defense/industrial systems, linking domestic resource processing to electrification, automation and national supply resilience.",
+      "falsifier": "alternative motor/magnet designs materially reduce NdFeB intensity across major end uses"
     }
   ],
   "roadmapMilestones": [

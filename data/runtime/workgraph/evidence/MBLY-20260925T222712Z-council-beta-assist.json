@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "contract": "earth2036-workgraph-evidence-v1",
+  "ticker": "MBLY",
+  "workId": "t0:MBLY",
+  "perspective": "adversarial-red-team-assist",
+  "role": "council-beta",
+  "generatedAt": "2026-09-25T22:27:12Z",
+  "assist": {
+    "requestId": "assist:MBLY:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "8ee4e3ce7f23aa211084",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support"
+  },
+  "sources": [
+    {
+      "sourceId": "issuer:MBLY:Q3-investor-events:2026-07-30",
+      "type": "issuer-primary",
+      "url": "https://ir.mobileye.com/news-releases/news-release-details/mobileye-announces-participation-upcoming-third-quarter-2026",
+      "publishedAt": "2026-07-30",
+      "originFingerprint": "mobileye-ir|2026-07-30|q3-2026-investor-events",
+      "reusedFrom": "data/runtime/workgraph/evidence/MBLY-20260925T220706Z-earth-scout-assist.json"
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Mobileye reports more than 250 million vehicles built with EyeQ technology, which supports deployment-scale evidence but does not by itself establish current pricing power, margins, replacement economics, or customer lock-in.",
+      "sourceIds": ["issuer:MBLY:Q3-investor-events:2026-07-30"],
+      "affectedFactors": ["bottleneckControl", "pricingPower", "dataConfidence"]
+    },
+    {
+      "claim": "Intel remains Mobileye's majority owner, so controlling-shareholder concentration remains an observed governance consideration for public holders rather than a hypothetical future risk.",
+      "sourceIds": ["issuer:MBLY:Q3-investor-events:2026-07-30"],
+      "affectedFactors": ["governancePower"]
+    }
+  ],
+  "causalEdges": [
+    "large deployed EyeQ base -> accumulated automotive integration footprint -> potential switching friction / data and validation advantages -> possible resilience, conditional on renewal economics and OEM architecture choices",
+    "Intel majority ownership -> concentrated voting/control influence -> reduced minority-holder governance leverage -> governance-risk input for Alpha underwriting"
+  ],
+  "risks": [
+    {
+      "risk": "Installed-base scale can inflate confidence if treated as proof of current monetization or pricing power; the cited source does not provide per-vehicle economics, incremental margin, renewal rates, or customer concentration by EyeQ generation.",
+      "gating": false,
+      "improvementPath": "Alpha should keep installed-base scale separate from monetization quality and use current financial/customer evidence for numeric underwriting."
+    },
+    {
+      "risk": "Intel majority ownership preserves governance concentration for minority shareholders.",
+      "gating": false,
+      "improvementPath": "Use current governance disclosures to distinguish formal control rights from observed related-party or capital-allocation outcomes."
+    }
+  ],
+  "contradictions": [
+    "The >250M installed-base evidence strengthens scale/bottleneck-control representation but does not contradict prior evidence of mix, ASP, commercialization, or competitive uncertainty; scale and monetization quality must remain separate variables."
+  ],
+  "unknowns": [
+    "Current per-vehicle economics and incremental margin attributable to the installed base are not disclosed in this source.",
+    "Customer concentration and renewal/switching behavior by EyeQ generation are not disclosed in this source."
+  ],
+  "falsifiers": [
+    "Evidence of broad OEM displacement of EyeQ in renewal cycles or sustained deterioration in unit economics would weaken the inference that deployment scale provides durable substitution resilience.",
+    "A material reduction in Intel's control rights or ownership would change the present governance-concentration assessment."
+  ],
+  "gatingStatus": "non_gating_support_for_alpha_risk_evidence",
+  "confidence": "high_on_observed_scale_and_control; medium_on_structural_implications",
+  "recommendedNextOwner": "council-alpha",
+  "recommendedNextState": "researching",
+  "lineage": {
+    "sourcePacket": "data/runtime/workgraph/packets/MBLY.json",
+    "inputSignature": "8ee4e3ce7f23aa211084",
+    "sourceEvidencePaths": ["data/runtime/workgraph/evidence/MBLY-20260925T220706Z-earth-scout-assist.json"],
+    "supersedes": []
+  }
+}

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-25T13:18:58.467Z",
+  "updatedAt": "2026-09-25T21:45:51.758Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1706,6 +1706,18 @@
       "type": "market",
       "label": "technology:secure-rugged-edge-compute",
       "description": "Mercury sits between commercial compute/RF technology and mission-critical aerospace/defense edge systems; record FY26 backlog above $1.9B and a multi-year 1,000-server BuiltSECURE order support a real secure-processing demand path, while factory automation is being added to improve throughput."
+    },
+    {
+      "id": "company:MSFT",
+      "type": "company",
+      "label": "Microsoft Corporation",
+      "description": "Microsoft links hyperscale compute infrastructure and frontier-model capacity to enterprise software, developer tools and cloud services; Azure scale and 30M+ paid Microsoft 365 Copilot seats show demand on both infrastructure and application layers."
+    },
+    {
+      "id": "market:MSFT-technology-hyperscale-ai-cloud",
+      "type": "market",
+      "label": "technology:hyperscale-ai-cloud",
+      "description": "Microsoft links hyperscale compute infrastructure and frontier-model capacity to enterprise software, developer tools and cloud services; Azure scale and 30M+ paid Microsoft 365 Copilot seats show demand on both infrastructure and application layers."
     }
   ],
   "edges": [
@@ -3920,6 +3932,21 @@
         "issuer:MRCY:Palantir:20260803"
       ],
       "observedAt": "2026-09-21T06:27:57Z"
+    },
+    {
+      "id": "edge:MSFT-structural-exposure",
+      "from": "company:MSFT",
+      "to": "market:MSFT-technology-hyperscale-ai-cloud",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:MSFT:FY26Q4",
+        "issuer:MSFT:FY26Q4-call"
+      ],
+      "observedAt": "2026-09-21T00:24:18Z"
     }
   ],
   "structuralSignals": [
@@ -6671,6 +6698,25 @@
       ],
       "observedAt": "2026-09-21T06:27:57Z",
       "thesis": "Mercury sits between commercial compute/RF technology and mission-critical aerospace/defense edge systems; record FY26 backlog above $1.9B and a multi-year 1,000-server BuiltSECURE order support a real secure-processing demand path, while factory automation is being added to improve throughput.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:MSFT-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:MSFT-technology-hyperscale-ai-cloud",
+      "affectedNodeIds": [
+        "company:MSFT"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:MSFT:FY26Q4",
+        "issuer:MSFT:FY26Q4-call"
+      ],
+      "observedAt": "2026-09-21T00:24:18Z",
+      "thesis": "Microsoft links hyperscale compute infrastructure and frontier-model capacity to enterprise software, developer tools and cloud services; Azure scale and 30M+ paid Microsoft 365 Copilot seats show demand on both infrastructure and application layers.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

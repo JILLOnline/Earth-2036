@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "contract": "earth2036-specialist-assist-evidence-v1",
+  "role": "council-beta",
+  "perspective": "adversarial-red-team-assist",
+  "ticker": "MBLY",
+  "entity": "Mobileye Global Inc.",
+  "workId": "t0:MBLY",
+  "generatedAt": "2026-09-25T12:22:38Z",
+  "assist": {
+    "requestId": "assist:MBLY:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "60ff997ad78d0d56202d",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support"
+  },
+  "claims": [
+    {
+      "claim": "Q2 2026 revenue was $508 million, essentially flat year over year, while GAAP gross margin fell to 46% from 50%; Mobileye attributed the margin pressure to lower EyeQ ASP from China OEM mix and a higher mix of lower-margin SuperVision hardware content.",
+      "sourceIds": ["issuer:MBLY:Q2-2026-results:2026-07-23"],
+      "affectedFactors": ["financialOperatingMomentum", "pricingPower"],
+      "riskInterpretation": "The evidence supports a mix/pricing execution risk rather than a present demand-collapse conclusion. Alpha should distinguish unit growth from revenue and margin quality."
+    },
+    {
+      "claim": "The principal 2026 adjusted operating-income guidance improvement was driven by an Israeli R&D incentive; Mobileye recognized about $110 million GAAP / $93 million non-GAAP in Q2 for the first half and incorporated $197-$217 million GAAP / $180-$200 million non-GAAP into full-year outlook.",
+      "sourceIds": ["issuer:MBLY:Q2-2026-results:2026-07-23"],
+      "affectedFactors": ["financialOperatingMomentum", "dataConfidence"],
+      "riskInterpretation": "Headline operating improvement should be normalized so a policy incentive is not mistaken for equivalent underlying operating leverage. The incentive is real and enacted; this is an attribution/confidence issue, not a claim that earnings improvement is fictitious."
+    },
+    {
+      "claim": "Mobileye's Q2 2026 10-Q says Mentee Robotics integration may require significant management attention, capital investment and operating expense, may not deliver anticipated benefits on schedule, and that humanoid robotics has uncertain demand, scalability, economics, regulation and safety; the filing also notes the June plan to establish a vertically integrated robotaxi business.",
+      "sourceIds": ["regulatory:SEC:MBLY:2026Q2-10Q"],
+      "affectedFactors": ["crossDivisionLeverage", "scenarioRobustness", "capitalAllocation"],
+      "riskInterpretation": "Physical-AI expansion adds optionality but also creates a successor bottleneck in execution capacity, capital allocation and commercialization beyond Mobileye's established supplier model."
+    },
+    {
+      "claim": "Mobileye recorded a $3.788 billion non-cash goodwill impairment in 2026; the Q2 10-Q states the impairment conclusion is sensitive to market capitalization and a further sustained decline could require additional analysis of valuation assumptions.",
+      "sourceIds": ["regulatory:SEC:MBLY:2026Q2-10Q"],
+      "affectedFactors": ["financialOperatingMomentum", "dataConfidence"],
+      "riskInterpretation": "The impairment is not a cash outflow, but it is evidence that GAAP trend interpretation and acquisition/legacy valuation assumptions require separation from operating cash generation."
+    }
+  ],
+  "sourceLineage": [
+    {
+      "sourceId": "issuer:MBLY:Q2-2026-results:2026-07-23",
+      "url": "https://ir.mobileye.com/news-releases/news-release-details/mobileye-releases-second-quarter-2026-results-updates-guidance",
+      "sourceClass": "issuer-primary",
+      "originFingerprint": "mobileye-ir|2026-07-23|q2-2026-results"
+    },
+    {
+      "sourceId": "regulatory:SEC:MBLY:2026Q2-10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1910139/000110465926086264/mbly-20260627x10q.htm",
+      "sourceClass": "regulatory-primary",
+      "originFingerprint": "sec-edgar|1910139|2026q2|10-q|000110465926086264"
+    }
+  ],
+  "risks": [
+    "Mix and ASP pressure can offset unit growth and weaken revenue/margin conversion.",
+    "R&D incentive effects can inflate confidence in underlying operating leverage if not normalized.",
+    "Mentee and vertically integrated robotaxi expansion increase execution, capital-allocation and commercialization complexity.",
+    "Large non-cash impairment complicates GAAP trend interpretation and highlights valuation sensitivity."
+  ],
+  "contradictions": [],
+  "unknowns": [
+    "Realized economics and capital intensity of vertically integrated robotaxi operations remain unproven.",
+    "Humanoid robotics commercialization, demand and scalability remain uncertain.",
+    "Future EyeQ/SuperVision mix and ASP trajectory require subsequent-period evidence."
+  ],
+  "falsifiers": [
+    "Sustained revenue growth with stable or improving gross margin despite China/SuperVision mix would weaken the mix/pricing-risk thesis.",
+    "Reported operating improvement that remains strong after separately normalizing the R&D incentive would weaken the confidence-inflation concern.",
+    "Demonstrated robotaxi/humanoid unit economics, commercialization and capital efficiency would reduce the expansion-execution uncertainty."
+  ],
+  "gatingStatus": "assist_evidence_only_noncanonical",
+  "confidence": "high_for_disclosed_facts_moderate_for_forward_risk_implications",
+  "recommendedNextState": "council-alpha_reuse_for_source_addressed_risk_evidence",
+  "nextOwner": "council-alpha",
+  "lineage": {
+    "supersedes": null,
+    "reuses": [
+      "data/runtime/workgraph/evidence/MBLY-20260925T112558Z-council-beta-assist.json"
+    ]
+  }
+}

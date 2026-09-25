@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-24T15:19:48.266Z",
+  "updatedAt": "2026-09-25T00:19:14.202Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1634,6 +1634,18 @@
       "type": "market",
       "label": "custom silicon demand",
       "description": "hyperscalers optimize compute and attach functions for workload, power and cost"
+    },
+    {
+      "id": "company:LRCX",
+      "type": "company",
+      "label": "Lam Research",
+      "description": "Lam sits on a semiconductor-manufacturing complexity bottleneck: AI-driven leading-edge devices require repeated precision deposition and etch steps, linking compute demand to wafer-fab process intensity rather than to chip unit volume alone."
+    },
+    {
+      "id": "market:LRCX-deposition-and-etch-intensity",
+      "type": "market",
+      "label": "deposition and etch intensity",
+      "description": "advanced structures require more precise and repeated material deposition/removal steps"
     }
   ],
   "edges": [
@@ -3756,6 +3768,22 @@
         "marvell-ir:2026-08:q2-fy2027",
         "marvell-sec:2026-08-28:q2-fy2027-10q",
         "marvell-sec:2026-05-13:def14a"
+      ],
+      "observedAt": "2026-09-19T09:24:55Z"
+    },
+    {
+      "id": "edge:LRCX-structural-exposure",
+      "from": "company:LRCX",
+      "to": "market:LRCX-deposition-and-etch-intensity",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 94,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:lrcx:2026-10k:000070754926000037",
+        "lam-ir:june-q-2026:2026-07-29",
+        "lam-ir:rd-network:2026-08-13"
       ],
       "observedAt": "2026-09-19T09:24:55Z"
     }
@@ -6396,6 +6424,26 @@
       "observedAt": "2026-09-19T09:24:55Z",
       "thesis": "Marvell is positioned across two AI-infrastructure bottlenecks: custom compute silicon and high-speed connectivity/electro-optics. Q2 FY2027 data-center revenue was $2.172B, 79% of company revenue, with 46% year-over-year growth.",
       "falsifier": "general-purpose merchant silicon regains economic advantage or Marvell loses design wins"
+    },
+    {
+      "id": "signal:LRCX-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:LRCX-deposition-and-etch-intensity",
+      "affectedNodeIds": [
+        "company:LRCX"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 94,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:lrcx:2026-10k:000070754926000037",
+        "lam-ir:june-q-2026:2026-07-29",
+        "lam-ir:rd-network:2026-08-13"
+      ],
+      "observedAt": "2026-09-19T09:24:55Z",
+      "thesis": "Lam sits on a semiconductor-manufacturing complexity bottleneck: AI-driven leading-edge devices require repeated precision deposition and etch steps, linking compute demand to wafer-fab process intensity rather than to chip unit volume alone.",
+      "falsifier": "process architectures reduce Lam-addressable step intensity or Lam loses material share"
     }
   ],
   "roadmapMilestones": [

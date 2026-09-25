@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "contract": "earth2036-specialist-assist-evidence-v1",
+  "role": "council-beta",
+  "perspective": "adversarial-red-team-assist",
+  "ticker": "MBLY",
+  "entity": "Mobileye Global Inc.",
+  "workId": "t0:MBLY",
+  "generatedAt": "2026-09-25T13:25:38Z",
+  "assist": {
+    "requestId": "assist:MBLY:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "d838cb4f30f1f07badd6",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support"
+  },
+  "claims": [
+    {
+      "claim": "Mobileye's 2025 Form 10-K states that its Technology and Services Agreement with Intel provides only a limited license to sensitive core radar technology for a specific radar type and applications; radar products outside that scope require a separate Intel license at Intel's discretion, and Mobileye states it will not own most new radar intellectual property even if developed solely by Mobileye.",
+      "sourceIds": ["regulatory:SEC:MBLY:2025-10K:radar-license-dependency"],
+      "affectedFactors": ["substitutionResilience", "supplyChainResilience", "governancePower", "bottleneckControl"],
+      "affectedCausalEdges": [
+        "Mobileye autonomy stack -> radar capability -> Intel-sensitive-core-technology license -> sensor redundancy/ADAS competitiveness",
+        "Mobileye engineering -> new radar IP -> Intel ownership/license discretion -> future product optionality"
+      ],
+      "riskInterpretation": "This is a concrete technology-governance dependency rather than evidence of present product failure. It can constrain resilience or bargaining flexibility if future radar architectures fall outside the existing license and timely alternatives are unavailable."
+    }
+  ],
+  "sourceLineage": [
+    {
+      "sourceId": "regulatory:SEC:MBLY:2025-10K:radar-license-dependency",
+      "url": "https://ir.mobileye.com/static-files/245c9e7c-db18-443e-ba65-3613ad260873",
+      "sourceClass": "regulatory-primary",
+      "originFingerprint": "mobileye-sec|2026-02-12|2025-10-k|intel-radar-license-dependency"
+    }
+  ],
+  "risks": [
+    "A bounded but material radar-technology dependency remains tied to Intel licensing discretion for products outside the existing agreement scope.",
+    "Ownership of most new radar IP by Intel can reduce Mobileye's independent control over a sensor modality relevant to redundancy and autonomous-driving competitiveness."
+  ],
+  "contradictions": [],
+  "unknowns": [
+    "Whether Mobileye's current and planned radar roadmap remains fully inside the existing licensed scope.",
+    "Whether commercially viable non-Intel radar alternatives could be substituted without material delay or redesign if a future license were unavailable."
+  ],
+  "falsifiers": [
+    "A disclosed broader or replacement license giving Mobileye durable independent rights to the relevant radar technology would materially weaken this dependency risk.",
+    "Evidence that Mobileye has qualified substitute radar technology without material cost, delay or performance loss would reduce the resilience concern."
+  ],
+  "improvementPaths": [
+    "Alpha can treat the disclosed radar-license dependency as source-addressed downside evidence while keeping numeric underwriting under Alpha authority.",
+    "Future evidence should test roadmap scope and substitute availability rather than infer a current operational blocker from the contractual dependency alone."
+  ],
+  "gatingStatus": "assist_evidence_only_noncanonical",
+  "confidence": "high_for_disclosed_contractual_dependency_moderate_for_future_resilience_implication",
+  "recommendedNextState": "council-alpha_reuse_for_source_addressed_risk_evidence",
+  "nextOwner": "council-alpha",
+  "lineage": {
+    "supersedes": null,
+    "reuses": ["data/runtime/workgraph/evidence/MBLY-20260925T122238Z-council-beta-assist.json"]
+  }
+}

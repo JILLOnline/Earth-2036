@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "contract": "earth2036-bounded-assist-evidence-v1",
+  "generatedAt": "2026-09-25T15:28:14Z",
+  "role": "council-beta",
+  "perspective": "adversarial-red-team-assist",
+  "requestId": "assist:MBLY:council-alpha:council-beta:risk-source-support",
+  "inputSignature": "4c87fa8d37b57fa0ce98",
+  "ticker": "MBLY",
+  "workId": "t0:MBLY",
+  "rootOwner": "council-alpha",
+  "scope": "risk-source-support",
+  "lineage": {
+    "startingGitHead": "ebaed52e69b0c0085dbf2240037b8bcb5a0594d7",
+    "supersedes": null,
+    "packetPath": "data/runtime/workgraph/packets/MBLY.json"
+  },
+  "claims": [
+    {
+      "claim": "Mobileye's Q2 2026 Form 10-Q states that substantially all current revenue is still derived from commercially deployed ADAS/Premium ADAS solutions while Surround ADAS, SuperVision, Chauffeur and Drive are only approaching start of production. This creates a transition-risk test: the future mix depends on successful SOP, OEM ramp and adoption of newer products rather than today's revenue base already proving that mix shift.",
+      "sourceIds": ["regulatory:SEC:MBLY:2026Q2-10Q"],
+      "affectedFactors": ["scenarioRobustness", "advancedADASMonetization", "revenueExecution", "dataConfidence"],
+      "causalEdges": ["current revenue concentration in deployed ADAS -> dependence on legacy/core volumes -> near-term resilience", "advanced-product SOP/ramp -> revenue-mix transition -> higher-value autonomy monetization if execution succeeds"],
+      "falsifier": "Reported production ramps and material revenue contribution from Surround ADAS, SuperVision, Chauffeur or Drive would reduce this transition-risk concern."
+    },
+    {
+      "claim": "The same Q2 filing says Mobileye generates the majority of revenue from EyeQ SoCs sold to OEMs through Tier 1 suppliers using volume-based pricing. This is source-addressed concentration in an automotive production channel and exposes results to OEM production volumes, program timing and mix even when design wins remain intact.",
+      "sourceIds": ["regulatory:SEC:MBLY:2026Q2-10Q"],
+      "affectedFactors": ["pricingPower", "supplyChainResilience", "scenarioRobustness", "operatingDemand"],
+      "causalEdges": ["OEM/Tier-1 production channel -> vehicle build volumes and program timing -> EyeQ shipment revenue", "volume-based pricing and product mix -> realized ASP/margin -> operating economics"],
+      "falsifier": "A more diversified recurring/software/service revenue mix or demonstrated reduced sensitivity to vehicle production and mix would weaken this channel-concentration risk."
+    },
+    {
+      "claim": "Mobileye disclosed that as of April 15, 2026 about 7% of employees had been called to reserve duty in Israel and that operations had not been materially affected to date, while continued regional conflict could affect operations and assets. This is a bounded operational-resilience risk with an explicit mitigating observation: disruption had not been material at the filing date.",
+      "sourceIds": ["regulatory:SEC:MBLY:2026Q2-10Q"],
+      "affectedFactors": ["supplyChainResilience", "executionMonitoring", "dataConfidence"],
+      "causalEdges": ["regional conflict/reserve duty -> workforce availability and operating continuity risk", "observed no material effect through filing -> demonstrated near-term resilience -> lower current severity than a hypothetical disruption"],
+      "falsifier": "Continued filings showing no material operational impact, stable staffing and uninterrupted development/customer delivery would further reduce this risk; disclosed material disruption would increase it."
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "regulatory:SEC:MBLY:2026Q2-10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1910139/000110465926086264/mbly-20260627x10q.htm",
+      "originFingerprint": "sec-edgar|1910139|2026Q2-10Q|2026-06-27"
+    }
+  ],
+  "risks": [
+    "Advanced-product monetization remains a transition to be demonstrated because substantially all current revenue still comes from commercially deployed ADAS solutions.",
+    "Majority revenue exposure to EyeQ shipments through automotive Tier 1/OEM channels leaves results sensitive to vehicle production, program timing, mix and volume-based pricing.",
+    "Israel-based workforce exposure creates a factual continuity risk, mitigated by the issuer's statement that operations had not been materially affected as of the filing."
+  ],
+  "contradictions": [],
+  "unknowns": [
+    "The filing does not quantify the future revenue mix or margin contribution by Surround ADAS, SuperVision, Chauffeur and Drive at maturity.",
+    "The source does not isolate revenue sensitivity to specific OEM production changes or quantify channel concentration by Tier 1 in the cited passage.",
+    "Future regional-conflict operational impact is inherently uncertain and should not be treated as a present blocker absent observed disruption."
+  ],
+  "gatingStatus": "non_gating_support_for_alpha_owned_missing_score_risk_evidence",
+  "confidence": "high_on_regulatory_disclosures_moderate_on_forward_transition_implications",
+  "recommendedNextState": "root_owner_reassess_missing_score_risk_evidence_with_source_addressed_beta_support",
+  "recommendedNextOwner": "council-alpha",
+  "outcome": "new_source_addressed_risk_support_produced",
+  "changedStrategy": "Changed source class from prior issuer announcements and transaction/governance evidence to the current SEC operating-risk disclosure, adding revenue-model transition, automotive-channel dependence and observed workforce-resilience evidence without repeating prior robotaxi/Mentee/dilution claims."
+}

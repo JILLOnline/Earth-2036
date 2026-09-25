@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-25T00:19:14.202Z",
+  "updatedAt": "2026-09-25T04:14:36.484Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1646,6 +1646,30 @@
       "type": "market",
       "label": "deposition and etch intensity",
       "description": "advanced structures require more precise and repeated material deposition/removal steps"
+    },
+    {
+      "id": "company:META",
+      "type": "company",
+      "label": "Meta Platforms",
+      "description": "Meta's current causal chain is advertising monetization -> operating cash generation -> AI/data-center infrastructure investment -> model/recommendation capability -> engagement and advertiser performance; Q2 2026 evidence supports the monetization and investment links but does not yet prove the incremental return on the newest AI capex."
+    },
+    {
+      "id": "market:META-operating-cash-generation",
+      "type": "market",
+      "label": "operating cash generation",
+      "description": "Meta's current causal chain is advertising monetization -> operating cash generation -> AI/data-center infrastructure investment -> model/recommendation capability -> engagement and advertiser performance; Q2 2026 evidence supports the monetization and investment links but does not yet prove the incremental return on the newest AI capex."
+    },
+    {
+      "id": "company:MKSI",
+      "type": "company",
+      "label": "MKS Instruments",
+      "description": "MKS sits upstream of semiconductor and advanced electronics manufacturing: rising AI-compute complexity increases process-control, vacuum/photonics and advanced circuit-board requirements, which can translate into bookings and revenue when customers expand manufacturing capacity."
+    },
+    {
+      "id": "market:MKSI-semiconductor-and-advanced-electronics-manufacturing-complexity",
+      "type": "market",
+      "label": "semiconductor and advanced electronics manufacturing complexity",
+      "description": "MKS sits upstream of semiconductor and advanced electronics manufacturing: rising AI-compute complexity increases process-control, vacuum/photonics and advanced circuit-board requirements, which can translate into bookings and revenue when customers expand manufacturing capacity."
     }
   ],
   "edges": [
@@ -3786,6 +3810,34 @@
         "lam-ir:rd-network:2026-08-13"
       ],
       "observedAt": "2026-09-19T09:24:55Z"
+    },
+    {
+      "id": "edge:META-structural-exposure",
+      "from": "company:META",
+      "to": "market:META-operating-cash-generation",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "meta-ir:2026-q2-results"
+      ],
+      "observedAt": "2026-09-21T04:26:26Z"
+    },
+    {
+      "id": "edge:MKSI-structural-exposure",
+      "from": "company:MKSI",
+      "to": "market:MKSI-semiconductor-and-advanced-electronics-manufacturing-complexity",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 89,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "mksi-ir:2026-q1-results"
+      ],
+      "observedAt": "2026-09-21T04:26:26Z"
     }
   ],
   "structuralSignals": [
@@ -6444,6 +6496,42 @@
       "observedAt": "2026-09-19T09:24:55Z",
       "thesis": "Lam sits on a semiconductor-manufacturing complexity bottleneck: AI-driven leading-edge devices require repeated precision deposition and etch steps, linking compute demand to wafer-fab process intensity rather than to chip unit volume alone.",
       "falsifier": "process architectures reduce Lam-addressable step intensity or Lam loses material share"
+    },
+    {
+      "id": "signal:META-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:META-operating-cash-generation",
+      "affectedNodeIds": [
+        "company:META"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "meta-ir:2026-q2-results"
+      ],
+      "observedAt": "2026-09-21T04:26:26Z",
+      "thesis": "Meta's current causal chain is advertising monetization -> operating cash generation -> AI/data-center infrastructure investment -> model/recommendation capability -> engagement and advertiser performance; Q2 2026 evidence supports the monetization and investment links but does not yet prove the incremental return on the newest AI capex.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:MKSI-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:MKSI-semiconductor-and-advanced-electronics-manufacturing-complexity",
+      "affectedNodeIds": [
+        "company:MKSI"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 89,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "mksi-ir:2026-q1-results"
+      ],
+      "observedAt": "2026-09-21T04:26:26Z",
+      "thesis": "MKS sits upstream of semiconductor and advanced electronics manufacturing: rising AI-compute complexity increases process-control, vacuum/photonics and advanced circuit-board requirements, which can translate into bookings and revenue when customers expand manufacturing capacity.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],
   "roadmapMilestones": [

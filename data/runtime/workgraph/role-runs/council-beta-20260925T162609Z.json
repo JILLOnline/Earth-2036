@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "role": "council-beta",
+  "generatedAt": "2026-09-25T16:26:09Z",
+  "startingGitHead": "84a25307b0f33c977073716080f6893550848273",
+  "operatingMode": "assist-only",
+  "companiesInspected": ["MBLY"],
+  "betaPairsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [
+    {
+      "requestId": "assist:MBLY:council-alpha:council-beta:risk-source-support",
+      "inputSignature": "fc9f0f73c787350ff922",
+      "outcome": "inspected_no_materially_new_risk_evidence",
+      "newEvidencePaths": [],
+      "changedStrategy": "Used the newly added Scout source-acquisition evidence and current packet rather than repeating prior Beta risk artifacts. The September 29 investor-forum source is an information checkpoint, not downside/execution-risk evidence sufficient to close Alpha's missing_score_risk_evidence without manufacturing risk."
+    },
+    {
+      "requestId": "assist:NBIS:council-alpha:council-beta:risk-source-support",
+      "inputSignature": "590a56742854694c53ca",
+      "outcome": "not_retried_unchanged_prior_attempt",
+      "newEvidencePaths": [],
+      "changedStrategy": "Dormant unchanged-input rule honored."
+    },
+    {
+      "requestId": "assist:SERV:council-alpha:council-beta:risk-source-support",
+      "inputSignature": "fbf9f02a9bf9cc497b56",
+      "outcome": "not_retried_unchanged_prior_attempt",
+      "newEvidencePaths": [],
+      "changedStrategy": "Dormant unchanged-input rule honored."
+    },
+    {
+      "requestId": "assist:SMR:council-alpha:council-beta:risk-source-support",
+      "inputSignature": "46bc03eb22840186fd1f",
+      "outcome": "not_retried_unchanged_prior_attempt",
+      "newEvidencePaths": [],
+      "changedStrategy": "Dormant unchanged-input rule honored."
+    }
+  ],
+  "blockers": [
+    {
+      "ticker": "MBLY",
+      "defect": "missing_score_risk_evidence",
+      "owner": "council-alpha",
+      "lawfulNextEvidencePath": "Council Alpha should reuse the existing source-addressed MBLY risk evidence already present in the packet for numeric underwriting, or wait for materially new primary/independent downside evidence; the newly added September 29 conference notice does not itself change downside evidence."
+    }
+  ],
+  "result": "owned_beta_queue_empty; one changed-signature Alpha risk-source assist inspected; no defensible new Beta evidence artifact produced; three unchanged assists not retried",
+  "learning": {
+    "success": "Avoided artifact volume without uncertainty reduction and preserved root-owner authority.",
+    "failedStrategy": "Repeated Beta risk-source artifacts on already well-covered MBLY risk themes would not close Alpha's numeric/source-addressed underwriting defect.",
+    "changedStrategy": "Treat event-only Scout additions as monitoring checkpoints unless they contain materially new downside, execution-risk, or falsifier evidence; defer numeric closure to Alpha using existing packet evidence."
+  }
+}

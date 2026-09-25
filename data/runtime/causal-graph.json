@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-25T12:19:26.905Z",
+  "updatedAt": "2026-09-25T13:18:58.467Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1694,6 +1694,18 @@
       "type": "market",
       "label": "high-performance magnet demand",
       "description": "motors and strategic systems require compact high-strength magnetic materials"
+    },
+    {
+      "id": "company:MRCY",
+      "type": "company",
+      "label": "Mercury Systems",
+      "description": "Mercury sits between commercial compute/RF technology and mission-critical aerospace/defense edge systems; record FY26 backlog above $1.9B and a multi-year 1,000-server BuiltSECURE order support a real secure-processing demand path, while factory automation is being added to improve throughput."
+    },
+    {
+      "id": "market:MRCY-technology-secure-rugged-edge-compute",
+      "type": "market",
+      "label": "technology:secure-rugged-edge-compute",
+      "description": "Mercury sits between commercial compute/RF technology and mission-critical aerospace/defense edge systems; record FY26 backlog above $1.9B and a multi-year 1,000-server BuiltSECURE order support a real secure-processing demand path, while factory automation is being added to improve throughput."
     }
   ],
   "edges": [
@@ -3891,6 +3903,23 @@
         "mp-ir:2026-q2-results"
       ],
       "observedAt": "2026-09-21T05:24:00Z"
+    },
+    {
+      "id": "edge:MRCY-structural-exposure",
+      "from": "company:MRCY",
+      "to": "market:MRCY-technology-secure-rugged-edge-compute",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:MRCY:10K:20260703",
+        "issuer:MRCY:FY26",
+        "issuer:MRCY:BuiltSECURE:20260528",
+        "issuer:MRCY:Palantir:20260803"
+      ],
+      "observedAt": "2026-09-21T06:27:57Z"
     }
   ],
   "structuralSignals": [
@@ -6622,6 +6651,27 @@
       "observedAt": "2026-09-21T05:24:00Z",
       "thesis": "MP Materials occupies a strategic chain from rare-earth ore through separated NdPr to magnets used in motors and defense/industrial systems, linking domestic resource processing to electrification, automation and national supply resilience.",
       "falsifier": "alternative motor/magnet designs materially reduce NdFeB intensity across major end uses"
+    },
+    {
+      "id": "signal:MRCY-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:MRCY-technology-secure-rugged-edge-compute",
+      "affectedNodeIds": [
+        "company:MRCY"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:MRCY:10K:20260703",
+        "issuer:MRCY:FY26",
+        "issuer:MRCY:BuiltSECURE:20260528",
+        "issuer:MRCY:Palantir:20260803"
+      ],
+      "observedAt": "2026-09-21T06:27:57Z",
+      "thesis": "Mercury sits between commercial compute/RF technology and mission-critical aerospace/defense edge systems; record FY26 backlog above $1.9B and a multi-year 1,000-server BuiltSECURE order support a real secure-processing demand path, while factory automation is being added to improve throughput.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],
   "roadmapMilestones": [

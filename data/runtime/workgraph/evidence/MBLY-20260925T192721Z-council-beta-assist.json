@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "contract": "earth2036-workgraph-evidence-v1",
+  "ticker": "MBLY",
+  "workId": "t0:MBLY",
+  "generatedAt": "2026-09-25T19:27:21Z",
+  "role": "council-beta",
+  "perspective": "adversarial-red-team-assist",
+  "rootOwner": "council-alpha",
+  "assist": {
+    "requestId": "assist:MBLY:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "35b085b8810e78681a7b",
+    "capability": "risk-source-support",
+    "exactQuestion": "Acquire source-addressed downside, execution-risk and falsifier evidence Alpha can reuse without setting Alpha's numeric risk or score."
+  },
+  "sources": [
+    {
+      "sourceId": "regulatory:SEC:MBLY:8-K:2026-09-10:strategy-role-transition",
+      "type": "primary-regulatory",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "url": "https://www.sec.gov/Archives/edgar/data/1910139/000110465926106534/tm2624975d1_8k.htm",
+      "originFingerprint": "SEC|CIK0001910139|8-K|2026-09-10|Item5.02|NimrodNehushtan-strategy-role-transition"
+    }
+  ],
+  "claims": [
+    {
+      "claim": "On September 3, 2026, Mobileye and EVP Business Development & Strategy Nimrod Nehushtan agreed that he would transition to a part-time corporate-strategy role, while VP Business Development Nimrod Brickman would continue leading business-development activities.",
+      "sourceId": "regulatory:SEC:MBLY:8-K:2026-09-10:strategy-role-transition",
+      "observed": true
+    },
+    {
+      "claim": "The filing says Nehushtan's existing compensation arrangements had not been modified as of the report date, so the role transition should be treated as an organizational-responsibility change rather than evidence of cost savings or improved economics.",
+      "sourceId": "regulatory:SEC:MBLY:8-K:2026-09-10:strategy-role-transition",
+      "observed": true
+    }
+  ],
+  "affectedFactors": [
+    {
+      "name": "executionMonitoring",
+      "direction": "mixed-neutral",
+      "basis": "Business-development leadership continuity is identified, but a senior strategy executive moved to part-time status during a period of strategic expansion."
+    },
+    {
+      "name": "governancePower",
+      "direction": "mixed-neutral",
+      "basis": "The filing clarifies responsibility transfer but provides no evidence that the transition changes governance quality or economics."
+    }
+  ],
+  "causalEdges": [
+    {
+      "from": "senior strategy role transition to part-time",
+      "to": "strategy and business-development execution continuity",
+      "status": "uncertain-with-named-operating-continuity",
+      "falsifier": "Subsequent evidence of stable commercial conversion, strategy execution and no responsibility gap would weaken the transition-risk interpretation."
+    }
+  ],
+  "risks": [
+    {
+      "risk": "A senior strategy executive moving to part-time status creates a bounded execution-continuity question while Mobileye is simultaneously expanding into robotaxi operations and humanoid robotics; the filing itself does not show disruption.",
+      "gating": false,
+      "sourceId": "regulatory:SEC:MBLY:8-K:2026-09-10:strategy-role-transition"
+    },
+    {
+      "risk": "Confidence inflation would occur if the responsibility transfer were treated as evidence of operating leverage or cost reduction, because the filing states compensation arrangements were unchanged as of the report date.",
+      "gating": false,
+      "sourceId": "regulatory:SEC:MBLY:8-K:2026-09-10:strategy-role-transition"
+    }
+  ],
+  "contradictions": [],
+  "unknowns": [
+    "The filing does not quantify any commercial, strategic, financial or operational impact from the role transition.",
+    "The filing does not establish whether the transition affects execution of Mobileye's newer robotaxi or humanoid-robotics initiatives."
+  ],
+  "gatingStatus": {
+    "betaBlocker": false,
+    "rootOwnerFailureAddressed": "missing_score_risk_evidence",
+    "closureEffect": "Adds a distinct primary-regulatory risk/falsifier input for Alpha; it does not set numeric risk or score."
+  },
+  "confidence": "high",
+  "recommendedNextState": "researching",
+  "recommendedNextOwner": "council-alpha",
+  "recommendation": "Use this filing as bounded execution-continuity evidence only. Keep the observed responsibility transition separate from any numeric underwriting judgment, and verify future commercial execution before assigning material consequence.",
+  "lineage": {
+    "sourcePacket": "data/runtime/workgraph/packets/MBLY.json",
+    "inputSignature": "35b085b8810e78681a7b",
+    "reusedEvidencePaths": [
+      "data/runtime/workgraph/evidence/MBLY-20260925T182635Z-council-beta-assist.json"
+    ],
+    "supersedes": []
+  }
+}

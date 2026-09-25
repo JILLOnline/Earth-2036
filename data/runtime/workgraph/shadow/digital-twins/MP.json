@@ -4,8 +4,8 @@
   "canonicalWriteAuthority": false,
   "ticker": "MP",
   "workId": "t0:MP",
-  "inputSignature": "cb124fd67dd822a4622b2d5d",
-  "sourceState": "researching",
+  "inputSignature": "2fedd110144be504ac832794",
+  "sourceState": "chief_ready",
   "identity": {
     "ticker": "MP",
     "company": "MP Materials",
@@ -29,28 +29,30 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
-    ],
-    "missingPerspectives": [
+      "adversarial-red-team",
       "source-integrity",
       "company-underwriting"
     ],
-    "primarySourceCount": 1,
+    "missingPerspectives": [],
+    "primarySourceCount": 3,
     "sourceLineage": {
-      "rawSourceCount": 4,
-      "uniqueSourceCount": 1,
-      "duplicatesCollapsed": 3,
+      "rawSourceCount": 12,
+      "uniqueSourceCount": 4,
+      "duplicatesCollapsed": 8,
       "missingLineage": 0,
       "uniqueOrigins": [
-        "mp-ir:2026-q2-results"
+        "mp-ir:2026-q2-results",
+        "sec:1801368:2026q2-10q",
+        "sec:1801368:2026-def14a",
+        "stockanalysis:mp:20260924"
       ]
     },
     "evidenceWindow": {
-      "start": "2026-08-06T00:00:00.000Z",
-      "end": "2026-09-21T05:24:00.000Z",
-      "latestEvidenceGeneratedAt": "2026-09-21T05:24:00.000Z"
+      "start": "2026-04-24T00:00:00.000Z",
+      "end": "2026-09-25T12:16:43.000Z",
+      "latestEvidenceGeneratedAt": "2026-09-25T12:16:43.000Z"
     },
-    "preflightPassed": false
+    "preflightPassed": true
   },
   "capabilitySignals": [
     "domestic rare-earth vertical integration",
@@ -61,7 +63,11 @@
     "substitutionResilience",
     "policyDependence",
     "executionConcentration",
-    "confidenceInflation"
+    "confidenceInflation",
+    "provenance",
+    "freshness",
+    "sourceIndependence",
+    "underwriting"
   ],
   "constraintSignals": {
     "risks": [
@@ -70,26 +76,24 @@
       "Commissioning, qualification and utilization can become binding constraints after upstream resource availability is solved.",
       "Policy/contract support may be necessary for economics that are not yet demonstrated on a fully standalone basis.",
       "Construction, commissioning and customer qualification delays can strand or underutilize capital.",
-      "Competitive response, recycling or alternative motor designs can reduce expected rare-earth intensity over time."
+      "Competitive response, recycling or alternative motor designs can reduce expected rare-earth intensity over time.",
+      "Most operating claims are company-reported and should not be counted as independent corroboration merely because they appear in both SEC and IR presentations.",
+      "Large simultaneous expansion programs can create correlated construction, commissioning and qualification delays.",
+      "Price protection and strategic government commitments make standalone market economics less proven than reported revenue growth alone suggests."
     ],
     "unknowns": [
       "Long-run standalone economics absent government support and exact new-customer volumes remain unknown.",
       "10X commissioning is future-dated and its realized utilization/economics cannot yet be treated as achieved.",
       "Long-run standalone economics without government support and realized utilization of new capacity remain unknown.",
-      "Exact unsupported long-run unit economics and realized 10X utilization are not established by current evidence."
+      "Exact unsupported long-run unit economics and realized 10X utilization are not established by current evidence.",
+      "Independent third-party validation of future 10X utilization and unsupported long-run unit economics remains limited.",
+      "Realized 10X utilization and long-run standalone unit economics after policy support remain unknown."
     ],
     "contradictions": [
       "Strategic supply-chain value versus policy-supported economics"
     ],
     "gatingIssues": [],
-    "preflightFailures": [
-      "missing_specialist_perspective:source-integrity",
-      "missing_specialist_perspective:company-underwriting",
-      "missing_factor_evidence",
-      "missing_numeric_score_record",
-      "missing_score_risk_evidence",
-      "missing_data_confidence_evidence"
-    ]
+    "preflightFailures": []
   },
   "causalContext": {
     "mapped": true,
@@ -111,41 +115,16 @@
         "to": "capacity economics",
         "mechanism": "price floors/commitments can stabilize investment returns during domestic scale-up",
         "falsifier": "new capacity demonstrates durable competitive economics after support rolls off or becomes non-material"
+      },
+      {
+        "from": "domestic mine-to-magnet integration",
+        "to": "supply resilience and value capture",
+        "mechanism": "scarce domestic separation and magnet capacity reduces dependence on concentrated foreign processing and supports strategic offtake",
+        "falsifier": "new capacity fails qualification/utilization or cannot earn durable economics without material support"
       }
     ]
   },
-  "improvementWindows": [
-    {
-      "failure": "missing_specialist_perspective:source-integrity",
-      "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:source-integrity?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_specialist_perspective:company-underwriting",
-      "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_factor_evidence",
-      "question": "Which required methodology factor still lacks source-addressed evidence?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_numeric_score_record",
-      "question": "Which source-addressed factor assessments are still required before a reproducible score can be constructed?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_score_risk_evidence",
-      "question": "Which material risks require source-addressed quantitative treatment?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_data_confidence_evidence",
-      "question": "Which evidence-quality dimensions remain insufficiently supported?",
-      "stance": "improvement-oriented"
-    }
-  ],
+  "improvementWindows": [],
   "bridgeInputs": {
     "capabilityCandidates": [
       "domestic rare-earth vertical integration",
@@ -156,19 +135,28 @@
       "substitutionResilience",
       "policyDependence",
       "executionConcentration",
-      "confidenceInflation"
+      "confidenceInflation",
+      "provenance",
+      "freshness",
+      "sourceIndependence",
+      "underwriting"
     ],
     "needOrConstraintCandidates": [
       "Long-run standalone economics absent government support and exact new-customer volumes remain unknown.",
       "10X commissioning is future-dated and its realized utilization/economics cannot yet be treated as achieved.",
       "Long-run standalone economics without government support and realized utilization of new capacity remain unknown.",
       "Exact unsupported long-run unit economics and realized 10X utilization are not established by current evidence.",
+      "Independent third-party validation of future 10X utilization and unsupported long-run unit economics remains limited.",
+      "Realized 10X utilization and long-run standalone unit economics after policy support remain unknown.",
       "Economics are partly supported by government price protection and strategic commitments, increasing policy/contract dependence.",
       "Large simultaneous expansion programs create construction, commissioning, customer qualification and capital-allocation risk.",
       "Commissioning, qualification and utilization can become binding constraints after upstream resource availability is solved.",
       "Policy/contract support may be necessary for economics that are not yet demonstrated on a fully standalone basis.",
       "Construction, commissioning and customer qualification delays can strand or underutilize capital.",
-      "Competitive response, recycling or alternative motor designs can reduce expected rare-earth intensity over time."
+      "Competitive response, recycling or alternative motor designs can reduce expected rare-earth intensity over time.",
+      "Most operating claims are company-reported and should not be counted as independent corroboration merely because they appear in both SEC and IR presentations.",
+      "Large simultaneous expansion programs can create correlated construction, commissioning and qualification delays.",
+      "Price protection and strategic government commitments make standalone market economics less proven than reported revenue growth alone suggests."
     ],
     "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
   },

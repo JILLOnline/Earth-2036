@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MP",
   "workId": "t0:MP",
-  "generatedAt": "2026-09-25T12:06:21.415Z",
+  "generatedAt": "2026-09-25T12:19:22.383Z",
   "sourceState": "researching",
   "methodologyVersion": "1.0.0",
   "identityTradability": {
@@ -17,9 +17,9 @@
     "validatedAt": "2026-09-25T11:27:49.016Z"
   },
   "evidenceWindow": {
-    "start": "2026-08-06T00:00:00.000Z",
-    "end": "2026-09-21T05:24:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T05:24:00.000Z"
+    "start": "2026-04-24T00:00:00.000Z",
+    "end": "2026-09-25T12:16:43.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-25T12:16:43.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -34,29 +34,31 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
-    ],
-    "missing": [
+      "adversarial-red-team",
       "source-integrity",
       "company-underwriting"
     ],
-    "complete": false
+    "missing": [],
+    "complete": true
   },
   "perspectives": [
     "discovery-weak-signals",
     "expectations-execution",
     "structural-causal",
-    "adversarial-red-team"
+    "adversarial-red-team",
+    "source-integrity",
+    "company-underwriting"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/MP-20260921T040323Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/MP-20260921T052400Z-council-beta.json"
+    "data/runtime/workgraph/evidence/MP-20260921T052400Z-council-beta.json",
+    "data/runtime/workgraph/evidence/MP-20260925T121643Z-council-alpha.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -68,11 +70,37 @@
       "substitutionResilience",
       "policyDependence",
       "executionConcentration",
-      "confidenceInflation"
+      "confidenceInflation",
+      "provenance",
+      "freshness",
+      "sourceIndependence",
+      "underwriting"
     ],
     "byPerspective": {
-      "source-integrity": [],
-      "company-underwriting": [],
+      "source-integrity": [
+        {
+          "name": "provenance",
+          "direction": "positive",
+          "basis": "SEC filing identity, issuer operating evidence and independent current valuation are source-addressed and origin-separated."
+        },
+        {
+          "name": "freshness",
+          "direction": "positive",
+          "basis": "Operating evidence is from the quarter ended June 30, 2026 and valuation is dated September 24, 2026."
+        },
+        {
+          "name": "sourceIndependence",
+          "direction": "mixed",
+          "basis": "Operating facts remain issuer/SEC-derived; current valuation adds an independent market-data origin, while duplicated Q2 issuer lineage is explicitly collapsed."
+        }
+      ],
+      "company-underwriting": [
+        {
+          "name": "underwriting",
+          "direction": "positive",
+          "basis": "Strong strategic positioning and improving operating conversion are balanced by demanding valuation and execution/policy dependence."
+        }
+      ],
       "structural-causal": [
         {
           "name": "bottleneckControl",
@@ -128,9 +156,175 @@
       ]
     }
   },
-  "scoreRecord": null,
+  "scoreRecord": {
+    "ticker": "MP",
+    "company": "MP Materials",
+    "methodologyVersion": "1.0.0",
+    "calibrationVersion": "1.0.0-calibration-a",
+    "earthScore": 64.61,
+    "risk": 45,
+    "dataConfidence": 78,
+    "thesisQuality": 78,
+    "financialOperatingMomentum": 68,
+    "marketValuationOpportunity": 42,
+    "catalystScore": 82,
+    "governancePower": 62,
+    "alignment2036": 90,
+    "crossDivisionLeverage": 72,
+    "bottleneckControl": 88,
+    "scenarioRobustness": 66,
+    "substitutionResilience": 67,
+    "supplyChainResilience": 75,
+    "pricingPower": 72,
+    "factorEvidence": {
+      "thesisQuality": {
+        "numericAssessment": 78,
+        "basis": "Commercial separated-product growth plus commenced magnet manufacturing demonstrate real adoption and differentiated domestic integration; unsupported long-run economics cap the score below exceptional.",
+        "sourceIds": [
+          "mp-sec-10q-2026q2",
+          "mp-ir-2026q2"
+        ]
+      },
+      "financialOperatingMomentum": {
+        "numericAssessment": 68,
+        "basis": "Revenue accelerated materially and liquidity exceeds stated debt, but price-protection income and heavy expansion requirements make quality mixed rather than exceptional.",
+        "sourceIds": [
+          "mp-sec-10q-2026q2"
+        ]
+      },
+      "marketValuationOpportunity": {
+        "numericAssessment": 42,
+        "basis": "Approximately $8.78B market cap versus roughly $416M TTM revenue and negative net income embeds demanding downstream expectations despite strategic optionality.",
+        "sourceIds": [
+          "mp-market-20260924",
+          "mp-sec-10q-2026q2"
+        ]
+      },
+      "catalystScore": {
+        "numericAssessment": 82,
+        "basis": "10X, Independence, DoW-linked expansion and GM/Apple supply arrangements create several identifiable operating catalysts, though commissioning and qualification remain future execution tests.",
+        "sourceIds": [
+          "mp-sec-10q-2026q2",
+          "mp-ir-2026q2"
+        ]
+      },
+      "governancePower": {
+        "numericAssessment": 62,
+        "basis": "Current proxy disclosure and SEC reporting support functional governance/transparency, while the evidence set does not justify exceptional long-duration capital-allocation claims.",
+        "sourceIds": [
+          "mp-sec-proxy-2026",
+          "mp-sec-10q-2026q2"
+        ]
+      },
+      "alignment2036": {
+        "numericAssessment": 90,
+        "basis": "Rare-earth separation and NdFeB magnets are critical inputs across EVs, robotics, drones, wind and defense, giving foundational exposure across multiple plausible 2036 futures.",
+        "sourceIds": [
+          "mp-sec-10q-2026q2"
+        ]
+      },
+      "crossDivisionLeverage": {
+        "numericAssessment": 72,
+        "basis": "Materials and Magnetics reuse the same rare-earth chain across automotive, defense, robotics and industrial demand, but economics still depend heavily on one strategic materials complex.",
+        "sourceIds": [
+          "mp-sec-10q-2026q2",
+          "mp-ir-2026q2"
+        ]
+      },
+      "bottleneckControl": {
+        "numericAssessment": 88,
+        "basis": "Mountain Pass is described as the only rare-earth mining and processing site of scale in North America and MP has added domestic magnet manufacturing, creating unusually scarce integrated capability.",
+        "sourceIds": [
+          "mp-sec-10q-2026q2"
+        ]
+      },
+      "scenarioRobustness": {
+        "numericAssessment": 66,
+        "basis": "End-market breadth supports several demand scenarios, but rare-earth pricing, trade policy, government support and ramp execution remain material common-mode exposures.",
+        "sourceIds": [
+          "mp-sec-10q-2026q2",
+          "mp-ir-2026q2"
+        ]
+      },
+      "substitutionResilience": {
+        "numericAssessment": 67,
+        "basis": "High-performance NdFeB demand and qualification barriers support resilience, while recycling, motor redesign and alternative magnet chemistries remain credible substitution paths.",
+        "sourceIds": [
+          "mp-sec-10q-2026q2",
+          "mp-ir-2026q2"
+        ]
+      },
+      "supplyChainResilience": {
+        "numericAssessment": 75,
+        "basis": "Domestic mine-to-separation-to-magnet integration reduces foreign conversion dependence, but expansion commissioning and customer qualification remain concentrated execution dependencies.",
+        "sourceIds": [
+          "mp-sec-10q-2026q2",
+          "mp-ir-2026q2"
+        ]
+      },
+      "pricingPower": {
+        "numericAssessment": 72,
+        "basis": "The price-protection agreement materially stabilizes rare-earth pricing and strategic supply agreements improve revenue visibility, but this is partly contractual/policy support rather than fully demonstrated standalone scarcity rent.",
+        "sourceIds": [
+          "mp-sec-10q-2026q2"
+        ]
+      }
+    },
+    "riskEvidence": {
+      "numericAssessment": 45,
+      "basis": "Moderate-high execution and policy dependence: simultaneous capacity ramps, qualification risk, trade-policy exposure and economics partly supported by price protection offset strong liquidity and strategic contracts.",
+      "sourceIds": [
+        "mp-sec-10q-2026q2",
+        "mp-ir-2026q2"
+      ]
+    },
+    "dataConfidenceEvidence": {
+      "numericAssessment": 78,
+      "basis": "Recent SEC financials, proxy disclosure and current independent valuation cover the required dimensions, but future utilization/unit economics and independent corroboration of operating claims remain incomplete.",
+      "sourceIds": [
+        "mp-sec-10q-2026q2",
+        "mp-sec-proxy-2026",
+        "mp-market-20260924"
+      ]
+    },
+    "primarySourceUrls": [
+      "https://www.sec.gov/Archives/edgar/data/1801368/000180136826000048/mp-20260630.htm",
+      "https://www.sec.gov/Archives/edgar/data/1801368/000180136826000020/0001801368-26-000020-index.htm",
+      "https://investors.mpmaterials.com/investor-news/news-details/2026/MP-Materials-Reports-Second-Quarter-2026-Results/default.aspx"
+    ],
+    "independentSourceUrls": [
+      "https://stockanalysis.com/stocks/mp/market-cap/"
+    ],
+    "causalMapped": true,
+    "thesis": "MP is converting a scarce North American rare-earth resource into an integrated separation-and-magnet platform with strategic multi-market relevance; upside depends on successful downstream ramp and durable economics beyond policy support.",
+    "keyRisk": "Valuation and expansion economics can disappoint if 10X/Independence utilization, qualification or unsupported market economics fall short, especially if policy/price protection weakens.",
+    "nextCatalyst": "Further commercial magnet shipments and evidence of 10X/Independence commissioning, qualification and utilization progression.",
+    "scoreBreakdown": {
+      "weightedComponentScore": 72.82,
+      "riskPenaltyWeight": 0.16,
+      "riskPenaltyApplied": 0.072,
+      "postRiskScore": 67.58,
+      "confidenceFloorMultiplier": 0.8,
+      "confidenceMultiplierApplied": 0.956,
+      "finalEarthScore": 64.61
+    },
+    "components": {
+      "thesisQuality": 78,
+      "financialOperatingMomentum": 68,
+      "marketValuationOpportunity": 42,
+      "catalystScore": 82,
+      "governancePower": 62,
+      "alignment2036": 90,
+      "crossDivisionLeverage": 72,
+      "bottleneckControl": 88,
+      "scenarioRobustness": 66,
+      "substitutionResilience": 67,
+      "supplyChainResilience": 75,
+      "pricingPower": 72
+    }
+  },
   "scoreReadiness": {
-    "complete": false,
+    "complete": true,
     "requiredComponents": [
       "thesisQuality",
       "financialOperatingMomentum",
@@ -146,23 +340,10 @@
       "pricingPower"
     ],
     "sourceAddressedEvidence": {
-      "factorEvidenceComplete": false,
-      "missingFactorEvidence": [
-        "thesisQuality",
-        "financialOperatingMomentum",
-        "marketValuationOpportunity",
-        "catalystScore",
-        "governancePower",
-        "alignment2036",
-        "crossDivisionLeverage",
-        "bottleneckControl",
-        "scenarioRobustness",
-        "substitutionResilience",
-        "supplyChainResilience",
-        "pricingPower"
-      ],
-      "riskEvidenceComplete": false,
-      "dataConfidenceEvidenceComplete": false
+      "factorEvidenceComplete": true,
+      "missingFactorEvidence": [],
+      "riskEvidenceComplete": true,
+      "dataConfidenceEvidenceComplete": true
     }
   },
   "factors": [
@@ -174,7 +355,11 @@
     "substitutionResilience",
     "policyDependence",
     "executionConcentration",
-    "confidenceInflation"
+    "confidenceInflation",
+    "provenance",
+    "freshness",
+    "sourceIndependence",
+    "underwriting"
   ],
   "riskEvidence": {
     "present": true,
@@ -201,6 +386,18 @@
       },
       {
         "risk": "Competitive response, recycling or alternative motor designs can reduce expected rare-earth intensity over time.",
+        "gating": false
+      },
+      {
+        "risk": "Most operating claims are company-reported and should not be counted as independent corroboration merely because they appear in both SEC and IR presentations.",
+        "gating": false
+      },
+      {
+        "risk": "Large simultaneous expansion programs can create correlated construction, commissioning and qualification delays.",
+        "gating": false
+      },
+      {
+        "risk": "Price protection and strategic government commitments make standalone market economics less proven than reported revenue growth alone suggests.",
         "gating": false
       }
     ]
@@ -229,17 +426,31 @@
     {
       "risk": "Competitive response, recycling or alternative motor designs can reduce expected rare-earth intensity over time.",
       "gating": false
+    },
+    {
+      "risk": "Most operating claims are company-reported and should not be counted as independent corroboration merely because they appear in both SEC and IR presentations.",
+      "gating": false
+    },
+    {
+      "risk": "Large simultaneous expansion programs can create correlated construction, commissioning and qualification delays.",
+      "gating": false
+    },
+    {
+      "risk": "Price protection and strategic government commitments make standalone market economics less proven than reported revenue growth alone suggests.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
-    "available": false,
+    "available": true,
     "factors": [],
-    "confidenceFloor": null,
-    "evidencePaths": []
+    "confidenceFloor": 88,
+    "evidencePaths": [
+      "data/runtime/workgraph/evidence/MP-20260925T121643Z-council-alpha.json"
+    ]
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 3
   },
   "causalMapping": {
     "present": true,
@@ -261,6 +472,12 @@
         "to": "capacity economics",
         "mechanism": "price floors/commitments can stabilize investment returns during domestic scale-up",
         "falsifier": "new capacity demonstrates durable competitive economics after support rolls off or becomes non-material"
+      },
+      {
+        "from": "domestic mine-to-magnet integration",
+        "to": "supply resilience and value capture",
+        "mechanism": "scarce domestic separation and magnet capacity reduces dependence on concentrated foreign processing and supports strategic offtake",
+        "falsifier": "new capacity fails qualification/utilization or cannot earn durable economics without material support"
       }
     ]
   },
@@ -282,15 +499,24 @@
       "to": "capacity economics",
       "mechanism": "price floors/commitments can stabilize investment returns during domestic scale-up",
       "falsifier": "new capacity demonstrates durable competitive economics after support rolls off or becomes non-material"
+    },
+    {
+      "from": "domestic mine-to-magnet integration",
+      "to": "supply resilience and value capture",
+      "mechanism": "scarce domestic separation and magnet capacity reduces dependence on concentrated foreign processing and supports strategic offtake",
+      "falsifier": "new capacity fails qualification/utilization or cannot earn durable economics without material support"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 4,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 3,
+    "rawSourceCount": 12,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 8,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "mp-ir:2026-q2-results"
+      "mp-ir:2026-q2-results",
+      "sec:1801368:2026q2-10q",
+      "sec:1801368:2026-def14a",
+      "stockanalysis:mp:20260924"
     ]
   },
   "sources": [
@@ -301,6 +527,30 @@
       "publishedAt": "2026-08-06",
       "originFingerprint": "mp-ir:2026-q2-results",
       "sourceId": null
+    },
+    {
+      "sourceId": "mp-sec-10q-2026q2",
+      "url": "https://www.sec.gov/Archives/edgar/data/1801368/000180136826000048/mp-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "sec:1801368:2026q2-10q"
+    },
+    {
+      "sourceId": "mp-sec-proxy-2026",
+      "url": "https://www.sec.gov/Archives/edgar/data/1801368/000180136826000020/0001801368-26-000020-index.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-04-24",
+      "originFingerprint": "sec:1801368:2026-def14a"
+    },
+    {
+      "sourceId": "mp-market-20260924",
+      "url": "https://stockanalysis.com/stocks/mp/market-cap/",
+      "kind": "independent-market-data",
+      "primary": false,
+      "publishedAt": "2026-09-24",
+      "originFingerprint": "stockanalysis:mp:20260924"
     }
   ],
   "contradictions": [
@@ -338,49 +588,25 @@
     {
       "unknown": "Exact unsupported long-run unit economics and realized 10X utilization are not established by current evidence.",
       "gating": false
+    },
+    {
+      "unknown": "Independent third-party validation of future 10X utilization and unsupported long-run unit economics remains limited.",
+      "gating": false
+    },
+    {
+      "unknown": "Realized 10X utilization and long-run standalone unit economics after policy support remain unknown.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": 92,
+  "confidence": 78,
   "preflight": {
-    "passed": false,
-    "failures": [
-      "missing_specialist_perspective:source-integrity",
-      "missing_specialist_perspective:company-underwriting",
-      "missing_factor_evidence",
-      "missing_numeric_score_record",
-      "missing_score_risk_evidence",
-      "missing_data_confidence_evidence"
-    ],
-    "routing": [
-      {
-        "failure": "missing_specialist_perspective:source-integrity",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:company-underwriting",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_factor_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_numeric_score_record",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_score_risk_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_data_confidence_evidence",
-        "owner": "council-alpha"
-      }
-    ]
+    "passed": true,
+    "failures": [],
+    "routing": []
   }
 }

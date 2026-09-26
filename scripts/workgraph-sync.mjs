@@ -214,7 +214,7 @@ const previousAssistBus = await readJsonOr(path.join(workgraphDir, "assist-bus.j
 const previousFrontier = await readJsonOr(path.join(shadowDir, "closure-frontier.json"), null);
 const metrics = computeWorkgraphMetrics(graph, now, evidence, roleRuns);
 
-const routingEnabled = routingEnabled;
+const routingEnabled = closureEngineConfig.routingEnabled === true;
 const provisionalAssistBus = buildAssistRequests(
   graph,
   packets,

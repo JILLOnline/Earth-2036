@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "contract": "earth2036-specialist-assist-evidence-v1",
+  "role": "council-beta",
+  "perspective": "adversarial-red-team-assist",
+  "ticker": "MBLY",
+  "entity": "Mobileye Global Inc.",
+  "workId": "t0:MBLY",
+  "generatedAt": "2026-09-26T19:26:02Z",
+  "assist": {
+    "requestId": "assist:MBLY:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "072aca5efb01ca8b9294",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support"
+  },
+  "lineage": {
+    "supersedes": null,
+    "packetPath": "data/runtime/workgraph/packets/MBLY.json",
+    "startingGitHead": "5e5b6d432abab9c8589218b4379d7a68acbc5e7b"
+  },
+  "claims": [
+    {
+      "claim": "Mobileye purchases all EyeQ SoCs from a single supplier and remains substantially reliant on timely EyeQ shipments from STMicroelectronics and ECU shipments from Quanta; management is adding TSMC for future EyeQ generations and imaging-radar components, which is a resilience path but not yet evidence that current single-source exposure is eliminated.",
+      "status": "observed",
+      "sourceIds": ["sec:MBLY:10-Q:2026Q2:supply-chain"],
+      "affectedFactors": ["supplyChainResilience", "bottleneckControl", "scenarioRobustness"]
+    },
+    {
+      "claim": "Q2 2026 revenue was approximately flat year over year despite 3% higher system volumes because lower EyeQ ASP, primarily from higher China OEM mix, offset volume growth; adjusted gross margin also declined as lower-ASP China mix and higher-hardware-content SuperVision mix increased.",
+      "status": "observed",
+      "sourceIds": ["sec:MBLY:10-Q:2026Q2:results", "issuer:MBLY:2026Q2-results"],
+      "affectedFactors": ["pricingPower", "financialOperatingMomentum", "scenarioRobustness"]
+    },
+    {
+      "claim": "OEM sourcing visibility is not equivalent to contracted volume: Mobileye states OEM programs can change in timing and volumes and do not contractually commit OEMs to particular purchase volumes. This is a direct falsifier against treating design-win visibility as guaranteed backlog.",
+      "status": "observed",
+      "sourceIds": ["sec:MBLY:10-Q:2026Q2:oem-programs"],
+      "affectedFactors": ["thesisQuality", "confidenceInflation", "commercialPipeline"]
+    },
+    {
+      "claim": "Intel relationship creates both capability and governance dependency: Mobileye identifies access to Intel radar technology as differentiating, while its 2026 10-K states the relevant radar license is limited and additional radar products may require separate Intel licensing. This should be treated as a dependency/optionality tradeoff rather than a present blocker.",
+      "status": "observed",
+      "sourceIds": ["sec:MBLY:10-K:2025:intel-radar-license", "sec:MBLY:10-Q:2026Q2:intel-relationship"],
+      "affectedFactors": ["governancePower", "bottleneckControl", "substitutionResilience"]
+    }
+  ],
+  "sources": [
+    {
+      "id": "sec:MBLY:10-Q:2026Q2:supply-chain",
+      "url": "https://www.sec.gov/Archives/edgar/data/1910139/000110465926086264/mbly-20260627x10q.htm",
+      "sourceClass": "primary-regulatory",
+      "originFingerprint": "sec.gov|CIK1910139|10-Q|2026-06-27|supply-chain"
+    },
+    {
+      "id": "sec:MBLY:10-Q:2026Q2:results",
+      "url": "https://www.sec.gov/Archives/edgar/data/1910139/000110465926086264/mbly-20260627x10q.htm",
+      "sourceClass": "primary-regulatory",
+      "originFingerprint": "sec.gov|CIK1910139|10-Q|2026-06-27|results"
+    },
+    {
+      "id": "sec:MBLY:10-Q:2026Q2:oem-programs",
+      "url": "https://www.sec.gov/Archives/edgar/data/1910139/000110465926086264/mbly-20260627x10q.htm",
+      "sourceClass": "primary-regulatory",
+      "originFingerprint": "sec.gov|CIK1910139|10-Q|2026-06-27|oem-program-commitment"
+    },
+    {
+      "id": "issuer:MBLY:2026Q2-results",
+      "url": "https://ir.mobileye.com/news-releases/news-release-details/mobileye-releases-second-quarter-2026-results-updates-guidance",
+      "sourceClass": "primary-issuer",
+      "originFingerprint": "ir.mobileye.com|2026Q2-results"
+    },
+    {
+      "id": "sec:MBLY:10-K:2025:intel-radar-license",
+      "url": "https://ir.mobileye.com/static-files/245c9e7c-db18-443e-ba65-3613ad260873",
+      "sourceClass": "primary-regulatory",
+      "originFingerprint": "MBLY|10-K|2025|intel-radar-license"
+    },
+    {
+      "id": "sec:MBLY:10-Q:2026Q2:intel-relationship",
+      "url": "https://www.sec.gov/Archives/edgar/data/1910139/000110465926086264/mbly-20260627x10q.htm",
+      "sourceClass": "primary-regulatory",
+      "originFingerprint": "sec.gov|CIK1910139|10-Q|2026-06-27|intel-relationship"
+    }
+  ],
+  "causalEdges": [
+    "AI/automotive semiconductor demand -> component competition/lead times -> EyeQ/ECU availability and cost -> Mobileye delivery capacity -> OEM deployment",
+    "China OEM mix -> lower EyeQ ASP -> revenue/gross-margin pressure -> reduced benefit from unit-volume growth",
+    "OEM design win/nomination -> expected model inclusion but no contractual volume -> program timing/volume variability -> realized revenue uncertainty",
+    "Intel radar IP access -> differentiated radar development capability; limited license scope -> potential future licensing dependency -> substitution/resilience constraint"
+  ],
+  "risks": [
+    "single/limited supplier exposure for EyeQ and ECUs",
+    "mix-driven ASP and margin pressure",
+    "design-win visibility may be mistaken for committed backlog",
+    "Intel radar-IP licensing dependency for some future radar scope"
+  ],
+  "contradictions": [],
+  "unknowns": [
+    "How much current EyeQ production can be shifted away from STMicroelectronics and on what timeline?",
+    "Whether lower China ASP is offset by durable unit economics and gross profit per vehicle over a full product cycle.",
+    "How much future radar roadmap scope requires additional Intel licensing versus independently controlled IP."
+  ],
+  "gatingStatus": "assist_evidence_complete_root_owner_action_required",
+  "confidence": "high",
+  "recommendedNextState": "council-alpha should source-address missing_score_risk_evidence using these observed downside/falsifier inputs without treating them as a numeric risk score",
+  "recommendedNextOwner": "council-alpha",
+  "falsifiers": [
+    "Current supplier diversification evidence showing meaningful production redundancy would reduce the single-source risk.",
+    "Sustained gross-profit expansion despite lower ASP mix would weaken the pricing/mix downside thesis.",
+    "Binding OEM volume commitments would invalidate treating a specific program as non-contracted visibility.",
+    "Evidence of independently controlled radar IP covering future roadmap needs would reduce Intel licensing dependency."
+  ]
+}

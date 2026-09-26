@@ -33,7 +33,7 @@ function failurePriority(failures) {
   return 0;
 }
 
-function isDormantOutcome(value) {
+function isLegacyDormantOutcome(value) {
   const outcome = String(value || "").toLowerCase();
   return [
     "unavailable",
@@ -43,7 +43,12 @@ function isDormantOutcome(value) {
     "existing_lineage_already_contains_candidate_source",
     "skipped_same_signature_prior_failure",
     "skipped_unchanged_input",
-  ].includes(outcome) ||
+  ].includes(outcome);
+}
+
+function isDormantOutcome(value) {
+  const outcome = String(value || "").toLowerCase();
+  return isLegacyDormantOutcome(outcome) ||
     outcome.includes("unchanged_input") ||
     outcome.includes("unchanged_prior") ||
     outcome.includes("not_retried") ||
@@ -75,9 +80,10 @@ function requestFor(packet, row, helperRole, capability, rootOwner, failures, no
       : capability === "risk-source-support"
         ? "Acquire source-addressed downside, execution-risk and falsifier evidence Alpha can reuse without setting Alpha's numeric risk or score."
         : "Provide bounded support without assuming the root owner's authority.";
-  const frontier = options.frontierTickers.has(packet.ticker);
-  const operationalStatus = options.operationalStatusByTicker[packet.ticker] || null;
-  const stalled = ["repeated_unchanged_input", "awaiting_external_change"].includes(operationalStatus);
+  const lifecycleEnabled = options.lifecycleEnabled !== false;
+  const frontier = lifecycleEnabled && options.frontierTickers.has(packet.ticker);
+  const operationalStatus = lifecycleEnabled ? (options.operationalStatusByTicker[packet.ticker] || null) : null;
+  const stalled = lifecycleEnabled && ["repeated_unchanged_input", "awaiting_external_change"].includes(operationalStatus);
   return {
     version: 2,
     requestId,
@@ -97,7 +103,7 @@ function requestFor(packet, row, helperRole, capability, rootOwner, failures, no
       "Helper does not create or overwrite the root owner's authoritative perspective.",
       "Helper preserves exact source lineage and does not invent facts.",
       "An unchanged failed input becomes dormant instead of being retried indefinitely.",
-      "A stalled closure-frontier input must not consume active capacity until its input signature changes."
+      ...(lifecycleEnabled ? ["A stalled closure-frontier input must not consume active capacity until its input signature changes."] : []),
     ],
     frontier,
     operationalStatus,
@@ -122,6 +128,7 @@ export function buildAssistRequests(
   const normalizedOptions = {
     frontierTickers: new Set(options.frontierTickers || []),
     operationalStatusByTicker: options.operationalStatusByTicker || {},
+    lifecycleEnabled: options.lifecycleEnabled !== false,
   };
   const requests = [];
   for (const packet of packets || []) {
@@ -167,11 +174,16 @@ export function buildAssistRequests(
   const enriched = requests
     .map((request) => {
       const priorAttempt = latestAttempt(roleRuns, request.requestId, request.inputSignature);
-      const unchangedFailure = priorAttempt && isDormantOutcome(priorAttempt.outcome);
+      const unchangedFailure = priorAttempt && (
+        normalizedOptions.lifecycleEnabled
+          ? isDormantOutcome(priorAttempt.outcome)
+          : isLegacyDormantOutcome(priorAttempt.outcome)
+      );
       const key = String(request.requestId) + ":" + String(request.inputSignature);
       const priorRequest = priorByKey[key] || null;
       const firstSeenAt = priorRequest?.firstSeenAt || priorRequest?.generatedAt || request.generatedAt;
-      const stalled = ["repeated_unchanged_input", "awaiting_external_change"].includes(request.operationalStatus);
+      const stalled = normalizedOptions.lifecycleEnabled &&
+        ["repeated_unchanged_input", "awaiting_external_change"].includes(request.operationalStatus);
       return {
         ...request,
         firstSeenAt,
@@ -218,15 +230,16 @@ export function buildAssistRequests(
   const archive = [...priorArchive, ...newlyArchived];
 
   return {
-    version: 2,
-    contract: "earth2036-assist-bus-v2",
+    version: normalizedOptions.lifecycleEnabled ? 2 : 1,
+    contract: normalizedOptions.lifecycleEnabled ? "earth2036-assist-bus-v2" : "earth2036-assist-bus-v1",
     generatedAt: nowIso,
     policy: {
       rootOwnerRetainsAuthority: true,
       oneHelperPerRequest: true,
       unchangedFailedInputSleeps: true,
       helperCapacityBounded: true,
-      frontierFirst: normalizedOptions.frontierTickers.size > 0,
+      frontierFirst: normalizedOptions.lifecycleEnabled && normalizedOptions.frontierTickers.size > 0,
+      lifecycleEnabled: normalizedOptions.lifecycleEnabled,
       canonicalAuthorityUnchanged: true,
       historyAppendOnly: true,
     },

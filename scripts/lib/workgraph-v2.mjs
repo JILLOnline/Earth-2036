@@ -502,6 +502,11 @@ export function compilePromotionPacket(ticker, evidenceRows, graphRow, options =
     workId: graphRow?.workId || `t0:${ticker}`,
     generatedAt: new Date().toISOString(),
     sourceState: graphRow?.state || null,
+    sourceStateSemantics: {
+      authoritative: false,
+      lineageOnly: true,
+      chiefReadyRule: "Only Workgraph state === chief_ready AND preflight.passed === true is Chief-ready.",
+    },
     methodologyVersion,
     identityTradability,
     evidenceWindow: window,
@@ -594,8 +599,39 @@ const ROUTE_STATE_PRIORITY = {
   canonical: 99,
 };
 
-export function buildRoutingQueues(graph, packets, generatedAt = new Date().toISOString()) {
+function resolverAdjudicationPacket(packet, ownedFailures) {
+  const contradictions = (packet?.contradictions || []).filter((item) =>
+    item?.resolved !== true && item?.gating !== false && item?.material !== false
+  );
+  return {
+    contract: "earth2036-resolver-adjudication-v1",
+    ticker: packet?.ticker || null,
+    requiredDisposition: ["resolved", "non_gating", "awaiting_new_evidence", "still_material"],
+    ownedFailures: [...ownedFailures],
+    exactQuestion: "Resolve only the stated material contradiction or gating uncertainty. Do not perform open-ended duplicate research.",
+    items: contradictions.map((item, index) => ({
+      itemId: item?.itemId || item?.id || (String(packet?.ticker || "ticker") + ":contradiction:" + (index + 1)),
+      claimA: item?.claimA ?? item?.leftClaim ?? item?.a ?? null,
+      claimB: item?.claimB ?? item?.rightClaim ?? item?.b ?? null,
+      sourceA: item?.sourceA ?? item?.leftSource ?? null,
+      sourceB: item?.sourceB ?? item?.rightSource ?? null,
+      dateA: item?.dateA ?? item?.leftDate ?? null,
+      dateB: item?.dateB ?? item?.rightDate ?? null,
+      materiality: item?.materiality ?? item?.material ?? true,
+      exactMissingFact: item?.exactMissingFact ?? item?.missingFact ?? null,
+      resolutionRule: item?.resolutionRule ?? "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+    })),
+  };
+}
+
+export function buildRoutingQueues(graph, packets, generatedAt = new Date().toISOString(), options = {}) {
   const queues = Object.fromEntries(ROUTABLE_ROLES.map((role) => [role, []]));
+  const frontierFirst = options.frontierFirst === true;
+  const frontierTickers = Array.isArray(options.frontierTickers) ? options.frontierTickers : [];
+  const frontierRank = new Map(frontierTickers.map((ticker, index) => [ticker, index]));
+  const stalledTickers = new Set(options.stalledTickers || []);
+  const operationalStatusByTicker = options.operationalStatusByTicker || {};
+
   for (const packet of packets || []) {
     const row = graph?.companies?.[packet?.ticker];
     if (!row || ["canonical", "chief_ready", "blocked"].includes(row.state)) continue;
@@ -607,10 +643,6 @@ export function buildRoutingQueues(graph, packets, generatedAt = new Date().toIS
       )];
       if (!ownedFailures.length) continue;
 
-      // Deep Resolver is an adjudication lane, not a duplicate source-acquisition lane.
-      // If its only failures are downstream gating symptoms and another owner still has
-      // a concrete root-cause failure on the same packet, let that owner close first.
-      // Material contradictions remain independently actionable and are never deferred.
       const resolverHasMaterialContradiction = ownedFailures.includes("unresolved_material_contradiction");
       const resolverOnlyDependentGates =
         role === "deep-resolver" &&
@@ -621,17 +653,26 @@ export function buildRoutingQueues(graph, packets, generatedAt = new Date().toIS
         owners.some((owner) => owner !== "deep-resolver");
       if (resolverOnlyDependentGates) continue;
 
+      const operationalStatus = operationalStatusByTicker[packet.ticker] || null;
+      const stalled = stalledTickers.has(packet.ticker);
       queues[role].push({
         ticker: packet.ticker,
-        workId: packet.workId || row.workId || `t0:${packet.ticker}`,
+        workId: packet.workId || row.workId || ("t0:" + packet.ticker),
         state: row.state,
-        packetPath: `data/runtime/workgraph/packets/${packet.ticker}.json`,
+        packetPath: "data/runtime/workgraph/packets/" + packet.ticker + ".json",
         ownedFailures,
         allFailures: [...(packet?.preflight?.failures || [])],
         otherOwners: owners.filter((owner) => owner !== role).sort(),
         evidencePaths: [...(packet?.evidencePaths || [])],
         specialistCoverage: packet?.specialistCoverage || null,
         evidenceResolution: packet?.evidenceResolution || null,
+        frontier: frontierRank.has(packet.ticker),
+        frontierRank: frontierRank.has(packet.ticker) ? frontierRank.get(packet.ticker) + 1 : null,
+        operationalStatus,
+        executionGuard: stalled ? "do_not_retry_without_changed_input" : null,
+        adjudicationPacket: role === "deep-resolver"
+          ? resolverAdjudicationPacket(packet, ownedFailures)
+          : null,
         unresolved: role === "deep-resolver" ? {
           gatingIssues: packet?.gatingIssues || [],
           gatingUnknowns: (packet?.unknowns || []).filter((item) => item?.gating === true),
@@ -643,6 +684,14 @@ export function buildRoutingQueues(graph, packets, generatedAt = new Date().toIS
 
   for (const role of ROUTABLE_ROLES) {
     queues[role].sort((a, b) => {
+      const aDeferred = stalledTickers.has(a.ticker);
+      const bDeferred = stalledTickers.has(b.ticker);
+      if (aDeferred !== bDeferred) return aDeferred ? 1 : -1;
+      if (frontierFirst) {
+        const ar = frontierRank.has(a.ticker) ? frontierRank.get(a.ticker) : Number.MAX_SAFE_INTEGER;
+        const br = frontierRank.has(b.ticker) ? frontierRank.get(b.ticker) : Number.MAX_SAFE_INTEGER;
+        if (ar !== br) return ar - br;
+      }
       const stateDelta = (ROUTE_STATE_PRIORITY[a.state] ?? 50) - (ROUTE_STATE_PRIORITY[b.state] ?? 50);
       if (stateDelta) return stateDelta;
       const ownerDelta = a.otherOwners.length - b.otherOwners.length;
@@ -653,14 +702,35 @@ export function buildRoutingQueues(graph, packets, generatedAt = new Date().toIS
       if (evidenceDelta) return evidenceDelta;
       return a.ticker.localeCompare(b.ticker);
     });
+
+    const rawItems = queues[role];
+    const deferredItems = frontierFirst
+      ? rawItems.filter((item) => stalledTickers.has(item.ticker))
+      : [];
+    const actionableItems = frontierFirst
+      ? rawItems.filter((item) => !stalledTickers.has(item.ticker))
+      : rawItems;
+
+    const runObjective = role === "council-alpha" && frontierFirst
+      ? "Frontier first: remove every Alpha-owned failure that can lawfully be removed for each visible frontier company in this run."
+      : role === "deep-resolver"
+        ? "Adjudicate only bounded contradiction packets and return one allowed disposition; do not duplicate source-acquisition work."
+        : frontierFirst
+          ? "Assist frontier companies only where a specific owned failure requires this lane; do not take over another owner's authority."
+          : "Closure-first deterministic routing.";
+
     queues[role] = {
-      version: 1,
+      version: 2,
       contract: "workgraph-v2-routing-queue",
       role,
       generatedAt,
-      selectionPolicy: "closure-first-deterministic",
-      total: queues[role].length,
-      items: queues[role].map((item, index) => ({ rank: index + 1, ...item })),
+      selectionPolicy: frontierFirst ? "closure-frontier-v1" : "closure-first-deterministic",
+      runObjective,
+      rawTotal: rawItems.length,
+      total: actionableItems.length,
+      deferred: deferredItems.length,
+      items: actionableItems.map((item, index) => ({ rank: index + 1, ...item })),
+      deferredItems: deferredItems.map((item, index) => ({ rank: index + 1, ...item })),
     };
   }
   return queues;
@@ -802,6 +872,69 @@ export function computeWorkgraphMetrics(graph, now = new Date(), evidenceRows = 
     }
   }
 
+  const canonicalVelocity = { h1: 0, h6: 0, h24: 0 };
+  for (const row of Object.values(graph?.companies || {})) {
+    if (row?.state !== "canonical") continue;
+    const age = ageHours(row.lastTransitionAt || row.updatedAt, now);
+    if (age === null) continue;
+    if (age <= 1) canonicalVelocity.h1 += 1;
+    if (age <= 6) canonicalVelocity.h6 += 1;
+    if (age <= 24) canonicalVelocity.h24 += 1;
+  }
+
+  const normalizedYieldRuns = (roleRuns || [])
+    .map((run) => {
+      const parsed = validActivityDate(run?.generatedAt, now);
+      if (!parsed.date) return null;
+      const role = run?.role || "unknown";
+      const closures = closureCountForRun(role, run);
+      const assistAttempts = Array.isArray(run?.assistAttempts) ? run.assistAttempts : [];
+      const duplicateNoChangeArtifacts = assistAttempts.filter((attempt) => {
+        const outcome = String(attempt?.outcome || "").toLowerCase();
+        return outcome.includes("unchanged") ||
+          outcome.includes("not_retried") ||
+          outcome.includes("no_new_") ||
+          outcome.includes("duplicate");
+      }).length;
+      const newUsefulSources = Number.isFinite(run?.newUsefulSources)
+        ? run.newUsefulSources
+        : role === "earth-scout" && Number.isFinite(run?.evidencePairsCompleted)
+          ? run.evidencePairsCompleted
+          : 0;
+      const contradictionsResolved = Number.isFinite(run?.contradictionsResolved)
+        ? run.contradictionsResolved
+        : role === "deep-resolver" && Array.isArray(run?.resolved)
+          ? run.resolved.length
+          : 0;
+      const failuresRemoved = Number.isFinite(run?.failuresRemoved) ? run.failuresRemoved : null;
+      const companiesAdvanced = Number.isFinite(run?.companiesAdvanced) ? run.companiesAdvanced : null;
+      const companiesCanonicalized = Number.isFinite(run?.companiesCanonicalized) ? run.companiesCanonicalized : null;
+      const positiveYield = [
+        closures,
+        newUsefulSources,
+        contradictionsResolved,
+        failuresRemoved,
+        companiesAdvanced,
+        companiesCanonicalized,
+      ].filter(Number.isFinite).reduce((sum, value) => sum + Number(value || 0), 0);
+      return {
+        role,
+        generatedAt: parsed.date.toISOString(),
+        companiesInspected: Array.isArray(run?.companiesInspected) ? run.companiesInspected.length : null,
+        closures,
+        failuresRemoved,
+        companiesAdvanced,
+        companiesCanonicalized,
+        newUsefulSources,
+        duplicateNoChangeArtifacts,
+        contradictionsResolved,
+        zeroYield: positiveYield === 0,
+      };
+    })
+    .filter(Boolean)
+    .sort((a,b) => Date.parse(b.generatedAt) - Date.parse(a.generatedAt))
+    .slice(0, 200);
+
   return {
     version: 2,
     generatedAt: now.toISOString(),
@@ -810,6 +943,9 @@ export function computeWorkgraphMetrics(graph, now = new Date(), evidenceRows = 
     oldestAgeHours,
     newestAgeHours,
     canonicalProgressAgeHours,
+    minutesSinceCanonicalProgress: canonicalProgressAgeHours === null ? null : Math.round(canonicalProgressAgeHours * 60),
+    canonicalVelocity,
+    normalizedYieldRuns,
     attempts,
     preflightFailures,
     ownerBacklog,

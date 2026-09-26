@@ -33,8 +33,33 @@ function failurePriority(failures) {
   return 0;
 }
 
-function requestFor(packet, row, helperRole, capability, rootOwner, failures, nowIso) {
-  const requestId = `assist:${packet.ticker}:${rootOwner}:${helperRole}:${capability}`;
+function isDormantOutcome(value) {
+  const outcome = String(value || "").toLowerCase();
+  return [
+    "unavailable",
+    "blocked",
+    "no_new_evidence",
+    "no_new_material_evidence",
+    "existing_lineage_already_contains_candidate_source",
+    "skipped_same_signature_prior_failure",
+    "skipped_unchanged_input",
+  ].includes(outcome) ||
+    outcome.includes("unchanged_input") ||
+    outcome.includes("unchanged_prior") ||
+    outcome.includes("not_retried") ||
+    outcome.includes("no_new_") ||
+    outcome.includes("duplicate");
+}
+
+function ageHours(value, nowIso) {
+  const a = Date.parse(value || "");
+  const b = Date.parse(nowIso || "");
+  if (!Number.isFinite(a) || !Number.isFinite(b)) return null;
+  return Math.max(0, Math.round(((b - a) / 3_600_000) * 100) / 100);
+}
+
+function requestFor(packet, row, helperRole, capability, rootOwner, failures, nowIso, options) {
+  const requestId = "assist:" + packet.ticker + ":" + rootOwner + ":" + helperRole + ":" + capability;
   const inputSignature = hash({
     ticker: packet.ticker,
     state: row?.state,
@@ -50,8 +75,11 @@ function requestFor(packet, row, helperRole, capability, rootOwner, failures, no
       : capability === "risk-source-support"
         ? "Acquire source-addressed downside, execution-risk and falsifier evidence Alpha can reuse without setting Alpha's numeric risk or score."
         : "Provide bounded support without assuming the root owner's authority.";
+  const frontier = options.frontierTickers.has(packet.ticker);
+  const operationalStatus = options.operationalStatusByTicker[packet.ticker] || null;
+  const stalled = ["repeated_unchanged_input", "awaiting_external_change"].includes(operationalStatus);
   return {
-    version: 1,
+    version: 2,
     requestId,
     inputSignature,
     ticker: packet.ticker,
@@ -62,49 +90,65 @@ function requestFor(packet, row, helperRole, capability, rootOwner, failures, no
     capability,
     exactQuestion,
     failures: [...new Set(failures)],
-    packetPath: `data/runtime/workgraph/packets/${packet.ticker}.json`,
+    packetPath: "data/runtime/workgraph/packets/" + packet.ticker + ".json",
     evidencePaths: packet.evidencePaths || [],
     successCondition: "New source-addressed evidence changes the packet input signature or allows the root owner to close at least one owned failure.",
     guardrails: [
       "Helper does not create or overwrite the root owner's authoritative perspective.",
       "Helper preserves exact source lineage and does not invent facts.",
-      "An unchanged failed input becomes dormant instead of being retried indefinitely."
+      "An unchanged failed input becomes dormant instead of being retried indefinitely.",
+      "A stalled closure-frontier input must not consume active capacity until its input signature changes."
     ],
+    frontier,
+    operationalStatus,
     priority: statePriority(row?.state || packet.sourceState) +
       failurePriority(failures) +
       Math.min(12, Number(packet?.specialistCoverage?.present?.length || 0) * 2) +
-      Math.min(8, Number(row?.attempts || 0) * 2),
+      Math.min(8, Number(row?.attempts || 0) * 2) +
+      (frontier ? 80 : 0) -
+      (stalled ? 120 : 0),
     generatedAt: nowIso,
   };
 }
 
-export function buildAssistRequests(graph, packets, roleRuns = [], nowIso = new Date().toISOString()) {
+export function buildAssistRequests(
+  graph,
+  packets,
+  roleRuns = [],
+  nowIso = new Date().toISOString(),
+  previousBus = null,
+  options = {}
+) {
+  const normalizedOptions = {
+    frontierTickers: new Set(options.frontierTickers || []),
+    operationalStatusByTicker: options.operationalStatusByTicker || {},
+  };
   const requests = [];
   for (const packet of packets || []) {
     const row = graph?.companies?.[packet.ticker];
     if (!row || !["researching","evidence_complete","packet_ready","chief_ready"].includes(row.state)) continue;
     const failures = packet?.preflight?.failures || [];
-    const isFrontier = ["packet_ready","chief_ready"].includes(row.state);
+    const isFrontierState = ["packet_ready","chief_ready"].includes(row.state);
     const evidenceStarted = Number(packet?.evidencePaths?.length || 0) > 0;
     const researchAssistEligible = row.state === "researching" && evidenceStarted;
-    const assistEligible = isFrontier || researchAssistEligible;
+    const assistEligible = isFrontierState || researchAssistEligible;
 
     const alphaSourceFailures = failures.filter((failure) => [
       "missing_primary_source","missing_source_lineage","missing_factor_evidence",
       "missing_numeric_score_record","missing_score_risk_evidence","missing_data_confidence_evidence"
     ].includes(failure));
     if (alphaSourceFailures.length && assistEligible) {
-      requests.push(requestFor(packet, row, "earth-scout", "source-acquisition", "council-alpha", alphaSourceFailures, nowIso));
+      requests.push(requestFor(packet, row, "earth-scout", "source-acquisition", "council-alpha", alphaSourceFailures, nowIso, normalizedOptions));
     }
 
     const alphaRiskFailures = failures.filter((failure) => failure === "missing_score_risk_evidence");
     if (alphaRiskFailures.length && assistEligible) {
-      requests.push(requestFor(packet, row, "council-beta", "risk-source-support", "council-alpha", alphaRiskFailures, nowIso));
+      requests.push(requestFor(packet, row, "council-beta", "risk-source-support", "council-alpha", alphaRiskFailures, nowIso, normalizedOptions));
     }
 
     const betaSourceFailures = failures.filter((failure) => failure === "missing_causal_mapping");
     if (betaSourceFailures.length && assistEligible) {
-      requests.push(requestFor(packet, row, "earth-scout", "causal-source-support", "council-beta", betaSourceFailures, nowIso));
+      requests.push(requestFor(packet, row, "earth-scout", "causal-source-support", "council-beta", betaSourceFailures, nowIso, normalizedOptions));
     }
   }
 
@@ -114,23 +158,26 @@ export function buildAssistRequests(graph, packets, roleRuns = [], nowIso = new 
     "council-beta": 4,
     "deep-resolver": 3,
   };
+  const priorByKey = Object.fromEntries(
+    (previousBus?.requests || []).map((request) => [
+      String(request.requestId) + ":" + String(request.inputSignature),
+      request,
+    ])
+  );
   const enriched = requests
     .map((request) => {
-      const prior = latestAttempt(roleRuns, request.requestId, request.inputSignature);
-      const dormantOutcomes = new Set([
-        "unavailable",
-        "blocked",
-        "no_new_evidence",
-        "no_new_material_evidence",
-        "existing_lineage_already_contains_candidate_source",
-        "skipped_same_signature_prior_failure",
-        "skipped_unchanged_input",
-      ]);
-      const unchangedFailure = prior && dormantOutcomes.has(String(prior.outcome || ""));
+      const priorAttempt = latestAttempt(roleRuns, request.requestId, request.inputSignature);
+      const unchangedFailure = priorAttempt && isDormantOutcome(priorAttempt.outcome);
+      const key = String(request.requestId) + ":" + String(request.inputSignature);
+      const priorRequest = priorByKey[key] || null;
+      const firstSeenAt = priorRequest?.firstSeenAt || priorRequest?.generatedAt || request.generatedAt;
+      const stalled = ["repeated_unchanged_input", "awaiting_external_change"].includes(request.operationalStatus);
       return {
         ...request,
-        status: unchangedFailure ? "dormant_until_input_changes" : "candidate",
-        priorAttempt: prior || null,
+        firstSeenAt,
+        ageHours: ageHours(firstSeenAt, nowIso),
+        status: (unchangedFailure || stalled) ? "dormant_until_input_changes" : "candidate",
+        priorAttempt: priorAttempt || null,
       };
     })
     .sort((a,b) => b.priority - a.priority || a.ticker.localeCompare(b.ticker));
@@ -148,22 +195,47 @@ export function buildAssistRequests(graph, packets, roleRuns = [], nowIso = new 
   const active = scheduled.filter((request) => request.status === "active");
   const dormant = scheduled.filter((request) => request.status === "dormant_until_input_changes");
   const queued = scheduled.filter((request) => request.status === "queued_capacity");
+
+  const currentKeys = new Set(scheduled.map((request) =>
+    String(request.requestId) + ":" + String(request.inputSignature)
+  ));
+  const priorArchive = Array.isArray(previousBus?.archive) ? previousBus.archive : [];
+  const archivedKeys = new Set(priorArchive.map((request) =>
+    String(request.requestId) + ":" + String(request.inputSignature)
+  ));
+  const newlyArchived = (previousBus?.requests || [])
+    .filter((request) => {
+      const key = String(request.requestId) + ":" + String(request.inputSignature);
+      return !currentKeys.has(key) && !archivedKeys.has(key);
+    })
+    .map((request) => ({
+      ...request,
+      archivedAt: nowIso,
+      archiveReason: scheduled.some((current) => current.requestId === request.requestId)
+        ? "input_signature_changed"
+        : "root_failure_disappeared_or_request_replaced",
+    }));
+  const archive = [...priorArchive, ...newlyArchived];
+
   return {
-    version: 1,
-    contract: "earth2036-assist-bus-v1",
+    version: 2,
+    contract: "earth2036-assist-bus-v2",
     generatedAt: nowIso,
     policy: {
       rootOwnerRetainsAuthority: true,
       oneHelperPerRequest: true,
       unchangedFailedInputSleeps: true,
       helperCapacityBounded: true,
+      frontierFirst: normalizedOptions.frontierTickers.size > 0,
       canonicalAuthorityUnchanged: true,
+      historyAppendOnly: true,
     },
     capacityByHelper,
     total: scheduled.length,
     active: active.length,
     dormant: dormant.length,
     queued: queued.length,
+    archived: archive.length,
     byHelper: Object.fromEntries(
       ["earth-scout","council-alpha","council-beta","deep-resolver"].map((role) => [
         role,
@@ -171,5 +243,6 @@ export function buildAssistRequests(graph, packets, roleRuns = [], nowIso = new 
       ])
     ),
     requests: scheduled,
+    archive,
   };
 }

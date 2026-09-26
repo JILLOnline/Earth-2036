@@ -42,9 +42,9 @@ test("watchdog checks execution-plane health while separating critical Workgraph
   assert.equal(text.includes('if [ "$WORKGRAPH_HEALTHY" != "true" ]; then unhealthy=true; fi'), false);
 });
 
-test("completed worker receipts trigger one burst-safe Workgraph reconciliation", async () => {
+test("completed worker receipts and direct evidence writes trigger one burst-safe Workgraph reconciliation", async () => {
   const text = await source(".github/workflows/earth2036-workgraph-reconcile.yml");
-  assert.equal(text.includes('data/runtime/workgraph/evidence/**'), false);
+  assert.equal(text.includes('data/runtime/workgraph/evidence/**'), true);
   assert.ok(text.includes('data/runtime/workgraph/role-runs/**'));
   assert.ok(text.includes("cancel-in-progress: true"));
   assert.ok(text.includes("npm run workgraph:sync"));

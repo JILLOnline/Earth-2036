@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "role": "council-alpha",
+  "generatedAt": "2026-09-26T18:12:05Z",
+  "sourceCycleKey": "2026-09-26T18:00Z",
+  "operatingMode": "closure-first-normal",
+  "startingGitHead": "b08df64f6c9dc7f1a67e7155d130dbd4ae00747b",
+  "companiesInspected": ["NXT", "OKTA", "ON", "ORCL"],
+  "alphaPairsCompleted": 0,
+  "scoreRecordsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [],
+  "blockers": [
+    {
+      "ticker": "NXT",
+      "blocker": "routing_projection_stale_after_existing_complete_alpha_artifact",
+      "detail": "Latest Alpha evidence NXT-20260926T171619Z-council-alpha.json already contains source-integrity, company-underwriting, a full Methodology 1.0.0 scoreRecord, source-addressed factor/risk/confidence evidence and calibrationVersion, while the current bounded routing packet still reports those Alpha perspectives and score record as missing.",
+      "nextLawfulAction": "Allow deterministic reconcile to ingest the existing immutable Alpha artifact; do not duplicate or overwrite it."
+    },
+    {
+      "ticker": "OKTA",
+      "blocker": "independent_current_valuation_and_full_source_addressed_alpha_mapping_not_yet_complete",
+      "sourcePathsAttempted": ["existing SEC/issuer packet evidence", "current independent market search"],
+      "changedStrategy": "Added current independent market evidence search rather than repeating packet-only inspection.",
+      "nextLawfulAction": "Bind current valuation evidence to stable sourceIds, map all 12 Methodology components conservatively, and persist a complete Alpha pair."
+    },
+    {
+      "ticker": "ON",
+      "blocker": "current_valuation_and_commercial_scale_evidence_insufficient_for_full_defensible_score",
+      "sourcePathsAttempted": ["existing SEC/issuer packet evidence", "current independent market search"],
+      "changedStrategy": "Sought independent current market evidence in addition to the existing product/SEC package.",
+      "nextLawfulAction": "Acquire current valuation plus customer/ramp evidence where available; unknown EPP economics must reduce confidence rather than receive favorable assumptions."
+    },
+    {
+      "ticker": "ORCL",
+      "blocker": "single_primary_origin_plus_current_valuation_requires_source_addressed_underwriting_completion",
+      "sourcePathsAttempted": ["existing Oracle IR packet evidence", "current independent market search"],
+      "changedStrategy": "Added current independent valuation evidence; current search observed 2026-09-25 close and valuation metrics but full Alpha mapping was not completed within execution budget.",
+      "nextLawfulAction": "Add SEC/governance source class, bind current valuation sourceIds, then complete all 12 components with explicit capital-intensity and concentration uncertainty."
+    }
+  ],
+  "result": "meaningful_uncertainty_reduction_no_new_alpha_pair",
+  "learning": {
+    "repeatedBlocker": false,
+    "failedStrategy": "packet-only inspection is insufficient for current valuation-sensitive scoring",
+    "changedStrategy": "current independent market-source acquisition was attempted for unresolved names",
+    "nextLawfulAction": "Reconcile NXT existing completion; then continue OKTA, ON and ORCL with source-addressed current valuation and governance/SEC evidence before scoring."
+  }
+}

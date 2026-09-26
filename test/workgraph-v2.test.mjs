@@ -861,15 +861,16 @@ test("Digital Twin shadow separates representation from ranking and frames failu
   assert.equal(twin.ticker, "AAA");
 });
 
-test("Value allocator treats stalled frontier as higher closure capacity without eliminating exploration", () => {
+test("Value allocator applies T0 Closure Engine capacity without eliminating exploration", () => {
   const plan = deriveCapacityPlan({
-    counts: { packet_ready: 4, chief_ready: 0 },
+    total: 250,
+    counts: { packet_ready: 4, chief_ready: 0, canonical: 143 },
     canonicalProgressAgeHours: 8,
-  });
-  assert.equal(plan.mode, "frontier-stall");
-  assert.equal(plan.closure, 0.70);
-  assert.ok(plan.expansion > 0);
-  assert.ok(plan.futureLearning > 0);
+  }, "t0-bootstrap", 250);
+  assert.equal(plan.mode, "t0-closure-engine");
+  assert.equal(plan.closure, 0.80);
+  assert.equal(plan.expansion, 0.15);
+  assert.equal(plan.futureLearning, 0.05);
 });
 
 test("Attention priority is operational and favors near-closure work without becoming an investment score", () => {

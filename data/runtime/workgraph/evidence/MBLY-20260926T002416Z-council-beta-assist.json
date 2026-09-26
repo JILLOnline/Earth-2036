@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "contract": "earth2036-workgraph-evidence-v1",
+  "ticker": "MBLY",
+  "workId": "t0:MBLY",
+  "perspective": "adversarial-red-team-assist",
+  "role": "council-beta",
+  "generatedAt": "2026-09-26T00:24:16Z",
+  "assist": {
+    "requestId": "assist:MBLY:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "b50b48147b601d6a75b3",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support"
+  },
+  "sources": [
+    {
+      "sourceId": "regulatory:SEC:MBLY:8-K:2026-09-10:strategy-transition",
+      "type": "regulatory-primary",
+      "url": "https://www.sec.gov/Archives/edgar/data/1910139/000110465926106534/tm2624975d1_8k.htm",
+      "publishedAt": "2026-09-10",
+      "originFingerprint": "sec-edgar|1910139|0001104659-26-106534|8-k|2026-09-10|nehushtan-transition"
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Mobileye disclosed that EVP Business Development & Strategy Nimrod Nehushtan transitioned to a part-time corporate-strategy role effective September 3, 2026, while VP Business Development Nimrod Brickman continued leading business-development activities; existing compensation arrangements were not modified as of the filing date.",
+      "sourceIds": ["regulatory:SEC:MBLY:8-K:2026-09-10:strategy-transition"],
+      "affectedFactors": ["governancePower", "executionMonitoring", "commercialPipeline", "dataConfidence"]
+    }
+  ],
+  "causalEdges": [
+    "senior business-development/strategy role transition -> operating responsibility redistributed toward existing VP leadership -> potential continuity benefit from internal handoff but reduced full-time senior strategy bandwidth -> execution outcome remains unproven"
+  ],
+  "risks": [
+    {
+      "risk": "The transition creates a bounded leadership-continuity question during a period when Mobileye is expanding across advanced ADAS, robotaxi operations and physical AI; the filing does not establish disruption, but it also does not demonstrate that commercial or strategy execution improved after the handoff.",
+      "gating": false,
+      "improvementPath": "Alpha can treat the filing as source-addressed governance/execution-risk evidence and test subsequent primary disclosures for business-development wins, pipeline conversion, strategy milestones or explicit responsibility changes before assigning any stronger execution inference."
+    }
+  ],
+  "contradictions": [],
+  "unknowns": [
+    "The filing does not explain why the executive moved to part-time status or quantify any change in decision rights beyond the stated role transition.",
+    "The filing provides no KPI evidence linking the transition to pipeline conversion, customer wins, operating performance or strategic execution."
+  ],
+  "falsifiers": [
+    "Subsequent primary disclosure showing unchanged or improved commercial conversion and strategy milestones under the new responsibility split would reduce concern that the transition impaired execution resilience.",
+    "Evidence of delayed programs, lost customer opportunities or further senior commercial/strategy departures causally associated with the handoff would strengthen the execution-risk interpretation."
+  ],
+  "gatingStatus": "non_gating_support_for_alpha_risk_evidence",
+  "confidence": "high_on_disclosed_role_transition; low_on_operating-impact_inference",
+  "recommendedNextOwner": "council-alpha",
+  "recommendedNextState": "researching",
+  "lineage": {
+    "sourcePacket": "data/runtime/workgraph/packets/MBLY.json",
+    "inputSignature": "b50b48147b601d6a75b3",
+    "sourceEvidencePaths": ["data/runtime/workgraph/evidence/MBLY-20260925T232322Z-council-beta-assist.json"],
+    "supersedes": []
+  }
+}

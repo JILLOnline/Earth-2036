@@ -599,28 +599,145 @@ const ROUTE_STATE_PRIORITY = {
   canonical: 99,
 };
 
-function resolverAdjudicationPacket(packet, ownedFailures) {
-  const contradictions = (packet?.contradictions || []).filter((item) =>
-    item?.resolved !== true && item?.gating !== false && item?.material !== false
+function contradictionText(value) {
+  if (typeof value === "string") return value.trim() || null;
+  if (value === null || value === undefined) return null;
+  return String(value).trim() || null;
+}
+
+function normalizeResolverContradiction(item, ticker, index) {
+  const obj = item && typeof item === "object" ? item : {};
+  const plain = typeof item === "string" ? item.trim() : null;
+  const claimA = contradictionText(
+    obj.claimA ??
+    obj.leftClaim ??
+    obj.statementA ??
+    obj.a ??
+    obj.contradiction ??
+    plain
   );
+  const claimB = contradictionText(
+    obj.claimB ??
+    obj.rightClaim ??
+    obj.statementB ??
+    obj.b ??
+    null
+  );
+  const sourceA = contradictionText(
+    obj.sourceA ??
+    obj.leftSource ??
+    obj.sourceId ??
+    obj.source ??
+    null
+  );
+  const sourceB = contradictionText(
+    obj.sourceB ??
+    obj.rightSource ??
+    null
+  );
+  const dateA = contradictionText(
+    obj.dateA ??
+    obj.leftDate ??
+    obj.sourceDateA ??
+    obj.publishedAt ??
+    obj.asOf ??
+    obj.date ??
+    null
+  );
+  const dateB = contradictionText(
+    obj.dateB ??
+    obj.rightDate ??
+    obj.sourceDateB ??
+    null
+  );
+  const preferredOwner = contradictionText(
+    obj.nextOwner ??
+    obj.owner ??
+    obj.adjudicationOwner ??
+    null
+  );
+  const explicitResolution = contradictionText(
+    obj.resolutionRule ??
+    (typeof obj.resolution === "string" ? obj.resolution : null)
+  );
+  const exactMissingFact = contradictionText(
+    obj.exactMissingFact ??
+    obj.missingFact ??
+    (claimA && claimB
+      ? `Source-addressed evidence determining which statement remains current: "${claimA}" versus "${claimB}".`
+      : claimA
+        ? `Source-addressed evidence that resolves or confirms the stated material contradiction: "${claimA}".`
+        : "A source-addressed contradiction with identifiable claims is required before adjudication.")
+  );
+  const independentlyActionable =
+    preferredOwner === "deep-resolver" ||
+    (!preferredOwner && Boolean(claimA && claimB && (sourceA || sourceB)));
+
+  return {
+    itemId: contradictionText(obj.itemId ?? obj.id) || (String(ticker || "ticker") + ":contradiction:" + (index + 1)),
+    claimA,
+    claimB,
+    sourceA,
+    sourceB,
+    dateA,
+    dateB,
+    materiality: obj.materiality ?? obj.material ?? true,
+    exactMissingFact,
+    resolutionRule: explicitResolution ||
+      "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+    preferredOwner,
+    independentlyActionable,
+  };
+}
+
+function resolverAdjudicationPacket(packet, ownedFailures) {
+  const rawContradictions = (packet?.contradictions || []).filter((item) => {
+    if (!item || typeof item !== "object") return Boolean(item);
+    const disposition = String(item.disposition || item.resolutionStatus || "").toLowerCase();
+    return item.resolved !== true &&
+      item.gating !== false &&
+      item.material !== false &&
+      !disposition.startsWith("resolved");
+  });
+
+  const normalized = rawContradictions.map((item, index) =>
+    normalizeResolverContradiction(item, packet?.ticker, index)
+  );
+  const seen = new Set();
+  const items = normalized.filter((item) => {
+    const key = JSON.stringify({
+      claimA: item.claimA,
+      claimB: item.claimB,
+      sourceA: item.sourceA,
+      sourceB: item.sourceB,
+      dateA: item.dateA,
+      dateB: item.dateB,
+      resolutionRule: item.resolutionRule,
+      preferredOwner: item.preferredOwner,
+    }).toLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+  const actionableItems = items.filter((item) => item.independentlyActionable);
+  const deferredItems = items.filter((item) => !item.independentlyActionable);
+
   return {
     contract: "earth2036-resolver-adjudication-v1",
     ticker: packet?.ticker || null,
     requiredDisposition: ["resolved", "non_gating", "awaiting_new_evidence", "still_material"],
     ownedFailures: [...ownedFailures],
-    exactQuestion: "Resolve only the stated material contradiction or gating uncertainty. Do not perform open-ended duplicate research.",
-    items: contradictions.map((item, index) => ({
-      itemId: item?.itemId || item?.id || (String(packet?.ticker || "ticker") + ":contradiction:" + (index + 1)),
-      claimA: item?.claimA ?? item?.leftClaim ?? item?.a ?? null,
-      claimB: item?.claimB ?? item?.rightClaim ?? item?.b ?? null,
-      sourceA: item?.sourceA ?? item?.leftSource ?? null,
-      sourceB: item?.sourceB ?? item?.rightSource ?? null,
-      dateA: item?.dateA ?? item?.leftDate ?? null,
-      dateB: item?.dateB ?? item?.rightDate ?? null,
-      materiality: item?.materiality ?? item?.material ?? true,
-      exactMissingFact: item?.exactMissingFact ?? item?.missingFact ?? null,
-      resolutionRule: item?.resolutionRule ?? "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-    })),
+    exactQuestion: "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
+    itemCount: items.length,
+    actionableItemCount: actionableItems.length,
+    deferredItemCount: deferredItems.length,
+    actionable: actionableItems.length > 0,
+    deferredReason: actionableItems.length > 0
+      ? null
+      : "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+    items,
+    actionableItems,
+    deferredItems,
   };
 }
 
@@ -655,6 +772,16 @@ export function buildRoutingQueues(graph, packets, generatedAt = new Date().toIS
 
       const operationalStatus = operationalStatusByTicker[packet.ticker] || null;
       const stalled = stalledTickers.has(packet.ticker);
+      const adjudicationPacket = frontierFirst && role === "deep-resolver"
+        ? resolverAdjudicationPacket(packet, ownedFailures)
+        : null;
+      const resolverDeferred = Boolean(
+        frontierFirst &&
+        role === "deep-resolver" &&
+        resolverHasMaterialContradiction &&
+        adjudicationPacket &&
+        adjudicationPacket.actionable !== true
+      );
       queues[role].push({
         ticker: packet.ticker,
         workId: packet.workId || row.workId || ("t0:" + packet.ticker),
@@ -669,10 +796,18 @@ export function buildRoutingQueues(graph, packets, generatedAt = new Date().toIS
         frontier: frontierFirst && frontierRank.has(packet.ticker),
         frontierRank: frontierFirst && frontierRank.has(packet.ticker) ? frontierRank.get(packet.ticker) + 1 : null,
         operationalStatus: frontierFirst ? operationalStatus : null,
-        executionGuard: frontierFirst && stalled ? "do_not_retry_without_changed_input" : null,
-        adjudicationPacket: frontierFirst && role === "deep-resolver"
-          ? resolverAdjudicationPacket(packet, ownedFailures)
-          : null,
+        deferred: frontierFirst && (stalled || resolverDeferred),
+        deferredReason: resolverDeferred
+          ? adjudicationPacket?.deferredReason
+          : stalled
+            ? "Input signature has not changed after the allowed repeated attempts."
+            : null,
+        executionGuard: frontierFirst && stalled
+          ? "do_not_retry_without_changed_input"
+          : resolverDeferred
+            ? "await_structured_contradiction_input"
+            : null,
+        adjudicationPacket,
         unresolved: role === "deep-resolver" ? {
           gatingIssues: packet?.gatingIssues || [],
           gatingUnknowns: (packet?.unknowns || []).filter((item) => item?.gating === true),
@@ -705,10 +840,10 @@ export function buildRoutingQueues(graph, packets, generatedAt = new Date().toIS
 
     const rawItems = queues[role];
     const deferredItems = frontierFirst
-      ? rawItems.filter((item) => stalledTickers.has(item.ticker))
+      ? rawItems.filter((item) => item.deferred === true)
       : [];
     const actionableItems = frontierFirst
-      ? rawItems.filter((item) => !stalledTickers.has(item.ticker))
+      ? rawItems.filter((item) => item.deferred !== true)
       : rawItems;
 
     const runObjective = !frontierFirst

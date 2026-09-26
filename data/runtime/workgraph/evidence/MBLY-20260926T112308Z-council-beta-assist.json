@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "contract": "earth2036-workgraph-evidence-v1",
+  "ticker": "MBLY",
+  "workId": "t0:MBLY",
+  "perspective": "adversarial-red-team-assist",
+  "role": "council-beta",
+  "generatedAt": "2026-09-26T11:23:08Z",
+  "assist": {
+    "requestId": "assist:MBLY:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "128ab38b889032cf927e",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support",
+    "outcome": "new_source_addressed_governance_and_capital_allocation_risk_support"
+  },
+  "sources": [
+    {
+      "sourceId": "mobileye:10-k:2026-02-12",
+      "type": "primary_regulatory_filing",
+      "publisher": "Mobileye Global Inc.",
+      "publishedAt": "2026-02-12",
+      "url": "https://ir.mobileye.com/static-files/245c9e7c-db18-443e-ba65-3613ad260873",
+      "originFingerprint": "mobileye:10-k:2026-02-12:intel-control"
+    },
+    {
+      "sourceId": "mobileye-ir:repurchase-program:2026-04-23",
+      "type": "primary_issuer_release",
+      "publisher": "Mobileye Global Inc.",
+      "publishedAt": "2026-04-23",
+      "url": "https://ir.mobileye.com/news-releases/news-release-details/mobileye-announces-share-repurchase-program-250-million",
+      "originFingerprint": "mobileye-ir:repurchase-program:2026-04-23"
+    },
+    {
+      "sourceId": "mobileye-ir:leadership-transition:2026-07-23",
+      "type": "primary_issuer_release",
+      "publisher": "Mobileye Global Inc.",
+      "publishedAt": "2026-07-23",
+      "url": "https://ir.mobileye.com/news-releases/news-release-details/mobileye-announces-planned-leadership-transition",
+      "originFingerprint": "mobileye-ir:leadership-transition:2026-07-23"
+    }
+  ],
+  "claims": [
+    "Mobileye's 2026 Form 10-K states Intel held about 77.0% of outstanding common stock and 96.9% of voting power after the Mentee share issuance, giving Intel control over stockholder matters including director elections and significant transactions; this is an observed governance concentration rather than a hypothetical blocker.",
+    "The April 2026 $250 million repurchase authorization is explicitly intended in part to offset dilution from stock-based compensation and Mentee acquisition shares. It therefore supports a bounded capital-allocation tradeoff: cash can reduce equity dilution while Mobileye is simultaneously funding expansion into physical AI and robotaxi operations.",
+    "The July 23 leadership-transition announcement says founder Amnon Shashua intends to step down as CEO after a successor is appointed while remaining a director and being offered the Chairman role. This introduces succession execution uncertainty without establishing present operational deterioration.",
+    "Taken together, controlling-shareholder voting power, founder succession and repurchase-funded dilution offset create a governance/capital-allocation dependency Alpha should source-address explicitly rather than collapsing into a generic risk score."
+  ],
+  "affectedFactors": ["governancePower", "capitalAllocation", "financialOperatingMomentum", "dataConfidence"],
+  "causalEdges": [
+    "Intel concentrated voting power -> reduced minority-holder influence over directors/significant transactions -> governance dependence on controlling shareholder",
+    "stock-based/acquisition share dilution -> repurchase cash deployment -> dilution offset but less cash retained for operating/strategic flexibility",
+    "founder CEO transition -> leadership handoff -> execution uncertainty across simultaneous ADAS, robotaxi and humanoid expansion"
+  ],
+  "risks": [
+    {"risk": "Intel's voting control materially limits ordinary Class A holders' influence over major corporate decisions.", "sourceId": "mobileye:10-k:2026-02-12", "gating": false},
+    {"risk": "Repurchases used to offset dilution consume cash that otherwise could support strategic investment; the authorization itself does not prove poor allocation.", "sourceId": "mobileye-ir:repurchase-program:2026-04-23", "gating": false},
+    {"risk": "CEO succession adds execution uncertainty during a period of business-model expansion, but no present execution failure is inferred from the transition alone.", "sourceId": "mobileye-ir:leadership-transition:2026-07-23", "gating": false}
+  ],
+  "contradictions": [
+    "The repurchase program signals confidence and offsets dilution, while its stated need to offset stock-based and acquisition share issuance confirms continuing equity-supply pressure; both can be true and should be modeled separately.",
+    "Shashua's planned CEO departure changes day-to-day leadership while his continued board role and offered chairmanship preserve strategic continuity; succession risk should therefore not be treated as equivalent to founder exit."
+  ],
+  "unknowns": [
+    "Ultimate CEO successor, transition timing and whether operating responsibilities or strategic priorities materially change.",
+    "Actual repurchase utilization and net dilution after stock-based compensation and acquisition-related issuance.",
+    "Whether Intel's controlling position changes materially through future secondary sales or other transactions."
+  ],
+  "falsifiers": [
+    "A completed succession with stable execution, disclosed operating accountability and no material strategic disruption would reduce the leadership-transition concern.",
+    "Evidence that repurchases sustainably offset dilution while preserving adequate investment capacity and balance-sheet flexibility would weaken the capital-allocation tradeoff.",
+    "A material reduction in Intel voting control accompanied by broader minority-holder governance rights would weaken the controlling-shareholder concern."
+  ],
+  "gatingStatus": "non_gating_support_for_alpha",
+  "confidence": "high_for_primary_source_facts; medium_high_for_bounded_risk_implications",
+  "recommendedNextOwner": "council-alpha",
+  "recommendedNextState": "researching",
+  "lineage": {
+    "sourcePacket": "data/runtime/workgraph/packets/MBLY.json",
+    "inputSignature": "128ab38b889032cf927e",
+    "sourceEvidencePaths": ["data/runtime/workgraph/evidence/MBLY-20260926T102456Z-council-beta-assist.json"],
+    "supersedes": []
+  },
+  "authorityBoundary": "Bounded Beta risk-source support only. No Alpha numeric underwriting, numeric risk score, canonical score/rank/tick, root ownership transfer or Chief decision is asserted."
+}

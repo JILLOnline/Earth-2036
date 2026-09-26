@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-26T05:19:14.401Z",
+  "updatedAt": "2026-09-26T07:19:04.150Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1766,6 +1766,30 @@
       "type": "market",
       "label": "technology:strategic-aerospace-defense-space-systems",
       "description": "Northrop Grumman occupies long-cycle aerospace, missile-defense, strategic deterrence and space-system bottlenecks where engineering integration, classified capability, production capacity and qualification connect national-security infrastructure to deterrence and sensing needs; June 2026 backlog reached $104.7B."
+    },
+    {
+      "id": "company:NTLA",
+      "type": "company",
+      "label": "Intellia Therapeutics",
+      "description": "Intellia's structural path is in-vivo CRISPR editing -> durable suppression of disease-driving biology -> reduced chronic treatment burden for hereditary angioedema, with value contingent on delivery, editing durability, safety, regulatory acceptance and access rather than editing efficacy alone."
+    },
+    {
+      "id": "market:NTLA-technology-in-vivo-crispr",
+      "type": "market",
+      "label": "technology:in-vivo-crispr",
+      "description": "Intellia's structural path is in-vivo CRISPR editing -> durable suppression of disease-driving biology -> reduced chronic treatment burden for hereditary angioedema, with value contingent on delivery, editing durability, safety, regulatory acceptance and access rather than editing efficacy alone."
+    },
+    {
+      "id": "company:NUE",
+      "type": "company",
+      "label": "Nucor",
+      "description": "Nucor's structural chain is recycled/raw steel inputs -> electric-arc-furnace and downstream fabrication capacity -> construction/manufacturing/energy infrastructure -> durable physical-system needs; liquidity supports capacity optionality but does not itself establish project returns."
+    },
+    {
+      "id": "market:NUE-technology-eaf-steelmaking",
+      "type": "market",
+      "label": "technology:eaf-steelmaking",
+      "description": "Nucor's structural chain is recycled/raw steel inputs -> electric-arc-furnace and downstream fabrication capacity -> construction/manufacturing/energy infrastructure -> durable physical-system needs; liquidity supports capacity optionality but does not itself establish project returns."
     }
   ],
   "edges": [
@@ -4055,6 +4079,34 @@
         "issuer:NOC:2026Q2release"
       ],
       "observedAt": "2026-09-21T06:27:57Z"
+    },
+    {
+      "id": "edge:NTLA-structural-exposure",
+      "from": "company:NTLA",
+      "to": "market:NTLA-technology-in-vivo-crispr",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:NTLA:2026Q2release"
+      ],
+      "observedAt": "2026-09-21T07:28:00Z"
+    },
+    {
+      "id": "edge:NUE-structural-exposure",
+      "from": "company:NUE",
+      "to": "market:NUE-technology-eaf-steelmaking",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:NUE:2026Q2release"
+      ],
+      "observedAt": "2026-09-21T07:28:00Z"
     }
   ],
   "structuralSignals": [
@@ -6901,6 +6953,42 @@
       ],
       "observedAt": "2026-09-21T06:27:57Z",
       "thesis": "Northrop Grumman occupies long-cycle aerospace, missile-defense, strategic deterrence and space-system bottlenecks where engineering integration, classified capability, production capacity and qualification connect national-security infrastructure to deterrence and sensing needs; June 2026 backlog reached $104.7B.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:NTLA-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:NTLA-technology-in-vivo-crispr",
+      "affectedNodeIds": [
+        "company:NTLA"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:NTLA:2026Q2release"
+      ],
+      "observedAt": "2026-09-21T07:28:00Z",
+      "thesis": "Intellia's structural path is in-vivo CRISPR editing -> durable suppression of disease-driving biology -> reduced chronic treatment burden for hereditary angioedema, with value contingent on delivery, editing durability, safety, regulatory acceptance and access rather than editing efficacy alone.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:NUE-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:NUE-technology-eaf-steelmaking",
+      "affectedNodeIds": [
+        "company:NUE"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:NUE:2026Q2release"
+      ],
+      "observedAt": "2026-09-21T07:28:00Z",
+      "thesis": "Nucor's structural chain is recycled/raw steel inputs -> electric-arc-furnace and downstream fabrication capacity -> construction/manufacturing/energy infrastructure -> durable physical-system needs; liquidity supports capacity optionality but does not itself establish project returns.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

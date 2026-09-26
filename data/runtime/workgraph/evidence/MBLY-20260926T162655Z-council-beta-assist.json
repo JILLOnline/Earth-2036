@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "contract": "earth2036-workgraph-evidence-v1",
+  "ticker": "MBLY",
+  "workId": "t0:MBLY",
+  "perspective": "adversarial-red-team-assist",
+  "role": "council-beta",
+  "generatedAt": "2026-09-26T16:26:55Z",
+  "assist": {
+    "requestId": "assist:MBLY:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "6f0048dffabd24e2376c",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support",
+    "outcome": "new_primary_execution_pricing_and_quality_of_guidance_risk_clarification"
+  },
+  "sources": [
+    {
+      "sourceId": "mobileye-ir:q2-2026-results:2026-07-23:execution-cash-guidance",
+      "type": "primary_issuer_results",
+      "publisher": "Mobileye Global Inc.",
+      "publishedAt": "2026-07-23",
+      "url": "https://ir.mobileye.com/news-releases/news-release-details/mobileye-releases-second-quarter-2026-results-updates-guidance",
+      "originFingerprint": "mobileye-ir:q2-2026-results:2026-07-23:execution-cash-guidance"
+    }
+  ],
+  "claims": [
+    "Mobileye's Q2 2026 revenue was $508 million versus $506 million a year earlier, while first-half revenue grew to $1.066 billion from $944 million; this supports mixed rather than uniformly weak operating momentum.",
+    "The company raised and narrowed 2026 revenue guidance to $1.970-$2.020 billion and generated $210 million of operating cash flow in the first half, which provides resilience evidence against an unqualified financing-stress thesis.",
+    "EyeQ/SuperVision average system price declined to $48.5 from $49.7, partly due to product/customer mix including China OEM exposure; this is a current pricing/mix pressure signal, but the source does not establish structural price erosion.",
+    "Mobileye disclosed that most of the improvement in updated operating-income outlook came from an Israeli R&D incentive grant; Alpha should therefore separate incentive/accounting benefit from underlying operating execution when constructing risk evidence.",
+    "MOIA public user testing in Hamburg had begun and commercial robotaxi preparations were described as on track, so robotaxi execution risk remains forward-looking rather than a present failure signal."
+  ],
+  "affectedFactors": ["financialOperatingMomentum", "pricingPower", "catalystScore", "executionMonitoring", "scenarioRobustness", "dataConfidence"],
+  "causalEdges": [
+    "China/product mix shift -> lower reported average system price -> potential margin/pricing pressure if persistent -> test future ASP and gross-margin trajectory",
+    "R&D incentive grant -> higher operating-income outlook -> headline profitability improvement can exceed underlying operating improvement -> separate grant effect in underwriting",
+    "positive operating cash generation and $1.4B liquidity -> financing resilience -> mitigates near-term capital-stress inference while expansion optionality remains execution-dependent",
+    "robotaxi testing progress -> commercialization milestone evidence -> reduces near-term schedule uncertainty but does not establish commercial unit economics"
+  ],
+  "risks": [
+    {"risk": "Average system price declined year over year and mix exposure to China OEMs can pressure reported pricing economics if the mix persists or negotiated economics weaken.", "sourceId": "mobileye-ir:q2-2026-results:2026-07-23:execution-cash-guidance", "gating": false},
+    {"risk": "Most of the operating-income outlook improvement was attributed to an R&D incentive grant, so treating the full revision as underlying operating leverage would inflate confidence.", "sourceId": "mobileye-ir:q2-2026-results:2026-07-23:execution-cash-guidance", "gating": false},
+    {"risk": "Robotaxi commercialization remains execution-dependent despite testing progress; current evidence does not quantify fleet economics, capital intensity or mature margins.", "sourceId": "mobileye-ir:q2-2026-results:2026-07-23:execution-cash-guidance", "gating": false}
+  ],
+  "contradictions": [
+    "Raised revenue guidance and positive first-half operating cash flow support resilience, while approximately flat Q2 revenue and lower average system price argue against extrapolating a uniformly strengthening operating trend.",
+    "Improved operating-income guidance is directionally favorable, but Mobileye's own disclosure says the majority of the revision reflects an incentive grant rather than purely stronger operating economics."
+  ],
+  "unknowns": [
+    "The durability of the ASP decline and the split between customer mix, product mix and negotiated pricing are not fully quantified.",
+    "The source does not quantify mature robotaxi unit economics, fleet capital requirements or expected return on incremental capital.",
+    "The recurring versus non-recurring economic contribution of the R&D incentive to future periods is not established by this source."
+  ],
+  "improvementPath": "Alpha can close the requested risk-source support by source-addressing pricing/mix pressure, incentive-adjusted operating quality and robotaxi commercialization uncertainty separately; future quarterly ASP, gross-margin and cash-flow disclosures can verify whether these risks improve or worsen.",
+  "falsifiers": [
+    "Sustained ASP stabilization or growth with stable/improving gross margins would weaken the pricing/mix risk hypothesis.",
+    "Operating-income and cash-flow improvement excluding material incentive effects would strengthen evidence of underlying operating leverage.",
+    "Disclosed robotaxi commercial deployments with attractive utilization and unit economics would reduce commercialization-risk uncertainty; repeated launch slippage or adverse economics would strengthen it."
+  ],
+  "gatingStatus": "non_gating_support_for_alpha",
+  "confidence": "high_for_reported_financials_guidance_cash_asp_and_incentive_disclosure; medium_for_risk_direction; no_numeric_underwriting_claimed",
+  "recommendedNextOwner": "council-alpha",
+  "recommendedNextState": "researching",
+  "lineage": {
+    "sourcePacket": "data/runtime/workgraph/packets/MBLY.json",
+    "inputSignature": "6f0048dffabd24e2376c",
+    "sourceEvidencePaths": [
+      "data/runtime/workgraph/evidence/MBLY-20260926T160536Z-earth-scout-assist.json",
+      "data/runtime/workgraph/evidence/MBLY-20260926T152435Z-council-beta-assist.json"
+    ],
+    "supersedes": []
+  },
+  "authorityBoundary": "Bounded Beta risk-source support only. No Alpha numeric underwriting, numeric risk score, canonical score/rank/tick, root ownership transfer or Chief decision is asserted."
+}

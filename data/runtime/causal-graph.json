@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-26T13:20:25.534Z",
+  "updatedAt": "2026-09-26T14:20:59.411Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1802,6 +1802,18 @@
       "type": "market",
       "label": "technology:semaglutide-formulations",
       "description": "Novo's obesity structural chain is GLP-1 pharmacology/formulation -> sustained weight reduction and cardiometabolic benefit -> lower chronic disease burden, with formulation breadth widening access but value capture constrained by manufacturing, reimbursement, persistence and competitive efficacy/convenience."
+    },
+    {
+      "id": "company:NVT",
+      "type": "company",
+      "label": "nVent Electric plc",
+      "description": "nVent sits on the causal path from AI compute density to heat removal and resilient electrical distribution; >2 GW deployed liquid cooling and repeated capacity expansion support present participation rather than roadmap-only exposure."
+    },
+    {
+      "id": "market:NVT-thermal-electrical-infrastructure-demand",
+      "type": "market",
+      "label": "thermal/electrical infrastructure demand",
+      "description": "higher rack power density raises heat-removal and protected-power requirements"
     }
   ],
   "edges": [
@@ -4134,6 +4146,21 @@
         "fda:wegovy-hd:20260319"
       ],
       "observedAt": "2026-09-21T07:28:00Z"
+    },
+    {
+      "id": "edge:NVT-structural-exposure",
+      "from": "company:NVT",
+      "to": "market:NVT-thermal-electrical-infrastructure-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 93,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "nvent-ir:2026-07-31:liquid-cooling-capacity",
+        "sec:nvt:2025-annual-report"
+      ],
+      "observedAt": "2026-09-21T08:24:26Z"
     }
   ],
   "structuralSignals": [
@@ -7036,6 +7063,25 @@
       "observedAt": "2026-09-21T07:28:00Z",
       "thesis": "Novo's obesity structural chain is GLP-1 pharmacology/formulation -> sustained weight reduction and cardiometabolic benefit -> lower chronic disease burden, with formulation breadth widening access but value capture constrained by manufacturing, reimbursement, persistence and competitive efficacy/convenience.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:NVT-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:NVT-thermal-electrical-infrastructure-demand",
+      "affectedNodeIds": [
+        "company:NVT"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 93,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "nvent-ir:2026-07-31:liquid-cooling-capacity",
+        "sec:nvt:2025-annual-report"
+      ],
+      "observedAt": "2026-09-21T08:24:26Z",
+      "thesis": "nVent sits on the causal path from AI compute density to heat removal and resilient electrical distribution; >2 GW deployed liquid cooling and repeated capacity expansion support present participation rather than roadmap-only exposure.",
+      "falsifier": "compute efficiency or architecture changes materially reduce facility cooling/power intensity"
     }
   ],
   "roadmapMilestones": [

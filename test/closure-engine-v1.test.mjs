@@ -169,9 +169,16 @@ test("assist bus sleeps unchanged failures and archives obsolete requests withou
 
 test("shadow mode preserves legacy worker controls while producing separate frontier proposals", () => {
   const graph = graphFor(["AAA", "BBB"]);
+  const bbb = packetFor("BBB", ["unresolved_material_contradiction"]);
+  bbb.contradictions = [{
+    statementA: "Claim A",
+    statementB: "Claim B",
+    sourceId: "primary:bbb:1",
+    material: true,
+  }];
   const packets = [
     packetFor("AAA", ["missing_numeric_score_record"]),
-    packetFor("BBB", ["unresolved_material_contradiction"]),
+    bbb,
   ];
 
   const legacyQueues = buildRoutingQueues(graph, packets, "2026-09-25T03:00:00.000Z");
@@ -192,6 +199,79 @@ test("shadow mode preserves legacy worker controls while producing separate fron
   assert.equal(proposedQueues["council-alpha"].selectionPolicy, "closure-frontier-v1");
   assert.match(proposedQueues["council-alpha"].runObjective, /Frontier first/i);
   assert.equal(proposedQueues["deep-resolver"].items[0].adjudicationPacket?.contract, "earth2036-resolver-adjudication-v1");
+});
+
+
+test("Resolver proposal deduplicates vague contradictions and defers them until structured source-addressed input exists", () => {
+  const graph = graphFor(["DEP"]);
+  const packet = packetFor("DEP", [
+    "missing_numeric_score_record",
+    "unresolved_material_contradiction",
+  ]);
+  packet.contradictions = [
+    {
+      contradiction: "Growth improved while profitability remains unproven.",
+      sourceId: "issuer:DEP:q2",
+      material: true,
+      nextOwner: "council-alpha",
+    },
+    {
+      contradiction: "Growth improved while profitability remains unproven.",
+      sourceId: "issuer:DEP:q2",
+      material: true,
+      nextOwner: "council-alpha",
+    },
+  ];
+
+  const queues = buildRoutingQueues(graph, [packet], "2026-09-25T03:00:00.000Z", {
+    frontierFirst: true,
+    frontierTickers: ["DEP"],
+    stalledTickers: [],
+    operationalStatusByTicker: { DEP: "needs_contradiction_resolution" },
+  });
+  const resolver = queues["deep-resolver"];
+  assert.equal(resolver.total, 0);
+  assert.equal(resolver.deferred, 1);
+  assert.equal(resolver.deferredItems[0].executionGuard, "await_structured_contradiction_input");
+  const adjudication = resolver.deferredItems[0].adjudicationPacket;
+  assert.equal(adjudication.itemCount, 1);
+  assert.equal(adjudication.actionableItemCount, 0);
+  assert.equal(adjudication.items[0].claimA, "Growth improved while profitability remains unproven.");
+  assert.equal(adjudication.items[0].sourceA, "issuer:DEP:q2");
+  assert.equal(adjudication.items[0].preferredOwner, "council-alpha");
+  assert.match(adjudication.items[0].exactMissingFact, /Source-addressed evidence/);
+});
+
+test("Resolver proposal activates only a structured claim pair and preserves bounded dispositions", () => {
+  const graph = graphFor(["ACT"]);
+  const packet = packetFor("ACT", ["unresolved_material_contradiction"]);
+  packet.contradictions = [{
+    statementA: "Earlier guidance was 100.",
+    statementB: "Current guidance is 80.",
+    sourceId: "issuer:ACT:q2",
+    date: "2026-08-01",
+    material: true,
+  }];
+
+  const queues = buildRoutingQueues(graph, [packet], "2026-09-25T03:00:00.000Z", {
+    frontierFirst: true,
+    frontierTickers: ["ACT"],
+    stalledTickers: [],
+    operationalStatusByTicker: { ACT: "needs_contradiction_resolution" },
+  });
+  const item = queues["deep-resolver"].items[0];
+  assert.ok(item);
+  assert.equal(item.executionGuard, null);
+  assert.equal(item.adjudicationPacket.actionable, true);
+  assert.equal(item.adjudicationPacket.actionableItemCount, 1);
+  assert.deepEqual(
+    item.adjudicationPacket.requiredDisposition,
+    ["resolved", "non_gating", "awaiting_new_evidence", "still_material"]
+  );
+  assert.equal(item.adjudicationPacket.items[0].claimA, "Earlier guidance was 100.");
+  assert.equal(item.adjudicationPacket.items[0].claimB, "Current guidance is 80.");
+  assert.equal(item.adjudicationPacket.items[0].sourceA, "issuer:ACT:q2");
+  assert.equal(item.adjudicationPacket.items[0].dateA, "2026-08-01");
 });
 
 test("shadow assist lifecycle does not consume worker behavior until routing is activated", () => {

@@ -5,6 +5,12 @@ on:
     branches: [main]
     paths:
       - "data/runtime/workgraph/role-runs/**"
+      - "scripts/lib/value-allocator.mjs"
+      - "scripts/lib/assist-bus.mjs"
+      - "scripts/lib/workgraph-v2.mjs"
+      - "scripts/workgraph-sync.mjs"
+      - "config/closure-engine-v1.json"
+      - "test/closure-engine-v1.test.mjs"
       - ".github/workflows/earth2036-workgraph-reconcile.yml"
       - "scripts/check-runtime-coherence.mjs"
   workflow_dispatch:
@@ -48,7 +54,7 @@ jobs:
 
             npm ci
             npm run typecheck
-            node --test test/workgraph-v2.test.mjs test/operations-invariants.test.mjs
+            node --test test/workgraph-v2.test.mjs test/operations-invariants.test.mjs test/closure-engine-v1.test.mjs
 
             # Phase 1: always materialize truthful non-canonical routing/projection.
             # A global Beast/source-mesh failure must never hide newly-arrived evidence

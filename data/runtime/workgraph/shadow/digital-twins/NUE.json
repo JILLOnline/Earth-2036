@@ -4,8 +4,8 @@
   "canonicalWriteAuthority": false,
   "ticker": "NUE",
   "workId": "t0:NUE",
-  "inputSignature": "469dac66ae2a5ec8174efbf8",
-  "sourceState": "researching",
+  "inputSignature": "35a9ce4163c7372fec6d7563",
+  "sourceState": "chief_ready",
   "identity": {
     "ticker": "NUE",
     "company": "Nucor",
@@ -29,29 +29,29 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
-    ],
-    "missingPerspectives": [
+      "adversarial-red-team",
       "source-integrity",
       "company-underwriting"
     ],
+    "missingPerspectives": [],
     "primarySourceCount": 2,
     "sourceLineage": {
-      "rawSourceCount": 6,
-      "uniqueSourceCount": 2,
-      "duplicatesCollapsed": 4,
+      "rawSourceCount": 12,
+      "uniqueSourceCount": 3,
+      "duplicatesCollapsed": 9,
       "missingLineage": 0,
       "uniqueOrigins": [
         "issuer:NUE:2026Q2:20260727",
-        "issuer:NUE:2026Q2guidance:20260617"
+        "issuer:NUE:2026Q2guidance:20260617",
+        "market:stockanalysis:NUE:20260925"
       ]
     },
     "evidenceWindow": {
       "start": "2026-06-17T00:00:00.000Z",
-      "end": "2026-09-21T07:28:00.000Z",
-      "latestEvidenceGeneratedAt": "2026-09-21T07:28:00.000Z"
+      "end": "2026-09-26T07:16:30.000Z",
+      "latestEvidenceGeneratedAt": "2026-09-26T07:16:30.000Z"
     },
-    "preflightPassed": false
+    "preflightPassed": true
   },
   "capabilitySignals": [
     "bottleneckControl",
@@ -64,7 +64,10 @@
     "substitutionResilience",
     "crossDivisionLeverage",
     "governancePower",
-    "pricingPower"
+    "pricingPower",
+    "marketValuationOpportunity",
+    "catalystScore",
+    "alignment2036"
   ],
   "constraintSignals": {
     "risks": [
@@ -72,26 +75,21 @@
       "Quarterly earnings can move sharply with steel pricing and utilization; the Helion mark is non-operating and should not be treated as core execution.",
       "Physical steel demand is durable, but company returns remain sensitive to spreads, utilization and capital discipline on new capacity.",
       "Steel spreads and utilization can reverse quickly with construction/manufacturing cycles and trade-policy changes.",
-      "Non-operating investment marks can inflate reported earnings and confidence if not separated from core operating performance."
+      "Non-operating investment marks can inflate reported earnings and confidence if not separated from core operating performance.",
+      "Steel-cycle reversal and project-return uncertainty can compress earnings."
     ],
     "unknowns": [
       "Returns on new capacity and adjacent investments require project-level evidence.",
       "Durability of Q2 earnings above guidance requires subsequent-quarter confirmation.",
       "Project-level returns on new capacity and adjacent technology investments remain unproven in current evidence.",
-      "Durability of above-guidance earnings requires subsequent-quarter evidence."
+      "Durability of above-guidance earnings requires subsequent-quarter evidence.",
+      "Project-level returns on new capacity remain incompletely evidenced."
     ],
     "contradictions": [
       "Reported EPS includes a favorable Helion mark while adjusted EPS excludes it."
     ],
     "gatingIssues": [],
-    "preflightFailures": [
-      "missing_specialist_perspective:source-integrity",
-      "missing_specialist_perspective:company-underwriting",
-      "missing_factor_evidence",
-      "missing_numeric_score_record",
-      "missing_score_risk_evidence",
-      "missing_data_confidence_evidence"
-    ]
+    "preflightFailures": []
   },
   "causalContext": {
     "mapped": true,
@@ -116,38 +114,7 @@
       }
     ]
   },
-  "improvementWindows": [
-    {
-      "failure": "missing_specialist_perspective:source-integrity",
-      "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:source-integrity?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_specialist_perspective:company-underwriting",
-      "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_factor_evidence",
-      "question": "Which required methodology factor still lacks source-addressed evidence?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_numeric_score_record",
-      "question": "Which source-addressed factor assessments are still required before a reproducible score can be constructed?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_score_risk_evidence",
-      "question": "Which material risks require source-addressed quantitative treatment?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_data_confidence_evidence",
-      "question": "Which evidence-quality dimensions remain insufficiently supported?",
-      "stance": "improvement-oriented"
-    }
-  ],
+  "improvementWindows": [],
   "bridgeInputs": {
     "capabilityCandidates": [
       "bottleneckControl",
@@ -160,18 +127,23 @@
       "substitutionResilience",
       "crossDivisionLeverage",
       "governancePower",
-      "pricingPower"
+      "pricingPower",
+      "marketValuationOpportunity",
+      "catalystScore",
+      "alignment2036"
     ],
     "needOrConstraintCandidates": [
       "Returns on new capacity and adjacent investments require project-level evidence.",
       "Durability of Q2 earnings above guidance requires subsequent-quarter confirmation.",
       "Project-level returns on new capacity and adjacent technology investments remain unproven in current evidence.",
       "Durability of above-guidance earnings requires subsequent-quarter evidence.",
+      "Project-level returns on new capacity remain incompletely evidenced.",
       "Steel demand and spreads remain cyclical and exposed to construction, manufacturing, trade policy and raw-material costs.",
       "Quarterly earnings can move sharply with steel pricing and utilization; the Helion mark is non-operating and should not be treated as core execution.",
       "Physical steel demand is durable, but company returns remain sensitive to spreads, utilization and capital discipline on new capacity.",
       "Steel spreads and utilization can reverse quickly with construction/manufacturing cycles and trade-policy changes.",
-      "Non-operating investment marks can inflate reported earnings and confidence if not separated from core operating performance."
+      "Non-operating investment marks can inflate reported earnings and confidence if not separated from core operating performance.",
+      "Steel-cycle reversal and project-return uncertainty can compress earnings."
     ],
     "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
   },

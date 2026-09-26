@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-26T14:20:59.411Z",
+  "updatedAt": "2026-09-26T15:17:34.183Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1814,6 +1814,18 @@
       "type": "market",
       "label": "thermal/electrical infrastructure demand",
       "description": "higher rack power density raises heat-removal and protected-power requirements"
+    },
+    {
+      "id": "company:NXE",
+      "type": "company",
+      "label": "NexGen Energy Ltd.",
+      "description": "Rook I links a high-grade uranium resource to the nuclear-fuel bottleneck supporting reliable low-carbon electricity; final construction licensing converts regulatory permission into a construction/execution problem rather than removing it."
+    },
+    {
+      "id": "market:NXE-uranium-demand",
+      "type": "market",
+      "label": "uranium demand",
+      "description": "reactor operation requires reliable fuel supply"
     }
   ],
   "edges": [
@@ -4159,6 +4171,21 @@
       "sourceIds": [
         "nvent-ir:2026-07-31:liquid-cooling-capacity",
         "sec:nvt:2025-annual-report"
+      ],
+      "observedAt": "2026-09-21T08:24:26Z"
+    },
+    {
+      "id": "edge:NXE-structural-exposure",
+      "from": "company:NXE",
+      "to": "market:NXE-uranium-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 92,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "nxe:2026-03-05:rook1-federal-approval",
+        "sec:nxe:2025:updated-cost-economics"
       ],
       "observedAt": "2026-09-21T08:24:26Z"
     }
@@ -7082,6 +7109,25 @@
       "observedAt": "2026-09-21T08:24:26Z",
       "thesis": "nVent sits on the causal path from AI compute density to heat removal and resilient electrical distribution; >2 GW deployed liquid cooling and repeated capacity expansion support present participation rather than roadmap-only exposure.",
       "falsifier": "compute efficiency or architecture changes materially reduce facility cooling/power intensity"
+    },
+    {
+      "id": "signal:NXE-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:NXE-uranium-demand",
+      "affectedNodeIds": [
+        "company:NXE"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 92,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "nxe:2026-03-05:rook1-federal-approval",
+        "sec:nxe:2025:updated-cost-economics"
+      ],
+      "observedAt": "2026-09-21T08:24:26Z",
+      "thesis": "Rook I links a high-grade uranium resource to the nuclear-fuel bottleneck supporting reliable low-carbon electricity; final construction licensing converts regulatory permission into a construction/execution problem rather than removing it.",
+      "falsifier": "reactor retirements, demand destruction or alternative fuel supply materially eliminate the projected primary-supply need"
     }
   ],
   "roadmapMilestones": [

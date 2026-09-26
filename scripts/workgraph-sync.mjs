@@ -301,6 +301,8 @@ function compactRoutingItem(item) {
     frontier: item.frontier || false,
     frontierRank: item.frontierRank || null,
     operationalStatus: item.operationalStatus || null,
+    deferred: item.deferred === true,
+    deferredReason: item.deferredReason || null,
     executionGuard: item.executionGuard || null,
     adjudicationPacket: item.adjudicationPacket || null,
     workId: item.workId,

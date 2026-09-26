@@ -4,7 +4,7 @@ import { applyPacketState, buildRoutingQueues, compilePromotionPacket, computeWo
 import { auditCalibrationRecord, buildPacketCalibrationGuidance, CALIBRATION_REGISTRY } from "./lib/calibration-engine.mjs";
 import { buildAssistRequests } from "./lib/assist-bus.mjs";
 import { buildDigitalTwinShadow } from "./lib/digital-twin-engine.mjs";
-import { buildValueAllocationShadow } from "./lib/value-allocator.mjs";
+import { buildClosureFrontier, buildValueAllocationShadow } from "./lib/value-allocator.mjs";
 import { buildDependencyShadow } from "./lib/dependency-graph.mjs";
 import { buildTrajectorySnapshot, validateTrajectorySnapshot } from "./lib/trajectory-engine.mjs";
 import { loadVerifiedBridgeIndex } from "./lib/fundamentals-bridge-index.mjs";
@@ -18,10 +18,41 @@ const STATE_PATH = path.join(ROOT, "data", "runtime", "workgraph", "state.json")
 const LEARNING_PATH = path.join(ROOT, "data", "runtime", "workgraph", "learning-state.json");
 const SYSTEM_STATE_PATH = path.join(ROOT, "data", "runtime", "system-state.json");
 const LIVE_BRIDGE_INDEX_PATH = path.join(ROOT, "data", "runtime", "workgraph", "shadow", "fundamentals-bridge-index.json");
+const CLOSURE_ENGINE_CONFIG_PATH = path.join(ROOT, "config", "closure-engine-v1.json");
+const EVIDENCE_REVIEW_QUEUE_PATH = path.join(ROOT, "data", "runtime", "evidence-review-queue.json");
 
 async function readJson(file) { return JSON.parse(await readFile(file, "utf8")); }
 async function readJsonOr(file, fallback) {
   try { return await readJson(file); } catch { return fallback; }
+}
+
+function deriveEvidenceBacklog(queue, graph, frontier) {
+  const buckets = {
+    gating: 0,
+    supporting: 0,
+    superseded: 0,
+    awaitingNewInformation: 0,
+    resolvedHistory: 0,
+  };
+  const frontierSet = new Set((frontier?.selected || []).map((row) => row.ticker));
+  const stalledByTicker = Object.fromEntries((frontier?.stalled || []).map((row) => [row.ticker, row.status]));
+  for (const item of queue?.items || []) {
+    const status = String(item?.status || "pending").toLowerCase();
+    if (status === "superseded") { buckets.superseded += 1; continue; }
+    if (!["pending","open","unresolved"].includes(status)) { buckets.resolvedHistory += 1; continue; }
+    if (frontierSet.has(item?.ticker)) { buckets.gating += 1; continue; }
+    if (stalledByTicker[item?.ticker] === "awaiting_external_change") {
+      buckets.awaitingNewInformation += 1;
+      continue;
+    }
+    buckets.supporting += 1;
+  }
+  return {
+    rawUnresolved: Number(queue?.unresolved || 0),
+    totalItems: Array.isArray(queue?.items) ? queue.items.length : 0,
+    buckets,
+    rule: "Operational decisions use gating evidence remaining; the raw historical/unresolved count remains available for audit.",
+  };
 }
 
 function closureCountForRun(role, run) {
@@ -171,19 +202,68 @@ if (postErrors.length) {
 }
 
 const now = new Date();
-const routingQueues = buildRoutingQueues(graph, packets, now.toISOString());
+const workgraphDir = path.join(ROOT, "data", "runtime", "workgraph");
+const shadowDir = path.join(workgraphDir, "shadow");
+const workerViewDir = path.join(workgraphDir, "worker-view");
+const closureEngineConfig = await readJsonOr(CLOSURE_ENGINE_CONFIG_PATH, {
+  version: 1,
+  routingEnabled: false,
+  frontierSize: 10,
+});
+const previousAssistBus = await readJsonOr(path.join(workgraphDir, "assist-bus.json"), null);
+const previousFrontier = await readJsonOr(path.join(shadowDir, "closure-frontier.json"), null);
 const metrics = computeWorkgraphMetrics(graph, now, evidence, roleRuns);
+
+const provisionalAssistBus = buildAssistRequests(
+  graph,
+  packets,
+  roleRuns,
+  now.toISOString(),
+  previousAssistBus,
+  {}
+);
+const closureFrontier = buildClosureFrontier(
+  graph,
+  packets,
+  provisionalAssistBus,
+  metrics,
+  roleRuns,
+  previousFrontier,
+  now.toISOString(),
+  { limit: closureEngineConfig.frontierSize || 10 }
+);
+const frontierTickers = (closureFrontier.selected || []).map((row) => row.ticker);
+const stalledTickers = (closureFrontier.stalled || []).map((row) => row.ticker);
+const operationalStatusByTicker = Object.fromEntries(
+  (closureFrontier.candidates || []).map((row) => [row.ticker, row.status])
+);
+const assistBus = buildAssistRequests(
+  graph,
+  packets,
+  roleRuns,
+  now.toISOString(),
+  previousAssistBus,
+  { frontierTickers, operationalStatusByTicker }
+);
+const routingQueues = buildRoutingQueues(graph, packets, now.toISOString(), {
+  frontierFirst: closureEngineConfig.routingEnabled === true,
+  frontierTickers,
+  stalledTickers,
+  operationalStatusByTicker,
+});
 metrics.routingQueueCounts = Object.fromEntries(Object.entries(routingQueues).map(([role, queue]) => [role, queue.total]));
 metrics.effectiveOwnerBacklog = {
   ...metrics.ownerBacklog,
   ...metrics.routingQueueCounts,
 };
+metrics.closureEngine = {
+  routingEnabled: closureEngineConfig.routingEnabled === true,
+  frontierSelected: closureFrontier.selectedCount,
+  frontierStalled: closureFrontier.stalledCount,
+  capacityPlan: closureFrontier.capacityPlan,
+  throughput: closureFrontier.throughput,
+};
 await writeWorkgraphArtifacts(ROOT, graph, packets, metrics, routingQueues);
-
-const assistBus = buildAssistRequests(graph, packets, roleRuns, now.toISOString());
-const workgraphDir = path.join(ROOT, "data", "runtime", "workgraph");
-const shadowDir = path.join(workgraphDir, "shadow");
-const workerViewDir = path.join(workgraphDir, "worker-view");
 await mkdir(shadowDir, { recursive: true });
 await mkdir(workerViewDir, { recursive: true });
 
@@ -196,6 +276,11 @@ function compactRoutingItem(item) {
   return {
     rank: item.rank,
     ticker: item.ticker,
+    frontier: item.frontier || false,
+    frontierRank: item.frontierRank || null,
+    operationalStatus: item.operationalStatus || null,
+    executionGuard: item.executionGuard || null,
+    adjudicationPacket: item.adjudicationPacket || null,
     workId: item.workId,
     state: item.state,
     packetPath: item.packetPath,
@@ -229,6 +314,21 @@ function compactAssistRequest(request) {
 }
 
 await writeJsonArtifact(path.join(workgraphDir, "assist-bus.json"), assistBus);
+await writeJsonArtifact(path.join(shadowDir, "closure-frontier.json"), closureFrontier);
+await writeJsonArtifact(path.join(workerViewDir, "closure-frontier.json"), {
+  version: closureFrontier.version,
+  contract: "earth2036-worker-closure-frontier-v1",
+  generatedAt: closureFrontier.generatedAt,
+  canonicalWriteAuthority: false,
+  routingEnabled: closureEngineConfig.routingEnabled === true,
+  capacityPlan: closureFrontier.capacityPlan,
+  throughput: closureFrontier.throughput,
+  backlogTotal: closureFrontier.backlogTotal,
+  selectedCount: closureFrontier.selectedCount,
+  stalledCount: closureFrontier.stalledCount,
+  selected: closureFrontier.selected,
+  stalled: closureFrontier.stalled,
+});
 const assistViewDir = path.join(workerViewDir, "assist");
 await mkdir(assistViewDir, { recursive: true });
 const helperRoles = ["earth-scout", "council-alpha", "council-beta", "deep-resolver"];
@@ -243,6 +343,7 @@ for (const role of helperRoles) {
     totalActive: assistBus.active,
     totalDormant: assistBus.dormant,
     totalQueued: assistBus.queued || 0,
+    totalArchived: assistBus.archived || 0,
     requests: (assistBus.requests || [])
       .filter((request) => request.helperRole === role && request.status === "active")
       .map(compactAssistRequest),
@@ -256,6 +357,7 @@ await writeJsonArtifact(path.join(assistViewDir, "summary.json"), {
   active: assistBus.active,
   dormant: assistBus.dormant,
   queued: assistBus.queued || 0,
+  archived: assistBus.archived || 0,
   total: assistBus.total,
   byHelper: assistBus.byHelper,
   activeRequests: (assistBus.requests || [])
@@ -274,9 +376,13 @@ for (const role of helperRoles) {
     generatedAt: queue.generatedAt || now.toISOString(),
     role,
     selectionPolicy: queue.selectionPolicy || "closure-first-deterministic",
+    runObjective: queue.runObjective || null,
+    rawTotal: queue.rawTotal ?? queue.total ?? 0,
     total: queue.total || 0,
+    deferred: queue.deferred || 0,
     visible: Math.min(maxItems, queue.total || 0),
     items: (queue.items || []).slice(0, maxItems).map(compactRoutingItem),
+    deferredItems: (queue.deferredItems || []).slice(0, maxItems).map(compactRoutingItem),
     sourcePath: `data/runtime/workgraph/routing/${role}.json`,
   });
 }
@@ -370,7 +476,14 @@ await writeJsonArtifact(path.join(workerViewDir, "council-beta-digital-twins.jso
   twins: (digitalTwinShadow.twins || []).filter((twin) => betaRelevantTickers.has(twin.ticker)),
 });
 
-const valueAllocationShadow = buildValueAllocationShadow(graph, packets, assistBus, metrics, now.toISOString());
+const valueAllocationShadow = buildValueAllocationShadow(
+  graph,
+  packets,
+  assistBus,
+  metrics,
+  now.toISOString(),
+  { closureFrontier }
+);
 await writeFile(
   path.join(shadowDir, "value-allocation.json"),
   `${JSON.stringify(valueAllocationShadow, null, 2)}\n`,
@@ -379,6 +492,8 @@ await writeFile(
 
 const dependencyShadow = buildDependencyShadow(assistBus, now.toISOString());
 await writeJsonArtifact(path.join(shadowDir, "dependencies.json"), dependencyShadow);
+const evidenceReviewQueue = await readJsonOr(EVIDENCE_REVIEW_QUEUE_PATH, { unresolved: 0, items: [] });
+const evidenceBacklog = deriveEvidenceBacklog(evidenceReviewQueue, graph, closureFrontier);
 await writeJsonArtifact(path.join(workerViewDir, "command-summary.json"), {
   version: 1,
   contract: "earth2036-worker-command-summary-v1",
@@ -393,10 +508,32 @@ await writeJsonArtifact(path.join(workerViewDir, "command-summary.json"), {
     effectiveOwnerBacklog: metrics.effectiveOwnerBacklog || metrics.ownerBacklog || {},
     routingQueueCounts: metrics.routingQueueCounts || {},
   },
+  closureEngine: {
+    version: closureFrontier.version,
+    routingEnabled: closureEngineConfig.routingEnabled === true,
+    canonicalWriteAuthority: false,
+    capacityPlan: closureFrontier.capacityPlan,
+    backlogTotal: closureFrontier.backlogTotal,
+    selectedCount: closureFrontier.selectedCount,
+    stalledCount: closureFrontier.stalledCount,
+    throughput: closureFrontier.throughput,
+    selected: closureFrontier.selected,
+  },
+  yield: {
+    canonicalVelocity: metrics.canonicalVelocity,
+    minutesSinceCanonicalProgress: metrics.minutesSinceCanonicalProgress,
+    recentWorkerRuns: (metrics.normalizedYieldRuns || []).slice(0, 40),
+  },
+  evidenceBacklog,
+  chiefReadinessSemantics: {
+    sourceStateAuthoritative: false,
+    rule: "Only Workgraph state === chief_ready AND preflight.passed === true is Chief-ready.",
+  },
   assist: {
     active: assistBus.active,
     dormant: assistBus.dormant,
     queued: assistBus.queued || 0,
+    archived: assistBus.archived || 0,
     byHelper: assistBus.byHelper,
   },
   dependencies: {
@@ -410,6 +547,7 @@ await writeJsonArtifact(path.join(workerViewDir, "command-summary.json"), {
   },
   workerViews: {
     assistSummary: "data/runtime/workgraph/worker-view/assist/summary.json",
+    closureFrontier: "data/runtime/workgraph/worker-view/closure-frontier.json",
     calibration: "data/runtime/workgraph/worker-view/calibration-summary.json",
     digitalTwins: "data/runtime/workgraph/worker-view/digital-twins-index.json",
     betaDigitalTwins: "data/runtime/workgraph/worker-view/council-beta-digital-twins.json",
@@ -459,4 +597,4 @@ await import("node:fs/promises").then(({ writeFile }) =>
   writeFile(LEARNING_PATH, `${JSON.stringify(learningState, null, 2)}\n`, "utf8")
 );
 
-console.log(`Workgraph v2: ${metrics.total} companies; ${metrics.counts.chief_ready} chief_ready; ${metrics.counts.packet_ready} packet_ready; ${metrics.counts.blocked} blocked; assists ${assistBus.active} active/${assistBus.dormant} dormant; calibration, Digital Twin, Trajectory and value-allocation shadows refreshed.`);
+console.log(`Workgraph v2: ${metrics.total} companies; ${metrics.counts.chief_ready} chief_ready; ${metrics.counts.packet_ready} packet_ready; ${metrics.counts.blocked} blocked; Closure Engine ${closureEngineConfig.routingEnabled ? "ACTIVE" : "SHADOW"} ${closureFrontier.selectedCount}/${closureFrontier.backlogTotal} frontier with ${closureFrontier.stalledCount} stalled; assists ${assistBus.active} active/${assistBus.dormant} dormant; calibration, Digital Twin, Trajectory and value-allocation shadows refreshed.`);

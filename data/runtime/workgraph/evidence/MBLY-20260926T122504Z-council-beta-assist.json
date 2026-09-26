@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "contract": "earth2036-workgraph-evidence-v1",
+  "ticker": "MBLY",
+  "workId": "t0:MBLY",
+  "perspective": "adversarial-red-team-assist",
+  "role": "council-beta",
+  "generatedAt": "2026-09-26T12:25:04Z",
+  "assist": {
+    "requestId": "assist:MBLY:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "cd42e610f9a810f011cf",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support",
+    "outcome": "new_primary_source_supply_concentration_risk_support"
+  },
+  "sources": [
+    {
+      "sourceId": "sec:1910139:10-q:2026-06-27:supplier-concentration",
+      "type": "primary_regulatory_filing",
+      "publisher": "U.S. Securities and Exchange Commission / Mobileye Global Inc.",
+      "publishedAt": "2026-07-23",
+      "url": "https://www.sec.gov/Archives/edgar/data/1910139/000110465926086264/mbly-20260627x10q.htm",
+      "originFingerprint": "sec-edgar:1910139:2026q2:10-q:single-eyeq-supplier-and-limited-suppliers"
+    }
+  ],
+  "claims": [
+    "Mobileye's Q2 2026 Form 10-Q states that it purchases all EyeQ SoCs from a single supplier and relies on single or limited suppliers for certain materials, equipment and services.",
+    "The filing also states that prior supply-chain disruptions, raw-material shortages and manufacturing-capacity constraints reduced availability of key components including EyeQ SoCs and limited Mobileye's ability to meet customer demand; recurrence could again constrain fulfillment.",
+    "This is a source-addressed operating dependency for Alpha's risk evidence: Mobileye's ADAS/autonomy demand can remain healthy while realized revenue and deployment timing are impaired by upstream manufacturing or assembly/test disruption.",
+    "The evidence does not establish a present shortage or supplier failure; it identifies an observed structural concentration and a historically realized failure mode that should be separated from hypothetical downside."
+  ],
+  "affectedFactors": ["supplyChainResilience", "bottleneckControl", "scenarioRobustness", "dataConfidence"],
+  "causalEdges": [
+    "single EyeQ SoC supplier -> manufacturing/delivery/quality/cost dependency -> system availability -> OEM fulfillment and revenue timing",
+    "limited upstream suppliers -> disruption or capacity constraint -> reduced component availability -> inability to meet customer demand",
+    "inventory buffers -> partial resilience against disruption -> working-capital/carrying-cost tradeoff without eliminating supplier concentration"
+  ],
+  "risks": [
+    {"risk": "All EyeQ SoCs are purchased from a single supplier, creating a concentrated manufacturing dependency for Mobileye's core product family.", "sourceId": "sec:1910139:10-q:2026-06-27:supplier-concentration", "gating": false},
+    {"risk": "Mobileye has previously experienced supply-chain disruptions and capacity constraints that reduced key-component availability and limited demand fulfillment, making the concentration risk historically grounded rather than purely hypothetical.", "sourceId": "sec:1910139:10-q:2026-06-27:supplier-concentration", "gating": false}
+  ],
+  "contradictions": [
+    "Higher inventory can improve near-term resilience to supply disruption while not removing the underlying single-supplier dependency; inventory protection and structural concentration should not be conflated."
+  ],
+  "unknowns": [
+    "Supplier identity and current contractual capacity protections are not quantified in the cited risk disclosure.",
+    "Current contingency lead times, alternate qualification readiness and inventory coverage under a prolonged supplier outage are not disclosed in the cited passage.",
+    "No present disruption magnitude is established by this evidence."
+  ],
+  "falsifiers": [
+    "Primary evidence of qualified multi-source EyeQ production at meaningful commercial volume would materially weaken the single-supplier concentration concern.",
+    "Demonstrated continuity through a material upstream disruption without constrained OEM fulfillment would strengthen evidence for operational resilience.",
+    "Disclosed contractual/capacity protections plus independently evidenced alternate manufacturing readiness could reduce the severity of the dependency even if nominal supplier concentration remains."
+  ],
+  "gatingStatus": "non_gating_support_for_alpha",
+  "confidence": "high_for_primary_source_dependency_and_historical_disruption; medium_high_for_bounded_causal_implication",
+  "recommendedNextOwner": "council-alpha",
+  "recommendedNextState": "researching",
+  "lineage": {
+    "sourcePacket": "data/runtime/workgraph/packets/MBLY.json",
+    "inputSignature": "cd42e610f9a810f011cf",
+    "sourceEvidencePaths": ["data/runtime/workgraph/evidence/MBLY-20260926T112308Z-council-beta-assist.json", "data/runtime/workgraph/evidence/MBLY-20260926T120416Z-earth-scout-assist.json"],
+    "supersedes": []
+  },
+  "authorityBoundary": "Bounded Beta risk-source support only. No Alpha numeric underwriting, numeric risk score, canonical score/rank/tick, root ownership transfer or Chief decision is asserted."
+}

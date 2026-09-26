@@ -214,13 +214,14 @@ const previousAssistBus = await readJsonOr(path.join(workgraphDir, "assist-bus.j
 const previousFrontier = await readJsonOr(path.join(shadowDir, "closure-frontier.json"), null);
 const metrics = computeWorkgraphMetrics(graph, now, evidence, roleRuns);
 
+const routingEnabled = closureEngineConfig.routingEnabled === true;
 const provisionalAssistBus = buildAssistRequests(
   graph,
   packets,
   roleRuns,
   now.toISOString(),
   previousAssistBus,
-  {}
+  { lifecycleEnabled: false }
 );
 const closureFrontier = buildClosureFrontier(
   graph,
@@ -237,31 +238,52 @@ const stalledTickers = (closureFrontier.stalled || []).map((row) => row.ticker);
 const operationalStatusByTicker = Object.fromEntries(
   (closureFrontier.candidates || []).map((row) => [row.ticker, row.status])
 );
-const assistBus = buildAssistRequests(
+
+const legacyAssistBus = buildAssistRequests(
   graph,
   packets,
   roleRuns,
   now.toISOString(),
   previousAssistBus,
-  { frontierTickers, operationalStatusByTicker }
+  { lifecycleEnabled: false }
 );
-const routingQueues = buildRoutingQueues(graph, packets, now.toISOString(), {
-  frontierFirst: closureEngineConfig.routingEnabled === true,
+const proposedAssistBus = buildAssistRequests(
+  graph,
+  packets,
+  roleRuns,
+  now.toISOString(),
+  previousAssistBus,
+  { frontierTickers, operationalStatusByTicker, lifecycleEnabled: true }
+);
+const assistBus = routingEnabled ? proposedAssistBus : legacyAssistBus;
+
+const legacyRoutingQueues = buildRoutingQueues(graph, packets, now.toISOString());
+const proposedRoutingQueues = buildRoutingQueues(graph, packets, now.toISOString(), {
+  frontierFirst: true,
   frontierTickers,
   stalledTickers,
   operationalStatusByTicker,
 });
+const routingQueues = routingEnabled ? proposedRoutingQueues : legacyRoutingQueues;
 metrics.routingQueueCounts = Object.fromEntries(Object.entries(routingQueues).map(([role, queue]) => [role, queue.total]));
 metrics.effectiveOwnerBacklog = {
   ...metrics.ownerBacklog,
   ...metrics.routingQueueCounts,
 };
 metrics.closureEngine = {
-  routingEnabled: closureEngineConfig.routingEnabled === true,
+  routingEnabled,
   frontierSelected: closureFrontier.selectedCount,
   frontierStalled: closureFrontier.stalledCount,
   capacityPlan: closureFrontier.capacityPlan,
   throughput: closureFrontier.throughput,
+  shadowComparison: {
+    actualRoutingPolicy: routingEnabled ? "closure-frontier-v1" : "closure-first-deterministic",
+    proposedRoutingPolicy: "closure-frontier-v1",
+    actualRoutingCounts: Object.fromEntries(Object.entries(routingQueues).map(([role, queue]) => [role, queue.total])),
+    proposedRoutingCounts: Object.fromEntries(Object.entries(proposedRoutingQueues).map(([role, queue]) => [role, queue.total])),
+    actualAssist: { active: assistBus.active, dormant: assistBus.dormant, queued: assistBus.queued || 0 },
+    proposedAssist: { active: proposedAssistBus.active, dormant: proposedAssistBus.dormant, queued: proposedAssistBus.queued || 0 },
+  },
 };
 await writeWorkgraphArtifacts(ROOT, graph, packets, metrics, routingQueues);
 await mkdir(shadowDir, { recursive: true });
@@ -315,12 +337,28 @@ function compactAssistRequest(request) {
 
 await writeJsonArtifact(path.join(workgraphDir, "assist-bus.json"), assistBus);
 await writeJsonArtifact(path.join(shadowDir, "closure-frontier.json"), closureFrontier);
+await writeJsonArtifact(path.join(shadowDir, "closure-routing-proposal.json"), {
+  version: 1,
+  contract: "earth2036-closure-routing-proposal-v1",
+  generatedAt: now.toISOString(),
+  canonicalWriteAuthority: false,
+  active: routingEnabled,
+  queues: proposedRoutingQueues,
+});
+await writeJsonArtifact(path.join(shadowDir, "closure-assist-proposal.json"), {
+  version: 1,
+  contract: "earth2036-closure-assist-proposal-v1",
+  generatedAt: now.toISOString(),
+  canonicalWriteAuthority: false,
+  active: routingEnabled,
+  assistBus: proposedAssistBus,
+});
 await writeJsonArtifact(path.join(workerViewDir, "closure-frontier.json"), {
   version: closureFrontier.version,
   contract: "earth2036-worker-closure-frontier-v1",
   generatedAt: closureFrontier.generatedAt,
   canonicalWriteAuthority: false,
-  routingEnabled: closureEngineConfig.routingEnabled === true,
+  routingEnabled: routingEnabled,
   capacityPlan: closureFrontier.capacityPlan,
   throughput: closureFrontier.throughput,
   backlogTotal: closureFrontier.backlogTotal,
@@ -510,13 +548,14 @@ await writeJsonArtifact(path.join(workerViewDir, "command-summary.json"), {
   },
   closureEngine: {
     version: closureFrontier.version,
-    routingEnabled: closureEngineConfig.routingEnabled === true,
+    routingEnabled: routingEnabled,
     canonicalWriteAuthority: false,
     capacityPlan: closureFrontier.capacityPlan,
     backlogTotal: closureFrontier.backlogTotal,
     selectedCount: closureFrontier.selectedCount,
     stalledCount: closureFrontier.stalledCount,
     throughput: closureFrontier.throughput,
+    shadowComparison: metrics.closureEngine.shadowComparison,
     selected: closureFrontier.selected,
   },
   yield: {

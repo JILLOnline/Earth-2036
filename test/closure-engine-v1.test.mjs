@@ -165,6 +165,88 @@ test("assist bus sleeps unchanged failures and archives obsolete requests withou
   assert.ok(third.archive.some((row) => row.requestId === req.requestId));
 });
 
+
+
+test("shadow mode preserves legacy worker controls while producing separate frontier proposals", () => {
+  const graph = graphFor(["AAA", "BBB"]);
+  const packets = [
+    packetFor("AAA", ["missing_numeric_score_record"]),
+    packetFor("BBB", ["unresolved_material_contradiction"]),
+  ];
+
+  const legacyQueues = buildRoutingQueues(graph, packets, "2026-09-25T03:00:00.000Z");
+  assert.equal(legacyQueues["council-alpha"].selectionPolicy, "closure-first-deterministic");
+  assert.equal(legacyQueues["council-alpha"].runObjective, null);
+  assert.equal(legacyQueues["council-alpha"].items[0].frontier, false);
+  assert.equal(legacyQueues["deep-resolver"].items[0].adjudicationPacket, null);
+
+  const proposedQueues = buildRoutingQueues(graph, packets, "2026-09-25T03:00:00.000Z", {
+    frontierFirst: true,
+    frontierTickers: ["BBB", "AAA"],
+    stalledTickers: [],
+    operationalStatusByTicker: {
+      AAA: "needs_underwriting",
+      BBB: "needs_contradiction_resolution",
+    },
+  });
+  assert.equal(proposedQueues["council-alpha"].selectionPolicy, "closure-frontier-v1");
+  assert.match(proposedQueues["council-alpha"].runObjective, /Frontier first/i);
+  assert.equal(proposedQueues["deep-resolver"].items[0].adjudicationPacket?.contract, "earth2036-resolver-adjudication-v1");
+});
+
+test("shadow assist lifecycle does not consume worker behavior until routing is activated", () => {
+  const graph = graphFor(["AST"]);
+  const packet = packetFor("AST", ["missing_primary_source"]);
+  const first = buildAssistRequests(
+    graph,
+    [packet],
+    [],
+    "2026-09-25T01:00:00.000Z",
+    null,
+    { lifecycleEnabled: false }
+  );
+  const req = first.requests.find((row) => row.helperRole === "earth-scout");
+  assert.ok(req);
+
+  const roleRuns = [{
+    role: "earth-scout",
+    generatedAt: "2026-09-25T02:00:00.000Z",
+    assistAttempts: [{
+      requestId: req.requestId,
+      inputSignature: req.inputSignature,
+      outcome: "not_retried_unchanged_input_signature",
+    }],
+  }];
+
+  const legacy = buildAssistRequests(
+    graph,
+    [packet],
+    roleRuns,
+    "2026-09-25T02:01:00.000Z",
+    first,
+    { lifecycleEnabled: false }
+  );
+  const proposed = buildAssistRequests(
+    graph,
+    [packet],
+    roleRuns,
+    "2026-09-25T02:01:00.000Z",
+    first,
+    {
+      lifecycleEnabled: true,
+      frontierTickers: ["AST"],
+      operationalStatusByTicker: { AST: "needs_new_source" },
+    }
+  );
+
+  assert.equal(legacy.policy.frontierFirst, false);
+  assert.equal(legacy.policy.lifecycleEnabled, false);
+  assert.equal(legacy.requests[0].status, "active");
+  assert.equal(proposed.policy.frontierFirst, true);
+  assert.equal(proposed.policy.lifecycleEnabled, true);
+  assert.equal(proposed.requests[0].status, "dormant_until_input_changes");
+});
+
 test("protected runtime baseline never regresses below 143 canonical or away from 250 represented companies", async () => {
   const state = JSON.parse(await readFile(new URL("../data/runtime/workgraph/state.json", import.meta.url), "utf8"));
   const rows = Object.values(state.companies || {});

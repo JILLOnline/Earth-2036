@@ -666,11 +666,11 @@ export function buildRoutingQueues(graph, packets, generatedAt = new Date().toIS
         evidencePaths: [...(packet?.evidencePaths || [])],
         specialistCoverage: packet?.specialistCoverage || null,
         evidenceResolution: packet?.evidenceResolution || null,
-        frontier: frontierRank.has(packet.ticker),
-        frontierRank: frontierRank.has(packet.ticker) ? frontierRank.get(packet.ticker) + 1 : null,
-        operationalStatus,
-        executionGuard: stalled ? "do_not_retry_without_changed_input" : null,
-        adjudicationPacket: role === "deep-resolver"
+        frontier: frontierFirst && frontierRank.has(packet.ticker),
+        frontierRank: frontierFirst && frontierRank.has(packet.ticker) ? frontierRank.get(packet.ticker) + 1 : null,
+        operationalStatus: frontierFirst ? operationalStatus : null,
+        executionGuard: frontierFirst && stalled ? "do_not_retry_without_changed_input" : null,
+        adjudicationPacket: frontierFirst && role === "deep-resolver"
           ? resolverAdjudicationPacket(packet, ownedFailures)
           : null,
         unresolved: role === "deep-resolver" ? {
@@ -684,10 +684,10 @@ export function buildRoutingQueues(graph, packets, generatedAt = new Date().toIS
 
   for (const role of ROUTABLE_ROLES) {
     queues[role].sort((a, b) => {
-      const aDeferred = stalledTickers.has(a.ticker);
-      const bDeferred = stalledTickers.has(b.ticker);
-      if (aDeferred !== bDeferred) return aDeferred ? 1 : -1;
       if (frontierFirst) {
+        const aDeferred = stalledTickers.has(a.ticker);
+        const bDeferred = stalledTickers.has(b.ticker);
+        if (aDeferred !== bDeferred) return aDeferred ? 1 : -1;
         const ar = frontierRank.has(a.ticker) ? frontierRank.get(a.ticker) : Number.MAX_SAFE_INTEGER;
         const br = frontierRank.has(b.ticker) ? frontierRank.get(b.ticker) : Number.MAX_SAFE_INTEGER;
         if (ar !== br) return ar - br;
@@ -711,16 +711,16 @@ export function buildRoutingQueues(graph, packets, generatedAt = new Date().toIS
       ? rawItems.filter((item) => !stalledTickers.has(item.ticker))
       : rawItems;
 
-    const runObjective = role === "council-alpha" && frontierFirst
-      ? "Frontier first: remove every Alpha-owned failure that can lawfully be removed for each visible frontier company in this run."
-      : role === "deep-resolver"
-        ? "Adjudicate only bounded contradiction packets and return one allowed disposition; do not duplicate source-acquisition work."
-        : frontierFirst
-          ? "Assist frontier companies only where a specific owned failure requires this lane; do not take over another owner's authority."
-          : "Closure-first deterministic routing.";
+    const runObjective = !frontierFirst
+      ? null
+      : role === "council-alpha"
+        ? "Frontier first: remove every Alpha-owned failure that can lawfully be removed for each visible frontier company in this run."
+        : role === "deep-resolver"
+          ? "Adjudicate only bounded contradiction packets and return one allowed disposition; do not duplicate source-acquisition work."
+          : "Assist frontier companies only where a specific owned failure requires this lane; do not take over another owner's authority.";
 
     queues[role] = {
-      version: 2,
+      version: frontierFirst ? 2 : 1,
       contract: "workgraph-v2-routing-queue",
       role,
       generatedAt,

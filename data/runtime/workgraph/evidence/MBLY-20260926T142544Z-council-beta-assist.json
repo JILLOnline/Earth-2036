@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "contract": "earth2036-workgraph-evidence-v1",
+  "ticker": "MBLY",
+  "workId": "t0:MBLY",
+  "perspective": "adversarial-red-team-assist",
+  "role": "council-beta",
+  "generatedAt": "2026-09-26T14:25:44Z",
+  "assist": {
+    "requestId": "assist:MBLY:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "615d71b962cb4ec84ff5",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support",
+    "outcome": "new_primary_source_governance_control_risk_support"
+  },
+  "sources": [
+    {
+      "sourceId": "sec:1910139:10-q:2026-06-27:intel-control",
+      "type": "primary_regulatory_filing",
+      "publisher": "U.S. Securities and Exchange Commission / Mobileye Global Inc.",
+      "publishedAt": "2026-07-23",
+      "url": "https://www.sec.gov/Archives/edgar/data/1910139/000110465926086264/mbly-20260627x10q.htm",
+      "originFingerprint": "sec-edgar:1910139:2026q2:10-q:intel-77.1pct-economic-96.9pct-voting-control"
+    },
+    {
+      "sourceId": "sec:1910139:10-k:2025:intel-control-rights",
+      "type": "primary_regulatory_filing",
+      "publisher": "U.S. Securities and Exchange Commission / Mobileye Global Inc.",
+      "publishedAt": "2026-02-06",
+      "url": "https://www.sec.gov/Archives/edgar/data/1910139/000110465926014300/mbly-20251227x10k.htm",
+      "originFingerprint": "sec-edgar:1910139:2025:10-k:intel-dual-class-controlled-company-consent-rights"
+    }
+  ],
+  "claims": [
+    "Mobileye's Q2 2026 Form 10-Q states that Intel directly or indirectly held approximately 77.1% of Mobileye's outstanding common stock and 96.9% of its voting power as of June 27, 2026.",
+    "Mobileye's 2025 Form 10-K describes Intel's ability to control matters submitted to stockholders and identifies additional consent rights over specified major corporate actions while Intel retains at least 20% beneficial ownership.",
+    "The same 10-K states that Mobileye qualifies as a Nasdaq controlled company and may rely on exemptions from certain governance requirements, so public Class A holders do not have the same governance protections as holders of companies subject to all Nasdaq corporate-governance requirements.",
+    "This evidence supports a bounded governance-risk input for Alpha: economic execution can remain strong while minority-holder influence over board composition and major strategic actions remains structurally limited. It does not establish present abuse, value destruction, or a current conflict."
+  ],
+  "affectedFactors": ["governancePower", "scenarioRobustness", "dataConfidence"],
+  "causalEdges": [
+    "dual-class voting structure -> Intel 96.9% voting power -> control over stockholder-approved matters -> reduced minority-holder influence",
+    "Intel consent rights over specified major actions -> constrained unilateral strategic flexibility -> governance dependency while ownership threshold persists",
+    "controlled-company status -> permitted governance exemptions -> fewer mandatory independent-governance protections for Class A holders"
+  ],
+  "risks": [
+    {"risk": "Intel's voting control materially exceeds its economic ownership, concentrating decision authority over stockholder matters.", "sourceId": "sec:1910139:10-q:2026-06-27:intel-control", "gating": false},
+    {"risk": "Specified consent rights and controlled-company exemptions can limit minority-holder influence and independent-governance protections without proving any current misuse of that authority.", "sourceId": "sec:1910139:10-k:2025:intel-control-rights", "gating": false}
+  ],
+  "contradictions": [
+    "Intel's strategic relationship can provide ecosystem support while the same ownership structure concentrates governance authority; strategic alignment and minority-governance exposure can coexist."
+  ],
+  "unknowns": [
+    "This evidence does not establish that Intel currently intends to exercise control in a manner adverse to Mobileye or minority holders.",
+    "The durability of the current voting concentration depends on future ownership changes and the dual-class/consent-right framework.",
+    "No numeric valuation penalty or risk score is inferred from these governance facts."
+  ],
+  "falsifiers": [
+    "A material reduction in Intel voting control or termination of the relevant consent rights would weaken this governance concentration risk.",
+    "Governance changes that restore the full Nasdaq independent-governance protections would reduce the controlled-company protection gap.",
+    "Evidence that minority holders gain materially greater voting influence over major corporate actions would require reassessment of this structural dependency."
+  ],
+  "gatingStatus": "non_gating_support_for_alpha",
+  "confidence": "high_for_primary_source_control_structure; medium_high_for_bounded_governance_implication",
+  "recommendedNextOwner": "council-alpha",
+  "recommendedNextState": "researching",
+  "lineage": {
+    "sourcePacket": "data/runtime/workgraph/packets/MBLY.json",
+    "inputSignature": "615d71b962cb4ec84ff5",
+    "sourceEvidencePaths": [
+      "data/runtime/workgraph/evidence/MBLY-20260926T122504Z-council-beta-assist.json",
+      "data/runtime/workgraph/evidence/MBLY-20260926T140441Z-earth-scout-assist.json"
+    ],
+    "supersedes": []
+  },
+  "authorityBoundary": "Bounded Beta risk-source support only. No Alpha numeric underwriting, numeric risk score, canonical score/rank/tick, root ownership transfer or Chief decision is asserted."
+}

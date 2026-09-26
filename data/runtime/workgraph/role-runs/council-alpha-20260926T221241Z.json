@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "role": "council-alpha",
+  "generatedAt": "2026-09-26T22:12:41Z",
+  "sourceCycleKey": "20260926T2148Z",
+  "operatingMode": "normal-batch-source-acquisition",
+  "startingGitHead": "5a653934af0951dd199609c4f50cd0b1cb33acc5",
+  "companiesInspected": ["OUST", "PANW", "PATH", "PCAR"],
+  "alphaPairsCompleted": 0,
+  "scoreRecordsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [],
+  "blockers": [
+    {
+      "ticker": "OUST",
+      "blocker": "missing_source_addressed_score_inputs",
+      "detail": "Current packet has five unique primary origins but sourceId is null for every packet source. Fresh acquisition added current independent valuation evidence (2026-09-25 close/market capitalization and valuation multiples), but a full 12-component Methodology 1.0 record still cannot be source-addressed without constructing exact sourceIds for primary governance/supply-chain/pricing evidence and independent corroboration. No numeric values were invented."
+    },
+    {
+      "ticker": "PANW",
+      "blocker": "missing_source_addressed_score_inputs",
+      "detail": "Packet contains six primary origins and substantial operating/acquisition evidence, but packet sourceIds remain null and no complete source-addressed valuation/governance/supply-chain evidence set was established in this execution budget."
+    },
+    {
+      "ticker": "PATH",
+      "blocker": "insufficient_source_breadth_for_full_score_record",
+      "detail": "Packet contains only two unique primary origins and explicitly lacks source-addressed valuation, dilution, customer concentration, competitive win-rate and agentic-product economics evidence; no defensible full scoreRecord was produced."
+    },
+    {
+      "ticker": "PCAR",
+      "blocker": "insufficient_source_breadth_for_full_score_record",
+      "detail": "Packet contains only one unique primary origin and lacks source-addressed valuation, governance, concentration and technology-return evidence required to defend all 12 components."
+    }
+  ],
+  "result": "four_ranked_companies_attempted_no_defensible_full_score_record",
+  "learning": {
+    "repeatedBlocker": "missing_source_addressed_score_inputs",
+    "sourcePathsAttempted": [
+      "existing Scout/Beta cumulative evidence and exact packet lineage",
+      "SEC filing/search path for OUST operating and governance evidence",
+      "independent current market/valuation path for OUST"
+    ],
+    "failedStrategy": "Cumulative packet evidence alone remains insufficient because sourceId fields are null and several Methodology components require source classes not represented in the bounded packet.",
+    "changedStrategy": "For the highest-ranked OUST item, added a materially different current independent valuation source class rather than repeating packet-only inspection; confirmed Sep. 25, 2026 close $43.72, market cap about $3.15B, enterprise value about $2.91B and price/sales about 15.39 from current market data, while retaining SEC/issuer operating evidence for Q2 revenue and margins.",
+    "nextLawfulAction": "Continue OUST first: acquire source-addressable proxy/governance, supplier/geographic resilience and pricing evidence, assign exact immutable sourceIds, then calibrate all 12 components. If OUST remains uncloseable, continue PANW with current valuation and governance evidence before PATH/PCAR."
+  }
+}

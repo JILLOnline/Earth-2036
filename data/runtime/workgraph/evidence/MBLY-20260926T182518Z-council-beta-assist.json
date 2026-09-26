@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "contract": "earth2036-assist-evidence-v1",
+  "generatedAt": "2026-09-26T18:25:18Z",
+  "role": "council-beta",
+  "ticker": "MBLY",
+  "workId": "t0:MBLY",
+  "perspective": "adversarial-red-team-assist",
+  "assist": {
+    "requestId": "assist:MBLY:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "c17db45317a3008c7474",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support",
+    "scope": "source-addressed downside, execution-risk and falsifier evidence only; no numeric underwriting or risk score"
+  },
+  "lineage": {
+    "packetPath": "data/runtime/workgraph/packets/MBLY.json",
+    "supersedes": null,
+    "startingGitHead": "84b4cf39b3518fadf846b9a000c6cd7054200598"
+  },
+  "claims": [
+    {
+      "claim": "Mobileye purchases all EyeQ SoCs from a single supplier, so supplier manufacturing, delivery, quality or cost disruption is a direct operating dependency rather than a hypothetical generic semiconductor risk.",
+      "sourceId": "sec:1910139:2026q2:single-supplier-risk",
+      "url": "https://www.sec.gov/Archives/edgar/data/1910139/000110465926086264/mbly-20260627x10q.htm",
+      "originFingerprint": "sec.gov|CIK1910139|10-Q|2026-06-27|single-supplier-risk",
+      "observedWeakness": "single-source EyeQ SoC dependence",
+      "possibleImprovement": "demonstrated qualified supply redundancy, contractual resilience, or inventory/production evidence that materially lowers interruption exposure",
+      "falsifier": "A future filing showing qualified multi-source EyeQ supply or equivalent architecture portability with demonstrated production scale would weaken this risk."
+    },
+    {
+      "claim": "Q2 2026 revenue was $508M, essentially flat year over year; system shipments rose 3% but lower EyeQ ASP, mainly from higher China OEM export volumes, offset that volume growth. Adjusted gross margin also declined because of lower ASP and a greater SuperVision hardware mix.",
+      "sourceId": "mobileye-ir:2026q2-results:asp-margin",
+      "url": "https://ir.mobileye.com/news-releases/news-release-details/mobileye-releases-second-quarter-2026-results-updates-guidance",
+      "originFingerprint": "ir.mobileye.com|2026-07-23|Q2-2026-results|ASP-margin",
+      "observedWeakness": "volume growth did not translate proportionally into revenue or gross-margin expansion",
+      "possibleImprovement": "evidence of stabilized/rising system ASP, favorable product mix, or advanced-product revenue scaling faster than hardware-content costs",
+      "falsifier": "Sustained revenue growth materially above shipment growth with stable or improving gross margin would weaken the pricing/mix concern."
+    },
+    {
+      "claim": "The large Q2 improvement in adjusted operating income was primarily attributable to an Israeli R&D incentive grant recognized for the first half of 2026, so Alpha should separate policy-linked incentive effects from underlying operating leverage when constructing risk evidence.",
+      "sourceId": "mobileye-ir:2026q2-results:rd-incentive",
+      "url": "https://ir.mobileye.com/news-releases/news-release-details/mobileye-releases-second-quarter-2026-results-updates-guidance",
+      "originFingerprint": "ir.mobileye.com|2026-07-23|Q2-2026-results|R&D-incentive",
+      "observedWeakness": "headline adjusted operating improvement contains a material incentive component",
+      "possibleImprovement": "show comparable operating-margin improvement excluding incentive effects and supported by revenue/mix/cost execution",
+      "falsifier": "Subsequent periods showing durable margin expansion independent of the incentive would reduce this concern."
+    },
+    {
+      "claim": "Q2 geographic revenue included $122M shipped to China out of $508M total, while Mobileye also identified China-heavy mix as a contributor to lower ASP; this creates a measurable mix/pricing sensitivity without implying that China exposure is itself a blocker.",
+      "sourceId": "sec:1910139:2026q2:geographic-revenue",
+      "url": "https://www.sec.gov/Archives/edgar/data/1910139/000110465926086264/mbly-20260627x10q.htm",
+      "originFingerprint": "sec.gov|CIK1910139|10-Q|2026-06-27|geographic-revenue",
+      "observedWeakness": "revenue mix is meaningfully exposed to a geography currently associated with lower EyeQ ASP",
+      "possibleImprovement": "higher-value product penetration, improved China mix economics, or diversification that preserves volume while lifting ASP/margin",
+      "falsifier": "Evidence that China mix rises while ASP and gross margin remain stable or improve would weaken the sensitivity."
+    }
+  ],
+  "affectedFactors": ["pricingPower", "supplyChainResilience", "financialOperatingMomentum", "scenarioRobustness", "dataConfidence"],
+  "causalEdges": [
+    "single EyeQ SoC supplier -> component interruption/cost exposure -> shipment fulfillment and margin risk",
+    "China-heavy OEM mix -> lower EyeQ ASP -> weaker revenue conversion from shipment growth",
+    "higher SuperVision hardware content -> lower gross-margin mix -> advanced-product scaling may not immediately expand gross margin",
+    "R&D incentive grant -> reported adjusted operating improvement -> risk of overstating underlying operating leverage if not separated"
+  ],
+  "risks": [
+    "single-source semiconductor dependency",
+    "ASP/mix pressure despite shipment growth",
+    "gross-margin pressure from product mix",
+    "confidence inflation if incentive-driven margin improvement is treated as purely operational"
+  ],
+  "contradictions": [],
+  "unknowns": [
+    "degree of contractual or inventory mitigation around the single EyeQ supplier",
+    "future ASP trajectory as China and advanced-product mix evolve",
+    "portion of future margin improvement sustainable without R&D incentive effects"
+  ],
+  "gatingStatus": "assist_evidence_complete_root_owner_decision_required",
+  "confidence": "high",
+  "recommendedNextState": "council-alpha should reuse these source-addressed risk inputs when closing missing_score_risk_evidence; numeric risk and score remain Alpha-owned",
+  "nextOwner": "council-alpha"
+}

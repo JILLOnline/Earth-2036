@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-26T07:19:04.150Z",
+  "updatedAt": "2026-09-26T13:20:25.534Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1790,6 +1790,18 @@
       "type": "market",
       "label": "technology:eaf-steelmaking",
       "description": "Nucor's structural chain is recycled/raw steel inputs -> electric-arc-furnace and downstream fabrication capacity -> construction/manufacturing/energy infrastructure -> durable physical-system needs; liquidity supports capacity optionality but does not itself establish project returns."
+    },
+    {
+      "id": "company:NVO",
+      "type": "company",
+      "label": "Novo Nordisk A/S",
+      "description": "Novo's obesity structural chain is GLP-1 pharmacology/formulation -> sustained weight reduction and cardiometabolic benefit -> lower chronic disease burden, with formulation breadth widening access but value capture constrained by manufacturing, reimbursement, persistence and competitive efficacy/convenience."
+    },
+    {
+      "id": "market:NVO-technology-semaglutide-formulations",
+      "type": "market",
+      "label": "technology:semaglutide-formulations",
+      "description": "Novo's obesity structural chain is GLP-1 pharmacology/formulation -> sustained weight reduction and cardiometabolic benefit -> lower chronic disease burden, with formulation breadth widening access but value capture constrained by manufacturing, reimbursement, persistence and competitive efficacy/convenience."
     }
   ],
   "edges": [
@@ -4105,6 +4117,21 @@
       "evidenceTier": "Iron",
       "sourceIds": [
         "issuer:NUE:2026Q2release"
+      ],
+      "observedAt": "2026-09-21T07:28:00Z"
+    },
+    {
+      "id": "edge:NVO-structural-exposure",
+      "from": "company:NVO",
+      "to": "market:NVO-technology-semaglutide-formulations",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 92,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "novo:wegovy-pill-3m",
+        "fda:wegovy-hd:20260319"
       ],
       "observedAt": "2026-09-21T07:28:00Z"
     }
@@ -6989,6 +7016,25 @@
       ],
       "observedAt": "2026-09-21T07:28:00Z",
       "thesis": "Nucor's structural chain is recycled/raw steel inputs -> electric-arc-furnace and downstream fabrication capacity -> construction/manufacturing/energy infrastructure -> durable physical-system needs; liquidity supports capacity optionality but does not itself establish project returns.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:NVO-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:NVO-technology-semaglutide-formulations",
+      "affectedNodeIds": [
+        "company:NVO"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 92,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "novo:wegovy-pill-3m",
+        "fda:wegovy-hd:20260319"
+      ],
+      "observedAt": "2026-09-21T07:28:00Z",
+      "thesis": "Novo's obesity structural chain is GLP-1 pharmacology/formulation -> sustained weight reduction and cardiometabolic benefit -> lower chronic disease burden, with formulation breadth widening access but value capture constrained by manufacturing, reimbursement, persistence and competitive efficacy/convenience.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

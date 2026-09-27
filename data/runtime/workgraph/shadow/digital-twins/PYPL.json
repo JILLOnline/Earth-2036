@@ -4,8 +4,8 @@
   "canonicalWriteAuthority": false,
   "ticker": "PYPL",
   "workId": "t0:PYPL",
-  "inputSignature": "4c519406dc1a825fc3345506",
-  "sourceState": "researching",
+  "inputSignature": "8cef287c05b897a7f6eea0d2",
+  "sourceState": "chief_ready",
   "identity": {
     "ticker": "PYPL",
     "company": "PayPal",
@@ -29,29 +29,31 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
-    ],
-    "missingPerspectives": [
+      "adversarial-red-team",
       "source-integrity",
       "company-underwriting"
     ],
-    "primarySourceCount": 1,
+    "missingPerspectives": [],
+    "primarySourceCount": 3,
     "sourceLineage": {
-      "rawSourceCount": 8,
-      "uniqueSourceCount": 2,
-      "duplicatesCollapsed": 6,
+      "rawSourceCount": 14,
+      "uniqueSourceCount": 5,
+      "duplicatesCollapsed": 9,
       "missingLineage": 0,
       "uniqueOrigins": [
         "issuer:PYPL:Q2:20260728",
-        "zacks:PYPL:Q2:20260728"
+        "zacks:PYPL:Q2:20260728",
+        "sec:1633917:2026Q2",
+        "issuer:PYPL:2026Q2",
+        "stockanalysis:PYPL:20260925"
       ]
     },
     "evidenceWindow": {
       "start": "2026-07-28T00:00:00.000Z",
-      "end": "2026-09-27T06:14:20.000Z",
-      "latestEvidenceGeneratedAt": "2026-09-27T06:14:20.000Z"
+      "end": "2026-09-27T11:17:30.000Z",
+      "latestEvidenceGeneratedAt": "2026-09-27T11:17:30.000Z"
     },
-    "preflightPassed": false
+    "preflightPassed": true
   },
   "capabilitySignals": [
     "financialOperatingMomentum",
@@ -62,7 +64,12 @@
     "substitutionResilience",
     "pricingPower",
     "crossDivisionLeverage",
-    "thesisQuality"
+    "thesisQuality",
+    "dataConfidence",
+    "marketValuationOpportunity",
+    "governancePower",
+    "alignment2036",
+    "supplyChainResilience"
   ],
   "constraintSignals": {
     "risks": [
@@ -70,24 +77,20 @@
       "Adjusted EPS growth remains modest relative to TPV and cash-flow expansion, making transaction-margin execution a key watch item.",
       "Volume growth can coexist with weaker economics if mix shifts toward lower-monetization channels or competitive pricing intensifies.",
       "Competition, channel mix and merchant bargaining can pressure transaction economics despite higher TPV.",
-      "Cash-flow improvement may include timing effects that require Alpha underwriting before being treated as structural."
+      "Cash-flow improvement may include timing effects that require Alpha underwriting before being treated as structural.",
+      "Competitive payment rails and mix can pressure transaction economics."
     ],
     "unknowns": [
       "Durability of engagement gains and monetization across newer Venmo/BNPL products requires continued observation.",
       "How much of the cash-flow improvement is structurally repeatable versus working-capital/timing effects requires Alpha review.",
       "Durability of monetization from newer Venmo and BNPL engagement remains unproven.",
-      "Structural versus timing contribution to current cash-flow improvement is not resolved by the reused sources."
+      "Structural versus timing contribution to current cash-flow improvement is not resolved by the reused sources.",
+      "Durability of newer-product monetization and structural cash-flow improvement remains uncertain.",
+      "Structural repeatability of cash-flow improvement remains unresolved."
     ],
     "contradictions": [],
     "gatingIssues": [],
-    "preflightFailures": [
-      "missing_specialist_perspective:source-integrity",
-      "missing_specialist_perspective:company-underwriting",
-      "missing_factor_evidence",
-      "missing_numeric_score_record",
-      "missing_score_risk_evidence",
-      "missing_data_confidence_evidence"
-    ]
+    "preflightFailures": []
   },
   "causalContext": {
     "mapped": true,
@@ -109,38 +112,7 @@
       }
     ]
   },
-  "improvementWindows": [
-    {
-      "failure": "missing_specialist_perspective:source-integrity",
-      "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:source-integrity?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_specialist_perspective:company-underwriting",
-      "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_factor_evidence",
-      "question": "Which required methodology factor still lacks source-addressed evidence?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_numeric_score_record",
-      "question": "Which source-addressed factor assessments are still required before a reproducible score can be constructed?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_score_risk_evidence",
-      "question": "Which material risks require source-addressed quantitative treatment?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_data_confidence_evidence",
-      "question": "Which evidence-quality dimensions remain insufficiently supported?",
-      "stance": "improvement-oriented"
-    }
-  ],
+  "improvementWindows": [],
   "bridgeInputs": {
     "capabilityCandidates": [
       "financialOperatingMomentum",
@@ -151,18 +123,26 @@
       "substitutionResilience",
       "pricingPower",
       "crossDivisionLeverage",
-      "thesisQuality"
+      "thesisQuality",
+      "dataConfidence",
+      "marketValuationOpportunity",
+      "governancePower",
+      "alignment2036",
+      "supplyChainResilience"
     ],
     "needOrConstraintCandidates": [
       "Durability of engagement gains and monetization across newer Venmo/BNPL products requires continued observation.",
       "How much of the cash-flow improvement is structurally repeatable versus working-capital/timing effects requires Alpha review.",
       "Durability of monetization from newer Venmo and BNPL engagement remains unproven.",
       "Structural versus timing contribution to current cash-flow improvement is not resolved by the reused sources.",
+      "Durability of newer-product monetization and structural cash-flow improvement remains uncertain.",
+      "Structural repeatability of cash-flow improvement remains unresolved.",
       "Payments competition and mix shifts can pressure transaction economics even as TPV grows.",
       "Adjusted EPS growth remains modest relative to TPV and cash-flow expansion, making transaction-margin execution a key watch item.",
       "Volume growth can coexist with weaker economics if mix shifts toward lower-monetization channels or competitive pricing intensifies.",
       "Competition, channel mix and merchant bargaining can pressure transaction economics despite higher TPV.",
-      "Cash-flow improvement may include timing effects that require Alpha underwriting before being treated as structural."
+      "Cash-flow improvement may include timing effects that require Alpha underwriting before being treated as structural.",
+      "Competitive payment rails and mix can pressure transaction economics."
     ],
     "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
   },

@@ -128,7 +128,21 @@ export function materializeCausalProof(graph, ticker, company, structuralRow, sc
   return { graph: next, passed: true, reason: null };
 }
 
-function buildCanonicalRecord(packet, underwriting) {
+function independentPacketSourceUrls(packet) {
+  return [...new Set((packet?.sources || [])
+    .filter((source) => {
+      if (!source?.url) return false;
+      if (source.primary === true || source.kind === "primary" || source.tier === "primary") return false;
+      const classification = [source.kind, source.tier, source.authority, source.sourceFamily]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      return classification.includes("independent");
+    })
+    .map((source) => source.url))];
+}
+
+export function buildCanonicalRecord(packet, underwriting) {
   const score = packet.scoreRecord;
   const factorEvidence = normalizeEvidenceTree(underwriting?.factorEvidence ?? underwriting?.scoreRecord?.factorEvidence, "factor");
   const riskEvidence = normalizeEvidenceTree(underwriting?.riskEvidence ?? underwriting?.scoreRecord?.riskEvidence, "risk");
@@ -167,7 +181,10 @@ function buildCanonicalRecord(packet, underwriting) {
     riskEvidence,
     dataConfidenceEvidence,
     primarySourceUrls: score.primarySourceUrls,
-    independentSourceUrls: Array.isArray(score.independentSourceUrls) ? score.independentSourceUrls : [],
+    independentSourceUrls: [...new Set([
+      ...(Array.isArray(score.independentSourceUrls) ? score.independentSourceUrls : []),
+      ...independentPacketSourceUrls(packet),
+    ])],
     sourceLineage: packet.sourceLineage || null,
     temporalLineage: {
       evidenceWindow: packet.evidenceWindow || null,

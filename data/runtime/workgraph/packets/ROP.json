@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ROP",
   "workId": "t0:ROP",
-  "generatedAt": "2026-09-27T16:58:35.781Z",
+  "generatedAt": "2026-09-27T17:04:22.810Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-23T00:00:00.000Z",
-    "end": "2026-09-21T13:22:17.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T13:22:17.000Z"
+    "end": "2026-09-27T17:03:05.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-27T17:03:05.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -55,13 +55,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/ROP-20260921T110238Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/ROP-20260921T132217Z-council-beta.json"
+    "data/runtime/workgraph/evidence/ROP-20260921T132217Z-council-beta.json",
+    "data/runtime/workgraph/evidence/ROP-20260927T170305Z-earth-scout.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -74,7 +75,10 @@
       "bottleneckControl",
       "financingRisk",
       "integrationRisk",
-      "confidenceInflation"
+      "confidenceInflation",
+      "financialOperatingMomentum",
+      "thesisQuality",
+      "pricingPower"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -186,7 +190,10 @@
     "bottleneckControl",
     "financingRisk",
     "integrationRisk",
-    "confidenceInflation"
+    "confidenceInflation",
+    "financialOperatingMomentum",
+    "thesisQuality",
+    "pricingPower"
   ],
   "riskEvidence": {
     "present": true,
@@ -210,6 +217,16 @@
       {
         "risk": "Higher debt costs can reduce flexibility if acquisition cadence remains high.",
         "gating": false
+      },
+      {
+        "risk": "Net interest expense increased materially year over year, raising the hurdle rate for acquisition-led capital deployment.",
+        "gating": false,
+        "sourceId": "sec:882835:2026q2-10q:20260630"
+      },
+      {
+        "risk": "Net interest expense increased materially year over year, raising the hurdle rate for acquisition-led capital deployment.",
+        "gating": false,
+        "sourceId": "sec:882835:2026q2-10q:20260630"
       }
     ]
   },
@@ -233,6 +250,16 @@
     {
       "risk": "Higher debt costs can reduce flexibility if acquisition cadence remains high.",
       "gating": false
+    },
+    {
+      "risk": "Net interest expense increased materially year over year, raising the hurdle rate for acquisition-led capital deployment.",
+      "gating": false,
+      "sourceId": "sec:882835:2026q2-10q:20260630"
+    },
+    {
+      "risk": "Net interest expense increased materially year over year, raising the hurdle rate for acquisition-led capital deployment.",
+      "gating": false,
+      "sourceId": "sec:882835:2026q2-10q:20260630"
     }
   ],
   "dataConfidenceEvidence": {
@@ -243,7 +270,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
     "present": true,
@@ -289,13 +316,14 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 6,
-    "uniqueSourceCount": 2,
-    "duplicatesCollapsed": 4,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 3,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "roper:2026-q2:10-q",
-      "roper:2026-07-23:q2-8k"
+      "roper:2026-07-23:q2-8k",
+      "sec-edgar:rop:2026q2:10-q"
     ]
   },
   "sources": [
@@ -314,12 +342,33 @@
       "publishedAt": "2026-07-23",
       "originFingerprint": "roper:2026-07-23:q2-8k",
       "sourceId": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/882835/000088283526000036/rop-20260630.htm",
+      "sourceId": "sec:882835:2026q2-10q:20260630",
+      "originFingerprint": "sec-edgar:rop:2026q2:10-q",
+      "kind": "primary-regulatory",
+      "primary": true,
+      "publishedAt": "2026-08-01",
+      "independentFromExistingOrigins": true
     }
   ],
   "contradictions": [
     {
       "claim": "Strong cash generation versus rising financing burden",
       "resolution": "Both are present; cash capacity supports deployment while higher interest expense raises the hurdle rate for new capital allocation.",
+      "resolved": true,
+      "gating": false
+    },
+    {
+      "claim": "Operating growth coexists with a higher financing burden.",
+      "resolution": "Both are directly supported by the SEC filing; Alpha should preserve the financing burden as a risk rather than netting it away against growth.",
+      "resolved": true,
+      "gating": false
+    },
+    {
+      "claim": "Operating growth coexists with a higher financing burden.",
+      "resolution": "Both are directly supported by the SEC filing; Alpha should preserve the financing burden as a risk rather than netting it away against growth.",
       "resolved": true,
       "gating": false
     }
@@ -330,6 +379,18 @@
       {
         "claim": "Strong cash generation versus rising financing burden",
         "resolution": "Both are present; cash capacity supports deployment while higher interest expense raises the hurdle rate for new capital allocation.",
+        "resolved": true,
+        "gating": false
+      },
+      {
+        "claim": "Operating growth coexists with a higher financing burden.",
+        "resolution": "Both are directly supported by the SEC filing; Alpha should preserve the financing burden as a risk rather than netting it away against growth.",
+        "resolved": true,
+        "gating": false
+      },
+      {
+        "claim": "Operating growth coexists with a higher financing burden.",
+        "resolution": "Both are directly supported by the SEC filing; Alpha should preserve the financing burden as a risk rather than netting it away against growth.",
         "resolved": true,
         "gating": false
       }
@@ -347,11 +408,19 @@
     {
       "unknown": "Repurchase valuation and acquisition-level returns are outside the current Beta evidence set.",
       "gating": false
+    },
+    {
+      "unknown": "This source does not establish market valuation opportunity or acquisition-level returns; those remain Alpha-owned.",
+      "gating": false
+    },
+    {
+      "unknown": "This source does not establish market valuation opportunity or acquisition-level returns; those remain Alpha-owned.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 3
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
   "confidence": 90,

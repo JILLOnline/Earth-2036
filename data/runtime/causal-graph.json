@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-27T09:16:15.820Z",
+  "updatedAt": "2026-09-27T11:21:03.115Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1946,6 +1946,42 @@
       "type": "market",
       "label": "motion-control and filtration demand",
       "description": "Parker-Hannifin's motion/control and filtration portfolio sits between industrial/aerospace equipment needs and reliability, fluid-management and contamination-control bottlenecks; the August Filtration Group close broadens that control surface rather than creating a new end need."
+    },
+    {
+      "id": "company:PYPL",
+      "type": "company",
+      "label": "PayPal Holdings",
+      "description": "PayPal connects digital commerce and peer-to-peer money movement needs to payment acceptance, wallet, risk and funding infrastructure; Venmo and BNPL engagement broaden user touchpoints but do not remove dependence on merchant acceptance and transaction economics."
+    },
+    {
+      "id": "market:PYPL-payment-acceptance-and-wallet-usage",
+      "type": "market",
+      "label": "payment acceptance and wallet usage",
+      "description": "PayPal connects digital commerce and peer-to-peer money movement needs to payment acceptance, wallet, risk and funding infrastructure; Venmo and BNPL engagement broaden user touchpoints but do not remove dependence on merchant acceptance and transaction economics."
+    },
+    {
+      "id": "company:QCOM",
+      "type": "company",
+      "label": "Qualcomm",
+      "description": "Qualcomm is extending an edge-compute/mobile silicon and software position into automotive, IoT and data-center/custom-silicon workloads; 28% combined Automotive/IoT growth provides evidence that diversification is already occurring outside handsets."
+    },
+    {
+      "id": "market:QCOM-technology-edge-ai-and-connectivity-silicon",
+      "type": "market",
+      "label": "technology:edge-ai-and-connectivity-silicon",
+      "description": "Qualcomm is extending an edge-compute/mobile silicon and software position into automotive, IoT and data-center/custom-silicon workloads; 28% combined Automotive/IoT growth provides evidence that diversification is already occurring outside handsets."
+    },
+    {
+      "id": "company:QLYS",
+      "type": "company",
+      "label": "Qualys",
+      "description": "Qualys links enterprise cyber-risk reduction needs to cloud-delivered asset visibility, vulnerability and exposure-management tooling; recurring demand is supported by expanding attack surfaces, while the structural bottleneck is converting visibility into prioritized remediation within crowded security stacks."
+    },
+    {
+      "id": "market:QLYS-exposure-visibility-remediation-need",
+      "type": "market",
+      "label": "exposure visibility/remediation need",
+      "description": "Qualys links enterprise cyber-risk reduction needs to cloud-delivered asset visibility, vulnerability and exposure-management tooling; recurring demand is supported by expanding attack surfaces, while the structural bottleneck is converting visibility into prioritized remediation within crowded security stacks."
     }
   ],
   "edges": [
@@ -4456,6 +4492,50 @@
         "issuer:PH:FiltrationClose"
       ],
       "observedAt": "2026-09-21T11:24:00Z"
+    },
+    {
+      "id": "edge:PYPL-structural-exposure",
+      "from": "company:PYPL",
+      "to": "market:PYPL-payment-acceptance-and-wallet-usage",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:PYPL:Q2-2026",
+        "independent:PYPL:Q2-2026:Zacks"
+      ],
+      "observedAt": "2026-09-21T11:24:01Z"
+    },
+    {
+      "id": "edge:QCOM-structural-exposure",
+      "from": "company:QCOM",
+      "to": "market:QCOM-technology-edge-ai-and-connectivity-silicon",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:QCOM:FY26Q3"
+      ],
+      "observedAt": "2026-09-21T00:24:18Z"
+    },
+    {
+      "id": "edge:QLYS-structural-exposure",
+      "from": "company:QLYS",
+      "to": "market:QLYS-exposure-visibility-remediation-need",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 85,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "qualys:q2-2026",
+        "qualys:q1-2026"
+      ],
+      "observedAt": "2026-09-21T11:24:02Z"
     }
   ],
   "structuralSignals": [
@@ -7583,6 +7663,62 @@
       ],
       "observedAt": "2026-09-21T11:24:00Z",
       "thesis": "Parker-Hannifin's motion/control and filtration portfolio sits between industrial/aerospace equipment needs and reliability, fluid-management and contamination-control bottlenecks; the August Filtration Group close broadens that control surface rather than creating a new end need.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:PYPL-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:PYPL-payment-acceptance-and-wallet-usage",
+      "affectedNodeIds": [
+        "company:PYPL"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:PYPL:Q2-2026",
+        "independent:PYPL:Q2-2026:Zacks"
+      ],
+      "observedAt": "2026-09-21T11:24:01Z",
+      "thesis": "PayPal connects digital commerce and peer-to-peer money movement needs to payment acceptance, wallet, risk and funding infrastructure; Venmo and BNPL engagement broaden user touchpoints but do not remove dependence on merchant acceptance and transaction economics.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:QCOM-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:QCOM-technology-edge-ai-and-connectivity-silicon",
+      "affectedNodeIds": [
+        "company:QCOM"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:QCOM:FY26Q3"
+      ],
+      "observedAt": "2026-09-21T00:24:18Z",
+      "thesis": "Qualcomm is extending an edge-compute/mobile silicon and software position into automotive, IoT and data-center/custom-silicon workloads; 28% combined Automotive/IoT growth provides evidence that diversification is already occurring outside handsets.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:QLYS-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:QLYS-exposure-visibility-remediation-need",
+      "affectedNodeIds": [
+        "company:QLYS"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 85,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "qualys:q2-2026",
+        "qualys:q1-2026"
+      ],
+      "observedAt": "2026-09-21T11:24:02Z",
+      "thesis": "Qualys links enterprise cyber-risk reduction needs to cloud-delivered asset visibility, vulnerability and exposure-management tooling; recurring demand is supported by expanding attack surfaces, while the structural bottleneck is converting visibility into prioritized remediation within crowded security stacks.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-27T11:21:03.115Z",
+  "updatedAt": "2026-09-27T14:19:43.239Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1982,6 +1982,18 @@
       "type": "market",
       "label": "exposure visibility/remediation need",
       "description": "Qualys links enterprise cyber-risk reduction needs to cloud-delivered asset visibility, vulnerability and exposure-management tooling; recurring demand is supported by expanding attack surfaces, while the structural bottleneck is converting visibility into prioritized remediation within crowded security stacks."
+    },
+    {
+      "id": "company:QRVO",
+      "type": "company",
+      "label": "Qorvo",
+      "description": "Qorvo links RF connectivity and power-management technology to wireless device, infrastructure and defense connectivity needs; FY2026 mix repair indicates management is reducing exposure to lower-margin mass-market Android business while retaining higher-value applications."
+    },
+    {
+      "id": "market:QRVO-rf-and-power-component-demand",
+      "type": "market",
+      "label": "RF and power component demand",
+      "description": "Qorvo links RF connectivity and power-management technology to wireless device, infrastructure and defense connectivity needs; FY2026 mix repair indicates management is reducing exposure to lower-margin mass-market Android business while retaining higher-value applications."
     }
   ],
   "edges": [
@@ -4536,6 +4548,21 @@
         "qualys:q1-2026"
       ],
       "observedAt": "2026-09-21T11:24:02Z"
+    },
+    {
+      "id": "edge:QRVO-structural-exposure",
+      "from": "company:QRVO",
+      "to": "market:QRVO-rf-and-power-component-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 89,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "qorvo:10-k:fy2026",
+        "qorvo-skyworks:merger"
+      ],
+      "observedAt": "2026-09-21T11:24:03Z"
     }
   ],
   "structuralSignals": [
@@ -7719,6 +7746,25 @@
       ],
       "observedAt": "2026-09-21T11:24:02Z",
       "thesis": "Qualys links enterprise cyber-risk reduction needs to cloud-delivered asset visibility, vulnerability and exposure-management tooling; recurring demand is supported by expanding attack surfaces, while the structural bottleneck is converting visibility into prioritized remediation within crowded security stacks.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:QRVO-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:QRVO-rf-and-power-component-demand",
+      "affectedNodeIds": [
+        "company:QRVO"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 89,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "qorvo:10-k:fy2026",
+        "qorvo-skyworks:merger"
+      ],
+      "observedAt": "2026-09-21T11:24:03Z",
+      "thesis": "Qorvo links RF connectivity and power-management technology to wireless device, infrastructure and defense connectivity needs; FY2026 mix repair indicates management is reducing exposure to lower-margin mass-market Android business while retaining higher-value applications.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

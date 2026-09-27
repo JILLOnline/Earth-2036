@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-27T08:14:23.602Z",
+  "updatedAt": "2026-09-27T09:16:15.820Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1934,6 +1934,18 @@
       "type": "market",
       "label": "grid capacity requirement",
       "description": "PSEG combines regulated grid infrastructure with 3,758 MW of carbon-free baseload nuclear capacity, linking electricity reliability and rising peak demand to transmission/distribution investment and firm generation."
+    },
+    {
+      "id": "company:PH",
+      "type": "company",
+      "label": "Parker-Hannifin",
+      "description": "Parker-Hannifin's motion/control and filtration portfolio sits between industrial/aerospace equipment needs and reliability, fluid-management and contamination-control bottlenecks; the August Filtration Group close broadens that control surface rather than creating a new end need."
+    },
+    {
+      "id": "market:PH-motion-control-and-filtration-demand",
+      "type": "market",
+      "label": "motion-control and filtration demand",
+      "description": "Parker-Hannifin's motion/control and filtration portfolio sits between industrial/aerospace equipment needs and reliability, fluid-management and contamination-control bottlenecks; the August Filtration Group close broadens that control surface rather than creating a new end need."
     }
   ],
   "edges": [
@@ -4429,6 +4441,21 @@
         "issuer:PEG:2026Q2"
       ],
       "observedAt": "2026-09-21T10:25:44Z"
+    },
+    {
+      "id": "edge:PH-structural-exposure",
+      "from": "company:PH",
+      "to": "market:PH-motion-control-and-filtration-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 90,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:PH:FY26",
+        "issuer:PH:FiltrationClose"
+      ],
+      "observedAt": "2026-09-21T11:24:00Z"
     }
   ],
   "structuralSignals": [
@@ -7537,6 +7564,25 @@
       ],
       "observedAt": "2026-09-21T10:25:44Z",
       "thesis": "PSEG combines regulated grid infrastructure with 3,758 MW of carbon-free baseload nuclear capacity, linking electricity reliability and rising peak demand to transmission/distribution investment and firm generation.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:PH-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:PH-motion-control-and-filtration-demand",
+      "affectedNodeIds": [
+        "company:PH"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 90,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:PH:FY26",
+        "issuer:PH:FiltrationClose"
+      ],
+      "observedAt": "2026-09-21T11:24:00Z",
+      "thesis": "Parker-Hannifin's motion/control and filtration portfolio sits between industrial/aerospace equipment needs and reliability, fluid-management and contamination-control bottlenecks; the August Filtration Group close broadens that control surface rather than creating a new end need.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

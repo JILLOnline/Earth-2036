@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "ticker": "VST",
+  "entityId": "VST",
+  "workId": "t0:VST",
+  "role": "council-beta",
+  "perspective": "assist-risk-source-support",
+  "generatedAt": "2026-09-27T18:22:04Z",
+  "assist": {
+    "requestId": "assist:VST:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "10afbc0605da57921118",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support"
+  },
+  "claims": [
+    {
+      "claim": "Vistra's June 30, 2026 liquidity was approximately $6.295 billion, but commodity hedging still required $1.874 billion of posted cash/eligible assets and $3.006 billion of posted letters of credit, making collateral demand a source-addressed liquidity sensitivity rather than a merely theoretical risk.",
+      "status": "supported"
+    },
+    {
+      "claim": "Vistra's capital structure continued to evolve after the prior Beta evidence window: on September 10, 2026 the company priced $1.5 billion of junior subordinated notes. This does not by itself establish financial distress, but it is relevant to Alpha's treatment of financing/refinancing risk and capital-structure complexity.",
+      "status": "supported"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000019/vistra-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-10",
+      "originFingerprint": "sec:VST:2026Q2:10Q:2026-08-10"
+    },
+    {
+      "url": "https://investor.vistracorp.com/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-10",
+      "originFingerprint": "issuer:VST:2026-09-10:junior-subordinated-notes"
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Commodity-market volatility can increase collateral posting requirements and consume otherwise available liquidity even when long-run demand remains favorable.",
+      "gating": false,
+      "observedBasis": "$1.874B cash/eligible assets and $3.006B letters of credit posted for commodity hedging/trading at June 30, 2026."
+    },
+    {
+      "risk": "Additional hybrid/debt issuance can increase fixed or quasi-fixed capital claims and refinancing complexity; the September 2026 junior subordinated issuance is evidence of continued capital-market use, not evidence of distress by itself.",
+      "gating": false
+    }
+  ],
+  "contradictions": [],
+  "unknowns": [
+    {
+      "unknown": "The incremental annual cash-cost and exact leverage treatment of the September junior subordinated notes are not established in this bounded assist artifact.",
+      "gating": false
+    }
+  ],
+  "causalEdges": [
+    {
+      "from": "commodity price volatility",
+      "to": "collateral posting requirements",
+      "mechanism": "hedging and trading positions can require cash, eligible assets, or letters of credit as market values move",
+      "falsifier": "future stressed commodity periods show immaterial collateral usage relative to liquidity because contracting/hedging structure consistently dampens margin demands"
+    },
+    {
+      "from": "capital-market financing",
+      "to": "capital-structure obligations",
+      "mechanism": "new junior subordinated securities add contractual capital claims while extending financing capacity",
+      "falsifier": "the securities are retired/refinanced without material cash-cost or leverage impact and liquidity remains ample across stress cases"
+    }
+  ],
+  "confidence": 96,
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "lineage": {
+    "supersedes": null,
+    "extends": "data/runtime/workgraph/evidence/VST-20260919T112450Z-council-beta.json"
+  },
+  "doctrineFraming": {
+    "observedWeakness": "Collateral requirements and continuing capital-market activity are measurable financing sensitivities.",
+    "uncertainty": "Their appropriate numeric score impact remains Alpha-owned and requires full underwriting context.",
+    "possibleImprovement": "Greater contracted cash-flow visibility and lower stressed collateral intensity would improve resilience.",
+    "verificationEvidence": "Future filings showing collateral intensity, liquidity headroom, debt/hybrid service cost and contracted cash-flow coverage under stress."
+  }
+}

@@ -4,8 +4,8 @@
   "canonicalWriteAuthority": false,
   "ticker": "VST",
   "workId": "t0:VST",
-  "inputSignature": "ff87d464384b5aaf98d396eb",
-  "sourceState": "researching",
+  "inputSignature": "014da8626a8061e3a67ec9ea",
+  "sourceState": "chief_ready",
   "identity": {
     "ticker": "VST",
     "company": "Vistra",
@@ -31,17 +31,16 @@
       "structural-causal",
       "adversarial-red-team",
       "assist-risk-source-support",
-      "assist-source-acquisition"
-    ],
-    "missingPerspectives": [
+      "assist-source-acquisition",
       "source-integrity",
       "company-underwriting"
     ],
+    "missingPerspectives": [],
     "primarySourceCount": 6,
     "sourceLineage": {
-      "rawSourceCount": 11,
-      "uniqueSourceCount": 6,
-      "duplicatesCollapsed": 5,
+      "rawSourceCount": 21,
+      "uniqueSourceCount": 7,
+      "duplicatesCollapsed": 14,
       "missingLineage": 0,
       "uniqueOrigins": [
         "vst:q2-2026:2026-08-07",
@@ -49,15 +48,16 @@
         "sec:VST:2026Q2:10Q:2026-08-10",
         "issuer:VST:2026-09-10:junior-subordinated-notes",
         "independent:pJM:rto-load-forecast-shortfall:2026-02-19",
-        "independent:pJM:large-load-reliability-event:2026-09-10"
+        "independent:pJM:large-load-reliability-event:2026-09-10",
+        "stockanalysis:VST:valuation:20260925"
       ]
     },
     "evidenceWindow": {
       "start": "2026-02-19T00:00:00.000Z",
-      "end": "2026-09-27T19:24:34.000Z",
-      "latestEvidenceGeneratedAt": "2026-09-27T19:24:34.000Z"
+      "end": "2026-09-27T20:12:53.000Z",
+      "latestEvidenceGeneratedAt": "2026-09-27T20:12:53.000Z"
     },
-    "preflightPassed": false
+    "preflightPassed": true
   },
   "capabilitySignals": [
     "AI-load and generation optionality",
@@ -80,7 +80,13 @@
       "Commodity-market volatility can increase collateral posting requirements and consume otherwise available liquidity even when long-run demand remains favorable.",
       "Additional hybrid/debt issuance can increase fixed or quasi-fixed capital claims and refinancing complexity; the September 2026 junior subordinated issuance is evidence of continued capital-market use, not evidence of distress by itself.",
       "Large computational loads can disconnect abruptly and create reliability-management requirements; regulatory/interconnection responses may change how quickly or under what conditions new load converts into generator demand and economics.",
-      "Large-load growth can create grid-management and interconnection constraints that alter the timing, conditions or economics of incremental generator demand."
+      "Large-load growth can create grid-management and interconnection constraints that alter the timing, conditions or economics of incremental generator demand.",
+      "Independent market valuation is time-sensitive; issuer operating claims remain issuer-origin facts unless independently corroborated.",
+      "merchant power and capacity-price exposure",
+      "commodity collateral and refinancing sensitivity",
+      "acquisition/integration and outage risk",
+      "large-load interconnection/reliability conversion risk",
+      "valuation dependence on sustained EBITDA and load-growth expectations"
     ],
     "unknowns": [
       "Helix project-level economics and committed megawatts are not established in the cited release.",
@@ -90,18 +96,15 @@
       "The incremental annual cash-cost and exact leverage treatment of the September junior subordinated notes are not established in this bounded assist artifact.",
       "PJM system-level demand evidence does not establish Vistra-specific contracted MW, realized price, margin, or project conversion economics.",
       "Alpha must still construct the numeric underwriting and determine how much weight this independent system evidence merits under Methodology 1.0.",
-      "The PJM evidence is system-level and does not establish Vistra-specific contracted MW, realized price, margin or Helix project economics."
+      "The PJM evidence is system-level and does not establish Vistra-specific contracted MW, realized price, margin or Helix project economics.",
+      "Helix project-level committed MW, pricing and margin economics remain undisclosed in the reviewed evidence.",
+      "Vistra-specific Helix contracted MW and project margins",
+      "full economics of pending Cogentrix contribution",
+      "future collateral intensity under stressed commodity markets"
     ],
     "contradictions": [],
     "gatingIssues": [],
-    "preflightFailures": [
-      "missing_specialist_perspective:source-integrity",
-      "missing_specialist_perspective:company-underwriting",
-      "missing_factor_evidence",
-      "missing_numeric_score_record",
-      "missing_score_risk_evidence",
-      "missing_data_confidence_evidence"
-    ]
+    "preflightFailures": []
   },
   "causalContext": {
     "mapped": true,
@@ -162,38 +165,7 @@
       }
     ]
   },
-  "improvementWindows": [
-    {
-      "failure": "missing_specialist_perspective:source-integrity",
-      "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:source-integrity?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_specialist_perspective:company-underwriting",
-      "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_factor_evidence",
-      "question": "Which required methodology factor still lacks source-addressed evidence?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_numeric_score_record",
-      "question": "Which source-addressed factor assessments are still required before a reproducible score can be constructed?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_score_risk_evidence",
-      "question": "Which material risks require source-addressed quantitative treatment?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_data_confidence_evidence",
-      "question": "Which evidence-quality dimensions remain insufficiently supported?",
-      "stance": "improvement-oriented"
-    }
-  ],
+  "improvementWindows": [],
   "bridgeInputs": {
     "capabilityCandidates": [
       "AI-load and generation optionality",
@@ -214,6 +186,10 @@
       "PJM system-level demand evidence does not establish Vistra-specific contracted MW, realized price, margin, or project conversion economics.",
       "Alpha must still construct the numeric underwriting and determine how much weight this independent system evidence merits under Methodology 1.0.",
       "The PJM evidence is system-level and does not establish Vistra-specific contracted MW, realized price, margin or Helix project economics.",
+      "Helix project-level committed MW, pricing and margin economics remain undisclosed in the reviewed evidence.",
+      "Vistra-specific Helix contracted MW and project margins",
+      "full economics of pending Cogentrix contribution",
+      "future collateral intensity under stressed commodity markets",
       "Power-market exposure, acquisition integration, permitting and large-load project timing can alter realized economics.",
       "GAAP earnings remain sensitive to hedge mark-to-market movements and realized power prices.",
       "Permitting, interconnection, commodity prices and data-center project timing can prevent scarcity from converting into expected contracted economics.",
@@ -223,7 +199,13 @@
       "Commodity-market volatility can increase collateral posting requirements and consume otherwise available liquidity even when long-run demand remains favorable.",
       "Additional hybrid/debt issuance can increase fixed or quasi-fixed capital claims and refinancing complexity; the September 2026 junior subordinated issuance is evidence of continued capital-market use, not evidence of distress by itself.",
       "Large computational loads can disconnect abruptly and create reliability-management requirements; regulatory/interconnection responses may change how quickly or under what conditions new load converts into generator demand and economics.",
-      "Large-load growth can create grid-management and interconnection constraints that alter the timing, conditions or economics of incremental generator demand."
+      "Large-load growth can create grid-management and interconnection constraints that alter the timing, conditions or economics of incremental generator demand.",
+      "Independent market valuation is time-sensitive; issuer operating claims remain issuer-origin facts unless independently corroborated.",
+      "merchant power and capacity-price exposure",
+      "commodity collateral and refinancing sensitivity",
+      "acquisition/integration and outage risk",
+      "large-load interconnection/reliability conversion risk",
+      "valuation dependence on sustained EBITDA and load-growth expectations"
     ],
     "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
   },

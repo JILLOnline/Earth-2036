@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-27T01:16:33.257Z",
+  "updatedAt": "2026-09-27T05:16:17.257Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1898,6 +1898,30 @@
       "type": "market",
       "label": "machine perception demand",
       "description": "autonomous systems require reliable environment sensing and localization"
+    },
+    {
+      "id": "company:PANW",
+      "type": "company",
+      "label": "Palo Alto Networks, Inc.",
+      "description": "Enterprise AI and cloud expansion increase attack surface across network, cloud, endpoint, identity and agents; Palo Alto Networks is structurally attempting to collapse those control surfaces into integrated security platforms."
+    },
+    {
+      "id": "market:PANW-security-attack-surface",
+      "type": "market",
+      "label": "security attack surface",
+      "description": "more identities, endpoints, services and automated agents create additional control points and telemetry"
+    },
+    {
+      "id": "company:PCG",
+      "type": "company",
+      "label": "PG&E Corporation",
+      "description": "PG&E occupies a physical grid bottleneck between growing electricity demand and reliable delivery; data-center demand can increase infrastructure utilization, while sensors, smart-meter data and machine learning can reduce ignition and outage risk."
+    },
+    {
+      "id": "market:PCG-grid-capacity-demand",
+      "type": "market",
+      "label": "grid capacity demand",
+      "description": "PG&E occupies a physical grid bottleneck between growing electricity demand and reliable delivery; data-center demand can increase infrastructure utilization, while sensors, smart-meter data and machine learning can reduce ignition and outage risk."
     }
   ],
   "edges": [
@@ -4349,6 +4373,36 @@
         "sec:OUST:10-Q:2026-06-30"
       ],
       "observedAt": "2026-09-21T09:24:11Z"
+    },
+    {
+      "id": "edge:PANW-structural-exposure",
+      "from": "company:PANW",
+      "to": "market:PANW-security-attack-surface",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 93,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "sec:PANW:10-K:2026-07-31",
+        "panw-ir:2026-09-01:fy2026-results"
+      ],
+      "observedAt": "2026-09-21T09:24:11Z"
+    },
+    {
+      "id": "edge:PCG-structural-exposure",
+      "from": "company:PCG",
+      "to": "market:PCG-grid-capacity-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 90,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "pcg-ir:2026-07-23:q2-results",
+        "pcg-ir:2026-05-01:continuous-monitoring-center"
+      ],
+      "observedAt": "2026-09-21T10:25:44Z"
     }
   ],
   "structuralSignals": [
@@ -7402,6 +7456,44 @@
       "observedAt": "2026-09-21T09:24:11Z",
       "thesis": "Physical automation requires machines to perceive and localize in dynamic environments; Ouster's combined lidar, stereo vision, compute and perception software maps directly to that sensing-to-action bottleneck across robotics, industrial and infrastructure use cases.",
       "falsifier": "target applications standardize on lower-cost modalities that materially reduce lidar/stereo demand"
+    },
+    {
+      "id": "signal:PANW-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:PANW-security-attack-surface",
+      "affectedNodeIds": [
+        "company:PANW"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 93,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "sec:PANW:10-K:2026-07-31",
+        "panw-ir:2026-09-01:fy2026-results"
+      ],
+      "observedAt": "2026-09-21T09:24:11Z",
+      "thesis": "Enterprise AI and cloud expansion increase attack surface across network, cloud, endpoint, identity and agents; Palo Alto Networks is structurally attempting to collapse those control surfaces into integrated security platforms.",
+      "falsifier": "security responsibility shifts structurally into infrastructure layers that reduce demand for independent enterprise security platforms"
+    },
+    {
+      "id": "signal:PCG-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:PCG-grid-capacity-demand",
+      "affectedNodeIds": [
+        "company:PCG"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 90,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "pcg-ir:2026-07-23:q2-results",
+        "pcg-ir:2026-05-01:continuous-monitoring-center"
+      ],
+      "observedAt": "2026-09-21T10:25:44Z",
+      "thesis": "PG&E occupies a physical grid bottleneck between growing electricity demand and reliable delivery; data-center demand can increase infrastructure utilization, while sensors, smart-meter data and machine learning can reduce ignition and outage risk.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],
   "roadmapMilestones": [

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CAMT",
   "workId": "t0:CAMT",
-  "generatedAt": "2026-09-27T20:16:28.028Z",
+  "generatedAt": "2026-09-27T20:29:26.620Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-10T00:00:00.000Z",
-    "end": "2026-09-22T06:26:03.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-22T06:26:03.000Z"
+    "end": "2026-09-27T20:28:17.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-27T20:28:17.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -55,13 +55,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/CAMT-20260919T100501Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/CAMT-20260922T062603Z-council-beta.json"
+    "data/runtime/workgraph/evidence/CAMT-20260922T062603Z-council-beta.json",
+    "data/runtime/workgraph/evidence/CAMT-20260927T202817Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 5,
+    "historicalEvidenceCount": 5
   },
   "factorEvidence": {
     "names": [
@@ -74,7 +75,8 @@
       "scenarioRobustness",
       "substitutionResilience",
       "governancePower",
-      "supplyChainResilience"
+      "supplyChainResilience",
+      "dataConfidence"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -157,7 +159,8 @@
     "scenarioRobustness",
     "substitutionResilience",
     "governancePower",
-    "supplyChainResilience"
+    "supplyChainResilience",
+    "dataConfidence"
   ],
   "riskEvidence": {
     "present": true,
@@ -188,6 +191,14 @@
       },
       {
         "risk": "GAAP margin compression during rapid order growth can indicate integration/operating-cost drag even when non-GAAP profitability remains strong.",
+        "gating": false
+      },
+      {
+        "risk": "Operating-margin compression was already visible before the Visual Layer acquisition closed, so sustainable cost leverage remains a live execution question despite strong advanced-packaging demand.",
+        "gating": false
+      },
+      {
+        "risk": "Quarterly operating cash flow has lagged GAAP net income in both Q1 and Q2 2026; working-capital and cash-conversion durability should be reconciled by Alpha using the underlying filings before high financial-confidence treatment.",
         "gating": false
       }
     ]
@@ -220,6 +231,14 @@
     {
       "risk": "GAAP margin compression during rapid order growth can indicate integration/operating-cost drag even when non-GAAP profitability remains strong.",
       "gating": false
+    },
+    {
+      "risk": "Operating-margin compression was already visible before the Visual Layer acquisition closed, so sustainable cost leverage remains a live execution question despite strong advanced-packaging demand.",
+      "gating": false
+    },
+    {
+      "risk": "Quarterly operating cash flow has lagged GAAP net income in both Q1 and Q2 2026; working-capital and cash-conversion durability should be reconciled by Alpha using the underlying filings before high financial-confidence treatment.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -230,7 +249,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 5
+    "count": 6
   },
   "causalMapping": {
     "present": true,
@@ -280,16 +299,17 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 8,
-    "uniqueSourceCount": 5,
-    "duplicatesCollapsed": 3,
+    "rawSourceCount": 10,
+    "uniqueSourceCount": 6,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:CAMT:AI-HBM-orders:20260602",
       "issuer:CAMT:OSAT-orders:20260330",
       "issuer:CAMT:2026Q2:20260810",
       "sec:CAMT:2025FY:20260319",
-      "issuer:CAMT:Hawk-IDM:20260210"
+      "issuer:CAMT:Hawk-IDM:20260210",
+      "issuer:CAMT:2026Q1:20260512"
     ]
   },
   "sources": [
@@ -332,6 +352,14 @@
       "primary": true,
       "publishedAt": "2026-02-10",
       "originFingerprint": "issuer:CAMT:Hawk-IDM:20260210"
+    },
+    {
+      "sourceId": "issuer:CAMT:2026Q1",
+      "url": "https://www.camtek.com/news-and-events/camtek-announces-results-for-the-first-quarter-of-2026/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-12",
+      "originFingerprint": "issuer:CAMT:2026Q1:20260512"
     }
   ],
   "contradictions": [
@@ -342,10 +370,15 @@
       "contradiction": "Record revenue and >$600M year-to-date orders coexist with materially weaker GAAP operating margin and net income year over year.",
       "material": true,
       "disposition": "retain_for_deep_resolver_margin_reconciliation"
+    },
+    {
+      "contradiction": "Rapid order acceleration and improving revenue guidance coexist with pre-acquisition operating-margin compression and comparatively weak operating cash conversion.",
+      "material": true,
+      "disposition": "clarified_not_resolved: acquisition effects cannot fully explain the margin pattern; Alpha should quantify recurring versus temporary cost/cash-conversion drivers from source-addressed filings."
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 3,
     "items": [
       {
         "contradiction": "Strong order/revenue acceleration coexists with weaker GAAP profitability year over year; margin quality must be reconciled before high execution confidence."
@@ -354,6 +387,11 @@
         "contradiction": "Record revenue and >$600M year-to-date orders coexist with materially weaker GAAP operating margin and net income year over year.",
         "material": true,
         "disposition": "retain_for_deep_resolver_margin_reconciliation"
+      },
+      {
+        "contradiction": "Rapid order acceleration and improving revenue guidance coexist with pre-acquisition operating-margin compression and comparatively weak operating cash conversion.",
+        "material": true,
+        "disposition": "clarified_not_resolved: acquisition effects cannot fully explain the margin pattern; Alpha should quantify recurring versus temporary cost/cash-conversion drivers from source-addressed filings."
       }
     ]
   },
@@ -373,11 +411,15 @@
     {
       "unknown": "Exact customer identities, order cancellation protections and per-system margins are undisclosed.",
       "gating": false
+    },
+    {
+      "unknown": "The share of 2026 margin compression attributable to recurring R&D/SG&A expansion, acquisition-related amortization/integration, mix, or other items is not established by these earnings releases alone.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
   "confidence": 91,

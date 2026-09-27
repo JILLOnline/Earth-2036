@@ -4,8 +4,8 @@
   "canonicalWriteAuthority": false,
   "ticker": "QRVO",
   "workId": "t0:QRVO",
-  "inputSignature": "0245f9876ea123023461f06d",
-  "sourceState": "researching",
+  "inputSignature": "ef78699346e966e56be16c19",
+  "sourceState": "chief_ready",
   "identity": {
     "ticker": "QRVO",
     "company": "Qorvo",
@@ -29,30 +29,30 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
-    ],
-    "missingPerspectives": [
+      "adversarial-red-team",
       "source-integrity",
       "company-underwriting"
     ],
+    "missingPerspectives": [],
     "primarySourceCount": 3,
     "sourceLineage": {
-      "rawSourceCount": 9,
-      "uniqueSourceCount": 3,
-      "duplicatesCollapsed": 6,
+      "rawSourceCount": 17,
+      "uniqueSourceCount": 4,
+      "duplicatesCollapsed": 13,
       "missingLineage": 0,
       "uniqueOrigins": [
         "qorvo:10-k:fy2026",
         "qorvo-skyworks:merger-announcement",
-        "qorvo:2026-07-15:fq1-event"
+        "qorvo:2026-07-15:fq1-event",
+        "stockanalysis:qrvo:2026-09-25"
       ]
     },
     "evidenceWindow": {
       "start": "2025-10-28T00:00:00.000Z",
-      "end": "2026-09-21T11:24:03.000Z",
-      "latestEvidenceGeneratedAt": "2026-09-21T11:24:03.000Z"
+      "end": "2026-09-27T14:17:28.000Z",
+      "latestEvidenceGeneratedAt": "2026-09-27T14:17:28.000Z"
     },
-    "preflightPassed": false
+    "preflightPassed": true
   },
   "capabilitySignals": [
     "mix quality",
@@ -66,7 +66,12 @@
     "supplyChainResilience",
     "thesisQuality",
     "financialOperatingMomentum",
-    "governancePower"
+    "governancePower",
+    "provenance",
+    "freshness",
+    "duplicate-origin collapse",
+    "source independence",
+    "underwriting"
   ],
   "constraintSignals": {
     "risks": [
@@ -74,24 +79,21 @@
       "Standalone forecasts are unusually uncertain while merger closing remains pending.",
       "Merger transition can delay standalone strategic feedback and create integration/product-overlap uncertainty.",
       "Regulatory/closing conditions and integration execution can impair expected combination benefits.",
-      "Discontinued forward guidance weakens normal expectation visibility during the transition."
+      "Discontinued forward guidance weakens normal expectation visibility during the transition.",
+      "Operating evidence has limited independent corroboration, reducing confidence rather than being treated as favorable.",
+      "Discontinued forward guidance weakens standalone expectation visibility."
     ],
     "unknowns": [
       "Post-merger product rationalization and synergy realization are not yet observable.",
       "No Scout valuation conclusion is asserted.",
       "Post-merger product rationalization, synergy capture and customer response are not yet observable.",
-      "Standalone forward operating trajectory cannot be cleanly separated from transaction effects using current evidence."
+      "Standalone forward operating trajectory cannot be cleanly separated from transaction effects using current evidence.",
+      "Standalone forward guidance is unavailable during the pending Skyworks transaction.",
+      "Post-merger synergy realization, product rationalization and customer response remain unobservable."
     ],
     "contradictions": [],
     "gatingIssues": [],
-    "preflightFailures": [
-      "missing_specialist_perspective:source-integrity",
-      "missing_specialist_perspective:company-underwriting",
-      "missing_factor_evidence",
-      "missing_numeric_score_record",
-      "missing_score_risk_evidence",
-      "missing_data_confidence_evidence"
-    ]
+    "preflightFailures": []
   },
   "causalContext": {
     "mapped": true,
@@ -110,41 +112,25 @@
         "from": "pending Skyworks combination",
         "to": "integration and portfolio-rationalization dependency",
         "relation": "creates"
+      },
+      {
+        "from": "wireless/connectivity and power demand",
+        "to": "RF/power semiconductor demand",
+        "relation": "drives"
+      },
+      {
+        "from": "mix shift away from lower-margin mass-market exposure",
+        "to": "gross margin and cash conversion",
+        "relation": "supports"
+      },
+      {
+        "from": "pending Skyworks combination",
+        "to": "scale opportunity and integration dependency",
+        "relation": "creates"
       }
     ]
   },
-  "improvementWindows": [
-    {
-      "failure": "missing_specialist_perspective:source-integrity",
-      "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:source-integrity?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_specialist_perspective:company-underwriting",
-      "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:company-underwriting?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_factor_evidence",
-      "question": "Which required methodology factor still lacks source-addressed evidence?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_numeric_score_record",
-      "question": "Which source-addressed factor assessments are still required before a reproducible score can be constructed?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_score_risk_evidence",
-      "question": "Which material risks require source-addressed quantitative treatment?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_data_confidence_evidence",
-      "question": "Which evidence-quality dimensions remain insufficiently supported?",
-      "stance": "improvement-oriented"
-    }
-  ],
+  "improvementWindows": [],
   "bridgeInputs": {
     "capabilityCandidates": [
       "mix quality",
@@ -158,18 +144,27 @@
       "supplyChainResilience",
       "thesisQuality",
       "financialOperatingMomentum",
-      "governancePower"
+      "governancePower",
+      "provenance",
+      "freshness",
+      "duplicate-origin collapse",
+      "source independence",
+      "underwriting"
     ],
     "needOrConstraintCandidates": [
       "Post-merger product rationalization and synergy realization are not yet observable.",
       "No Scout valuation conclusion is asserted.",
       "Post-merger product rationalization, synergy capture and customer response are not yet observable.",
       "Standalone forward operating trajectory cannot be cleanly separated from transaction effects using current evidence.",
+      "Standalone forward guidance is unavailable during the pending Skyworks transaction.",
+      "Post-merger synergy realization, product rationalization and customer response remain unobservable.",
       "Merger approvals and closing conditions remain external dependencies.",
       "Standalone forecasts are unusually uncertain while merger closing remains pending.",
       "Merger transition can delay standalone strategic feedback and create integration/product-overlap uncertainty.",
       "Regulatory/closing conditions and integration execution can impair expected combination benefits.",
-      "Discontinued forward guidance weakens normal expectation visibility during the transition."
+      "Discontinued forward guidance weakens normal expectation visibility during the transition.",
+      "Operating evidence has limited independent corroboration, reducing confidence rather than being treated as favorable.",
+      "Discontinued forward guidance weakens standalone expectation visibility."
     ],
     "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
   },

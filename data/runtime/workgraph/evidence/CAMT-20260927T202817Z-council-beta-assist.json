@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "contract": "earth2036-assist-evidence-v1",
+  "ticker": "CAMT",
+  "entityId": "CAMT",
+  "workId": "t0:CAMT",
+  "role": "council-beta",
+  "capability": "risk-source-support",
+  "generatedAt": "2026-09-27T20:28:17Z",
+  "requestId": "assist:CAMT:council-alpha:council-beta:risk-source-support",
+  "inputSignature": "ac004effc8f67975af6b",
+  "rootOwner": "council-alpha",
+  "claims": [
+    {
+      "claim": "Camtek's operating-margin compression predates completion of the Visual Layer acquisition: Q1 2026 GAAP operating margin was 22.4% versus 27.6% a year earlier, and non-GAAP operating margin was 25.5% versus 31.5%, while revenue increased only 2.5%. This makes it unsafe to attribute the later Q2 margin compression solely to acquisition accounting or integration costs.",
+      "status": "supported",
+      "use": "Alpha risk-source support; distinguish demand momentum from operating-leverage and cost-base risk without setting a numeric risk score."
+    },
+    {
+      "claim": "Q1 2026 operating cash flow was $3.1 million versus $31.6 million GAAP net income, while Q2 operating cash flow improved to $12.2 million alongside $23.3 million GAAP net income. The two-quarter pattern supports treating cash conversion and margin normalization as evidence questions even as order momentum strengthens.",
+      "status": "supported",
+      "use": "Alpha can source-address financialOperatingMomentum/risk evidence; the observation is not itself a blocker or score."
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "issuer:CAMT:2026Q1",
+      "url": "https://www.camtek.com/news-and-events/camtek-announces-results-for-the-first-quarter-of-2026/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-12",
+      "originFingerprint": "issuer:CAMT:2026Q1:20260512"
+    },
+    {
+      "sourceId": "issuer:CAMT:2026Q2",
+      "url": "https://www.camtek.com/news-and-events/camtek-announces-results-for-the-second-quarter-of-2026/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-10",
+      "originFingerprint": "issuer:CAMT:2026Q2:20260810"
+    }
+  ],
+  "affectedMethodologyFactors": ["financialOperatingMomentum", "scenarioRobustness", "dataConfidence"],
+  "risks": [
+    {
+      "risk": "Operating-margin compression was already visible before the Visual Layer acquisition closed, so sustainable cost leverage remains a live execution question despite strong advanced-packaging demand.",
+      "gating": false
+    },
+    {
+      "risk": "Quarterly operating cash flow has lagged GAAP net income in both Q1 and Q2 2026; working-capital and cash-conversion durability should be reconciled by Alpha using the underlying filings before high financial-confidence treatment.",
+      "gating": false
+    }
+  ],
+  "contradictions": [
+    {
+      "contradiction": "Rapid order acceleration and improving revenue guidance coexist with pre-acquisition operating-margin compression and comparatively weak operating cash conversion.",
+      "material": true,
+      "disposition": "clarified_not_resolved: acquisition effects cannot fully explain the margin pattern; Alpha should quantify recurring versus temporary cost/cash-conversion drivers from source-addressed filings."
+    }
+  ],
+  "unknowns": [
+    {
+      "unknown": "The share of 2026 margin compression attributable to recurring R&D/SG&A expansion, acquisition-related amortization/integration, mix, or other items is not established by these earnings releases alone.",
+      "gating": false
+    }
+  ],
+  "gatingIssues": [],
+  "confidence": 94,
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "improvementPath": "Alpha should use Q1/Q2 2026 filing-level operating expense, amortization, working-capital and cash-flow line items to separate recurring cost-base pressure from temporary acquisition/integration effects and construct its own numeric risk evidence.",
+  "falsifier": "If filing-level reconciliation shows the margin and cash-conversion gap is predominantly temporary/non-recurring while recurring operating leverage improves as H2 revenue scales, this risk interpretation should be reduced.",
+  "lineage": {
+    "supersedes": null,
+    "inputEvidence": [
+      "data/runtime/workgraph/evidence/CAMT-20260919T100501Z-earth-scout.json",
+      "data/runtime/workgraph/evidence/CAMT-20260922T062603Z-council-beta.json"
+    ],
+    "assistRequest": "assist:CAMT:council-alpha:council-beta:risk-source-support",
+    "methodology": "1.0"
+  }
+}

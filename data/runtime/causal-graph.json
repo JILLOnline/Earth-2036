@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-27T15:40:14.118Z",
+  "updatedAt": "2026-09-27T20:14:57.063Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -2042,6 +2042,18 @@
       "type": "market",
       "label": "heavy-duty fleet utilization and replacement",
       "description": "PACCAR links freight movement's human need to heavy-duty vehicles, an installed fleet, aftermarket parts/distribution and multi-path powertrain investment; record parts revenue provides a structurally recurring complement to cyclical truck production."
+    },
+    {
+      "id": "company:VST",
+      "type": "company",
+      "label": "Vistra Corp.",
+      "description": "Vistra sits at the firm-power bottleneck between rapidly growing digital load and reliable electricity supply; its generation fleet and Helix channel can monetize scarcity where interconnection and dependable capacity constrain data-center buildout."
+    },
+    {
+      "id": "market:VST-reliable-capacity-scarcity",
+      "type": "market",
+      "label": "reliable capacity scarcity",
+      "description": "data centers require high-availability electricity and interconnection capacity"
     }
   ],
   "edges": [
@@ -4667,6 +4679,21 @@
         "paccar-ir:2026-07-28:q2-results"
       ],
       "observedAt": "2026-09-21T10:25:44Z"
+    },
+    {
+      "id": "edge:VST-structural-exposure",
+      "from": "company:VST",
+      "to": "market:VST-reliable-capacity-scarcity",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 93,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "vst:q2-2026:2026-08-07",
+        "vst:2026q2:10q:2026-08-07"
+      ],
+      "observedAt": "2026-09-19T11:24:50Z"
     }
   ],
   "structuralSignals": [
@@ -7942,6 +7969,25 @@
       "observedAt": "2026-09-21T10:25:44Z",
       "thesis": "PACCAR links freight movement's human need to heavy-duty vehicles, an installed fleet, aftermarket parts/distribution and multi-path powertrain investment; record parts revenue provides a structurally recurring complement to cyclical truck production.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:VST-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:VST-reliable-capacity-scarcity",
+      "affectedNodeIds": [
+        "company:VST"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 93,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "vst:q2-2026:2026-08-07",
+        "vst:2026q2:10q:2026-08-07"
+      ],
+      "observedAt": "2026-09-19T11:24:50Z",
+      "thesis": "Vistra sits at the firm-power bottleneck between rapidly growing digital load and reliable electricity supply; its generation fleet and Helix channel can monetize scarcity where interconnection and dependable capacity constrain data-center buildout.",
+      "falsifier": "large-load growth slows materially or new supply/grid capacity removes scarcity without supporting Vistra economics"
     }
   ],
   "roadmapMilestones": [

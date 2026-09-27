@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "role": "earth-scout",
+  "ticker": "ROP",
+  "workId": "t0:ROP",
+  "generatedAt": "2026-09-27T17:03:05Z",
+  "perspectives": ["discovery-weak-signals", "expectations-execution"],
+  "assist": {
+    "requestId": "assist:ROP:council-alpha:earth-scout:source-acquisition",
+    "inputSignature": "694ee17f677694e937b4",
+    "rootOwner": "council-alpha",
+    "capability": "source-acquisition"
+  },
+  "lineage": {
+    "startingGitHead": "2d22b1f758f7d3a1688e0362a9594e340000f416",
+    "reusedEvidencePaths": [
+      "data/runtime/workgraph/evidence/ROP-20260921T110238Z-earth-scout.json",
+      "data/runtime/workgraph/evidence/ROP-20260921T132217Z-council-beta.json"
+    ],
+    "supersedes": []
+  },
+  "sources": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/882835/000088283526000036/rop-20260630.htm",
+      "sourceId": "sec:882835:2026q2-10q:20260630",
+      "originFingerprint": "sec-edgar:rop:2026q2:10-q",
+      "kind": "primary-regulatory",
+      "primary": true,
+      "publishedAt": "2026-08-01",
+      "independentFromExistingOrigins": true
+    }
+  ],
+  "facts": [
+    {
+      "claim": "For the six months ended June 30, 2026, Roper reported net revenue of $4.2042 billion versus $3.8264 billion a year earlier; Q2 revenue was $2.1089 billion versus $1.9436 billion.",
+      "sourceId": "sec:882835:2026q2-10q:20260630",
+      "factorUse": ["financialOperatingMomentum", "thesisQuality"]
+    },
+    {
+      "claim": "Q2 2026 income from operations was $584.7 million versus $548.3 million in Q2 2025, while net interest expense increased to $111.4 million from $79.1 million.",
+      "sourceId": "sec:882835:2026q2-10q:20260630",
+      "factorUse": ["financialOperatingMomentum", "pricingPower", "scoreRiskEvidence"]
+    }
+  ],
+  "factors": [
+    {
+      "name": "financialOperatingMomentum",
+      "direction": "positive",
+      "basis": "SEC-filed Q2 and first-half revenue and operating income increased year over year."
+    },
+    {
+      "name": "thesisQuality",
+      "direction": "positive",
+      "basis": "Independent regulatory filing corroborates continued portfolio-level revenue growth rather than relying only on issuer-hosted release lineage."
+    },
+    {
+      "name": "pricingPower",
+      "direction": "unknown",
+      "basis": "The filing supports operating growth but does not isolate price versus volume sufficiently for Scout to infer pricing power."
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Net interest expense increased materially year over year, raising the hurdle rate for acquisition-led capital deployment.",
+      "gating": false,
+      "sourceId": "sec:882835:2026q2-10q:20260630"
+    }
+  ],
+  "contradictions": [
+    {
+      "claim": "Operating growth coexists with a higher financing burden.",
+      "resolution": "Both are directly supported by the SEC filing; Alpha should preserve the financing burden as a risk rather than netting it away against growth.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
+  "unknowns": [
+    {
+      "unknown": "This source does not establish market valuation opportunity or acquisition-level returns; those remain Alpha-owned.",
+      "gating": false
+    }
+  ],
+  "confidence": 96,
+  "recommendedNextOwner": "council-alpha",
+  "recommendedNextState": "researching",
+  "result": "new_independent_primary_regulatory_source_for_alpha_reuse"
+}

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SNOW",
   "workId": "t0:SNOW",
-  "generatedAt": "2026-09-27T19:46:16.233Z",
+  "generatedAt": "2026-09-27T20:03:21.829Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-05-27T00:00:00.000Z",
-    "end": "2026-09-21T17:23:31.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T17:23:31.000Z"
+    "end": "2026-09-27T20:02:11.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-27T20:02:11.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -55,13 +55,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/SNOW-20260921T1307Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/SNOW-20260921T172331Z-council-beta.json"
+    "data/runtime/workgraph/evidence/SNOW-20260921T172331Z-council-beta.json",
+    "data/runtime/workgraph/evidence/SNOW-20260927T200211Z-earth-scout-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 5,
+    "historicalEvidenceCount": 5
   },
   "factorEvidence": {
     "names": [
@@ -75,7 +76,9 @@
       "substitutionResilience",
       "confidenceInflation",
       "sourceDependence",
-      "competitiveResponse"
+      "competitiveResponse",
+      "supplyChainResilience",
+      "crossDivisionLeverage"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -112,6 +115,16 @@
           "name": "agentic governance expansion",
           "direction": "positive",
           "basis": "Natoma and partner integrations extend Snowflake from data governance toward governed agent actions."
+        },
+        {
+          "name": "supplyChainResilience",
+          "direction": "mixed",
+          "basis": "Large multi-year AI-service and cloud-infrastructure commitments secure capacity access but create material fixed purchase obligations if consumption or workload economics underperform."
+        },
+        {
+          "name": "crossDivisionLeverage",
+          "direction": "mixed",
+          "basis": "Committed AI-service and cloud capacity can support expansion of Snowflake's AI workloads across the platform, while dependence on third-party infrastructure/providers remains economically material."
         }
       ],
       "adversarial-red-team": [
@@ -193,7 +206,9 @@
     "substitutionResilience",
     "confidenceInflation",
     "sourceDependence",
-    "competitiveResponse"
+    "competitiveResponse",
+    "supplyChainResilience",
+    "crossDivisionLeverage"
   ],
   "riskEvidence": {
     "present": true,
@@ -216,6 +231,14 @@
       },
       {
         "risk": "Consumption optimization and competitive workload shifts can slow revenue without invalidating enterprise data demand.",
+        "gating": false
+      },
+      {
+        "risk": "Minimum-spend commitments can pressure economics if realized AI or cloud consumption falls below contracted levels.",
+        "gating": false
+      },
+      {
+        "risk": "Material reliance on third-party AI services and cloud infrastructure limits full-stack control over cost and capacity economics.",
         "gating": false
       }
     ]
@@ -240,6 +263,14 @@
     {
       "risk": "Consumption optimization and competitive workload shifts can slow revenue without invalidating enterprise data demand.",
       "gating": false
+    },
+    {
+      "risk": "Minimum-spend commitments can pressure economics if realized AI or cloud consumption falls below contracted levels.",
+      "gating": false
+    },
+    {
+      "risk": "Material reliance on third-party AI services and cloud infrastructure limits full-stack control over cost and capacity economics.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -250,7 +281,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 2
   },
   "causalMapping": {
     "present": true,
@@ -296,12 +327,13 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 4,
-    "uniqueSourceCount": 1,
+    "rawSourceCount": 5,
+    "uniqueSourceCount": 2,
     "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "snowflake-ir:2026:q1-fy2027-results"
+      "snowflake-ir:2026:q1-fy2027-results",
+      "sec-edgar:1640147:10-q:2026q2"
     ]
   },
   "sources": [
@@ -312,6 +344,14 @@
       "publishedAt": "2026-05-27",
       "originFingerprint": "snowflake-ir:2026:q1-fy2027-results",
       "sourceId": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000037/snow-20260731.htm",
+      "sourceId": "sec:1640147:2026-07-31:10-q:000164014726000037",
+      "kind": "primary-regulatory",
+      "primary": true,
+      "publishedAt": "2026-08-26",
+      "originFingerprint": "sec-edgar:1640147:10-q:2026q2"
     }
   ],
   "contradictions": [],
@@ -335,11 +375,15 @@
     {
       "unknown": "Current evidence does not isolate customer concentration, AI-specific gross margin or competitive win/loss rates.",
       "gating": false
+    },
+    {
+      "unknown": "The filing does not isolate revenue or gross margin attributable specifically to workloads supported by these commitments.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
   "confidence": 88,

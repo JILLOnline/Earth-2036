@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-27T05:16:17.257Z",
+  "updatedAt": "2026-09-27T08:14:23.602Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1922,6 +1922,18 @@
       "type": "market",
       "label": "grid capacity demand",
       "description": "PG&E occupies a physical grid bottleneck between growing electricity demand and reliable delivery; data-center demand can increase infrastructure utilization, while sensors, smart-meter data and machine learning can reduce ignition and outage risk."
+    },
+    {
+      "id": "company:PEG",
+      "type": "company",
+      "label": "Public Service Enterprise Group",
+      "description": "PSEG combines regulated grid infrastructure with 3,758 MW of carbon-free baseload nuclear capacity, linking electricity reliability and rising peak demand to transmission/distribution investment and firm generation."
+    },
+    {
+      "id": "market:PEG-grid-capacity-requirement",
+      "type": "market",
+      "label": "grid capacity requirement",
+      "description": "PSEG combines regulated grid infrastructure with 3,758 MW of carbon-free baseload nuclear capacity, linking electricity reliability and rising peak demand to transmission/distribution investment and firm generation."
     }
   ],
   "edges": [
@@ -4401,6 +4413,20 @@
       "sourceIds": [
         "pcg-ir:2026-07-23:q2-results",
         "pcg-ir:2026-05-01:continuous-monitoring-center"
+      ],
+      "observedAt": "2026-09-21T10:25:44Z"
+    },
+    {
+      "id": "edge:PEG-structural-exposure",
+      "from": "company:PEG",
+      "to": "market:PEG-grid-capacity-requirement",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:PEG:2026Q2"
       ],
       "observedAt": "2026-09-21T10:25:44Z"
     }
@@ -7493,6 +7519,24 @@
       ],
       "observedAt": "2026-09-21T10:25:44Z",
       "thesis": "PG&E occupies a physical grid bottleneck between growing electricity demand and reliable delivery; data-center demand can increase infrastructure utilization, while sensors, smart-meter data and machine learning can reduce ignition and outage risk.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:PEG-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:PEG-grid-capacity-requirement",
+      "affectedNodeIds": [
+        "company:PEG"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:PEG:2026Q2"
+      ],
+      "observedAt": "2026-09-21T10:25:44Z",
+      "thesis": "PSEG combines regulated grid infrastructure with 3,758 MW of carbon-free baseload nuclear capacity, linking electricity reliability and rising peak demand to transmission/distribution investment and firm generation.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

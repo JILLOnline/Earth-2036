@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "contract": "earth2036-workgraph-evidence-v1",
+  "ticker": "VST",
+  "entityId": "VST",
+  "workId": "t0:VST",
+  "role": "council-beta",
+  "perspective": "assist-risk-source-support",
+  "generatedAt": "2026-09-27T19:24:34Z",
+  "assist": {
+    "requestId": "assist:VST:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "ef25406778f8a77c1189",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support"
+  },
+  "claims": [
+    {
+      "claim": "Independent PJM planning evidence supports a structural large-load demand mechanism in Vistra's region, but the same system operator evidence shows that computational loads can disconnect abruptly at multi-gigawatt scale and trigger reliability-rule changes. The demand thesis therefore has a source-backed conversion risk: physical load growth does not guarantee frictionless Vistra-specific contracted MW, pricing or margins.",
+      "status": "supported"
+    },
+    {
+      "claim": "This new evidence narrows the falsifier for Alpha: the relevant downside is not that data-center demand is absent, but that interconnection/reliability constraints, load-disconnection behavior or added supply/grid capacity prevent regional scarcity from translating into durable Vistra economics.",
+      "status": "supported_interpretation"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.pjm.com/-/media/DotCom/committees-groups/committees/mrc/2026/20260219/20260219-item-05---2027-2028-base-residual-auction-reserve-target-shortfall-report.pdf",
+      "sourceId": "pjm:2027-2028-reserve-target-shortfall-report:2026-02-19",
+      "originFingerprint": "independent:pJM:rto-load-forecast-shortfall:2026-02-19",
+      "provider": "PJM Interconnection",
+      "kind": "independent-primary-system-operator",
+      "primary": true,
+      "publishedAt": "2026-02-19"
+    },
+    {
+      "url": "https://insidelines.pjm.com/reliability-standards-to-manage-large-load-disconnection-events-proposed-by-pjm/",
+      "sourceId": "pjm:large-load-disconnection-reliability:2026-09-10",
+      "originFingerprint": "independent:pJM:large-load-reliability-event:2026-09-10",
+      "provider": "PJM Interconnection",
+      "kind": "independent-primary-system-operator",
+      "primary": true,
+      "publishedAt": "2026-09-10"
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Large-load growth can create grid-management and interconnection constraints that alter the timing, conditions or economics of incremental generator demand.",
+      "gating": false,
+      "observedBasis": "PJM reported nearly 4,000 MW of data-center load unexpectedly disconnecting in northern Virginia on July 22, 2026 and proposed additional reliability requirements after multiple measurable events."
+    }
+  ],
+  "contradictions": [],
+  "unknowns": [
+    {
+      "unknown": "The PJM evidence is system-level and does not establish Vistra-specific contracted MW, realized price, margin or Helix project economics.",
+      "gating": false
+    }
+  ],
+  "causalEdges": [
+    {
+      "from": "structural data-center load growth",
+      "to": "regional reliable-capacity demand",
+      "mechanism": "large computational loads increase electricity and reliability requirements in PJM",
+      "falsifier": "large-load growth slows materially or new supply/grid capacity removes scarcity without supporting Vistra economics"
+    },
+    {
+      "from": "large-load disconnection and reliability controls",
+      "to": "Vistra-specific demand conversion",
+      "mechanism": "abrupt computational-load behavior can trigger interconnection and reliability requirements that change project timing or operating conditions",
+      "falsifier": "future large-load additions convert to durable contracted Vistra MW and margins without material reliability/interconnection friction"
+    }
+  ],
+  "affectedFactors": ["scenarioRobustness", "bottleneckControl", "thesisQuality", "riskEvidence"],
+  "confidence": 95,
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "lineage": {
+    "startingGitHead": "48f98ac606cdea0b00219103718514cc079951d3",
+    "supersedes": null,
+    "extends": [
+      "data/runtime/workgraph/evidence/VST-20260927T182204Z-council-beta-assist.json",
+      "data/runtime/workgraph/evidence/VST-20260927T190310Z-earth-scout-assist.json"
+    ]
+  },
+  "doctrineFraming": {
+    "observedWeakness": "Regional large-load growth carries measurable reliability and conversion friction in addition to demand opportunity.",
+    "uncertainty": "System-level PJM evidence cannot by itself quantify Vistra-specific economic exposure or benefit.",
+    "possibleImprovement": "More committed-load disclosure, project-level economics and evidence of resilient operation under evolving reliability rules would reduce underwriting uncertainty.",
+    "verificationEvidence": "Vistra-specific contracted MW, pricing/margin disclosure, interconnection milestones and future PJM reliability outcomes."
+  },
+  "canonicalWriteAuthority": false
+}

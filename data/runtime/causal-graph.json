@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-27T14:19:43.239Z",
+  "updatedAt": "2026-09-27T15:40:14.118Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -1994,6 +1994,54 @@
       "type": "market",
       "label": "RF and power component demand",
       "description": "Qorvo links RF connectivity and power-management technology to wireless device, infrastructure and defense connectivity needs; FY2026 mix repair indicates management is reducing exposure to lower-margin mass-market Android business while retaining higher-value applications."
+    },
+    {
+      "id": "company:NOW",
+      "type": "company",
+      "label": "ServiceNow",
+      "description": "ServiceNow is positioning its workflow/data platform as an enterprise coordination and governance layer between heterogeneous clouds, models, data, AI agents and human work; Q2 2026 RPO reached $29.0B and AI ACV exceeded $1B, supporting adoption but not proving permanent control of the AI orchestration layer."
+    },
+    {
+      "id": "market:NOW-technology-workflow-ai-governance-orchestration",
+      "type": "market",
+      "label": "technology:workflow-ai-governance-orchestration",
+      "description": "ServiceNow is positioning its workflow/data platform as an enterprise coordination and governance layer between heterogeneous clouds, models, data, AI agents and human work; Q2 2026 RPO reached $29.0B and AI ACV exceeded $1B, supporting adoption but not proving permanent control of the AI orchestration layer."
+    },
+    {
+      "id": "company:NTR",
+      "type": "company",
+      "label": "Nutrien",
+      "description": "Nutrien sits in the food-system chain potash/nitrogen/phosphate -> crop nutrient availability -> farm yields -> food supply, with large-scale potash production and distribution providing structural exposure to a resource bottleneck that cannot be eliminated by software or automation alone."
+    },
+    {
+      "id": "market:NTR-resource-crop-nutrients",
+      "type": "market",
+      "label": "resource:crop-nutrients",
+      "description": "Nutrien sits in the food-system chain potash/nitrogen/phosphate -> crop nutrient availability -> farm yields -> food supply, with large-scale potash production and distribution providing structural exposure to a resource bottleneck that cannot be eliminated by software or automation alone."
+    },
+    {
+      "id": "company:PATH",
+      "type": "company",
+      "label": "UiPath, Inc.",
+      "description": "UiPath's durable structural role is best framed as a governed orchestration layer connecting AI agents, deterministic automation, enterprise systems and human workflows; Q2 ARR growth supports continuing demand but does not isolate agentic-product contribution."
+    },
+    {
+      "id": "market:PATH-need-for-governed-orchestration",
+      "type": "market",
+      "label": "need for governed orchestration",
+      "description": "UiPath's durable structural role is best framed as a governed orchestration layer connecting AI agents, deterministic automation, enterprise systems and human workflows; Q2 ARR growth supports continuing demand but does not isolate agentic-product contribution."
+    },
+    {
+      "id": "company:PCAR",
+      "type": "company",
+      "label": "PACCAR Inc.",
+      "description": "PACCAR links freight movement's human need to heavy-duty vehicles, an installed fleet, aftermarket parts/distribution and multi-path powertrain investment; record parts revenue provides a structurally recurring complement to cyclical truck production."
+    },
+    {
+      "id": "market:PCAR-heavy-duty-fleet-utilization-and-replacement",
+      "type": "market",
+      "label": "heavy-duty fleet utilization and replacement",
+      "description": "PACCAR links freight movement's human need to heavy-duty vehicles, an installed fleet, aftermarket parts/distribution and multi-path powertrain investment; record parts revenue provides a structurally recurring complement to cyclical truck production."
     }
   ],
   "edges": [
@@ -4563,6 +4611,62 @@
         "qorvo-skyworks:merger"
       ],
       "observedAt": "2026-09-21T11:24:03Z"
+    },
+    {
+      "id": "edge:NOW-structural-exposure",
+      "from": "company:NOW",
+      "to": "market:NOW-technology-workflow-ai-governance-orchestration",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 90,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:NOW:2026Q2release"
+      ],
+      "observedAt": "2026-09-21T06:27:57Z"
+    },
+    {
+      "id": "edge:NTR-structural-exposure",
+      "from": "company:NTR",
+      "to": "market:NTR-resource-crop-nutrients",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 91,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:NTR:2026Q2release"
+      ],
+      "observedAt": "2026-09-21T07:28:00Z"
+    },
+    {
+      "id": "edge:PATH-structural-exposure",
+      "from": "company:PATH",
+      "to": "market:PATH-need-for-governed-orchestration",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "uipath-sec:2026-09-03:q2-fy2027-results"
+      ],
+      "observedAt": "2026-09-21T10:25:44Z"
+    },
+    {
+      "id": "edge:PCAR-structural-exposure",
+      "from": "company:PCAR",
+      "to": "market:PCAR-heavy-duty-fleet-utilization-and-replacement",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 90,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "paccar-ir:2026-07-28:q2-results"
+      ],
+      "observedAt": "2026-09-21T10:25:44Z"
     }
   ],
   "structuralSignals": [
@@ -7765,6 +7869,78 @@
       ],
       "observedAt": "2026-09-21T11:24:03Z",
       "thesis": "Qorvo links RF connectivity and power-management technology to wireless device, infrastructure and defense connectivity needs; FY2026 mix repair indicates management is reducing exposure to lower-margin mass-market Android business while retaining higher-value applications.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:NOW-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:NOW-technology-workflow-ai-governance-orchestration",
+      "affectedNodeIds": [
+        "company:NOW"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 90,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:NOW:2026Q2release"
+      ],
+      "observedAt": "2026-09-21T06:27:57Z",
+      "thesis": "ServiceNow is positioning its workflow/data platform as an enterprise coordination and governance layer between heterogeneous clouds, models, data, AI agents and human work; Q2 2026 RPO reached $29.0B and AI ACV exceeded $1B, supporting adoption but not proving permanent control of the AI orchestration layer.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:NTR-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:NTR-resource-crop-nutrients",
+      "affectedNodeIds": [
+        "company:NTR"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 91,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:NTR:2026Q2release"
+      ],
+      "observedAt": "2026-09-21T07:28:00Z",
+      "thesis": "Nutrien sits in the food-system chain potash/nitrogen/phosphate -> crop nutrient availability -> farm yields -> food supply, with large-scale potash production and distribution providing structural exposure to a resource bottleneck that cannot be eliminated by software or automation alone.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:PATH-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:PATH-need-for-governed-orchestration",
+      "affectedNodeIds": [
+        "company:PATH"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "uipath-sec:2026-09-03:q2-fy2027-results"
+      ],
+      "observedAt": "2026-09-21T10:25:44Z",
+      "thesis": "UiPath's durable structural role is best framed as a governed orchestration layer connecting AI agents, deterministic automation, enterprise systems and human workflows; Q2 ARR growth supports continuing demand but does not isolate agentic-product contribution.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:PCAR-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:PCAR-heavy-duty-fleet-utilization-and-replacement",
+      "affectedNodeIds": [
+        "company:PCAR"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 90,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "paccar-ir:2026-07-28:q2-results"
+      ],
+      "observedAt": "2026-09-21T10:25:44Z",
+      "thesis": "PACCAR links freight movement's human need to heavy-duty vehicles, an installed fleet, aftermarket parts/distribution and multi-path powertrain investment; record parts revenue provides a structurally recurring complement to cyclical truck production.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

@@ -1,0 +1,93 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-specialist-assist-evidence",
+  "ticker": "INFQ",
+  "entityId": "INFQ",
+  "workId": "t0:INFQ",
+  "role": "council-beta",
+  "capability": "risk-source-support",
+  "requestId": "assist:INFQ:council-alpha:council-beta:risk-source-support",
+  "inputSignature": "f0ed63dfc5c77c83b048",
+  "generatedAt": "2026-09-28T09:25:05Z",
+  "claims": [
+    {
+      "claim": "Infleqtion's Q2 2026 GAAP operating loss of $29.858M exceeded its $13.538M quarterly revenue, while six-month net loss was $54.4M; management states operating losses and higher operating expenses are expected for the foreseeable future as commercialization investment continues.",
+      "status": "supported",
+      "use": "Alpha risk-source support only; no numeric risk score assigned"
+    },
+    {
+      "claim": "The apparent Q2 operating cash inflow is not evidence of durable self-funding: management identified a $27.4M temporary payroll-tax working-capital benefit and described approximately $14M operating cash burn excluding that timing benefit.",
+      "status": "supported",
+      "use": "cash-conversion falsifier and financing-resilience input"
+    },
+    {
+      "claim": "The August revenue/guidance revision arose from timing of revenue recognition on two government contracts, increased Q2 revenue to $13.538M and FY26 guidance to about $45.1M, and was stated to have no cash or underlying-business impact; Alpha should therefore distinguish accounting uplift from incremental economic demand when underwriting execution risk.",
+      "status": "supported",
+      "use": "confidence-inflation and revenue-quality input"
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "sec:INFQ:2026Q2:10Q",
+      "url": "https://ir.infleqtion.com/sec-filings/all-sec-filings/content/0001628280-26-057508/infq-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-18",
+      "originFingerprint": "sec:2007825:2026Q2:10Q"
+    },
+    {
+      "sourceId": "issuer:INFQ:2026Q2-updated",
+      "url": "https://ir.infleqtion.com/sec-filings/all-sec-filings/content/0001628280-26-057510/infq-20260630xex9918x17x20.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-18",
+      "originFingerprint": "issuer:INFQ:2026Q2:updated"
+    }
+  ],
+  "affectedMethodologyFactors": [
+    "financialOperatingMomentum",
+    "scenarioRobustness",
+    "dataConfidence"
+  ],
+  "risks": [
+    {
+      "risk": "Commercial scaling currently requires continued funding capacity because operating losses materially exceed revenue.",
+      "observedWeakness": true,
+      "gating": false,
+      "improvementPath": "Demonstrate sustained revenue/gross-profit expansion with normalized operating cash burn narrowing after temporary working-capital effects.",
+      "falsifier": "Future filings showing normalized operating cash generation and operating-loss compression would weaken this risk."
+    },
+    {
+      "risk": "Government-contract accounting timing can inflate headline growth or guidance without equivalent current-period cash/economic change.",
+      "observedWeakness": true,
+      "gating": false,
+      "improvementPath": "Reconcile contract-level revenue timing with cash collections and recurring commercial demand.",
+      "falsifier": "Consistent future recognition, cash collection and independently evidenced customer deployment growth would reduce this concern."
+    }
+  ],
+  "contradictions": [
+    {
+      "contradiction": "Rapid reported revenue growth and a large liquidity reserve coexist with operating losses that exceed quarterly revenue and a temporary working-capital benefit embedded in reported Q2 operating cash flow.",
+      "material": true,
+      "disposition": "real commercialization-stage tension; source-addressed for Alpha risk treatment, not a present Beta blocker"
+    }
+  ],
+  "unknowns": [
+    {
+      "unknown": "Normalized post-Q2 cash burn, customer concentration, and gross-margin durability remain Alpha-owned underwriting questions.",
+      "gating": false
+    }
+  ],
+  "gatingIssues": [],
+  "confidence": 95,
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "lineage": {
+    "supersedes": null,
+    "inputEvidence": [
+      "data/runtime/workgraph/evidence/INFQ-20260922T072718Z-council-beta.json"
+    ],
+    "assistRequest": "assist:INFQ:council-alpha:council-beta:risk-source-support",
+    "methodology": "1.0"
+  }
+}

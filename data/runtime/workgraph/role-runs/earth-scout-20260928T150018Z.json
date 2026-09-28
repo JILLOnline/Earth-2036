@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "role": "earth-scout",
+  "generatedAt": "2026-09-28T15:00:18Z",
+  "startingGitHead": "6821919af19c2f257721a508e25ed22c6e4a343d",
+  "companiesInspected": ["TXN"],
+  "evidencePairsCompleted": 1,
+  "artifacts": ["data/runtime/workgraph/evidence/TXN-20260928T150018Z-earth-scout.json"],
+  "result": "assist_evidence_persisted_with_reconcile_integrity_blocker_visible",
+  "blockers": [
+    "Earth Core projections are stale because Workgraph reconciliation is blocked by malformed immutable VRTX Alpha evidence: data/runtime/workgraph/evidence/VRTX-20260927T211225Z-council-alpha.json. Scout did not modify or bypass that artifact."
+  ],
+  "assistAttempts": [
+    {
+      "requestId": "assist:TXN:council-alpha:earth-scout:source-acquisition",
+      "inputSignature": "037f7bd6d5f23f2b9e5f",
+      "outcome": "new_source_addressed_evidence",
+      "newEvidencePaths": ["data/runtime/workgraph/evidence/TXN-20260928T150018Z-earth-scout.json"],
+      "sourcePathsAttempted": [
+        "https://www.commerce.gov/news/press-releases/2024/12/biden-harris-administration-announces-chips-incentives-award-texas",
+        "https://www.reuters.com/business/texas-instruments-forecasts-quarterly-revenue-above-estimates-2026-07-22/"
+      ]
+    }
+  ],
+  "strikeZoneAttempts": [],
+  "strikeZoneReason": "fast-path-report contained no promoted or skipped chief_ready companies in the last lawfully reconciled projection",
+  "repeatedBlocker": "core_reconcile_blocked_by_malformed_VRTX_alpha_evidence",
+  "changedStrategy": "Used an active Alpha source-acquisition assist with low existing source reuse and added materially independent government and newswire origins rather than repeating issuer evidence. Did not spend further slots against stale projections because the current Core frontier cannot be truthfully refreshed until reconcile integrity is restored.",
+  "failedStrategy": null,
+  "nextLawfulAction": "Council Alpha may reuse the TXN evidence after Workgraph reconciliation is restored; repair of malformed VRTX immutable-history lineage belongs outside Scout authority and must preserve the valid-JSON and immutable-history contracts.",
+  "guardrails": [
+    "Methodology 1.0 preserved",
+    "T0 gates preserved",
+    "immutable history preserved",
+    "Beast/integrity rules preserved",
+    "Decision Ladder preserved",
+    "Earth Core remains sole canonical authority",
+    "no canonical scores/ranks/ticks or Chief decisions mutated"
+  ]
+}

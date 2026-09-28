@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "contract": "earth2036-assist-evidence-v1",
+  "ticker": "MDB",
+  "entityId": "MDB",
+  "workId": "t0:MDB",
+  "role": "council-beta",
+  "capability": "risk-source-support",
+  "requestId": "assist:MDB:council-alpha:council-beta:risk-source-support",
+  "inputSignature": "2cfe133cf0c8d81193cc",
+  "generatedAt": "2026-09-28T15:22:23Z",
+  "rootOwner": "council-alpha",
+  "claims": [
+    {
+      "claim": "MongoDB's Q2 FY2027 filing shows $148.939M of stock-based compensation expense in the quarter and $286.769M for the first six months; this is a material per-share conversion/dilution consideration even though the company also repurchased $200.0M of common stock during the six-month period.",
+      "status": "supported"
+    },
+    {
+      "claim": "Operating cash flow is strong, but the six-month $343.5M operating cash flow included $286.8M of non-cash stock-based compensation; Alpha should therefore distinguish cash generation from per-share economic conversion rather than treating operating cash flow alone as a complete risk signal.",
+      "status": "supported"
+    },
+    {
+      "claim": "Atlas scale carries a successor-margin bottleneck: MongoDB states that overall gross margin can decline as Atlas becomes a larger share of revenue because of associated hosting costs, while the company also reports materially higher third-party cloud infrastructure costs as Atlas grows.",
+      "status": "supported"
+    },
+    {
+      "claim": "The database market remains intensely competitive and rapidly evolving, so sustained Atlas growth does not by itself falsify substitution risk from relational, non-relational, hyperscaler-native, open-source or source-available alternatives.",
+      "status": "supported"
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "sec:MDB:2026Q2:10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1441816/000162828026059830/mdb-20260731.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-01",
+      "originFingerprint": "sec:1441816:2026Q2:10Q"
+    }
+  ],
+  "affectedMethodologyFactors": [
+    "financialOperatingMomentum",
+    "substitutionResilience",
+    "scenarioRobustness",
+    "pricingPower",
+    "dataConfidence"
+  ],
+  "causalEdges": [
+    "Atlas-consumption-growth->third-party-cloud-infrastructure-costs->gross-margin-pressure",
+    "stock-based-compensation->employee-incentives-and-expense->per-share-dilution-risk",
+    "database-market-competition->substitute-choice->workload-capture-and-pricing-pressure"
+  ],
+  "risks": [
+    {
+      "risk": "High stock-based compensation can weaken per-share conversion of operating growth unless offset by durable value creation and/or repurchases.",
+      "gating": false
+    },
+    {
+      "risk": "A higher Atlas revenue mix can carry hosting-cost pressure on gross margin even as managed-cloud adoption expands.",
+      "gating": false
+    },
+    {
+      "risk": "Intense database competition preserves substitution and pricing pressure even under strong current growth.",
+      "gating": false
+    }
+  ],
+  "contradictions": [
+    {
+      "contradiction": "Strong operating cash flow and share repurchases coexist with large stock-based compensation, so cash generation and per-share economic conversion can move differently.",
+      "material": true,
+      "disposition": "source-addressed risk tension for Alpha underwriting; not a Beta blocker"
+    }
+  ],
+  "unknowns": [
+    {
+      "unknown": "The durable net dilution outcome depends on future equity issuance, vesting, repurchase cadence and share-price levels; Beta does not set Alpha's numeric risk score.",
+      "gating": false
+    },
+    {
+      "unknown": "The degree to which future Atlas scale efficiencies offset hosting-cost pressure remains an execution variable.",
+      "gating": false
+    }
+  ],
+  "gatingIssues": [],
+  "confidence": 95,
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "lineage": {
+    "supersedes": null,
+    "inputEvidence": [
+      "data/runtime/workgraph/evidence/MDB-20260920T170405Z-earth-scout.json",
+      "data/runtime/workgraph/evidence/MDB-20260920T180801Z-earth-scout.json",
+      "data/runtime/workgraph/evidence/MDB-20260920T190406Z-earth-scout.json",
+      "data/runtime/workgraph/evidence/MDB-20260921T030528Z-earth-scout.json",
+      "data/runtime/workgraph/evidence/MDB-20260922T182310Z-council-beta.json"
+    ],
+    "methodology": "1.0.0"
+  },
+  "assistOutcome": {
+    "outcome": "new_source_addressed_risk_support",
+    "changedStrategy": "Used the current SEC 10-Q directly to isolate per-share conversion, cloud-hosting margin and substitution risks instead of repeating the prior narrative-only Beta evidence.",
+    "rootAuthorityPreserved": true
+  }
+}

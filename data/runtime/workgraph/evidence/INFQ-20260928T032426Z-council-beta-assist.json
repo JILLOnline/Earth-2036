@@ -1,0 +1,105 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-assist-evidence",
+  "ticker": "INFQ",
+  "entityId": "INFQ",
+  "workId": "t0:INFQ",
+  "role": "council-beta",
+  "capability": "risk-source-support",
+  "requestId": "assist:INFQ:council-alpha:council-beta:risk-source-support",
+  "inputSignature": "f0ed63dfc5c77c83b048",
+  "generatedAt": "2026-09-28T03:24:26Z",
+  "rootOwner": "council-alpha",
+  "claims": [
+    {
+      "claim": "Customer and government concentration are directly measurable: one customer represented 82% of Q2 2026 revenue and 40% of accounts receivable at June 30, while government customers represented 92% of Q2 revenue. This creates contract-renewal, procurement-cycle and counterparty concentration sensitivity even while government demand can validate the platform.",
+      "status": "supported",
+      "use": "Alpha risk-source input; not a numeric risk score"
+    },
+    {
+      "claim": "Financial-reporting controls remain an observed execution risk rather than a hypothetical one: management concluded disclosure controls were ineffective at June 30, 2026 because of material weaknesses spanning segregation of duties, accounting risk assessment, U.K. subsidiary monitoring, equity-record controls and pervasive ineffective IT general controls. Management states remediation may extend into 2027.",
+      "status": "supported",
+      "use": "Alpha governance/data-confidence risk-source input; not a numeric score"
+    },
+    {
+      "claim": "The same filing explicitly identifies early-stage quantum technology, possible failure to achieve broad quantum advantage, need for substantial additional capital, intense competition and reliance on government/large-enterprise sales as material risk factors. These are lawful falsifier categories for the commercialization thesis, but they are not present evidence that technical or commercial failure has occurred.",
+      "status": "supported",
+      "use": "Alpha falsifier/risk-source input"
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "sec:INFQ:2026Q2:10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/2007825/000162828026057508/infq-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-18",
+      "originFingerprint": "sec:2007825:2026Q2:10Q"
+    }
+  ],
+  "affectedMethodologyFactors": [
+    "financialOperatingMomentum",
+    "governancePower",
+    "scenarioRobustness",
+    "dataConfidence",
+    "substitutionResilience"
+  ],
+  "causalEdges": [
+    "government-procurement-concentration->revenue-visibility-and-renewal-risk",
+    "single-customer-concentration->revenue-and-receivables-volatility",
+    "internal-control-remediation->reporting-reliability-and-data-confidence",
+    "quantum-advantage-proof->commercial-scale-and-capital-efficiency"
+  ],
+  "risks": [
+    {
+      "risk": "Q2 2026 revenue concentration was 82% in one customer and 92% in government customers, increasing sensitivity to a small number of procurement and renewal decisions.",
+      "gating": false,
+      "observed": true
+    },
+    {
+      "risk": "Disclosure controls were ineffective at June 30, 2026 due to continuing material weaknesses; remediation is underway and may extend into 2027.",
+      "gating": false,
+      "observed": true
+    },
+    {
+      "risk": "Broad quantum advantage, capital availability and competitive response remain explicit issuer-identified commercialization uncertainties.",
+      "gating": false,
+      "observed": true
+    }
+  ],
+  "contradictions": [
+    {
+      "contradiction": "Rapid reported commercialization growth coexists with extreme customer/government concentration and unresolved reporting-control weaknesses.",
+      "material": true,
+      "disposition": "risk clarification for Alpha; concentration and controls should be reflected in underwriting, but neither fact alone invalidates the commercialization thesis"
+    }
+  ],
+  "unknowns": [
+    {
+      "unknown": "Whether customer concentration declines as the commercial customer base broadens in subsequent quarters.",
+      "gating": false
+    },
+    {
+      "unknown": "When management testing will establish that the identified material weaknesses are fully remediated.",
+      "gating": false
+    }
+  ],
+  "falsifiers": [
+    "Sustained diversification away from the dominant customer and government mix would weaken the concentration-risk thesis.",
+    "Management-tested remediation of material weaknesses and effective disclosure controls would materially reduce the reporting-control risk.",
+    "Independent customer evidence of repeatable economic quantum advantage would reduce commercialization uncertainty."
+  ],
+  "gatingIssues": [],
+  "confidence": 97,
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "lineage": {
+    "supersedes": null,
+    "inputEvidence": [
+      "data/runtime/workgraph/evidence/INFQ-20260918T2000Z-earth-scout.json",
+      "data/runtime/workgraph/evidence/INFQ-20260922T072718Z-council-beta.json"
+    ],
+    "packetPath": "data/runtime/workgraph/packets/INFQ.json",
+    "methodology": "1.0.0"
+  }
+}

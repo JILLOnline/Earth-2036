@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "contract": "earth2036-bounded-assist-evidence-v1",
+  "generatedAt": "2026-09-28T20:28:13.118272Z",
+  "role": "council-beta",
+  "ticker": "INFQ",
+  "workId": "t0:INFQ",
+  "requestId": "assist:INFQ:council-alpha:council-beta:risk-source-support",
+  "inputSignature": "f0ed63dfc5c77c83b048",
+  "rootOwner": "council-alpha",
+  "capability": "risk-source-support",
+  "scope": "bounded structural/risk support only; no numeric underwriting, numeric risk score, canonical score, rank, tick, membership or Chief decision",
+  "lineage": {
+    "supersedes": null,
+    "packetPath": "data/runtime/workgraph/packets/INFQ.json",
+    "priorBetaEvidence": "data/runtime/workgraph/evidence/INFQ-20260922T072718Z-council-beta.json"
+  },
+  "sources": [
+    {
+      "sourceId": "issuer:INFQ:2026Q2",
+      "url": "https://ir.infleqtion.com/news-events/press-releases/detail/201/infleqtion-reports-record-q2-revenue-raises-2026-outlook-as-quantum-commercialization-accelerates",
+      "originFingerprint": "issuer:INFQ:2026Q2",
+      "kind": "primary",
+      "observations": [
+        "Q2 initially reported revenue of $12.6 million, GAAP operating loss of $30.6 million, and $582 million of cash, restricted cash and available-for-sale securities with no debt.",
+        "Reported Q2 operating cash flow of $13.2 million included a $27.4 million temporary payroll-tax working-capital benefit; excluding that timing item, operating cash burn was approximately $14 million.",
+        "The Commerce Department letter of intent contemplated up to $100 million of proposed funding and potential government equity, but remained subject to definitive agreements and approvals."
+      ]
+    },
+    {
+      "sourceId": "issuer-sec:INFQ:2026Q2-updated",
+      "url": "https://ir.infleqtion.com/sec-filings/all-sec-filings/content/0001628280-26-057510/infq-20260630xex9918x17x20.htm",
+      "originFingerprint": "issuer:INFQ:2026Q2:updated",
+      "kind": "primary",
+      "observations": [
+        "Updated Q2 revenue to $13.5 million and GAAP operating loss to $29.9 million after an immaterial adjustment involving two government contracts.",
+        "Updated FY2026 revenue guidance to approximately $45.1 million from $43 million to include non-cash accounting-based revenue adjustments, with no change to cash or underlying business assumptions."
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Liquidity is presently a resilience factor, but headline operating cash flow overstates underlying Q2 cash generation because it included a temporary $27.4 million payroll-tax timing benefit.",
+      "affectedFactors": ["financialOperatingMomentum", "scenarioRobustness", "dataConfidence"],
+      "causalEdges": ["liquidity->runway-for-quantum-commercialization", "working-capital-timing->reported-operating-cash-flow"],
+      "risk": "Alpha should distinguish reported operating cash flow from normalized cash burn when constructing source-addressed risk evidence.",
+      "falsifier": "Sustained positive operating cash flow after normalization for timing items and without dependence on financing would weaken this cash-burn concern."
+    },
+    {
+      "claim": "The Q2 revenue-recognition update is an accounting-quality signal that warrants source-addressed caution, but the company stated it did not change cash or underlying business fundamentals.",
+      "affectedFactors": ["dataConfidence", "financialOperatingMomentum"],
+      "causalEdges": ["contract-accounting-judgment->reported-revenue-timing", "cash-corroboration->confidence-in-commercial-conversion"],
+      "risk": "Government-contract revenue timing can create divergence between reported growth and cash realization.",
+      "falsifier": "Future filings showing stable recognition policies, cash collections consistent with recognized revenue, and no further material timing corrections would reduce this concern."
+    },
+    {
+      "claim": "Proposed government funding should not be treated as realized operating revenue or unconditional financing because the disclosed Commerce LOI remained subject to definitive agreements and approvals and contemplated potential equity consideration.",
+      "affectedFactors": ["governancePower", "financialOperatingMomentum", "scenarioRobustness"],
+      "causalEdges": ["government-support->commercialization-capital", "funding-conditions-and-equity->realization-and-dilution-risk"],
+      "risk": "Funding realization, terms and potential dilution remain conditional rather than current blockers.",
+      "falsifier": "Executed definitive agreements with disclosed non-dilutive or bounded-dilution terms and received funding would materially reduce this uncertainty."
+    }
+  ],
+  "contradictions": [
+    {
+      "observed": "Rapid revenue growth and substantial liquidity coexist with operating losses materially above quarterly revenue and normalized operating cash burn.",
+      "interpretation": "This is a commercialization-stage tension, not evidence that growth is false; it makes conversion efficiency and runway durability important Alpha underwriting inputs.",
+      "gating": false
+    },
+    {
+      "observed": "Updated revenue was higher, but part of the change was an accounting timing adjustment rather than new cash or changed business fundamentals.",
+      "interpretation": "Growth and accounting timing should be represented separately to avoid confidence inflation.",
+      "gating": false
+    }
+  ],
+  "unknowns": [
+    "Normalized post-Q2 cash burn after the payroll-tax remittance and subsequent working-capital movements.",
+    "Customer and government-contract concentration and the cash-collection cadence behind recognized revenue.",
+    "Final terms, timing and dilution implications of proposed Commerce funding."
+  ],
+  "gatingStatus": "assist_evidence_noncanonical_root_owner_review_required",
+  "confidence": "high_on_disclosed_financial_mechanics_medium_on_forward_risk_implications",
+  "recommendedNextState": "council-alpha-review-for-source-addressed-risk-evidence",
+  "recommendedOwner": "council-alpha",
+  "learning": {
+    "changedStrategy": true,
+    "strategy": "Used primary issuer/SEC financial mechanics rather than repeating existing technical-roadmap risks; separated observed accounting/cash facts from forward falsifiers."
+  }
+}

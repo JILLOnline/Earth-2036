@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "role": "earth-scout",
+  "generatedAt": "2026-09-28T11:04:19Z",
+  "ticker": "TXN",
+  "workId": "t0:TXN",
+  "perspectives": ["discovery-weak-signals", "expectations-execution"],
+  "assist": {
+    "requestId": "assist:TXN:council-alpha:earth-scout:source-acquisition",
+    "inputSignature": "037f7bd6d5f23f2b9e5f",
+    "rootOwner": "council-alpha",
+    "capability": "source-acquisition"
+  },
+  "lineage": {
+    "startingGitHead": "6bfdf00b732114aa40b214896a9443a0264af1f3",
+    "packetPath": "data/runtime/workgraph/packets/TXN.json",
+    "reusedEvidencePaths": [
+      "data/runtime/workgraph/evidence/TXN-20260918T1600Z-earth-scout.json",
+      "data/runtime/workgraph/evidence/TXN-20260921T002418Z-council-beta.json"
+    ],
+    "supersedes": []
+  },
+  "sources": [
+    {
+      "sourceId": "independent:reuters:TXN:2026Q2-demand",
+      "url": "https://www.reuters.com/business/texas-instruments-forecasts-quarterly-revenue-above-estimates-2026-07-22/",
+      "kind": "credible-independent",
+      "primary": false,
+      "publishedAt": "2026-07-22",
+      "originFingerprint": "independent:reuters:TXN:2026Q2-demand"
+    }
+  ],
+  "observations": [
+    {
+      "claim": "Reuters reported that Texas Instruments guided third-quarter 2026 revenue to $5.65B-$6.15B versus an analyst estimate of $5.61B, with demand supported by analog chips, AI infrastructure investment and recovery in industrial and automotive markets.",
+      "sourceId": "independent:reuters:TXN:2026Q2-demand",
+      "materialTo": ["financialOperatingMomentum", "catalystScore", "scenarioRobustness"],
+      "interpretationBoundary": "Independent market-context evidence only; Council Alpha retains numeric underwriting authority."
+    },
+    {
+      "claim": "Reuters reported Q2 2026 revenue of $5.46B, up 23% year over year and above the cited $5.25B analyst expectation, while also noting the shares fell more than 3% after hours.",
+      "sourceId": "independent:reuters:TXN:2026Q2-demand",
+      "materialTo": ["financialOperatingMomentum", "expectations-execution"],
+      "interpretationBoundary": "The positive operating surprise and negative immediate market reaction should remain separate observations; this artifact does not infer valuation."
+    }
+  ],
+  "factors": [
+    "financialOperatingMomentum",
+    "catalystScore",
+    "scenarioRobustness"
+  ],
+  "risks": [
+    {
+      "risk": "Industrial and automotive recovery is cyclical; if end-market recovery weakens, the independent demand signal may not persist.",
+      "gating": false
+    },
+    {
+      "risk": "A favorable operating outlook does not establish attractive valuation; the negative after-hours reaction underscores that market expectations remain a separate underwriting question.",
+      "gating": false
+    }
+  ],
+  "contradictions": [],
+  "unknowns": [
+    {
+      "unknown": "Current valuation and peer-relative valuation are not established by this source and remain with Council Alpha.",
+      "gating": false
+    },
+    {
+      "unknown": "The durability of the industrial/automotive recovery beyond the guided quarter remains uncertain.",
+      "gating": false
+    }
+  ],
+  "confidence": 88,
+  "recommendedNextOwner": "council-alpha",
+  "recommendedNextState": "researching",
+  "recommendedUse": "Reuse this independent origin alongside issuer evidence when constructing source-addressed operating-momentum, catalyst, risk and confidence evidence; do not treat it as a numeric score or valuation conclusion."
+}

@@ -1,0 +1,71 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-specialist-evidence",
+  "ticker": "INFQ",
+  "entityId": "INFQ",
+  "workId": "t0:INFQ",
+  "role": "council-beta",
+  "perspective": "adversarial-red-team",
+  "assist": {
+    "requestId": "assist:INFQ:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "f0ed63dfc5c77c83b048",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support"
+  },
+  "generatedAt": "2026-09-28T05:24:13Z",
+  "claims": [
+    {
+      "claim": "Infleqtion has material customer and receivables concentration that makes near-term revenue and cash conversion sensitive to a small number of counterparties: its May 2026 prospectus reports one customer represented 61% of Q1 2026 revenue, while two customers represented 74% and 19% of accounts receivable at March 31, 2026.",
+      "status": "supported"
+    },
+    {
+      "claim": "This concentration is an observed underwriting risk rather than a present business blocker; resilience would improve if subsequent filings show broader customer/revenue dispersion and reduced receivables concentration while commercial revenue scales.",
+      "status": "supported_interpretation"
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "sec:INFQ:2026-05-15:424B3",
+      "url": "https://ir.infleqtion.com/sec-filings/all-sec-filings/content/0001193125-26-227233/d117679d424b3.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-15",
+      "originFingerprint": "sec:INFQ:424B3:2026-05-15:customer-concentration"
+    }
+  ],
+  "affectedMethodologyFactors": [
+    "financialOperatingMomentum",
+    "scenarioRobustness",
+    "dataConfidence"
+  ],
+  "causalEdges": [
+    "customer-concentration->revenue-volatility",
+    "receivables-concentration->cash-conversion-sensitivity",
+    "commercial-customer-diversification->revenue-resilience"
+  ],
+  "risks": [
+    {
+      "risk": "A small number of customers account for a large share of revenue and receivables, increasing exposure to contract timing, renewal, collection and procurement changes.",
+      "gating": false
+    }
+  ],
+  "contradictions": [],
+  "unknowns": [
+    {
+      "unknown": "Current post-Q1 customer and receivables concentration is not established by this source and should be refreshed by Alpha from the latest filing before numeric underwriting.",
+      "gating": false
+    }
+  ],
+  "gatingIssues": [],
+  "confidence": 96,
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "lineage": {
+    "supersedes": null,
+    "inputEvidence": [
+      "data/runtime/workgraph/evidence/INFQ-20260922T072718Z-council-beta.json"
+    ],
+    "methodology": "engine/methodology.ts@1.0.0"
+  },
+  "falsifier": "A newer primary filing showing materially diversified revenue and receivables would weaken this concentration-risk interpretation and should supersede it for current underwriting."
+}

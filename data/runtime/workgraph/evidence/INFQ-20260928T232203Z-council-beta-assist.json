@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "contract": "earth2036-assist-evidence-v1",
+  "ticker": "INFQ",
+  "entityId": "INFQ",
+  "workId": "t0:INFQ",
+  "role": "council-beta",
+  "rootOwner": "council-alpha",
+  "requestId": "assist:INFQ:council-alpha:council-beta:risk-source-support",
+  "inputSignature": "f0ed63dfc5c77c83b048",
+  "capability": "risk-source-support",
+  "generatedAt": "2026-09-28T23:22:03Z",
+  "claims": [
+    {
+      "claim": "Infleqtion's Q2 2026 revenue is highly exposed to government procurement: government customers represented 92% of Q2 revenue and 89% of first-half revenue, with approximately 74% of first-half revenue associated with U.S. government customers.",
+      "status": "supported",
+      "use": "Alpha downside/concentration evidence"
+    },
+    {
+      "claim": "The company states government contracts commonly expire as programs conclude or transition, so future growth depends partly on securing new or follow-on awards; expiration of certain U.K. government contracts already reduced U.K. revenue, though U.S. government growth more than offset it in H1 2026.",
+      "status": "supported",
+      "use": "Alpha execution-risk/falsifier evidence"
+    },
+    {
+      "claim": "Government-contract revenue recognized over time depends on cost-to-cost estimates, expected margins and variable consideration; changes in underlying contract circumstances can produce cumulative catch-up adjustments. This creates an estimation-quality risk that should be separated from cash collection and award headline values.",
+      "status": "supported",
+      "use": "Alpha reporting-quality/risk evidence"
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "sec:INFQ:2026Q2:10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/2007825/000162828026057508/infq-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-18",
+      "originFingerprint": "sec:2007825:2026Q2:10Q",
+      "sourceSections": ["Revenue Recognition", "Government Funding", "Trends and Key Factors Affecting Performance"]
+    }
+  ],
+  "affectedMethodologyFactors": ["financialOperatingMomentum", "scenarioRobustness", "dataConfidence", "supplyChainResilience"],
+  "causalEdges": [
+    "government-budget-and-procurement->contract-awards-and-renewals->revenue",
+    "program-expiration->follow-on-award-requirement->revenue-continuity",
+    "cost-estimation-and-variable-consideration->revenue-recognition->reported-operating-performance"
+  ],
+  "risks": [
+    {
+      "risk": "Government-customer concentration makes revenue continuity sensitive to procurement priorities, funding timing, renewals and follow-on awards.",
+      "observed": true,
+      "gating": false,
+      "falsifier": "Sustained growth in diversified commercial revenue and lower government revenue concentration without deterioration in total growth would reduce this risk."
+    },
+    {
+      "risk": "Cost-to-cost and variable-consideration accounting requires judgment, so reported revenue can move with contract-estimate revisions even when underlying cash economics differ.",
+      "observed": true,
+      "gating": false,
+      "falsifier": "Stable contract estimates, minimal cumulative catch-up adjustments and cash collections tracking recognized revenue would reduce this concern."
+    }
+  ],
+  "contradictions": [
+    {
+      "contradiction": "Rapid revenue growth is presently supported by concentrated government demand; this is both validation and a concentration dependency rather than evidence that commercialization is broadly diversified.",
+      "material": true,
+      "disposition": "risk clarification for Alpha; not a Beta blocker"
+    }
+  ],
+  "unknowns": [
+    {
+      "unknown": "The packet does not yet quantify revenue by individual customer, renewal probability, backlog conversion by customer class, or cash collection timing against recognized government revenue.",
+      "gating": false,
+      "nextEvidencePath": "Council Alpha should use current SEC/customer-contract disclosures to quantify concentration, renewal exposure and cash conversion before assigning numeric risk."
+    }
+  ],
+  "gatingIssues": [],
+  "confidence": 96,
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "lineage": {
+    "supersedes": null,
+    "inputEvidence": [
+      "data/runtime/workgraph/evidence/INFQ-20260922T072718Z-council-beta.json",
+      "data/runtime/workgraph/packets/INFQ.json"
+    ],
+    "methodology": "engine/methodology.ts@1.0.0"
+  },
+  "doctrineFraming": {
+    "observedWeakness": "Government concentration and estimate-sensitive contract accounting are material representation constraints.",
+    "uncertainty": "Customer-level concentration, renewal economics and cash conversion remain Alpha-owned unknowns.",
+    "possibleImprovement": "Broader commercial revenue mix, repeat follow-on awards and transparent contract/cash conversion would improve resilience.",
+    "evidenceNeeded": "Customer-class revenue, follow-on award rates, backlog conversion and cash collection versus recognized revenue."
+  }
+}

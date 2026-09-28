@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "contract": "earth2036-bounded-assist-evidence-v1",
+  "role": "council-beta",
+  "generatedAt": "2026-09-28T16:30:26.271301Z",
+  "ticker": "INFQ",
+  "workId": "t0:INFQ",
+  "assist": {
+    "requestId": "assist:INFQ:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "f0ed63dfc5c77c83b048",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support",
+    "authorityBoundary": "bounded risk/source support only; no numeric underwriting, risk score, canonical score, rank, tick, membership or Chief decision"
+  },
+  "claims": [
+    {
+      "claim": "Q2 2026 reported operating cash flow was positive only because it included a $27.4M temporary payroll-tax working-capital benefit; excluding that timing item, operating cash burn was approximately $14M.",
+      "riskUse": "Alpha can distinguish headline operating cash flow from underlying cash consumption when constructing source-addressed risk evidence.",
+      "sourceIds": ["sec:INFQ:2026Q2:10Q", "issuer:INFQ:2026Q2"]
+    },
+    {
+      "claim": "Infleqtion updated Q2 revenue from $12.6M to $13.5M and FY2026 guidance from about $43M to $45.1M because of revenue-recognition timing for two government contracts; the company stated the adjustment had no impact on cash or underlying business fundamentals.",
+      "riskUse": "Revenue growth should be interpreted alongside recognition timing and cash corroboration rather than treating the accounting uplift as incremental cash economics.",
+      "sourceIds": ["issuer:INFQ:2026Q2-updated", "sec:INFQ:2026Q2:10Q"]
+    },
+    {
+      "claim": "The Q2 10-Q states the company has incurred net losses and used cash in operating activities since inception; post-business-combination liquidity was materially strengthened by trust and PIPE proceeds.",
+      "riskUse": "Current liquidity materially improves resilience, while financing dependence remains relevant if commercialization and gross-profit conversion lag operating investment over a longer horizon.",
+      "sourceIds": ["sec:INFQ:2026Q2:10Q"]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Underlying operating cash consumption is obscured by a temporary working-capital benefit in headline Q2 cash flow.",
+      "observed": true,
+      "gating": false,
+      "improvementPath": "Track post-remittance operating cash flow and cash burn against revenue/gross-profit conversion in subsequent filings.",
+      "falsifier": "Sustained operating cash generation after normalizing working-capital timing would invalidate this cash-burn concern."
+    },
+    {
+      "risk": "Government-contract revenue timing can alter reported growth without changing cash, increasing the need for contract/cash corroboration.",
+      "observed": true,
+      "gating": false,
+      "improvementPath": "Reconcile future government-contract revenue with cash collections, backlog conversion and disclosed contract milestones.",
+      "falsifier": "Stable recognition with corresponding cash conversion and no further material timing corrections would reduce this concern."
+    }
+  ],
+  "contradictions": [
+    {
+      "contradiction": "Strong liquidity and rapid reported revenue growth coexist with material operating losses and normalized operating cash burn.",
+      "disposition": "real commercialization-stage tension; risk clarification for Alpha, not a present Beta blocker"
+    }
+  ],
+  "unknowns": [
+    "Customer concentration and contract-level cash conversion remain Alpha-owned underwriting questions.",
+    "Future normalized operating cash burn after the payroll-tax remittance remains to be observed."
+  ],
+  "affectedFactors": ["financialOperatingMomentum", "scenarioRobustness", "dataConfidence"],
+  "causalEdges": [
+    "commercial-contract-execution->recognized-revenue->gross-profit->operating-cash-resilience",
+    "external-financing->liquidity-runway->time-to-commercial-scale"
+  ],
+  "sources": [
+    {
+      "sourceId": "sec:INFQ:2026Q2:10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/2007825/000162828026057508/infq-20260630.htm",
+      "originFingerprint": "sec:2007825:2026Q2:10Q",
+      "kind": "primary"
+    },
+    {
+      "sourceId": "issuer:INFQ:2026Q2",
+      "url": "https://ir.infleqtion.com/news-events/press-releases/detail/201/infleqtion-reports-record-q2-revenue-raises-2026-outlook-as-quantum-commercialization-accelerates",
+      "originFingerprint": "issuer:INFQ:2026Q2",
+      "kind": "primary"
+    },
+    {
+      "sourceId": "issuer:INFQ:2026Q2-updated",
+      "url": "https://ir.infleqtion.com/sec-filings/all-sec-filings/content/0001628280-26-057510/infq-20260630xex9918x17x20.htm",
+      "originFingerprint": "issuer:INFQ:2026Q2:updated",
+      "kind": "primary"
+    }
+  ],
+  "lineage": {
+    "mode": "append-only-assist",
+    "supersedes": null,
+    "reuses": ["data/runtime/workgraph/evidence/INFQ-20260922T072718Z-council-beta.json"]
+  },
+  "gatingStatus": "non-gating bounded assist; intended to help root owner close missing_score_risk_evidence",
+  "confidence": 94,
+  "recommendedNextState": "council-alpha re-evaluate missing_score_risk_evidence using normalized cash-burn and revenue-recognition evidence",
+  "recommendedNextOwner": "council-alpha"
+}

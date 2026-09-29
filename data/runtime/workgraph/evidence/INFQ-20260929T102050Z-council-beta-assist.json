@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "contract": "earth2036-beta-assist-evidence-v1",
+  "role": "council-beta",
+  "generatedAt": "2026-09-29T10:20:50Z",
+  "ticker": "INFQ",
+  "workId": "t0:INFQ",
+  "perspective": "adversarial-red-team",
+  "assist": {
+    "requestId": "assist:INFQ:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "f0ed63dfc5c77c83b048",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support"
+  },
+  "lineage": {
+    "reuses": ["data/runtime/workgraph/evidence/INFQ-20260922T072718Z-council-beta.json"],
+    "supersedes": null
+  },
+  "claims": [
+    {
+      "claim": "Q2 2026 growth is real but does not yet demonstrate self-funded commercialization: updated quarterly revenue was $13.538M while GAAP operating loss was $29.858M.",
+      "sourceIds": ["issuer:INFQ:2026Q2-updated"],
+      "affectedFactors": ["financialOperatingMomentum", "scenarioRobustness"],
+      "causalEdges": ["commercial-revenue-growth->operating-scale", "operating-loss->external-capital-dependence"],
+      "riskType": "execution-financing"
+    },
+    {
+      "claim": "Reported Q2 operating cash generation contained a $27.4M temporary payroll-tax working-capital benefit; excluding it, management stated operating cash burn was approximately $14M and expected the tax amount to be remitted in Q3.",
+      "sourceIds": ["issuer:INFQ:2026Q2-original"],
+      "affectedFactors": ["financialOperatingMomentum", "dataConfidence"],
+      "causalEdges": ["working-capital-timing->reported-operating-cash-flow", "normalized-cash-burn->runway"],
+      "riskType": "cash-quality"
+    },
+    {
+      "claim": "The updated Q2 filing increased revenue and FY2026 guidance because of a revenue-recognition timing adjustment on two government contracts, with no change to cash or underlying business assumptions; therefore the guidance uplift should not be interpreted as an equal increase in cash commercialization.",
+      "sourceIds": ["issuer:INFQ:2026Q2-updated"],
+      "affectedFactors": ["dataConfidence", "catalystScore", "financialOperatingMomentum"],
+      "causalEdges": ["revenue-recognition-timing->reported-revenue", "cash-contract-performance->economic-validation"],
+      "riskType": "accounting-interpretation"
+    },
+    {
+      "claim": "Liquidity is currently a resilience factor rather than a present blocker: the company reported $582M of cash, cash equivalents, restricted cash and available-for-sale securities and no debt at Q2, while the 10-Q states liquidity was materially increased by the February 2026 business combination and PIPE proceeds.",
+      "sourceIds": ["issuer:INFQ:2026Q2-original", "sec:INFQ:2026Q2:10Q"],
+      "affectedFactors": ["scenarioRobustness", "financialOperatingMomentum"],
+      "causalEdges": ["transaction-proceeds->liquidity-runway", "liquidity-runway->time-to-technical-commercial-milestones"],
+      "riskType": "resilience"
+    }
+  ],
+  "risks": [
+    "Commercial revenue remains small relative to operating expense, so sustained technical and customer conversion is required before the business becomes self-funding.",
+    "Headline operating cash flow can overstate underlying cash economics when temporary working-capital items are not normalized.",
+    "Government-contract accounting adjustments can move reported revenue between periods without changing cash, requiring contract-level and cash corroboration.",
+    "Future capital needs are not an immediate blocker given current liquidity, but prolonged milestone slippage could convert runway into dilution risk over time."
+  ],
+  "contradictions": [
+    {
+      "observed": "Revenue growth and raised guidance coexist with operating losses materially above quarterly revenue.",
+      "disposition": "real commercialization-stage tension; not by itself a blocker",
+      "falsifier": "multiple periods of improving gross margin and normalized operating cash burn alongside customer-backed revenue growth would reduce this concern"
+    },
+    {
+      "observed": "The updated FY2026 revenue guidance increased while management said underlying business assumptions and cash were unchanged.",
+      "disposition": "accounting-timing explanation resolves the apparent operational acceleration claim; Alpha should separate accounting uplift from economic growth",
+      "falsifier": "incremental cash collections or contract expansion attributable to the same adjustment would show additional economic content"
+    }
+  ],
+  "unknowns": [
+    "Customer concentration and contract-level margin economics remain Alpha-owned underwriting inputs.",
+    "Independent verification of targeted logical-qubit milestones and customer workload economics remains outside this bounded risk assist.",
+    "Normalized post-Q3 cash burn after remittance of the payroll-tax timing item is not yet established by the cited Q2 evidence."
+  ],
+  "gatingStatus": {
+    "betaAssistComplete": true,
+    "canonicalGateChanged": false,
+    "note": "Bounded risk-source support only; does not set Alpha numeric risk or score and does not adjudicate resolver-owned contradiction state."
+  },
+  "confidence": 94,
+  "recommendedNextState": "council-alpha-consume-risk-evidence",
+  "recommendedOwner": "council-alpha",
+  "sources": [
+    {
+      "sourceId": "issuer:INFQ:2026Q2-original",
+      "url": "https://ir.infleqtion.com/news-events/press-releases/detail/201/infleqtion-reports-record-q2-revenue-raises-2026-outlook-as-quantum-commercialization-accelerates",
+      "originFingerprint": "issuer:INFQ:2026Q2",
+      "publishedAt": "2026-08-12",
+      "primary": true
+    },
+    {
+      "sourceId": "issuer:INFQ:2026Q2-updated",
+      "url": "https://ir.infleqtion.com/sec-filings/all-sec-filings/content/0001628280-26-057510/infq-20260630xex9918x17x20.htm",
+      "originFingerprint": "issuer:INFQ:2026Q2:updated",
+      "publishedAt": "2026-08-18",
+      "primary": true
+    },
+    {
+      "sourceId": "sec:INFQ:2026Q2:10Q",
+      "url": "https://ir.infleqtion.com/sec-filings/all-sec-filings/content/0001628280-26-057508/infq-20260630.htm",
+      "originFingerprint": "sec:2007825:2026Q2:10Q",
+      "publishedAt": "2026-08-18",
+      "primary": true
+    }
+  ]
+}

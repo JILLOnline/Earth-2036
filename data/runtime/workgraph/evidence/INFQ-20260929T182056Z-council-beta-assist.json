@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "contract": "earth2036-specialist-assist-evidence-v1",
+  "generatedAt": "2026-09-29T18:20:56Z",
+  "role": "council-beta",
+  "ticker": "INFQ",
+  "workId": "t0:INFQ",
+  "assist": {
+    "requestId": "assist:INFQ:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "f0ed63dfc5c77c83b048",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support",
+    "scope": "source-addressed downside, execution-risk and falsifier support only; no numeric underwriting or score"
+  },
+  "lineage": {
+    "packetPath": "data/runtime/workgraph/packets/INFQ.json",
+    "priorEvidencePaths": [
+      "data/runtime/workgraph/evidence/INFQ-20260918T2000Z-earth-scout.json",
+      "data/runtime/workgraph/evidence/INFQ-20260922T072718Z-council-beta.json"
+    ],
+    "supersedes": null,
+    "startingGitHead": "e2060fac20075ef43ddf0000f47f3b4427990b79"
+  },
+  "perspective": "adversarial-red-team-assist",
+  "claims": [
+    {
+      "claim": "Reported Q2 operating cash generation was not representative of underlying operating cash conversion because it included a temporary $27.4 million payroll-tax working-capital benefit; management stated operating cash burn was approximately $14 million excluding that timing benefit and expected the $27.4 million remittance in Q3.",
+      "riskType": "cash-conversion/timing",
+      "observedWeakness": "Headline operating cash flow can overstate near-term self-funding if the temporary working-capital item is not normalized.",
+      "improvementPath": "Alpha can normalize cash conversion for the temporary payroll-tax liability and compare subsequent cash burn with revenue/gross-profit progression.",
+      "falsifier": "Subsequent filings showing durable positive operating cash flow after remittance and without comparable working-capital timing benefits would weaken this risk."
+    },
+    {
+      "claim": "The updated Q2 filing shifted revenue recognition timing for two government contracts, raising reported Q2 revenue and FY2026 guidance while stating there was no impact to cash or underlying business fundamentals.",
+      "riskType": "revenue-recognition/source-confidence",
+      "observedWeakness": "Growth and guidance comparisons require period-consistent revenue treatment; accounting timing changes should not be interpreted as incremental cash demand or new commercial traction.",
+      "improvementPath": "Alpha can separate accounting-timing uplift from operating growth and use cash/contract evidence to corroborate commercialization.",
+      "falsifier": "Future periods with stable recognition treatment and cash collections tracking recognized revenue would reduce this uncertainty."
+    },
+    {
+      "claim": "Infleqtion disclosed continuing operating losses while funding liquidity was materially strengthened by the 2026 business combination and PIPE proceeds.",
+      "riskType": "financing/dilution/runway",
+      "observedWeakness": "Current liquidity is strong, but the business remains dependent on converting commercialization progress into economics before sustained losses materially consume the externally raised capital base.",
+      "improvementPath": "Track normalized operating burn, gross profit, stock-based compensation and per-share dilution against commercial milestones rather than treating cash balance alone as proof of self-sustaining economics.",
+      "falsifier": "A sustained narrowing of operating losses and burn relative to gross profit/revenue, without material new dilution, would weaken this risk."
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "issuer:INFQ:2026Q2-original-results",
+      "url": "https://ir.infleqtion.com/news-events/press-releases/detail/201/infleqtion-reports-record-q2-revenue-raises-2026-outlook-as-quantum-commercialization-accelerates",
+      "kind": "primary",
+      "originFingerprint": "issuer:INFQ:2026Q2-original-results",
+      "publishedAt": "2026-08-12"
+    },
+    {
+      "sourceId": "issuer:INFQ:2026Q2-updated",
+      "url": "https://ir.infleqtion.com/sec-filings/all-sec-filings/content/0001628280-26-057510/infq-20260630xex9918x17x20.htm",
+      "kind": "primary",
+      "originFingerprint": "issuer:INFQ:2026Q2:updated",
+      "publishedAt": "2026-08-18"
+    },
+    {
+      "sourceId": "sec:INFQ:2026Q2:10Q",
+      "url": "https://ir.infleqtion.com/sec-filings/all-sec-filings/content/0001628280-26-057508/infq-20260630.htm",
+      "kind": "primary",
+      "originFingerprint": "sec:2007825:2026Q2:10Q",
+      "publishedAt": "2026-08-18"
+    }
+  ],
+  "affectedFactors": [
+    "financialOperatingMomentum",
+    "dataConfidence",
+    "scenarioRobustness",
+    "governancePower"
+  ],
+  "causalEdges": [
+    "external-capital->liquidity-runway->time-to-commercialize",
+    "revenue-recognition-policy->reported-growth-comparability->underwriting-confidence",
+    "working-capital-timing->reported-operating-cash-flow->normalized-cash-burn"
+  ],
+  "risks": [
+    "temporary working-capital benefit can distort headline cash conversion",
+    "revenue-recognition timing adjustment can inflate apparent period growth if not normalized",
+    "operating losses remain material relative to current revenue despite strong liquidity"
+  ],
+  "contradictions": [
+    {
+      "statement": "Strong liquidity and rapid reported revenue growth coexist with material operating losses and a temporary working-capital benefit in reported operating cash flow.",
+      "material": true,
+      "disposition": "real commercialization-stage tension; source-addressed for Alpha risk treatment, not a standalone blocker"
+    }
+  ],
+  "unknowns": [
+    "post-remittance normalized Q3 operating cash burn",
+    "degree to which future recognized revenue converts to cash and gross profit",
+    "future stock-based compensation and per-share dilution trajectory"
+  ],
+  "gatingStatus": {
+    "betaOwnedBlocker": false,
+    "rootFailureAddressed": "missing_score_risk_evidence",
+    "rootOwner": "council-alpha",
+    "recommendedUse": "Alpha should incorporate these source-addressed risk mechanics into its own numeric risk evidence and underwriting without treating Beta as numeric authority."
+  },
+  "confidence": 93,
+  "recommendedNextState": "return_to_council-alpha",
+  "recommendedNextOwner": "council-alpha"
+}

@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "role": "earth-scout",
+  "generatedAt": "2026-09-29T17:01:13Z",
+  "authority": "JILLOnline/Earth-2036@main",
+  "startingGitHead": "2778aa9488dd07fc8dd026928063328e93f3937b",
+  "companiesInspected": [],
+  "evidencePairsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [],
+  "strikeZoneAttempts": [],
+  "result": "lawful_noop_core_stale_reconcile_integrity_blocker",
+  "blockers": [
+    {
+      "type": "earth_core_stale",
+      "detail": "Worker-view projections and fast-path state are stale because Workgraph reconciliation is blocked by malformed persisted evidence VRTX-20260927T211225Z-council-alpha.json. The freshest Chief receipt reports Reconcile run 1398 failed the JSON integrity invariant at position 9951 / line 1 column 9952. Scout did not consume source-acquisition capacity against stale Core projections."
+    }
+  ],
+  "repeatedBlocker": "persisted_evidence_invalid_json:VRTX-20260927T211225Z-council-alpha.json",
+  "failedStrategy": null,
+  "changedStrategy": "Defer strike-zone/frontier/assist acquisition until Earth Core reconciliation can refresh authoritative worker views; preserve Scout capacity and avoid acting on stale routing.",
+  "nextLawfulAction": "After an append-only immutable-history-compatible recovery or supersession resolves the malformed VRTX Alpha evidence, rerun Workgraph reconciliation and then re-read fast-path, closure-frontier, Assist and Scout routing views before source acquisition.",
+  "guardrails": {
+    "methodology10Preserved": true,
+    "t0GatesPreserved": true,
+    "immutableHistoryPreserved": true,
+    "beastIntegrityPreserved": true,
+    "decisionLadderPreserved": true,
+    "earthCoreOnlyCanonicalAuthority": true,
+    "canonicalStateMutated": false,
+    "automationDefinitionsChanged": false
+  }
+}

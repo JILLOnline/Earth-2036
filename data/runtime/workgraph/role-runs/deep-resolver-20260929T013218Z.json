@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "role": "deep-resolver",
+  "generatedAt": "2026-09-29T01:32:18Z",
+  "operatingMode": "bounded-worker-view-deferred-no-action",
+  "startingGitHead": "3e8404a592fa26ac823a33a6b25dc2ad4fbc5778",
+  "itemsAttempted": [],
+  "deferredDependentItems": [
+    {
+      "ticker": "AEVA",
+      "workId": "t0:AEVA",
+      "itemId": "AEVA:contradiction:2",
+      "reason": "unchanged Resolver input already adjudicated awaiting_new_evidence; source-integrity and company-underwriting remain Alpha-owned missing coverage",
+      "priorEvidence": "data/runtime/workgraph/evidence/AEVA-20260927T163255Z-deep-resolver.json",
+      "successCondition": "packet input signature changes with newer primary evidence addressing committed production volumes, unit economics, or material recurring production economics"
+    },
+    {
+      "ticker": "AI",
+      "workId": "t0:AI",
+      "reason": "Resolver-visible contradiction remains downstream of missing source-integrity/company-underwriting coverage; no bounded helper request exists and open-ended duplicate source work is outside Resolver ownership",
+      "successCondition": "root-owner evidence closes or materially changes the contradiction packet input"
+    }
+  ],
+  "resolved": [],
+  "unavailable": [],
+  "stillConflicted": [],
+  "artifacts": [],
+  "assistAttempts": [],
+  "blockers": [
+    "No active Assist request where helperRole=deep-resolver.",
+    "No role cycle requires Resolver cycle-breaking.",
+    "Visible contradiction work is unchanged/dependent on root-owner evidence; repeating AEVA would violate anti-repeat."
+  ],
+  "result": "deferred_no_action_anti_repeat_and_root_owner_dependency",
+  "learning": {
+    "workerViewGeneratedAt": "2026-09-27T21:08:49.170Z",
+    "ownedQueueVisible": 4,
+    "rawResolverContradictions": 54,
+    "assistCount": 0,
+    "roleCycleCount": 0,
+    "lesson": "Do not convert a bounded independently-actionable label into permission for repeated research when the same Resolver item already has an awaiting_new_evidence disposition and its input has not materially changed.",
+    "repeatedBlocker": "unchanged Resolver contradiction plus incomplete Alpha-owned source-integrity/company-underwriting evidence",
+    "failedStrategy": "re-inspecting unchanged contradiction evidence before root-owner inputs change",
+    "changedStrategy": "defer unchanged adjudicated Resolver work and preserve capacity for a changed input signature, genuine new contradiction, or explicit Resolver assist",
+    "successSignal": "a materially changed contradiction packet, active genuine Resolver assist, or cycle/deadlock requiring bounded adjudication"
+  },
+  "authorityBoundary": "No canonical methodology, score, rank, tick, membership, underwriting value, automation definition, or Chief decision was modified."
+}

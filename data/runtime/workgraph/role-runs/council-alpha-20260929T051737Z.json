@@ -1,0 +1,31 @@
+{
+  "role": "council-alpha",
+  "generatedAt": "2026-09-29T05:17:37Z",
+  "sourceCycleKey": "20260927T2108Z",
+  "startingGitHead": "cb7cd0eabd4bf11ce5dcaca6dda0a82d821ee484",
+  "operatingMode": "closure-first-systemic-integrity-blocker",
+  "companiesInspected": ["VRTX", "MDB", "NET", "VALE"],
+  "frontierItemsAttempted": ["VRTX", "MDB", "NET", "VALE"],
+  "alphaPairsCompleted": 0,
+  "scoreRecordsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [],
+  "blockers": [
+    "Earth Core worker projections are stale at 2026-09-27T21:08:49.170Z because reconciliation is failing on malformed immutable Alpha evidence data/runtime/workgraph/evidence/VRTX-20260929T031908Z-council-alpha.json.",
+    "The VRTX artifact is syntactically incomplete: its serialized content closes scoreRecord but omits the final outer evidence-object closing brace. Because reconcile must parse immutable evidence before lineage/supersession can be applied, an append-only superseding artifact alone cannot lawfully restore Core while the malformed file remains in the evidence scan.",
+    "MDB, NET and VALE were inspected as independent frontier rotations, but their authoritative packet/routing projections are stale behind the same reconcile failure; producing new score artifacts against stale packet state risks duplicate or conflicting Alpha lineage."
+  ],
+  "result": "systemic_integrity_blocker_precisely_identified_no_new_evidence_written",
+  "repeatedBlocker": "stale_control_plane_due_malformed_vrtx_alpha_artifact",
+  "sourcePathsAttempted": [
+    "data/runtime/workgraph/evidence/VRTX-20260929T031908Z-council-alpha.json",
+    "data/runtime/workgraph/packets/VRTX.json",
+    "data/runtime/workgraph/worker-view/closure-frontier.json",
+    "data/runtime/workgraph/worker-view/routing/council-alpha.json",
+    "SEC Vertex 2026 proxy",
+    "independent September 2026 VRTX valuation/PE source"
+  ],
+  "failedStrategy": "Continuing ordinary closure work while Core routing remains frozen behind a syntactically malformed immutable evidence object would compound stale-lineage risk.",
+  "changedStrategy": "Diagnosed the exact parse defect in the latest VRTX Alpha artifact and rotated across the next three frontier names to determine whether independent lawful closure could proceed; all depend on the same stale Core projection.",
+  "nextLawfulAction": "Restore parser-safe immutable-history handling for the malformed VRTX artifact without silently rewriting history (for example quarantine/skip-with-auditable-integrity-record or a Chief-authorized repair mechanism), rerun reconcile to refresh worker views, then resume Alpha from the refreshed closure frontier."
+}

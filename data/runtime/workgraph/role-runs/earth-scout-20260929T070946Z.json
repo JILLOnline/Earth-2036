@@ -1,0 +1,45 @@
+{
+  "schema_version": "earth-scout-role-run-v1",
+  "role": "earth-scout",
+  "generatedAt": "2026-09-29T07:09:46Z",
+  "authority": "JILLOnline/Earth-2036@main",
+  "startingGitHead": "deaa2156ef4d0de09740853d075b4d6b5d5f6a4e",
+  "companiesInspected": 0,
+  "evidencePairsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [],
+  "strikeZoneAttempts": [],
+  "blockers": [
+    {
+      "signature": "stale_earth_core_reconciliation_failure",
+      "detail": "Required Earth Core worker-view/metrics projections remain generated at 2026-09-27T21:08:49Z while the latest Chief receipt identifies Reconcile run 1327 as failed at the Workgraph reconciliation step. Fast-path contains zero promoted/skipped companies and no chief_ready provenance strike-zone work. Consuming stale assist/frontier inputs would risk manufacturing activity from a superseded execution projection.",
+      "sourcePathsAttempted": [
+        "config/earth-doctrine.json",
+        "config/workforce-contract.json",
+        "config/closure-engine-v1.json",
+        "data/runtime/workgraph/learning-state.json",
+        "data/runtime/workgraph/metrics.json",
+        "data/runtime/workgraph/fast-path-report.json",
+        "data/runtime/workgraph/worker-view/closure-frontier.json",
+        "data/runtime/workgraph/worker-view/assist/earth-scout.json",
+        "data/runtime/workgraph/worker-view/routing/earth-scout.json"
+      ],
+      "failedStrategy": "Do not consume stale closure-frontier/assist projections while Earth Core reconciliation is known failed.",
+      "changedStrategy": "Defer source-acquisition execution until Earth Core successfully reconciles and regenerates bounded worker views; then re-read fast-path first and execute only current signatures.",
+      "nextLawfulAction": "Restore successful Earth Core Workgraph reconciliation and regenerate current metrics/fast-path/frontier/assist/routing projections."
+    }
+  ],
+  "result": "lawful_noop_stale_core_projection",
+  "repeatedBlocker": "Workgraph reconciliation/persisted-evidence integrity failure",
+  "changedStrategy": "Protected prime closure capacity from stale inputs instead of opening new source work.",
+  "guardrails": {
+    "methodology_1_0_preserved": true,
+    "t0_gates_preserved": true,
+    "immutable_history_preserved": true,
+    "beast_integrity_preserved": true,
+    "decision_ladder_preserved": true,
+    "earth_core_only_canonical_authority": true,
+    "canonical_state_mutated": false,
+    "automation_definitions_changed": false
+  }
+}

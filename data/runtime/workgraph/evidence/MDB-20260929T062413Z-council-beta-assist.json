@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "contract": "earth2036-assist-evidence-v1",
+  "generatedAt": "2026-09-29T06:24:13.920Z",
+  "role": "council-beta",
+  "ticker": "MDB",
+  "workId": "t0:MDB",
+  "assist": {
+    "requestId": "assist:MDB:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "2cfe133cf0c8d81193cc",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support"
+  },
+  "lineage": {
+    "appendOnly": true,
+    "supersedes": null,
+    "priorBetaEvidence": "data/runtime/workgraph/evidence/MDB-20260922T182310Z-council-beta.json"
+  },
+  "sources": [
+    {
+      "sourceId": "sec-mdb-2026-09-28-ceo-transition",
+      "origin": "SEC filing / MongoDB Exhibit 99.1",
+      "url": "https://www.sec.gov/Archives/edgar/data/1441816/000162828026063657/pressreleasedatedseptemb.htm",
+      "publishedAt": "2026-09-28",
+      "originFingerprint": "sec:1441816:2026-09-28:ceo-transition",
+      "primary": true
+    }
+  ],
+  "claims": [
+    {
+      "claim": "MongoDB announced on September 28, 2026 that President and CEO Chirantan Desai stepped down effective immediately to pursue a senior role at Meta Platforms, and the board appointed former long-time CEO Dev Ittycheria as interim President and CEO.",
+      "sourceIds": ["sec-mdb-2026-09-28-ceo-transition"],
+      "observed": true
+    },
+    {
+      "claim": "The abrupt leadership transition adds a current execution/governance continuity variable that was absent from the September 22 Beta evidence, while the appointment of an experienced former CEO provides a concrete continuity mitigant.",
+      "sourceIds": ["sec-mdb-2026-09-28-ceo-transition"],
+      "observed": false,
+      "interpretation": true
+    }
+  ],
+  "affectedFactors": ["governancePower", "executionContinuity", "dataConfidence"],
+  "causalEdges": [
+    {
+      "from": "executive leadership transition",
+      "to": "strategy and operating execution continuity",
+      "mechanism": "an immediate CEO change can alter decision cadence and organizational continuity; returning former CEO experience can reduce transition friction"
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Near-term execution and leadership continuity uncertainty increased because the CEO change was immediate.",
+      "gating": false,
+      "sourceIds": ["sec-mdb-2026-09-28-ceo-transition"]
+    }
+  ],
+  "contradictions": [
+    {
+      "claim": "Leadership discontinuity risk is partly offset by appointing Dev Ittycheria, who previously led MongoDB for eleven years.",
+      "resolution": "Treat the transition as a new risk input, not evidence of operating deterioration by itself; test subsequent disclosures for strategy, retention and execution changes.",
+      "resolved": true,
+      "gating": false
+    }
+  ],
+  "unknowns": [
+    "Whether the transition changes long-term strategy, key-person retention, customer execution or the timing/content of future targets.",
+    "Whether a permanent CEO search or succession plan changes governance or operating priorities."
+  ],
+  "falsifiers": [
+    "Subsequent primary disclosures showing stable strategy, key leadership retention and unchanged/improved execution would reduce the incremental transition-risk interpretation.",
+    "Evidence of material executive departures, strategy reversal or execution deterioration attributable to the transition would strengthen it."
+  ],
+  "gatingStatus": {
+    "betaBlocker": false,
+    "alphaOwnedFailureAddressed": "missing_score_risk_evidence",
+    "note": "This is source-addressed qualitative risk support only; Council Alpha retains numeric underwriting and risk-score authority."
+  },
+  "confidence": "high_on_event_moderate_on_forward_impact",
+  "recommendedNextState": "council-alpha_reassess_risk_evidence_with_new_primary_event",
+  "recommendedNextOwner": "council-alpha",
+  "doctrine": {
+    "observedWeakness": "Immediate CEO transition creates a continuity variable.",
+    "possibleImprovement": "Experienced interim leadership and transparent succession/strategy communication can reduce uncertainty.",
+    "evidenceNeeded": "Primary disclosures on permanent leadership, retention, strategy and execution after the transition.",
+    "judgment": "none"
+  }
+}

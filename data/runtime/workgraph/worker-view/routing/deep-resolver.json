@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-worker-routing-view-v1",
-  "generatedAt": "2026-09-30T20:11:36.342Z",
+  "generatedAt": "2026-09-30T20:12:55.728Z",
   "role": "deep-resolver",
   "selectionPolicy": "closure-frontier-v1",
   "runObjective": "Adjudicate only bounded contradiction packets and return one allowed disposition; do not duplicate source-acquisition work.",
@@ -97,7 +97,7 @@
       "rank": 2,
       "ticker": "AEVA",
       "frontier": true,
-      "frontierRank": 10,
+      "frontierRank": 7,
       "operationalStatus": "needs_contradiction_resolution",
       "deferred": false,
       "deferredReason": null,
@@ -806,9 +806,343 @@
   "deferredItems": [
     {
       "rank": 1,
-      "ticker": "INFQ",
+      "ticker": "MDB",
       "frontier": true,
       "frontierRank": 2,
+      "operationalStatus": "needs_contradiction_resolution",
+      "deferred": true,
+      "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+      "executionGuard": "await_structured_contradiction_input",
+      "adjudicationPacket": {
+        "contract": "earth2036-resolver-adjudication-v1",
+        "ticker": "MDB",
+        "requiredDisposition": [
+          "resolved",
+          "non_gating",
+          "awaiting_new_evidence",
+          "still_material"
+        ],
+        "ownedFailures": [
+          "unresolved_material_contradiction"
+        ],
+        "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
+        "itemCount": 3,
+        "actionableItemCount": 0,
+        "deferredItemCount": 3,
+        "actionable": false,
+        "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+        "items": [
+          {
+            "itemId": "MDB:contradiction:1",
+            "claimA": "Strong total growth and raised guidance coexist with investor concern that Atlas growth has not accelerated.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong total growth and raised guidance coexist with investor concern that Atlas growth has not accelerated.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "MDB:contradiction:3",
+            "claimA": "Strong total growth and raised guidance coexist with uncertainty over whether Atlas growth will accelerate.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong total growth and raised guidance coexist with uncertainty over whether Atlas growth will accelerate.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "MDB:contradiction:5",
+            "claimA": "Strong operating cash flow and share repurchases coexist with large stock-based compensation, so cash generation and per-share economic conversion can move differently.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong operating cash flow and share repurchases coexist with large stock-based compensation, so cash generation and per-share economic conversion can move differently.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          }
+        ],
+        "actionableItems": [],
+        "deferredItems": [
+          {
+            "itemId": "MDB:contradiction:1",
+            "claimA": "Strong total growth and raised guidance coexist with investor concern that Atlas growth has not accelerated.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong total growth and raised guidance coexist with investor concern that Atlas growth has not accelerated.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "MDB:contradiction:3",
+            "claimA": "Strong total growth and raised guidance coexist with uncertainty over whether Atlas growth will accelerate.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong total growth and raised guidance coexist with uncertainty over whether Atlas growth will accelerate.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "MDB:contradiction:5",
+            "claimA": "Strong operating cash flow and share repurchases coexist with large stock-based compensation, so cash generation and per-share economic conversion can move differently.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong operating cash flow and share repurchases coexist with large stock-based compensation, so cash generation and per-share economic conversion can move differently.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          }
+        ]
+      },
+      "workId": "t0:MDB",
+      "state": "researching",
+      "packetPath": "data/runtime/workgraph/packets/MDB.json",
+      "ownedFailures": [
+        "unresolved_material_contradiction"
+      ],
+      "allFailures": [
+        "missing_specialist_perspective:source-integrity",
+        "missing_specialist_perspective:company-underwriting",
+        "missing_factor_evidence",
+        "missing_numeric_score_record",
+        "missing_score_risk_evidence",
+        "missing_data_confidence_evidence",
+        "unresolved_material_contradiction"
+      ],
+      "otherOwners": [
+        "council-alpha"
+      ],
+      "evidencePaths": [
+        "data/runtime/workgraph/evidence/MDB-20260920T170405Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/MDB-20260920T180801Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/MDB-20260920T190406Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/MDB-20260921T030528Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/MDB-20260922T182310Z-council-beta.json",
+        "data/runtime/workgraph/evidence/MDB-20260928T112307Z-council-beta-assist.json",
+        "data/runtime/workgraph/evidence/MDB-20260928T142100Z-council-alpha.json",
+        "data/runtime/workgraph/evidence/MDB-20260928T152223Z-council-beta-assist.json",
+        "data/runtime/workgraph/evidence/MDB-20260929T062413Z-council-beta-assist.json",
+        "data/runtime/workgraph/evidence/MDB-20260929T192848Z-council-beta.json",
+        "data/runtime/workgraph/evidence/MDB-20260929T202715Z-council-beta-assist.json",
+        "data/runtime/workgraph/evidence/MDB-20260930T011600Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/MDB-20260930T012404Z-council-beta-assist.json"
+      ],
+      "specialistCoverage": {
+        "required": [
+          "source-integrity",
+          "company-underwriting",
+          "structural-causal",
+          "discovery-weak-signals",
+          "adversarial-red-team",
+          "expectations-execution"
+        ],
+        "present": [
+          "discovery-weak-signals",
+          "expectations-execution",
+          "structural-causal",
+          "adversarial-red-team"
+        ],
+        "missing": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "complete": false
+      }
+    },
+    {
+      "rank": 2,
+      "ticker": "PNR",
+      "frontier": true,
+      "frontierRank": 3,
+      "operationalStatus": "needs_contradiction_resolution",
+      "deferred": true,
+      "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+      "executionGuard": "await_structured_contradiction_input",
+      "adjudicationPacket": {
+        "contract": "earth2036-resolver-adjudication-v1",
+        "ticker": "PNR",
+        "requiredDisposition": [
+          "resolved",
+          "non_gating",
+          "awaiting_new_evidence",
+          "still_material"
+        ],
+        "ownedFailures": [
+          "unresolved_material_contradiction"
+        ],
+        "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
+        "itemCount": 3,
+        "actionableItemCount": 0,
+        "deferredItemCount": 3,
+        "actionable": false,
+        "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+        "items": [
+          {
+            "itemId": "PNR:contradiction:1",
+            "claimA": "Strategic water-platform expansion is occurring during a sharp reported-sales contraction driven by channel reset.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strategic water-platform expansion is occurring during a sharp reported-sales contraction driven by channel reset.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "PNR:contradiction:2",
+            "claimA": "Platform expansion and strong cash generation coexist with a large Pool channel reset; this is a present operating tension, not by itself proof the structural thesis failed.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Platform expansion and strong cash generation coexist with a large Pool channel reset; this is a present operating tension, not by itself proof the structural thesis failed.\".",
+            "resolutionRule": "Treat normalized sell-through and post-close Taco integration as observable falsifiers rather than assuming either rebound or failure.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "PNR:contradiction:3",
+            "claimA": "Management is increasing acquisition leverage while current reported sales are being depressed by Pool destocking.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Management is increasing acquisition leverage while current reported sales are being depressed by Pool destocking.\".",
+            "resolutionRule": "Primary filings show strong cash generation and explicit deleveraging intent, but the tension remains decision-useful and should be monitored rather than treated as an unresolved Beta gate.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          }
+        ],
+        "actionableItems": [],
+        "deferredItems": [
+          {
+            "itemId": "PNR:contradiction:1",
+            "claimA": "Strategic water-platform expansion is occurring during a sharp reported-sales contraction driven by channel reset.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strategic water-platform expansion is occurring during a sharp reported-sales contraction driven by channel reset.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "PNR:contradiction:2",
+            "claimA": "Platform expansion and strong cash generation coexist with a large Pool channel reset; this is a present operating tension, not by itself proof the structural thesis failed.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Platform expansion and strong cash generation coexist with a large Pool channel reset; this is a present operating tension, not by itself proof the structural thesis failed.\".",
+            "resolutionRule": "Treat normalized sell-through and post-close Taco integration as observable falsifiers rather than assuming either rebound or failure.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "PNR:contradiction:3",
+            "claimA": "Management is increasing acquisition leverage while current reported sales are being depressed by Pool destocking.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Management is increasing acquisition leverage while current reported sales are being depressed by Pool destocking.\".",
+            "resolutionRule": "Primary filings show strong cash generation and explicit deleveraging intent, but the tension remains decision-useful and should be monitored rather than treated as an unresolved Beta gate.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          }
+        ]
+      },
+      "workId": "t0:PNR",
+      "state": "researching",
+      "packetPath": "data/runtime/workgraph/packets/PNR.json",
+      "ownedFailures": [
+        "unresolved_material_contradiction"
+      ],
+      "allFailures": [
+        "missing_specialist_perspective:source-integrity",
+        "missing_specialist_perspective:company-underwriting",
+        "missing_factor_evidence",
+        "missing_numeric_score_record",
+        "missing_score_risk_evidence",
+        "missing_data_confidence_evidence",
+        "unresolved_material_contradiction"
+      ],
+      "otherOwners": [
+        "council-alpha"
+      ],
+      "evidencePaths": [
+        "data/runtime/workgraph/evidence/PNR-20260921T090718Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/PNR-20260922T092601Z-council-beta.json",
+        "data/runtime/workgraph/evidence/PNR-20260930T011900Z-earth-scout.json"
+      ],
+      "specialistCoverage": {
+        "required": [
+          "source-integrity",
+          "company-underwriting",
+          "structural-causal",
+          "discovery-weak-signals",
+          "adversarial-red-team",
+          "expectations-execution"
+        ],
+        "present": [
+          "discovery-weak-signals",
+          "expectations-execution",
+          "structural-causal",
+          "adversarial-red-team"
+        ],
+        "missing": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "complete": false
+      }
+    },
+    {
+      "rank": 3,
+      "ticker": "INFQ",
+      "frontier": true,
+      "frontierRank": 4,
       "operationalStatus": "needs_contradiction_resolution",
       "deferred": true,
       "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
@@ -2333,624 +2667,10 @@
       }
     },
     {
-      "rank": 2,
-      "ticker": "VZ",
-      "frontier": true,
-      "frontierRank": 4,
-      "operationalStatus": "needs_contradiction_resolution",
-      "deferred": true,
-      "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
-      "executionGuard": "await_structured_contradiction_input",
-      "adjudicationPacket": {
-        "contract": "earth2036-resolver-adjudication-v1",
-        "ticker": "VZ",
-        "requiredDisposition": [
-          "resolved",
-          "non_gating",
-          "awaiting_new_evidence",
-          "still_material"
-        ],
-        "ownedFailures": [
-          "unresolved_material_contradiction"
-        ],
-        "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
-        "itemCount": 2,
-        "actionableItemCount": 0,
-        "deferredItemCount": 2,
-        "actionable": false,
-        "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
-        "items": [
-          {
-            "itemId": "VZ:contradiction:1",
-            "claimA": "Improving service growth and subscriber additions coexist with lower total operating revenue due to equipment weakness.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Improving service growth and subscriber additions coexist with lower total operating revenue due to equipment weakness.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "VZ:contradiction:2",
-            "claimA": "Capital returns and network investment are being pursued alongside elevated post-acquisition debt; cash generation currently supports both, but deterioration would force a sharper allocation tradeoff.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Capital returns and network investment are being pursued alongside elevated post-acquisition debt; cash generation currently supports both, but deterioration would force a sharper allocation tradeoff.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          }
-        ],
-        "actionableItems": [],
-        "deferredItems": [
-          {
-            "itemId": "VZ:contradiction:1",
-            "claimA": "Improving service growth and subscriber additions coexist with lower total operating revenue due to equipment weakness.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Improving service growth and subscriber additions coexist with lower total operating revenue due to equipment weakness.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "VZ:contradiction:2",
-            "claimA": "Capital returns and network investment are being pursued alongside elevated post-acquisition debt; cash generation currently supports both, but deterioration would force a sharper allocation tradeoff.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Capital returns and network investment are being pursued alongside elevated post-acquisition debt; cash generation currently supports both, but deterioration would force a sharper allocation tradeoff.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          }
-        ]
-      },
-      "workId": "t0:VZ",
-      "state": "researching",
-      "packetPath": "data/runtime/workgraph/packets/VZ.json",
-      "ownedFailures": [
-        "unresolved_material_contradiction"
-      ],
-      "allFailures": [
-        "missing_specialist_perspective:source-integrity",
-        "missing_specialist_perspective:company-underwriting",
-        "missing_factor_evidence",
-        "missing_numeric_score_record",
-        "missing_score_risk_evidence",
-        "missing_data_confidence_evidence",
-        "unresolved_material_contradiction"
-      ],
-      "otherOwners": [
-        "council-alpha"
-      ],
-      "evidencePaths": [
-        "data/runtime/workgraph/evidence/VZ-20260921T220246Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/VZ-20260922T142743Z-council-beta.json"
-      ],
-      "specialistCoverage": {
-        "required": [
-          "source-integrity",
-          "company-underwriting",
-          "structural-causal",
-          "discovery-weak-signals",
-          "adversarial-red-team",
-          "expectations-execution"
-        ],
-        "present": [
-          "discovery-weak-signals",
-          "expectations-execution",
-          "structural-causal",
-          "adversarial-red-team"
-        ],
-        "missing": [
-          "source-integrity",
-          "company-underwriting"
-        ],
-        "complete": false
-      }
-    },
-    {
-      "rank": 3,
-      "ticker": "LLY",
-      "frontier": true,
-      "frontierRank": 5,
-      "operationalStatus": "needs_contradiction_resolution",
-      "deferred": true,
-      "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
-      "executionGuard": "await_structured_contradiction_input",
-      "adjudicationPacket": {
-        "contract": "earth2036-resolver-adjudication-v1",
-        "ticker": "LLY",
-        "requiredDisposition": [
-          "resolved",
-          "non_gating",
-          "awaiting_new_evidence",
-          "still_material"
-        ],
-        "ownedFailures": [
-          "unresolved_material_contradiction"
-        ],
-        "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
-        "itemCount": 2,
-        "actionableItemCount": 0,
-        "deferredItemCount": 2,
-        "actionable": false,
-        "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
-        "items": [
-          {
-            "itemId": "LLY:contradiction:1",
-            "claimA": "Very strong volume/revenue momentum coexists with meaningful realized-price compression; both must be preserved rather than collapsing the signal into a one-direction growth narrative.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Very strong volume/revenue momentum coexists with meaningful realized-price compression; both must be preserved rather than collapsing the signal into a one-direction growth narrative.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "LLY:contradiction:5",
-            "claimA": "Strong volume/revenue momentum coexists with realized-price compression.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong volume/revenue momentum coexists with realized-price compression.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          }
-        ],
-        "actionableItems": [],
-        "deferredItems": [
-          {
-            "itemId": "LLY:contradiction:1",
-            "claimA": "Very strong volume/revenue momentum coexists with meaningful realized-price compression; both must be preserved rather than collapsing the signal into a one-direction growth narrative.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Very strong volume/revenue momentum coexists with meaningful realized-price compression; both must be preserved rather than collapsing the signal into a one-direction growth narrative.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "LLY:contradiction:5",
-            "claimA": "Strong volume/revenue momentum coexists with realized-price compression.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong volume/revenue momentum coexists with realized-price compression.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          }
-        ]
-      },
-      "workId": "t0:LLY",
-      "state": "researching",
-      "packetPath": "data/runtime/workgraph/packets/LLY.json",
-      "ownedFailures": [
-        "unresolved_material_contradiction"
-      ],
-      "allFailures": [
-        "missing_specialist_perspective:source-integrity",
-        "missing_specialist_perspective:company-underwriting",
-        "missing_factor_evidence",
-        "missing_numeric_score_record",
-        "missing_score_risk_evidence",
-        "missing_data_confidence_evidence",
-        "unresolved_material_contradiction"
-      ],
-      "otherOwners": [
-        "council-alpha"
-      ],
-      "evidencePaths": [
-        "data/runtime/workgraph/evidence/LLY-20260920T120651Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/LLY-20260920T130801Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/LLY-20260920T140914Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/LLY-20260920T150516Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/LLY-20260920T170400Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/LLY-20260920T180802Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/LLY-20260920T190402Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/LLY-20260921T030524Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/LLY-20260922T162234Z-council-beta.json",
-        "data/runtime/workgraph/evidence/LLY-20260922T190232Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/LLY-20260922T210224Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/LLY-20260922T223644Z-deep-resolver.json",
-        "data/runtime/workgraph/evidence/LLY-20260923T013419Z-deep-resolver.json",
-        "data/runtime/workgraph/evidence/LLY-20260928T002805Z-council-beta-assist.json",
-        "data/runtime/workgraph/evidence/LLY-20260930T011700Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/LLY-20260930T012404Z-council-beta-assist.json"
-      ],
-      "specialistCoverage": {
-        "required": [
-          "source-integrity",
-          "company-underwriting",
-          "structural-causal",
-          "discovery-weak-signals",
-          "adversarial-red-team",
-          "expectations-execution"
-        ],
-        "present": [
-          "discovery-weak-signals",
-          "expectations-execution",
-          "structural-causal",
-          "adversarial-red-team"
-        ],
-        "missing": [
-          "source-integrity",
-          "company-underwriting"
-        ],
-        "complete": false
-      }
-    },
-    {
       "rank": 4,
-      "ticker": "MDB",
-      "frontier": true,
-      "frontierRank": 6,
-      "operationalStatus": "needs_contradiction_resolution",
-      "deferred": true,
-      "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
-      "executionGuard": "await_structured_contradiction_input",
-      "adjudicationPacket": {
-        "contract": "earth2036-resolver-adjudication-v1",
-        "ticker": "MDB",
-        "requiredDisposition": [
-          "resolved",
-          "non_gating",
-          "awaiting_new_evidence",
-          "still_material"
-        ],
-        "ownedFailures": [
-          "unresolved_material_contradiction"
-        ],
-        "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
-        "itemCount": 3,
-        "actionableItemCount": 0,
-        "deferredItemCount": 3,
-        "actionable": false,
-        "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
-        "items": [
-          {
-            "itemId": "MDB:contradiction:1",
-            "claimA": "Strong total growth and raised guidance coexist with investor concern that Atlas growth has not accelerated.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong total growth and raised guidance coexist with investor concern that Atlas growth has not accelerated.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "MDB:contradiction:3",
-            "claimA": "Strong total growth and raised guidance coexist with uncertainty over whether Atlas growth will accelerate.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong total growth and raised guidance coexist with uncertainty over whether Atlas growth will accelerate.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "MDB:contradiction:5",
-            "claimA": "Strong operating cash flow and share repurchases coexist with large stock-based compensation, so cash generation and per-share economic conversion can move differently.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong operating cash flow and share repurchases coexist with large stock-based compensation, so cash generation and per-share economic conversion can move differently.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          }
-        ],
-        "actionableItems": [],
-        "deferredItems": [
-          {
-            "itemId": "MDB:contradiction:1",
-            "claimA": "Strong total growth and raised guidance coexist with investor concern that Atlas growth has not accelerated.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong total growth and raised guidance coexist with investor concern that Atlas growth has not accelerated.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "MDB:contradiction:3",
-            "claimA": "Strong total growth and raised guidance coexist with uncertainty over whether Atlas growth will accelerate.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong total growth and raised guidance coexist with uncertainty over whether Atlas growth will accelerate.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "MDB:contradiction:5",
-            "claimA": "Strong operating cash flow and share repurchases coexist with large stock-based compensation, so cash generation and per-share economic conversion can move differently.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong operating cash flow and share repurchases coexist with large stock-based compensation, so cash generation and per-share economic conversion can move differently.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          }
-        ]
-      },
-      "workId": "t0:MDB",
-      "state": "researching",
-      "packetPath": "data/runtime/workgraph/packets/MDB.json",
-      "ownedFailures": [
-        "unresolved_material_contradiction"
-      ],
-      "allFailures": [
-        "missing_specialist_perspective:source-integrity",
-        "missing_specialist_perspective:company-underwriting",
-        "missing_factor_evidence",
-        "missing_numeric_score_record",
-        "missing_score_risk_evidence",
-        "missing_data_confidence_evidence",
-        "unresolved_material_contradiction"
-      ],
-      "otherOwners": [
-        "council-alpha"
-      ],
-      "evidencePaths": [
-        "data/runtime/workgraph/evidence/MDB-20260920T170405Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/MDB-20260920T180801Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/MDB-20260920T190406Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/MDB-20260921T030528Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/MDB-20260922T182310Z-council-beta.json",
-        "data/runtime/workgraph/evidence/MDB-20260928T112307Z-council-beta-assist.json",
-        "data/runtime/workgraph/evidence/MDB-20260928T142100Z-council-alpha.json",
-        "data/runtime/workgraph/evidence/MDB-20260928T152223Z-council-beta-assist.json",
-        "data/runtime/workgraph/evidence/MDB-20260929T062413Z-council-beta-assist.json",
-        "data/runtime/workgraph/evidence/MDB-20260929T192848Z-council-beta.json",
-        "data/runtime/workgraph/evidence/MDB-20260929T202715Z-council-beta-assist.json",
-        "data/runtime/workgraph/evidence/MDB-20260930T011600Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/MDB-20260930T012404Z-council-beta-assist.json"
-      ],
-      "specialistCoverage": {
-        "required": [
-          "source-integrity",
-          "company-underwriting",
-          "structural-causal",
-          "discovery-weak-signals",
-          "adversarial-red-team",
-          "expectations-execution"
-        ],
-        "present": [
-          "discovery-weak-signals",
-          "expectations-execution",
-          "structural-causal",
-          "adversarial-red-team"
-        ],
-        "missing": [
-          "source-integrity",
-          "company-underwriting"
-        ],
-        "complete": false
-      }
-    },
-    {
-      "rank": 5,
-      "ticker": "PNR",
-      "frontier": true,
-      "frontierRank": 7,
-      "operationalStatus": "needs_contradiction_resolution",
-      "deferred": true,
-      "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
-      "executionGuard": "await_structured_contradiction_input",
-      "adjudicationPacket": {
-        "contract": "earth2036-resolver-adjudication-v1",
-        "ticker": "PNR",
-        "requiredDisposition": [
-          "resolved",
-          "non_gating",
-          "awaiting_new_evidence",
-          "still_material"
-        ],
-        "ownedFailures": [
-          "unresolved_material_contradiction"
-        ],
-        "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
-        "itemCount": 3,
-        "actionableItemCount": 0,
-        "deferredItemCount": 3,
-        "actionable": false,
-        "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
-        "items": [
-          {
-            "itemId": "PNR:contradiction:1",
-            "claimA": "Strategic water-platform expansion is occurring during a sharp reported-sales contraction driven by channel reset.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strategic water-platform expansion is occurring during a sharp reported-sales contraction driven by channel reset.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "PNR:contradiction:2",
-            "claimA": "Platform expansion and strong cash generation coexist with a large Pool channel reset; this is a present operating tension, not by itself proof the structural thesis failed.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Platform expansion and strong cash generation coexist with a large Pool channel reset; this is a present operating tension, not by itself proof the structural thesis failed.\".",
-            "resolutionRule": "Treat normalized sell-through and post-close Taco integration as observable falsifiers rather than assuming either rebound or failure.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "PNR:contradiction:3",
-            "claimA": "Management is increasing acquisition leverage while current reported sales are being depressed by Pool destocking.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Management is increasing acquisition leverage while current reported sales are being depressed by Pool destocking.\".",
-            "resolutionRule": "Primary filings show strong cash generation and explicit deleveraging intent, but the tension remains decision-useful and should be monitored rather than treated as an unresolved Beta gate.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          }
-        ],
-        "actionableItems": [],
-        "deferredItems": [
-          {
-            "itemId": "PNR:contradiction:1",
-            "claimA": "Strategic water-platform expansion is occurring during a sharp reported-sales contraction driven by channel reset.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strategic water-platform expansion is occurring during a sharp reported-sales contraction driven by channel reset.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "PNR:contradiction:2",
-            "claimA": "Platform expansion and strong cash generation coexist with a large Pool channel reset; this is a present operating tension, not by itself proof the structural thesis failed.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Platform expansion and strong cash generation coexist with a large Pool channel reset; this is a present operating tension, not by itself proof the structural thesis failed.\".",
-            "resolutionRule": "Treat normalized sell-through and post-close Taco integration as observable falsifiers rather than assuming either rebound or failure.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "PNR:contradiction:3",
-            "claimA": "Management is increasing acquisition leverage while current reported sales are being depressed by Pool destocking.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Management is increasing acquisition leverage while current reported sales are being depressed by Pool destocking.\".",
-            "resolutionRule": "Primary filings show strong cash generation and explicit deleveraging intent, but the tension remains decision-useful and should be monitored rather than treated as an unresolved Beta gate.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          }
-        ]
-      },
-      "workId": "t0:PNR",
-      "state": "researching",
-      "packetPath": "data/runtime/workgraph/packets/PNR.json",
-      "ownedFailures": [
-        "unresolved_material_contradiction"
-      ],
-      "allFailures": [
-        "missing_specialist_perspective:source-integrity",
-        "missing_specialist_perspective:company-underwriting",
-        "missing_factor_evidence",
-        "missing_numeric_score_record",
-        "missing_score_risk_evidence",
-        "missing_data_confidence_evidence",
-        "unresolved_material_contradiction"
-      ],
-      "otherOwners": [
-        "council-alpha"
-      ],
-      "evidencePaths": [
-        "data/runtime/workgraph/evidence/PNR-20260921T090718Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/PNR-20260922T092601Z-council-beta.json",
-        "data/runtime/workgraph/evidence/PNR-20260930T011900Z-earth-scout.json"
-      ],
-      "specialistCoverage": {
-        "required": [
-          "source-integrity",
-          "company-underwriting",
-          "structural-causal",
-          "discovery-weak-signals",
-          "adversarial-red-team",
-          "expectations-execution"
-        ],
-        "present": [
-          "discovery-weak-signals",
-          "expectations-execution",
-          "structural-causal",
-          "adversarial-red-team"
-        ],
-        "missing": [
-          "source-integrity",
-          "company-underwriting"
-        ],
-        "complete": false
-      }
-    },
-    {
-      "rank": 6,
       "ticker": "XEL",
       "frontier": true,
-      "frontierRank": 9,
+      "frontierRank": 6,
       "operationalStatus": "needs_contradiction_resolution",
       "deferred": true,
       "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
@@ -3080,7 +2800,7 @@
       }
     },
     {
-      "rank": 7,
+      "rank": 5,
       "ticker": "LMT",
       "frontier": false,
       "frontierRank": null,
@@ -3275,7 +2995,7 @@
       }
     },
     {
-      "rank": 8,
+      "rank": 6,
       "ticker": "LNG",
       "frontier": false,
       "frontierRank": null,
@@ -3440,7 +3160,7 @@
       }
     },
     {
-      "rank": 9,
+      "rank": 7,
       "ticker": "MCHP",
       "frontier": false,
       "frontierRank": null,
@@ -3576,7 +3296,7 @@
       }
     },
     {
-      "rank": 10,
+      "rank": 8,
       "ticker": "SQM",
       "frontier": false,
       "frontierRank": null,
@@ -3688,6 +3408,334 @@
         "data/runtime/workgraph/evidence/SQM-20260921T180758Z-earth-scout.json",
         "data/runtime/workgraph/evidence/SQM-20260921T202645Z-council-beta.json",
         "data/runtime/workgraph/evidence/SQM-20260922T173306Z-deep-resolver.json"
+      ],
+      "specialistCoverage": {
+        "required": [
+          "source-integrity",
+          "company-underwriting",
+          "structural-causal",
+          "discovery-weak-signals",
+          "adversarial-red-team",
+          "expectations-execution"
+        ],
+        "present": [
+          "discovery-weak-signals",
+          "expectations-execution",
+          "structural-causal",
+          "adversarial-red-team"
+        ],
+        "missing": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "complete": false
+      }
+    },
+    {
+      "rank": 9,
+      "ticker": "STEM",
+      "frontier": false,
+      "frontierRank": null,
+      "operationalStatus": "needs_contradiction_resolution",
+      "deferred": true,
+      "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+      "executionGuard": "await_structured_contradiction_input",
+      "adjudicationPacket": {
+        "contract": "earth2036-resolver-adjudication-v1",
+        "ticker": "STEM",
+        "requiredDisposition": [
+          "resolved",
+          "non_gating",
+          "awaiting_new_evidence",
+          "still_material"
+        ],
+        "ownedFailures": [
+          "unresolved_material_contradiction"
+        ],
+        "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
+        "itemCount": 3,
+        "actionableItemCount": 0,
+        "deferredItemCount": 3,
+        "actionable": false,
+        "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+        "items": [
+          {
+            "itemId": "STEM:contradiction:1",
+            "claimA": "Growth narrative around software intelligence coexists with explicit 10-K warning that the strategic transition caused disruption and may fail to deliver anticipated benefits.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Growth narrative around software intelligence coexists with explicit 10-K warning that the strategic transition caused disruption and may fail to deliver anticipated benefits.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "STEM:contradiction:3",
+            "claimA": "Improving margins, bookings and recurring software metrics coexist with declining total revenue; turnaround quality depends on sustained software growth rather than hardware-mix contraction alone.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Improving margins, bookings and recurring software metrics coexist with declining total revenue; turnaround quality depends on sustained software growth rather than hardware-mix contraction alone.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "STEM:contradiction:5",
+            "claimA": "Improving margins, bookings and recurring software metrics coexist with declining total revenue.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Improving margins, bookings and recurring software metrics coexist with declining total revenue.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          }
+        ],
+        "actionableItems": [],
+        "deferredItems": [
+          {
+            "itemId": "STEM:contradiction:1",
+            "claimA": "Growth narrative around software intelligence coexists with explicit 10-K warning that the strategic transition caused disruption and may fail to deliver anticipated benefits.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Growth narrative around software intelligence coexists with explicit 10-K warning that the strategic transition caused disruption and may fail to deliver anticipated benefits.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "STEM:contradiction:3",
+            "claimA": "Improving margins, bookings and recurring software metrics coexist with declining total revenue; turnaround quality depends on sustained software growth rather than hardware-mix contraction alone.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Improving margins, bookings and recurring software metrics coexist with declining total revenue; turnaround quality depends on sustained software growth rather than hardware-mix contraction alone.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "STEM:contradiction:5",
+            "claimA": "Improving margins, bookings and recurring software metrics coexist with declining total revenue.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Improving margins, bookings and recurring software metrics coexist with declining total revenue.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          }
+        ]
+      },
+      "workId": "t0:STEM",
+      "state": "researching",
+      "packetPath": "data/runtime/workgraph/packets/STEM.json",
+      "ownedFailures": [
+        "unresolved_material_contradiction"
+      ],
+      "allFailures": [
+        "missing_specialist_perspective:source-integrity",
+        "missing_specialist_perspective:company-underwriting",
+        "missing_factor_evidence",
+        "missing_numeric_score_record",
+        "missing_score_risk_evidence",
+        "missing_data_confidence_evidence",
+        "unresolved_material_contradiction"
+      ],
+      "otherOwners": [
+        "council-alpha"
+      ],
+      "evidencePaths": [
+        "data/runtime/workgraph/evidence/STEM-20260921T140443Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/STEM-20260921T150611Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/STEM-20260921T180758Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/STEM-20260921T202645Z-council-beta.json",
+        "data/runtime/workgraph/evidence/STEM-20260922T173306Z-deep-resolver.json"
+      ],
+      "specialistCoverage": {
+        "required": [
+          "source-integrity",
+          "company-underwriting",
+          "structural-causal",
+          "discovery-weak-signals",
+          "adversarial-red-team",
+          "expectations-execution"
+        ],
+        "present": [
+          "discovery-weak-signals",
+          "expectations-execution",
+          "structural-causal",
+          "adversarial-red-team"
+        ],
+        "missing": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "complete": false
+      }
+    },
+    {
+      "rank": 10,
+      "ticker": "STLD",
+      "frontier": false,
+      "frontierRank": null,
+      "operationalStatus": "needs_contradiction_resolution",
+      "deferred": true,
+      "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+      "executionGuard": "await_structured_contradiction_input",
+      "adjudicationPacket": {
+        "contract": "earth2036-resolver-adjudication-v1",
+        "ticker": "STLD",
+        "requiredDisposition": [
+          "resolved",
+          "non_gating",
+          "awaiting_new_evidence",
+          "still_material"
+        ],
+        "ownedFailures": [
+          "unresolved_material_contradiction"
+        ],
+        "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
+        "itemCount": 3,
+        "actionableItemCount": 0,
+        "deferredItemCount": 3,
+        "actionable": false,
+        "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+        "items": [
+          {
+            "itemId": "STLD:contradiction:1",
+            "claimA": "Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "STLD:contradiction:3",
+            "claimA": "Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "STLD:contradiction:5",
+            "claimA": "Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          }
+        ],
+        "actionableItems": [],
+        "deferredItems": [
+          {
+            "itemId": "STLD:contradiction:1",
+            "claimA": "Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "STLD:contradiction:3",
+            "claimA": "Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "STLD:contradiction:5",
+            "claimA": "Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          }
+        ]
+      },
+      "workId": "t0:STLD",
+      "state": "researching",
+      "packetPath": "data/runtime/workgraph/packets/STLD.json",
+      "ownedFailures": [
+        "unresolved_material_contradiction"
+      ],
+      "allFailures": [
+        "missing_specialist_perspective:source-integrity",
+        "missing_specialist_perspective:company-underwriting",
+        "missing_factor_evidence",
+        "missing_numeric_score_record",
+        "missing_score_risk_evidence",
+        "missing_data_confidence_evidence",
+        "unresolved_material_contradiction"
+      ],
+      "otherOwners": [
+        "council-alpha"
+      ],
+      "evidencePaths": [
+        "data/runtime/workgraph/evidence/STLD-20260921T140443Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/STLD-20260921T150611Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/STLD-20260921T180758Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/STLD-20260921T202645Z-council-beta.json",
+        "data/runtime/workgraph/evidence/STLD-20260922T173306Z-deep-resolver.json"
       ],
       "specialistCoverage": {
         "required": [

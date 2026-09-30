@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "role": "earth-scout",
+  "generatedAt": "2026-09-30T11:07:08Z",
+  "startingGitHead": "e25044e895558743509972bfef5a5edecd53b876",
+  "companiesInspected": [],
+  "evidencePairsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [],
+  "strikeZoneAttempts": [],
+  "result": "lawful_noop_integrity_fail_closed",
+  "blockers": [
+    "Earth Core worker-view projections are stale because deterministic reconcile is fail-closed on malformed immutable evidence data/runtime/workgraph/evidence/VRTX-20260927T211225Z-council-alpha.json.",
+    "Latest Chief receipt reports Reconcile run 1541 at 69/70 invariants with malformed JSON at position 9951 / column 9952; Scheduler and Watchdog also failing.",
+    "Strike-zone fast-path report is stale and empty at the last lawful Core projection; no current chief_ready provenance target can be established lawfully."
+  ],
+  "repeatedBlocker": "malformed immutable VRTX Alpha evidence prevents fresh Earth Core reconciliation",
+  "failedStrategy": "Do not spend Scout closure capacity or persist new company evidence against stale execution projections while Earth Core is fail-closed.",
+  "changedStrategy": "Hold source-acquisition work until Core reconciliation is restored; then re-read fast-path, closure frontier and bounded assist/routing worker views before any company work.",
+  "sourcePathsAttempted": [
+    "config/earth-doctrine.json",
+    "config/workforce-contract.json",
+    "config/closure-engine-v1.json",
+    "data/runtime/workgraph/learning-state.json",
+    "data/runtime/workgraph/metrics.json",
+    "data/runtime/workgraph/fast-path-report.json",
+    "data/runtime/workgraph/worker-view/closure-frontier.json",
+    "data/runtime/workgraph/worker-view/assist/earth-scout.json",
+    "data/runtime/workgraph/worker-view/routing/earth-scout.json",
+    "data/runtime/workgraph/packets/INFQ.json",
+    "latest main Chief integrity-lock receipt"
+  ],
+  "nextLawfulAction": "After deterministic reconcile succeeds and bounded worker views refresh, inspect fresh fast-path strike zone first, then active assists in priority order; do not rely on the stale 2026-09-27 projections.",
+  "guardrails": {
+    "methodology1Preserved": true,
+    "t0GatesPreserved": true,
+    "immutableHistoryPreserved": true,
+    "beastIntegrityPreserved": true,
+    "decisionLadderPreserved": true,
+    "earthCoreAuthorityPreserved": true,
+    "canonicalStateMutated": false,
+    "automationDefinitionsModified": false
+  }
+}

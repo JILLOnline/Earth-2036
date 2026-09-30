@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "role": "earth-scout",
+  "ticker": "TXN",
+  "workId": "t0:TXN",
+  "generatedAt": "2026-09-30T10:02:20Z",
+  "perspectives": ["discovery-weak-signals", "expectations-execution"],
+  "assist": {
+    "requestId": "assist:TXN:council-alpha:earth-scout:source-acquisition",
+    "inputSignature": "037f7bd6d5f23f2b9e5f",
+    "rootOwner": "council-alpha",
+    "capability": "source-acquisition"
+  },
+  "lineage": {
+    "startingGitHead": "c2529680c6c37a8839c1b0b3180242b49e4aa0a3",
+    "supersedes": [],
+    "reusedEvidencePaths": [
+      "data/runtime/workgraph/evidence/TXN-20260918T1600Z-earth-scout.json",
+      "data/runtime/workgraph/evidence/TXN-20260921T002418Z-council-beta.json"
+    ]
+  },
+  "sources": [
+    {
+      "sourceId": "sec:TXN:10-Q:2026Q2",
+      "url": "https://www.sec.gov/Archives/edgar/data/97476/000009747626000152/txn-20260630.htm",
+      "kind": "primary-regulatory",
+      "primary": true,
+      "publishedAt": "2026-07-24",
+      "originFingerprint": "regulator:SEC:TXN:10-Q:2026Q2"
+    },
+    {
+      "sourceId": "reuters:TXN:2026-07-22:analog-demand",
+      "url": "https://www.reuters.com/business/texas-instruments-forecasts-quarterly-revenue-above-estimates-2026-07-22/",
+      "kind": "credible-independent",
+      "primary": false,
+      "publishedAt": "2026-07-22",
+      "originFingerprint": "publisher:Reuters:TXN:2026-07-22"
+    }
+  ],
+  "facts": [
+    {
+      "claim": "TXN reported Q2 2026 revenue of $5.463B, up 23% year over year; Analog revenue was $4.365B, up 26%, and Embedded Processing revenue was $788M, up 16%.",
+      "sourceIds": ["sec:TXN:10-Q:2026Q2"],
+      "factors": ["financialOperatingMomentum"]
+    },
+    {
+      "claim": "Trailing-12-month operating cash flow was $8.667B; capital expenditures were $3.312B; CHIPS Act incentive proceeds were $1.179B; company-defined free cash flow was $6.534B, or 33.6% of revenue.",
+      "sourceIds": ["sec:TXN:10-Q:2026Q2"],
+      "factors": ["financialOperatingMomentum", "supplyChainResilience"]
+    },
+    {
+      "claim": "Q2 gross margin rose to 61.4% from 57.9% a year earlier despite higher manufacturing costs associated with planned capacity expansions; the filing states higher factory loadings spread fixed costs over increased output and generally increase profit margins absent other circumstances.",
+      "sourceIds": ["sec:TXN:10-Q:2026Q2"],
+      "factors": ["pricingPower", "supplyChainResilience", "scenarioRobustness"]
+    },
+    {
+      "claim": "TXN entered an agreement to acquire Silicon Labs for approximately $7.5B enterprise value, expected to close in the first half of 2027 subject to approvals; a delayed-draw facility provides up to $5B of borrowing capacity for the transaction.",
+      "sourceIds": ["sec:TXN:10-Q:2026Q2"],
+      "factors": ["catalystScore", "scenarioRobustness"]
+    },
+    {
+      "claim": "Reuters independently reported that TXN's Q3 revenue outlook exceeded the then-current analyst consensus and tied demand strength to analog chips, AI/data-center investment, and recovery in industrial and automotive markets.",
+      "sourceIds": ["reuters:TXN:2026-07-22:analog-demand"],
+      "factors": ["financialOperatingMomentum", "catalystScore"]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "The Silicon Labs acquisition adds regulatory, financing and integration risk and may increase leverage if completed as planned.",
+      "sourceIds": ["sec:TXN:10-Q:2026Q2"],
+      "gating": false
+    },
+    {
+      "risk": "Capacity economics remain utilization-sensitive: planned manufacturing expansion raises fixed-cost exposure if industrial, automotive or data-center demand weakens.",
+      "sourceIds": ["sec:TXN:10-Q:2026Q2", "reuters:TXN:2026-07-22:analog-demand"],
+      "gating": false
+    }
+  ],
+  "contradictions": [],
+  "unknowns": [
+    {
+      "unknown": "Current market valuation and peer-relative valuation are not established by this Scout source package and remain Alpha underwriting work.",
+      "gating": false
+    },
+    {
+      "unknown": "Incremental return on each new 300mm fab and forward utilization by facility are not quantified sufficiently here for a numeric underwriting conclusion.",
+      "gating": false
+    }
+  ],
+  "confidence": 93,
+  "recommendedNextOwner": "council-alpha",
+  "recommendedNextState": "researching",
+  "result": "materially_new_source_addressed_evidence_for_alpha",
+  "note": "Scout supplies source-addressed facts only; no numeric underwriting or canonical score judgment is made. SEC regulatory origin and Reuters publisher origin are materially distinct from the previously represented issuer:TXN:2026Q2 origin."
+}

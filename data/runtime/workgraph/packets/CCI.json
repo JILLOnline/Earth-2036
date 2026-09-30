@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CCI",
   "workId": "t0:CCI",
-  "generatedAt": "2026-09-30T23:14:09.402Z",
+  "generatedAt": "2026-09-30T23:30:24.573Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -22,9 +22,9 @@
     "validatedAt": "2026-09-30T22:52:13.369Z"
   },
   "evidenceWindow": {
-    "start": "2026-02-04T00:00:00.000Z",
-    "end": "2026-09-22T06:26:03.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-22T06:26:03.000Z"
+    "start": "2026-01-12T00:00:00.000Z",
+    "end": "2026-09-30T23:29:16.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-30T23:29:16.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -55,13 +55,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/CCI-20260919T100503Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/CCI-20260922T062603Z-council-beta.json"
+    "data/runtime/workgraph/evidence/CCI-20260922T062603Z-council-beta.json",
+    "data/runtime/workgraph/evidence/CCI-20260930T232916Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 5,
+    "historicalEvidenceCount": 5
   },
   "factorEvidence": {
     "names": [
@@ -189,6 +190,14 @@
       {
         "risk": "Cost reductions can improve AFFO but cannot substitute indefinitely for leasing growth.",
         "gating": false
+      },
+      {
+        "risk": "Tenant concentration can create abrupt revenue and contract-realization losses when a major carrier exits or defaults.",
+        "gating": false
+      },
+      {
+        "risk": "AFFO improvement driven partly by financing and cost relief should not be interpreted as proof that site-rental growth has already normalized.",
+        "gating": false
       }
     ]
   },
@@ -220,6 +229,14 @@
     {
       "risk": "Cost reductions can improve AFFO but cannot substitute indefinitely for leasing growth.",
       "gating": false
+    },
+    {
+      "risk": "Tenant concentration can create abrupt revenue and contract-realization losses when a major carrier exits or defaults.",
+      "gating": false
+    },
+    {
+      "risk": "AFFO improvement driven partly by financing and cost relief should not be interpreted as proof that site-rental growth has already normalized.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -230,7 +247,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 3
+    "count": 4
   },
   "causalMapping": {
     "present": true,
@@ -254,6 +271,16 @@
         "from": "company:CCI",
         "to": "bottleneck:permitted_sited_vertical_real_estate",
         "relation": "controls_portfolio"
+      },
+      {
+        "from": "risk:tenant_concentration",
+        "to": "mechanism:contract_cash_realization",
+        "relation": "can_disrupt"
+      },
+      {
+        "from": "mechanism:debt_repayment_interest_savings",
+        "to": "metric:AFFO",
+        "relation": "supports_despite_revenue_churn"
       }
     ]
   },
@@ -277,17 +304,28 @@
       "from": "company:CCI",
       "to": "bottleneck:permitted_sited_vertical_real_estate",
       "relation": "controls_portfolio"
+    },
+    {
+      "from": "risk:tenant_concentration",
+      "to": "mechanism:contract_cash_realization",
+      "relation": "can_disrupt"
+    },
+    {
+      "from": "mechanism:debt_repayment_interest_savings",
+      "to": "metric:AFFO",
+      "relation": "supports_despite_revenue_churn"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 7,
-    "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 4,
+    "rawSourceCount": 10,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:CCI:fiber-sale-close:20260501",
       "issuer:CCI:2026Q2:20260722",
-      "issuer:CCI:2025FY:20260204"
+      "issuer:CCI:2025FY:20260204",
+      "issuer:CCI:DISH-default:20260112"
     ]
   },
   "sources": [
@@ -314,6 +352,14 @@
       "primary": true,
       "publishedAt": "2026-02-04",
       "originFingerprint": "issuer:CCI:2025FY:20260204"
+    },
+    {
+      "sourceId": "issuer:CCI:DISH-default:20260112",
+      "url": "https://investor.crowncastle.com/news-releases/news-release-details/dish-wireless-defaults-payment-obligations-crown-castle",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-01-12",
+      "originFingerprint": "issuer:CCI:DISH-default:20260112"
     }
   ],
   "contradictions": [
@@ -329,10 +375,15 @@
       "contradiction": "Debt reduction and cost savings improve AFFO resilience while headline site-rental revenue can still contract because cancellation losses exceed new organic contribution.",
       "material": true,
       "disposition": "retain_for_deep_resolver_growth_quality_reconciliation"
+    },
+    {
+      "contradiction": "Improving AFFO per share coexists with declining site-rental revenue because debt reduction, interest savings and operating efficiencies can offset tenant cancellation pressure.",
+      "material": true,
+      "disposition": "mechanistically_explained_not_bearish_by_itself"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 3,
     "items": [
       {
         "contradiction": "Balance-sheet simplification and debt reduction improve resilience while reported site-rental revenue outlook still implies contraction versus 2025."
@@ -346,6 +397,11 @@
         "contradiction": "Debt reduction and cost savings improve AFFO resilience while headline site-rental revenue can still contract because cancellation losses exceed new organic contribution.",
         "material": true,
         "disposition": "retain_for_deep_resolver_growth_quality_reconciliation"
+      },
+      {
+        "contradiction": "Improving AFFO per share coexists with declining site-rental revenue because debt reduction, interest savings and operating efficiencies can offset tenant cancellation pressure.",
+        "material": true,
+        "disposition": "mechanistically_explained_not_bearish_by_itself"
       }
     ]
   },
@@ -365,11 +421,15 @@
     {
       "unknown": "Whether post-cancellation organic growth reaccelerates enough to support durable AFFO growth is not yet established.",
       "gating": false
+    },
+    {
+      "unknown": "The pace at which post-DISH/Sprint organic leasing can offset cancellation losses remains unproven until subsequent operating periods establish sustained net growth.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
   "confidence": 91,

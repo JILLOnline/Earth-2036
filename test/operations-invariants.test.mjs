@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFile, readdir } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 
 async function source(relativePath) {
   return readFile(new URL(`../${relativePath}`, import.meta.url), "utf8");
@@ -60,6 +60,17 @@ test("canonical reconciliation changes dispatch Pages immediately", async () => 
   assert.ok(text.includes("data/runtime/score-state.json"));
 });
 
+test("runtime control plane skips malformed evidence fail-closed while CI retains the hard JSON invariant", async () => {
+  const scheduler = await source(".github/workflows/earth2036-scheduler.yml");
+  const reconcile = await source(".github/workflows/earth2036-workgraph-reconcile.yml");
+  const ci = await source(".github/workflows/earth2036-ci.yml");
+  assert.equal(scheduler.includes("evidence-json-integrity.test.mjs"), false);
+  assert.equal(reconcile.includes("evidence-json-integrity.test.mjs"), false);
+  assert.ok(ci.includes("npm test"));
+  const loader = await source("scripts/lib/workgraph-v2.mjs");
+  assert.ok(loader.includes("Workgraph evidence load failed"));
+});
+
 test("CI watches every Earth 2036 operational workflow and publishes every verified main snapshot", async () => {
   const text = await source(".github/workflows/earth2036-ci.yml");
   assert.ok(text.includes('".github/workflows/earth2036-*.yml"'));
@@ -105,21 +116,6 @@ test("tick finalization requires Workgraph v2 and has no legacy council fallback
   assert.equal(text.includes("supervisor-council.json"), false);
   assert.equal(text.includes("validateCouncilAttestationShape"), false);
   assert.equal(text.includes("legacyCouncilPassed"), false);
-});
-
-
-test("every persisted Workgraph evidence artifact is valid JSON", async () => {
-  const dir = new URL("../data/runtime/workgraph/evidence/", import.meta.url);
-  const files = (await readdir(dir)).filter((name) => name.endsWith(".json")).sort();
-  assert.ok(files.length > 0);
-  for (const file of files) {
-    const text = await readFile(new URL(file, dir), "utf8");
-    try {
-      JSON.parse(text);
-    } catch (error) {
-      assert.fail(`${file}: ${error.message}`);
-    }
-  }
 });
 
 

@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "role": "council-alpha",
+  "generatedAt": "2026-09-30T10:10:24Z",
+  "authority": "JILLOnline/Earth-2036@main",
+  "startingGitHead": "7d4693331e62a2a1647d5cce7bc6c64a54396bb9",
+  "operatingMode": "closure-first-fail-closed",
+  "sourceCycleKey": "20260927T2100Z",
+  "companiesInspected": ["VRTX"],
+  "frontierItemsAttempted": ["VRTX"],
+  "alphaPairsCompleted": 0,
+  "scoreRecordsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [],
+  "blockers": [
+    "Earth Core worker-view projections are stale because the latest Workgraph Reconcile run 36700030501 failed at the reconcile step on main HEAD 7d4693331e62a2a1647d5cce7bc6c64a54396bb9.",
+    "The latest Scout receipt identifies data/runtime/workgraph/evidence/VRTX-20260927T211225Z-council-alpha.json as the malformed immutable artifact causing fail-closed reconciliation; the artifact is valid JSON at the file level but its schema/shape is not being accepted by reconcile. Append-only history forbids deletion or mutation of that immutable artifact.",
+    "Because routingEnabled=true but routing/closure-frontier projections remain generatedAt 2026-09-27T21:08:49.170Z, continuing through additional routed companies would rely on stale execution authority and could duplicate or conflict with evidence added since that projection."
+  ],
+  "result": "blocked_systemic_reconcile_fail_closed_no_new_evidence_written",
+  "repeatedBlocker": "core_reconcile_fail_closed_on_malformed_immutable_vrtx_artifact",
+  "sourcePathsAttempted": [
+    "current main HEAD and latest commit metadata",
+    "latest Workgraph Reconcile workflow run and job status",
+    "current immutable VRTX Alpha artifact",
+    "current bounded closure-frontier/routing worker views",
+    "fresh Vertex Q2 2026 issuer results and independent September 2026 valuation context"
+  ],
+  "failedStrategy": "Proceeding with normal closure-first scoring while bounded routing projections are stale would treat a pre-failure execution plan as current authority and risk duplicate/stale underwriting.",
+  "changedStrategy": "Fail closed on new Alpha evidence, verify the current reconciliation failure and its implicated immutable artifact, and preserve the exact schema-level blocker rather than repeating fresh underwriting against stale routing.",
+  "nextLawfulAction": "Repair reconcile append-only by teaching the parser/resolution path to supersede or safely reject the malformed VRTX Alpha artifact without mutating immutable history, rerun Earth Core reconcile to refresh worker-view routing, then resume Alpha from the newly ranked frontier and reuse current VRTX Q2/valuation evidence where still applicable.",
+  "learning": {
+    "meaningfulUncertaintyReduction": "Confirmed the current blocker is not missing VRTX market evidence or GitHub persistence; GitHub writes are live and the active systemic failure is the Workgraph reconcile parser/schema path around the immutable VRTX Alpha artifact.",
+    "capacityWarning": false,
+    "reason": "A systemic fail-closed reconciliation defect prevents authoritative current routing for independent Alpha attempts."
+  }
+}

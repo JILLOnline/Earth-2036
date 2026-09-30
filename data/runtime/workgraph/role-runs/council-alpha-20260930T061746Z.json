@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "role": "council-alpha",
+  "generatedAt": "2026-09-30T06:17:46Z",
+  "sourceCycleKey": null,
+  "operatingMode": "closure-first-diagnostic",
+  "startingGitHead": "5d6929719a3ff49d03b35c7c177d2e12644fc0c7",
+  "companiesInspected": ["VRTX", "MDB", "NET", "VALE"],
+  "frontierItemsAttempted": ["VRTX", "MDB", "NET", "VALE"],
+  "alphaPairsCompleted": 0,
+  "scoreRecordsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [],
+  "blockers": [
+    {
+      "scope": "systemic-routing-freshness",
+      "detail": "The authoritative bounded closure-frontier and council-alpha routing projections are generatedAt 2026-09-27T21:08:49.170Z while live main HEAD is 5d6929719a3ff49d03b35c7c177d2e12644fc0c7 with activity through 2026-09-30T06:10:12Z. The four inspected packets are likewise generated from the 2026-09-27 projection. Alpha did not manufacture score records from a stale execution projection because current ownership/failure state may have changed since projection generation."
+    },
+    {
+      "ticker": "VRTX",
+      "detail": "Current packet has only two unique primary issuer origins and no current valuation source; all 12 source-addressed numeric factor entries plus risk/confidence evidence remain absent. Existing evidence is insufficient for a complete Methodology 1.0 score without fresh source acquisition."
+    },
+    {
+      "ticker": "MDB",
+      "detail": "Current packet has substantial operating evidence but scoreRecord is null and multiple source entries lack sourceId; current valuation evidence is not source-addressed. Material contradiction also remains resolver-owned."
+    },
+    {
+      "ticker": "NET",
+      "detail": "Current packet has strong primary-source coverage but no source-addressed Methodology 1.0 numeric score evidence and two unresolved material contradictions remain resolver-owned."
+    },
+    {
+      "ticker": "VALE",
+      "detail": "Current packet has six primary sources and improved cash-conversion evidence, but no source-addressed Methodology 1.0 numeric score evidence and one material contradiction remains resolver-owned."
+    }
+  ],
+  "result": "no_score_closure_materially_precise_systemic_freshness_blocker",
+  "learning": {
+    "repeatedBlocker": false,
+    "sourcePathsAttempted": [
+      "bounded worker-view closure-frontier",
+      "bounded council-alpha routing",
+      "company promotion packets",
+      "existing Scout evidence",
+      "existing Beta evidence",
+      "live main branch HEAD"
+    ],
+    "failedStrategy": "Relying on the bounded execution projection as current without comparing its generatedAt to live main activity can cause Alpha to act on stale ownership/failure state.",
+    "changedStrategy": "Compared worker-view and packet generation timestamps against live main HEAD before constructing any numeric underwriting, then inspected four ranked frontier companies to isolate company-specific remaining gaps.",
+    "nextLawfulAction": "Refresh/reconcile worker-view routing and closure-frontier from current main, then reacquire current source-addressed valuation/governance/operating evidence for the still-routed Alpha targets and build complete 12-component score records."
+  }
+}

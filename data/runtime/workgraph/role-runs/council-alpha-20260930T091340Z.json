@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "role": "council-alpha",
+  "generatedAt": "2026-09-30T09:13:40Z",
+  "startingGitHead": "d0e52df3cececcea32268ab710e1b66f2e48188f",
+  "operatingMode": "closure-first-integrity-blocked",
+  "companiesInspected": ["VRTX", "TXN"],
+  "frontierItemsAttempted": ["VRTX", "TXN"],
+  "alphaPairsCompleted": 0,
+  "scoreRecordsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [
+    {
+      "ticker": "TXN",
+      "evidencePath": "data/runtime/workgraph/evidence/TXN-20260930T081500Z-earth-scout.json",
+      "outcome": "reusable_independent_government_source_confirmed"
+    }
+  ],
+  "blockers": [
+    "Earth Core remains integrity-locked by malformed immutable VRTX Alpha evidence according to the latest persisted Scout receipt; canonical reconciliation is not coherent even though an append-only VRTX supersession artifact was persisted at data/runtime/workgraph/evidence/VRTX-20260930T072900Z-council-alpha.json.",
+    "Worker-view routing/packets are stale at 2026-09-27T21:08:49Z and therefore do not yet incorporate the 2026-09-30 VRTX supersession or fresh TXN Scout assist evidence; producing another score artifact against stale Core projections risks duplicate/conflicting Alpha history."
+  ],
+  "result": "no_new_alpha_evidence_integrity_lock_and_stale_projection_precisely_confirmed",
+  "repeatedBlocker": "malformed immutable VRTX Alpha evidence prevents coherent Core reconciliation",
+  "sourcePathsAttempted": [
+    "current main HEAD/commit history",
+    "data/runtime/workgraph/worker-view/routing/council-alpha.json",
+    "data/runtime/workgraph/packets/VRTX.json",
+    "data/runtime/workgraph/evidence/VRTX-20260930T072900Z-council-alpha.json via commit 6eff4ca1b97e78d1b6c0ae6207fab8d2b7fae658",
+    "data/runtime/workgraph/packets/TXN.json",
+    "data/runtime/workgraph/evidence/TXN-20260930T081500Z-earth-scout.json via commit ac4cf6311be155925cb86e069866e765411fc961",
+    "Vertex Q2 2026 issuer/SEC/proxy/current market source refresh"
+  ],
+  "failedStrategy": "Do not repeat VRTX underwriting or build new TXN numeric history while Core projections still omit already-persisted corrective/assist evidence.",
+  "changedStrategy": "Shifted from repeating underwriting to repository-integrity diagnosis and verified that the VRTX correction and fresh TXN independent government evidence exist on main but are absent from the stale worker-view projection.",
+  "nextLawfulAction": "Restore coherent Earth Core reconciliation so worker-view routing/packets ingest the VRTX supersession and fresh TXN evidence; then resume Alpha closure from the regenerated frontier without duplicating immutable score history."
+}

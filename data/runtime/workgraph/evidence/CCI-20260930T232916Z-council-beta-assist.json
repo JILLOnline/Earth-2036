@@ -1,0 +1,85 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-assist-evidence",
+  "ticker": "CCI",
+  "entityId": "CCI",
+  "workId": "t0:CCI",
+  "role": "council-beta",
+  "rootOwner": "council-alpha",
+  "capability": "risk-source-support",
+  "requestId": "assist:CCI:council-alpha:council-beta:risk-source-support",
+  "inputSignature": "6f0f97fb123f6cefc254",
+  "generatedAt": "2026-09-30T23:29:16Z",
+  "outcome": "new_source_addressed_risk_evidence",
+  "claims": [
+    {
+      "claim": "Crown Castle's 2026 revenue contraction is substantially explained by identifiable tenant cancellation shocks rather than a demonstrated collapse in underlying leasing demand: February guidance expected $240 million of DISH/Sprint termination and cancellation impacts while comparable organic contribution excluding those impacts remained positive.",
+      "status": "supported"
+    },
+    {
+      "claim": "The July 2026 outlook still placed full-year site-rental revenue about 5% below 2025 while AFFO per share was guided about 5% higher, showing that balance-sheet repair and cost/interest relief can improve cash-oriented performance even before headline rental revenue recovers.",
+      "status": "supported"
+    },
+    {
+      "claim": "DISH's January 2026 payment default and network exit is direct evidence that tenant concentration can produce discontinuous cash-flow and contract-realization risk even when tower infrastructure remains operationally useful.",
+      "status": "supported"
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "issuer:CCI:DISH-default:20260112",
+      "url": "https://investor.crowncastle.com/news-releases/news-release-details/dish-wireless-defaults-payment-obligations-crown-castle",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-01-12",
+      "originFingerprint": "issuer:CCI:DISH-default:20260112"
+    },
+    {
+      "sourceId": "issuer:CCI:2025FY:20260204",
+      "url": "https://investor.crowncastle.com/news-releases/news-release-details/crown-castle-reports-fourth-quarter-and-full-year-2025-results",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-04",
+      "originFingerprint": "issuer:CCI:2025FY:20260204"
+    },
+    {
+      "sourceId": "issuer:CCI:2026Q2:20260722",
+      "url": "https://investor.crowncastle.com/news-releases/news-release-details/crown-castle-reports-second-quarter-2026-results-and-updates",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-22",
+      "originFingerprint": "issuer:CCI:2026Q2:20260722"
+    }
+  ],
+  "affectedMethodologyFactors": ["financialOperatingMomentum", "scenarioRobustness", "pricingPower", "supplyChainResilience"],
+  "causalEdges": [
+    {"from": "risk:tenant_concentration", "to": "mechanism:contract_cash_realization", "relation": "can_disrupt"},
+    {"from": "mechanism:debt_repayment_interest_savings", "to": "metric:AFFO", "relation": "supports_despite_revenue_churn"}
+  ],
+  "risks": [
+    {"risk": "Tenant concentration can create abrupt revenue and contract-realization losses when a major carrier exits or defaults.", "gating": false},
+    {"risk": "AFFO improvement driven partly by financing and cost relief should not be interpreted as proof that site-rental growth has already normalized.", "gating": false}
+  ],
+  "contradictions": [
+    {"contradiction": "Improving AFFO per share coexists with declining site-rental revenue because debt reduction, interest savings and operating efficiencies can offset tenant cancellation pressure.", "material": true, "disposition": "mechanistically_explained_not_bearish_by_itself"}
+  ],
+  "unknowns": [
+    {"unknown": "The pace at which post-DISH/Sprint organic leasing can offset cancellation losses remains unproven until subsequent operating periods establish sustained net growth.", "gating": false}
+  ],
+  "falsifiers": [
+    "If subsequent periods show comparable organic leasing weakening materially after cancellation effects normalize, the interpretation that current contraction is primarily a discrete churn shock should be revised.",
+    "If AFFO growth persists only through cost/interest relief without renewed site-rental growth, resilience improves but the organic-growth thesis remains unverified."
+  ],
+  "gatingStatus": "assist_only_noncanonical",
+  "confidence": 94,
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "lineage": {
+    "supersedes": null,
+    "inputEvidence": [
+      "data/runtime/workgraph/evidence/CCI-20260919T100503Z-earth-scout.json",
+      "data/runtime/workgraph/evidence/CCI-20260922T062603Z-council-beta.json"
+    ],
+    "methodology": "1.0.0"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-assist-evidence",
+  "ticker": "INFQ",
+  "entityId": "INFQ",
+  "workId": "t0:INFQ",
+  "role": "council-beta",
+  "perspective": "adversarial-red-team-assist",
+  "generatedAt": "2026-09-30T03:22:56Z",
+  "assist": {
+    "requestId": "assist:INFQ:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "f0ed63dfc5c77c83b048",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support"
+  },
+  "claims": [
+    {
+      "claim": "Infleqtion's post-combination capital structure creates a concrete per-share dilution channel: immediately after the business combination 216,471,927 common shares and 10,424,967 warrants were outstanding; the PIPE issued 12,654,760 shares at $10 per share, and the registered warrants can add up to roughly 10.425 million shares if exercised.",
+      "status": "supported"
+    },
+    {
+      "claim": "This dilution channel is not a present liquidity distress signal: Q2 ended with $582 million of cash, cash equivalents, restricted cash and available-for-sale securities and no debt, while management disclosed approximately $14 million of operating cash burn excluding a temporary working-capital benefit. The relevant Alpha question is therefore per-share conversion and future capital discipline, not near-term solvency.",
+      "status": "supported"
+    },
+    {
+      "claim": "Government support should be risk-weighted by contractual status: the Commerce item was described as a letter of intent for up to $100 million, subject to definitive agreements and government approvals, and contemplated common stock consideration. It should not be treated as realized recurring revenue or unconditional non-dilutive funding.",
+      "status": "supported"
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "sec:INFQ:2026Q2:10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/2007825/000162828026057508/infq-20260630.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-18",
+      "originFingerprint": "sec:2007825:2026Q2:10Q"
+    },
+    {
+      "sourceId": "sec:INFQ:2026:S1",
+      "url": "https://ir.infleqtion.com/sec-filings/all-sec-filings/content/0001193125-26-135000/0001193125-26-135000.pdf",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-03-31",
+      "originFingerprint": "sec:2007825:2026-03-31:S1"
+    },
+    {
+      "sourceId": "issuer:INFQ:2026Q2",
+      "url": "https://ir.infleqtion.com/news-events/press-releases/detail/201/infleqtion-reports-record-q2-revenue-raises-2026-outlook-as-quantum-commercialization-accelerates",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-17",
+      "originFingerprint": "issuer:INFQ:2026Q2"
+    }
+  ],
+  "affectedMethodologyFactors": [
+    "financialOperatingMomentum",
+    "governancePower",
+    "scenarioRobustness",
+    "dataConfidence"
+  ],
+  "risks": [
+    {
+      "risk": "Outstanding warrants and equity-linked government funding can increase share count if exercised or consummated, reducing per-share conversion even while corporate liquidity remains strong.",
+      "gating": false
+    },
+    {
+      "risk": "Large headline government funding amounts can overstate funded economics when they remain conditional or include equity consideration.",
+      "gating": false
+    }
+  ],
+  "contradictions": [
+    {
+      "contradiction": "Strong liquidity and no debt reduce near-term financing pressure, while the SPAC/PIPE/warrant structure still creates meaningful potential dilution.",
+      "material": true,
+      "disposition": "Not contradictory once solvency risk is separated from per-share dilution risk; Alpha should model them separately."
+    }
+  ],
+  "unknowns": [
+    {
+      "unknown": "Current warrant exercise/redemption status and the final equity/funding terms of the Commerce LOI require current primary-source confirmation before Alpha assigns numeric risk treatment.",
+      "gating": false
+    }
+  ],
+  "gatingIssues": [],
+  "confidence": 94,
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "lineage": {
+    "supersedes": null,
+    "inputEvidence": [
+      "data/runtime/workgraph/evidence/INFQ-20260922T072718Z-council-beta.json"
+    ],
+    "methodology": "engine/methodology.ts@1.0.0"
+  }
+}

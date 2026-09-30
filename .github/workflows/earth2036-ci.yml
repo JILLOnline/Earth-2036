@@ -41,6 +41,7 @@ jobs:
           cache: npm
           cache-dependency-path: package-lock.json
       - run: npm ci
+      # Keep high/critical dependency advisories as a hard CI gate.
       - name: Dependency security audit
         run: npm audit --audit-level=high
       - name: Typecheck

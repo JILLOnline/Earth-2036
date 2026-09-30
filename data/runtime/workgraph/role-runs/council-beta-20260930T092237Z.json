@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "role": "council-beta",
+  "generatedAt": "2026-09-30T09:22:37Z",
+  "startingGitHead": "66236cf49f8e3efef727042686fa076eda0ca9f9",
+  "operatingMode": "assist-only-integrity-blocked",
+  "companiesInspected": ["INFQ", "LLY", "MDB", "NET"],
+  "betaPairsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [
+    {
+      "requestId": "assist:INFQ:council-alpha:council-beta:risk-source-support",
+      "inputSignature": "f0ed63dfc5c77c83b048",
+      "outcome": "deferred_stale_worker_view_and_core_integrity_lock",
+      "newEvidencePaths": [],
+      "changedStrategy": "Did not repeat risk-source acquisition against a 2026-09-27 projection while newer main history shows Core reconciliation remains integrity-locked."
+    },
+    {
+      "requestId": "assist:LLY:council-alpha:council-beta:risk-source-support",
+      "inputSignature": "2a1d179e35f1f31ac862",
+      "outcome": "deferred_stale_worker_view_and_core_integrity_lock",
+      "newEvidencePaths": [],
+      "changedStrategy": "Avoided duplicate immutable risk evidence until regenerated packet/assist state can prove the request remains active after current-main reconciliation."
+    },
+    {
+      "requestId": "assist:MDB:council-alpha:council-beta:risk-source-support",
+      "inputSignature": "2cfe133cf0c8d81193cc",
+      "outcome": "deferred_stale_worker_view_and_core_integrity_lock",
+      "newEvidencePaths": [],
+      "changedStrategy": "Used current repository integrity state rather than repeating the prior Beta risk-source method against stale bounded projections."
+    },
+    {
+      "requestId": "assist:NET:council-alpha:council-beta:risk-source-support",
+      "inputSignature": "1e50560f3b7894db15e0",
+      "outcome": "deferred_stale_worker_view_and_core_integrity_lock",
+      "newEvidencePaths": [],
+      "changedStrategy": "Deferred new risk evidence because the authoritative worker projection predates current-main corrective evidence and cannot safely establish a changed assist input."
+    }
+  ],
+  "blockers": [
+    "Exact locked-methodology defect: Earth Core reconciliation is not coherent because malformed immutable VRTX Alpha evidence remains integrity-locking while an append-only supersession exists on main but has not been ingested into regenerated worker views.",
+    "Execution projection defect: council-beta routing/assist/digital-twin worker views are generatedAt 2026-09-27T21:08:49.170Z, while current main includes 2026-09-30 corrective and assist evidence; repeating bounded assists against that stale projection risks duplicate/conflicting immutable evidence."
+  ],
+  "result": "no_new_beta_evidence_integrity_lock_and_stale_projection_confirmed",
+  "learning": {
+    "repeatedBlocker": "stale worker-view projections during unresolved Core integrity lock",
+    "failedStrategy": "Do not treat old active Assist Bus requests as current simply because their bounded worker-view entries remain active.",
+    "changedStrategy": "Cross-checked current main head and latest persisted Alpha integrity diagnosis before deciding whether old assist inputs were safe to retry.",
+    "successSignal": "Core reconciliation regenerates worker-view routing/assist projections from current main and either changes an assist input signature or removes the request.",
+    "nextLawfulEvidencePath": "Regenerate Earth Core/worker-view projections after ingesting the VRTX append-only supersession and current-main evidence; then re-read council-beta assist signatures and only acquire new risk-source evidence for requests that remain active with current inputs."
+  }
+}

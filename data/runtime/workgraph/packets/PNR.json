@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "PNR",
   "workId": "t0:PNR",
-  "generatedAt": "2026-09-30T20:49:32.379Z",
+  "generatedAt": "2026-09-30T21:05:53.956Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-28T00:00:00.000Z",
-    "end": "2026-09-30T20:21:08.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-30T20:21:08.000Z"
+    "end": "2026-09-30T21:04:27.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-30T21:04:27.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -59,13 +59,14 @@
     "data/runtime/workgraph/evidence/PNR-20260921T090718Z-earth-scout.json",
     "data/runtime/workgraph/evidence/PNR-20260922T092601Z-council-beta.json",
     "data/runtime/workgraph/evidence/PNR-20260930T011900Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/PNR-20260930T202108Z-council-beta-assist.json"
+    "data/runtime/workgraph/evidence/PNR-20260930T202108Z-council-beta-assist.json",
+    "data/runtime/workgraph/evidence/PNR-20260930T210427Z-earth-scout-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 6,
-    "historicalEvidenceCount": 6
+    "activeEvidenceCount": 7,
+    "historicalEvidenceCount": 7
   },
   "factorEvidence": {
     "names": [
@@ -115,7 +116,11 @@
         "alignment2036",
         "executionCredibility",
         "financialOperatingMomentum",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "catalystScore",
+        "dataConfidence"
       ]
     }
   },
@@ -210,6 +215,10 @@
         "risk": "Finance-leadership transition overlaps with a material acquisition/integration and planned deleveraging period.",
         "gating": false,
         "status": "observed_context_with_future_execution_test"
+      },
+      {
+        "risk": "Independent evidence corroborates that Pool weakness is not merely an issuer framing issue: housing/rate pressure and channel destocking materially depress 2026 revenue expectations.",
+        "gating": false
       }
     ]
   },
@@ -250,6 +259,10 @@
       "risk": "Finance-leadership transition overlaps with a material acquisition/integration and planned deleveraging period.",
       "gating": false,
       "status": "observed_context_with_future_execution_test"
+    },
+    {
+      "risk": "Independent evidence corroborates that Pool weakness is not merely an issuer framing issue: housing/rate pressure and channel destocking materially depress 2026 revenue expectations.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -350,8 +363,8 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 10,
-    "uniqueSourceCount": 7,
+    "rawSourceCount": 12,
+    "uniqueSourceCount": 9,
     "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
@@ -361,7 +374,9 @@
       "pnr:20260902:8k-term-loans",
       "pentair.com:investor-news:taco-acquisition-20260728",
       "pentair.com:investor-news:dividend-20260921",
-      "sec:77360:0000077360-26-000050:8K:20260921"
+      "sec:77360:0000077360-26-000050:8K:20260921",
+      "spglobal-market-intelligence:visible-alpha:PNR:20260827",
+      "reuters:PNR:pool-destocking-taco:20260728"
     ]
   },
   "sources": [
@@ -420,6 +435,22 @@
       "primary": true,
       "publishedAt": "2026-09-22",
       "originFingerprint": "sec:77360:0000077360-26-000050:8K:20260921"
+    },
+    {
+      "sourceId": "spglobal:PNR:2026-08-27-pool-demand",
+      "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/08/pentair-faces-2026-revenue-drag-as-pool-demand-weakens",
+      "kind": "independent-research",
+      "primary": false,
+      "publishedAt": "2026-08-27",
+      "originFingerprint": "spglobal-market-intelligence:visible-alpha:PNR:20260827"
+    },
+    {
+      "sourceId": "reuters:PNR:2026-07-28-pool-taco",
+      "url": "https://www.reuters.com/business/pentair-falls-pool-equipment-destocking-hits-sales-buy-taco-group-14-billion-2026-07-28/",
+      "kind": "independent-news",
+      "primary": false,
+      "publishedAt": "2026-07-28",
+      "originFingerprint": "reuters:PNR:pool-destocking-taco:20260728"
     }
   ],
   "contradictions": [
@@ -486,14 +517,18 @@
       "unknown": "Post-close integration performance and realized cost synergies are not yet observable.",
       "gating": false
     },
-    "Whether the CFO transition changes acquisition integration cadence, leverage targets, financial-control execution or disclosure quality cannot be established from the appointment filing alone."
+    "Whether the CFO transition changes acquisition integration cadence, leverage targets, financial-control execution or disclosure quality cannot be established from the appointment filing alone.",
+    {
+      "unknown": "The independent sources do not establish whether Pool normalization will occur on management's expected timetable or whether Taco integration will realize projected economics.",
+      "gating": false
+    }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 8
+    "nonGatingCount": 9
   },
   "gatingIssues": [],
-  "confidence": 94,
+  "confidence": 92,
   "preflight": {
     "passed": false,
     "failures": [

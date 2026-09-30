@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "contract": "earth2036-bounded-assist-evidence-v1",
+  "role": "council-beta",
+  "generatedAt": "2026-09-30T00:21:26Z",
+  "ticker": "INFQ",
+  "workId": "t0:INFQ",
+  "assist": {
+    "requestId": "assist:INFQ:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "f0ed63dfc5c77c83b048",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support",
+    "scope": "source-addressed downside, execution-risk and falsifier evidence only; no numeric underwriting or score"
+  },
+  "lineage": {
+    "derivedFrom": [
+      "data/runtime/workgraph/packets/INFQ.json",
+      "data/runtime/workgraph/evidence/INFQ-20260922T072718Z-council-beta.json"
+    ],
+    "supersedes": null,
+    "appendOnly": true
+  },
+  "observations": [
+    {
+      "claim": "Q2 2026 reported operating cash flow of $13.2M included a $27.4M temporary payroll-tax working-capital benefit; excluding that timing item, operating cash burn was approximately $14M, and the company expected to remit the $27.4M in Q3.",
+      "whyItMatters": "Headline positive operating cash flow overstates recurring cash conversion for the quarter; Alpha should distinguish temporary working-capital timing from operating economics.",
+      "sourceIds": ["issuer:INFQ:2026Q2"],
+      "affectedFactors": ["financialOperatingMomentum", "dataConfidence"],
+      "riskType": "cash-conversion/timing"
+    },
+    {
+      "claim": "Updated Q2 revenue increased from $12.6M to $13.5M and FY2026 guidance from about $43M to about $45.1M because of non-cash accounting-based timing changes for two government contracts; the company stated there was no change to cash or underlying business fundamentals.",
+      "whyItMatters": "The guidance increase is not wholly evidence of incremental commercial demand; separating accounting timing from economic growth reduces confidence inflation.",
+      "sourceIds": ["issuer:INFQ:2026Q2-updated", "issuer:INFQ:2026Q2"],
+      "affectedFactors": ["financialOperatingMomentum", "catalystScore", "dataConfidence"],
+      "riskType": "revenue-recognition/comparability"
+    },
+    {
+      "claim": "Q2 GAAP operating loss was about $29.9M after the update, materially larger than quarterly revenue, while the balance sheet remained strongly liquid.",
+      "whyItMatters": "Commercial traction and liquidity can coexist with substantial operating losses; this is a financing/runway and scaling-efficiency question, not evidence that commercialization has failed.",
+      "sourceIds": ["issuer:INFQ:2026Q2-updated"],
+      "affectedFactors": ["financialOperatingMomentum", "scenarioRobustness"],
+      "riskType": "operating-leverage"
+    },
+    {
+      "claim": "The Commerce funding item was a letter of intent for up to $100M, subject to definitive agreements and government approvals, and contemplated the government receiving common stock.",
+      "whyItMatters": "Proposed government support should not be treated as realized recurring revenue or unconditional non-dilutive funding.",
+      "sourceIds": ["issuer:INFQ:2026Q2"],
+      "affectedFactors": ["catalystScore", "governancePower", "financialOperatingMomentum"],
+      "riskType": "funding-conditionality/dilution"
+    }
+  ],
+  "falsifiers": [
+    "Sustained operating cash generation after remittance of the payroll-tax timing item and without comparable working-capital boosts would weaken the cash-conversion concern.",
+    "Future revenue growth demonstrably driven by new deployments/usage rather than recognition-timing changes would reduce the comparability concern.",
+    "Definitive Commerce agreements with disclosed economics and limited dilution would reduce funding-conditionality uncertainty.",
+    "Verified customer economics and repeat commercial deployments would weaken the risk that technical milestones outpace scalable monetization."
+  ],
+  "unknowns": [
+    "Post-Q2 normalized operating cash burn after the expected Q3 payroll-tax remittance.",
+    "Customer concentration and contract-level recurring versus milestone revenue mix.",
+    "Final economics, conditions and dilution associated with the proposed Commerce funding."
+  ],
+  "contradictions": [
+    {
+      "statement": "Rapid reported revenue growth and strong liquidity coexist with operating losses substantially larger than quarterly revenue.",
+      "disposition": "Observed commercialization-stage tension; useful for Alpha risk treatment, not a standalone blocker."
+    },
+    {
+      "statement": "Raised FY2026 guidance partly reflects accounting timing rather than changed underlying business assumptions.",
+      "disposition": "Resolved interpretation: do not attribute the entire guidance increase to incremental demand."
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "issuer:INFQ:2026Q2",
+      "url": "https://ir.infleqtion.com/news-events/press-releases/detail/201/infleqtion-reports-record-q2-revenue-raises-2026-outlook-as-quantum-commercialization-accelerates",
+      "originFingerprint": "issuer:INFQ:2026Q2",
+      "kind": "primary",
+      "publishedAt": "2026-08-12"
+    },
+    {
+      "sourceId": "issuer:INFQ:2026Q2-updated",
+      "url": "https://ir.infleqtion.com/sec-filings/all-sec-filings/content/0001628280-26-057510/infq-20260630xex9918x17x20.htm",
+      "originFingerprint": "issuer:INFQ:2026Q2:updated",
+      "kind": "primary",
+      "publishedAt": "2026-08-18"
+    }
+  ],
+  "gatingStatus": "assist_evidence_for_alpha; no Beta-owned gate asserted",
+  "confidence": 94,
+  "recommendedNextState": "council-alpha re-evaluate missing_score_risk_evidence using normalized cash-burn, revenue-recognition and conditional-funding evidence; retain numeric authority",
+  "recommendedOwner": "council-alpha"
+}

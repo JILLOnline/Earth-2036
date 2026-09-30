@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "PNR",
   "workId": "t0:PNR",
-  "generatedAt": "2026-09-30T20:13:00.113Z",
+  "generatedAt": "2026-09-30T20:22:39.872Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-28T00:00:00.000Z",
-    "end": "2026-09-30T01:19:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-30T01:19:00.000Z"
+    "end": "2026-09-30T20:21:08.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-30T20:21:08.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -39,7 +39,8 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
+      "adversarial-red-team",
+      "risk-source-support"
     ],
     "missing": [
       "source-integrity",
@@ -51,18 +52,20 @@
     "discovery-weak-signals",
     "expectations-execution",
     "structural-causal",
-    "adversarial-red-team"
+    "adversarial-red-team",
+    "risk-source-support"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/PNR-20260921T090718Z-earth-scout.json",
     "data/runtime/workgraph/evidence/PNR-20260922T092601Z-council-beta.json",
-    "data/runtime/workgraph/evidence/PNR-20260930T011900Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/PNR-20260930T011900Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/PNR-20260930T202108Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 5,
-    "historicalEvidenceCount": 5
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -202,6 +205,11 @@
       {
         "risk": "Taco acquisition adds integration, leverage/capital-allocation and synergy-realization risk; stated EBITDA multiple depends partly on anticipated benefits.",
         "gating": false
+      },
+      {
+        "risk": "Finance-leadership transition overlaps with a material acquisition/integration and planned deleveraging period.",
+        "gating": false,
+        "status": "observed_context_with_future_execution_test"
       }
     ]
   },
@@ -237,6 +245,11 @@
     {
       "risk": "Taco acquisition adds integration, leverage/capital-allocation and synergy-realization risk; stated EBITDA multiple depends partly on anticipated benefits.",
       "gating": false
+    },
+    {
+      "risk": "Finance-leadership transition overlaps with a material acquisition/integration and planned deleveraging period.",
+      "gating": false,
+      "status": "observed_context_with_future_execution_test"
     }
   ],
   "dataConfidenceEvidence": {
@@ -247,7 +260,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 6
+    "count": 7
   },
   "causalMapping": {
     "present": true,
@@ -281,6 +294,16 @@
         "from": "integration and synergy execution",
         "to": "transaction accretion/deleveraging",
         "mechanism": "expected cost synergies, cash generation and cross-sell support economics"
+      },
+      {
+        "from": "finance leadership transition during acquisition preparation",
+        "to": "integration and deleveraging execution uncertainty",
+        "mechanism": "a new CFO assumes capital-allocation, reporting and financial-control leadership during a material debt-funded transaction; outcome must be tested from subsequent execution rather than presumed"
+      },
+      {
+        "from": "five-year cliff-vesting equity award",
+        "to": "management retention alignment",
+        "mechanism": "a long vesting horizon can support continuity, but does not substitute for evidence of transaction execution"
       }
     ]
   },
@@ -314,11 +337,21 @@
       "from": "integration and synergy execution",
       "to": "transaction accretion/deleveraging",
       "mechanism": "expected cost synergies, cash generation and cross-sell support economics"
+    },
+    {
+      "from": "finance leadership transition during acquisition preparation",
+      "to": "integration and deleveraging execution uncertainty",
+      "mechanism": "a new CFO assumes capital-allocation, reporting and financial-control leadership during a material debt-funded transaction; outcome must be tested from subsequent execution rather than presumed"
+    },
+    {
+      "from": "five-year cliff-vesting equity award",
+      "to": "management retention alignment",
+      "mechanism": "a long vesting horizon can support continuity, but does not substitute for evidence of transaction execution"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 9,
-    "uniqueSourceCount": 6,
+    "rawSourceCount": 10,
+    "uniqueSourceCount": 7,
     "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
@@ -327,7 +360,8 @@
       "pnr:20260728:taco-announcement",
       "pnr:20260902:8k-term-loans",
       "pentair.com:investor-news:taco-acquisition-20260728",
-      "pentair.com:investor-news:dividend-20260921"
+      "pentair.com:investor-news:dividend-20260921",
+      "sec:77360:0000077360-26-000050:8K:20260921"
     ]
   },
   "sources": [
@@ -378,6 +412,14 @@
       "primary": true,
       "publishedAt": "2026-09-21",
       "originFingerprint": "pentair.com:investor-news:dividend-20260921"
+    },
+    {
+      "sourceId": "sec:PNR:20260922:8K:CFO-transition",
+      "url": "https://www.sec.gov/Archives/edgar/data/77360/000007736026000050/pnr-20260921.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-22",
+      "originFingerprint": "sec:77360:0000077360-26-000050:8K:20260921"
     }
   ],
   "contradictions": [
@@ -443,11 +485,12 @@
     {
       "unknown": "Post-close integration performance and realized cost synergies are not yet observable.",
       "gating": false
-    }
+    },
+    "Whether the CFO transition changes acquisition integration cadence, leverage targets, financial-control execution or disclosure quality cannot be established from the appointment filing alone."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 7
+    "nonGatingCount": 8
   },
   "gatingIssues": [],
   "confidence": 94,

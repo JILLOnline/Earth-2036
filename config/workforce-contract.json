@@ -96,6 +96,9 @@
     "Fallback to Git Data persistence: fetch the latest main HEAD and tree; create blobs for the intended immutable files; create a tree based on that latest tree; create a commit whose parent is that exact HEAD; then move main with a non-force fast-forward update_ref.",
     "If the non-force ref update loses a race, refetch the latest main HEAD/tree and retry the same intended blobs on top of the new HEAD. Never use force=true.",
     "Evidence artifacts must be committed before the role-run receipt that claims them. Multiple completed evidence artifacts may share one evidence commit; the receipt must follow in a later commit.",
-    "Do not mark persistence unavailable until materially distinct lawful persistence paths have failed. Record the exact failed interface/path and preserve all gate, provenance, and authority rules."
+    "Do not mark persistence unavailable until materially distinct lawful persistence paths have failed. Record the exact failed interface/path and preserve all gate, provenance, and authority rules.",
+    "Before any role-run receipt claims an evidence artifact, re-fetch that exact persisted JSON from main and strict-parse it. A malformed evidence file is not a completed artifact and must never be claimed as progress.",
+    "If active evidence JSON is malformed, preserve the exact corrupt bytes under data/runtime/workgraph/quarantine/<UTC-date>/<filename>.corrupt.txt before remediation. Apply only deterministic serialization-only repair that leaves semantic content unchanged; otherwise exclude the malformed artifact from active evidence and regenerate it from lawful source inputs. Never weaken the JSON integrity invariant.",
+    "Do not repeatedly rerun Scheduler or Reconcile against an unchanged deterministic malformed-evidence fingerprint. Route that failure directly to the quarantine/repair path, then resume reconciliation from the newest main HEAD."
   ]
 }

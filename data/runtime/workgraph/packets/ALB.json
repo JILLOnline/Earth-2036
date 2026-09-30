@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ALB",
   "workId": "t0:ALB",
-  "generatedAt": "2026-09-30T22:52:51.882Z",
+  "generatedAt": "2026-09-30T23:02:30.954Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-11T00:00:00.000Z",
-    "end": "2026-09-22T05:26:08.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-22T05:26:08.000Z"
+    "end": "2026-09-30T23:01:17.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-30T23:01:17.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -55,13 +55,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/ALB-20260919T070615Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/ALB-20260922T052608Z-council-beta.json"
+    "data/runtime/workgraph/evidence/ALB-20260922T052608Z-council-beta.json",
+    "data/runtime/workgraph/evidence/ALB-20260930T230117Z-earth-scout-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 5,
+    "historicalEvidenceCount": 5
   },
   "factorEvidence": {
     "names": [
@@ -72,7 +73,8 @@
       "scenarioRobustness",
       "financialOperatingMomentum",
       "substitutionResilience",
-      "governancePower"
+      "governancePower",
+      "dataConfidence"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -101,7 +103,13 @@
         "financialOperatingMomentum",
         "scenarioRobustness",
         "supplyChainResilience",
-        "thesisQuality"
+        "thesisQuality",
+        "thesisQuality",
+        "alignment2036",
+        "bottleneckControl",
+        "supplyChainResilience",
+        "scenarioRobustness",
+        "dataConfidence"
       ]
     }
   },
@@ -150,7 +158,8 @@
     "scenarioRobustness",
     "financialOperatingMomentum",
     "substitutionResilience",
-    "governancePower"
+    "governancePower",
+    "dataConfidence"
   ],
   "riskEvidence": {
     "present": true,
@@ -173,7 +182,11 @@
       "commodity-price sensitivity",
       "asset impairment/idling",
       "cash-flow quality",
-      "capital allocation under cycle stress"
+      "capital allocation under cycle stress",
+      {
+        "risk": "DOE environmental clearance and funding support establish project scope and institutional support but do not prove final construction timing, operating economics, lithium-price resilience or realized production volumes.",
+        "gating": false
+      }
     ]
   },
   "risks": [
@@ -195,7 +208,11 @@
     "commodity-price sensitivity",
     "asset impairment/idling",
     "cash-flow quality",
-    "capital allocation under cycle stress"
+    "capital allocation under cycle stress",
+    {
+      "risk": "DOE environmental clearance and funding support establish project scope and institutional support but do not prove final construction timing, operating economics, lithium-price resilience or realized production volumes.",
+      "gating": false
+    }
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -205,7 +222,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 3
+    "count": 4
   },
   "causalMapping": {
     "present": true,
@@ -221,14 +238,15 @@
     "high conversion cost -> plant idling -> reduced downstream footprint"
   ],
   "sourceLineage": {
-    "rawSourceCount": 10,
-    "uniqueSourceCount": 3,
+    "rawSourceCount": 11,
+    "uniqueSourceCount": 4,
     "duplicatesCollapsed": 7,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:ALB:FY2025:20260211",
       "issuer:ALB:kemerton:20260211",
-      "issuer:ALB:2026Q1:20260506"
+      "issuer:ALB:2026Q1:20260506",
+      "us-doe-netl:EA-2265:kings-mountain:20260330"
     ]
   },
   "sources": [
@@ -255,6 +273,14 @@
       "primary": true,
       "publishedAt": "2026-05-06",
       "originFingerprint": "issuer:ALB:2026Q1:20260506"
+    },
+    {
+      "sourceId": "us-doe:nepa:EA-2265:kings-mountain:2026-03-30",
+      "url": "https://www.energy.gov/nepa/doeea-2265-kings-mountain-lithium-mine-project-city-kings-mountain-nc",
+      "kind": "primary-government-record",
+      "primary": true,
+      "publishedAt": "2026-03-30",
+      "originFingerprint": "us-doe-netl:EA-2265:kings-mountain:20260330"
     }
   ],
   "contradictions": [
@@ -306,11 +332,15 @@
     "long-run Kemerton restart economics",
     "full-year free cash flow across lithium-price scenarios",
     "long-run Kemerton restart economics",
-    "full-year free cash flow across lithium-price scenarios"
+    "full-year free cash flow across lithium-price scenarios",
+    {
+      "unknown": "Final investment cadence, construction completion, commissioning performance and economic returns for Kings Mountain remain execution outcomes rather than established facts in the DOE NEPA record.",
+      "gating": false
+    }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 6
+    "nonGatingCount": 7
   },
   "gatingIssues": [],
   "confidence": 91,

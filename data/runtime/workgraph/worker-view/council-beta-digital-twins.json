@@ -1,13 +1,13 @@
 {
   "version": 1,
   "contract": "earth2036-worker-digital-twin-view-v1",
-  "generatedAt": "2026-09-30T22:52:51.887Z",
+  "generatedAt": "2026-09-30T23:02:30.958Z",
   "canonicalWriteAuthority": false,
   "tickers": [
     "PNR",
     "AEVA",
-    "ALB",
-    "CAMT"
+    "CAMT",
+    "CCI"
   ],
   "twins": [
     {
@@ -231,16 +231,16 @@
       "version": 1,
       "contract": "earth2036-company-digital-twin-shadow-v1",
       "canonicalWriteAuthority": false,
-      "ticker": "ALB",
-      "workId": "t0:ALB",
-      "inputSignature": "0fdfa8e619403b78bc2d6a92",
+      "ticker": "CCI",
+      "workId": "t0:CCI",
+      "inputSignature": "e26f0527d7bfd8dc4e453354",
       "sourceState": "researching",
       "identity": {
-        "ticker": "ALB",
-        "company": "Albemarle",
-        "cik": "0000915913",
+        "ticker": "CCI",
+        "company": "Crown Castle",
+        "cik": "0001051470",
         "exchange": "NYSE",
-        "exchangeName": "Albemarle Corporation Common Stock",
+        "exchangeName": "Crown Castle Inc. Common Stock",
         "identityStatus": "validated",
         "tradabilityStatus": "validated",
         "validatedAt": "2026-09-30T22:52:13.369Z"
@@ -266,55 +266,56 @@
         ],
         "primarySourceCount": 3,
         "sourceLineage": {
-          "rawSourceCount": 10,
+          "rawSourceCount": 7,
           "uniqueSourceCount": 3,
-          "duplicatesCollapsed": 7,
+          "duplicatesCollapsed": 4,
           "missingLineage": 0,
           "uniqueOrigins": [
-            "issuer:ALB:FY2025:20260211",
-            "issuer:ALB:kemerton:20260211",
-            "issuer:ALB:2026Q1:20260506"
+            "issuer:CCI:fiber-sale-close:20260501",
+            "issuer:CCI:2026Q2:20260722",
+            "issuer:CCI:2025FY:20260204"
           ]
         },
         "evidenceWindow": {
-          "start": "2026-02-11T00:00:00.000Z",
-          "end": "2026-09-22T05:26:08.000Z",
-          "latestEvidenceGeneratedAt": "2026-09-22T05:26:08.000Z"
+          "start": "2026-02-04T00:00:00.000Z",
+          "end": "2026-09-22T06:26:03.000Z",
+          "latestEvidenceGeneratedAt": "2026-09-22T06:26:03.000Z"
         },
         "preflightPassed": false
       },
       "capabilitySignals": [
         "thesisQuality",
-        "alignment2036",
-        "bottleneckControl",
-        "supplyChainResilience",
+        "crossDivisionLeverage",
         "scenarioRobustness",
+        "bottleneckControl",
         "financialOperatingMomentum",
+        "marketValuationOpportunity",
+        "alignment2036",
         "substitutionResilience",
-        "governancePower"
+        "supplyChainResilience",
+        "governancePower",
+        "pricingPower"
       ],
       "constraintSignals": {
         "risks": [
-          "Lithium price volatility can overwhelm volume growth and impair conversion economics.",
-          "Idling Kemerton reduces Western conversion footprint and highlights cost disadvantages in part of the supply chain.",
-          "Cash flow remains sensitive to lithium pricing and prior-period operating cash flow included a one-time customer prepayment.",
-          "commodity cyclicality",
-          "conversion cost disadvantage",
-          "geographic asset concentration",
-          "commodity-price sensitivity",
-          "asset impairment/idling",
-          "cash-flow quality",
-          "capital allocation under cycle stress"
+          "The divestiture reduces diversification and concentrates exposure in U.S. tower leasing and carrier capital cycles.",
+          "Full-year site-rental revenue midpoint remains below 2025 actual, reflecting churn/cancellation pressure despite balance-sheet repair.",
+          "Pure-play focus increases exposure to U.S. carrier capital cycles and tenant concentration.",
+          "Alternative architectures can shift incremental network spend toward small cells, fiber, satellite or other infrastructure even if macro towers remain necessary.",
+          "Carrier/tenant concentration creates discontinuous revenue loss when a major network exits or consolidates.",
+          "A pure-play tower portfolio sacrifices fiber/small-cell diversification and makes capital allocation dependent on tower organic growth, debt discipline and shareholder returns.",
+          "Cost reductions can improve AFFO but cannot substitute indefinitely for leasing growth."
         ],
         "unknowns": [
-          "Long-run restart economics and timing for Kemerton remain uncertain.",
-          "Full-year 2026 free cash flow depends on lithium price scenarios and is not a fixed outcome.",
-          "long-run Kemerton restart economics",
-          "full-year free cash flow across lithium-price scenarios"
+          "Whether pure-play focus produces sustainably higher organic growth after customer churn remains unproven.",
+          "Post-sale normalized AFFO growth and reinvestment returns require full council underwriting.",
+          "Long-run colocation growth after DISH/Sprint churn and post-sale reinvestment economics remain unproven.",
+          "Whether post-cancellation organic growth reaccelerates enough to support durable AFFO growth is not yet established."
         ],
         "contradictions": [
-          "Lithium conditions improved, yet Kemerton economics remained insufficient to keep Train 1 operating.",
-          "Strong cost and balance-sheet execution coexists with ongoing asset rationalization caused by weak conversion economics."
+          "Balance-sheet simplification and debt reduction improve resilience while reported site-rental revenue outlook still implies contraction versus 2025.",
+          "Balance-sheet resilience improved sharply after the fiber sale while reported site-rental revenue remains pressured by tenant cancellations.",
+          "Debt reduction and cost savings improve AFFO resilience while headline site-rental revenue can still contract because cancellation losses exceed new organic contribution."
         ],
         "gatingIssues": [],
         "preflightFailures": [
@@ -330,9 +331,26 @@
       "causalContext": {
         "mapped": true,
         "edges": [
-          "electrification/battery demand -> lithium chemical demand -> resource extraction/conversion -> battery supply",
-          "resource scale -> potential cost/supply resilience -> customer availability",
-          "high conversion cost -> plant idling -> reduced downstream footprint"
+          {
+            "from": "human_need:mobile_connectivity",
+            "to": "technology:wireless_networks",
+            "relation": "requires"
+          },
+          {
+            "from": "technology:wireless_networks",
+            "to": "infrastructure:macro_tower_sites",
+            "relation": "uses_for_coverage_capacity"
+          },
+          {
+            "from": "infrastructure:macro_tower_sites",
+            "to": "company:CCI",
+            "relation": "owned_leased_by"
+          },
+          {
+            "from": "company:CCI",
+            "to": "bottleneck:permitted_sited_vertical_real_estate",
+            "relation": "controls_portfolio"
+          }
         ]
       },
       "improvementWindows": [
@@ -375,29 +393,29 @@
       "bridgeInputs": {
         "capabilityCandidates": [
           "thesisQuality",
-          "alignment2036",
-          "bottleneckControl",
-          "supplyChainResilience",
+          "crossDivisionLeverage",
           "scenarioRobustness",
+          "bottleneckControl",
           "financialOperatingMomentum",
+          "marketValuationOpportunity",
+          "alignment2036",
           "substitutionResilience",
-          "governancePower"
+          "supplyChainResilience",
+          "governancePower",
+          "pricingPower"
         ],
         "needOrConstraintCandidates": [
-          "Long-run restart economics and timing for Kemerton remain uncertain.",
-          "Full-year 2026 free cash flow depends on lithium price scenarios and is not a fixed outcome.",
-          "long-run Kemerton restart economics",
-          "full-year free cash flow across lithium-price scenarios",
-          "Lithium price volatility can overwhelm volume growth and impair conversion economics.",
-          "Idling Kemerton reduces Western conversion footprint and highlights cost disadvantages in part of the supply chain.",
-          "Cash flow remains sensitive to lithium pricing and prior-period operating cash flow included a one-time customer prepayment.",
-          "commodity cyclicality",
-          "conversion cost disadvantage",
-          "geographic asset concentration",
-          "commodity-price sensitivity",
-          "asset impairment/idling",
-          "cash-flow quality",
-          "capital allocation under cycle stress"
+          "Whether pure-play focus produces sustainably higher organic growth after customer churn remains unproven.",
+          "Post-sale normalized AFFO growth and reinvestment returns require full council underwriting.",
+          "Long-run colocation growth after DISH/Sprint churn and post-sale reinvestment economics remain unproven.",
+          "Whether post-cancellation organic growth reaccelerates enough to support durable AFFO growth is not yet established.",
+          "The divestiture reduces diversification and concentrates exposure in U.S. tower leasing and carrier capital cycles.",
+          "Full-year site-rental revenue midpoint remains below 2025 actual, reflecting churn/cancellation pressure despite balance-sheet repair.",
+          "Pure-play focus increases exposure to U.S. carrier capital cycles and tenant concentration.",
+          "Alternative architectures can shift incremental network spend toward small cells, fiber, satellite or other infrastructure even if macro towers remain necessary.",
+          "Carrier/tenant concentration creates discontinuous revenue loss when a major network exits or consolidates.",
+          "A pure-play tower portfolio sacrifices fiber/small-cell diversification and makes capital allocation dependent on tower organic growth, debt discipline and shareholder returns.",
+          "Cost reductions can improve AFFO but cannot substitute indefinitely for leasing growth."
         ],
         "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
       },

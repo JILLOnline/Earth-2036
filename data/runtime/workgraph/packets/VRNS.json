@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "VRNS",
   "workId": "t0:VRNS",
-  "generatedAt": "2026-09-27T21:08:49.169Z",
+  "generatedAt": "2026-09-30T17:22:01.610Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2025-11-12T00:00:00.000Z",
-    "end": "2026-09-21T22:26:26.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T22:26:26.000Z"
+    "end": "2026-09-29T19:13:06.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-29T19:13:06.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -55,13 +55,15 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/VRNS-20260921T220246Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/VRNS-20260929T121353Z-council-alpha.json",
+    "data/runtime/workgraph/evidence/VRNS-20260929T191306Z-council-alpha.json",
     "data/runtime/workgraph/evidence/council-beta-20260921T222626Z-batch.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 8,
+    "historicalEvidenceCount": 8
   },
   "factorEvidence": {
     "names": [
@@ -154,6 +156,14 @@
         "gating": false
       },
       {
+        "risk": "Migration churn, competition, channel dependence and persistent losses.",
+        "gating": false
+      },
+      {
+        "risk": "Migration churn, competition, channel dependence and persistent losses.",
+        "gating": false
+      },
+      {
         "risk": "Concentrating delivery on SaaS improves architectural focus but raises transition fragility if remaining self-hosted customers do not migrate cleanly.",
         "gating": false
       },
@@ -177,6 +187,14 @@
       "gating": false
     },
     {
+      "risk": "Migration churn, competition, channel dependence and persistent losses.",
+      "gating": false
+    },
+    {
+      "risk": "Migration churn, competition, channel dependence and persistent losses.",
+      "gating": false
+    },
+    {
       "risk": "Concentrating delivery on SaaS improves architectural focus but raises transition fragility if remaining self-hosted customers do not migrate cleanly.",
       "gating": false
     },
@@ -197,7 +215,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 4
   },
   "causalMapping": {
     "present": true,
@@ -215,12 +233,15 @@
     "competing cloud-native security stacks -> substitution pressure -> bottleneck-control uncertainty"
   ],
   "sourceLineage": {
-    "rawSourceCount": 4,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 3,
+    "rawSourceCount": 10,
+    "uniqueSourceCount": 4,
+    "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:VRNS:saas-transition:EOL-2026-12-31"
+      "issuer:VRNS:saas-transition:EOL-2026-12-31",
+      "sec:VRNS:2026Q2-10Q",
+      "sec:VRNS:2026Q2-ex99",
+      "issuer:VRNS:saas-transition"
     ]
   },
   "sources": [
@@ -231,6 +252,27 @@
       "primary": true,
       "publishedAt": "2025-11-12",
       "originFingerprint": "issuer:VRNS:saas-transition:EOL-2026-12-31"
+    },
+    {
+      "sourceId": "sec:VRNS:2026Q2-10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1361113/000162828026050630/vrns-20260630.htm",
+      "kind": "regulatory-primary",
+      "primary": true,
+      "publishedAt": "2026-07-28"
+    },
+    {
+      "sourceId": "sec:VRNS:2026Q2-ex99",
+      "url": "https://www.sec.gov/Archives/edgar/data/1361113/000117184326004948/exh_991.htm",
+      "kind": "regulatory-primary",
+      "primary": true,
+      "publishedAt": "2026-07-28"
+    },
+    {
+      "sourceId": "issuer:VRNS:saas-transition",
+      "url": "https://www.varonis.com/blog/why-were-going-all-in-on-saas",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2025-11-12"
     }
   ],
   "contradictions": [],
@@ -248,6 +290,14 @@
       "gating": false
     },
     {
+      "unknown": "Independent customer migration outcomes and current valuation.",
+      "gating": false
+    },
+    {
+      "unknown": "Independent customer migration outcomes and current valuation.",
+      "gating": false
+    },
+    {
       "unknown": "Remaining self-hosted exposure, migration churn and comparative autonomous-remediation efficacy are not quantified by the current source.",
       "gating": false
     },
@@ -258,10 +308,10 @@
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": 80,
+  "confidence": 76,
   "preflight": {
     "passed": false,
     "failures": [

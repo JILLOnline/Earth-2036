@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "PNR",
   "workId": "t0:PNR",
-  "generatedAt": "2026-09-27T21:08:49.169Z",
+  "generatedAt": "2026-09-30T17:22:01.610Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-28T00:00:00.000Z",
-    "end": "2026-09-22T09:26:01.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-22T09:26:01.000Z"
+    "end": "2026-09-30T01:19:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-09-30T01:19:00.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -55,13 +55,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/PNR-20260921T090718Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/PNR-20260922T092601Z-council-beta.json"
+    "data/runtime/workgraph/evidence/PNR-20260922T092601Z-council-beta.json",
+    "data/runtime/workgraph/evidence/PNR-20260930T011900Z-earth-scout.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 5,
+    "historicalEvidenceCount": 5
   },
   "factorEvidence": {
     "names": [
@@ -76,7 +77,8 @@
       "supplyChainResilience",
       "governancePower",
       "pricingPower",
-      "dataConfidence"
+      "dataConfidence",
+      "executionCredibility"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -105,6 +107,10 @@
       ],
       "expectations-execution": [
         "executionQuality",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "alignment2036",
+        "executionCredibility",
         "financialOperatingMomentum",
         "scenarioRobustness"
       ]
@@ -159,7 +165,8 @@
     "supplyChainResilience",
     "governancePower",
     "pricingPower",
-    "dataConfidence"
+    "dataConfidence",
+    "executionCredibility"
   ],
   "riskEvidence": {
     "present": true,
@@ -190,6 +197,10 @@
       },
       {
         "risk": "Residential/Pool channel and housing/rate sensitivity remain concentration-like end-market exposures even as Taco broadens commercial/industrial mix.",
+        "gating": false
+      },
+      {
+        "risk": "Taco acquisition adds integration, leverage/capital-allocation and synergy-realization risk; stated EBITDA multiple depends partly on anticipated benefits.",
         "gating": false
       }
     ]
@@ -222,6 +233,10 @@
     {
       "risk": "Residential/Pool channel and housing/rate sensitivity remain concentration-like end-market exposures even as Taco broadens commercial/industrial mix.",
       "gating": false
+    },
+    {
+      "risk": "Taco acquisition adds integration, leverage/capital-allocation and synergy-realization risk; stated EBITDA multiple depends partly on anticipated benefits.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -232,7 +247,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 4
+    "count": 6
   },
   "causalMapping": {
     "present": true,
@@ -302,15 +317,17 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 7,
-    "uniqueSourceCount": 4,
+    "rawSourceCount": 9,
+    "uniqueSourceCount": 6,
     "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "sec:PNR:20260728:Q2release",
       "sec:PNR:20260728:10Q",
       "pnr:20260728:taco-announcement",
-      "pnr:20260902:8k-term-loans"
+      "pnr:20260902:8k-term-loans",
+      "pentair.com:investor-news:taco-acquisition-20260728",
+      "pentair.com:investor-news:dividend-20260921"
     ]
   },
   "sources": [
@@ -345,6 +362,22 @@
       "primary": true,
       "publishedAt": "2026-09-02",
       "originFingerprint": "pnr:20260902:8k-term-loans"
+    },
+    {
+      "sourceId": "issuer:PNR:Taco-acquisition:2026-07-28",
+      "url": "https://investors.pentair.com/news-releases/news-release-details/pentair-acquire-taco-group-holdings-accelerating-growth-and",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-28",
+      "originFingerprint": "pentair.com:investor-news:taco-acquisition-20260728"
+    },
+    {
+      "sourceId": "issuer:PNR:dividend:2026-09-21",
+      "url": "https://investors.pentair.com/news-releases/news-release-details/pentair-announces-quarterly-cash-dividend-027-1",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-09-21",
+      "originFingerprint": "pentair.com:investor-news:dividend-20260921"
     }
   ],
   "contradictions": [
@@ -406,11 +439,15 @@
     {
       "unknown": "Whether Taco's projected synergies and 2027 accretion are realized on schedule.",
       "gating": false
+    },
+    {
+      "unknown": "Post-close integration performance and realized cost synergies are not yet observable.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 6
+    "nonGatingCount": 7
   },
   "gatingIssues": [],
   "confidence": 94,

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SQM",
   "workId": "t0:SQM",
-  "generatedAt": "2026-10-01T18:20:23.641Z",
+  "generatedAt": "2026-10-01T18:25:22.768Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -22,9 +22,9 @@
     "validatedAt": "2026-10-01T18:19:41.320Z"
   },
   "evidenceWindow": {
-    "start": "2026-08-18T00:00:00.000Z",
-    "end": "2026-09-22T17:33:06.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-22T17:33:06.000Z"
+    "start": "2026-07-21T00:00:00.000Z",
+    "end": "2026-10-01T18:23:43.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T18:23:43.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -39,7 +39,8 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
+      "adversarial-red-team",
+      "risk-source-support"
     ],
     "missing": [
       "source-integrity",
@@ -51,14 +52,16 @@
     "discovery-weak-signals",
     "expectations-execution",
     "structural-causal",
-    "adversarial-red-team"
+    "adversarial-red-team",
+    "risk-source-support"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/SQM-20260921T140443Z-earth-scout.json",
     "data/runtime/workgraph/evidence/SQM-20260921T150611Z-earth-scout.json",
     "data/runtime/workgraph/evidence/SQM-20260921T180758Z-earth-scout.json",
     "data/runtime/workgraph/evidence/SQM-20260921T202645Z-council-beta.json",
-    "data/runtime/workgraph/evidence/SQM-20260922T173306Z-deep-resolver.json"
+    "data/runtime/workgraph/evidence/SQM-20260922T173306Z-deep-resolver.json",
+    "data/runtime/workgraph/evidence/SQM-20261001T182343Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
@@ -66,8 +69,8 @@
       "data/runtime/workgraph/evidence/SQM-20260921T192217Z-council-beta.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 9,
-    "historicalEvidenceCount": 13
+    "activeEvidenceCount": 10,
+    "historicalEvidenceCount": 14
   },
   "factorEvidence": {
     "names": [
@@ -205,6 +208,16 @@
       {
         "risk": "Commodity-cycle compression and capex/commissioning risk can reduce returns.",
         "gating": false
+      },
+      {
+        "risk": "US$450-500 million of attributable expansion capex is committed years ahead of first expected expansion output, exposing returns to construction execution, commissioning timing and lithium-cycle conditions through 2030.",
+        "gating": false,
+        "falsifier": "On-budget/on-schedule delivery plus sustained demand absorption and lower unit costs demonstrate resilient project economics through the ramp."
+      },
+      {
+        "risk": "Doubling concentrate capacity can improve cost position but also increases volume exposed to commodity-price clearing if industry supply growth outruns battery demand.",
+        "gating": false,
+        "falsifier": "Market demand absorbs incremental capacity while Mt Holland retains competitive unit economics and utilization."
       }
     ]
   },
@@ -234,6 +247,16 @@
     {
       "risk": "Commodity-cycle compression and capex/commissioning risk can reduce returns.",
       "gating": false
+    },
+    {
+      "risk": "US$450-500 million of attributable expansion capex is committed years ahead of first expected expansion output, exposing returns to construction execution, commissioning timing and lithium-cycle conditions through 2030.",
+      "gating": false,
+      "falsifier": "On-budget/on-schedule delivery plus sustained demand absorption and lower unit costs demonstrate resilient project economics through the ramp."
+    },
+    {
+      "risk": "Doubling concentrate capacity can improve cost position but also increases volume exposed to commodity-price clearing if industry supply growth outruns battery demand.",
+      "gating": false,
+      "falsifier": "Market demand absorbs incremental capacity while Mt Holland retains competitive unit economics and utilization."
     }
   ],
   "dataConfidenceEvidence": {
@@ -244,7 +267,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 2
   },
   "causalMapping": {
     "present": true,
@@ -266,6 +289,18 @@
         "to": "SQM margins",
         "mechanism": "supply growth can pressure realized lithium pricing",
         "falsifier": "sustained demand absorbs new supply while SQM retains low-cost economics"
+      },
+      {
+        "from": "Mt Holland expansion capex and construction",
+        "to": "future spodumene capacity and unit costs",
+        "mechanism": "additional concentrator and ore sorting are intended to double nameplate output and improve scale economics",
+        "falsifier": "cost overruns, commissioning delay, weak utilization or failure to lower unit costs"
+      },
+      {
+        "from": "future industry lithium supply growth",
+        "to": "SQM expansion returns",
+        "mechanism": "commodity clearing prices determine how much value incremental capacity captures",
+        "falsifier": "demand absorption sustains attractive economics despite new supply"
       }
     ]
   },
@@ -287,16 +322,29 @@
       "to": "SQM margins",
       "mechanism": "supply growth can pressure realized lithium pricing",
       "falsifier": "sustained demand absorbs new supply while SQM retains low-cost economics"
+    },
+    {
+      "from": "Mt Holland expansion capex and construction",
+      "to": "future spodumene capacity and unit costs",
+      "mechanism": "additional concentrator and ore sorting are intended to double nameplate output and improve scale economics",
+      "falsifier": "cost overruns, commissioning delay, weak utilization or failure to lower unit costs"
+    },
+    {
+      "from": "future industry lithium supply growth",
+      "to": "SQM expansion returns",
+      "mechanism": "commodity clearing prices determine how much value incremental capacity captures",
+      "falsifier": "demand absorption sustains attractive economics despite new supply"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 6,
-    "uniqueSourceCount": 2,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 3,
     "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "ir.sqm.com|2Q2026-earnings|2026-08-18",
-      "reuters.com|sqm-earnings-beat-lithium-outlook|2026-08-19"
+      "reuters.com|sqm-earnings-beat-lithium-outlook|2026-08-19",
+      "ir.sqm.com|SQM|Mt-Holland-FID|2026-07-21"
     ]
   },
   "sources": [
@@ -315,6 +363,14 @@
       "primary": false,
       "publishedAt": "2026-08-19",
       "originFingerprint": "reuters.com|sqm-earnings-beat-lithium-outlook|2026-08-19"
+    },
+    {
+      "sourceId": "issuer:SQM:MtHolland-FID:20260721",
+      "url": "https://ir.sqm.com/news-releases/news-release-details/sqm-and-wesfarmers-announces-final-investment-decision-mt",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-21",
+      "originFingerprint": "ir.sqm.com|SQM|Mt-Holland-FID|2026-07-21"
     }
   ],
   "contradictions": [
@@ -374,11 +430,15 @@
     {
       "unknown": "Project funding burden, normalized cost curve and BESS-demand durability.",
       "gating": false
+    },
+    {
+      "unknown": "Realized project returns under normalized lithium prices and the final commissioning/ramp profile remain unverified by this source.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 14
+    "nonGatingCount": 15
   },
   "gatingIssues": [],
   "confidence": 88,

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CORZ",
   "workId": "t0:CORZ",
-  "generatedAt": "2026-10-01T12:19:34.721Z",
+  "generatedAt": "2026-10-01T12:23:08.882Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-28T00:00:00.000Z",
-    "end": "2026-10-01T03:05:12.000Z",
-    "latestEvidenceGeneratedAt": "2026-10-01T03:05:12.000Z"
+    "end": "2026-10-01T12:22:03.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T12:22:03.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -39,7 +39,8 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
+      "adversarial-red-team",
+      "adversarial-red-team-assist"
     ],
     "missing": [
       "source-integrity",
@@ -51,18 +52,20 @@
     "discovery-weak-signals",
     "expectations-execution",
     "structural-causal",
-    "adversarial-red-team"
+    "adversarial-red-team",
+    "adversarial-red-team-assist"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/CORZ-20260919T110832Z-earth-scout.json",
     "data/runtime/workgraph/evidence/CORZ-20260922T072718Z-council-beta.json",
-    "data/runtime/workgraph/evidence/CORZ-20261001T030512Z-earth-scout-assist.json"
+    "data/runtime/workgraph/evidence/CORZ-20261001T030512Z-earth-scout-assist.json",
+    "data/runtime/workgraph/evidence/CORZ-20261001T122203Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 6,
-    "historicalEvidenceCount": 6
+    "activeEvidenceCount": 7,
+    "historicalEvidenceCount": 7
   },
   "factorEvidence": {
     "names": [
@@ -76,7 +79,8 @@
       "substitutionResilience",
       "supplyChainResilience",
       "pricingPower",
-      "governancePower"
+      "governancePower",
+      "dataConfidence"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -160,7 +164,8 @@
     "substitutionResilience",
     "supplyChainResilience",
     "pricingPower",
-    "governancePower"
+    "governancePower",
+    "dataConfidence"
   ],
   "riskEvidence": {
     "present": true,
@@ -198,7 +203,12 @@
         "risk": "The up-to-2.5-GW headline is expansion potential; initial deployment is materially smaller and future expansion remains execution-dependent.",
         "gating": false,
         "sourceId": "reuters:CORZ:AMD:20260728"
-      }
+      },
+      "single-counterparty HPC revenue concentration",
+      "high leverage and debt-service burden",
+      "construction/commissioning execution",
+      "confidence inflation from equating leased MW with billable MW",
+      "competition for diversified high-density colocation customers"
     ]
   },
   "risks": [
@@ -235,7 +245,12 @@
       "risk": "The up-to-2.5-GW headline is expansion potential; initial deployment is materially smaller and future expansion remains execution-dependent.",
       "gating": false,
       "sourceId": "reuters:CORZ:AMD:20260728"
-    }
+    },
+    "single-counterparty HPC revenue concentration",
+    "high leverage and debt-service burden",
+    "construction/commissioning execution",
+    "confidence inflation from equating leased MW with billable MW",
+    "competition for diversified high-density colocation customers"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -245,7 +260,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
     "present": true,
@@ -263,14 +278,15 @@
     "site-delivery-execution->contracted-colocation-revenue"
   ],
   "sourceLineage": {
-    "rawSourceCount": 8,
-    "uniqueSourceCount": 3,
+    "rawSourceCount": 9,
+    "uniqueSourceCount": 4,
     "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:CORZ:2026Q2:20260728",
       "sec:1839341:2026Q2:10Q",
-      "reuters:20260728:CORZ-AMD-datacenter"
+      "reuters:20260728:CORZ-AMD-datacenter",
+      "sec.gov|CORZ|10-Q|2026-06-30|0001839341-26-000014"
     ]
   },
   "sources": [
@@ -297,6 +313,14 @@
       "primary": false,
       "publishedAt": "2026-07-28",
       "originFingerprint": "reuters:20260728:CORZ-AMD-datacenter"
+    },
+    {
+      "sourceId": "sec:CORZ:10-Q:20260630",
+      "url": "https://www.sec.gov/Archives/edgar/data/1839341/000183934126000014/core-20260630.htm",
+      "kind": "primary-regulatory-filing",
+      "primary": true,
+      "publishedAt": "2026-08-07",
+      "originFingerprint": "sec.gov|CORZ|10-Q|2026-06-30|0001839341-26-000014"
     }
   ],
   "contradictions": [
@@ -318,10 +342,15 @@
       "contradiction": "Large long-run capacity potential coexists with a staged initial deployment, so prospective capacity should not be treated as already delivered capacity.",
       "material": true,
       "sourceId": "reuters:CORZ:AMD:20260728"
+    },
+    {
+      "contradiction": "Large contracted/leased HPC capacity supports demand visibility, while current revenue concentration and leverage make cash-flow resilience unusually dependent on counterparty performance and timely capacity delivery.",
+      "material": true,
+      "nextOwner": "council-alpha"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 4,
+    "unresolvedMaterialCount": 5,
     "items": [
       {
         "contradiction": "Rapid colocation revenue and capacity growth coexist with very high capital intensity and a large GAAP net loss.",
@@ -341,6 +370,11 @@
         "contradiction": "Large long-run capacity potential coexists with a staged initial deployment, so prospective capacity should not be treated as already delivered capacity.",
         "material": true,
         "sourceId": "reuters:CORZ:AMD:20260728"
+      },
+      {
+        "contradiction": "Large contracted/leased HPC capacity supports demand visibility, while current revenue concentration and leverage make cash-flow resilience unusually dependent on counterparty performance and timely capacity delivery.",
+        "material": true,
+        "nextOwner": "council-alpha"
       }
     ]
   },
@@ -368,11 +402,13 @@
     {
       "unknown": "Economics, timing and binding commercial terms for expansion beyond the initial AMD deployment remain unverified by this independent source.",
       "gating": false
-    }
+    },
+    "economics and credit profile of future non-CoreWeave customers",
+    "timing/cost to convert remaining leased MW into billable capacity"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 6
+    "nonGatingCount": 8
   },
   "gatingIssues": [],
   "confidence": 88,

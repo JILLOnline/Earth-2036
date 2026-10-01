@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "AEVA",
   "workId": "t0:AEVA",
-  "generatedAt": "2026-10-01T12:19:34.723Z",
+  "generatedAt": "2026-10-01T12:23:08.883Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-06T00:00:00.000Z",
-    "end": "2026-09-30T18:30:39.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-30T18:30:39.000Z"
+    "end": "2026-10-01T12:22:03.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T12:22:03.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -39,7 +39,8 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
+      "adversarial-red-team",
+      "adversarial-red-team-assist"
     ],
     "missing": [
       "source-integrity",
@@ -51,7 +52,8 @@
     "discovery-weak-signals",
     "expectations-execution",
     "structural-causal",
-    "adversarial-red-team"
+    "adversarial-red-team",
+    "adversarial-red-team-assist"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/AEVA-20260919T060641Z-earth-scout.json",
@@ -59,13 +61,14 @@
     "data/runtime/workgraph/evidence/AEVA-20260924T160601Z-earth-scout-assist.json",
     "data/runtime/workgraph/evidence/AEVA-20260927T163255Z-deep-resolver.json",
     "data/runtime/workgraph/evidence/AEVA-20260930T180150Z-earth-scout-assist.json",
-    "data/runtime/workgraph/evidence/AEVA-20260930T183039Z-deep-resolver.json"
+    "data/runtime/workgraph/evidence/AEVA-20260930T183039Z-deep-resolver.json",
+    "data/runtime/workgraph/evidence/AEVA-20261001T122203Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 10,
-    "historicalEvidenceCount": 10
+    "activeEvidenceCount": 11,
+    "historicalEvidenceCount": 11
   },
   "factorEvidence": {
     "names": [
@@ -78,7 +81,8 @@
       "scenarioRobustness",
       "supplyChainResilience",
       "substitutionResilience",
-      "governancePower"
+      "governancePower",
+      "dataConfidence"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -175,7 +179,8 @@
     "scenarioRobustness",
     "supplyChainResilience",
     "substitutionResilience",
-    "governancePower"
+    "governancePower",
+    "dataConfidence"
   ],
   "riskEvidence": {
     "present": true,
@@ -202,7 +207,12 @@
       "The production dates remain forward-looking and depend on customer validation, qualification and manufacturing execution.",
       "The independent report does not disclose committed unit volumes, unit economics or guaranteed revenue.",
       "On-track status is not evidence of scaled revenue or completed qualification.",
-      "Schedule slippage or failed customer validation would falsify the near-term execution signal."
+      "Schedule slippage or failed customer validation would falsify the near-term execution signal.",
+      "continued operating losses and external-capital dependence",
+      "customer-program delays",
+      "cost-down and manufacturing-scale execution",
+      "competitive pricing/margin pressure",
+      "potential equity dilution through standby financing"
     ]
   },
   "risks": [
@@ -228,7 +238,12 @@
     "The production dates remain forward-looking and depend on customer validation, qualification and manufacturing execution.",
     "The independent report does not disclose committed unit volumes, unit economics or guaranteed revenue.",
     "On-track status is not evidence of scaled revenue or completed qualification.",
-    "Schedule slippage or failed customer validation would falsify the near-term execution signal."
+    "Schedule slippage or failed customer validation would falsify the near-term execution signal.",
+    "continued operating losses and external-capital dependence",
+    "customer-program delays",
+    "cost-down and manufacturing-scale execution",
+    "competitive pricing/margin pressure",
+    "potential equity dilution through standby financing"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -238,7 +253,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 6
+    "count": 7
   },
   "causalMapping": {
     "present": true,
@@ -254,8 +269,8 @@
     "pre-series awards -> production qualification and volume conversion -> recurring economics"
   ],
   "sourceLineage": {
-    "rawSourceCount": 19,
-    "uniqueSourceCount": 7,
+    "rawSourceCount": 20,
+    "uniqueSourceCount": 8,
     "duplicatesCollapsed": 12,
     "missingLineage": 0,
     "uniqueOrigins": [
@@ -265,7 +280,8 @@
       "issuer:AEVA:CityOS:20260317",
       "issuer:AEVA:Omni:20260106",
       "issuer:AEVA:CityOS-ITS:20260603",
-      "publisher:seoul-economic-daily:AEVA-LGInnotek:20260927"
+      "publisher:seoul-economic-daily:AEVA-LGInnotek:20260927",
+      "sec.gov|AEVA|10-Q|2026-06-30|0001193125-26-338179"
     ]
   },
   "sources": [
@@ -324,6 +340,14 @@
       "primary": false,
       "publishedAt": "2026-09-27",
       "originFingerprint": "publisher:seoul-economic-daily:AEVA-LGInnotek:20260927"
+    },
+    {
+      "sourceId": "sec:AEVA:10-Q:20260630",
+      "url": "https://www.sec.gov/Archives/edgar/data/1789029/000119312526338179/aeva-20260630.htm",
+      "kind": "primary-regulatory-filing",
+      "primary": true,
+      "publishedAt": "2026-08-05",
+      "originFingerprint": "sec.gov|AEVA|10-Q|2026-06-30|0001193125-26-338179"
     }
   ],
   "contradictions": [
@@ -351,10 +375,15 @@
     {
       "contradiction": "Manufacturing-partner confirmation strengthens execution confidence while the absence of disclosed committed volumes and economics still limits underwriting precision.",
       "material": true
+    },
+    {
+      "contradiction": "Improved liquidity coexists with continued operating losses and a financing structure that can dilute holders if commercialization timing slips.",
+      "material": true,
+      "nextOwner": "council-alpha"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 6,
+    "unresolvedMaterialCount": 7,
     "items": [
       {
         "contradiction": "Commercial-design-win momentum is broadening faster than disclosed scaled production economics are becoming visible.",
@@ -380,6 +409,11 @@
       {
         "contradiction": "Manufacturing-partner confirmation strengthens execution confidence while the absence of disclosed committed volumes and economics still limits underwriting precision.",
         "material": true
+      },
+      {
+        "contradiction": "Improved liquidity coexists with continued operating losses and a financing structure that can dilute holders if commercialization timing slips.",
+        "material": true,
+        "nextOwner": "council-alpha"
       }
     ]
   },
@@ -403,11 +437,13 @@
     "Committed Omni and Atlas Ultra production volumes and economics.",
     "Whether second-half-2026 Omni trial shipments have converted into binding production orders.",
     "Actual 2026 Omni trial-shipment quantities and customer identities.",
-    "Binding production commitments behind the 2027 and 2028 targets."
+    "Binding production commitments behind the 2027 and 2028 targets.",
+    "timing and amount of future standby-equity draws",
+    "customer-specific production conversion and gross-margin economics"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 14
+    "nonGatingCount": 16
   },
   "gatingIssues": [],
   "confidence": 88,

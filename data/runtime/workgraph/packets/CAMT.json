@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CAMT",
   "workId": "t0:CAMT",
-  "generatedAt": "2026-10-01T12:19:34.720Z",
+  "generatedAt": "2026-10-01T12:23:08.882Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-10T00:00:00.000Z",
-    "end": "2026-09-30T20:08:54.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-30T20:08:54.000Z"
+    "end": "2026-10-01T12:22:03.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T12:22:03.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -39,7 +39,8 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
+      "adversarial-red-team",
+      "adversarial-red-team-assist"
     ],
     "missing": [
       "source-integrity",
@@ -51,19 +52,21 @@
     "discovery-weak-signals",
     "expectations-execution",
     "structural-causal",
-    "adversarial-red-team"
+    "adversarial-red-team",
+    "adversarial-red-team-assist"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/CAMT-20260919T100501Z-earth-scout.json",
     "data/runtime/workgraph/evidence/CAMT-20260922T062603Z-council-beta.json",
     "data/runtime/workgraph/evidence/CAMT-20260927T202817Z-council-beta-assist.json",
-    "data/runtime/workgraph/evidence/CAMT-20260930T200854Z-earth-scout-assist.json"
+    "data/runtime/workgraph/evidence/CAMT-20260930T200854Z-earth-scout-assist.json",
+    "data/runtime/workgraph/evidence/CAMT-20261001T122203Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 7,
-    "historicalEvidenceCount": 7
+    "activeEvidenceCount": 8,
+    "historicalEvidenceCount": 8
   },
   "factorEvidence": {
     "names": [
@@ -217,7 +220,11 @@
       {
         "risk": "Strong AI/HBM packaging demand can coexist with margin compression; Alpha should not infer operating leverage solely from order growth.",
         "gating": false
-      }
+      },
+      "AI/HBM capex cyclicality",
+      "Asia-Pacific and China geographic concentration",
+      "export-control/trade-policy exposure",
+      "pricing and margin pressure from global and regional competitors"
     ]
   },
   "risks": [
@@ -264,7 +271,11 @@
     {
       "risk": "Strong AI/HBM packaging demand can coexist with margin compression; Alpha should not infer operating leverage solely from order growth.",
       "gating": false
-    }
+    },
+    "AI/HBM capex cyclicality",
+    "Asia-Pacific and China geographic concentration",
+    "export-control/trade-policy exposure",
+    "pricing and margin pressure from global and regional competitors"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -274,7 +285,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 6
+    "count": 7
   },
   "causalMapping": {
     "present": true,
@@ -324,8 +335,8 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 12,
-    "uniqueSourceCount": 7,
+    "rawSourceCount": 13,
+    "uniqueSourceCount": 8,
     "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
@@ -335,7 +346,8 @@
       "sec:CAMT:2025FY:20260319",
       "issuer:CAMT:Hawk-IDM:20260210",
       "issuer:CAMT:2026Q1:20260512",
-      "independent:chipnews.io:CAMT-q2-hbm4:20260813"
+      "independent:chipnews.io:CAMT-q2-hbm4:20260813",
+      "sec.gov|CAMT|20-F|2025FY|0001178913-26-001561"
     ]
   },
   "sources": [
@@ -394,6 +406,14 @@
       "primary": false,
       "publishedAt": "2026-08-13",
       "originFingerprint": "independent:chipnews.io:CAMT-q2-hbm4:20260813"
+    },
+    {
+      "sourceId": "sec:CAMT:20-F:2025FY",
+      "url": "https://www.sec.gov/Archives/edgar/data/1109138/000117891326001561/zk2634678.htm",
+      "kind": "primary-regulatory-filing",
+      "primary": true,
+      "publishedAt": "2026-03-19",
+      "originFingerprint": "sec.gov|CAMT|20-F|2025FY|0001178913-26-001561"
     }
   ],
   "contradictions": [
@@ -412,10 +432,15 @@
     },
     {
       "contradiction": "External coverage corroborates record revenue/order momentum while also reporting a year-over-year decline in GAAP operating income, reinforcing the existing margin-quality contradiction rather than resolving it."
+    },
+    {
+      "contradiction": "Strong AI-driven demand and bottleneck relevance coexist with unusually high exposure to the same AI capex cycle and Asia-Pacific geography that enable current growth.",
+      "material": true,
+      "nextOwner": "council-alpha"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 4,
+    "unresolvedMaterialCount": 5,
     "items": [
       {
         "contradiction": "Strong order/revenue acceleration coexists with weaker GAAP profitability year over year; margin quality must be reconciled before high execution confidence."
@@ -432,6 +457,11 @@
       },
       {
         "contradiction": "External coverage corroborates record revenue/order momentum while also reporting a year-over-year decline in GAAP operating income, reinforcing the existing margin-quality contradiction rather than resolving it."
+      },
+      {
+        "contradiction": "Strong AI-driven demand and bottleneck relevance coexist with unusually high exposure to the same AI capex cycle and Asia-Pacific geography that enable current growth.",
+        "material": true,
+        "nextOwner": "council-alpha"
       }
     ]
   },
@@ -463,11 +493,13 @@
     {
       "unknown": "This source does not decompose the GAAP operating-income decline into acquisition, mix, compensation, or recurring operating-cost components.",
       "gating": false
-    }
+    },
+    "customer-level profitability by geography",
+    "how much competitive pricing pressure is embedded in current forward orders"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 7
+    "nonGatingCount": 9
   },
   "gatingIssues": [],
   "confidence": 78,

@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "contract": "earth2036-assist-evidence-v1",
+  "role": "council-beta",
+  "generatedAt": "2026-10-01T09:30:41Z",
+  "ticker": "SLDP",
+  "workId": "t0:SLDP",
+  "assist": {"requestId":"assist:SLDP:council-alpha:council-beta:risk-source-support","inputSignature":"ebe59393273626db15c1","rootOwner":"council-alpha","capability":"risk-source-support"},
+  "lineage": {"supplements":"data/runtime/workgraph/evidence/SLDP-20260921T162743Z-council-beta.json","supersedes":null},
+  "claims": [
+    {"claim":"Solid Power states it remains an R&D-stage company without enough electrolyte or licensing cash flow to cover costs, and commercialization still requires meeting customer performance requirements.","riskClass":"commercialization-maturity","observed":true},
+    {"claim":"Its partnerships are non-exclusive and commercialization depends on technical objectives, commercially reasonable JV/collaboration terms and competing technologies, so partner engagement is not equivalent to production nomination.","riskClass":"substitution-and-partner-control","observed":true},
+    {"claim":"June 30 liquidity was $419.3M with no debt, but $121.3M of net proceeds from a registered direct equity offering contributed to liquidity, demonstrating both runway and realized dilution/financing dependence before scale.","riskClass":"financing-and-dilution","observed":true}
+  ],
+  "sources": [
+    {"sourceId":"sec-sldp-2026q2-10q","url":"https://www.sec.gov/Archives/edgar/data/1844862/000110465926090634/sldp-20260630x10q.htm","kind":"primary","publishedAt":"2026-08-04","originFingerprint":"sec:1844862:2026q2:10-q"}
+  ],
+  "affectedFactors": ["commercial maturity","substitution resilience","partner dependence","financing resilience","dilution risk"],
+  "causalEdges": [
+    {"from":"technical performance and partner qualification","to":"commercial adoption","mechanism":"partners must validate performance and agree scalable commercial terms before recurring volume economics emerge"},
+    {"from":"pre-scale cash burn","to":"equity financing dependence","mechanism":"development and pilot-line spending can require external capital before electrolyte/licensing cash flows cover costs"}
+  ],
+  "risks": ["Non-exclusive partners and competing technologies reduce certainty that current validation converts to durable volume.","Equity funding extends runway but can dilute holders if commercialization remains delayed."],
+  "contradictions": [{"claim":"Strong liquidity coexists with financing dependence.","resolution":"Liquidity materially improves resilience, while the 2026 equity raise shows that pre-scale development still relies partly on external capital; both can be true."}],
+  "unknowns": ["Production-scale yield, unit economics, committed volumes and final JV economics remain unproven."],
+  "gatingStatus": {"betaBlocker":false,"alphaFailureTarget":"missing_score_risk_evidence","note":"Source-addressed risk support only; Alpha retains numeric underwriting authority."},
+  "confidence": 0.97,
+  "recommendedNextStateOwner": {"owner":"council-alpha","action":"Use the filing's commercialization, non-exclusive partnership and financing facts as risk evidence while preserving the offsetting no-debt liquidity strength."}
+}

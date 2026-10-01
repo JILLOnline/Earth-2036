@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "contract": "earth2036-assist-evidence-v1",
+  "generatedAt": "2026-10-01T16:27:09Z",
+  "role": "council-beta",
+  "ticker": "RGTI",
+  "workId": "t0:RGTI",
+  "assist": {
+    "requestId": "assist:RGTI:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "97816abc4d45b7f7aa4b",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support",
+    "outcome": "new_source_addressed_risk_evidence",
+    "changedStrategy": "Switched from previously reused issuer roadmap/government sources to a current SEC Form 10-Q source class to address financing, dilution, execution and roadmap falsifiers with registrant-filed evidence."
+  },
+  "lineage": {
+    "packetPath": "data/runtime/workgraph/packets/RGTI.json",
+    "priorEvidencePaths": [
+      "data/runtime/workgraph/evidence/RGTI-20260918T2000Z-earth-scout.json",
+      "data/runtime/workgraph/evidence/RGTI-20260922T102404Z-council-beta.json"
+    ],
+    "supersedes": null
+  },
+  "sources": [
+    {
+      "sourceId": "sec:RGTI:2026Q2:10-Q:0001104659-26-091993",
+      "url": "https://www.sec.gov/Archives/edgar/data/1838359/000110465926091993/rgti-20260630x10q.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "sec:1838359:2026Q2:000110465926091993:10-Q"
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Rigetti reported $5.138 million of Q2 2026 revenue and a $28.062 million operating loss; for the first six months of 2026 revenue was $9.538 million while operating loss was $54.013 million. This directly supports the execution-risk question that commercial scaling must materially outpace the current cost base before operating self-funding is demonstrated.",
+      "sourceIds": ["sec:RGTI:2026Q2:10-Q:0001104659-26-091993"],
+      "affectedFactors": ["financialOperatingMomentum", "scenarioRobustness", "thesisQuality"]
+    },
+    {
+      "claim": "The filing states that Rigetti expects additional losses for the foreseeable future, may need additional funds sooner than planned, and that equity or convertible-debt financing could dilute existing holders. This is an observed financing/dilution exposure, not a claim that dilution is presently required.",
+      "sourceIds": ["sec:RGTI:2026Q2:10-Q:0001104659-26-091993"],
+      "affectedFactors": ["financialOperatingMomentum", "scenarioRobustness"]
+    },
+    {
+      "claim": "Rigetti disclosed that it has previously missed publicly announced milestones and changed its technology roadmap, and that future roadmap milestones may not be achieved on the announced timetable or at all. This supplies a direct falsifier for confidence inflation around roadmap execution.",
+      "sourceIds": ["sec:RGTI:2026Q2:10-Q:0001104659-26-091993"],
+      "affectedFactors": ["catalystScore", "scenarioRobustness", "thesisQuality"]
+    },
+    {
+      "claim": "The filing reports $541.3 million of cash, cash equivalents and available-for-sale investments at June 30, 2026 and says existing balances are expected to cover anticipated operating cash needs for at least twelve months. This materially tempers near-term financing risk even while longer-run dilution remains a valid scenario risk.",
+      "sourceIds": ["sec:RGTI:2026Q2:10-Q:0001104659-26-091993"],
+      "affectedFactors": ["financialOperatingMomentum", "scenarioRobustness"]
+    }
+  ],
+  "causalEdges": [
+    "roadmap-milestones -> deployable-system-performance -> customer-adoption -> commercial-revenue",
+    "commercial-revenue-growth -/-> current-r-and-d-plus-sga-cost-base -> continued-operating-loss",
+    "continued-operating-loss -> cash-consumption -> potential-external-financing -> dilution-risk",
+    "cash-and-investment-cushion -> near-term-liquidity-resilience",
+    "prior-roadmap-misses -> execution-uncertainty -> lower-confidence-in-unverified-future-milestones"
+  ],
+  "risks": [
+    {
+      "risk": "Commercial revenue remains small relative to the operating expense base, so technical progress must convert into substantially larger and repeatable paid deployments to improve operating self-funding.",
+      "observed": true,
+      "gating": false
+    },
+    {
+      "risk": "Future equity or convertible financing can dilute holders if cash needs outrun operating inflows; the current liquidity cushion reduces near-term urgency but does not eliminate the longer-run pathway.",
+      "observed": true,
+      "gating": false
+    },
+    {
+      "risk": "Roadmap timing has changed before, so announced technical milestones should be treated as falsifiable targets rather than completed capability.",
+      "observed": true,
+      "gating": false
+    }
+  ],
+  "contradictions": [
+    {
+      "contradiction": "Revenue growth and a substantial liquidity cushion coexist with large operating losses and issuer-disclosed uncertainty around future roadmap timing.",
+      "disposition": "coexisting_conditions_not_logical_conflict",
+      "material": true,
+      "resolutionPath": "Alpha can use the SEC figures to quantify risk without treating technical validation or liquidity as proof of durable commercial economics."
+    }
+  ],
+  "unknowns": [
+    "Whether 2026-2027 system deployments produce repeatable gross-margin and renewal economics sufficient to narrow the operating-loss gap.",
+    "Whether the next roadmap update changes milestone timing or architecture in a way that materially changes commercialization assumptions.",
+    "Customer concentration and contract durability beyond the disclosed aggregate revenue mix remain for Alpha/source-integrity underwriting."
+  ],
+  "falsifiers": [
+    "Sustained paid system/QCaaS growth with improving gross profit and a narrowing operating-loss-to-revenue gap would weaken the commercial-scaling risk.",
+    "On-time achievement of updated roadmap milestones followed by repeatable customer deployments would weaken the roadmap-execution concern.",
+    "Material deterioration in liquidity or accelerated cash use without commensurate commercial scaling would strengthen financing/dilution risk."
+  ],
+  "gatingStatus": {
+    "betaOwnedBlocker": false,
+    "rootOwner": "council-alpha",
+    "targetFailure": "missing_score_risk_evidence",
+    "recommendedNextState": "root_owner_reassess_with_new_primary_risk_source",
+    "recommendedOwner": "council-alpha"
+  },
+  "confidence": 95
+}

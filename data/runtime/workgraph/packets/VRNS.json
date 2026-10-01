@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "VRNS",
   "workId": "t0:VRNS",
-  "generatedAt": "2026-10-01T12:57:06.249Z",
+  "generatedAt": "2026-10-01T13:03:07.612Z",
   "sourceState": "packet_ready",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2025-11-12T00:00:00.000Z",
-    "end": "2026-10-01T12:16:38.000Z",
-    "latestEvidenceGeneratedAt": "2026-10-01T12:16:38.000Z"
+    "end": "2026-10-01T13:01:49.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T13:01:49.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -60,6 +60,7 @@
     "data/runtime/workgraph/evidence/VRNS-20261001T100520Z-earth-scout-assist.json",
     "data/runtime/workgraph/evidence/VRNS-20261001T120852Z-earth-scout-assist.json",
     "data/runtime/workgraph/evidence/VRNS-20261001T121638Z-council-alpha.json",
+    "data/runtime/workgraph/evidence/VRNS-20261001T130149Z-earth-scout-assist.json",
     "data/runtime/workgraph/evidence/council-beta-20260921T222626Z-batch.json"
   ],
   "evidenceResolution": {
@@ -71,8 +72,8 @@
       "data/runtime/workgraph/evidence/VRNS-20261001T111547Z-council-alpha.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 10,
-    "historicalEvidenceCount": 20
+    "activeEvidenceCount": 11,
+    "historicalEvidenceCount": 21
   },
   "factorEvidence": {
     "names": [
@@ -420,6 +421,13 @@
         ]
       },
       {
+        "risk": "First-half 2026 free cash flow declined year over year despite strong SaaS ARR growth, so transition quality should not be inferred from ARR growth alone.",
+        "gating": false,
+        "sourceIds": [
+          "zacks:VRNS:q2-results:20260729"
+        ]
+      },
+      {
         "risk": "Concentrating delivery on SaaS improves architectural focus but raises transition fragility if remaining self-hosted customers do not migrate cleanly.",
         "gating": false
       },
@@ -465,6 +473,13 @@
       ]
     },
     {
+      "risk": "First-half 2026 free cash flow declined year over year despite strong SaaS ARR growth, so transition quality should not be inferred from ARR growth alone.",
+      "gating": false,
+      "sourceIds": [
+        "zacks:VRNS:q2-results:20260729"
+      ]
+    },
+    {
       "risk": "Concentrating delivery on SaaS improves architectural focus but raises transition fragility if remaining self-hosted customers do not migrate cleanly.",
       "gating": false
     },
@@ -505,8 +520,8 @@
     "competing cloud-native security stacks -> substitution pressure -> bottleneck-control uncertainty"
   ],
   "sourceLineage": {
-    "rawSourceCount": 22,
-    "uniqueSourceCount": 8,
+    "rawSourceCount": 23,
+    "uniqueSourceCount": 9,
     "duplicatesCollapsed": 14,
     "missingLineage": 0,
     "uniqueOrigins": [
@@ -517,7 +532,8 @@
       "btw-media|btw.media|independent-financial-analysis",
       "stockanalysis|stockanalysis.com|independent-market-valuation-data",
       "btw:VRNS:saas-transition-layer:20260829",
-      "stockanalysis:VRNS:valuation:20260930"
+      "stockanalysis:VRNS:valuation:20260930",
+      "zacks|zacks.com|independent-financial-analysis"
     ]
   },
   "sources": [
@@ -575,6 +591,13 @@
       "url": "https://stockanalysis.com/stocks/vrns/statistics/",
       "kind": "credible-independent-market-data",
       "primary": false
+    },
+    {
+      "sourceId": "zacks:VRNS:q2-results:20260729",
+      "url": "https://www.zacks.com/stock/news/2963571/varonis-q2-earnings-surpass-expectations-revenues-rise-yy",
+      "kind": "credible-independent-financial-analysis",
+      "primary": false,
+      "originFingerprint": "zacks|zacks.com|independent-financial-analysis"
     }
   ],
   "contradictions": [
@@ -591,10 +614,17 @@
       "sourceIds": [
         "stockanalysis:VRNS:valuation:20260930"
       ]
+    },
+    {
+      "status": "corroborates_existing_tension",
+      "statement": "The independent report supports the existing packet tension: strong SaaS growth coexists with weaker first-half free-cash-flow conversion.",
+      "sourceIds": [
+        "zacks:VRNS:q2-results:20260729"
+      ]
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 3,
     "items": [
       {
         "status": "material_non_gating",
@@ -608,6 +638,13 @@
         "statement": "The prior active underwriting basis said current market valuation was not source-addressed; this source provides a dated independent market-cap, enterprise-value and sales-multiple snapshot for Alpha to evaluate.",
         "sourceIds": [
           "stockanalysis:VRNS:valuation:20260930"
+        ]
+      },
+      {
+        "status": "corroborates_existing_tension",
+        "statement": "The independent report supports the existing packet tension: strong SaaS growth coexists with weaker first-half free-cash-flow conversion.",
+        "sourceIds": [
+          "zacks:VRNS:q2-results:20260729"
         ]
       }
     ]
@@ -633,6 +670,8 @@
     "This source does not independently establish customer-level satisfaction or competitive win/loss rates.",
     "This market-data source does not establish a fair-value target or justify a specific Earth valuation score.",
     "Forward valuation ratios depend on third-party estimate inputs and should be treated as market context rather than primary operating evidence.",
+    "The independent report relies partly on company-reported quarter metrics and does not establish customer-level churn, competitive win/loss rates or fair value.",
+    "This evidence does not itself justify changing Alpha's numeric factor, risk or confidence assessments.",
     {
       "unknown": "Remaining self-hosted exposure, migration churn and comparative autonomous-remediation efficacy are not quantified by the current source.",
       "gating": false
@@ -644,7 +683,7 @@
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 10
+    "nonGatingCount": 12
   },
   "gatingIssues": [],
   "confidence": 76,

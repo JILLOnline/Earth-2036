@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "contract": "earth2036-assist-evidence-v1",
+  "role": "council-beta",
+  "generatedAt": "2026-10-01T20:21:47Z",
+  "ticker": "MVST",
+  "workId": "t0:MVST",
+  "perspective": "risk-source-support",
+  "assist": {
+    "requestId": "assist:MVST:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "588fab6c664561f39e16",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support",
+    "outcome": "new_source_addressed_risk_support",
+    "changedStrategy": true,
+    "strategyChange": "Used current 2026 primary operating disclosures plus historical backlog disclosures to distinguish installed/planned capacity from demonstrated demand absorption rather than repeating the prior single-source causal summary."
+  },
+  "lineage": {
+    "supersedes": null,
+    "reuses": [
+      "data/runtime/workgraph/evidence/MVST-20260921T050430Z-earth-scout.json",
+      "data/runtime/workgraph/evidence/MVST-20260921T172331Z-council-beta.json"
+    ]
+  },
+  "claims": [
+    {
+      "claim": "Demand/utilization risk is observed rather than hypothetical: first-half 2026 revenue fell 28.8% year over year, with Microvast attributing weakness to regulatory/geopolitical dynamics, a shift toward lower-cost products in India, OEM platform ramp delays and a tariff refund; lower production utilization reduced fixed-cost absorption and contributed to gross-margin compression.",
+      "sourceIds": ["mvst-q2-2026-primary"],
+      "affectedFactors": ["financialOperatingMomentum", "scenarioRobustness", "capacityUtilizationRisk"],
+      "gating": false
+    },
+    {
+      "claim": "Expansion remains an execution test: management expects Huzhou Phase 3.2 to add up to 2 GWh and Clarksville pack localization to begin by year-end, while cash, cash equivalents and restricted cash declined to $143.1 million at June 30, 2026 from $169.2 million at December 31, 2025 and Q2 capex increased to $11.3 million from $7.4 million a year earlier.",
+      "sourceIds": ["mvst-q2-2026-primary"],
+      "affectedFactors": ["capacityUtilizationRisk", "financingRisk", "bottleneckControl"],
+      "gating": false
+    },
+    {
+      "claim": "Historical backlog should not be treated as proof that new capacity will be absorbed on schedule: Microvast reported $675.9 million backlog in Q2 2023 and expected high utilization on expansions, yet 2026 primary results subsequently show OEM delays and lower utilization. This is a falsifier for confidence based solely on backlog/capacity narratives, not evidence that current backlog is invalid.",
+      "sourceIds": ["mvst-q2-2023-primary", "mvst-q2-2026-primary"],
+      "affectedFactors": ["confidenceInflation", "scenarioRobustness", "capacityUtilizationRisk"],
+      "gating": false
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "mvst-q2-2026-primary",
+      "url": "https://ir.microvast.com/news-releases/news-release-details/microvast-reports-second-quarter-2026-financial-results",
+      "kind": "primary",
+      "publishedAt": "2026-08-10",
+      "originFingerprint": "ir.microvast.com|MVST|Q2-2026|2026-08-10"
+    },
+    {
+      "sourceId": "mvst-q2-2023-primary",
+      "url": "https://ir.microvast.com/news-releases/news-release-details/microvast-reports-second-quarter-2023-financial-results",
+      "kind": "primary",
+      "publishedAt": "2023-08-07",
+      "originFingerprint": "ir.microvast.com|MVST|Q2-2023|2023-08"
+    }
+  ],
+  "risks": [
+    "Customer-platform timing and regional demand shifts can leave incremental capacity underutilized, weakening fixed-cost absorption.",
+    "Expansion capital is being deployed before the cited evidence demonstrates contracted utilization of incremental Huzhou/Clarksville capacity.",
+    "Historical backlog and stated revenue potential can overstate near-term economic absorption if platform ramps slip or product mix shifts."
+  ],
+  "contradictions": [
+    "The company is expanding localized/modular capacity while first-half 2026 revenue and utilization are materially weaker; the contradiction is economically reconcilable if delayed customer ramps recover, but current cited evidence does not establish that timing."
+  ],
+  "unknowns": [
+    "Current contracted utilization and customer mix for incremental Huzhou Phase 3.2 and Clarksville capacity.",
+    "Whether customer-platform ramps recover quickly enough to restore utilization and fixed-cost absorption before further capital deployment materially pressures liquidity."
+  ],
+  "falsifiers": [
+    "Subsequent primary results showing sustained utilization recovery, restored gross-margin absorption and customer ramps filling incremental capacity would materially weaken the underutilization risk.",
+    "Source-addressed contracted volumes covering incremental capacity at acceptable economics would weaken the backlog-to-utilization uncertainty."
+  ],
+  "gatingStatus": "assist_support_only_noncanonical",
+  "confidence": 93,
+  "recommendedNextState": "council-alpha_reuse_for_source_addressed_risk_evidence",
+  "recommendedOwner": "council-alpha",
+  "authorityGuardrail": "This artifact supplies bounded risk evidence only and does not set Alpha numeric risk, score, canonical rank, tick, membership or Chief disposition."
+}

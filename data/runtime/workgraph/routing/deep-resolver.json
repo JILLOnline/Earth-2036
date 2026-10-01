@@ -2,7 +2,7 @@
   "version": 2,
   "contract": "workgraph-v2-routing-queue",
   "role": "deep-resolver",
-  "generatedAt": "2026-10-01T08:11:45.090Z",
+  "generatedAt": "2026-10-01T08:13:17.040Z",
   "selectionPolicy": "closure-frontier-v1",
   "runObjective": "Adjudicate only bounded contradiction packets and return one allowed disposition; do not duplicate source-acquisition work.",
   "rawTotal": 56,
@@ -179,8 +179,8 @@
         "data/runtime/workgraph/evidence/ALB-20261001T052645Z-council-beta-assist.json",
         "data/runtime/workgraph/evidence/ALB-20261001T053427Z-deep-resolver.json",
         "data/runtime/workgraph/evidence/ALB-20261001T060733Z-earth-scout-assist.json",
-        "data/runtime/workgraph/evidence/ALB-20261001T062245Z-council-alpha.json",
-        "data/runtime/workgraph/evidence/ALB-20261001T073511Z-deep-resolver.json"
+        "data/runtime/workgraph/evidence/ALB-20261001T073511Z-deep-resolver.json",
+        "data/runtime/workgraph/evidence/ALB-20261001T081227Z-council-alpha.json"
       ],
       "specialistCoverage": {
         "required": [
@@ -204,10 +204,12 @@
         "complete": true
       },
       "evidenceResolution": {
-        "supersededPaths": [],
+        "supersededPaths": [
+          "data/runtime/workgraph/evidence/ALB-20261001T062245Z-council-alpha.json"
+        ],
         "resolvedGateKinds": [],
         "activeEvidenceCount": 11,
-        "historicalEvidenceCount": 11
+        "historicalEvidenceCount": 13
       },
       "frontier": true,
       "frontierRank": 2,
@@ -1022,262 +1024,6 @@
   "deferredItems": [
     {
       "rank": 1,
-      "ticker": "REGN",
-      "workId": "t0:REGN",
-      "state": "researching",
-      "packetPath": "data/runtime/workgraph/packets/REGN.json",
-      "ownedFailures": [
-        "unresolved_material_contradiction"
-      ],
-      "allFailures": [
-        "missing_specialist_perspective:source-integrity",
-        "missing_specialist_perspective:company-underwriting",
-        "missing_factor_evidence",
-        "missing_numeric_score_record",
-        "missing_score_risk_evidence",
-        "missing_data_confidence_evidence",
-        "unresolved_material_contradiction"
-      ],
-      "otherOwners": [
-        "council-alpha"
-      ],
-      "evidencePaths": [
-        "data/runtime/workgraph/evidence/BETA-20260921T122831Z-council-beta.json",
-        "data/runtime/workgraph/evidence/REGN-20260921T1007Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/REGN-20261001T012535Z-council-beta-assist.json"
-      ],
-      "specialistCoverage": {
-        "required": [
-          "source-integrity",
-          "company-underwriting",
-          "structural-causal",
-          "discovery-weak-signals",
-          "adversarial-red-team",
-          "expectations-execution"
-        ],
-        "present": [
-          "structural-causal",
-          "adversarial-red-team",
-          "discovery-weak-signals",
-          "expectations-execution"
-        ],
-        "missing": [
-          "source-integrity",
-          "company-underwriting"
-        ],
-        "complete": false
-      },
-      "evidenceResolution": {
-        "supersededPaths": [],
-        "resolvedGateKinds": [],
-        "activeEvidenceCount": 5,
-        "historicalEvidenceCount": 5
-      },
-      "frontier": true,
-      "frontierRank": 4,
-      "operationalStatus": "needs_contradiction_resolution",
-      "deferred": true,
-      "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
-      "executionGuard": "await_structured_contradiction_input",
-      "adjudicationPacket": {
-        "contract": "earth2036-resolver-adjudication-v1",
-        "ticker": "REGN",
-        "requiredDisposition": [
-          "resolved",
-          "non_gating",
-          "awaiting_new_evidence",
-          "still_material"
-        ],
-        "ownedFailures": [
-          "unresolved_material_contradiction"
-        ],
-        "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
-        "itemCount": 1,
-        "actionableItemCount": 0,
-        "deferredItemCount": 1,
-        "actionable": false,
-        "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
-        "items": [
-          {
-            "itemId": "REGN:contradiction:1",
-            "claimA": null,
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "A source-addressed contradiction with identifiable claims is required before adjudication.",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          }
-        ],
-        "actionableItems": [],
-        "deferredItems": [
-          {
-            "itemId": "REGN:contradiction:1",
-            "claimA": null,
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "A source-addressed contradiction with identifiable claims is required before adjudication.",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          }
-        ]
-      },
-      "unresolved": {
-        "gatingIssues": [],
-        "gatingUnknowns": [],
-        "materialContradictions": [
-          {
-            "statement": "Strong company-wide revenue growth and rapid Dupixent/EYLEA HD growth coexist with year-over-year decline in the combined EYLEA franchise for the first half of 2026.",
-            "status": "material-context-not-a-beta-blocker",
-            "resolutionPath": "Council Alpha should reflect franchise mix transition separately from consolidated growth when setting its own numeric risk treatment."
-          }
-        ]
-      }
-    },
-    {
-      "rank": 2,
-      "ticker": "V",
-      "workId": "t0:V",
-      "state": "researching",
-      "packetPath": "data/runtime/workgraph/packets/V.json",
-      "ownedFailures": [
-        "unresolved_material_contradiction"
-      ],
-      "allFailures": [
-        "missing_specialist_perspective:source-integrity",
-        "missing_specialist_perspective:company-underwriting",
-        "missing_factor_evidence",
-        "missing_numeric_score_record",
-        "missing_score_risk_evidence",
-        "missing_data_confidence_evidence",
-        "unresolved_material_contradiction"
-      ],
-      "otherOwners": [
-        "council-alpha"
-      ],
-      "evidencePaths": [
-        "data/runtime/workgraph/evidence/V-20260921T210308Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/V-20260922T112755Z-council-beta.json"
-      ],
-      "specialistCoverage": {
-        "required": [
-          "source-integrity",
-          "company-underwriting",
-          "structural-causal",
-          "discovery-weak-signals",
-          "adversarial-red-team",
-          "expectations-execution"
-        ],
-        "present": [
-          "discovery-weak-signals",
-          "expectations-execution",
-          "structural-causal",
-          "adversarial-red-team"
-        ],
-        "missing": [
-          "source-integrity",
-          "company-underwriting"
-        ],
-        "complete": false
-      },
-      "evidenceResolution": {
-        "supersededPaths": [
-          "data/runtime/workgraph/evidence/V-20260921T200323Z-earth-scout.json"
-        ],
-        "resolvedGateKinds": [],
-        "activeEvidenceCount": 4,
-        "historicalEvidenceCount": 6
-      },
-      "frontier": true,
-      "frontierRank": 5,
-      "operationalStatus": "needs_contradiction_resolution",
-      "deferred": true,
-      "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
-      "executionGuard": "await_structured_contradiction_input",
-      "adjudicationPacket": {
-        "contract": "earth2036-resolver-adjudication-v1",
-        "ticker": "V",
-        "requiredDisposition": [
-          "resolved",
-          "non_gating",
-          "awaiting_new_evidence",
-          "still_material"
-        ],
-        "ownedFailures": [
-          "unresolved_material_contradiction"
-        ],
-        "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
-        "itemCount": 1,
-        "actionableItemCount": 0,
-        "deferredItemCount": 1,
-        "actionable": false,
-        "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
-        "items": [
-          {
-            "itemId": "V:contradiction:1",
-            "claimA": "Strong volume and revenue growth coexist with cost restructuring and rapid technology change in payments.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong volume and revenue growth coexist with cost restructuring and rapid technology change in payments.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          }
-        ],
-        "actionableItems": [],
-        "deferredItems": [
-          {
-            "itemId": "V:contradiction:1",
-            "claimA": "Strong volume and revenue growth coexist with cost restructuring and rapid technology change in payments.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong volume and revenue growth coexist with cost restructuring and rapid technology change in payments.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          }
-        ]
-      },
-      "unresolved": {
-        "gatingIssues": [],
-        "gatingUnknowns": [],
-        "materialContradictions": [
-          {
-            "contradiction": "Strong volume and revenue growth coexist with cost restructuring and rapid technology change in payments.",
-            "material": true
-          },
-          {
-            "contradiction": "Current network activity is strong while the architecture of future payment rails is changing quickly; growth therefore supports present relevance but does not by itself prove long-run bottleneck control.",
-            "material": true,
-            "disposition": "resolved_as_scenario_risk_not_present_gate"
-          },
-          {
-            "contradiction": "Strong present operating momentum coexists with restructuring and rapid payment-technology change.",
-            "material": true,
-            "disposition": "resolved_as_real_but_nonblocking_tension; monitor economics and routing share rather than treating it as a present methodology gate"
-          }
-        ]
-      }
-    },
-    {
-      "rank": 3,
       "ticker": "CF",
       "workId": "t0:CF",
       "state": "researching",
@@ -1332,7 +1078,7 @@
         "historicalEvidenceCount": 7
       },
       "frontier": true,
-      "frontierRank": 6,
+      "frontierRank": 4,
       "operationalStatus": "needs_contradiction_resolution",
       "deferred": true,
       "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
@@ -1504,7 +1250,7 @@
       }
     },
     {
-      "rank": 4,
+      "rank": 2,
       "ticker": "LNG",
       "workId": "t0:LNG",
       "state": "researching",
@@ -1689,7 +1435,7 @@
       }
     },
     {
-      "rank": 5,
+      "rank": 3,
       "ticker": "AOS",
       "workId": "t0:AOS",
       "state": "researching",
@@ -1895,7 +1641,7 @@
       }
     },
     {
-      "rank": 6,
+      "rank": 4,
       "ticker": "MCHP",
       "workId": "t0:MCHP",
       "state": "researching",
@@ -2051,7 +1797,7 @@
       }
     },
     {
-      "rank": 7,
+      "rank": 5,
       "ticker": "SQM",
       "workId": "t0:SQM",
       "state": "researching",
@@ -2208,7 +1954,7 @@
       }
     },
     {
-      "rank": 8,
+      "rank": 6,
       "ticker": "STEM",
       "workId": "t0:STEM",
       "state": "researching",
@@ -2395,7 +2141,7 @@
       }
     },
     {
-      "rank": 9,
+      "rank": 7,
       "ticker": "STLD",
       "workId": "t0:STLD",
       "state": "researching",
@@ -2582,7 +2328,7 @@
       }
     },
     {
-      "rank": 10,
+      "rank": 8,
       "ticker": "CAMT",
       "workId": "t0:CAMT",
       "state": "researching",
@@ -2801,7 +2547,7 @@
       }
     },
     {
-      "rank": 11,
+      "rank": 9,
       "ticker": "STM",
       "workId": "t0:STM",
       "state": "researching",
@@ -3050,7 +2796,7 @@
       }
     },
     {
-      "rank": 12,
+      "rank": 10,
       "ticker": "T",
       "workId": "t0:T",
       "state": "researching",
@@ -3293,7 +3039,7 @@
       }
     },
     {
-      "rank": 13,
+      "rank": 11,
       "ticker": "TDG",
       "workId": "t0:TDG",
       "state": "researching",
@@ -3536,7 +3282,7 @@
       }
     },
     {
-      "rank": 14,
+      "rank": 12,
       "ticker": "TECK",
       "workId": "t0:TECK",
       "state": "researching",
@@ -3743,7 +3489,7 @@
       }
     },
     {
-      "rank": 15,
+      "rank": 13,
       "ticker": "TENB",
       "workId": "t0:TENB",
       "state": "researching",
@@ -3950,7 +3696,7 @@
       }
     },
     {
-      "rank": 16,
+      "rank": 14,
       "ticker": "TMUS",
       "workId": "t0:TMUS",
       "state": "researching",
@@ -4157,7 +3903,7 @@
       }
     },
     {
-      "rank": 17,
+      "rank": 15,
       "ticker": "TSLA",
       "workId": "t0:TSLA",
       "state": "researching",
@@ -4364,7 +4110,7 @@
       }
     },
     {
-      "rank": 18,
+      "rank": 16,
       "ticker": "CORZ",
       "workId": "t0:CORZ",
       "state": "researching",
@@ -4557,7 +4303,7 @@
       }
     },
     {
-      "rank": 19,
+      "rank": 17,
       "ticker": "RDW",
       "workId": "t0:RDW",
       "state": "researching",
@@ -4749,7 +4495,130 @@
       }
     },
     {
-      "rank": 20,
+      "rank": 18,
+      "ticker": "REGN",
+      "workId": "t0:REGN",
+      "state": "researching",
+      "packetPath": "data/runtime/workgraph/packets/REGN.json",
+      "ownedFailures": [
+        "unresolved_material_contradiction"
+      ],
+      "allFailures": [
+        "missing_specialist_perspective:source-integrity",
+        "missing_specialist_perspective:company-underwriting",
+        "missing_factor_evidence",
+        "missing_numeric_score_record",
+        "missing_score_risk_evidence",
+        "missing_data_confidence_evidence",
+        "unresolved_material_contradiction"
+      ],
+      "otherOwners": [
+        "council-alpha"
+      ],
+      "evidencePaths": [
+        "data/runtime/workgraph/evidence/BETA-20260921T122831Z-council-beta.json",
+        "data/runtime/workgraph/evidence/REGN-20260921T1007Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/REGN-20261001T012535Z-council-beta-assist.json"
+      ],
+      "specialistCoverage": {
+        "required": [
+          "source-integrity",
+          "company-underwriting",
+          "structural-causal",
+          "discovery-weak-signals",
+          "adversarial-red-team",
+          "expectations-execution"
+        ],
+        "present": [
+          "structural-causal",
+          "adversarial-red-team",
+          "discovery-weak-signals",
+          "expectations-execution"
+        ],
+        "missing": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "complete": false
+      },
+      "evidenceResolution": {
+        "supersededPaths": [],
+        "resolvedGateKinds": [],
+        "activeEvidenceCount": 5,
+        "historicalEvidenceCount": 5
+      },
+      "frontier": false,
+      "frontierRank": null,
+      "operationalStatus": "needs_contradiction_resolution",
+      "deferred": true,
+      "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+      "executionGuard": "await_structured_contradiction_input",
+      "adjudicationPacket": {
+        "contract": "earth2036-resolver-adjudication-v1",
+        "ticker": "REGN",
+        "requiredDisposition": [
+          "resolved",
+          "non_gating",
+          "awaiting_new_evidence",
+          "still_material"
+        ],
+        "ownedFailures": [
+          "unresolved_material_contradiction"
+        ],
+        "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
+        "itemCount": 1,
+        "actionableItemCount": 0,
+        "deferredItemCount": 1,
+        "actionable": false,
+        "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+        "items": [
+          {
+            "itemId": "REGN:contradiction:1",
+            "claimA": null,
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "A source-addressed contradiction with identifiable claims is required before adjudication.",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          }
+        ],
+        "actionableItems": [],
+        "deferredItems": [
+          {
+            "itemId": "REGN:contradiction:1",
+            "claimA": null,
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "A source-addressed contradiction with identifiable claims is required before adjudication.",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          }
+        ]
+      },
+      "unresolved": {
+        "gatingIssues": [],
+        "gatingUnknowns": [],
+        "materialContradictions": [
+          {
+            "statement": "Strong company-wide revenue growth and rapid Dupixent/EYLEA HD growth coexist with year-over-year decline in the combined EYLEA franchise for the first half of 2026.",
+            "status": "material-context-not-a-beta-blocker",
+            "resolutionPath": "Council Alpha should reflect franchise mix transition separately from consolidated growth when setting its own numeric risk treatment."
+          }
+        ]
+      }
+    },
+    {
+      "rank": 19,
       "ticker": "FLY",
       "workId": "t0:FLY",
       "state": "researching",
@@ -4902,7 +4771,7 @@
       }
     },
     {
-      "rank": 21,
+      "rank": 20,
       "ticker": "NOK",
       "workId": "t0:NOK",
       "state": "researching",
@@ -5055,7 +4924,7 @@
       }
     },
     {
-      "rank": 22,
+      "rank": 21,
       "ticker": "PLTR",
       "workId": "t0:PLTR",
       "state": "researching",
@@ -5209,7 +5078,7 @@
       }
     },
     {
-      "rank": 23,
+      "rank": 22,
       "ticker": "PLUG",
       "workId": "t0:PLUG",
       "state": "researching",
@@ -5340,7 +5209,7 @@
       }
     },
     {
-      "rank": 24,
+      "rank": 23,
       "ticker": "QBTS",
       "workId": "t0:QBTS",
       "state": "researching",
@@ -5493,7 +5362,7 @@
       }
     },
     {
-      "rank": 25,
+      "rank": 24,
       "ticker": "RGTI",
       "workId": "t0:RGTI",
       "state": "researching",
@@ -5649,7 +5518,7 @@
       }
     },
     {
-      "rank": 26,
+      "rank": 25,
       "ticker": "UEC",
       "workId": "t0:UEC",
       "state": "researching",
@@ -5780,7 +5649,7 @@
       }
     },
     {
-      "rank": 27,
+      "rank": 26,
       "ticker": "UUUU",
       "workId": "t0:UUUU",
       "state": "researching",
@@ -5934,6 +5803,139 @@
           {
             "contradiction": "Technical and construction milestones materially improve execution evidence, but commercial-scale heavy-REE economics remain prospective.",
             "material": true
+          }
+        ]
+      }
+    },
+    {
+      "rank": 27,
+      "ticker": "V",
+      "workId": "t0:V",
+      "state": "researching",
+      "packetPath": "data/runtime/workgraph/packets/V.json",
+      "ownedFailures": [
+        "unresolved_material_contradiction"
+      ],
+      "allFailures": [
+        "missing_specialist_perspective:source-integrity",
+        "missing_specialist_perspective:company-underwriting",
+        "missing_factor_evidence",
+        "missing_numeric_score_record",
+        "missing_score_risk_evidence",
+        "missing_data_confidence_evidence",
+        "unresolved_material_contradiction"
+      ],
+      "otherOwners": [
+        "council-alpha"
+      ],
+      "evidencePaths": [
+        "data/runtime/workgraph/evidence/V-20260921T210308Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/V-20260922T112755Z-council-beta.json"
+      ],
+      "specialistCoverage": {
+        "required": [
+          "source-integrity",
+          "company-underwriting",
+          "structural-causal",
+          "discovery-weak-signals",
+          "adversarial-red-team",
+          "expectations-execution"
+        ],
+        "present": [
+          "discovery-weak-signals",
+          "expectations-execution",
+          "structural-causal",
+          "adversarial-red-team"
+        ],
+        "missing": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "complete": false
+      },
+      "evidenceResolution": {
+        "supersededPaths": [
+          "data/runtime/workgraph/evidence/V-20260921T200323Z-earth-scout.json"
+        ],
+        "resolvedGateKinds": [],
+        "activeEvidenceCount": 4,
+        "historicalEvidenceCount": 6
+      },
+      "frontier": false,
+      "frontierRank": null,
+      "operationalStatus": "needs_contradiction_resolution",
+      "deferred": true,
+      "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+      "executionGuard": "await_structured_contradiction_input",
+      "adjudicationPacket": {
+        "contract": "earth2036-resolver-adjudication-v1",
+        "ticker": "V",
+        "requiredDisposition": [
+          "resolved",
+          "non_gating",
+          "awaiting_new_evidence",
+          "still_material"
+        ],
+        "ownedFailures": [
+          "unresolved_material_contradiction"
+        ],
+        "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
+        "itemCount": 1,
+        "actionableItemCount": 0,
+        "deferredItemCount": 1,
+        "actionable": false,
+        "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+        "items": [
+          {
+            "itemId": "V:contradiction:1",
+            "claimA": "Strong volume and revenue growth coexist with cost restructuring and rapid technology change in payments.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong volume and revenue growth coexist with cost restructuring and rapid technology change in payments.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          }
+        ],
+        "actionableItems": [],
+        "deferredItems": [
+          {
+            "itemId": "V:contradiction:1",
+            "claimA": "Strong volume and revenue growth coexist with cost restructuring and rapid technology change in payments.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong volume and revenue growth coexist with cost restructuring and rapid technology change in payments.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          }
+        ]
+      },
+      "unresolved": {
+        "gatingIssues": [],
+        "gatingUnknowns": [],
+        "materialContradictions": [
+          {
+            "contradiction": "Strong volume and revenue growth coexist with cost restructuring and rapid technology change in payments.",
+            "material": true
+          },
+          {
+            "contradiction": "Current network activity is strong while the architecture of future payment rails is changing quickly; growth therefore supports present relevance but does not by itself prove long-run bottleneck control.",
+            "material": true,
+            "disposition": "resolved_as_scenario_risk_not_present_gate"
+          },
+          {
+            "contradiction": "Strong present operating momentum coexists with restructuring and rapid payment-technology change.",
+            "material": true,
+            "disposition": "resolved_as_real_but_nonblocking_tension; monitor economics and routing share rather than treating it as a present methodology gate"
           }
         ]
       }

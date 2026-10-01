@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ALB",
   "workId": "t0:ALB",
-  "generatedAt": "2026-10-01T08:50:32.079Z",
+  "generatedAt": "2026-10-01T09:07:02.087Z",
   "sourceState": "packet_ready",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-11T00:00:00.000Z",
-    "end": "2026-10-01T08:12:27.000Z",
-    "latestEvidenceGeneratedAt": "2026-10-01T08:12:27.000Z"
+    "end": "2026-10-01T09:05:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T09:05:00.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -64,15 +64,16 @@
     "data/runtime/workgraph/evidence/ALB-20261001T053427Z-deep-resolver.json",
     "data/runtime/workgraph/evidence/ALB-20261001T060733Z-earth-scout-assist.json",
     "data/runtime/workgraph/evidence/ALB-20261001T073511Z-deep-resolver.json",
-    "data/runtime/workgraph/evidence/ALB-20261001T081227Z-council-alpha.json"
+    "data/runtime/workgraph/evidence/ALB-20261001T081227Z-council-alpha.json",
+    "data/runtime/workgraph/evidence/ALB-20261001T090500Z-earth-scout-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
       "data/runtime/workgraph/evidence/ALB-20261001T062245Z-council-alpha.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 11,
-    "historicalEvidenceCount": 13
+    "activeEvidenceCount": 12,
+    "historicalEvidenceCount": 14
   },
   "factorEvidence": {
     "names": [
@@ -351,7 +352,14 @@
       "Kemerton conversion economics remain a structural caution against equating resource scale with downstream profitability",
       "leadership transition execution risk",
       "lithium-price and oversupply sensitivity",
-      "capital-project pacing under weak-cycle economics"
+      "capital-project pacing under weak-cycle economics",
+      {
+        "risk": "Stationary-storage lithium demand can be policy-sensitive and regionally concentrated; S&P Global's 2026 forecast explicitly models a near-term decline tied to China storage-policy changes.",
+        "gating": false,
+        "sourceIds": [
+          "spglobal:ALB:lithium-storage-demand:20260108"
+        ]
+      }
     ]
   },
   "risks": [
@@ -384,7 +392,14 @@
     "Kemerton conversion economics remain a structural caution against equating resource scale with downstream profitability",
     "leadership transition execution risk",
     "lithium-price and oversupply sensitivity",
-    "capital-project pacing under weak-cycle economics"
+    "capital-project pacing under weak-cycle economics",
+    {
+      "risk": "Stationary-storage lithium demand can be policy-sensitive and regionally concentrated; S&P Global's 2026 forecast explicitly models a near-term decline tied to China storage-policy changes.",
+      "gating": false,
+      "sourceIds": [
+        "spglobal:ALB:lithium-storage-demand:20260108"
+      ]
+    }
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -412,8 +427,8 @@
     "high conversion cost -> plant idling -> reduced downstream footprint"
   ],
   "sourceLineage": {
-    "rawSourceCount": 24,
-    "uniqueSourceCount": 10,
+    "rawSourceCount": 25,
+    "uniqueSourceCount": 11,
     "duplicatesCollapsed": 14,
     "missingLineage": 0,
     "uniqueOrigins": [
@@ -426,7 +441,8 @@
       "issuer:ALB:2026Q2",
       "issuer:ALB:kemerton-idle",
       "us-doe:nepa:EA-2265:kings-mountain:2026-03-30",
-      "market:stockanalysis:ALB:20260930"
+      "market:stockanalysis:ALB:20260930",
+      "spglobal-energy-cera|spglobal.com|independent-industry-demand-research"
     ]
   },
   "sources": [
@@ -501,6 +517,13 @@
       "url": "https://stockanalysis.com/stocks/alb/statistics/",
       "kind": "independent-current-market-data",
       "primary": false
+    },
+    {
+      "sourceId": "spglobal:ALB:lithium-storage-demand:20260108",
+      "url": "https://www.spglobal.com/energy/en/news-research/latest-news/metals/010826-battery-storage-to-drive-lithium-demand-growth-globally",
+      "kind": "credible-independent-industry-research",
+      "primary": false,
+      "originFingerprint": "spglobal-energy-cera|spglobal.com|independent-industry-demand-research"
     }
   ],
   "contradictions": [
@@ -523,10 +546,17 @@
       "contradiction": "Q2 2026 profitability improved sharply with lithium pricing while Kemerton remained idled, showing upstream/portfolio earnings recovery can coexist with structurally weak economics at a specific conversion asset.",
       "material": true,
       "disposition": "Treat as segment/asset economics divergence rather than a contradiction requiring bearish inference; Alpha should preserve price sensitivity and asset-specific conversion economics separately."
+    },
+    {
+      "status": "material_non_gating",
+      "statement": "Albemarle's own demand framing cited in existing evidence is more constructive on stationary storage than S&P Global Energy CERA's independent 2026 forecast. The divergence increases scenario uncertainty rather than invalidating the long-run lithium thesis.",
+      "sourceIds": [
+        "spglobal:ALB:lithium-storage-demand:20260108"
+      ]
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 3,
+    "unresolvedMaterialCount": 4,
     "items": [
       {
         "contradiction": "Lithium conditions improved, yet Kemerton economics remained insufficient to keep Train 1 operating.",
@@ -547,6 +577,13 @@
         "contradiction": "Q2 2026 profitability improved sharply with lithium pricing while Kemerton remained idled, showing upstream/portfolio earnings recovery can coexist with structurally weak economics at a specific conversion asset.",
         "material": true,
         "disposition": "Treat as segment/asset economics divergence rather than a contradiction requiring bearish inference; Alpha should preserve price sensitivity and asset-specific conversion economics separately."
+      },
+      {
+        "status": "material_non_gating",
+        "statement": "Albemarle's own demand framing cited in existing evidence is more constructive on stationary storage than S&P Global Energy CERA's independent 2026 forecast. The divergence increases scenario uncertainty rather than invalidating the long-run lithium thesis.",
+        "sourceIds": [
+          "spglobal:ALB:lithium-storage-demand:20260108"
+        ]
       }
     ]
   },
@@ -573,14 +610,16 @@
     "economic impact and recovery cadence of the Talison CGP3 ramp delay",
     "Udd's eventual capital-allocation changes after assuming the CEO role are not yet observable.",
     "The durability of the lithium-price recovery remains uncertain.",
-    "This evidence does not establish a numeric underwriting score or valuation input."
+    "This evidence does not establish a numeric underwriting score or valuation input.",
+    "The realized 2026 stationary-storage installation trajectory remains uncertain and can diverge from both issuer and independent forecasts.",
+    "This evidence does not independently resolve Albemarle-specific lithium conversion economics or future realized lithium pricing."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 14
+    "nonGatingCount": 16
   },
   "gatingIssues": [],
-  "confidence": 91,
+  "confidence": 87,
   "preflight": {
     "passed": false,
     "failures": [

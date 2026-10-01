@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "STEM",
   "workId": "t0:STEM",
-  "generatedAt": "2026-10-01T11:17:56.146Z",
+  "generatedAt": "2026-10-01T11:29:43.461Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-12T00:00:00.000Z",
-    "end": "2026-09-22T17:33:06.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-22T17:33:06.000Z"
+    "end": "2026-10-01T11:27:54.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T11:27:54.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -58,7 +58,8 @@
     "data/runtime/workgraph/evidence/STEM-20260921T150611Z-earth-scout.json",
     "data/runtime/workgraph/evidence/STEM-20260921T180758Z-earth-scout.json",
     "data/runtime/workgraph/evidence/STEM-20260921T202645Z-council-beta.json",
-    "data/runtime/workgraph/evidence/STEM-20260922T173306Z-deep-resolver.json"
+    "data/runtime/workgraph/evidence/STEM-20260922T173306Z-deep-resolver.json",
+    "data/runtime/workgraph/evidence/STEM-20261001T112754Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
@@ -66,8 +67,8 @@
       "data/runtime/workgraph/evidence/STEM-20260921T192217Z-council-beta.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 9,
-    "historicalEvidenceCount": 13
+    "activeEvidenceCount": 10,
+    "historicalEvidenceCount": 14
   },
   "factorEvidence": {
     "names": [
@@ -288,12 +289,13 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 4,
-    "uniqueSourceCount": 1,
+    "rawSourceCount": 5,
+    "uniqueSourceCount": 2,
     "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "investors.stem.com|q2-2026-results|2026-08-12"
+      "investors.stem.com|q2-2026-results|2026-08-12",
+      "sec.gov|STEM|10-Q|2026-06-30|000175876626000081"
     ]
   },
   "sources": [
@@ -304,6 +306,20 @@
       "primary": true,
       "publishedAt": "2026-08-12",
       "originFingerprint": "investors.stem.com|q2-2026-results|2026-08-12"
+    },
+    {
+      "sourceId": "sec:STEM:2026Q2:20260812",
+      "url": "https://www.sec.gov/Archives/edgar/data/1758766/000175876626000081/stem-20260630.htm",
+      "originFingerprint": "sec.gov|STEM|10-Q|2026-06-30|000175876626000081",
+      "sourceClass": "regulatory-primary",
+      "observations": [
+        "Cash and cash equivalents were $38.415 million at June 30, 2026 versus $48.915 million at December 31, 2025.",
+        "For the six months ended June 30, 2026, Stem reported $62.654 million of revenue, a $33.3 million net loss and $8.0 million of net cash used in operating activities; the accumulated deficit was $1.5221 billion.",
+        "For the three months ended June 30, 2026, total revenue fell 12% year over year while gross profit increased 8%; management attributed the revenue decline partly to de-emphasizing lower-margin battery hardware resales and increased PowerTrack subscriptions.",
+        "Interest expense increased 84% year over year in Q2 2026, driven primarily by higher interest on notes following the 2025 debt exchange.",
+        "During the first six months of 2026, financing activities included $5.6 million of proceeds from common-stock issuances under the ATM program, partially offset by financing-obligation repayments and a distribution to non-controlling interest."
+      ],
+      "primary": false
     }
   ],
   "contradictions": [
@@ -320,10 +336,15 @@
       "resolution": "Consistent with a mix transition, but remains a material execution test until recurring growth and cash durability are demonstrated.",
       "resolved": true,
       "gating": false
+    },
+    {
+      "statement": "Improving gross profit and adjusted operating metrics coexist with declining total revenue, negative GAAP earnings, negative operating cash flow and higher interest expense.",
+      "status": "material-but-explainable-transition-test",
+      "resolutionPath": "Do not infer either failure or success from margin mix alone; test whether recurring software growth and cash generation sustainably replace legacy revenue while covering debt service."
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 5,
+    "unresolvedMaterialCount": 6,
     "items": [
       "Growth narrative around software intelligence coexists with explicit 10-K warning that the strategic transition caused disruption and may fail to deliver anticipated benefits.",
       "Growth narrative around software intelligence coexists with explicit 10-K warning that the strategic transition caused disruption and may fail to deliver anticipated benefits.",
@@ -338,6 +359,11 @@
         "resolution": "Consistent with a mix transition, but remains a material execution test until recurring growth and cash durability are demonstrated.",
         "resolved": true,
         "gating": false
+      },
+      {
+        "statement": "Improving gross profit and adjusted operating metrics coexist with declining total revenue, negative GAAP earnings, negative operating cash flow and higher interest expense.",
+        "status": "material-but-explainable-transition-test",
+        "resolutionPath": "Do not infer either failure or success from margin mix alone; test whether recurring software growth and cash generation sustainably replace legacy revenue while covering debt service."
       }
     ]
   },
@@ -371,11 +397,14 @@
     {
       "unknown": "Backlog conversion timing, recurring margin, customer concentration and cash-flow durability.",
       "gating": false
-    }
+    },
+    "How much of future recurring software growth is organic versus acquired or contract-conversion driven.",
+    "Whether operating cash flow can remain positive after interest and working-capital needs across multiple quarters.",
+    "Future ATM usage or other financing needs if the software transition takes longer than expected."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 15
+    "nonGatingCount": 18
   },
   "gatingIssues": [],
   "confidence": 76,

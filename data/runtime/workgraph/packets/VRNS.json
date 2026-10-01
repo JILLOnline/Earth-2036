@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "VRNS",
   "workId": "t0:VRNS",
-  "generatedAt": "2026-10-01T12:04:03.507Z",
+  "generatedAt": "2026-10-01T12:12:01.139Z",
   "sourceState": "packet_ready",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2025-11-12T00:00:00.000Z",
-    "end": "2026-10-01T11:15:47.000Z",
-    "latestEvidenceGeneratedAt": "2026-10-01T11:15:47.000Z"
+    "end": "2026-10-01T12:08:52.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T12:08:52.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -59,6 +59,7 @@
     "data/runtime/workgraph/evidence/VRNS-20260929T121353Z-council-alpha.json",
     "data/runtime/workgraph/evidence/VRNS-20261001T100520Z-earth-scout-assist.json",
     "data/runtime/workgraph/evidence/VRNS-20261001T111547Z-council-alpha.json",
+    "data/runtime/workgraph/evidence/VRNS-20261001T120852Z-earth-scout-assist.json",
     "data/runtime/workgraph/evidence/council-beta-20260921T222626Z-batch.json"
   ],
   "evidenceResolution": {
@@ -69,8 +70,8 @@
       "data/runtime/workgraph/evidence/VRNS-20261001T101801Z-council-alpha.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 9,
-    "historicalEvidenceCount": 17
+    "activeEvidenceCount": 10,
+    "historicalEvidenceCount": 18
   },
   "factorEvidence": {
     "names": [
@@ -407,6 +408,13 @@
         ]
       },
       {
+        "risk": "Current valuation remains sensitive to SaaS-transition execution because the independent snapshot implies a high single-digit sales multiple while GAAP earnings remain negative.",
+        "gating": false,
+        "sourceIds": [
+          "stockanalysis:VRNS:valuation:20260930"
+        ]
+      },
+      {
         "risk": "Concentrating delivery on SaaS improves architectural focus but raises transition fragility if remaining self-hosted customers do not migrate cleanly.",
         "gating": false
       },
@@ -442,6 +450,13 @@
       "gating": false,
       "sourceIds": [
         "btw:VRNS:saas-transition-layer:20260829"
+      ]
+    },
+    {
+      "risk": "Current valuation remains sensitive to SaaS-transition execution because the independent snapshot implies a high single-digit sales multiple while GAAP earnings remain negative.",
+      "gating": false,
+      "sourceIds": [
+        "stockanalysis:VRNS:valuation:20260930"
       ]
     },
     {
@@ -485,8 +500,8 @@
     "competing cloud-native security stacks -> substitution pressure -> bottleneck-control uncertainty"
   ],
   "sourceLineage": {
-    "rawSourceCount": 19,
-    "uniqueSourceCount": 6,
+    "rawSourceCount": 20,
+    "uniqueSourceCount": 7,
     "duplicatesCollapsed": 13,
     "missingLineage": 0,
     "uniqueOrigins": [
@@ -495,7 +510,8 @@
       "sec:VRNS:2026Q2-ex99",
       "issuer:VRNS:saas-transition",
       "btw-media|btw.media|independent-financial-analysis",
-      "btw:VRNS:saas-transition-layer:20260829"
+      "btw:VRNS:saas-transition-layer:20260829",
+      "stockanalysis|stockanalysis.com|independent-market-valuation-data"
     ]
   },
   "sources": [
@@ -540,6 +556,13 @@
       "url": "https://btw.media/ja/varonis-saas-arr-1oku2790man-dollar-iko-so",
       "kind": "credible-independent-analysis",
       "primary": false
+    },
+    {
+      "sourceId": "stockanalysis:VRNS:valuation:20260930",
+      "url": "https://stockanalysis.com/stocks/vrns/statistics/",
+      "kind": "credible-independent-market-data",
+      "primary": false,
+      "originFingerprint": "stockanalysis|stockanalysis.com|independent-market-valuation-data"
     }
   ],
   "contradictions": [
@@ -549,16 +572,30 @@
       "sourceIds": [
         "btw:VRNS:saas-transition-layer:20260829"
       ]
+    },
+    {
+      "status": "resolves_missing_context",
+      "statement": "The prior active underwriting basis said current market valuation was not source-addressed; this source provides a dated independent market-cap, enterprise-value and sales-multiple snapshot for Alpha to evaluate.",
+      "sourceIds": [
+        "stockanalysis:VRNS:valuation:20260930"
+      ]
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 1,
+    "unresolvedMaterialCount": 2,
     "items": [
       {
         "status": "material_non_gating",
         "statement": "The independent analysis does not dispute Varonis's reported SaaS ARR, but shows that total SaaS ARR growth and organic SaaS growth describe different engines; treating the headline 52% growth as purely organic would be misleading.",
         "sourceIds": [
           "btw:VRNS:saas-transition-layer:20260829"
+        ]
+      },
+      {
+        "status": "resolves_missing_context",
+        "statement": "The prior active underwriting basis said current market valuation was not source-addressed; this source provides a dated independent market-cap, enterprise-value and sales-multiple snapshot for Alpha to evaluate.",
+        "sourceIds": [
+          "stockanalysis:VRNS:valuation:20260930"
         ]
       }
     ]
@@ -582,6 +619,8 @@
     },
     "The eventual churn and realized economics of the remaining self-hosted cohort after the December 31, 2026 end-of-life remain uncertain.",
     "This source does not independently establish customer-level satisfaction or competitive win/loss rates.",
+    "This market-data source does not establish a fair-value target or justify a specific Earth valuation score.",
+    "Forward valuation ratios depend on third-party estimate inputs and should be treated as market context rather than primary operating evidence.",
     {
       "unknown": "Remaining self-hosted exposure, migration churn and comparative autonomous-remediation efficacy are not quantified by the current source.",
       "gating": false
@@ -593,7 +632,7 @@
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 8
+    "nonGatingCount": 10
   },
   "gatingIssues": [],
   "confidence": 76,

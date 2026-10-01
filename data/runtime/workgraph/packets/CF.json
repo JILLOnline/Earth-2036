@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CF",
   "workId": "t0:CF",
-  "generatedAt": "2026-10-01T04:14:41.480Z",
+  "generatedAt": "2026-10-01T04:22:16.928Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2025-04-08T00:00:00.000Z",
-    "end": "2026-10-01T00:06:19.000Z",
-    "latestEvidenceGeneratedAt": "2026-10-01T00:06:19.000Z"
+    "end": "2026-10-01T04:20:32.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T04:20:32.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -56,13 +56,14 @@
   "evidencePaths": [
     "data/runtime/workgraph/evidence/CF-20260919T100505Z-earth-scout.json",
     "data/runtime/workgraph/evidence/CF-20260922T062603Z-council-beta.json",
-    "data/runtime/workgraph/evidence/CF-20261001T000619Z-earth-scout-assist.json"
+    "data/runtime/workgraph/evidence/CF-20261001T000619Z-earth-scout-assist.json",
+    "data/runtime/workgraph/evidence/CF-20261001T042032Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 5,
-    "historicalEvidenceCount": 5
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -308,8 +309,8 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 8,
-    "uniqueSourceCount": 5,
+    "rawSourceCount": 10,
+    "uniqueSourceCount": 7,
     "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
@@ -317,7 +318,9 @@
       "issuer:CF:2026Q2:20260805",
       "issuer:CF:BluePoint-JV:20250408",
       "reuters:YARA:nitrogen-pricing-volume:20260717",
-      "reuters:NTR:nitrogen-pricing-volume:20260806"
+      "reuters:NTR:nitrogen-pricing-volume:20260806",
+      "investors.cfindustries.com|CF|Q2-2026|2026-08-05",
+      "investor.cfindustries.com|CF|BluePoint-groundbreak|2026-08-26"
     ]
   },
   "sources": [
@@ -360,6 +363,30 @@
       "primary": false,
       "publishedAt": "2026-08-06",
       "originFingerprint": "reuters:NTR:nitrogen-pricing-volume:20260806"
+    },
+    {
+      "sourceId": "issuer:CF:2026Q2:20260805",
+      "url": "https://investors.cfindustries.com/Investors/news/news-details/2026/CF-Industries-Holdings-Inc--Reports-First-Half-2026-Net-Earnings-of-1-34-Billion-Adjusted-EBITDA-of-2-18-Billion/default.aspx",
+      "originFingerprint": "investors.cfindustries.com|CF|Q2-2026|2026-08-05",
+      "sourceClass": "issuer-primary",
+      "observations": [
+        "First-half 2026 net earnings were $1.34B and included an approximately $170M litigation-settlement gain, so reported earnings contain a material non-operating component that should be separated from normalized operating performance.",
+        "First-half 2026 capital expenditures were $494M; $143M was attributable to Blue Point One. Management projected about $1.3B of consolidated 2026 capex, while CF's expected 2026 capex excluding partner-funded portions was approximately $950M.",
+        "At June 30, 2026 CF reported $2.48B cash and cash equivalents, including $341M held by the Blue Point One joint venture; Blue Point One is consolidated although CF owns 40%, with partner interests recorded as noncontrolling interests."
+      ],
+      "primary": false
+    },
+    {
+      "sourceId": "issuer:CF:BluePoint:20260826",
+      "url": "https://investor.cfindustries.com/Investors/news/news-details/2026/CF-Industries-JERA-Co--and-Mitsui--Co--Ltd--Break-Ground-on-Blue-Point-One-the-Worlds-Largest-Low-Carbon-Ammonia-Plant-in-Louisiana/default.aspx",
+      "originFingerprint": "investor.cfindustries.com|CF|BluePoint-groundbreak|2026-08-26",
+      "sourceClass": "issuer-primary",
+      "observations": [
+        "Blue Point One is a $3.7B joint-venture investment with CF owning 40%, JERA 35% and Mitsui 25%, with contributions allocated by ownership.",
+        "The project is expected to start production in 2029 and depends on external infrastructure: Linde is investing in an on-site air-separation unit and a 1PointFive/Enbridge joint venture is to transport and permanently sequester captured CO2.",
+        "CF is separately investing an additional $550M over four years in shared scalable infrastructure at the site."
+      ],
+      "primary": false
     }
   ],
   "contradictions": [
@@ -375,10 +402,20 @@
       "contradiction": "CF's strong earnings/pricing alongside lower volumes is directionally consistent with independently observed 2026 nitrogen-market behavior at Yara and Nutrien, reducing the likelihood that the divergence is unique to CF while not resolving CF-specific normalization or outage effects.",
       "material": true,
       "disposition": "source_support_for_root_owner_and_resolver; not a final contradiction judgment"
+    },
+    {
+      "statement": "Strong first-half reported earnings coexist with a disclosed $170M litigation-settlement gain; this does not negate operating strength but requires normalized treatment.",
+      "status": "material-context-not-a-beta-blocker",
+      "resolutionPath": "Council Alpha should isolate the disclosed non-operating gain when constructing its numeric operating/risk evidence."
+    },
+    {
+      "statement": "Blue Point's partner-funded structure reduces CF's direct JV funding burden while the project still creates material CF-specific capital and dependency exposure through its 40% share and separate $550M infrastructure investment.",
+      "status": "resolved-as-structure-not-contradiction",
+      "resolutionPath": "Model partner funding and CF-owned infrastructure separately rather than treating consolidated project capex as wholly attributable to CF."
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 3,
+    "unresolvedMaterialCount": 5,
     "items": [
       {
         "contradiction": "Strong earnings and pricing coexist with materially lower sales volumes, partly reflecting outage and customer timing effects."
@@ -392,6 +429,16 @@
         "contradiction": "CF's strong earnings/pricing alongside lower volumes is directionally consistent with independently observed 2026 nitrogen-market behavior at Yara and Nutrien, reducing the likelihood that the divergence is unique to CF while not resolving CF-specific normalization or outage effects.",
         "material": true,
         "disposition": "source_support_for_root_owner_and_resolver; not a final contradiction judgment"
+      },
+      {
+        "statement": "Strong first-half reported earnings coexist with a disclosed $170M litigation-settlement gain; this does not negate operating strength but requires normalized treatment.",
+        "status": "material-context-not-a-beta-blocker",
+        "resolutionPath": "Council Alpha should isolate the disclosed non-operating gain when constructing its numeric operating/risk evidence."
+      },
+      {
+        "statement": "Blue Point's partner-funded structure reduces CF's direct JV funding burden while the project still creates material CF-specific capital and dependency exposure through its 40% share and separate $550M infrastructure investment.",
+        "status": "resolved-as-structure-not-contradiction",
+        "resolutionPath": "Model partner funding and CF-owned infrastructure separately rather than treating consolidated project capex as wholly attributable to CF."
       }
     ]
   },
@@ -415,11 +462,14 @@
     {
       "unknown": "Peer evidence does not establish CF-specific normalized earnings, Yazoo City restart execution, future nitrogen prices, or whether delayed demand converts into later CF volumes.",
       "gating": false
-    }
+    },
+    "Final realized CF cash contribution through Blue Point One construction versus current project budget.",
+    "Timing synchronization and contractual remedies across plant, air-separation and CO2 transport/sequestration infrastructure.",
+    "Durability of recurring operating earnings after excluding the litigation-settlement gain and through changes in nitrogen pricing and natural-gas spreads."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 5
+    "nonGatingCount": 8
   },
   "gatingIssues": [],
   "confidence": 91,

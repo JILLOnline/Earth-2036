@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "contract": "earth2036-workgraph-evidence-v1",
+  "ticker": "MVST",
+  "workId": "t0:MVST",
+  "role": "earth-scout",
+  "generatedAt": "2026-10-01T22:07:45.000Z",
+  "perspective": "source-acquisition",
+  "assist": {
+    "requestId": "assist:MVST:council-alpha:earth-scout:source-acquisition",
+    "inputSignature": "a827f4ba39e37f2f4e4d",
+    "rootOwner": "council-alpha",
+    "capability": "source-acquisition"
+  },
+  "sources": [
+    {
+      "sourceId": "mvst-sec-2026q2-10q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1760689/000162828026055372/mvst-20260630.htm",
+      "kind": "primary-regulatory-filing",
+      "primary": true,
+      "publishedAt": "2026-08-10",
+      "originFingerprint": "sec.gov|CIK1760689|10-Q|2026Q2|000162828026055372"
+    },
+    {
+      "sourceId": "mvst-sec-2025-10k",
+      "url": "https://www.sec.gov/Archives/edgar/data/1760689/000162828026018264/mvst-20251231.htm",
+      "kind": "primary-regulatory-filing",
+      "primary": true,
+      "publishedAt": "2026-03-16",
+      "originFingerprint": "sec.gov|CIK1760689|10-K|FY2025|000162828026018264"
+    }
+  ],
+  "facts": [
+    {
+      "claim": "For the six months ended June 30, 2026, Microvast reported revenue of $147.874 million versus $207.830 million in the comparable 2025 period, and gross profit of $44.934 million versus $74.739 million.",
+      "sourceId": "mvst-sec-2026q2-10q",
+      "use": ["financialOperatingMomentum", "thesisQuality", "riskEvidence", "dataConfidenceEvidence"]
+    },
+    {
+      "claim": "At December 31, 2025, Microvast reported battery-system backlog of approximately $196.1 million and expected most of that backlog to be fulfilled during 2026 and 2027.",
+      "sourceId": "mvst-sec-2025-10k",
+      "use": ["catalystScore", "thesisQuality", "dataConfidenceEvidence"]
+    },
+    {
+      "claim": "Microvast states that long-term supply/framework agreements typically do not impose minimum purchase obligations; customer purchase orders for specific quantities constitute contractual commitments. Its top five customers represented 58.4% of 2025 revenue.",
+      "sourceId": "mvst-sec-2025-10k",
+      "use": ["riskEvidence", "pricingPower", "scenarioRobustness", "dataConfidenceEvidence"]
+    }
+  ],
+  "factors": [
+    {
+      "name": "financialOperatingMomentum",
+      "direction": "negative",
+      "basis": "SEC-filed first-half 2026 revenue and gross profit were materially below the comparable 2025 period."
+    },
+    {
+      "name": "catalystScore",
+      "direction": "mixed",
+      "basis": "SEC-filed year-end 2025 backlog provides committed-order visibility, but expected fulfillment spans 2026-2027 and framework agreements generally lack minimum purchase obligations until purchase orders are issued."
+    },
+    {
+      "name": "scenarioRobustness",
+      "direction": "negative",
+      "basis": "Customer concentration and non-binding framework structures increase sensitivity to customer timing and platform ramps."
+    }
+  ],
+  "risks": [
+    "First-half 2026 revenue and gross-profit contraction weakens the near-term operating-momentum case.",
+    "Customer concentration is material: the top five customers represented 58.4% of 2025 revenue.",
+    "Framework agreements generally lack minimum purchase obligations, so backlog/pipeline language should not be treated as equivalent to contracted utilization beyond issued purchase orders."
+  ],
+  "contradictions": [
+    {
+      "claim": "Expansion/localization ambitions coexist with weaker first-half 2026 operating results.",
+      "status": "material_unresolved",
+      "note": "The SEC filing independently confirms the operating weakness; this artifact does not adjudicate whether later customer ramps will absorb incremental capacity."
+    }
+  ],
+  "unknowns": [
+    "Current contracted utilization of incremental Clarksville/Huzhou capacity is not established by these sources.",
+    "The portion of year-end 2025 backlog remaining unfulfilled as of October 2026 is not established here.",
+    "Current market valuation inputs are not supplied by these filings."
+  ],
+  "confidence": {
+    "level": "high",
+    "basis": "Direct SEC-filed financial statements and annual-report business disclosures; numeric underwriting remains with Council Alpha."
+  },
+  "recommendedNextOwner": "council-alpha",
+  "recommendedNextState": "researching",
+  "lineage": {
+    "supersedes": [],
+    "reuses": [
+      "data/runtime/workgraph/packets/MVST.json",
+      "data/runtime/workgraph/evidence/MVST-20260921T050430Z-earth-scout.json",
+      "data/runtime/workgraph/evidence/MVST-20260921T172331Z-council-beta.json",
+      "data/runtime/workgraph/evidence/MVST-20261001T202147Z-council-beta-assist-risk-source-support.json"
+    ]
+  }
+}

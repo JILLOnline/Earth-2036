@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "contract": "earth2036-assist-evidence-v1",
+  "role": "council-beta",
+  "generatedAt": "2026-10-01T21:26:48Z",
+  "ticker": "RDW",
+  "workId": "t0:RDW",
+  "assist": {
+    "requestId": "assist:RDW:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "101256810959d7e439ab",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support"
+  },
+  "sources": [
+    {
+      "sourceId": "sec:RDW:8-K:2025-06-16:0001819810-25-000168",
+      "url": "https://www.sec.gov/Archives/edgar/data/1819810/000181981025000168/rdw-20250616.htm",
+      "kind": "primary-regulatory",
+      "primary": true,
+      "publishedAt": "2025-06-16",
+      "originFingerprint": "sec-edgar:RDW:2025-06-16:8-K:0001819810-25-000168"
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Redwire's own SEC-filed transaction disclosure identifies inability to convert backlog into revenue, dependence on partially funded/terminable government contracts, need for additional funding, equity dilution, preferred-stock voting dilution, significant holder influence, integration risk, debt-service constraints, and declining Ukraine-linked Edge Autonomy revenue as explicit downside mechanisms.",
+      "sourceIds": ["sec:RDW:8-K:2025-06-16:0001819810-25-000168"]
+    }
+  ],
+  "riskSupport": [
+    {
+      "risk": "Backlog is not equivalent to realized economics because orders may fail to convert and government contracts may be partially funded or terminated.",
+      "mechanism": "funding/program change or termination -> delayed/reduced backlog conversion -> weaker revenue/cash conversion",
+      "falsifier": "sustained funded backlog conversion with improving cash generation across multiple reporting periods",
+      "sourceIds": ["sec:RDW:8-K:2025-06-16:0001819810-25-000168"]
+    },
+    {
+      "risk": "Acquisition financing and capital structure can transfer resilience costs to common holders through dilution and debt-service burden.",
+      "mechanism": "acquisition/working-capital funding -> additional equity/preferred/debt -> dilution or fixed financing burden -> reduced common-holder flexibility",
+      "falsifier": "integration produces durable positive free cash flow and leverage/funding needs decline without further material dilution",
+      "sourceIds": ["sec:RDW:8-K:2025-06-16:0001819810-25-000168"]
+    },
+    {
+      "risk": "Edge Autonomy adds geopolitical/customer-mix sensitivity because a significant portion of its revenue was linked to Ukraine and the filing states those sales had been declining and could decline further with conflict/support changes.",
+      "mechanism": "Ukraine conflict/support normalization -> lower customer demand -> weaker acquired-business revenue/mix -> integration economics below expectations",
+      "falsifier": "customer/geographic diversification offsets Ukraine-linked declines while acquired-business margins and cash conversion remain durable",
+      "sourceIds": ["sec:RDW:8-K:2025-06-16:0001819810-25-000168"]
+    }
+  ],
+  "observedWeakness": "The capital structure, acquisition integration and government/Ukraine-linked demand exposures are issuer-disclosed risks; they are not evidence that failure is occurring now.",
+  "uncertainty": "This filing establishes mechanisms and issuer-recognized exposures but does not by itself quantify Alpha's current numeric risk or valuation impact.",
+  "improvementPath": "Alpha can combine these source-addressed mechanisms with the current 2026 10-Q cash, debt, dilution, customer mix and backlog-conversion data to construct reproducible risk evidence without treating narrative risk factors as numeric scores.",
+  "gatingStatus": "assist_evidence_complete_root_owner_numeric_work_remains",
+  "confidence": "high_for_risk_mechanisms_medium_for_current_magnitude",
+  "nextState": "council-alpha",
+  "nextOwner": "council-alpha",
+  "lineage": {
+    "supersedes": null,
+    "derivedFrom": ["data/runtime/workgraph/packets/RDW.json"]
+  }
+}

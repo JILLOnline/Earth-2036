@@ -54,5 +54,11 @@ jobs:
           git add data/runtime/workgraph/worker-view/semantic-overrides.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Earth 2036 closure semantic invariant projection"
+          # workgraph:sync refreshes derived runtime files for diagnosis, but this
+          # workflow owns only the semantic override projection. Restore every
+          # uncommitted generated file before rebasing so the projection commit
+          # can be replayed cleanly on the newest main without publishing an
+          # alternate runtime authority.
+          git restore --worktree .
           git pull --rebase origin main
           git push origin HEAD:main

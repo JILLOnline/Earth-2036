@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CCI",
   "workId": "t0:CCI",
-  "generatedAt": "2026-10-01T07:20:23.289Z",
+  "generatedAt": "2026-10-01T07:21:17.750Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-12T00:00:00.000Z",
-    "end": "2026-10-01T07:08:51.000Z",
-    "latestEvidenceGeneratedAt": "2026-10-01T07:08:51.000Z"
+    "end": "2026-10-01T07:22:45.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T07:22:45.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -39,32 +39,36 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
-    ],
-    "missing": [
+      "adversarial-red-team",
       "source-integrity",
       "company-underwriting"
     ],
-    "complete": false
+    "missing": [],
+    "complete": true
   },
   "perspectives": [
     "discovery-weak-signals",
     "expectations-execution",
     "structural-causal",
-    "adversarial-red-team"
+    "adversarial-red-team",
+    "source-integrity",
+    "company-underwriting"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/CCI-20260919T100503Z-earth-scout.json",
     "data/runtime/workgraph/evidence/CCI-20260922T062603Z-council-beta.json",
     "data/runtime/workgraph/evidence/CCI-20260930T232916Z-council-beta-assist.json",
     "data/runtime/workgraph/evidence/CCI-20261001T063004Z-council-beta-assist.json",
-    "data/runtime/workgraph/evidence/CCI-20261001T070851Z-earth-scout-assist.json"
+    "data/runtime/workgraph/evidence/CCI-20261001T070851Z-earth-scout-assist.json",
+    "data/runtime/workgraph/evidence/CCI-20261001T072245Z-council-alpha.json"
   ],
   "evidenceResolution": {
-    "supersededPaths": [],
+    "supersededPaths": [
+      "data/runtime/workgraph/evidence/CCI-20261001T072145Z-council-alpha.json"
+    ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 7,
-    "historicalEvidenceCount": 7
+    "activeEvidenceCount": 9,
+    "historicalEvidenceCount": 11
   },
   "factorEvidence": {
     "names": [
@@ -117,9 +121,174 @@
       ]
     }
   },
-  "scoreRecord": null,
+  "scoreRecord": {
+    "ticker": "CCI",
+    "company": "Crown Castle",
+    "methodologyVersion": "1.0.0",
+    "calibrationVersion": "1.0.0-calibration-a",
+    "earthScore": 37.84,
+    "risk": 58,
+    "dataConfidence": 76,
+    "components": {
+      "thesisQuality": 65,
+      "financialOperatingMomentum": 58,
+      "marketValuationOpportunity": 66,
+      "catalystScore": 55,
+      "governancePower": 64,
+      "alignment2036": 72,
+      "crossDivisionLeverage": 38,
+      "bottleneckControl": 70,
+      "scenarioRobustness": 50,
+      "substitutionResilience": 60,
+      "supplyChainResilience": 62,
+      "pricingPower": 58
+    },
+    "factorEvidence": {
+      "thesisQuality": {
+        "numericAssessment": 65,
+        "basis": "Approximately 40,000 U.S. towers and independent 23% year-over-year mobile traffic growth support durable demand, offset by company-specific churn.",
+        "sourceIds": [
+          "issuer:CCI:fiber-sale:20260501",
+          "ericsson:mobility-report:traffic-q2-2026",
+          "issuer:CCI:2026Q2"
+        ]
+      },
+      "financialOperatingMomentum": {
+        "numericAssessment": 58,
+        "basis": "More than $7B debt reduction improved resilience while 2026 site-rental guidance remains churn-pressured.",
+        "sourceIds": [
+          "issuer:CCI:2026Q2",
+          "issuer:CCI:fiber-sale:20260501"
+        ]
+      },
+      "marketValuationOpportunity": {
+        "numericAssessment": 66,
+        "basis": "Sep. 30 market data show $66.65 close, $28.36B market cap, $50.72B EV, 16.82x price/FFO and 6.38% yield; valuation reset offers headroom but leverage and growth uncertainty remain.",
+        "sourceIds": [
+          "market:stockanalysis:CCI:20260930",
+          "issuer:CCI:2026Q2"
+        ]
+      },
+      "catalystScore": {
+        "numericAssessment": 55,
+        "basis": "Post-divestiture cost/debt actions and the next operating update can clarify normalized tower growth, but catalyst realization remains execution-dependent.",
+        "sourceIds": [
+          "issuer:CCI:fiber-sale:20260501",
+          "issuer:CCI:2026Q2",
+          "market:stockanalysis:CCI:20260930"
+        ]
+      },
+      "governancePower": {
+        "numericAssessment": 64,
+        "basis": "Management executed the divestiture, debt reduction and $1B repurchases, while post-sale growth durability remains unproven.",
+        "sourceIds": [
+          "issuer:CCI:fiber-sale:20260501",
+          "issuer:CCI:2026Q2"
+        ]
+      },
+      "alignment2036": {
+        "numericAssessment": 72,
+        "basis": "Macro towers support durable connectivity needs and independent data show strong North American traffic/5G adoption, though carrier spend can shift architectures.",
+        "sourceIds": [
+          "ericsson:mobility-report:traffic-q2-2026",
+          "ericsson:mobility-report:subscriptions-2026",
+          "issuer:CCI:fiber-sale:20260501"
+        ]
+      },
+      "crossDivisionLeverage": {
+        "numericAssessment": 38,
+        "basis": "The divestiture created a pure-play U.S. tower company, reducing independent demand engines and increasing dependence on one infrastructure class and carrier set.",
+        "sourceIds": [
+          "issuer:CCI:fiber-sale:20260501",
+          "sec:CCI:10-Q:20260805"
+        ]
+      },
+      "bottleneckControl": {
+        "numericAssessment": 70,
+        "basis": "Permitted, sited macro towers provide meaningful physical scarcity and colocation utility, but carriers retain alternative spend paths.",
+        "sourceIds": [
+          "issuer:CCI:fiber-sale:20260501",
+          "ericsson:mobility-report:traffic-q2-2026"
+        ]
+      },
+      "scenarioRobustness": {
+        "numericAssessment": 50,
+        "basis": "Long contracts and fixed-rate debt improve resilience, but about 93% of first-half site-rental revenue came from three carriers.",
+        "sourceIds": [
+          "sec:CCI:10-Q:20260805",
+          "issuer:CCI:2026Q2"
+        ]
+      },
+      "substitutionResilience": {
+        "numericAssessment": 60,
+        "basis": "Macro sites remain important for coverage/capacity, but incremental spend can shift toward small cells, fiber, spectrum efficiency or satellite.",
+        "sourceIds": [
+          "ericsson:mobility-report:traffic-q2-2026",
+          "ericsson:mobility-report:subscriptions-2026",
+          "issuer:CCI:fiber-sale:20260501"
+        ]
+      },
+      "supplyChainResilience": {
+        "numericAssessment": 62,
+        "basis": "Domestic long-lived physical assets and repaired financing reduce conventional supply exposure, while geographic and carrier-deployment dependence remain.",
+        "sourceIds": [
+          "issuer:CCI:fiber-sale:20260501",
+          "issuer:CCI:2026Q2"
+        ]
+      },
+      "pricingPower": {
+        "numericAssessment": 58,
+        "basis": "About five years weighted-average contract term and $22.1B expected future cash inflows support visibility, but concentration and cancellation/default risk constrain pricing power.",
+        "sourceIds": [
+          "sec:CCI:10-Q:20260805",
+          "issuer:CCI:2026Q2"
+        ]
+      }
+    },
+    "riskEvidence": {
+      "numericAssessment": 58,
+      "basis": "Three-carrier concentration, tenant cancellation/default exposure, reduced diversification and alternative architectures remain material risks.",
+      "sourceIds": [
+        "sec:CCI:10-Q:20260805",
+        "issuer:CCI:2026Q2",
+        "ericsson:mobility-report:traffic-q2-2026"
+      ]
+    },
+    "dataConfidenceEvidence": {
+      "numericAssessment": 76,
+      "basis": "Recent issuer, SEC, independent industry and current market evidence provide broad coverage; normalized post-DISH leasing growth remains unresolved.",
+      "sourceIds": [
+        "issuer:CCI:2026Q2",
+        "sec:CCI:10-Q:20260805",
+        "ericsson:mobility-report:traffic-q2-2026",
+        "market:stockanalysis:CCI:20260930"
+      ]
+    },
+    "primarySourceUrls": [
+      "https://investor.crowncastle.com/node/29086",
+      "https://investor.crowncastle.com/static-files/8a10632f-2f39-4e09-b974-b622fadeed17",
+      "https://investor.crowncastle.com/static-files/3c0fa159-135d-4785-a191-9a21ca843e73"
+    ],
+    "independentSourceUrls": [
+      "https://www.ericsson.com/en/reports-and-papers/mobility-report/dataforecasts/mobile-traffic-update",
+      "https://www.ericsson.com/en/reports-and-papers/mobility-report/dataforecasts/mobile-subscriptions-outlook",
+      "https://stockanalysis.com/stocks/cci/statistics/"
+    ],
+    "causalMapped": true,
+    "thesis": "Crown Castle is a strategically relevant U.S. macro-tower pure play with scarce physical sites, long contracts and repaired financing, but carrier concentration and churn limit robustness.",
+    "keyRisk": "Carrier consolidation, cancellations or capital reallocation away from macro towers can impair leasing growth.",
+    "nextCatalyst": "Third-quarter 2026 results and updated tower organic-growth/AFFO outlook.",
+    "scoreBreakdown": {
+      "weightedRaw": 58.9,
+      "confidenceMultiplier": 0.8,
+      "riskPenaltyWeight": 0.16,
+      "riskPenalty": 9.28,
+      "earthScore": 37.84,
+      "note": "Weighted Methodology 1.0 components, confidence floor multiplier and risk penalty applied conservatively."
+    }
+  },
   "scoreReadiness": {
-    "complete": false,
+    "complete": true,
     "requiredComponents": [
       "thesisQuality",
       "financialOperatingMomentum",
@@ -135,23 +304,10 @@
       "pricingPower"
     ],
     "sourceAddressedEvidence": {
-      "factorEvidenceComplete": false,
-      "missingFactorEvidence": [
-        "thesisQuality",
-        "financialOperatingMomentum",
-        "marketValuationOpportunity",
-        "catalystScore",
-        "governancePower",
-        "alignment2036",
-        "crossDivisionLeverage",
-        "bottleneckControl",
-        "scenarioRobustness",
-        "substitutionResilience",
-        "supplyChainResilience",
-        "pricingPower"
-      ],
-      "riskEvidenceComplete": false,
-      "dataConfidenceEvidenceComplete": false
+      "factorEvidenceComplete": true,
+      "missingFactorEvidence": [],
+      "riskEvidenceComplete": true,
+      "dataConfidenceEvidenceComplete": true
     }
   },
   "factors": [
@@ -265,7 +421,9 @@
     "available": false,
     "factors": [],
     "confidenceFloor": null,
-    "evidencePaths": []
+    "evidencePaths": [
+      "data/runtime/workgraph/evidence/CCI-20261001T072245Z-council-alpha.json"
+    ]
   },
   "primarySourcePresence": {
     "present": true,
@@ -359,9 +517,9 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 13,
-    "uniqueSourceCount": 7,
-    "duplicatesCollapsed": 6,
+    "rawSourceCount": 25,
+    "uniqueSourceCount": 12,
+    "duplicatesCollapsed": 13,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:CCI:fiber-sale-close:20260501",
@@ -370,7 +528,12 @@
       "issuer:CCI:DISH-default:20260112",
       "sec:CCI:10-Q:2026Q2:20260805",
       "ericsson:mobility-report:network-traffic-q2-2026",
-      "ericsson:mobility-report:subscriptions-2026"
+      "ericsson:mobility-report:subscriptions-2026",
+      "issuer:CCI:fiber-sale:20260501",
+      "issuer:CCI:2026Q2",
+      "sec:CCI:10-Q:20260805",
+      "ericsson:mobility-report:traffic-q2-2026",
+      "market:stockanalysis:CCI:20260930"
     ]
   },
   "sources": [
@@ -429,6 +592,31 @@
       "primary": false,
       "publishedAt": "2026-09-01",
       "originFingerprint": "ericsson:mobility-report:subscriptions-2026"
+    },
+    {
+      "sourceId": "issuer:CCI:fiber-sale:20260501",
+      "url": "https://investor.crowncastle.com/node/29086",
+      "primary": false
+    },
+    {
+      "sourceId": "issuer:CCI:2026Q2",
+      "url": "https://investor.crowncastle.com/static-files/8a10632f-2f39-4e09-b974-b622fadeed17",
+      "primary": false
+    },
+    {
+      "sourceId": "sec:CCI:10-Q:20260805",
+      "url": "https://investor.crowncastle.com/static-files/3c0fa159-135d-4785-a191-9a21ca843e73",
+      "primary": false
+    },
+    {
+      "sourceId": "ericsson:mobility-report:traffic-q2-2026",
+      "url": "https://www.ericsson.com/en/reports-and-papers/mobility-report/dataforecasts/mobile-traffic-update",
+      "primary": false
+    },
+    {
+      "sourceId": "market:stockanalysis:CCI:20260930",
+      "url": "https://stockanalysis.com/stocks/cci/statistics/",
+      "primary": false
     }
   ],
   "contradictions": [
@@ -532,35 +720,10 @@
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_specialist_perspective:source-integrity",
-      "missing_specialist_perspective:company-underwriting",
-      "missing_factor_evidence",
-      "missing_numeric_score_record",
-      "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_specialist_perspective:source-integrity",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:company-underwriting",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_factor_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_numeric_score_record",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_score_risk_evidence",
-        "owner": "council-alpha"
-      },
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"

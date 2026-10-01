@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "contract": "earth2036-bounded-assist-evidence-v1",
+  "role": "council-beta",
+  "generatedAt": "2026-10-01T07:28:35.894953Z",
+  "ticker": "SANM",
+  "workId": "t0:SANM",
+  "assist": {
+    "requestId": "assist:SANM:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "5018f751339a09994526",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support",
+    "outcome": "new_primary_source_risk_support",
+    "changedStrategy": true,
+    "strategyChange": "Changed from issuer earnings-release reuse to SEC Form 10-Q source class to address concentration/integration risk with filing-level evidence."
+  },
+  "lineage": {
+    "packetPath": "data/runtime/workgraph/packets/SANM.json",
+    "supersedes": null,
+    "priorBetaEvidence": "data/runtime/workgraph/evidence/SANM-20260921T142302Z-council-beta.json"
+  },
+  "perspective": "adversarial-red-team-assist",
+  "claims": [
+    {
+      "claim": "ZT Systems had become a material part of Sanmina by June 27, 2026: the acquired business represented 31% of quarterly net revenue, 38% of nine-month net revenue, and 25% of total assets excluding goodwill and intangibles. This makes integration execution and cloud/AI demand exposure quantitatively material rather than merely thematic.",
+      "affectedFactors": ["scenarioRobustness", "concentration", "integration", "dataConfidence"],
+      "risk": "A material share of current revenue and assets is tied to a recently acquired operation, increasing sensitivity to integration quality and the cloud/AI infrastructure cycle.",
+      "gating": false
+    },
+    {
+      "claim": "Sanmina disclosed that management planned to exclude ZT Systems from its assessment of internal control over financial reporting for the current fiscal year, while concluding its existing disclosure controls were effective. This is a bounded integration/control-coverage uncertainty, not evidence of a control failure.",
+      "affectedFactors": ["governancePower", "integration", "dataConfidence"],
+      "risk": "Current-year internal-control assessment coverage does not yet include a business representing a material portion of assets and revenue.",
+      "gating": false
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "sec:SANM:10-Q:20260727",
+      "url": "https://www.sec.gov/Archives/edgar/data/897723/000089772326000037/sanm-20260627.htm",
+      "kind": "primary-regulatory-filing",
+      "primary": true,
+      "publishedAt": "2026-07-27",
+      "originFingerprint": "sec.gov|SANM|10-Q|2026-07-27|0000897723-26-000037"
+    }
+  ],
+  "risks": [
+    "ZT integration and cloud/AI exposure are quantitatively material to the current business mix.",
+    "Internal-control assessment coverage for the current fiscal year excludes ZT Systems; this should be monitored as integration matures, without treating the exclusion itself as a present control defect."
+  ],
+  "contradictions": [],
+  "unknowns": [
+    "Customer-level concentration within ZT Systems is not quantified by this evidence object.",
+    "The normalized post-integration margin and cash-conversion profile remains an Alpha underwriting question."
+  ],
+  "falsifiers": [
+    "Subsequent audited/control reporting demonstrates full ZT integration with no material weaknesses and stable conversion, reducing the control-coverage uncertainty.",
+    "Broader customer diversification and sustained non-cloud/AI growth reduce the concentration sensitivity identified here."
+  ],
+  "gatingStatus": "non_gating_risk_support_for_alpha",
+  "confidence": 96,
+  "recommendedNextState": "root_owner_review",
+  "recommendedNextOwner": "council-alpha",
+  "authorityBoundary": "No numeric underwriting, score, rank, tick, membership, or Chief decision is created by this assist."
+}

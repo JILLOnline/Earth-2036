@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CCI",
   "workId": "t0:CCI",
-  "generatedAt": "2026-10-01T06:45:09.742Z",
+  "generatedAt": "2026-10-01T07:10:06.318Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-12T00:00:00.000Z",
-    "end": "2026-10-01T06:30:04.000Z",
-    "latestEvidenceGeneratedAt": "2026-10-01T06:30:04.000Z"
+    "end": "2026-10-01T07:08:51.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T07:08:51.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -57,13 +57,14 @@
     "data/runtime/workgraph/evidence/CCI-20260919T100503Z-earth-scout.json",
     "data/runtime/workgraph/evidence/CCI-20260922T062603Z-council-beta.json",
     "data/runtime/workgraph/evidence/CCI-20260930T232916Z-council-beta-assist.json",
-    "data/runtime/workgraph/evidence/CCI-20261001T063004Z-council-beta-assist.json"
+    "data/runtime/workgraph/evidence/CCI-20261001T063004Z-council-beta-assist.json",
+    "data/runtime/workgraph/evidence/CCI-20261001T070851Z-earth-scout-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 6,
-    "historicalEvidenceCount": 6
+    "activeEvidenceCount": 7,
+    "historicalEvidenceCount": 7
   },
   "factorEvidence": {
     "names": [
@@ -77,7 +78,8 @@
       "substitutionResilience",
       "supplyChainResilience",
       "governancePower",
-      "pricingPower"
+      "pricingPower",
+      "dataConfidence"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -107,7 +109,11 @@
       "expectations-execution": [
         "financialOperatingMomentum",
         "marketValuationOpportunity",
-        "scenarioRobustness"
+        "scenarioRobustness",
+        "thesisQuality",
+        "alignment2036",
+        "scenarioRobustness",
+        "dataConfidence"
       ]
     }
   },
@@ -159,7 +165,8 @@
     "substitutionResilience",
     "supplyChainResilience",
     "governancePower",
-    "pricingPower"
+    "pricingPower",
+    "dataConfidence"
   ],
   "riskEvidence": {
     "present": true,
@@ -203,7 +210,10 @@
       {
         "risk": "Approximately 93% of first-half 2026 site-rental revenue came from three national carriers, creating concentrated exposure to their network spending and contract decisions.",
         "gating": false
-      }
+      },
+      "mobile traffic growth does not guarantee proportional macro-tower leasing growth",
+      "carrier capex can shift among macro towers, small cells, fiber, spectrum and satellite architectures",
+      "Ericsson is a network-equipment vendor and therefore an industry participant even though it is independent of Crown Castle"
     ]
   },
   "risks": [
@@ -246,7 +256,10 @@
     {
       "risk": "Approximately 93% of first-half 2026 site-rental revenue came from three national carriers, creating concentrated exposure to their network spending and contract decisions.",
       "gating": false
-    }
+    },
+    "mobile traffic growth does not guarantee proportional macro-tower leasing growth",
+    "carrier capex can shift among macro towers, small cells, fiber, spectrum and satellite architectures",
+    "Ericsson is a network-equipment vendor and therefore an industry participant even though it is independent of Crown Castle"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -346,8 +359,8 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 11,
-    "uniqueSourceCount": 5,
+    "rawSourceCount": 13,
+    "uniqueSourceCount": 7,
     "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
@@ -355,7 +368,9 @@
       "issuer:CCI:2026Q2:20260722",
       "issuer:CCI:2025FY:20260204",
       "issuer:CCI:DISH-default:20260112",
-      "sec:CCI:10-Q:2026Q2:20260805"
+      "sec:CCI:10-Q:2026Q2:20260805",
+      "ericsson:mobility-report:network-traffic-q2-2026",
+      "ericsson:mobility-report:subscriptions-2026"
     ]
   },
   "sources": [
@@ -398,6 +413,22 @@
       "primary": true,
       "publishedAt": "2026-08-05",
       "originFingerprint": "sec:CCI:10-Q:2026Q2:20260805"
+    },
+    {
+      "sourceId": "ericsson:mobility-report:traffic-q2-2026",
+      "url": "https://www.ericsson.com/en/reports-and-papers/mobility-report/dataforecasts/mobile-traffic-update",
+      "kind": "credible-independent-industry-data",
+      "primary": false,
+      "publishedAt": "2026-09-01",
+      "originFingerprint": "ericsson:mobility-report:network-traffic-q2-2026"
+    },
+    {
+      "sourceId": "ericsson:mobility-report:subscriptions-2026",
+      "url": "https://www.ericsson.com/en/reports-and-papers/mobility-report/dataforecasts/mobile-subscriptions-outlook",
+      "kind": "credible-independent-industry-data",
+      "primary": false,
+      "publishedAt": "2026-09-01",
+      "originFingerprint": "ericsson:mobility-report:subscriptions-2026"
     }
   ],
   "contradictions": [
@@ -423,10 +454,15 @@
       "contradiction": "Long-duration contracts and $22.1 billion of expected future cash inflows improve visibility while counterparty concentration remains structurally high.",
       "material": true,
       "disposition": "mechanistically_explained_monitor_concentration"
+    },
+    {
+      "contradiction": "Independent network-demand data show strong North American traffic and 5G adoption while Crown Castle's packet records near-term site-rental pressure from tenant cancellations.",
+      "material": true,
+      "disposition": "demand_tailwind_does_not_resolve_company_specific_churn"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 4,
+    "unresolvedMaterialCount": 5,
     "items": [
       {
         "contradiction": "Balance-sheet simplification and debt reduction improve resilience while reported site-rental revenue outlook still implies contraction versus 2025."
@@ -450,6 +486,11 @@
         "contradiction": "Long-duration contracts and $22.1 billion of expected future cash inflows improve visibility while counterparty concentration remains structurally high.",
         "material": true,
         "disposition": "mechanistically_explained_monitor_concentration"
+      },
+      {
+        "contradiction": "Independent network-demand data show strong North American traffic and 5G adoption while Crown Castle's packet records near-term site-rental pressure from tenant cancellations.",
+        "material": true,
+        "disposition": "demand_tailwind_does_not_resolve_company_specific_churn"
       }
     ]
   },
@@ -477,11 +518,14 @@
     {
       "unknown": "The degree to which future colocation and amendment growth can diversify economic dependence away from the three largest carriers remains unproven.",
       "gating": false
-    }
+    },
+    "The evidence does not quantify how much incremental North American traffic will require new Crown Castle macro-tower amendments or colocations.",
+    "It does not establish Crown Castle-specific pricing power, valuation, numeric underwriting, or near-term carrier capex allocation.",
+    "The precise share of future network densification captured by macro towers versus alternative architectures remains uncertain."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 6
+    "nonGatingCount": 9
   },
   "gatingIssues": [],
   "confidence": 91,

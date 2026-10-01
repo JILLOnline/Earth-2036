@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "contract": "earth2036-assist-evidence-v1",
+  "role": "council-beta",
+  "generatedAt": "2026-10-01T22:22:31Z",
+  "ticker": "MVST",
+  "workId": "t0:MVST",
+  "perspective": "risk-source-support",
+  "assist": {
+    "requestId": "assist:MVST:council-alpha:council-beta:risk-source-support",
+    "inputSignature": "da108a9b8cf9fa23007d",
+    "rootOwner": "council-alpha",
+    "capability": "risk-source-support",
+    "outcome": "new_primary_regulatory_risk_support",
+    "changedStrategy": true,
+    "strategyChange": "Changed from issuer-results/backlog comparison to direct SEC contractual-commitment and customer-concentration evidence after Scout changed the input signature."
+  },
+  "lineage": {
+    "supersedes": null,
+    "reuses": [
+      "data/runtime/workgraph/evidence/MVST-20261001T202147Z-council-beta-assist-risk-source-support.json",
+      "data/runtime/workgraph/evidence/MVST-20261001T220745Z-earth-scout-assist.json"
+    ]
+  },
+  "claims": [
+    {
+      "claim": "Customer concentration is a directly observed execution risk: Microvast disclosed that its five largest customers represented 58.4% of 2025 revenue, increasing sensitivity to customer-specific platform timing, purchasing decisions and demand changes.",
+      "sourceIds": ["mvst-sec-2025-10k"],
+      "affectedFactors": ["scenarioRobustness", "concentrationRisk", "capacityUtilizationRisk"],
+      "gating": false
+    },
+    {
+      "claim": "Framework-agreement scale should not be treated as contracted utilization: Microvast states that long-term supply/framework agreements typically do not impose minimum purchase obligations and that specific purchase orders constitute contractual commitments.",
+      "sourceIds": ["mvst-sec-2025-10k"],
+      "affectedFactors": ["confidenceInflation", "scenarioRobustness", "capacityUtilizationRisk"],
+      "gating": false
+    },
+    {
+      "claim": "The concentration and contract-structure evidence strengthens the causal interpretation of the already-observed 2026 utilization weakness: incremental capacity economics depend on actual customer purchase orders and platform ramps, not framework agreements or installed capacity alone.",
+      "sourceIds": ["mvst-sec-2025-10k", "mvst-sec-2026q2-10q"],
+      "affectedFactors": ["bottleneckControl", "scenarioRobustness", "financialOperatingMomentum"],
+      "gating": false
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "mvst-sec-2025-10k",
+      "url": "https://www.sec.gov/Archives/edgar/data/1760689/000162828026018264/mvst-20251231.htm",
+      "kind": "primary-regulatory-filing",
+      "publishedAt": "2026-03-16",
+      "originFingerprint": "sec.gov|CIK1760689|10-K|FY2025|000162828026018264"
+    },
+    {
+      "sourceId": "mvst-sec-2026q2-10q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1760689/000162828026055372/mvst-20260630.htm",
+      "kind": "primary-regulatory-filing",
+      "publishedAt": "2026-08-10",
+      "originFingerprint": "sec.gov|CIK1760689|10-Q|2026Q2|000162828026055372"
+    }
+  ],
+  "risks": [
+    "A concentrated customer base can amplify utilization volatility when a major platform ramp slips or purchasing changes.",
+    "Framework agreements without minimum purchase obligations can create apparent demand visibility that does not guarantee absorption of incremental capacity."
+  ],
+  "contradictions": [
+    "Localized capacity expansion can improve supply resilience, while the disclosed contract structure and customer concentration mean capacity absorption remains dependent on actual purchase orders and customer ramps."
+  ],
+  "unknowns": [
+    "Current purchase-order coverage for incremental Clarksville and Huzhou capacity.",
+    "Current revenue concentration after 2025 and the share of incremental capacity tied to the largest customers."
+  ],
+  "falsifiers": [
+    "Primary evidence of diversified customer concentration plus binding purchase-order coverage sufficient to absorb incremental capacity would materially weaken this concentration/utilization risk.",
+    "Sustained utilization and margin recovery despite customer timing variability would weaken the causal importance of the disclosed concentration and framework structure."
+  ],
+  "gatingStatus": "assist_support_only_noncanonical",
+  "confidence": 96,
+  "recommendedNextState": "council-alpha_reuse_for_source_addressed_risk_evidence",
+  "recommendedOwner": "council-alpha",
+  "authorityGuardrail": "This artifact supplies bounded risk evidence only and does not set Alpha numeric risk, score, canonical rank, tick, membership or Chief disposition."
+}

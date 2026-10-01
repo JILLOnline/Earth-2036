@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "contract": "earth2036-workgraph-evidence-v1",
+  "ticker": "VRTX",
+  "workId": "t0:VRTX",
+  "role": "council-alpha",
+  "generatedAt": "2026-10-01T22:19:32.000Z",
+  "perspective": "gate-consumption-diagnostic",
+  "finding": "deterministic_packet_to_override_mismatch",
+  "facts": [
+    {
+      "claim": "Current packet truth reports specialistCoverage.complete=true with source-integrity and company-underwriting present.",
+      "sourceId": "packet:VRTX:2026-10-01T22:10:33.287Z"
+    },
+    {
+      "claim": "Current packet truth contains a complete Methodology 1.0.0 scoreRecord with calibrationVersion 1.0.0-calibration-a and all 12 required numeric components plus source-addressed factor evidence.",
+      "sourceId": "packet:VRTX:2026-10-01T22:10:33.287Z"
+    },
+    {
+      "claim": "The current semantic override still sets addAlpha=true and describes company-underwriting/current valuation/governance/supply-chain/pricing-power score work as outstanding.",
+      "sourceId": "semantic-overrides:2026-10-01T22:09:27.977Z"
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "packet:VRTX:2026-10-01T22:10:33.287Z",
+      "kind": "internal-authoritative-packet-projection",
+      "path": "data/runtime/workgraph/packets/VRTX.json"
+    },
+    {
+      "sourceId": "semantic-overrides:2026-10-01T22:09:27.977Z",
+      "kind": "internal-operational-correction-projection",
+      "path": "data/runtime/workgraph/worker-view/semantic-overrides.json"
+    }
+  ],
+  "diagnosis": {
+    "packetTruthCompleteForAlpha": true,
+    "overrideAlphaWorkStale": true,
+    "researchAlreadyCompleteFieldsAgain": false,
+    "recommendedNextAction": "Chief/reconcile should refresh semantic override consumption from current packet truth; do not reopen completed Alpha underwriting fields."
+  },
+  "lineage": {
+    "supersedes": [],
+    "reuses": [
+      "data/runtime/workgraph/packets/VRTX.json",
+      "data/runtime/workgraph/worker-view/semantic-overrides.json"
+    ]
+  }
+}

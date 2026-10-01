@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SANM",
   "workId": "t0:SANM",
-  "generatedAt": "2026-10-01T07:46:23.199Z",
+  "generatedAt": "2026-10-01T08:09:50.109Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2025-10-27T00:00:00.000Z",
-    "end": "2026-10-01T07:28:35.894Z",
-    "latestEvidenceGeneratedAt": "2026-10-01T07:28:35.894Z"
+    "end": "2026-10-01T08:13:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T08:13:00.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -58,13 +58,14 @@
   "evidencePaths": [
     "data/runtime/workgraph/evidence/SANM-20260921T120655Z-earth-scout.json",
     "data/runtime/workgraph/evidence/SANM-20260921T142302Z-council-beta.json",
-    "data/runtime/workgraph/evidence/SANM-20261001T072835Z-council-beta-assist.json"
+    "data/runtime/workgraph/evidence/SANM-20261001T072835Z-council-beta-assist.json",
+    "data/runtime/workgraph/evidence/SANM-20261001T081300Z-earth-scout-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 5,
-    "historicalEvidenceCount": 5
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -79,7 +80,11 @@
       "integration",
       "confidence inflation",
       "dataConfidence",
-      "governancePower"
+      "governancePower",
+      "thesisQuality",
+      "financialOperatingMomentum",
+      "alignment2036",
+      "crossDivisionLeverage"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -140,7 +145,13 @@
           "name": "cash conversion",
           "direction": "mixed",
           "basis": "Operating cash flow remained positive but Q3 free cash flow was only $24M amid investment."
-        }
+        },
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "alignment2036",
+        "crossDivisionLeverage",
+        "scenarioRobustness",
+        "dataConfidence"
       ]
     }
   },
@@ -193,7 +204,11 @@
     "integration",
     "confidence inflation",
     "dataConfidence",
-    "governancePower"
+    "governancePower",
+    "thesisQuality",
+    "financialOperatingMomentum",
+    "alignment2036",
+    "crossDivisionLeverage"
   ],
   "riskEvidence": {
     "present": true,
@@ -215,7 +230,9 @@
         "gating": false
       },
       "ZT integration and cloud/AI exposure are quantitatively material to the current business mix.",
-      "Internal-control assessment coverage for the current fiscal year excludes ZT Systems; this should be monitored as integration matures, without treating the exclusion itself as a present control defect."
+      "Internal-control assessment coverage for the current fiscal year excludes ZT Systems; this should be monitored as integration matures, without treating the exclusion itself as a present control defect.",
+      "Nearly half of reported fiscal-2026 revenue was tied to data-center products, increasing sensitivity to data-center customer demand and capex cycles.",
+      "Revenue growth alone does not establish normalized post-acquisition margins, customer concentration, pricing power or valuation."
     ]
   },
   "risks": [
@@ -236,7 +253,9 @@
       "gating": false
     },
     "ZT integration and cloud/AI exposure are quantitatively material to the current business mix.",
-    "Internal-control assessment coverage for the current fiscal year excludes ZT Systems; this should be monitored as integration matures, without treating the exclusion itself as a present control defect."
+    "Internal-control assessment coverage for the current fiscal year excludes ZT Systems; this should be monitored as integration matures, without treating the exclusion itself as a present control defect.",
+    "Nearly half of reported fiscal-2026 revenue was tied to data-center products, increasing sensitivity to data-center customer demand and capex cycles.",
+    "Revenue growth alone does not establish normalized post-acquisition margins, customer concentration, pricing power or valuation."
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -246,7 +265,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 3
+    "count": 4
   },
   "causalMapping": {
     "present": true,
@@ -280,14 +299,15 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 7,
-    "uniqueSourceCount": 3,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 4,
     "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "sanmina-ir:2025-10-27:zt-close",
       "sanmina-ir:2026-07-27:fq3-results",
-      "sec.gov|SANM|10-Q|2026-07-27|0000897723-26-000037"
+      "sec.gov|SANM|10-Q|2026-07-27|0000897723-26-000037",
+      "sec.gov|SANM|annual-operating-data|2026|data-center-revenue"
     ]
   },
   "sources": [
@@ -314,6 +334,14 @@
       "primary": true,
       "publishedAt": "2026-07-27",
       "originFingerprint": "sec.gov|SANM|10-Q|2026-07-27|0000897723-26-000037"
+    },
+    {
+      "sourceId": "sec:SANM:10-K:20260626",
+      "url": "https://www.sec.gov/Archives/edgar/data/1408710/000140871026000028/fn-20260626.htm",
+      "kind": "primary-regulatory-filing",
+      "primary": true,
+      "publishedAt": "2026-08-01",
+      "originFingerprint": "sec.gov|SANM|annual-operating-data|2026|data-center-revenue"
     }
   ],
   "contradictions": [],
@@ -339,11 +367,14 @@
       "gating": false
     },
     "Customer-level concentration within ZT Systems is not quantified by this evidence object.",
-    "The normalized post-integration margin and cash-conversion profile remains an Alpha underwriting question."
+    "The normalized post-integration margin and cash-conversion profile remains an Alpha underwriting question.",
+    "Customer-level concentration inside the data-center segment remains unquantified by this source.",
+    "Normalized margin and free-cash-flow conversion of the combined business remain Alpha underwriting questions.",
+    "This evidence does not itself establish a numeric Earth score."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 6
+    "nonGatingCount": 9
   },
   "gatingIssues": [],
   "confidence": 90,

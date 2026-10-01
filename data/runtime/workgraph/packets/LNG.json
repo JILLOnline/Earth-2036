@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "LNG",
   "workId": "t0:LNG",
-  "generatedAt": "2026-10-01T15:17:26.040Z",
+  "generatedAt": "2026-10-01T15:28:43.834Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-20T00:00:00.000Z",
-    "end": "2026-09-22T23:33:33.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-22T23:33:33.000Z"
+    "end": "2026-10-01T15:27:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T15:27:00.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -59,15 +59,16 @@
     "data/runtime/workgraph/evidence/LNG-20260920T190404Z-earth-scout.json",
     "data/runtime/workgraph/evidence/LNG-20260921T030526Z-earth-scout.json",
     "data/runtime/workgraph/evidence/LNG-20260922T182308Z-council-beta.json",
-    "data/runtime/workgraph/evidence/LNG-20260922T233333Z-deep-resolver.json"
+    "data/runtime/workgraph/evidence/LNG-20260922T233333Z-deep-resolver.json",
+    "data/runtime/workgraph/evidence/LNG-20261001T152700Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
       "data/runtime/workgraph/evidence/LNG-20260920T200615Z-earth-scout.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 11,
-    "historicalEvidenceCount": 13
+    "activeEvidenceCount": 12,
+    "historicalEvidenceCount": 14
   },
   "factorEvidence": {
     "names": [
@@ -329,14 +330,15 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 19,
-    "uniqueSourceCount": 3,
+    "rawSourceCount": 20,
+    "uniqueSourceCount": 4,
     "duplicatesCollapsed": 16,
     "missingLineage": 0,
     "uniqueOrigins": [
       "lngir.cheniere.com|q2-2026-results-guidance|2026-08-06",
       "lngir.cheniere.com|ccl-stage3-completion-5000-cargo|2026-08-31",
-      "sec/cheniere|10-k-2025|2026-02"
+      "sec/cheniere|10-k-2025|2026-02",
+      "sec:3570:2026Q2:10Q"
     ]
   },
   "sources": [
@@ -366,6 +368,19 @@
       "publishedAt": "2026-02-20",
       "originFingerprint": "sec/cheniere|10-k-2025|2026-02",
       "sourceId": null
+    },
+    {
+      "sourceId": "sec:LNG:2026Q2:10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/3570/000000357026000028/lng-20260630.htm",
+      "originFingerprint": "sec:3570:2026Q2:10Q",
+      "sourceClass": "sec-primary",
+      "observations": [
+        "At June 30, 2026 Cheniere reported $1.099B cash and cash equivalents, $1.411B current debt and $22.632B long-term debt.",
+        "The filing reports $110.2B of transaction price allocated to unsatisfied performance obligations, with LNG revenue weighted-average recognition timing of about nine years; this is contracted future consideration, not current revenue or guaranteed margin.",
+        "In June 2026 CQP issued $1.0B of 5.350% notes due 2036 and $750M of 6.050% notes due 2056, using part of proceeds to redeem $1.5B of 2027 SPL notes and fund expansion; Cheniere separately issued $1.0B of 5.200% notes due 2036 and $750M of 6.000% notes due 2056 in March 2026.",
+        "Six-month revenue benefited from higher LNG volumes and U.S. natural-gas prices, while derivative fair-value movements materially affected reported results."
+      ],
+      "primary": false
     }
   ],
   "contradictions": [
@@ -386,10 +401,15 @@
       "resolution": "Treat as an accounting/economic reconciliation issue rather than evidence that physical operations failed; Deep Resolver retains contradiction disposition authority.",
       "resolved": false,
       "gating": false
+    },
+    {
+      "statement": "Long-duration contracted future consideration and large operating infrastructure coexist with substantial leverage, refinancing activity and exposure to variable commodity/derivative effects.",
+      "status": "material-context-not-a-beta-blocker",
+      "resolutionPath": "Council Alpha should underwrite cash-flow durability, debt service and contracted-value conversion separately; no numeric score is set here."
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 6,
+    "unresolvedMaterialCount": 7,
     "items": [
       "Six-month 2026 net loss of $0.43B coexisted with $4.14B adjusted EBITDA, highlighting derivative/noncash/accounting volatility versus operating cash economics.",
       "Six-month 2026 net loss of $0.43B coexisted with $4.14B adjusted EBITDA, highlighting derivative/noncash/accounting volatility versus operating cash economics.",
@@ -408,6 +428,11 @@
         "resolution": "Treat as an accounting/economic reconciliation issue rather than evidence that physical operations failed; Deep Resolver retains contradiction disposition authority.",
         "resolved": false,
         "gating": false
+      },
+      {
+        "statement": "Long-duration contracted future consideration and large operating infrastructure coexist with substantial leverage, refinancing activity and exposure to variable commodity/derivative effects.",
+        "status": "material-context-not-a-beta-blocker",
+        "resolutionPath": "Council Alpha should underwrite cash-flow durability, debt service and contracted-value conversion separately; no numeric score is set here."
       }
     ]
   },
@@ -445,11 +470,14 @@
     {
       "unknown": "Incremental expansion financing mix and realized project returns are not yet known.",
       "gating": false
-    }
+    },
+    "Debt-service resilience under a sustained lower-utilization or weaker-spread scenario.",
+    "Margin profile and counterparty quality embedded in the long-duration unsatisfied transaction price.",
+    "Incremental expansion returns after financing costs and future capex."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 22
+    "nonGatingCount": 25
   },
   "gatingIssues": [],
   "confidence": 88,

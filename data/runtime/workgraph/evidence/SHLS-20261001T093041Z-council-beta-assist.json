@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "contract": "earth2036-assist-evidence-v1",
+  "role": "council-beta",
+  "generatedAt": "2026-10-01T09:30:41Z",
+  "ticker": "SHLS",
+  "workId": "t0:SHLS",
+  "assist": {"requestId":"assist:SHLS:council-alpha:council-beta:risk-source-support","inputSignature":"692887145ac3ebe33346","rootOwner":"council-alpha","capability":"risk-source-support"},
+  "lineage": {"supplements":"data/runtime/workgraph/evidence/SHLS-20260921T162742Z-council-beta.json","supersedes":null},
+  "claims": [
+    {"claim":"Shoals states backlog and awarded orders may not become revenue or profit, directly limiting backlog-as-certainty interpretations.","riskClass":"backlog-quality","observed":true},
+    {"claim":"At June 30, 2026 the wire-insulation shrinkback matter carried a $73.0M estimated total loss, while Q2 product-quality remediation/rework/warranty expense was $3.8M; the company states liability could exceed the recorded amount.","riskClass":"quality-and-warranty","observed":true},
+    {"claim":"Six-month operating cash flow was negative $34.6M despite $11.8M net income, with inventory consuming $97.1M; revolver borrowings rose to $196.8M from $136.8M at year-end 2025.","riskClass":"working-capital-and-financing","observed":true}
+  ],
+  "sources": [
+    {"sourceId":"sec-shls-2026q2-10q","url":"https://www.sec.gov/Archives/edgar/data/1831651/000183165126000108/shls-20260630.htm","kind":"primary","publishedAt":"2026-08-04","originFingerprint":"sec:1831651:2026q2:10-q"}
+  ],
+  "affectedFactors": ["backlog quality","manufacturing execution","working-capital resilience","financing resilience","quality control"],
+  "causalEdges": [
+    {"from":"quality failures and remediation","to":"cash and margin conversion","mechanism":"rework, warranty and remediation consume resources and can delay efficient backlog conversion"},
+    {"from":"inventory build","to":"operating cash flow and borrowing need","mechanism":"working capital absorbs cash even while accounting earnings remain positive"}
+  ],
+  "risks": ["Backlog visibility can overstate realized revenue/profit certainty.","Quality liabilities can exceed current estimates and weaken customer trust or margins.","Working-capital absorption and higher revolver usage reduce financial flexibility if conversion slows."],
+  "contradictions": [{"claim":"Positive net income coexists with materially negative operating cash flow.","resolution":"Inventory and other working-capital uses explain the divergence; this is a cash-conversion risk, not evidence that reported net income is false."}],
+  "unknowns": ["Future shrinkback claims and the pace of inventory normalization remain uncertain."],
+  "gatingStatus": {"betaBlocker":false,"alphaFailureTarget":"missing_score_risk_evidence","note":"Source-addressed risk support only; Alpha retains numeric underwriting authority."},
+  "confidence": 0.97,
+  "recommendedNextStateOwner": {"owner":"council-alpha","action":"Use primary-source backlog, quality and cash-conversion risks in Alpha's risk evidence; preserve distinction between accounting profitability and cash conversion."}
+}

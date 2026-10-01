@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MDB",
   "workId": "t0:MDB",
-  "generatedAt": "2026-10-01T01:02:33.810Z",
+  "generatedAt": "2026-10-01T01:08:10.575Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-09-01T00:00:00.000Z",
-    "end": "2026-09-30T22:13:39.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-30T22:13:39.000Z"
+    "end": "2026-10-01T01:05:20.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T01:05:20.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -66,7 +66,8 @@
     "data/runtime/workgraph/evidence/MDB-20260929T202715Z-council-beta-assist.json",
     "data/runtime/workgraph/evidence/MDB-20260930T011600Z-earth-scout.json",
     "data/runtime/workgraph/evidence/MDB-20260930T012404Z-council-beta-assist.json",
-    "data/runtime/workgraph/evidence/MDB-20260930T221339Z-council-alpha.json"
+    "data/runtime/workgraph/evidence/MDB-20260930T221339Z-council-alpha.json",
+    "data/runtime/workgraph/evidence/MDB-20261001T010520Z-earth-scout-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
@@ -75,8 +76,8 @@
       "data/runtime/workgraph/evidence/MDB-20260930T212600Z-council-alpha.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 19,
-    "historicalEvidenceCount": 25
+    "activeEvidenceCount": 20,
+    "historicalEvidenceCount": 26
   },
   "factorEvidence": {
     "names": [
@@ -338,6 +339,14 @@
       {
         "risk": "An abrupt CEO transition immediately before a major investor communication can increase near-term strategy, execution and leadership-continuity uncertainty even when underlying product demand remains intact.",
         "gating": false
+      },
+      {
+        "risk": "Issuer-primary evidence is authoritative for reported results but not independent validation of management's AI positioning or valuation attractiveness.",
+        "gating": false
+      },
+      {
+        "risk": "Atlas growth remains consumption-sensitive; this artifact does not infer future usage beyond issued guidance.",
+        "gating": false
       }
     ]
   },
@@ -425,6 +434,14 @@
     },
     {
       "risk": "An abrupt CEO transition immediately before a major investor communication can increase near-term strategy, execution and leadership-continuity uncertainty even when underlying product demand remains intact.",
+      "gating": false
+    },
+    {
+      "risk": "Issuer-primary evidence is authoritative for reported results but not independent validation of management's AI positioning or valuation attractiveness.",
+      "gating": false
+    },
+    {
+      "risk": "Atlas growth remains consumption-sensitive; this artifact does not infer future usage beyond issued guidance.",
       "gating": false
     }
   ],
@@ -542,8 +559,8 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 27,
-    "uniqueSourceCount": 12,
+    "rawSourceCount": 28,
+    "uniqueSourceCount": 13,
     "duplicatesCollapsed": 15,
     "missingLineage": 0,
     "uniqueOrigins": [
@@ -558,7 +575,8 @@
       "investors.mongodb.com|ceo-transition|2026-09-28",
       "sec:1441816:2026-09-24:8-k:ceo-transition",
       "mongodb.com:investor-relations:FY2027Q2",
-      "mongodb.com:investor-relations:CEO-transition-20260928"
+      "mongodb.com:investor-relations:CEO-transition-20260928",
+      "mongodb.com|investor-relations|q2-fy2027-results|2026-09-01"
     ]
   },
   "sources": [
@@ -665,6 +683,22 @@
       "primary": true,
       "publishedAt": "2026-09-28",
       "originFingerprint": "mongodb.com:investor-relations:CEO-transition-20260928"
+    },
+    {
+      "sourceId": "issuer:MDB:Q2FY27:2026-09-01",
+      "url": "https://investors.mongodb.com/news-releases/news-release-details/mongodb-inc-announces-second-quarter-fiscal-2027-financial",
+      "provider": "MongoDB Investor Relations",
+      "sourceClass": "issuer-primary",
+      "originFingerprint": "mongodb.com|investor-relations|q2-fy2027-results|2026-09-01",
+      "publishedAt": "2026-09-01T00:00:00Z",
+      "facts": [
+        "Q2 FY2027 revenue was $771.773M, up 30% year over year.",
+        "Atlas-related revenue was $565.916M versus $438.970M a year earlier, approximately 29% growth.",
+        "GAAP operating income was $28.4M versus a $65.3M operating loss a year earlier.",
+        "Free cash flow was $137.6M and non-GAAP operating margin was 24% versus 15% a year earlier.",
+        "Full-year FY2027 revenue guidance was raised to $2.99B-$3.03B; management stated the H2 raise was mainly due to Atlas."
+      ],
+      "primary": false
     }
   ],
   "contradictions": [
@@ -826,11 +860,13 @@
     {
       "unknown": "The transition's cause, permanent succession timing and any effect on product or go-to-market execution are not established by the announcement alone.",
       "gating": false
-    }
+    },
+    "Current market valuation headroom is not established by this source.",
+    "Incremental revenue attributable specifically to AI workloads is not quantified."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 33
+    "nonGatingCount": 35
   },
   "gatingIssues": [],
   "confidence": 84,

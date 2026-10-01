@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "REGN",
   "workId": "t0:REGN",
-  "generatedAt": "2026-10-01T19:06:23.749Z",
+  "generatedAt": "2026-10-01T19:21:59.547Z",
   "sourceState": "packet_ready",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-04-13T00:00:00.000Z",
-    "end": "2026-10-01T19:04:12.000Z",
-    "latestEvidenceGeneratedAt": "2026-10-01T19:04:12.000Z"
+    "end": "2026-10-01T19:19:48.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T19:19:48.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -63,13 +63,14 @@
     "data/runtime/workgraph/evidence/REGN-20261001T161209Z-council-alpha.json",
     "data/runtime/workgraph/evidence/REGN-20261001T170200Z-earth-scout-assist.json",
     "data/runtime/workgraph/evidence/REGN-20261001T180900Z-earth-scout-assist.json",
-    "data/runtime/workgraph/evidence/REGN-20261001T190412Z-earth-scout-assist.json"
+    "data/runtime/workgraph/evidence/REGN-20261001T190412Z-earth-scout-assist.json",
+    "data/runtime/workgraph/evidence/REGN-20261001T191948Z-council-alpha-gate-diagnostic.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 12,
-    "historicalEvidenceCount": 12
+    "activeEvidenceCount": 14,
+    "historicalEvidenceCount": 14
   },
   "factorEvidence": {
     "names": [
@@ -446,7 +447,8 @@
     "factors": [],
     "confidenceFloor": null,
     "evidencePaths": [
-      "data/runtime/workgraph/evidence/REGN-20261001T161209Z-council-alpha.json"
+      "data/runtime/workgraph/evidence/REGN-20261001T161209Z-council-alpha.json",
+      "data/runtime/workgraph/evidence/REGN-20261001T191948Z-council-alpha-gate-diagnostic.json"
     ]
   },
   "primarySourcePresence": {
@@ -465,9 +467,9 @@
     "portfolio diversification -> multiple commercial/pipeline engines -> resilience to single-asset failure"
   ],
   "sourceLineage": {
-    "rawSourceCount": 27,
-    "uniqueSourceCount": 17,
-    "duplicatesCollapsed": 10,
+    "rawSourceCount": 33,
+    "uniqueSourceCount": 20,
+    "duplicatesCollapsed": 13,
     "missingLineage": 0,
     "uniqueOrigins": [
       "regeneron-ir:2026-04-13:telix-radiopharma",
@@ -486,7 +488,10 @@
       "fda.gov|CBER-product-record|STN125874",
       "ema.europa.eu|EMA|LIBTAYO|EMEA-H-C-004844",
       "ema.europa.eu|EMA-EPAR|LIBTAYO|004844",
-      "fda.gov|FDA|domestic-manufacturing-pilot|2026-06-29"
+      "fda.gov|FDA|domestic-manufacturing-pilot|2026-06-29",
+      "alpha:REGN:20261001T161209Z",
+      "packet:REGN:20261001T190623Z",
+      "override:REGN:20261001T190604Z"
     ]
   },
   "sources": [
@@ -621,6 +626,24 @@
       "kind": "regulator-primary-manufacturing-program",
       "primary": true,
       "originFingerprint": "fda.gov|FDA|domestic-manufacturing-pilot|2026-06-29"
+    },
+    {
+      "sourceId": "alpha:REGN:20261001T161209Z",
+      "url": "data/runtime/workgraph/evidence/REGN-20261001T161209Z-council-alpha.json",
+      "kind": "internal-immutable-evidence",
+      "primary": false
+    },
+    {
+      "sourceId": "packet:REGN:20261001T190623Z",
+      "url": "data/runtime/workgraph/packets/REGN.json",
+      "kind": "internal-packet-truth",
+      "primary": false
+    },
+    {
+      "sourceId": "override:REGN:20261001T190604Z",
+      "url": "data/runtime/workgraph/worker-view/semantic-overrides.json",
+      "kind": "internal-operational-correction",
+      "primary": false
     }
   ],
   "contradictions": [

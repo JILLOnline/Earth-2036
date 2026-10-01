@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "REGN",
   "workId": "t0:REGN",
-  "generatedAt": "2026-10-01T01:19:05.687Z",
+  "generatedAt": "2026-10-01T01:27:13.831Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-04-13T00:00:00.000Z",
-    "end": "2026-09-21T12:28:31.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T12:28:31.000Z"
+    "end": "2026-10-01T01:25:35.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T01:25:35.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -55,13 +55,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/BETA-20260921T122831Z-council-beta.json",
-    "data/runtime/workgraph/evidence/REGN-20260921T1007Z-earth-scout.json"
+    "data/runtime/workgraph/evidence/REGN-20260921T1007Z-earth-scout.json",
+    "data/runtime/workgraph/evidence/REGN-20261001T012535Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 5,
+    "historicalEvidenceCount": 5
   },
   "factorEvidence": {
     "names": [
@@ -243,14 +244,16 @@
     "portfolio diversification -> multiple commercial/pipeline engines -> resilience to single-asset failure"
   ],
   "sourceLineage": {
-    "rawSourceCount": 8,
-    "uniqueSourceCount": 3,
+    "rawSourceCount": 10,
+    "uniqueSourceCount": 5,
     "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "regeneron-ir:2026-04-13:telix-radiopharma",
       "regeneron-ir:2026-05-18:parabilis-helicon",
-      "regeneron-ir:2026-07-30:q2-2026"
+      "regeneron-ir:2026-07-30:q2-2026",
+      "investor.regeneron.com|q2-2026-results|2026-07-30",
+      "sec/regeneron|10-q|2026-04-29"
     ]
   },
   "sources": [
@@ -277,6 +280,29 @@
       "primary": true,
       "publishedAt": "2026-07-30",
       "originFingerprint": "regeneron-ir:2026-07-30:q2-2026"
+    },
+    {
+      "sourceId": "issuer:REGN:Q2-2026:20260730",
+      "url": "https://investor.regeneron.com/news-releases/news-release-details/regeneron-reports-second-quarter-2026-financial-and-operating",
+      "originFingerprint": "investor.regeneron.com|q2-2026-results|2026-07-30",
+      "sourceClass": "issuer-primary",
+      "observations": [
+        "Q2 2026 revenue increased 17% year over year to $4.3B while Dupixent global net sales increased 38% and EYLEA HD U.S. net sales increased 52%.",
+        "For the six months ended June 30, 2026, combined EYLEA HD and EYLEA sales declined 17% year over year even as EYLEA HD grew, showing that franchise migration does not automatically eliminate legacy-product erosion.",
+        "The company identifies pending civil proceedings involving the U.S. Department of Justice/U.S. Attorney for Massachusetts and EYLEA-related patent litigation among material legal risks."
+      ],
+      "primary": false
+    },
+    {
+      "sourceId": "sec:REGN:2026Q1:10Q:20260429",
+      "url": "https://investor.regeneron.com/static-files/72bf8e5a-f760-4966-ad55-2baac7d55fb9",
+      "originFingerprint": "sec/regeneron|10-q|2026-04-29",
+      "sourceClass": "sec-primary",
+      "observations": [
+        "Regeneron states that EYLEA HD and EYLEA face significant marketplace competition and that competitors may have greater development, manufacturing, financial, marketing and human resources.",
+        "The filing states that changes in laws, regulations and healthcare policy can materially affect marketed-product sales."
+      ],
+      "primary": false
     }
   ],
   "contradictions": [
@@ -291,10 +317,15 @@
       "resolution": "Both are disclosed: franchise transition supports HD growth while competitive pressure and migration reduce legacy EYLEA demand.",
       "resolved": true,
       "gating": false
+    },
+    {
+      "statement": "Strong company-wide revenue growth and rapid Dupixent/EYLEA HD growth coexist with year-over-year decline in the combined EYLEA franchise for the first half of 2026.",
+      "status": "material-context-not-a-beta-blocker",
+      "resolutionPath": "Council Alpha should reflect franchise mix transition separately from consolidated growth when setting its own numeric risk treatment."
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
+    "unresolvedMaterialCount": 1,
     "items": [
       {
         "claim": "EYLEA HD growth versus legacy EYLEA pressure",
@@ -307,6 +338,11 @@
         "resolution": "Both are disclosed: franchise transition supports HD growth while competitive pressure and migration reduce legacy EYLEA demand.",
         "resolved": true,
         "gating": false
+      },
+      {
+        "statement": "Strong company-wide revenue growth and rapid Dupixent/EYLEA HD growth coexist with year-over-year decline in the combined EYLEA franchise for the first half of 2026.",
+        "status": "material-context-not-a-beta-blocker",
+        "resolutionPath": "Council Alpha should reflect franchise mix transition separately from consolidated growth when setting its own numeric risk treatment."
       }
     ]
   },
@@ -326,11 +362,14 @@
     {
       "unknown": "The November 2026 cemdisiran FDA decision is unresolved and is not forecast as certain.",
       "gating": false
-    }
+    },
+    "Durability of combined EYLEA franchise stabilization after the first half of 2026.",
+    "Magnitude and timing of any economic effect from pending government or patent proceedings.",
+    "Future net-pricing and share effects from biosimilar and alternative anti-VEGF competition."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 7
   },
   "gatingIssues": [],
   "confidence": 92,
@@ -342,7 +381,8 @@
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence"
+      "missing_data_confidence_evidence",
+      "unresolved_material_contradiction"
     ],
     "routing": [
       {
@@ -368,6 +408,10 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

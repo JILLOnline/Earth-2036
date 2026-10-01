@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "RGTI",
   "workId": "t0:RGTI",
-  "generatedAt": "2026-10-01T16:24:24.040Z",
+  "generatedAt": "2026-10-01T16:28:37.636Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-03-04T00:00:00.000Z",
-    "end": "2026-09-22T10:24:04.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-22T10:24:04.000Z"
+    "end": "2026-10-01T16:27:09.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T16:27:09.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -55,13 +55,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/RGTI-20260918T2000Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/RGTI-20260922T102404Z-council-beta.json"
+    "data/runtime/workgraph/evidence/RGTI-20260922T102404Z-council-beta.json",
+    "data/runtime/workgraph/evidence/RGTI-20261001T162709Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 5,
+    "historicalEvidenceCount": 5
   },
   "factorEvidence": {
     "names": [
@@ -174,6 +175,21 @@
       {
         "risk": "Roadmap claims can overstate value capture if fidelity/scale milestones fail to convert into customer workloads and recurring revenue.",
         "gating": false
+      },
+      {
+        "risk": "Commercial revenue remains small relative to the operating expense base, so technical progress must convert into substantially larger and repeatable paid deployments to improve operating self-funding.",
+        "observed": true,
+        "gating": false
+      },
+      {
+        "risk": "Future equity or convertible financing can dilute holders if cash needs outrun operating inflows; the current liquidity cushion reduces near-term urgency but does not eliminate the longer-run pathway.",
+        "observed": true,
+        "gating": false
+      },
+      {
+        "risk": "Roadmap timing has changed before, so announced technical milestones should be treated as falsifiable targets rather than completed capability.",
+        "observed": true,
+        "gating": false
       }
     ]
   },
@@ -197,6 +213,21 @@
     {
       "risk": "Roadmap claims can overstate value capture if fidelity/scale milestones fail to convert into customer workloads and recurring revenue.",
       "gating": false
+    },
+    {
+      "risk": "Commercial revenue remains small relative to the operating expense base, so technical progress must convert into substantially larger and repeatable paid deployments to improve operating self-funding.",
+      "observed": true,
+      "gating": false
+    },
+    {
+      "risk": "Future equity or convertible financing can dilute holders if cash needs outrun operating inflows; the current liquidity cushion reduces near-term urgency but does not eliminate the longer-run pathway.",
+      "observed": true,
+      "gating": false
+    },
+    {
+      "risk": "Roadmap timing has changed before, so announced technical milestones should be treated as falsifiable targets rather than completed capability.",
+      "observed": true,
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -207,7 +238,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 3
+    "count": 4
   },
   "causalMapping": {
     "present": true,
@@ -217,7 +248,12 @@
       "systems-delivery -> customer-deployment",
       "customer-deployment -> commercial-validation",
       "technical-validation -/-> durable-commercial-demand",
-      "cash-burn -> financing-pressure -> dilution-risk"
+      "cash-burn -> financing-pressure -> dilution-risk",
+      "roadmap-milestones -> deployable-system-performance -> customer-adoption -> commercial-revenue",
+      "commercial-revenue-growth -/-> current-r-and-d-plus-sga-cost-base -> continued-operating-loss",
+      "continued-operating-loss -> cash-consumption -> potential-external-financing -> dilution-risk",
+      "cash-and-investment-cushion -> near-term-liquidity-resilience",
+      "prior-roadmap-misses -> execution-uncertainty -> lower-confidence-in-unverified-future-milestones"
     ]
   },
   "causalEdges": [
@@ -226,17 +262,23 @@
     "systems-delivery -> customer-deployment",
     "customer-deployment -> commercial-validation",
     "technical-validation -/-> durable-commercial-demand",
-    "cash-burn -> financing-pressure -> dilution-risk"
+    "cash-burn -> financing-pressure -> dilution-risk",
+    "roadmap-milestones -> deployable-system-performance -> customer-adoption -> commercial-revenue",
+    "commercial-revenue-growth -/-> current-r-and-d-plus-sga-cost-base -> continued-operating-loss",
+    "continued-operating-loss -> cash-consumption -> potential-external-financing -> dilution-risk",
+    "cash-and-investment-cushion -> near-term-liquidity-resilience",
+    "prior-roadmap-misses -> execution-uncertainty -> lower-confidence-in-unverified-future-milestones"
   ],
   "sourceLineage": {
-    "rawSourceCount": 8,
-    "uniqueSourceCount": 3,
+    "rawSourceCount": 9,
+    "uniqueSourceCount": 4,
     "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:RGTI:2026-09-08:commerce",
       "issuer:RGTI:2026-08-19:org",
-      "issuer:RGTI:2025FY"
+      "issuer:RGTI:2025FY",
+      "sec:1838359:2026Q2:000110465926091993:10-Q"
     ]
   },
   "sources": [
@@ -263,6 +305,14 @@
       "primary": true,
       "publishedAt": "2026-03-04",
       "originFingerprint": "issuer:RGTI:2025FY"
+    },
+    {
+      "sourceId": "sec:RGTI:2026Q2:10-Q:0001104659-26-091993",
+      "url": "https://www.sec.gov/Archives/edgar/data/1838359/000110465926091993/rgti-20260630x10q.htm",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "sec:1838359:2026Q2:000110465926091993:10-Q"
     }
   ],
   "contradictions": [
@@ -276,10 +326,16 @@
     {
       "contradiction": "Technical/government validation is strengthening while the commercial revenue base remains early-stage.",
       "material": true
+    },
+    {
+      "contradiction": "Revenue growth and a substantial liquidity cushion coexist with large operating losses and issuer-disclosed uncertainty around future roadmap timing.",
+      "disposition": "coexisting_conditions_not_logical_conflict",
+      "material": true,
+      "resolutionPath": "Alpha can use the SEC figures to quantify risk without treating technical validation or liquidity as proof of durable commercial economics."
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 3,
+    "unresolvedMaterialCount": 4,
     "items": [
       {
         "contradiction": "Technical/government validation is strengthening while the commercial revenue base remains early-stage."
@@ -291,6 +347,12 @@
       {
         "contradiction": "Technical/government validation is strengthening while the commercial revenue base remains early-stage.",
         "material": true
+      },
+      {
+        "contradiction": "Revenue growth and a substantial liquidity cushion coexist with large operating losses and issuer-disclosed uncertainty around future roadmap timing.",
+        "disposition": "coexisting_conditions_not_logical_conflict",
+        "material": true,
+        "resolutionPath": "Alpha can use the SEC figures to quantify risk without treating technical validation or liquidity as proof of durable commercial economics."
       }
     ]
   },
@@ -310,11 +372,14 @@
     {
       "unknown": "Current cash burn, gross margins and customer concentration require Alpha underwriting.",
       "gating": false
-    }
+    },
+    "Whether 2026-2027 system deployments produce repeatable gross-margin and renewal economics sufficient to narrow the operating-loss gap.",
+    "Whether the next roadmap update changes milestone timing or architecture in a way that materially changes commercialization assumptions.",
+    "Customer concentration and contract durability beyond the disclosed aggregate revenue mix remain for Alpha/source-integrity underwriting."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 7
   },
   "gatingIssues": [],
   "confidence": 89,

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SLDP",
   "workId": "t0:SLDP",
-  "generatedAt": "2026-10-01T09:14:43.960Z",
+  "generatedAt": "2026-10-01T09:31:41.984Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-01T00:00:00.000Z",
-    "end": "2026-09-21T16:27:43.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T16:27:43.000Z"
+    "end": "2026-10-01T09:30:41.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T09:30:41.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -55,13 +55,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/SLDP-20260921T1307Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/SLDP-20260921T162743Z-council-beta.json"
+    "data/runtime/workgraph/evidence/SLDP-20260921T162743Z-council-beta.json",
+    "data/runtime/workgraph/evidence/SLDP-20261001T093041Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 5,
+    "historicalEvidenceCount": 5
   },
   "factorEvidence": {
     "names": [
@@ -217,7 +218,9 @@
       {
         "risk": "Competing battery technologies may improve faster or scale earlier, reducing the value of current partner validation.",
         "gating": false
-      }
+      },
+      "Non-exclusive partners and competing technologies reduce certainty that current validation converts to durable volume.",
+      "Equity funding extends runway but can dilute holders if commercialization remains delayed."
     ]
   },
   "risks": [
@@ -240,7 +243,9 @@
     {
       "risk": "Competing battery technologies may improve faster or scale earlier, reducing the value of current partner validation.",
       "gating": false
-    }
+    },
+    "Non-exclusive partners and competing technologies reduce certainty that current validation converts to durable volume.",
+    "Equity funding extends runway but can dilute holders if commercialization remains delayed."
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -250,7 +255,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
     "present": true,
@@ -272,6 +277,16 @@
         "to": "economic viability",
         "mechanism": "repeatable high-volume production determines whether technical performance converts into competitive unit economics",
         "confidence": 0.94
+      },
+      {
+        "from": "technical performance and partner qualification",
+        "to": "commercial adoption",
+        "mechanism": "partners must validate performance and agree scalable commercial terms before recurring volume economics emerge"
+      },
+      {
+        "from": "pre-scale cash burn",
+        "to": "equity financing dependence",
+        "mechanism": "development and pilot-line spending can require external capital before electrolyte/licensing cash flows cover costs"
       }
     ]
   },
@@ -293,16 +308,27 @@
       "to": "economic viability",
       "mechanism": "repeatable high-volume production determines whether technical performance converts into competitive unit economics",
       "confidence": 0.94
+    },
+    {
+      "from": "technical performance and partner qualification",
+      "to": "commercial adoption",
+      "mechanism": "partners must validate performance and agree scalable commercial terms before recurring volume economics emerge"
+    },
+    {
+      "from": "pre-scale cash burn",
+      "to": "equity financing dependence",
+      "mechanism": "development and pilot-line spending can require external capital before electrolyte/licensing cash flows cover costs"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 7,
-    "uniqueSourceCount": 2,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 3,
     "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "solidpower-ir:2026-08-04:q2-2026-results",
-      "solidpower-ir:2026-07-01:bmw-board-nominee"
+      "solidpower-ir:2026-07-01:bmw-board-nominee",
+      "sec:1844862:2026q2:10-q"
     ]
   },
   "sources": [
@@ -321,6 +347,14 @@
       "publishedAt": "2026-07-01",
       "originFingerprint": "solidpower-ir:2026-07-01:bmw-board-nominee",
       "sourceId": null
+    },
+    {
+      "sourceId": "sec-sldp-2026q2-10q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1844862/000110465926090634/sldp-20260630x10q.htm",
+      "kind": "primary",
+      "publishedAt": "2026-08-04",
+      "originFingerprint": "sec:1844862:2026q2:10-q",
+      "primary": true
     }
   ],
   "contradictions": [
@@ -335,10 +369,14 @@
       "resolution": "Runway supports experimentation and scale-up but does not itself validate commercial demand or economics.",
       "resolved": true,
       "gating": false
+    },
+    {
+      "claim": "Strong liquidity coexists with financing dependence.",
+      "resolution": "Liquidity materially improves resilience, while the 2026 equity raise shows that pre-scale development still relies partly on external capital; both can be true."
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
+    "unresolvedMaterialCount": 1,
     "items": [
       {
         "claim": "Strong liquidity and partner milestones coexist with negligible current revenue.",
@@ -351,6 +389,10 @@
         "resolution": "Runway supports experimentation and scale-up but does not itself validate commercial demand or economics.",
         "resolved": true,
         "gating": false
+      },
+      {
+        "claim": "Strong liquidity coexists with financing dependence.",
+        "resolution": "Liquidity materially improves resilience, while the 2026 equity raise shows that pre-scale development still relies partly on external capital; both can be true."
       }
     ]
   },
@@ -370,11 +412,12 @@
     {
       "unknown": "No current evidence establishes production-scale yield, cost parity, committed commercial volumes or durable pricing power.",
       "gating": false
-    }
+    },
+    "Production-scale yield, unit economics, committed volumes and final JV economics remain unproven."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
   "confidence": 89,
@@ -386,7 +429,8 @@
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence"
+      "missing_data_confidence_evidence",
+      "unresolved_material_contradiction"
     ],
     "routing": [
       {
@@ -412,6 +456,10 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

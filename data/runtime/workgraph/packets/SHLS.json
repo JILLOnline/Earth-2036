@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SHLS",
   "workId": "t0:SHLS",
-  "generatedAt": "2026-10-01T09:14:43.960Z",
+  "generatedAt": "2026-10-01T09:31:41.985Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-06-25T00:00:00.000Z",
-    "end": "2026-09-21T16:27:42.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T16:27:42.000Z"
+    "end": "2026-10-01T09:30:41.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T09:30:41.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -55,13 +55,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/SHLS-20260921T1307Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/SHLS-20260921T162742Z-council-beta.json"
+    "data/runtime/workgraph/evidence/SHLS-20260921T162742Z-council-beta.json",
+    "data/runtime/workgraph/evidence/SHLS-20261001T093041Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 5,
+    "historicalEvidenceCount": 5
   },
   "factorEvidence": {
     "names": [
@@ -215,7 +216,10 @@
       {
         "risk": "Backlog can be overinterpreted as guaranteed revenue and margin.",
         "gating": false
-      }
+      },
+      "Backlog visibility can overstate realized revenue/profit certainty.",
+      "Quality liabilities can exceed current estimates and weaken customer trust or margins.",
+      "Working-capital absorption and higher revolver usage reduce financial flexibility if conversion slows."
     ]
   },
   "risks": [
@@ -238,7 +242,10 @@
     {
       "risk": "Backlog can be overinterpreted as guaranteed revenue and margin.",
       "gating": false
-    }
+    },
+    "Backlog visibility can overstate realized revenue/profit certainty.",
+    "Quality liabilities can exceed current estimates and weaken customer trust or margins.",
+    "Working-capital absorption and higher revolver usage reduce financial flexibility if conversion slows."
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -248,7 +255,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
     "present": true,
@@ -270,6 +277,16 @@
         "to": "backlog value capture",
         "mechanism": "facility efficiency and product quality determine whether awarded demand converts at acceptable margins",
         "confidence": 0.94
+      },
+      {
+        "from": "quality failures and remediation",
+        "to": "cash and margin conversion",
+        "mechanism": "rework, warranty and remediation consume resources and can delay efficient backlog conversion"
+      },
+      {
+        "from": "inventory build",
+        "to": "operating cash flow and borrowing need",
+        "mechanism": "working capital absorbs cash even while accounting earnings remain positive"
       }
     ]
   },
@@ -291,16 +308,27 @@
       "to": "backlog value capture",
       "mechanism": "facility efficiency and product quality determine whether awarded demand converts at acceptable margins",
       "confidence": 0.94
+    },
+    {
+      "from": "quality failures and remediation",
+      "to": "cash and margin conversion",
+      "mechanism": "rework, warranty and remediation consume resources and can delay efficient backlog conversion"
+    },
+    {
+      "from": "inventory build",
+      "to": "operating cash flow and borrowing need",
+      "mechanism": "working capital absorbs cash even while accounting earnings remain positive"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 7,
-    "uniqueSourceCount": 2,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 3,
     "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "shoals-ir:2026-08-04:q2-2026-results",
-      "shoals-ir:2026-06-25:itc-victory"
+      "shoals-ir:2026-06-25:itc-victory",
+      "sec:1831651:2026q2:10-q"
     ]
   },
   "sources": [
@@ -319,6 +347,14 @@
       "publishedAt": "2026-06-25",
       "originFingerprint": "shoals-ir:2026-06-25:itc-victory",
       "sourceId": null
+    },
+    {
+      "sourceId": "sec-shls-2026q2-10q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1831651/000183165126000108/shls-20260630.htm",
+      "kind": "primary",
+      "publishedAt": "2026-08-04",
+      "originFingerprint": "sec:1831651:2026q2:10-q",
+      "primary": true
     }
   ],
   "contradictions": [
@@ -333,10 +369,14 @@
       "resolution": "Demand and conversion efficiency are distinct; the evidence supports strong demand while simultaneously showing manufacturing drag.",
       "resolved": true,
       "gating": false
+    },
+    {
+      "claim": "Positive net income coexists with materially negative operating cash flow.",
+      "resolution": "Inventory and other working-capital uses explain the divergence; this is a cash-conversion risk, not evidence that reported net income is false."
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
+    "unresolvedMaterialCount": 1,
     "items": [
       {
         "claim": "Record backlog coexists with lower gross margin.",
@@ -349,6 +389,10 @@
         "resolution": "Demand and conversion efficiency are distinct; the evidence supports strong demand while simultaneously showing manufacturing drag.",
         "resolved": true,
         "gating": false
+      },
+      {
+        "claim": "Positive net income coexists with materially negative operating cash flow.",
+        "resolution": "Inventory and other working-capital uses explain the divergence; this is a cash-conversion risk, not evidence that reported net income is false."
       }
     ]
   },
@@ -368,11 +412,12 @@
     {
       "unknown": "Evidence does not yet show the pace or completeness of corrective-action normalization.",
       "gating": false
-    }
+    },
+    "Future shrinkback claims and the pace of inventory normalization remain uncertain."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
   "confidence": 91,
@@ -384,7 +429,8 @@
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence"
+      "missing_data_confidence_evidence",
+      "unresolved_material_contradiction"
     ],
     "routing": [
       {
@@ -410,6 +456,10 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SEDG",
   "workId": "t0:SEDG",
-  "generatedAt": "2026-10-01T09:14:43.960Z",
+  "generatedAt": "2026-10-01T09:31:41.985Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-18T00:00:00.000Z",
-    "end": "2026-09-21T16:27:41.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T16:27:41.000Z"
+    "end": "2026-10-01T09:30:41.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T09:30:41.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -55,13 +55,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/SEDG-20260921T1307Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/SEDG-20260921T162741Z-council-beta.json"
+    "data/runtime/workgraph/evidence/SEDG-20260921T162741Z-council-beta.json",
+    "data/runtime/workgraph/evidence/SEDG-20261001T093041Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 5,
+    "historicalEvidenceCount": 5
   },
   "factorEvidence": {
     "names": [
@@ -203,7 +204,9 @@
       {
         "risk": "Competitive power-electronics alternatives can constrain pricing and share recovery.",
         "gating": false
-      }
+      },
+      "Recovery durability remains exposed to policy-driven customer economics.",
+      "Unhedged commodity volatility can weaken operating leverage during a turnaround."
     ]
   },
   "risks": [
@@ -226,7 +229,9 @@
     {
       "risk": "Competitive power-electronics alternatives can constrain pricing and share recovery.",
       "gating": false
-    }
+    },
+    "Recovery durability remains exposed to policy-driven customer economics.",
+    "Unhedged commodity volatility can weaken operating leverage during a turnaround."
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -236,7 +241,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
     "present": true,
@@ -258,6 +263,16 @@
         "to": "data-center power adjacency",
         "mechanism": "high-growth compute infrastructure also requires efficient power conversion/control",
         "confidence": 0.55
+      },
+      {
+        "from": "reduced customer tax incentives",
+        "to": "solar project economics and demand",
+        "mechanism": "weaker incentives can reduce customer returns and alter project timing"
+      },
+      {
+        "from": "commodity cost volatility",
+        "to": "gross margin",
+        "mechanism": "unhedged input inflation compresses margin when pricing cannot fully pass through costs"
       }
     ]
   },
@@ -279,16 +294,27 @@
       "to": "data-center power adjacency",
       "mechanism": "high-growth compute infrastructure also requires efficient power conversion/control",
       "confidence": 0.55
+    },
+    {
+      "from": "reduced customer tax incentives",
+      "to": "solar project economics and demand",
+      "mechanism": "weaker incentives can reduce customer returns and alter project timing"
+    },
+    {
+      "from": "commodity cost volatility",
+      "to": "gross margin",
+      "mechanism": "unhedged input inflation compresses margin when pricing cannot fully pass through costs"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 8,
-    "uniqueSourceCount": 2,
+    "rawSourceCount": 9,
+    "uniqueSourceCount": 3,
     "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "solaredge-ir:2026-08-05:q2-2026-results",
-      "solaredge-ir:2026-02-18:fy2025-results"
+      "solaredge-ir:2026-02-18:fy2025-results",
+      "sec:1419612:2026q2:10-q"
     ]
   },
   "sources": [
@@ -307,6 +333,14 @@
       "publishedAt": "2026-02-18",
       "originFingerprint": "solaredge-ir:2026-02-18:fy2025-results",
       "sourceId": null
+    },
+    {
+      "sourceId": "sec-sedg-2026q2-10q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1419612/000117891326003854/zk2635807.htm",
+      "kind": "primary",
+      "publishedAt": "2026-08-05",
+      "originFingerprint": "sec:1419612:2026q2:10-q",
+      "primary": true
     }
   ],
   "contradictions": [],
@@ -330,11 +364,12 @@
     {
       "unknown": "Current evidence does not quantify data-center pipeline, customer wins or margins.",
       "gating": false
-    }
+    },
+    "Current evidence does not quantify the net demand elasticity to the revised U.S. tax-credit schedule or SolarEdge's realized pass-through capacity by product."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
   "confidence": 87,

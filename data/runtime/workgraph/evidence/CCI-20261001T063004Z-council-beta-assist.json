@@ -1,0 +1,65 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-assist-evidence",
+  "ticker": "CCI",
+  "entityId": "CCI",
+  "workId": "t0:CCI",
+  "role": "council-beta",
+  "rootOwner": "council-alpha",
+  "capability": "risk-source-support",
+  "requestId": "assist:CCI:council-alpha:council-beta:risk-source-support",
+  "inputSignature": "1b8fb2cddba4130f2192",
+  "generatedAt": "2026-10-01T06:30:04Z",
+  "outcome": "new_source_addressed_risk_evidence",
+  "claims": [
+    {
+      "claim": "Crown Castle's June 30, 2026 tenant base is highly concentrated: its Form 10-Q reports approximately 93% of site-rental revenue for the first six months of 2026 came from T-Mobile, AT&T and Verizon Wireless. This makes carrier-specific capital allocation, consolidation or contract decisions a material cash-flow sensitivity even after the DISH exit is isolated.",
+      "status": "supported"
+    },
+    {
+      "claim": "The same filing reports a weighted-average remaining tenant-contract term of approximately five years and approximately $22.1 billion of expected future cash inflows excluding DISH amounts. Contract duration improves visibility, but it does not eliminate concentration risk because the cash-flow base is dominated by three counterparties.",
+      "status": "supported"
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "sec:CCI:10-Q:20260805",
+      "url": "https://investor.crowncastle.com/static-files/3c0fa159-135d-4785-a191-9a21ca843e73",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-05",
+      "originFingerprint": "sec:CCI:10-Q:2026Q2:20260805"
+    }
+  ],
+  "affectedMethodologyFactors": ["scenarioRobustness", "pricingPower", "financialOperatingMomentum", "supplyChainResilience"],
+  "causalEdges": [
+    {"from": "risk:three-carrier-concentration", "to": "mechanism:site-rental-cash-flow", "relation": "amplifies_counterparty_sensitivity"},
+    {"from": "mechanism:long-term-contracts", "to": "metric:cash-flow-visibility", "relation": "supports_but_does_not_diversify"}
+  ],
+  "risks": [
+    {"risk": "Approximately 93% of first-half 2026 site-rental revenue came from three national carriers, creating concentrated exposure to their network spending and contract decisions.", "gating": false}
+  ],
+  "contradictions": [
+    {"contradiction": "Long-duration contracts and $22.1 billion of expected future cash inflows improve visibility while counterparty concentration remains structurally high.", "material": true, "disposition": "mechanistically_explained_monitor_concentration"}
+  ],
+  "unknowns": [
+    {"unknown": "The degree to which future colocation and amendment growth can diversify economic dependence away from the three largest carriers remains unproven.", "gating": false}
+  ],
+  "falsifiers": [
+    "If future filings show a sustained decline in the top-three carrier revenue share while organic leasing remains healthy, the concentration-risk assessment should be reduced.",
+    "If renewal and amendment economics remain resilient through materially lower carrier capital spending, the inferred sensitivity of cash-flow growth to carrier concentration should be revised downward."
+  ],
+  "gatingStatus": "assist_only_noncanonical",
+  "confidence": 96,
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "lineage": {
+    "supersedes": null,
+    "inputEvidence": [
+      "data/runtime/workgraph/evidence/CCI-20260919T100503Z-earth-scout.json",
+      "data/runtime/workgraph/evidence/CCI-20260922T062603Z-council-beta.json",
+      "data/runtime/workgraph/evidence/CCI-20260930T232916Z-council-beta-assist.json"
+    ],
+    "methodology": "1.0.0"
+  }
+}

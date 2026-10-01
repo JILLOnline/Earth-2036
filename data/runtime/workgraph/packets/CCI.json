@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CCI",
   "workId": "t0:CCI",
-  "generatedAt": "2026-10-01T06:21:50.025Z",
+  "generatedAt": "2026-10-01T06:31:19.196Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-12T00:00:00.000Z",
-    "end": "2026-09-30T23:29:16.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-30T23:29:16.000Z"
+    "end": "2026-10-01T06:30:04.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T06:30:04.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -56,13 +56,14 @@
   "evidencePaths": [
     "data/runtime/workgraph/evidence/CCI-20260919T100503Z-earth-scout.json",
     "data/runtime/workgraph/evidence/CCI-20260922T062603Z-council-beta.json",
-    "data/runtime/workgraph/evidence/CCI-20260930T232916Z-council-beta-assist.json"
+    "data/runtime/workgraph/evidence/CCI-20260930T232916Z-council-beta-assist.json",
+    "data/runtime/workgraph/evidence/CCI-20261001T063004Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 5,
-    "historicalEvidenceCount": 5
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -198,6 +199,10 @@
       {
         "risk": "AFFO improvement driven partly by financing and cost relief should not be interpreted as proof that site-rental growth has already normalized.",
         "gating": false
+      },
+      {
+        "risk": "Approximately 93% of first-half 2026 site-rental revenue came from three national carriers, creating concentrated exposure to their network spending and contract decisions.",
+        "gating": false
       }
     ]
   },
@@ -237,6 +242,10 @@
     {
       "risk": "AFFO improvement driven partly by financing and cost relief should not be interpreted as proof that site-rental growth has already normalized.",
       "gating": false
+    },
+    {
+      "risk": "Approximately 93% of first-half 2026 site-rental revenue came from three national carriers, creating concentrated exposure to their network spending and contract decisions.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -247,7 +256,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 4
+    "count": 5
   },
   "causalMapping": {
     "present": true,
@@ -281,6 +290,16 @@
         "from": "mechanism:debt_repayment_interest_savings",
         "to": "metric:AFFO",
         "relation": "supports_despite_revenue_churn"
+      },
+      {
+        "from": "risk:three-carrier-concentration",
+        "to": "mechanism:site-rental-cash-flow",
+        "relation": "amplifies_counterparty_sensitivity"
+      },
+      {
+        "from": "mechanism:long-term-contracts",
+        "to": "metric:cash-flow-visibility",
+        "relation": "supports_but_does_not_diversify"
       }
     ]
   },
@@ -314,18 +333,29 @@
       "from": "mechanism:debt_repayment_interest_savings",
       "to": "metric:AFFO",
       "relation": "supports_despite_revenue_churn"
+    },
+    {
+      "from": "risk:three-carrier-concentration",
+      "to": "mechanism:site-rental-cash-flow",
+      "relation": "amplifies_counterparty_sensitivity"
+    },
+    {
+      "from": "mechanism:long-term-contracts",
+      "to": "metric:cash-flow-visibility",
+      "relation": "supports_but_does_not_diversify"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 10,
-    "uniqueSourceCount": 4,
+    "rawSourceCount": 11,
+    "uniqueSourceCount": 5,
     "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:CCI:fiber-sale-close:20260501",
       "issuer:CCI:2026Q2:20260722",
       "issuer:CCI:2025FY:20260204",
-      "issuer:CCI:DISH-default:20260112"
+      "issuer:CCI:DISH-default:20260112",
+      "sec:CCI:10-Q:2026Q2:20260805"
     ]
   },
   "sources": [
@@ -360,6 +390,14 @@
       "primary": true,
       "publishedAt": "2026-01-12",
       "originFingerprint": "issuer:CCI:DISH-default:20260112"
+    },
+    {
+      "sourceId": "sec:CCI:10-Q:20260805",
+      "url": "https://investor.crowncastle.com/static-files/3c0fa159-135d-4785-a191-9a21ca843e73",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-05",
+      "originFingerprint": "sec:CCI:10-Q:2026Q2:20260805"
     }
   ],
   "contradictions": [
@@ -380,10 +418,15 @@
       "contradiction": "Improving AFFO per share coexists with declining site-rental revenue because debt reduction, interest savings and operating efficiencies can offset tenant cancellation pressure.",
       "material": true,
       "disposition": "mechanistically_explained_not_bearish_by_itself"
+    },
+    {
+      "contradiction": "Long-duration contracts and $22.1 billion of expected future cash inflows improve visibility while counterparty concentration remains structurally high.",
+      "material": true,
+      "disposition": "mechanistically_explained_monitor_concentration"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 3,
+    "unresolvedMaterialCount": 4,
     "items": [
       {
         "contradiction": "Balance-sheet simplification and debt reduction improve resilience while reported site-rental revenue outlook still implies contraction versus 2025."
@@ -402,6 +445,11 @@
         "contradiction": "Improving AFFO per share coexists with declining site-rental revenue because debt reduction, interest savings and operating efficiencies can offset tenant cancellation pressure.",
         "material": true,
         "disposition": "mechanistically_explained_not_bearish_by_itself"
+      },
+      {
+        "contradiction": "Long-duration contracts and $22.1 billion of expected future cash inflows improve visibility while counterparty concentration remains structurally high.",
+        "material": true,
+        "disposition": "mechanistically_explained_monitor_concentration"
       }
     ]
   },
@@ -425,11 +473,15 @@
     {
       "unknown": "The pace at which post-DISH/Sprint organic leasing can offset cancellation losses remains unproven until subsequent operating periods establish sustained net growth.",
       "gating": false
+    },
+    {
+      "unknown": "The degree to which future colocation and amendment growth can diversify economic dependence away from the three largest carriers remains unproven.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 5
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
   "confidence": 91,

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SOUN",
   "workId": "t0:SOUN",
-  "generatedAt": "2026-10-01T10:20:50.941Z",
+  "generatedAt": "2026-10-01T10:25:08.644Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-05-07T00:00:00.000Z",
-    "end": "2026-09-21T17:23:31.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T17:23:31.000Z"
+    "end": "2026-10-01T10:24:16.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T10:24:16.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -55,13 +55,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/SOUN-20260921T1307Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/SOUN-20260921T172331Z-council-beta.json"
+    "data/runtime/workgraph/evidence/SOUN-20260921T172331Z-council-beta.json",
+    "data/runtime/workgraph/evidence/SOUN-20261001T102416Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 5,
+    "historicalEvidenceCount": 5
   },
   "factorEvidence": {
     "names": [
@@ -74,7 +75,9 @@
       "substitutionResilience",
       "financingRisk",
       "integrationRisk",
-      "confidenceInflation"
+      "confidenceInflation",
+      "financialOperatingMomentum",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -186,7 +189,9 @@
     "substitutionResilience",
     "financingRisk",
     "integrationRisk",
-    "confidenceInflation"
+    "confidenceInflation",
+    "financialOperatingMomentum",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -209,6 +214,10 @@
       },
       {
         "risk": "Acquisition integration can dilute focus or obscure underlying unit economics.",
+        "gating": false
+      },
+      {
+        "risk": "Acquisition integration and capital deployment can obscure underlying unit economics if acquired revenue does not convert into durable margin and cash generation.",
         "gating": false
       }
     ]
@@ -233,6 +242,10 @@
     {
       "risk": "Acquisition integration can dilute focus or obscure underlying unit economics.",
       "gating": false
+    },
+    {
+      "risk": "Acquisition integration and capital deployment can obscure underlying unit economics if acquired revenue does not convert into durable margin and cash generation.",
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -243,7 +256,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
     "present": true,
@@ -265,6 +278,12 @@
         "to": "shareholder economics",
         "mechanism": "growth creates durable value only if gross margin and operating leverage exceed integration and capital costs",
         "falsifier": "sustained positive cash generation and improving consolidated margins demonstrate profitable conversion"
+      },
+      {
+        "from": "acquisition capital and assumed debt repayment",
+        "to": "required post-acquisition operating returns",
+        "mechanism": "cash consideration, transaction expense and debt repayment raise the economic hurdle for acquired growth",
+        "falsifier": "future filings show durable acquired-customer retention, improving consolidated margins and cash generation sufficient to demonstrate returns above acquisition/integration costs"
       }
     ]
   },
@@ -286,16 +305,23 @@
       "to": "shareholder economics",
       "mechanism": "growth creates durable value only if gross margin and operating leverage exceed integration and capital costs",
       "falsifier": "sustained positive cash generation and improving consolidated margins demonstrate profitable conversion"
+    },
+    {
+      "from": "acquisition capital and assumed debt repayment",
+      "to": "required post-acquisition operating returns",
+      "mechanism": "cash consideration, transaction expense and debt repayment raise the economic hurdle for acquired growth",
+      "falsifier": "future filings show durable acquired-customer retention, improving consolidated margins and cash generation sufficient to demonstrate returns above acquisition/integration costs"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 7,
-    "uniqueSourceCount": 2,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 3,
     "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "soundhound-ir:2026-08-05:q2-2026-results",
-      "soundhound-ir:2026-05-07:q1-2026-results"
+      "soundhound-ir:2026-05-07:q1-2026-results",
+      "sec-edgar:1840856:10-q:2026q2"
     ]
   },
   "sources": [
@@ -314,6 +340,14 @@
       "publishedAt": "2026-05-07",
       "originFingerprint": "soundhound-ir:2026-05-07:q1-2026-results",
       "sourceId": null
+    },
+    {
+      "sourceId": "sec:1840856:2026-06-30:10-q:000184085626000022",
+      "url": "https://www.sec.gov/Archives/edgar/data/1840856/000184085626000022/soun-20260630.htm",
+      "kind": "primary-regulatory",
+      "primary": true,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "sec-edgar:1840856:10-q:2026q2"
     }
   ],
   "contradictions": [
@@ -363,11 +397,15 @@
     {
       "unknown": "Current packet evidence does not establish full-cycle customer retention or return on acquisition capital.",
       "gating": false
+    },
+    {
+      "unknown": "Current evidence does not isolate full-cycle return on acquisition capital or retention economics for acquired customer cohorts.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
   "confidence": 89,

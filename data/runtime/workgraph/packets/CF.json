@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CF",
   "workId": "t0:CF",
-  "generatedAt": "2026-10-01T00:05:25.197Z",
+  "generatedAt": "2026-10-01T00:07:55.701Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2025-04-08T00:00:00.000Z",
-    "end": "2026-09-22T06:26:03.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-22T06:26:03.000Z"
+    "end": "2026-10-01T00:06:19.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T00:06:19.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -55,13 +55,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/CF-20260919T100505Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/CF-20260922T062603Z-council-beta.json"
+    "data/runtime/workgraph/evidence/CF-20260922T062603Z-council-beta.json",
+    "data/runtime/workgraph/evidence/CF-20261001T000619Z-earth-scout-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 5,
+    "historicalEvidenceCount": 5
   },
   "factorEvidence": {
     "names": [
@@ -75,7 +76,8 @@
       "supplyChainResilience",
       "pricingPower",
       "substitutionResilience",
-      "governancePower"
+      "governancePower",
+      "dataConfidence"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -108,7 +110,11 @@
         "financialOperatingMomentum",
         "scenarioRobustness",
         "supplyChainResilience",
-        "pricingPower"
+        "pricingPower",
+        "financialOperatingMomentum",
+        "scenarioRobustness",
+        "pricingPower",
+        "dataConfidence"
       ]
     }
   },
@@ -160,7 +166,8 @@
     "supplyChainResilience",
     "pricingPower",
     "substitutionResilience",
-    "governancePower"
+    "governancePower",
+    "dataConfidence"
   ],
   "riskEvidence": {
     "present": true,
@@ -192,6 +199,10 @@
       {
         "risk": "Low-carbon project returns depend on construction discipline, CCS availability, tax-credit/policy durability and contracted/market offtake economics.",
         "gating": false
+      },
+      {
+        "risk": "Industry-wide price/volume divergence means CF's strong pricing cannot by itself establish broad end-demand strength; delayed farmer purchases, outages and trade/energy disruptions can temporarily support price while suppressing volumes.",
+        "gating": false
       }
     ]
   },
@@ -222,6 +233,10 @@
     },
     {
       "risk": "Low-carbon project returns depend on construction discipline, CCS availability, tax-credit/policy durability and contracted/market offtake economics.",
+      "gating": false
+    },
+    {
+      "risk": "Industry-wide price/volume divergence means CF's strong pricing cannot by itself establish broad end-demand strength; delayed farmer purchases, outages and trade/energy disruptions can temporarily support price while suppressing volumes.",
       "gating": false
     }
   ],
@@ -293,14 +308,16 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 6,
-    "uniqueSourceCount": 3,
+    "rawSourceCount": 8,
+    "uniqueSourceCount": 5,
     "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:CF:BluePoint-groundbreak:20260826",
       "issuer:CF:2026Q2:20260805",
-      "issuer:CF:BluePoint-JV:20250408"
+      "issuer:CF:BluePoint-JV:20250408",
+      "reuters:YARA:nitrogen-pricing-volume:20260717",
+      "reuters:NTR:nitrogen-pricing-volume:20260806"
     ]
   },
   "sources": [
@@ -327,6 +344,22 @@
       "primary": true,
       "publishedAt": "2025-04-08",
       "originFingerprint": "issuer:CF:BluePoint-JV:20250408"
+    },
+    {
+      "sourceId": "reuters:YARA:2026-07-17-nitrogen-price-volume",
+      "url": "https://www.reuters.com/business/yara-says-higher-fertiliser-prices-boosted-margins-hurt-volumes-2026-07-17/",
+      "kind": "independent-news-peer-market",
+      "primary": false,
+      "publishedAt": "2026-07-17",
+      "originFingerprint": "reuters:YARA:nitrogen-pricing-volume:20260717"
+    },
+    {
+      "sourceId": "reuters:NTR:2026-08-06-nitrogen-price-volume",
+      "url": "https://www.reuters.com/world/americas/nutrien-misses-profit-estimates-lower-volumes-blunt-higher-fertilizer-prices-2026-08-06/",
+      "kind": "independent-news-peer-market",
+      "primary": false,
+      "publishedAt": "2026-08-06",
+      "originFingerprint": "reuters:NTR:nitrogen-pricing-volume:20260806"
     }
   ],
   "contradictions": [
@@ -337,10 +370,15 @@
       "contradiction": "Strong first-half earnings and pricing coexist with lower physical sales volumes; the difference is substantially explained by tighter supply/pricing, outage effects and a litigation gain rather than broad volume expansion.",
       "material": true,
       "disposition": "retain_for_deep_resolver_normalized_earnings_reconciliation"
+    },
+    {
+      "contradiction": "CF's strong earnings/pricing alongside lower volumes is directionally consistent with independently observed 2026 nitrogen-market behavior at Yara and Nutrien, reducing the likelihood that the divergence is unique to CF while not resolving CF-specific normalization or outage effects.",
+      "material": true,
+      "disposition": "source_support_for_root_owner_and_resolver; not a final contradiction judgment"
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 3,
     "items": [
       {
         "contradiction": "Strong earnings and pricing coexist with materially lower sales volumes, partly reflecting outage and customer timing effects."
@@ -349,6 +387,11 @@
         "contradiction": "Strong first-half earnings and pricing coexist with lower physical sales volumes; the difference is substantially explained by tighter supply/pricing, outage effects and a litigation gain rather than broad volume expansion.",
         "material": true,
         "disposition": "retain_for_deep_resolver_normalized_earnings_reconciliation"
+      },
+      {
+        "contradiction": "CF's strong earnings/pricing alongside lower volumes is directionally consistent with independently observed 2026 nitrogen-market behavior at Yara and Nutrien, reducing the likelihood that the divergence is unique to CF while not resolving CF-specific normalization or outage effects.",
+        "material": true,
+        "disposition": "source_support_for_root_owner_and_resolver; not a final contradiction judgment"
       }
     ]
   },
@@ -368,14 +411,18 @@
     {
       "unknown": "Normalized nitrogen pricing after conflict-related disruptions and the ultimate Blue Point low-carbon premium remain uncertain.",
       "gating": false
+    },
+    {
+      "unknown": "Peer evidence does not establish CF-specific normalized earnings, Yazoo City restart execution, future nitrogen prices, or whether delayed demand converts into later CF volumes.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 5
   },
   "gatingIssues": [],
-  "confidence": 92,
+  "confidence": 91,
   "preflight": {
     "passed": false,
     "failures": [

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MVST",
   "workId": "t0:MVST",
-  "generatedAt": "2026-10-01T20:15:25.186Z",
+  "generatedAt": "2026-10-01T20:23:00.836Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -22,9 +22,9 @@
     "validatedAt": "2026-10-01T19:22:30.252Z"
   },
   "evidenceWindow": {
-    "start": "2026-08-10T00:00:00.000Z",
-    "end": "2026-09-21T17:23:31.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T17:23:31.000Z"
+    "start": "2023-08-07T00:00:00.000Z",
+    "end": "2026-10-01T20:21:47.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T20:21:47.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -39,7 +39,8 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
+      "adversarial-red-team",
+      "risk-source-support"
     ],
     "missing": [
       "source-integrity",
@@ -51,17 +52,19 @@
     "discovery-weak-signals",
     "expectations-execution",
     "structural-causal",
-    "adversarial-red-team"
+    "adversarial-red-team",
+    "risk-source-support"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/MVST-20260921T050430Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/MVST-20260921T172331Z-council-beta.json"
+    "data/runtime/workgraph/evidence/MVST-20260921T172331Z-council-beta.json",
+    "data/runtime/workgraph/evidence/MVST-20261001T202147Z-council-beta-assist-risk-source-support.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 5,
+    "historicalEvidenceCount": 5
   },
   "factorEvidence": {
     "names": [
@@ -72,7 +75,8 @@
       "substitutionResilience",
       "capacityUtilizationRisk",
       "financingRisk",
-      "confidenceInflation"
+      "confidenceInflation",
+      "financialOperatingMomentum"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -172,7 +176,8 @@
     "substitutionResilience",
     "capacityUtilizationRisk",
     "financingRisk",
-    "confidenceInflation"
+    "confidenceInflation",
+    "financialOperatingMomentum"
   ],
   "riskEvidence": {
     "present": true,
@@ -196,7 +201,10 @@
       {
         "risk": "Raw-material inflation and regulatory/geopolitical changes can pressure margins and market access.",
         "gating": false
-      }
+      },
+      "Customer-platform timing and regional demand shifts can leave incremental capacity underutilized, weakening fixed-cost absorption.",
+      "Expansion capital is being deployed before the cited evidence demonstrates contracted utilization of incremental Huzhou/Clarksville capacity.",
+      "Historical backlog and stated revenue potential can overstate near-term economic absorption if platform ramps slip or product mix shifts."
     ]
   },
   "risks": [
@@ -219,7 +227,10 @@
     {
       "risk": "Raw-material inflation and regulatory/geopolitical changes can pressure margins and market access.",
       "gating": false
-    }
+    },
+    "Customer-platform timing and regional demand shifts can leave incremental capacity underutilized, weakening fixed-cost absorption.",
+    "Expansion capital is being deployed before the cited evidence demonstrates contracted utilization of incremental Huzhou/Clarksville capacity.",
+    "Historical backlog and stated revenue potential can overstate near-term economic absorption if platform ramps slip or product mix shifts."
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -229,7 +240,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 3
   },
   "causalMapping": {
     "present": true,
@@ -299,12 +310,14 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 4,
-    "uniqueSourceCount": 1,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 3,
     "duplicatesCollapsed": 3,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "microvast:2026-08-10:q2-2026"
+      "microvast:2026-08-10:q2-2026",
+      "ir.microvast.com|MVST|Q2-2026|2026-08-10",
+      "ir.microvast.com|MVST|Q2-2023|2023-08"
     ]
   },
   "sources": [
@@ -315,6 +328,22 @@
       "publishedAt": "2026-08-10",
       "originFingerprint": "microvast:2026-08-10:q2-2026",
       "sourceId": null
+    },
+    {
+      "sourceId": "mvst-q2-2026-primary",
+      "url": "https://ir.microvast.com/news-releases/news-release-details/microvast-reports-second-quarter-2026-financial-results",
+      "kind": "primary",
+      "publishedAt": "2026-08-10",
+      "originFingerprint": "ir.microvast.com|MVST|Q2-2026|2026-08-10",
+      "primary": true
+    },
+    {
+      "sourceId": "mvst-q2-2023-primary",
+      "url": "https://ir.microvast.com/news-releases/news-release-details/microvast-reports-second-quarter-2023-financial-results",
+      "kind": "primary",
+      "publishedAt": "2023-08-07",
+      "originFingerprint": "ir.microvast.com|MVST|Q2-2023|2023-08",
+      "primary": true
     }
   ],
   "contradictions": [
@@ -327,10 +356,11 @@
       "resolution": "Material contradiction remains for Deep Resolver because the cited evidence does not yet demonstrate contracted utilization or timing sufficient to reconcile expansion with current weakness.",
       "resolved": false,
       "gating": true
-    }
+    },
+    "The company is expanding localized/modular capacity while first-half 2026 revenue and utilization are materially weaker; the contradiction is economically reconcilable if delayed customer ramps recover, but current cited evidence does not establish that timing."
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 3,
     "items": [
       {
         "claim": "Long-term capacity expansion thesis coexists with materially weaker first-half revenue and adjusted EBITDA.",
@@ -341,7 +371,8 @@
         "resolution": "Material contradiction remains for Deep Resolver because the cited evidence does not yet demonstrate contracted utilization or timing sufficient to reconcile expansion with current weakness.",
         "resolved": false,
         "gating": true
-      }
+      },
+      "The company is expanding localized/modular capacity while first-half 2026 revenue and utilization are materially weaker; the contradiction is economically reconcilable if delayed customer ramps recover, but current cited evidence does not establish that timing."
     ]
   },
   "unknowns": [
@@ -360,11 +391,13 @@
     {
       "unknown": "Timing, contracted volume and economics of customer ramp recovery remain unresolved.",
       "gating": true
-    }
+    },
+    "Current contracted utilization and customer mix for incremental Huzhou Phase 3.2 and Clarksville capacity.",
+    "Whether customer-platform ramps recover quickly enough to restore utilization and fixed-cost absorption before further capital deployment materially pressures liquidity."
   ],
   "unknownDisposition": {
     "gatingCount": 1,
-    "nonGatingCount": 3
+    "nonGatingCount": 5
   },
   "gatingIssues": [
     {

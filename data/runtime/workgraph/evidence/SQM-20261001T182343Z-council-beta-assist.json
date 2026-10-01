@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "ticker": "SQM",
+  "entityId": "SQM",
+  "workId": "t0:SQM",
+  "role": "council-beta",
+  "perspective": "risk-source-support",
+  "assistRequestId": "assist:SQM:council-alpha:council-beta:risk-source-support",
+  "inputSignature": "7a865f9870f0ca3faf75",
+  "generatedAt": "2026-10-01T18:23:43Z",
+  "claims": [
+    {
+      "claim": "Mt Holland expansion creates a concrete multi-year capital and execution exposure: SQM's share of expansion capex is estimated at US$450-500 million, second-concentrator construction is expected to start in H2 2027, and first expansion volumes are expected in H1 2030.",
+      "status": "supported"
+    },
+    {
+      "claim": "The expansion is intended to double nameplate spodumene concentrate capacity from about 380,000 to 760,000 tonnes per year and lower unit operating costs; therefore the resilience thesis depends on scale benefits arriving without lithium-market absorption deteriorating before the 2030 ramp.",
+      "status": "supported-interpretation"
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "issuer:SQM:MtHolland-FID:20260721",
+      "url": "https://ir.sqm.com/news-releases/news-release-details/sqm-and-wesfarmers-announces-final-investment-decision-mt",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-21",
+      "originFingerprint": "ir.sqm.com|SQM|Mt-Holland-FID|2026-07-21"
+    }
+  ],
+  "risks": [
+    {
+      "risk": "US$450-500 million of attributable expansion capex is committed years ahead of first expected expansion output, exposing returns to construction execution, commissioning timing and lithium-cycle conditions through 2030.",
+      "gating": false,
+      "falsifier": "On-budget/on-schedule delivery plus sustained demand absorption and lower unit costs demonstrate resilient project economics through the ramp."
+    },
+    {
+      "risk": "Doubling concentrate capacity can improve cost position but also increases volume exposed to commodity-price clearing if industry supply growth outruns battery demand.",
+      "gating": false,
+      "falsifier": "Market demand absorbs incremental capacity while Mt Holland retains competitive unit economics and utilization."
+    }
+  ],
+  "contradictions": [],
+  "unknowns": [
+    {
+      "unknown": "Realized project returns under normalized lithium prices and the final commissioning/ramp profile remain unverified by this source.",
+      "gating": false
+    }
+  ],
+  "affectedFactors": ["scenarioRobustness", "supplyChainResilience", "bottleneckControl", "financialOperatingMomentum"],
+  "causalEdges": [
+    {
+      "from": "Mt Holland expansion capex and construction",
+      "to": "future spodumene capacity and unit costs",
+      "mechanism": "additional concentrator and ore sorting are intended to double nameplate output and improve scale economics",
+      "falsifier": "cost overruns, commissioning delay, weak utilization or failure to lower unit costs"
+    },
+    {
+      "from": "future industry lithium supply growth",
+      "to": "SQM expansion returns",
+      "mechanism": "commodity clearing prices determine how much value incremental capacity captures",
+      "falsifier": "demand absorption sustains attractive economics despite new supply"
+    }
+  ],
+  "gatingIssues": [],
+  "confidence": 92,
+  "recommendedNextState": "researching",
+  "recommendedOwner": "council-alpha",
+  "lineage": {
+    "supersedes": null,
+    "reuses": ["data/runtime/workgraph/evidence/SQM-20260921T202645Z-council-beta.json"],
+    "assistOnly": true,
+    "rootOwner": "council-alpha"
+  }
+}

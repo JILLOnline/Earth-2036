@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SANM",
   "workId": "t0:SANM",
-  "generatedAt": "2026-10-01T07:21:57.634Z",
+  "generatedAt": "2026-10-01T07:29:28.974Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2025-10-27T00:00:00.000Z",
-    "end": "2026-09-21T14:23:02.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T14:23:02.000Z"
+    "end": "2026-10-01T07:28:35.894Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T07:28:35.894Z"
   },
   "specialistCoverage": {
     "required": [
@@ -39,7 +39,8 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
+      "adversarial-red-team",
+      "adversarial-red-team-assist"
     ],
     "missing": [
       "source-integrity",
@@ -51,17 +52,19 @@
     "discovery-weak-signals",
     "expectations-execution",
     "structural-causal",
-    "adversarial-red-team"
+    "adversarial-red-team",
+    "adversarial-red-team-assist"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/SANM-20260921T120655Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/SANM-20260921T142302Z-council-beta.json"
+    "data/runtime/workgraph/evidence/SANM-20260921T142302Z-council-beta.json",
+    "data/runtime/workgraph/evidence/SANM-20261001T072835Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 5,
+    "historicalEvidenceCount": 5
   },
   "factorEvidence": {
     "names": [
@@ -74,7 +77,9 @@
       "substitutionResilience",
       "concentration",
       "integration",
-      "confidence inflation"
+      "confidence inflation",
+      "dataConfidence",
+      "governancePower"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -186,7 +191,9 @@
     "substitutionResilience",
     "concentration",
     "integration",
-    "confidence inflation"
+    "confidence inflation",
+    "dataConfidence",
+    "governancePower"
   ],
   "riskEvidence": {
     "present": true,
@@ -206,7 +213,9 @@
       {
         "risk": "Hyperscaler capex, tariffs/trade policy, customer concentration and acquisition integration can amplify downside if AI infrastructure demand slows.",
         "gating": false
-      }
+      },
+      "ZT integration and cloud/AI exposure are quantitatively material to the current business mix.",
+      "Internal-control assessment coverage for the current fiscal year excludes ZT Systems; this should be monitored as integration matures, without treating the exclusion itself as a present control defect."
     ]
   },
   "risks": [
@@ -225,7 +234,9 @@
     {
       "risk": "Hyperscaler capex, tariffs/trade policy, customer concentration and acquisition integration can amplify downside if AI infrastructure demand slows.",
       "gating": false
-    }
+    },
+    "ZT integration and cloud/AI exposure are quantitatively material to the current business mix.",
+    "Internal-control assessment coverage for the current fiscal year excludes ZT Systems; this should be monitored as integration matures, without treating the exclusion itself as a present control defect."
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -235,7 +246,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 2
+    "count": 3
   },
   "causalMapping": {
     "present": true,
@@ -269,13 +280,14 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 6,
-    "uniqueSourceCount": 2,
+    "rawSourceCount": 7,
+    "uniqueSourceCount": 3,
     "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
       "sanmina-ir:2025-10-27:zt-close",
-      "sanmina-ir:2026-07-27:fq3-results"
+      "sanmina-ir:2026-07-27:fq3-results",
+      "sec.gov|SANM|10-Q|2026-07-27|0000897723-26-000037"
     ]
   },
   "sources": [
@@ -294,6 +306,14 @@
       "publishedAt": "2026-07-27",
       "originFingerprint": "sanmina-ir:2026-07-27:fq3-results",
       "sourceId": null
+    },
+    {
+      "sourceId": "sec:SANM:10-Q:20260727",
+      "url": "https://www.sec.gov/Archives/edgar/data/897723/000089772326000037/sanm-20260627.htm",
+      "kind": "primary-regulatory-filing",
+      "primary": true,
+      "publishedAt": "2026-07-27",
+      "originFingerprint": "sec.gov|SANM|10-Q|2026-07-27|0000897723-26-000037"
     }
   ],
   "contradictions": [],
@@ -317,11 +337,13 @@
     {
       "unknown": "Fiscal Q4 outcome and normalized ZT margin/cash-conversion profile were not yet available in the cited evidence window.",
       "gating": false
-    }
+    },
+    "Customer-level concentration within ZT Systems is not quantified by this evidence object.",
+    "The normalized post-integration margin and cash-conversion profile remains an Alpha underwriting question."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
   "confidence": 90,

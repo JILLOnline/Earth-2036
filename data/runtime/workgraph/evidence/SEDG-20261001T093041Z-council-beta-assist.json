@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "contract": "earth2036-assist-evidence-v1",
+  "role": "council-beta",
+  "generatedAt": "2026-10-01T09:30:41Z",
+  "ticker": "SEDG",
+  "workId": "t0:SEDG",
+  "assist": {"requestId":"assist:SEDG:council-alpha:council-beta:risk-source-support","inputSignature":"f294354ab0ad2f7b36ac","rootOwner":"council-alpha","capability":"risk-source-support"},
+  "lineage": {"supplements":"data/runtime/workgraph/evidence/SEDG-20260921T162741Z-council-beta.json","supersedes":null},
+  "claims": [
+    {"claim":"SolarEdge's Q2 2026 10-Q identifies accelerated U.S. clean-energy tax-credit phase-outs and elimination of the 25D homeowner credit as risks to customer economics, demand, competitiveness and revenue.","riskClass":"policy-and-demand","observed":true},
+    {"claim":"The filing states copper, lithium, nickel and cobalt price volatility is unhedged and can pressure margins when cost increases cannot be recovered from customers.","riskClass":"input-cost-and-pricing-power","observed":true}
+  ],
+  "sources": [
+    {"sourceId":"sec-sedg-2026q2-10q","url":"https://www.sec.gov/Archives/edgar/data/1419612/000117891326003854/zk2635807.htm","kind":"primary","publishedAt":"2026-08-05","originFingerprint":"sec:1419612:2026q2:10-q"}
+  ],
+  "affectedFactors": ["policy sensitivity","demand durability","pricing power","supply-chain resilience","turnaround durability"],
+  "causalEdges": [
+    {"from":"reduced customer tax incentives","to":"solar project economics and demand","mechanism":"weaker incentives can reduce customer returns and alter project timing"},
+    {"from":"commodity cost volatility","to":"gross margin","mechanism":"unhedged input inflation compresses margin when pricing cannot fully pass through costs"}
+  ],
+  "risks": ["Recovery durability remains exposed to policy-driven customer economics.","Unhedged commodity volatility can weaken operating leverage during a turnaround."],
+  "contradictions": [],
+  "unknowns": ["Current evidence does not quantify the net demand elasticity to the revised U.S. tax-credit schedule or SolarEdge's realized pass-through capacity by product."],
+  "gatingStatus": {"betaBlocker":false,"alphaFailureTarget":"missing_score_risk_evidence","note":"Source-addressed risk support only; Alpha retains numeric underwriting authority."},
+  "confidence": 0.94,
+  "recommendedNextStateOwner": {"owner":"council-alpha","action":"Use the primary-source policy and commodity exposures in risk evidence and quantify only from Alpha-owned methodology inputs."}
+}

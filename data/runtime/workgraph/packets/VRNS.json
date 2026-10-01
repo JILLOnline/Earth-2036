@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "VRNS",
   "workId": "t0:VRNS",
-  "generatedAt": "2026-10-01T09:56:48.979Z",
+  "generatedAt": "2026-10-01T10:06:32.108Z",
   "sourceState": "packet_ready",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2025-11-12T00:00:00.000Z",
-    "end": "2026-10-01T09:12:33.000Z",
-    "latestEvidenceGeneratedAt": "2026-10-01T09:12:33.000Z"
+    "end": "2026-10-01T10:05:20.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T10:05:20.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -58,6 +58,7 @@
     "data/runtime/workgraph/evidence/VRNS-20260921T220246Z-earth-scout.json",
     "data/runtime/workgraph/evidence/VRNS-20260929T121353Z-council-alpha.json",
     "data/runtime/workgraph/evidence/VRNS-20261001T091233Z-council-alpha.json",
+    "data/runtime/workgraph/evidence/VRNS-20261001T100520Z-earth-scout-assist.json",
     "data/runtime/workgraph/evidence/council-beta-20260921T222626Z-batch.json"
   ],
   "evidenceResolution": {
@@ -66,8 +67,8 @@
       "data/runtime/workgraph/evidence/VRNS-20260930T181047Z-council-alpha.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 8,
-    "historicalEvidenceCount": 12
+    "activeEvidenceCount": 9,
+    "historicalEvidenceCount": 13
   },
   "factorEvidence": {
     "names": [
@@ -391,6 +392,13 @@
         "gating": false
       },
       {
+        "risk": "Headline SaaS ARR growth can overstate organic demand if conversion-driven ARR is not separated; transition economics remain sensitive to post-migration retention and cash conversion.",
+        "gating": false,
+        "sourceIds": [
+          "btw:VRNS:saas-transition-layer:20260829"
+        ]
+      },
+      {
         "risk": "Concentrating delivery on SaaS improves architectural focus but raises transition fragility if remaining self-hosted customers do not migrate cleanly.",
         "gating": false
       },
@@ -420,6 +428,13 @@
     {
       "risk": "Migration churn, competition, channel dependence and persistent losses.",
       "gating": false
+    },
+    {
+      "risk": "Headline SaaS ARR growth can overstate organic demand if conversion-driven ARR is not separated; transition economics remain sensitive to post-migration retention and cash conversion.",
+      "gating": false,
+      "sourceIds": [
+        "btw:VRNS:saas-transition-layer:20260829"
+      ]
     },
     {
       "risk": "Concentrating delivery on SaaS improves architectural focus but raises transition fragility if remaining self-hosted customers do not migrate cleanly.",
@@ -462,15 +477,16 @@
     "competing cloud-native security stacks -> substitution pressure -> bottleneck-control uncertainty"
   ],
   "sourceLineage": {
-    "rawSourceCount": 16,
-    "uniqueSourceCount": 4,
+    "rawSourceCount": 17,
+    "uniqueSourceCount": 5,
     "duplicatesCollapsed": 12,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:VRNS:saas-transition:EOL-2026-12-31",
       "sec:VRNS:2026Q2-10Q",
       "sec:VRNS:2026Q2-ex99",
-      "issuer:VRNS:saas-transition"
+      "issuer:VRNS:saas-transition",
+      "btw-media|btw.media|independent-financial-analysis"
     ]
   },
   "sources": [
@@ -502,12 +518,35 @@
       "kind": "primary",
       "primary": true,
       "publishedAt": "2025-11-12"
+    },
+    {
+      "sourceId": "btw:VRNS:saas-transition-layer:20260829",
+      "url": "https://btw.media/ja/varonis-saas-arr-1oku2790man-dollar-iko-so",
+      "kind": "credible-independent-analysis",
+      "primary": false,
+      "originFingerprint": "btw-media|btw.media|independent-financial-analysis"
     }
   ],
-  "contradictions": [],
+  "contradictions": [
+    {
+      "status": "material_non_gating",
+      "statement": "The independent analysis does not dispute Varonis's reported SaaS ARR, but shows that total SaaS ARR growth and organic SaaS growth describe different engines; treating the headline 52% growth as purely organic would be misleading.",
+      "sourceIds": [
+        "btw:VRNS:saas-transition-layer:20260829"
+      ]
+    }
+  ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
-    "items": []
+    "unresolvedMaterialCount": 1,
+    "items": [
+      {
+        "status": "material_non_gating",
+        "statement": "The independent analysis does not dispute Varonis's reported SaaS ARR, but shows that total SaaS ARR growth and organic SaaS growth describe different engines; treating the headline 52% growth as purely organic would be misleading.",
+        "sourceIds": [
+          "btw:VRNS:saas-transition-layer:20260829"
+        ]
+      }
+    ]
   },
   "unknowns": [
     {
@@ -526,6 +565,8 @@
       "unknown": "Independent customer migration outcomes and current valuation.",
       "gating": false
     },
+    "The eventual churn and realized economics of the remaining self-hosted cohort after the December 31, 2026 end-of-life remain uncertain.",
+    "This source does not independently establish customer-level satisfaction or competitive win/loss rates.",
     {
       "unknown": "Remaining self-hosted exposure, migration churn and comparative autonomous-remediation efficacy are not quantified by the current source.",
       "gating": false
@@ -537,19 +578,24 @@
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 6
+    "nonGatingCount": 8
   },
   "gatingIssues": [],
   "confidence": 76,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_data_confidence_evidence"
+      "missing_data_confidence_evidence",
+      "unresolved_material_contradiction"
     ],
     "routing": [
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

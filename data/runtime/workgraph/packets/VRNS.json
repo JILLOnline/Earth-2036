@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "VRNS",
   "workId": "t0:VRNS",
-  "generatedAt": "2026-10-01T15:06:56.327Z",
+  "generatedAt": "2026-10-01T15:09:00.436Z",
   "sourceState": "packet_ready",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2025-11-12T00:00:00.000Z",
-    "end": "2026-10-01T14:15:54.000Z",
-    "latestEvidenceGeneratedAt": "2026-10-01T14:15:54.000Z"
+    "end": "2026-10-01T15:07:18.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T15:07:18.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -62,6 +62,7 @@
     "data/runtime/workgraph/evidence/VRNS-20261001T130149Z-earth-scout-assist.json",
     "data/runtime/workgraph/evidence/VRNS-20261001T140633Z-earth-scout-assist.json",
     "data/runtime/workgraph/evidence/VRNS-20261001T141554Z-council-alpha.json",
+    "data/runtime/workgraph/evidence/VRNS-20261001T150718Z-earth-scout-assist.json",
     "data/runtime/workgraph/evidence/council-beta-20260921T222626Z-batch.json"
   ],
   "evidenceResolution": {
@@ -75,8 +76,8 @@
       "data/runtime/workgraph/evidence/VRNS-20261001T131144Z-council-alpha.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 12,
-    "historicalEvidenceCount": 26
+    "activeEvidenceCount": 13,
+    "historicalEvidenceCount": 27
   },
   "factorEvidence": {
     "names": [
@@ -450,6 +451,13 @@
         ]
       },
       {
+        "risk": "Peer-review evidence is self-reported customer experience and does not establish audited retention cohorts, revenue contribution, competitive win/loss rates, or fair value; review aggregation can also contain selection bias.",
+        "gating": false,
+        "sourceIds": [
+          "gartner-peer-insights:VRNS:dspm-customer-evidence:2026"
+        ]
+      },
+      {
         "risk": "Concentrating delivery on SaaS improves architectural focus but raises transition fragility if remaining self-hosted customers do not migrate cleanly.",
         "gating": false
       },
@@ -509,6 +517,13 @@
       ]
     },
     {
+      "risk": "Peer-review evidence is self-reported customer experience and does not establish audited retention cohorts, revenue contribution, competitive win/loss rates, or fair value; review aggregation can also contain selection bias.",
+      "gating": false,
+      "sourceIds": [
+        "gartner-peer-insights:VRNS:dspm-customer-evidence:2026"
+      ]
+    },
+    {
       "risk": "Concentrating delivery on SaaS improves architectural focus but raises transition fragility if remaining self-hosted customers do not migrate cleanly.",
       "gating": false
     },
@@ -549,8 +564,8 @@
     "competing cloud-native security stacks -> substitution pressure -> bottleneck-control uncertainty"
   ],
   "sourceLineage": {
-    "rawSourceCount": 28,
-    "uniqueSourceCount": 12,
+    "rawSourceCount": 29,
+    "uniqueSourceCount": 13,
     "duplicatesCollapsed": 16,
     "missingLineage": 0,
     "uniqueOrigins": [
@@ -565,7 +580,8 @@
       "btw:VRNS:saas-transition-layer:20260829",
       "stockanalysis:VRNS:valuation:20260930",
       "zacks:VRNS:q2-results:20260729",
-      "investing:VRNS:q2-cantor:20260729"
+      "investing:VRNS:q2-cantor:20260729",
+      "gartner.com|peer-insights|verified-enterprise-customer-reviews|dspm-dlp"
     ]
   },
   "sources": [
@@ -649,6 +665,13 @@
       "url": "https://www.investing.com/news/analyst-ratings/cantor-fitzgerald-reiterates-varonis-stock-rating-after-q2-beat-93CH-4820725",
       "kind": "credible-independent-market-analysis",
       "primary": false
+    },
+    {
+      "sourceId": "gartner-peer-insights:VRNS:dspm-customer-evidence:2026",
+      "url": "https://www.gartner.com/reviews/market/data-loss-prevention/vendor/varonis/product/varonis-unified-data-security-platform",
+      "kind": "credible-independent-verified-customer-review-aggregation",
+      "primary": false,
+      "originFingerprint": "gartner.com|peer-insights|verified-enterprise-customer-reviews|dspm-dlp"
     }
   ],
   "contradictions": [
@@ -679,10 +702,17 @@
       "sourceIds": [
         "investing:VRNS:q2-cantor:20260729"
       ]
+    },
+    {
+      "status": "bounded_customer_tension",
+      "statement": "Verified customer-review evidence supports real operational value and automation benefits while independently preserving cost and implementation friction; it neither proves nor disproves management's aggregate renewal claims.",
+      "sourceIds": [
+        "gartner-peer-insights:VRNS:dspm-customer-evidence:2026"
+      ]
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 4,
+    "unresolvedMaterialCount": 5,
     "items": [
       {
         "status": "material_non_gating",
@@ -710,6 +740,13 @@
         "statement": "Independent market coverage supports strong SaaS execution and raised guidance while preserving the packet's profitability/transition-quality caveat.",
         "sourceIds": [
           "investing:VRNS:q2-cantor:20260729"
+        ]
+      },
+      {
+        "status": "bounded_customer_tension",
+        "statement": "Verified customer-review evidence supports real operational value and automation benefits while independently preserving cost and implementation friction; it neither proves nor disproves management's aggregate renewal claims.",
+        "sourceIds": [
+          "gartner-peer-insights:VRNS:dspm-customer-evidence:2026"
         ]
       }
     ]
@@ -739,6 +776,8 @@
     "This evidence does not itself justify changing Alpha's numeric factor, risk or confidence assessments.",
     "Customer-level retention cohorts and competitive displacement remain unobserved.",
     "This evidence does not itself justify changing Alpha's factor, risk, confidence or score values.",
+    "No audited customer-cohort churn or net-retention dataset is established by this evidence.",
+    "This evidence does not itself justify changing Alpha's factor, risk, confidence, or score values.",
     {
       "unknown": "Remaining self-hosted exposure, migration churn and comparative autonomous-remediation efficacy are not quantified by the current source.",
       "gating": false
@@ -750,7 +789,7 @@
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 14
+    "nonGatingCount": 16
   },
   "gatingIssues": [],
   "confidence": 76,

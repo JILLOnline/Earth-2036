@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "role": "chief-earth",
+  "generatedAt": "2026-10-01T17:43:05.000Z",
+  "result": "p0_invariant_faults_persist_regn_added_frontier_conversion_stalled",
+  "machineFreshness": {
+    "runtimeGeneratedAt": "2026-10-01T17:38:25.363Z",
+    "ageMinutesAtChiefRead": 4.7,
+    "fresh": true,
+    "healthy": false,
+    "healthAlerts": [
+      "t0_canonical_stalled_over_2h_with_chief_ready:13.4",
+      "owner_recent_run_zero_closure:council-alpha",
+      "owner_recent_run_zero_closure:deep-resolver"
+    ]
+  },
+  "workflowOutcomes": {
+    "closureInvariants": {"runNumber": 39, "status": "completed", "conclusion": "success", "headSha": "6de13e3768c1f7499fb17a713a52fa9ae562de86"},
+    "reconcile": {"runNumber": 1820, "status": "completed", "conclusion": "success", "headSha": "6de13e3768c1f7499fb17a713a52fa9ae562de86"},
+    "scheduler": {"status": "not_resolved_in_latest_sample"},
+    "ci": {"status": "not_resolved_in_latest_sample"},
+    "pages": {"status": "not_resolved_in_latest_sample"}
+  },
+  "stateCounts": {"researching": 75, "packet_ready": 5, "chief_ready": 1, "canonical": 169, "total": 250},
+  "canonicalDelta": {"h1": 0, "h6": 0, "h24": 1},
+  "canonicalProgressAgeHours": 13.395727777777777,
+  "t0": {"canonical": 169, "target": 250, "completionPct": 67.6, "remaining": 81},
+  "strikeZone": {
+    "ticker": "TXN",
+    "executable": false,
+    "fastPathPromotions": 0,
+    "fastPathSkips": 1,
+    "reason": "sovereignty:earth_control_below_51",
+    "sovereignShare": 0.26422871637689577,
+    "independentOrigins": 8,
+    "action": "remain dormant until relevant evidence changes; no provenance hunting"
+  },
+  "conversion": {
+    "latestWorkerAttemptsObserved": 6,
+    "meaningfulAdvances": 1,
+    "newChiefReady": 0,
+    "newCanonical": 0,
+    "note": "Latest Scout inspected 1 and closed 1; Alpha inspected 4 with zero closure; Beta inspected 1 with zero closure; Resolver reported no lawful actionable item."
+  },
+  "frontier": {
+    "selected": 10,
+    "stalled": 47,
+    "changedSincePriorReconcile": 0,
+    "repeatedAttemptRate": null,
+    "highestPrioritySelected": "REGN",
+    "regnInputSignature": "c9f3177a8b16a34394e0",
+    "regnRemainingFailures": ["missing_data_confidence_evidence", "unresolved_material_contradiction"],
+    "regnHoursSinceProgress": 0.61,
+    "regnNextOwners": ["council-alpha", "deep-resolver"]
+  },
+  "assist": {"active": 10, "dormant": 90, "queued": 54},
+  "dependencyCycles": 0,
+  "ownerBacklogs": {"council-alpha": 33, "deep-resolver": 2, "earth-scout": 0, "council-beta": 0},
+  "invariantFaults": {
+    "count": 5,
+    "p0": true,
+    "items": [
+      {"ticker": "ALB", "fault": "confidence_gate_consumption_mismatch"},
+      {"ticker": "CCI", "fault": "confidence_gate_consumption_mismatch"},
+      {"ticker": "REGN", "fault": "confidence_gate_consumption_mismatch"},
+      {"ticker": "VRNS", "fault": "confidence_gate_consumption_mismatch"},
+      {"ticker": "VRTX", "fault": "resolver_semantic_misroute", "addAlpha": true, "suppressResolver": true}
+    ],
+    "diagnosis": "Core compilePromotionPacket requires both source-integrity dataConfidenceEvidence.available and source-addressed underwriting confidence evidence. REGN packet has complete source-addressed confidence evidence but still receives missing_data_confidence_evidence because the source-integrity availability side-condition remains false. This is a deterministic gate-consumption defect; packet truth does not bypass the gate. VRTX remains a routing defect because generic Resolver gates mask Alpha-owned underwriting work with zero independently actionable adjudication items."
+  },
+  "repeatedBlockers": [
+    "confidence_gate_consumption_mismatch:ALB,CCI,REGN,VRNS",
+    "resolver_semantic_misroute:VRTX",
+    "canonical_stale_with_chief_ready:TXN_beast_blocked"
+  ],
+  "highestValueNextBottleneck": "Repair core compilePromotionPacket confidence consumption so valid source-addressed dataConfidenceEvidence satisfies the confidence-evidence gate without requiring a redundant source-integrity label; then repair VRTX semantic owner routing in core and require Closure-Invariants plus Reconcile to return clean before any promotion.",
+  "actionsTaken": [
+    "Read constitutional, methodology, closure, runtime, frontier, semantic override, assist, calibration and dependency artifacts from main.",
+    "Confirmed REGN is a fifth confidence-consumption invariant fault from packet truth.",
+    "Inspected core workgraph-v2 compile logic and isolated the confidence mismatch to the redundant dataConfidenceEvidence.available side-condition.",
+    "Preserved TXN Beast block and did not route duplicate Scout provenance work.",
+    "Persisted exactly one Chief receipt; no canonical decision or worker-definition change was made."
+  ],
+  "guardrails": [
+    "GitHub main is sole live authority.",
+    "Earth Core remains sole canonical authority.",
+    "Methodology 1.0, T0, Beast, provenance, confidence, causal and publication gates unchanged.",
+    "Semantic overrides are diagnostic/routing-only and never authorize promotion.",
+    "No worker definitions changed.",
+    "No immutable history rewritten and no force update used.",
+    "Netlify and Vercel remain eliminated."
+  ]
+}

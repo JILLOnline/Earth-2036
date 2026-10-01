@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "role": "council-beta",
+  "generatedAt": "2026-10-01T00:20:24Z",
+  "sourceCycleKey": null,
+  "companiesInspected": ["MCHP", "PLTR", "QBTS"],
+  "betaPairsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [
+    {
+      "requestId": "assist:MCHP:council-alpha:council-beta:risk-source-support",
+      "inputSignature": "8a0372a0198d241c0e44",
+      "outcome": "no_new_material_evidence; refreshed issuer/10-Q risk source confirms existing Beta evidence already captures debt, inventory-normalization and cycle-risk mechanisms without adding a distinct source-addressed risk fact",
+      "newEvidencePaths": [],
+      "changedStrategy": true
+    },
+    {
+      "requestId": "assist:PLTR:council-alpha:council-beta:risk-source-support",
+      "inputSignature": "09071b1a02f1378baa51",
+      "outcome": "no_new_material_evidence; refreshed primary Q2 results confirm exceptional growth/TCV/RDV but do not add a distinct downside mechanism beyond existing concentration, provider-dependence and persistence falsifiers; Alpha remains root owner for numeric risk treatment",
+      "newEvidencePaths": [],
+      "changedStrategy": true
+    },
+    {
+      "requestId": "assist:QBTS:council-alpha:council-beta:risk-source-support",
+      "inputSignature": "f90ab059dce70d3d57b6",
+      "outcome": "no_new_material_evidence; refreshed SEC Q2 results confirm the existing Beta concentration/conversion risk: first-half bookings include a $20M system sale and RPO conversion timing remains the key falsifier; no duplicate artifact emitted",
+      "newEvidencePaths": [],
+      "changedStrategy": true
+    }
+  ],
+  "blockers": [
+    {
+      "ticker": "MCHP",
+      "defect": "missing_score_risk_evidence is Alpha-owned and existing Beta source-addressed risk evidence is already sufficient for bounded helper support; no materially new risk source was found in the refreshed primary-source pass",
+      "lawfulNextEvidencePath": "council-alpha should reuse data/runtime/workgraph/evidence/MCHP-20260922T182309Z-council-beta.json with the current primary filing to construct its numeric score-risk evidence, or request Beta again only if the input signature changes with a new risk question/source gap"
+    },
+    {
+      "ticker": "PLTR",
+      "defect": "missing_score_risk_evidence requires Alpha numeric underwriting; Beta already documented concentration, third-party model dependency and growth-persistence falsifiers and the refreshed Q2 primary results did not create a new distinct downside fact",
+      "lawfulNextEvidencePath": "council-alpha should translate existing source-addressed Beta risks into its owned numeric risk evidence; reopen Beta only on a changed input signature requiring a specific structural/risk source gap"
+    },
+    {
+      "ticker": "QBTS",
+      "defect": "missing_score_risk_evidence remains Alpha-owned; existing Beta evidence already source-addresses bookings concentration, revenue-conversion timing and substitution risk, and the refreshed SEC source confirms rather than changes those facts",
+      "lawfulNextEvidencePath": "council-alpha should use data/runtime/workgraph/evidence/QBTS-20260922T192634Z-council-beta.json plus the cited SEC Q2 source for numeric risk treatment; a new Beta assist is warranted only after a changed input signature"
+    }
+  ],
+  "result": "assist_only_zero_new_evidence; owned Beta queue empty; three active Alpha risk-source assists inspected with changed source-check strategy; no duplicate evidence artifacts emitted",
+  "operatingMode": "assist-only",
+  "startingGitHead": "9e0851e8bc2df38057f5964a108c5b5039e4ef00",
+  "learning": {
+    "ownedQueue": 0,
+    "strategy": "fresh primary-source verification before emitting any helper artifact",
+    "lesson": "Current active risk-source assists are asking Beta to solve Alpha-owned numeric risk gaps even though source-addressed Beta risk mechanisms already exist; duplicate artifact volume would not reduce uncertainty.",
+    "successSignal": "Alpha consumes existing Beta evidence to close missing_score_risk_evidence, or a changed assist input identifies a genuinely new structural/risk source gap."
+  }
+}

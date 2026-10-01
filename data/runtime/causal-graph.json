@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-09-27T20:14:57.063Z",
+  "updatedAt": "2026-10-01T04:14:40.746Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -2054,6 +2054,18 @@
       "type": "market",
       "label": "reliable capacity scarcity",
       "description": "data centers require high-availability electricity and interconnection capacity"
+    },
+    {
+      "id": "company:SAIL",
+      "type": "company",
+      "label": "SailPoint, Inc.",
+      "description": "SailPoint's causal path is identity inventory/governance -> policy and access control across human and machine identities -> reduced privilege misuse and compliance burden -> enterprise resilience; growth in agentic identities expands the control surface and therefore the need for scalable identity governance."
+    },
+    {
+      "id": "market:SAIL-identity-governance-complexity",
+      "type": "market",
+      "label": "identity-governance complexity",
+      "description": "more principals and entitlements increase authorization surface"
     }
   ],
   "edges": [
@@ -4694,6 +4706,21 @@
         "vst:2026q2:10q:2026-08-07"
       ],
       "observedAt": "2026-09-19T11:24:50Z"
+    },
+    {
+      "id": "edge:SAIL-structural-exposure",
+      "from": "company:SAIL",
+      "to": "market:SAIL-identity-governance-complexity",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 82,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "barrons:2026-09-16:sailpoint-q2-ai-arr",
+        "sailpoint-ir:2025-09-09:fq2-2026-results"
+      ],
+      "observedAt": "2026-09-21T14:23:02Z"
     }
   ],
   "structuralSignals": [
@@ -7988,6 +8015,25 @@
       "observedAt": "2026-09-19T11:24:50Z",
       "thesis": "Vistra sits at the firm-power bottleneck between rapidly growing digital load and reliable electricity supply; its generation fleet and Helix channel can monetize scarcity where interconnection and dependable capacity constrain data-center buildout.",
       "falsifier": "large-load growth slows materially or new supply/grid capacity removes scarcity without supporting Vistra economics"
+    },
+    {
+      "id": "signal:SAIL-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:SAIL-identity-governance-complexity",
+      "affectedNodeIds": [
+        "company:SAIL"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 82,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "barrons:2026-09-16:sailpoint-q2-ai-arr",
+        "sailpoint-ir:2025-09-09:fq2-2026-results"
+      ],
+      "observedAt": "2026-09-21T14:23:02Z",
+      "thesis": "SailPoint's causal path is identity inventory/governance -> policy and access control across human and machine identities -> reduced privilege misuse and compliance burden -> enterprise resilience; growth in agentic identities expands the control surface and therefore the need for scalable identity governance.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],
   "roadmapMilestones": [

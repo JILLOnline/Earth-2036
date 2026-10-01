@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SCCO",
   "workId": "t0:SCCO",
-  "generatedAt": "2026-10-01T08:24:51.604Z",
+  "generatedAt": "2026-10-01T08:27:52.025Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-21T00:00:00.000Z",
-    "end": "2026-09-21T15:27:04.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-21T15:27:04.000Z"
+    "end": "2026-10-01T08:26:36.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T08:26:36.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -55,13 +55,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/SCCO-20260921T120655Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/SCCO-20260921T152704Z-council-beta.json"
+    "data/runtime/workgraph/evidence/SCCO-20260921T152704Z-council-beta.json",
+    "data/runtime/workgraph/evidence/SCCO-20261001T082636Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 5,
+    "historicalEvidenceCount": 5
   },
   "factorEvidence": {
     "names": [
@@ -325,13 +326,15 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 8,
-    "uniqueSourceCount": 2,
+    "rawSourceCount": 10,
+    "uniqueSourceCount": 4,
     "duplicatesCollapsed": 6,
     "missingLineage": 0,
     "uniqueOrigins": [
       "sec:scco:2026q2:10q",
-      "sec:scco:2026-07-21:q2-results"
+      "sec:scco:2026-07-21:q2-results",
+      "sec.gov|SCCO|10-K|2025-12-31|000110465926021492",
+      "sec.gov|SCCO|10-Q|2026-03-31|000110465926052647"
     ]
   },
   "sources": [
@@ -350,6 +353,30 @@
       "publishedAt": "2026-07-21",
       "originFingerprint": "sec:scco:2026-07-21:q2-results",
       "sourceId": null
+    },
+    {
+      "sourceId": "sec:SCCO:2025-10K:20260227",
+      "url": "https://www.sec.gov/Archives/edgar/data/1001838/000110465926021492/scco-20251231x10k.htm",
+      "originFingerprint": "sec.gov|SCCO|10-K|2025-12-31|000110465926021492",
+      "sourceClass": "regulatory-primary",
+      "observations": [
+        "Grupo Mexico indirectly owned 88.9% of Southern Copper, and the filing states that some Southern Copper officers/directors also serve Grupo Mexico or affiliates and that Grupo Mexico's interests may conflict with minority stockholders.",
+        "Southern Copper describes copper mining as cyclical and globally competitive, with profitability exposed to market conditions, credit availability and competitors that may be more diversified.",
+        "The company identifies geographic concentration and political, economic, social, regulatory and trade risks because production operations are concentrated in Peru and Mexico."
+      ],
+      "primary": false
+    },
+    {
+      "sourceId": "sec:SCCO:2026Q1:20260430",
+      "url": "https://www.sec.gov/Archives/edgar/data/1001838/000110465926052647/scco-20260331x10q.htm",
+      "originFingerprint": "sec.gov|SCCO|10-Q|2026-03-31|000110465926052647",
+      "sourceClass": "regulatory-primary",
+      "observations": [
+        "As of March 31, 2026 Grupo Mexico continued to own 88.9% of Southern Copper through Americas Mining Corporation.",
+        "Management states that market forces outside its control largely determine product sale prices, making production, cost control, production enhancement and capital structure the principal operating levers.",
+        "Environmental programs include water recovery and mine-closure/remediation obligations; first-quarter 2026 environmental capital investment totaled $45.5 million, concentrated primarily in Mexican operations."
+      ],
+      "primary": false
     }
   ],
   "contradictions": [
@@ -370,10 +397,15 @@
       "resolution": "Partially falsified: the evidence supports strong financial momentum but not broad volume momentum because copper sales volume declined 1.5% year over year.",
       "resolved": true,
       "gating": false
+    },
+    {
+      "statement": "Strategic copper scarcity exposure coexists with issuer-disclosed dependence on externally determined commodity prices and concentrated operating jurisdictions.",
+      "status": "resolved-as-conditional-thesis",
+      "resolutionPath": "Treat scarcity as a demand/supply mechanism rather than guaranteed company value capture; test realized price, unit cost, volume and project execution together."
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 0,
+    "unresolvedMaterialCount": 1,
     "items": [
       {
         "claim": "Record financial results occurred alongside lower copper sales volume.",
@@ -392,6 +424,11 @@
         "resolution": "Partially falsified: the evidence supports strong financial momentum but not broad volume momentum because copper sales volume declined 1.5% year over year.",
         "resolved": true,
         "gating": false
+      },
+      {
+        "statement": "Strategic copper scarcity exposure coexists with issuer-disclosed dependence on externally determined commodity prices and concentrated operating jurisdictions.",
+        "status": "resolved-as-conditional-thesis",
+        "resolutionPath": "Treat scarcity as a demand/supply mechanism rather than guaranteed company value capture; test realized price, unit cost, volume and project execution together."
       }
     ]
   },
@@ -411,11 +448,14 @@
     {
       "unknown": "Beta has not independently quantified valuation/crowding or future copper prices; these remain non-gating and belong outside this perspective's canonical authority.",
       "gating": false
-    }
+    },
+    "Whether governance safeguards materially offset the economic power of the 88.9% controlling shareholder in future capital-allocation decisions.",
+    "Project-specific sensitivity to water, permitting and social-license constraints across the expansion pipeline.",
+    "Normalized cash generation under a sustained copper-price reversal after current project and environmental capital commitments."
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 7
   },
   "gatingIssues": [],
   "confidence": 88,
@@ -427,7 +467,8 @@
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
-      "missing_data_confidence_evidence"
+      "missing_data_confidence_evidence",
+      "unresolved_material_contradiction"
     ],
     "routing": [
       {
@@ -453,6 +494,10 @@
       {
         "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
+      },
+      {
+        "failure": "unresolved_material_contradiction",
+        "owner": "deep-resolver"
       }
     ]
   }

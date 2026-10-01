@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "STLD",
   "workId": "t0:STLD",
-  "generatedAt": "2026-10-01T19:23:18.775Z",
+  "generatedAt": "2026-10-01T19:28:40.835Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -22,9 +22,9 @@
     "validatedAt": "2026-10-01T19:22:30.252Z"
   },
   "evidenceWindow": {
-    "start": "2026-07-20T00:00:00.000Z",
-    "end": "2026-09-22T17:33:06.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-22T17:33:06.000Z"
+    "start": "2026-04-20T00:00:00.000Z",
+    "end": "2026-10-01T19:27:20.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T19:27:20.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -58,7 +58,8 @@
     "data/runtime/workgraph/evidence/STLD-20260921T150611Z-earth-scout.json",
     "data/runtime/workgraph/evidence/STLD-20260921T180758Z-earth-scout.json",
     "data/runtime/workgraph/evidence/STLD-20260921T202645Z-council-beta.json",
-    "data/runtime/workgraph/evidence/STLD-20260922T173306Z-deep-resolver.json"
+    "data/runtime/workgraph/evidence/STLD-20260922T173306Z-deep-resolver.json",
+    "data/runtime/workgraph/evidence/STLD-20261001T192720Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
@@ -66,8 +67,8 @@
       "data/runtime/workgraph/evidence/STLD-20260921T192217Z-council-beta.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 9,
-    "historicalEvidenceCount": 13
+    "activeEvidenceCount": 10,
+    "historicalEvidenceCount": 14
   },
   "factorEvidence": {
     "names": [
@@ -209,6 +210,16 @@
       {
         "risk": "Cyclicality, trade-policy sensitivity, backlog quality and aluminum startup execution can weaken returns.",
         "gating": false
+      },
+      {
+        "risk": "Backlog quantity can overstate economic quality if contract pricing/pass-through does not absorb steel input inflation.",
+        "observedWeakness": true,
+        "gating": false
+      },
+      {
+        "risk": "Aluminum diversification remains exposed to commissioning, yield, utilization and customer-qualification execution until profitability is demonstrated.",
+        "observedWeakness": true,
+        "gating": false
       }
     ]
   },
@@ -240,6 +251,16 @@
     {
       "risk": "Cyclicality, trade-policy sensitivity, backlog quality and aluminum startup execution can weaken returns.",
       "gating": false
+    },
+    {
+      "risk": "Backlog quantity can overstate economic quality if contract pricing/pass-through does not absorb steel input inflation.",
+      "observedWeakness": true,
+      "gating": false
+    },
+    {
+      "risk": "Aluminum diversification remains exposed to commissioning, yield, utilization and customer-qualification execution until profitability is demonstrated.",
+      "observedWeakness": true,
+      "gating": false
     }
   ],
   "dataConfidenceEvidence": {
@@ -250,7 +271,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 1
+    "count": 3
   },
   "causalMapping": {
     "present": true,
@@ -272,6 +293,18 @@
         "to": "fabrication margins",
         "mechanism": "cost inflation compresses contract economics unless repricing/pass-through compensates",
         "falsifier": "sustained pass-through protects margins through input volatility"
+      },
+      {
+        "from": "higher steel raw-material input costs",
+        "to": "steel fabrication operating income",
+        "mechanism": "input inflation offset increased shipments and steady pricing in Q2 2026",
+        "falsifier": "future disclosures show sustained fabrication margin expansion despite comparable input-cost pressure"
+      },
+      {
+        "from": "aluminum startup/qualification execution",
+        "to": "aluminum profitability",
+        "mechanism": "startup interruptions, utilization, yields and customer qualification determine conversion of installed capacity into profitable shipments",
+        "falsifier": "sustained positive aluminum operating income with completed qualifications and stable utilization"
       }
     ]
   },
@@ -293,16 +326,30 @@
       "to": "fabrication margins",
       "mechanism": "cost inflation compresses contract economics unless repricing/pass-through compensates",
       "falsifier": "sustained pass-through protects margins through input volatility"
+    },
+    {
+      "from": "higher steel raw-material input costs",
+      "to": "steel fabrication operating income",
+      "mechanism": "input inflation offset increased shipments and steady pricing in Q2 2026",
+      "falsifier": "future disclosures show sustained fabrication margin expansion despite comparable input-cost pressure"
+    },
+    {
+      "from": "aluminum startup/qualification execution",
+      "to": "aluminum profitability",
+      "mechanism": "startup interruptions, utilization, yields and customer qualification determine conversion of installed capacity into profitable shipments",
+      "falsifier": "sustained positive aluminum operating income with completed qualifications and stable utilization"
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 7,
-    "uniqueSourceCount": 2,
+    "rawSourceCount": 9,
+    "uniqueSourceCount": 4,
     "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "ir.steeldynamics.com|q2-2026-results|2026-07",
-      "reuters.com|nucor-q2-strong-pricing-demand|2026-07-27"
+      "reuters.com|nucor-q2-strong-pricing-demand|2026-07-27",
+      "ir.steeldynamics.com|STLD|2026Q2-results|2026-07-20",
+      "ir.steeldynamics.com|STLD|2026Q1-results|2026-04-20"
     ]
   },
   "sources": [
@@ -321,6 +368,22 @@
       "primary": false,
       "publishedAt": "2026-07-27",
       "originFingerprint": "reuters.com|nucor-q2-strong-pricing-demand|2026-07-27"
+    },
+    {
+      "sourceId": "issuer:STLD:2026Q2:assist-risk",
+      "url": "https://ir.steeldynamics.com/steel-dynamics-reports-second-quarter-2026-results/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-20",
+      "originFingerprint": "ir.steeldynamics.com|STLD|2026Q2-results|2026-07-20"
+    },
+    {
+      "sourceId": "issuer:STLD:2026Q1:assist-risk",
+      "url": "https://ir.steeldynamics.com/steel-dynamics-reports-first-quarter-2026-results/",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-04-20",
+      "originFingerprint": "ir.steeldynamics.com|STLD|2026Q1-results|2026-04-20"
     }
   ],
   "contradictions": [
@@ -335,6 +398,12 @@
     {
       "claim": "Strong pricing/backlog coexist with fabrication margin pressure.",
       "resolution": "Backlog volume and economic quality are distinct; margin pressure is a present risk but not a falsification of end demand.",
+      "resolved": true,
+      "gating": false
+    },
+    {
+      "claim": "Strong backlog/demand coexists with weaker fabrication economics under higher steel input costs.",
+      "resolution": "These observations are compatible: demand volume can rise while contract-level margin compresses. Treat backlog size and backlog economics as separate variables.",
       "resolved": true,
       "gating": false
     }
@@ -353,6 +422,12 @@
       {
         "claim": "Strong pricing/backlog coexist with fabrication margin pressure.",
         "resolution": "Backlog volume and economic quality are distinct; margin pressure is a present risk but not a falsification of end demand.",
+        "resolved": true,
+        "gating": false
+      },
+      {
+        "claim": "Strong backlog/demand coexists with weaker fabrication economics under higher steel input costs.",
+        "resolution": "These observations are compatible: demand volume can rise while contract-level margin compresses. Treat backlog size and backlog economics as separate variables.",
         "resolved": true,
         "gating": false
       }
@@ -384,11 +459,21 @@
     {
       "unknown": "Backlog cancellation/margin quality, data-center share and normalized aluminum profitability.",
       "gating": false
+    },
+    {
+      "unknown": "Current margin embedded in the fabrication backlog and cancellation behavior are not disclosed in the cited releases.",
+      "gating": false,
+      "evidenceNeeded": "future segment margin/backlog conversion disclosure or contract-quality evidence"
+    },
+    {
+      "unknown": "Whether aluminum reaches durable positive operating income on the company's expected ramp path remains unverified by the cited Q1/Q2 releases.",
+      "gating": false,
+      "evidenceNeeded": "subsequent segment operating income, utilization/yield and qualification disclosures"
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 14
+    "nonGatingCount": 16
   },
   "gatingIssues": [],
   "confidence": 86,

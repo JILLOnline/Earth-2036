@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "VRNS",
   "workId": "t0:VRNS",
-  "generatedAt": "2026-10-01T14:02:31.730Z",
+  "generatedAt": "2026-10-01T14:09:02.323Z",
   "sourceState": "packet_ready",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2025-11-12T00:00:00.000Z",
-    "end": "2026-10-01T13:11:44.000Z",
-    "latestEvidenceGeneratedAt": "2026-10-01T13:11:44.000Z"
+    "end": "2026-10-01T14:06:33.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T14:06:33.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -61,6 +61,7 @@
     "data/runtime/workgraph/evidence/VRNS-20261001T120852Z-earth-scout-assist.json",
     "data/runtime/workgraph/evidence/VRNS-20261001T130149Z-earth-scout-assist.json",
     "data/runtime/workgraph/evidence/VRNS-20261001T131144Z-council-alpha.json",
+    "data/runtime/workgraph/evidence/VRNS-20261001T140633Z-earth-scout-assist.json",
     "data/runtime/workgraph/evidence/council-beta-20260921T222626Z-batch.json"
   ],
   "evidenceResolution": {
@@ -73,8 +74,8 @@
       "data/runtime/workgraph/evidence/VRNS-20261001T121638Z-council-alpha.json"
     ],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 11,
-    "historicalEvidenceCount": 23
+    "activeEvidenceCount": 12,
+    "historicalEvidenceCount": 24
   },
   "factorEvidence": {
     "names": [
@@ -434,6 +435,13 @@
         ]
       },
       {
+        "risk": "External analyst coverage remains partly dependent on company-reported quarter metrics; it does not establish customer-level churn, competitive win/loss evidence or fair value.",
+        "gating": false,
+        "sourceIds": [
+          "investing:VRNS:q2-cantor:20260729"
+        ]
+      },
+      {
         "risk": "Concentrating delivery on SaaS improves architectural focus but raises transition fragility if remaining self-hosted customers do not migrate cleanly.",
         "gating": false
       },
@@ -486,6 +494,13 @@
       ]
     },
     {
+      "risk": "External analyst coverage remains partly dependent on company-reported quarter metrics; it does not establish customer-level churn, competitive win/loss evidence or fair value.",
+      "gating": false,
+      "sourceIds": [
+        "investing:VRNS:q2-cantor:20260729"
+      ]
+    },
+    {
       "risk": "Concentrating delivery on SaaS improves architectural focus but raises transition fragility if remaining self-hosted customers do not migrate cleanly.",
       "gating": false
     },
@@ -526,8 +541,8 @@
     "competing cloud-native security stacks -> substitution pressure -> bottleneck-control uncertainty"
   ],
   "sourceLineage": {
-    "rawSourceCount": 25,
-    "uniqueSourceCount": 10,
+    "rawSourceCount": 26,
+    "uniqueSourceCount": 11,
     "duplicatesCollapsed": 15,
     "missingLineage": 0,
     "uniqueOrigins": [
@@ -540,7 +555,8 @@
       "zacks|zacks.com|independent-financial-analysis",
       "btw:VRNS:saas-transition-layer:20260829",
       "stockanalysis:VRNS:valuation:20260930",
-      "zacks:VRNS:q2-results:20260729"
+      "zacks:VRNS:q2-results:20260729",
+      "investing.com|cantor-fitzgerald|factset-consensus|independent-market-analysis"
     ]
   },
   "sources": [
@@ -611,6 +627,13 @@
       "url": "https://www.zacks.com/stock/news/2963571/varonis-q2-earnings-surpass-expectations-revenues-rise-yy",
       "kind": "credible-independent-financial-analysis",
       "primary": false
+    },
+    {
+      "sourceId": "investing:VRNS:q2-cantor:20260729",
+      "url": "https://www.investing.com/news/analyst-ratings/cantor-fitzgerald-reiterates-varonis-stock-rating-after-q2-beat-93CH-4820725",
+      "kind": "credible-independent-market-analysis",
+      "primary": false,
+      "originFingerprint": "investing.com|cantor-fitzgerald|factset-consensus|independent-market-analysis"
     }
   ],
   "contradictions": [
@@ -634,10 +657,17 @@
       "sourceIds": [
         "zacks:VRNS:q2-results:20260729"
       ]
+    },
+    {
+      "status": "corroborates_existing_tension",
+      "statement": "Independent market coverage supports strong SaaS execution and raised guidance while preserving the packet's profitability/transition-quality caveat.",
+      "sourceIds": [
+        "investing:VRNS:q2-cantor:20260729"
+      ]
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 3,
+    "unresolvedMaterialCount": 4,
     "items": [
       {
         "status": "material_non_gating",
@@ -658,6 +688,13 @@
         "statement": "The independent report supports the existing packet tension: strong SaaS growth coexists with weaker first-half free-cash-flow conversion.",
         "sourceIds": [
           "zacks:VRNS:q2-results:20260729"
+        ]
+      },
+      {
+        "status": "corroborates_existing_tension",
+        "statement": "Independent market coverage supports strong SaaS execution and raised guidance while preserving the packet's profitability/transition-quality caveat.",
+        "sourceIds": [
+          "investing:VRNS:q2-cantor:20260729"
         ]
       }
     ]
@@ -685,6 +722,8 @@
     "Forward valuation ratios depend on third-party estimate inputs and should be treated as market context rather than primary operating evidence.",
     "The independent report relies partly on company-reported quarter metrics and does not establish customer-level churn, competitive win/loss rates or fair value.",
     "This evidence does not itself justify changing Alpha's numeric factor, risk or confidence assessments.",
+    "Customer-level retention cohorts and competitive displacement remain unobserved.",
+    "This evidence does not itself justify changing Alpha's factor, risk, confidence or score values.",
     {
       "unknown": "Remaining self-hosted exposure, migration churn and comparative autonomous-remediation efficacy are not quantified by the current source.",
       "gating": false
@@ -696,7 +735,7 @@
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 12
+    "nonGatingCount": 14
   },
   "gatingIssues": [],
   "confidence": 76,

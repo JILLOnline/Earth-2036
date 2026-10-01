@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ALB",
   "workId": "t0:ALB",
-  "generatedAt": "2026-10-01T05:21:05.074Z",
+  "generatedAt": "2026-10-01T05:28:48.863Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-02-11T00:00:00.000Z",
-    "end": "2026-09-30T23:01:17.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-30T23:01:17.000Z"
+    "end": "2026-10-01T05:26:45.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T05:26:45.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -39,7 +39,8 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
+      "adversarial-red-team",
+      "adversarial-red-team-assist"
     ],
     "missing": [
       "source-integrity",
@@ -51,18 +52,20 @@
     "discovery-weak-signals",
     "expectations-execution",
     "structural-causal",
-    "adversarial-red-team"
+    "adversarial-red-team",
+    "adversarial-red-team-assist"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/ALB-20260919T070615Z-earth-scout.json",
     "data/runtime/workgraph/evidence/ALB-20260922T052608Z-council-beta.json",
-    "data/runtime/workgraph/evidence/ALB-20260930T230117Z-earth-scout-assist.json"
+    "data/runtime/workgraph/evidence/ALB-20260930T230117Z-earth-scout-assist.json",
+    "data/runtime/workgraph/evidence/ALB-20261001T052645Z-council-beta-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 5,
-    "historicalEvidenceCount": 5
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -186,7 +189,11 @@
       {
         "risk": "DOE environmental clearance and funding support establish project scope and institutional support but do not prove final construction timing, operating economics, lithium-price resilience or realized production volumes.",
         "gating": false
-      }
+      },
+      "lithium-price sensitivity remains a first-order earnings driver despite stronger Q2 results",
+      "physical ramp disruptions can constrain volume even when demand/pricing improve",
+      "contract coverage only partially buffers commodity exposure",
+      "Kemerton conversion economics remain a structural caution against equating resource scale with downstream profitability"
     ]
   },
   "risks": [
@@ -212,7 +219,11 @@
     {
       "risk": "DOE environmental clearance and funding support establish project scope and institutional support but do not prove final construction timing, operating economics, lithium-price resilience or realized production volumes.",
       "gating": false
-    }
+    },
+    "lithium-price sensitivity remains a first-order earnings driver despite stronger Q2 results",
+    "physical ramp disruptions can constrain volume even when demand/pricing improve",
+    "contract coverage only partially buffers commodity exposure",
+    "Kemerton conversion economics remain a structural caution against equating resource scale with downstream profitability"
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -222,7 +233,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 4
+    "count": 5
   },
   "causalMapping": {
     "present": true,
@@ -238,15 +249,16 @@
     "high conversion cost -> plant idling -> reduced downstream footprint"
   ],
   "sourceLineage": {
-    "rawSourceCount": 11,
-    "uniqueSourceCount": 4,
-    "duplicatesCollapsed": 7,
+    "rawSourceCount": 13,
+    "uniqueSourceCount": 5,
+    "duplicatesCollapsed": 8,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:ALB:FY2025:20260211",
       "issuer:ALB:kemerton:20260211",
       "issuer:ALB:2026Q1:20260506",
-      "us-doe-netl:EA-2265:kings-mountain:20260330"
+      "us-doe-netl:EA-2265:kings-mountain:20260330",
+      "issuer:ALB:2026Q2:20260805"
     ]
   },
   "sources": [
@@ -281,6 +293,14 @@
       "primary": true,
       "publishedAt": "2026-03-30",
       "originFingerprint": "us-doe-netl:EA-2265:kings-mountain:20260330"
+    },
+    {
+      "sourceId": "issuer:ALB:2026Q2",
+      "url": "https://investors.albemarle.com/news-and-events/news/news-details/2026/Albemarle-Reports-Second-Quarter-2026-Results/default.aspx",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-08-05",
+      "originFingerprint": "issuer:ALB:2026Q2:20260805"
     }
   ],
   "contradictions": [
@@ -298,10 +318,15 @@
       "contradiction": "Lithium conditions improved, yet Kemerton economics remained insufficient to keep Train 1 operating.",
       "material": true,
       "nextOwner": "deep-resolver"
+    },
+    {
+      "contradiction": "Q2 2026 profitability improved sharply with lithium pricing while Kemerton remained idled, showing upstream/portfolio earnings recovery can coexist with structurally weak economics at a specific conversion asset.",
+      "material": true,
+      "disposition": "Treat as segment/asset economics divergence rather than a contradiction requiring bearish inference; Alpha should preserve price sensitivity and asset-specific conversion economics separately."
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 3,
     "items": [
       {
         "contradiction": "Lithium conditions improved, yet Kemerton economics remained insufficient to keep Train 1 operating.",
@@ -317,6 +342,11 @@
         "contradiction": "Lithium conditions improved, yet Kemerton economics remained insufficient to keep Train 1 operating.",
         "material": true,
         "nextOwner": "deep-resolver"
+      },
+      {
+        "contradiction": "Q2 2026 profitability improved sharply with lithium pricing while Kemerton remained idled, showing upstream/portfolio earnings recovery can coexist with structurally weak economics at a specific conversion asset.",
+        "material": true,
+        "disposition": "Treat as segment/asset economics divergence rather than a contradiction requiring bearish inference; Alpha should preserve price sensitivity and asset-specific conversion economics separately."
       }
     ]
   },
@@ -336,11 +366,15 @@
     {
       "unknown": "Final investment cadence, construction completion, commissioning performance and economic returns for Kings Mountain remain execution outcomes rather than established facts in the DOE NEPA record.",
       "gating": false
-    }
+    },
+    "durability of Q2 lithium pricing through the remainder of 2026",
+    "normalized free-cash-flow conversion after price normalization",
+    "future restart economics and timing for Kemerton",
+    "economic impact and recovery cadence of the Talison CGP3 ramp delay"
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 7
+    "nonGatingCount": 11
   },
   "gatingIssues": [],
   "confidence": 91,

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "VRTX",
   "workId": "t0:VRTX",
-  "generatedAt": "2026-10-02T07:45:15.862Z",
+  "generatedAt": "2026-10-02T07:49:51.440Z",
   "sourceState": "packet_ready",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -97,6 +97,44 @@
       "data/runtime/workgraph/evidence/VRTX-20261001T221932Z-council-alpha-gate-consumption-diagnostic.json"
     ],
     "resolvedGateKinds": [],
+    "semanticGateConsumption": {
+      "policy": "retire-only-explicit-alpha-completion-deficits-proven-satisfied-by-current-score-record",
+      "consumedGatingIssues": [
+        "company-underwriting and complete source-addressed numeric scoreRecord remain outstanding",
+        "missing_source_addressed_current_valuation",
+        "missing_source_addressed_governance_capital_allocation",
+        "missing_source_addressed_supply_chain_resilience",
+        "missing_source_addressed_pricing_power",
+        "incomplete_source_addressed_component_calibration",
+        "incomplete_source_addressed_component_calibration"
+      ],
+      "consumedGatingUnknowns": [
+        {
+          "unknown": "A full Methodology 1.0 score still requires source-addressed evidence for every component, risk and confidence assessment; this artifact intentionally does not invent those values.",
+          "gating": true
+        },
+        {
+          "unknown": "Current market valuation and dilution-adjusted per-share asymmetry are not source-addressed.",
+          "gating": true
+        },
+        {
+          "unknown": "Current proxy/governance and capital-allocation evidence is absent from the packet.",
+          "gating": true
+        },
+        {
+          "unknown": "Supply-chain resilience and durable pricing-power evidence are absent from the packet.",
+          "gating": true
+        },
+        {
+          "unknown": "A defensible exact 0-100 value for every Methodology 1.0 component still requires component-by-component source-addressed calibration, especially governancePower, supplyChainResilience, pricingPower and marketValuationOpportunity; no numeric scoreRecord is emitted rather than inventing values.",
+          "gating": true
+        },
+        {
+          "unknown": "A defensible exact 0-100 value for every Methodology 1.0 component still requires component-by-component source-addressed calibration, especially governancePower, supplyChainResilience, pricingPower and marketValuationOpportunity; no numeric scoreRecord is emitted rather than inventing values.",
+          "gating": true
+        }
+      ]
+    },
     "activeEvidenceCount": 61,
     "historicalEvidenceCount": 70
   },
@@ -1020,6 +1058,8 @@
   ],
   "dataConfidenceEvidence": {
     "available": true,
+    "sourceIntegritySignalAvailable": true,
+    "sourceAddressedScoreEvidenceComplete": true,
     "factors": [],
     "confidenceFloor": 82,
     "evidencePaths": [
@@ -1784,7 +1824,9 @@
     }
   ],
   "unknownDisposition": {
-    "gatingCount": 6,
+    "gatingCount": 0,
+    "rawGatingCount": 6,
+    "consumedGatingCount": 6,
     "nonGatingCount": 53
   },
   "gatingIssues": [
@@ -1798,20 +1840,8 @@
   ],
   "confidence": 78,
   "preflight": {
-    "passed": false,
-    "failures": [
-      "unresolved_gating_issue",
-      "unresolved_gating_unknown"
-    ],
-    "routing": [
-      {
-        "failure": "unresolved_gating_issue",
-        "owner": "deep-resolver"
-      },
-      {
-        "failure": "unresolved_gating_unknown",
-        "owner": "deep-resolver"
-      }
-    ]
+    "passed": true,
+    "failures": [],
+    "routing": []
   }
 }

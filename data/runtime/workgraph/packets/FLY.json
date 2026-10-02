@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "FLY",
   "workId": "t0:FLY",
-  "generatedAt": "2026-10-02T07:45:15.853Z",
+  "generatedAt": "2026-10-02T07:49:51.429Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-13T00:00:00.000Z",
-    "end": "2026-10-01T14:27:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-10-01T14:27:00.000Z"
+    "end": "2026-10-01T15:16:00.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-01T15:16:00.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -39,31 +39,38 @@
       "discovery-weak-signals",
       "expectations-execution",
       "structural-causal",
-      "adversarial-red-team"
-    ],
-    "missing": [
+      "adversarial-red-team",
       "source-integrity",
       "company-underwriting"
     ],
-    "complete": false
+    "missing": [],
+    "complete": true
   },
   "perspectives": [
     "discovery-weak-signals",
     "expectations-execution",
     "structural-causal",
-    "adversarial-red-team"
+    "adversarial-red-team",
+    "source-integrity",
+    "company-underwriting"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/FLY-20260918T2000Z-earth-scout.json",
     "data/runtime/workgraph/evidence/FLY-20260922T072718Z-council-beta.json",
     "data/runtime/workgraph/evidence/FLY-20261001T110540Z-earth-scout-assist.json",
-    "data/runtime/workgraph/evidence/FLY-20261001T142700Z-council-beta-assist.json"
+    "data/runtime/workgraph/evidence/FLY-20261001T142700Z-council-beta-assist.json",
+    "data/runtime/workgraph/evidence/FLY-20261001T151600Z-council-alpha.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 6,
-    "historicalEvidenceCount": 6
+    "semanticGateConsumption": {
+      "policy": "retire-only-explicit-alpha-completion-deficits-proven-satisfied-by-current-score-record",
+      "consumedGatingIssues": [],
+      "consumedGatingUnknowns": []
+    },
+    "activeEvidenceCount": 8,
+    "historicalEvidenceCount": 8
   },
   "factorEvidence": {
     "names": [
@@ -80,8 +87,22 @@
       "pricingPower"
     ],
     "byPerspective": {
-      "source-integrity": [],
-      "company-underwriting": [],
+      "source-integrity": [
+        {
+          "name": "thesisQuality"
+        },
+        {
+          "name": "financialOperatingMomentum"
+        }
+      ],
+      "company-underwriting": [
+        {
+          "name": "thesisQuality"
+        },
+        {
+          "name": "financialOperatingMomentum"
+        }
+      ],
       "structural-causal": [
         "thesisQuality",
         "alignment2036",
@@ -113,7 +134,179 @@
       ]
     }
   },
-  "scoreRecord": null,
+  "scoreRecord": {
+    "ticker": "FLY",
+    "company": "Firefly Aerospace",
+    "methodologyVersion": "1.0.0",
+    "calibrationVersion": "1.0.0-calibration-a",
+    "earthScore": 47.05,
+    "risk": 66,
+    "dataConfidence": 78,
+    "components": {
+      "thesisQuality": 68,
+      "financialOperatingMomentum": 48,
+      "marketValuationOpportunity": 38,
+      "catalystScore": 72,
+      "governancePower": 52,
+      "alignment2036": 82,
+      "crossDivisionLeverage": 76,
+      "bottleneckControl": 58,
+      "scenarioRobustness": 48,
+      "substitutionResilience": 60,
+      "supplyChainResilience": 50,
+      "pricingPower": 52
+    },
+    "factorEvidence": {
+      "thesisQuality": {
+        "numericAssessment": 68,
+        "basis": "Rapid revenue growth, roughly $1.5B backlog and major launch/lunar contracts demonstrate real demand, while cadence reliability and cash economics remain unproven.",
+        "sourceIds": [
+          "sec:FLY:2026Q2:10Q",
+          "issuer:FLY:lockheed-extension",
+          "issuer:FLY:nasa-clps",
+          "fool:FLY:q2-2026-financials:20260812"
+        ]
+      },
+      "financialOperatingMomentum": {
+        "numericAssessment": 48,
+        "basis": "Revenue and backlog expanded strongly, but first-half operating cash outflow rose to $144.1M and independent analysis reports Q2 free cash flow of negative $106.31M.",
+        "sourceIds": [
+          "sec:FLY:2026Q2:10Q",
+          "fool:FLY:q2-2026-financials:20260812"
+        ]
+      },
+      "marketValuationOpportunity": {
+        "numericAssessment": 38,
+        "basis": "At 2026-09-30 the company carried about $3.88B market capitalization and $3.29B enterprise value, roughly 13.5x trailing sales, despite negative earnings/free cash flow and major execution risk.",
+        "sourceIds": [
+          "stockanalysis:FLY:valuation:20260930",
+          "sec:FLY:2026Q2:10Q"
+        ]
+      },
+      "catalystScore": {
+        "numericAssessment": 72,
+        "basis": "Backlog conversion, repeat Alpha Block II missions, Eclipse development and the next earnings checkpoint are identifiable material catalysts, but timing remains mission-dependent.",
+        "sourceIds": [
+          "sec:FLY:2026Q2:10Q",
+          "issuer:FLY:lockheed-extension",
+          "issuer:FLY:nasa-clps"
+        ]
+      },
+      "governancePower": {
+        "numericAssessment": 52,
+        "basis": "Management has secured capital and major contracts, but simultaneous capital-intensive programs, negative cash generation and limited public-market execution history keep governance/capital-allocation evidence mixed.",
+        "sourceIds": [
+          "sec:FLY:2026Q2:10Q",
+          "issuer:FLY:2026Q2"
+        ]
+      },
+      "alignment2036": {
+        "numericAssessment": 82,
+        "basis": "Responsive launch, lunar delivery and spacecraft infrastructure address durable civil, defense and commercial space-access needs.",
+        "sourceIds": [
+          "issuer:FLY:nasa-clps",
+          "issuer:FLY:lockheed-extension",
+          "sec:FLY:2026Q2:10Q"
+        ]
+      },
+      "crossDivisionLeverage": {
+        "numericAssessment": 76,
+        "basis": "Launch, lunar/spacecraft and medium-lift development reuse propulsion, flight and mission capabilities across distinct civil, defense and commercial demand engines.",
+        "sourceIds": [
+          "sec:FLY:2026Q2:10Q",
+          "issuer:FLY:nasa-clps",
+          "issuer:FLY:lockheed-extension"
+        ]
+      },
+      "bottleneckControl": {
+        "numericAssessment": 58,
+        "basis": "Launch capacity and mission integration are real constraints with qualification friction, but Firefly does not yet demonstrate dominant scarce capacity or irreplaceability.",
+        "sourceIds": [
+          "sec:FLY:2026Q2:10Q",
+          "sec:FLY:S1-comment:20250723"
+        ]
+      },
+      "scenarioRobustness": {
+        "numericAssessment": 48,
+        "basis": "Multiple customer/program channels diversify demand, but launch reliability, regulatory continuity and capital intensity create a narrow execution dependency across scenarios.",
+        "sourceIds": [
+          "sec:FLY:2026Q2:10Q",
+          "sec:FLY:S1-comment:20250723",
+          "fool:FLY:q2-2026-financials:20260812"
+        ]
+      },
+      "substitutionResilience": {
+        "numericAssessment": 60,
+        "basis": "Flight heritage, integrated mission capability and contracted customers create moderate replacement barriers, while alternative launch providers remain credible substitutes.",
+        "sourceIds": [
+          "issuer:FLY:lockheed-extension",
+          "issuer:FLY:nasa-clps",
+          "sec:FLY:2026Q2:10Q"
+        ]
+      },
+      "supplyChainResilience": {
+        "numericAssessment": 50,
+        "basis": "The filing identifies production and launch-rate execution dependencies; current evidence does not establish exceptional multi-source redundancy or tested resilience.",
+        "sourceIds": [
+          "sec:FLY:2026Q2:10Q"
+        ]
+      },
+      "pricingPower": {
+        "numericAssessment": 52,
+        "basis": "Large mission contracts support some value capture, but current evidence does not establish durable price pass-through or margin-protected scarcity rents.",
+        "sourceIds": [
+          "issuer:FLY:lockheed-extension",
+          "issuer:FLY:nasa-clps",
+          "sec:FLY:2026Q2:10Q"
+        ]
+      }
+    },
+    "riskEvidence": {
+      "numericAssessment": 66,
+      "basis": "Launch reliability and FAA interruption can directly impair contracted-demand conversion; operating cash burn is high, simultaneous programs are capital intensive, and current valuation embeds substantial execution expectations.",
+      "sourceIds": [
+        "sec:FLY:2026Q2:10Q",
+        "sec:FLY:S1-comment:20250723",
+        "fool:FLY:q2-2026-financials:20260812",
+        "stockanalysis:FLY:valuation:20260930"
+      ]
+    },
+    "dataConfidenceEvidence": {
+      "numericAssessment": 78,
+      "basis": "Fresh SEC operating/risk evidence, SEC regulatory-review evidence, issuer contract disclosures, independent financial analysis and current S&P Global-derived market valuation cover the major score dimensions; confidence remains below exceptional because long-cycle launch cadence, customer concentration, margin conversion and supply-chain redundancy remain incompletely observed.",
+      "sourceIds": [
+        "sec:FLY:2026Q2:10Q",
+        "sec:FLY:S1-comment:20250723",
+        "issuer:FLY:2026Q2",
+        "issuer:FLY:lockheed-extension",
+        "issuer:FLY:nasa-clps",
+        "fool:FLY:q2-2026-financials:20260812",
+        "stockanalysis:FLY:valuation:20260930"
+      ]
+    },
+    "primarySourceUrls": [
+      "https://www.sec.gov/Archives/edgar/data/1860160/000186016026000023/fly-20260630.htm",
+      "https://www.sec.gov/Archives/edgar/data/1860160/000000000025007743/filename1.pdf",
+      "https://investors.fireflyspace.com/news-releases/news-release-details/firefly-aerospace-announces-second-quarter-2026-financial",
+      "https://investors.fireflyspace.com/news-releases/news-release-details/firefly-aerospace-announces-extension-multi-launch-agreement",
+      "https://investors.fireflyspace.com/news-releases/news-release-details/firefly-aerospace-awarded-144-million-nasa-clps-contract"
+    ],
+    "independentSourceUrls": [
+      "https://www.fool.com/quote/nasdaq/fly/",
+      "https://stockanalysis.com/stocks/fly/statistics/"
+    ],
+    "causalMapped": true,
+    "thesis": "Firefly has credible demand across responsive launch, lunar and spacecraft missions, but durable shareholder value depends on converting backlog into reliable mission cadence and improving cash economics faster than capital needs and dilution compound.",
+    "keyRisk": "A launch failure or regulatory interruption can delay revenue and damage customer confidence while high cash burn and simultaneous development programs increase financing and dilution risk.",
+    "nextCatalyst": "Repeatable Alpha Block II mission success and backlog conversion, followed by the November 2026 earnings checkpoint and evidence of improving operating/free-cash-flow burden.",
+    "scoreBreakdown": {
+      "weightedComponentScore": 59.78,
+      "riskPenalty": 10.56,
+      "confidenceMultiplier": 0.956,
+      "finalEarthScore": 47.05,
+      "formula": "(weightedComponentScore - risk*0.16) * (0.8 + 0.2*dataConfidence/100)"
+    }
+  },
   "scoreReadiness": {
     "complete": false,
     "requiredComponents": [
@@ -133,8 +326,6 @@
     "sourceAddressedEvidence": {
       "factorEvidenceComplete": false,
       "missingFactorEvidence": [
-        "thesisQuality",
-        "financialOperatingMomentum",
         "marketValuationOpportunity",
         "catalystScore",
         "governancePower",
@@ -146,8 +337,8 @@
         "supplyChainResilience",
         "pricingPower"
       ],
-      "riskEvidenceComplete": false,
-      "dataConfidenceEvidenceComplete": false
+      "riskEvidenceComplete": true,
+      "dataConfidenceEvidenceComplete": true
     }
   },
   "factors": [
@@ -233,14 +424,18 @@
     }
   ],
   "dataConfidenceEvidence": {
-    "available": false,
+    "available": true,
+    "sourceIntegritySignalAvailable": false,
+    "sourceAddressedScoreEvidenceComplete": true,
     "factors": [],
     "confidenceFloor": null,
-    "evidencePaths": []
+    "evidencePaths": [
+      "data/runtime/workgraph/evidence/FLY-20261001T151600Z-council-alpha.json"
+    ]
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 6
+    "count": 10
   },
   "causalMapping": {
     "present": true,
@@ -258,9 +453,9 @@
     "responsive-launch-and-lunar-orbital-services->civil-defense-commercial-space-access"
   ],
   "sourceLineage": {
-    "rawSourceCount": 12,
-    "uniqueSourceCount": 8,
-    "duplicatesCollapsed": 4,
+    "rawSourceCount": 26,
+    "uniqueSourceCount": 14,
+    "duplicatesCollapsed": 12,
     "missingLineage": 0,
     "uniqueOrigins": [
       "issuer:FLY:2026Q2",
@@ -270,7 +465,13 @@
       "issuer:FLY:2026-01-13:blockII",
       "sec:1860160:2026Q2:10Q",
       "motley-fool|fool.com|independent-financial-analysis",
-      "sec:1860160:comment-letter:2025-07-23"
+      "sec:1860160:comment-letter:2025-07-23",
+      "sec:FLY:2026Q2:10Q",
+      "sec:FLY:S1-comment:20250723",
+      "issuer:FLY:lockheed-extension",
+      "issuer:FLY:nasa-clps",
+      "fool:FLY:q2-2026-financials:20260812",
+      "stockanalysis:FLY:valuation:20260930"
     ]
   },
   "sources": [
@@ -338,6 +539,42 @@
         "SEC staff asked Firefly to update its S-1 disclosures regarding the April 2025 Alpha launch mishap, the FAA grounding and the business impact, demonstrating that launch reliability and regulatory interruption were material enough to require fuller investor disclosure during registration.",
         "The comment referenced Firefly's multi-launch agreement with Lockheed Martin of up to 25 missions over five years while asking for clearer disclosure of the launch failure and FAA investigation, directly linking contracted demand to execution reliability."
       ],
+      "primary": false
+    },
+    {
+      "sourceId": "sec:FLY:2026Q2:10Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1860160/000186016026000023/fly-20260630.htm",
+      "kind": "regulatory-primary",
+      "primary": true
+    },
+    {
+      "sourceId": "sec:FLY:S1-comment:20250723",
+      "url": "https://www.sec.gov/Archives/edgar/data/1860160/000000000025007743/filename1.pdf",
+      "kind": "regulatory-primary",
+      "primary": true
+    },
+    {
+      "sourceId": "issuer:FLY:lockheed-extension",
+      "url": "https://investors.fireflyspace.com/news-releases/news-release-details/firefly-aerospace-announces-extension-multi-launch-agreement",
+      "kind": "issuer-primary",
+      "primary": true
+    },
+    {
+      "sourceId": "issuer:FLY:nasa-clps",
+      "url": "https://investors.fireflyspace.com/news-releases/news-release-details/firefly-aerospace-awarded-144-million-nasa-clps-contract",
+      "kind": "issuer-primary",
+      "primary": true
+    },
+    {
+      "sourceId": "fool:FLY:q2-2026-financials:20260812",
+      "url": "https://www.fool.com/quote/nasdaq/fly/",
+      "kind": "credible-independent-analysis",
+      "primary": false
+    },
+    {
+      "sourceId": "stockanalysis:FLY:valuation:20260930",
+      "url": "https://stockanalysis.com/stocks/fly/statistics/",
+      "kind": "credible-independent-market-data",
       "primary": false
     }
   ],
@@ -413,6 +650,8 @@
   ],
   "unknownDisposition": {
     "gatingCount": 0,
+    "rawGatingCount": 0,
+    "consumedGatingCount": 0,
     "nonGatingCount": 9
   },
   "gatingIssues": [],
@@ -420,37 +659,17 @@
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_specialist_perspective:source-integrity",
-      "missing_specialist_perspective:company-underwriting",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_score_risk_evidence",
-      "missing_data_confidence_evidence",
       "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_specialist_perspective:source-integrity",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_specialist_perspective:company-underwriting",
-        "owner": "council-alpha"
-      },
       {
         "failure": "missing_factor_evidence",
         "owner": "council-alpha"
       },
       {
         "failure": "missing_numeric_score_record",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_score_risk_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_data_confidence_evidence",
         "owner": "council-alpha"
       },
       {

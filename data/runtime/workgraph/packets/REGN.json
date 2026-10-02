@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "REGN",
   "workId": "t0:REGN",
-  "generatedAt": "2026-10-02T07:45:15.862Z",
+  "generatedAt": "2026-10-02T07:49:51.439Z",
   "sourceState": "packet_ready",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -70,6 +70,11 @@
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
+    "semanticGateConsumption": {
+      "policy": "retire-only-explicit-alpha-completion-deficits-proven-satisfied-by-current-score-record",
+      "consumedGatingIssues": [],
+      "consumedGatingUnknowns": []
+    },
     "activeEvidenceCount": 16,
     "historicalEvidenceCount": 16
   },
@@ -448,7 +453,9 @@
     "Accelerated approval leaves durability and confirmatory clinical-effect obligations unresolved."
   ],
   "dataConfidenceEvidence": {
-    "available": false,
+    "available": true,
+    "sourceIntegritySignalAvailable": false,
+    "sourceAddressedScoreEvidenceComplete": true,
     "factors": [],
     "confidenceFloor": null,
     "evidencePaths": [
@@ -768,6 +775,8 @@
   ],
   "unknownDisposition": {
     "gatingCount": 0,
+    "rawGatingCount": 0,
+    "consumedGatingCount": 0,
     "nonGatingCount": 20
   },
   "gatingIssues": [],
@@ -775,14 +784,9 @@
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_data_confidence_evidence",
       "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_data_confidence_evidence",
-        "owner": "council-alpha"
-      },
       {
         "failure": "unresolved_material_contradiction",
         "owner": "deep-resolver"

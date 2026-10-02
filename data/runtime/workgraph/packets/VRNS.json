@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "VRNS",
   "workId": "t0:VRNS",
-  "generatedAt": "2026-10-02T07:45:15.861Z",
+  "generatedAt": "2026-10-02T07:49:51.437Z",
   "sourceState": "packet_ready",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -76,6 +76,11 @@
       "data/runtime/workgraph/evidence/VRNS-20261001T131144Z-council-alpha.json"
     ],
     "resolvedGateKinds": [],
+    "semanticGateConsumption": {
+      "policy": "retire-only-explicit-alpha-completion-deficits-proven-satisfied-by-current-score-record",
+      "consumedGatingIssues": [],
+      "consumedGatingUnknowns": []
+    },
     "activeEvidenceCount": 13,
     "historicalEvidenceCount": 27
   },
@@ -537,7 +542,9 @@
     }
   ],
   "dataConfidenceEvidence": {
-    "available": false,
+    "available": true,
+    "sourceIntegritySignalAvailable": false,
+    "sourceAddressedScoreEvidenceComplete": true,
     "factors": [],
     "confidenceFloor": null,
     "evidencePaths": [
@@ -789,6 +796,8 @@
   ],
   "unknownDisposition": {
     "gatingCount": 0,
+    "rawGatingCount": 0,
+    "consumedGatingCount": 0,
     "nonGatingCount": 16
   },
   "gatingIssues": [],
@@ -796,14 +805,9 @@
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_data_confidence_evidence",
       "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_data_confidence_evidence",
-        "owner": "council-alpha"
-      },
       {
         "failure": "unresolved_material_contradiction",
         "owner": "deep-resolver"

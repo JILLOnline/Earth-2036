@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "ALB",
   "workId": "t0:ALB",
-  "generatedAt": "2026-10-02T07:45:15.858Z",
+  "generatedAt": "2026-10-02T07:49:51.434Z",
   "sourceState": "packet_ready",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -73,6 +73,11 @@
       "data/runtime/workgraph/evidence/ALB-20261001T081227Z-council-alpha.json"
     ],
     "resolvedGateKinds": [],
+    "semanticGateConsumption": {
+      "policy": "retire-only-explicit-alpha-completion-deficits-proven-satisfied-by-current-score-record",
+      "consumedGatingIssues": [],
+      "consumedGatingUnknowns": []
+    },
     "activeEvidenceCount": 12,
     "historicalEvidenceCount": 16
   },
@@ -408,7 +413,9 @@
     }
   ],
   "dataConfidenceEvidence": {
-    "available": false,
+    "available": true,
+    "sourceIntegritySignalAvailable": false,
+    "sourceAddressedScoreEvidenceComplete": true,
     "factors": [],
     "confidenceFloor": null,
     "evidencePaths": [
@@ -629,6 +636,8 @@
   ],
   "unknownDisposition": {
     "gatingCount": 0,
+    "rawGatingCount": 0,
+    "consumedGatingCount": 0,
     "nonGatingCount": 16
   },
   "gatingIssues": [],
@@ -636,14 +645,9 @@
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_data_confidence_evidence",
       "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_data_confidence_evidence",
-        "owner": "council-alpha"
-      },
       {
         "failure": "unresolved_material_contradiction",
         "owner": "deep-resolver"

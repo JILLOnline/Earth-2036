@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CCI",
   "workId": "t0:CCI",
-  "generatedAt": "2026-10-02T07:45:15.857Z",
+  "generatedAt": "2026-10-02T07:49:51.433Z",
   "sourceState": "packet_ready",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -67,6 +67,11 @@
       "data/runtime/workgraph/evidence/CCI-20261001T072145Z-council-alpha.json"
     ],
     "resolvedGateKinds": [],
+    "semanticGateConsumption": {
+      "policy": "retire-only-explicit-alpha-completion-deficits-proven-satisfied-by-current-score-record",
+      "consumedGatingIssues": [],
+      "consumedGatingUnknowns": []
+    },
     "activeEvidenceCount": 9,
     "historicalEvidenceCount": 11
   },
@@ -418,7 +423,9 @@
     "Ericsson is a network-equipment vendor and therefore an industry participant even though it is independent of Crown Castle"
   ],
   "dataConfidenceEvidence": {
-    "available": false,
+    "available": true,
+    "sourceIntegritySignalAvailable": false,
+    "sourceAddressedScoreEvidenceComplete": true,
     "factors": [],
     "confidenceFloor": null,
     "evidencePaths": [
@@ -713,6 +720,8 @@
   ],
   "unknownDisposition": {
     "gatingCount": 0,
+    "rawGatingCount": 0,
+    "consumedGatingCount": 0,
     "nonGatingCount": 9
   },
   "gatingIssues": [],
@@ -720,14 +729,9 @@
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_data_confidence_evidence",
       "unresolved_material_contradiction"
     ],
     "routing": [
-      {
-        "failure": "missing_data_confidence_evidence",
-        "owner": "council-alpha"
-      },
       {
         "failure": "unresolved_material_contradiction",
         "owner": "deep-resolver"

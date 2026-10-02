@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "role": "deep-resolver",
+  "generatedAt": "2026-10-02T07:37:21Z",
+  "operatingMode": "bounded-worker-view-deferred-no-action",
+  "startingGitHead": "23108c462b15b80b31a0e6f1bffc434e4d4dfe0e",
+  "itemsAttempted": [],
+  "deferredDependentItems": [
+    {
+      "ticker": "MWA",
+      "workId": "t0:MWA",
+      "reason": "No independently actionable source-addressed claim pair is present; adjudication packet has zero actionable items and execution guard await_structured_contradiction_input. Alpha/root-owner input must change before Resolver judgment is lawful.",
+      "successCondition": "A structured, source-addressed contradictory claim pair appears with identifiable claims/sources/dates, or Chief explicitly adjudicates the dependency.",
+      "attemptCount": 0
+    },
+    {
+      "ticker": "VRTX",
+      "workId": "t0:VRTX",
+      "reason": "Semantic override suppressResolver=true because remaining work is Alpha-owned underwriting/component calibration; routing also marks repeated unchanged input.",
+      "successCondition": "A new independently actionable source-addressed contradiction appears after the semantic override, or Chief explicitly adjudicates.",
+      "attemptCount": 2
+    }
+  ],
+  "resolved": [],
+  "unavailable": [],
+  "stillConflicted": [],
+  "artifacts": [],
+  "assistAttempts": [],
+  "blockers": [
+    "Resolver worker-view total=0 visible actionable items; all 60 raw candidates are deferred.",
+    "No active assist request targets deep-resolver.",
+    "No role cycle exists in dependency shadow.",
+    "MWA frontier contradiction packet lacks source-addressed claim pairs and is therefore root-owner dependent.",
+    "VRTX is explicitly suppressed by semantic override firewall as Alpha-owned work."
+  ],
+  "result": "no_lawfully_actionable_resolver_item; deferred_exactly_per_worker_view_and_semantic_override_firewall",
+  "learning": {
+    "appliedLessons": [
+      "dependent_resolver_loop_on_alpha_scoring_inputs",
+      "liveness_masquerading_as_progress",
+      "learning_snapshot_pre_promotion_staleness"
+    ],
+    "frontierClosureBeforeExpansion": true,
+    "repeatedFailureRequiresChangedStrategy": true,
+    "dependentSymptomsDeferToRootOwner": true,
+    "hardTruthGatesMayNotBeWeakened": true,
+    "repeatedBlocker": "resolver candidates lack independently actionable source-addressed contradiction inputs",
+    "failedStrategy": "re-inspecting generic downstream gating labels without changed structured contradiction input",
+    "changedStrategy": "honor bounded worker-view deferral and semantic override firewall; spend no Resolver capacity until structured contradiction input changes"
+  }
+}

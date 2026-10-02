@@ -122,7 +122,7 @@ function factorEvidenceCoverage(node, requiredKeys) {
 function alphaCompletionGateSatisfiedByScoreRecord(value, scoreRecordComplete) {
   if (!scoreRecordComplete) return false;
   const text = typeof value === "string" ? value : JSON.stringify(value || {});
-  const alphaDimension = /(underwriting|valuation|governance|capital[ _-]+allocation|score[ _-]*record|component[ _-]+calibration|pricing[ _-]+power|supply[ _-]+chain|factor[ _-]+evidence|confidence[ _-]+evidence|risk[ _-]+evidence)/i.test(text);
+  const alphaDimension = /(underwriting|valuation|governance|capital[ _-]+allocation|\bscore\b|score[ _-]*record|component[ _-]+calibration|pricing[ _-]+power|supply[ _-]+chain|factor[ _-]+evidence|confidence[ _-]+evidence|risk[ _-]+evidence)/i.test(text);
   const explicitCompletionDeficit = /(missing|incomplete|outstanding|absent|not[ _-]+source[ _-]+addressed|still[ _-]+requires?|requires?[ _-]+source[ _-]+addressed|no[ _-]+numeric[ _-]+score[ _-]*record)/i.test(text);
   return alphaDimension && explicitCompletionDeficit;
 }

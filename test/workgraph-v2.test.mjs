@@ -174,6 +174,32 @@ test("current complete packet truth consumes only stale Alpha completion gates a
   );
 });
 
+test("complete scoreRecord evidence outranks a partial top-level underwriting summary", () => {
+  const rows = completeEvidence();
+  const underwriting = rows.find((row) => row.perspective === "company-underwriting");
+  underwriting.factorEvidence = {
+    thesisQuality: underwriting.scoreRecord.factorEvidence.thesisQuality,
+    financialOperatingMomentum: underwriting.scoreRecord.factorEvidence.financialOperatingMomentum,
+  };
+  underwriting.riskEvidence = { basis: "partial summary without source ids" };
+  underwriting.dataConfidenceEvidence = { basis: "partial summary without source ids" };
+
+  const packet = compilePromotionPacket(
+    "AAA",
+    rows,
+    { ticker:"AAA", state:"packet_ready", workId:"t0:AAA" },
+    { registryEntry, methodologyVersion:"1.0.0" },
+  );
+
+  assert.equal(packet.scoreReadiness.sourceAddressedEvidence.factorEvidenceComplete, true);
+  assert.deepEqual(packet.scoreReadiness.sourceAddressedEvidence.missingFactorEvidence, []);
+  assert.equal(packet.scoreReadiness.sourceAddressedEvidence.riskEvidenceComplete, true);
+  assert.equal(packet.scoreReadiness.sourceAddressedEvidence.dataConfidenceEvidenceComplete, true);
+  assert.equal(packet.scoreReadiness.complete, true);
+  assert.equal(packet.preflight.failures.includes("missing_factor_evidence"), false);
+  assert.equal(packet.preflight.failures.includes("missing_numeric_score_record"), false);
+});
+
 test("packet fails closed when numeric score evidence is not source-addressed for Beast", () => {
   const rows = completeEvidence();
   const underwriting = rows.find((row) => row.perspective === "company-underwriting");

@@ -437,10 +437,25 @@ export function compilePromotionPacket(ticker, evidenceRows, graphRow, options =
     : null;
   const scoreRecord = rawScoreRecord ? { ...rawScoreRecord, components: normalizedComponents } : null;
   const latestUnderwriting = underwritingRows.sort((a,b) => Date.parse(b.generatedAt || 0) - Date.parse(a.generatedAt || 0))[0] || null;
-  const scoreFactorEvidence = latestUnderwriting?.factorEvidence ?? scoreRecord?.factorEvidence ?? null;
-  const scoreRiskEvidence = latestUnderwriting?.riskEvidence ?? scoreRecord?.riskEvidence ?? null;
-  const scoreDataConfidenceEvidence = latestUnderwriting?.dataConfidenceEvidence ?? scoreRecord?.dataConfidenceEvidence ?? null;
+  const topLevelFactorEvidence = latestUnderwriting?.factorEvidence ?? null;
+  const scoreRecordFactorEvidence = scoreRecord?.factorEvidence ?? null;
+  const topLevelFactorCoverage = factorEvidenceCoverage(topLevelFactorEvidence, requiredScoreComponents);
+  const scoreRecordFactorCoverage = factorEvidenceCoverage(scoreRecordFactorEvidence, requiredScoreComponents);
+  const scoreFactorEvidence = topLevelFactorCoverage.missing.length <= scoreRecordFactorCoverage.missing.length
+    ? topLevelFactorEvidence
+    : scoreRecordFactorEvidence;
   const factorEvidenceCoverageResult = factorEvidenceCoverage(scoreFactorEvidence, requiredScoreComponents);
+
+  const topLevelRiskEvidence = latestUnderwriting?.riskEvidence ?? null;
+  const scoreRecordRiskEvidence = scoreRecord?.riskEvidence ?? null;
+  const scoreRiskEvidence = hasSourceAddressedEvidence(topLevelRiskEvidence)
+    ? topLevelRiskEvidence
+    : scoreRecordRiskEvidence;
+  const topLevelDataConfidenceEvidence = latestUnderwriting?.dataConfidenceEvidence ?? null;
+  const scoreRecordDataConfidenceEvidence = scoreRecord?.dataConfidenceEvidence ?? null;
+  const scoreDataConfidenceEvidence = hasSourceAddressedEvidence(topLevelDataConfidenceEvidence)
+    ? topLevelDataConfidenceEvidence
+    : scoreRecordDataConfidenceEvidence;
   const scoreRiskEvidenceComplete = hasSourceAddressedEvidence(scoreRiskEvidence);
   const scoreDataConfidenceEvidenceComplete = hasSourceAddressedEvidence(scoreDataConfidenceEvidence);
   const scoreRecordComplete = Boolean(

@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "MWA",
   "workId": "t0:MWA",
-  "generatedAt": "2026-10-02T03:16:02.444Z",
+  "generatedAt": "2026-10-02T03:29:35.851Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-01T00:00:00.000Z",
-    "end": "2026-10-02T03:08:56.000Z",
-    "latestEvidenceGeneratedAt": "2026-10-02T03:08:56.000Z"
+    "end": "2026-10-02T03:28:09.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-02T03:28:09.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -57,13 +57,14 @@
     "data/runtime/workgraph/evidence/MWA-20260921T050430Z-earth-scout.json",
     "data/runtime/workgraph/evidence/MWA-20260921T172331Z-council-beta.json",
     "data/runtime/workgraph/evidence/MWA-20261001T210937Z-earth-scout-assist.json",
-    "data/runtime/workgraph/evidence/MWA-20261002T030856Z-earth-scout-assist.json"
+    "data/runtime/workgraph/evidence/MWA-20261002T030856Z-earth-scout-assist.json",
+    "data/runtime/workgraph/evidence/MWA-20261002T032809Z-council-beta-assist-risk-source-support.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 8,
-    "historicalEvidenceCount": 8
+    "activeEvidenceCount": 9,
+    "historicalEvidenceCount": 9
   },
   "factorEvidence": {
     "names": [
@@ -76,7 +77,9 @@
       "confidenceInflation",
       "demandTimingRisk",
       "alignment2036",
-      "thesisQuality"
+      "thesisQuality",
+      "financialOperatingMomentum",
+      "dataConfidence"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -178,7 +181,9 @@
     "confidenceInflation",
     "demandTimingRisk",
     "alignment2036",
-    "thesisQuality"
+    "thesisQuality",
+    "financialOperatingMomentum",
+    "dataConfidence"
   ],
   "riskEvidence": {
     "present": true,
@@ -206,7 +211,18 @@
       "Program-level funding does not prove Mueller-specific revenue conversion; procurement timing and competitive share remain unresolved.",
       "Program-level funding does not prove Mueller-specific revenue conversion; procurement timing and competitive share remain unresolved.",
       "AWWA independently identifies financing infrastructure upgrades as a leading sector challenge, so physical renewal need does not guarantee timely project conversion or Mueller-specific orders.",
-      "AWWA independently identifies financing infrastructure upgrades as a leading sector challenge, so physical renewal need does not guarantee timely project conversion or Mueller-specific orders."
+      "AWWA independently identifies financing infrastructure upgrades as a leading sector challenge, so physical renewal need does not guarantee timely project conversion or Mueller-specific orders.",
+      {
+        "risk": "Funding-conversion and timing risk: essential infrastructure need can remain strong while financing constraints delay municipal procurement and Mueller-specific volume realization.",
+        "observedWeakness": "Independent sector evidence identifies financing upgrades as a leading challenge, while Mueller's latest represented quarter had slightly lower aggregate volumes even as margins improved.",
+        "possibleImprovement": "Alpha can distinguish durable end-market need from issuer-specific order timing and avoid treating infrastructure need as immediate revenue certainty.",
+        "evidenceNeededToVerifyChange": "Later primary Mueller filings showing normalized volume growth, order/backlog conversion and sustained margins after tariff-refund effects, ideally alongside evidence that municipal funding is converting into awarded projects.",
+        "gating": false,
+        "sourceIds": [
+          "awwa:2026-state-of-water-industry:2026-04-30",
+          "sec:mwa:2026-08-05:q3-2026-ex99.1"
+        ]
+      }
     ]
   },
   "risks": [
@@ -233,7 +249,18 @@
     "Program-level funding does not prove Mueller-specific revenue conversion; procurement timing and competitive share remain unresolved.",
     "Program-level funding does not prove Mueller-specific revenue conversion; procurement timing and competitive share remain unresolved.",
     "AWWA independently identifies financing infrastructure upgrades as a leading sector challenge, so physical renewal need does not guarantee timely project conversion or Mueller-specific orders.",
-    "AWWA independently identifies financing infrastructure upgrades as a leading sector challenge, so physical renewal need does not guarantee timely project conversion or Mueller-specific orders."
+    "AWWA independently identifies financing infrastructure upgrades as a leading sector challenge, so physical renewal need does not guarantee timely project conversion or Mueller-specific orders.",
+    {
+      "risk": "Funding-conversion and timing risk: essential infrastructure need can remain strong while financing constraints delay municipal procurement and Mueller-specific volume realization.",
+      "observedWeakness": "Independent sector evidence identifies financing upgrades as a leading challenge, while Mueller's latest represented quarter had slightly lower aggregate volumes even as margins improved.",
+      "possibleImprovement": "Alpha can distinguish durable end-market need from issuer-specific order timing and avoid treating infrastructure need as immediate revenue certainty.",
+      "evidenceNeededToVerifyChange": "Later primary Mueller filings showing normalized volume growth, order/backlog conversion and sustained margins after tariff-refund effects, ideally alongside evidence that municipal funding is converting into awarded projects.",
+      "gating": false,
+      "sourceIds": [
+        "awwa:2026-state-of-water-industry:2026-04-30",
+        "sec:mwa:2026-08-05:q3-2026-ex99.1"
+      ]
+    }
   ],
   "dataConfidenceEvidence": {
     "available": false,
@@ -277,7 +304,10 @@
         "to": "reported margin expansion",
         "mechanism": "price realization and temporary/refund benefits can raise margin despite softer volume",
         "falsifier": "subsequent quarters sustain high margins on normalized refunds with improving physical volume"
-      }
+      },
+      "aging-water-infrastructure -> renewal-need -> municipal-project-demand",
+      "financing-constraints -> project-timing -> Mueller-order-conversion",
+      "pricing/refunds-and-operating-discipline -> margin-expansion despite softer-volume"
     ]
   },
   "causalEdges": [
@@ -310,12 +340,15 @@
       "to": "reported margin expansion",
       "mechanism": "price realization and temporary/refund benefits can raise margin despite softer volume",
       "falsifier": "subsequent quarters sustain high margins on normalized refunds with improving physical volume"
-    }
+    },
+    "aging-water-infrastructure -> renewal-need -> municipal-project-demand",
+    "financing-constraints -> project-timing -> Mueller-order-conversion",
+    "pricing/refunds-and-operating-discipline -> margin-expansion despite softer-volume"
   ],
   "sourceLineage": {
-    "rawSourceCount": 8,
+    "rawSourceCount": 10,
     "uniqueSourceCount": 3,
-    "duplicatesCollapsed": 5,
+    "duplicatesCollapsed": 7,
     "missingLineage": 0,
     "uniqueOrigins": [
       "sec:mwa:2026-08-05:q3-2026-ex99.1",
@@ -372,10 +405,18 @@
       "resolution": "This is a material attribution question rather than an internal impossibility; durable normalized margin and volume evidence is needed to determine how much improvement is structural.",
       "resolved": false,
       "gating": true
+    },
+    {
+      "status": "bounded_not_blocking",
+      "statement": "Secular water-infrastructure need and near-term volume softness can coexist because financing and procurement timing sit between system need and supplier revenue; this is a conversion-timing tension, not evidence that the underlying human need is absent.",
+      "sourceIds": [
+        "awwa:2026-state-of-water-industry:2026-04-30",
+        "sec:mwa:2026-08-05:q3-2026-ex99.1"
+      ]
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 3,
     "items": [
       {
         "claim": "Strong margin expansion occurred despite slightly lower aggregate volumes, making durability beyond pricing/refunds a key test.",
@@ -386,6 +427,14 @@
         "resolution": "This is a material attribution question rather than an internal impossibility; durable normalized margin and volume evidence is needed to determine how much improvement is structural.",
         "resolved": false,
         "gating": true
+      },
+      {
+        "status": "bounded_not_blocking",
+        "statement": "Secular water-infrastructure need and near-term volume softness can coexist because financing and procurement timing sit between system need and supplier revenue; this is a conversion-timing tension, not evidence that the underlying human need is absent.",
+        "sourceIds": [
+          "awwa:2026-state-of-water-industry:2026-04-30",
+          "sec:mwa:2026-08-05:q3-2026-ex99.1"
+        ]
       }
     ]
   },
@@ -409,11 +458,19 @@
     "Mueller-specific exposure to FY2026 SRF-funded projects and the lag from public allocation to product orders are not established by this source.",
     "Mueller-specific exposure to FY2026 SRF-funded projects and the lag from public allocation to product orders are not established by this source.",
     "This independent industry source does not establish Mueller-specific market share, project wins, revenue conversion timing, pricing power, or normalized post-refund margins.",
-    "This independent industry source does not establish Mueller-specific market share, project wins, revenue conversion timing, pricing power, or normalized post-refund margins."
+    "This independent industry source does not establish Mueller-specific market share, project wins, revenue conversion timing, pricing power, or normalized post-refund margins.",
+    {
+      "unknown": "The represented evidence does not quantify Mueller-specific share of funded projects or the lag from public funding availability to issuer revenue.",
+      "gating": false
+    },
+    {
+      "unknown": "This assist does not assign Alpha's numeric risk magnitude or establish valuation attractiveness.",
+      "gating": false
+    }
   ],
   "unknownDisposition": {
     "gatingCount": 1,
-    "nonGatingCount": 7
+    "nonGatingCount": 9
   },
   "gatingIssues": [
     {

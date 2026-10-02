@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-10-01T04:14:40.746Z",
+  "updatedAt": "2026-10-02T07:49:54.732Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -2066,6 +2066,18 @@
       "type": "market",
       "label": "identity-governance complexity",
       "description": "more principals and entitlements increase authorization surface"
+    },
+    {
+      "id": "company:VRTX",
+      "type": "company",
+      "label": "Vertex Pharmaceuticals Incorporated",
+      "description": "Vertex's diversification path links drug-development capability to unmet chronic-disease needs beyond cystic fibrosis; the Crinetics acquisition broadens endocrine pipeline exposure while adding integration and clinical-development dependencies."
+    },
+    {
+      "id": "market:VRTX-vrtx-structural-demand",
+      "type": "market",
+      "label": "VRTX structural demand",
+      "description": "Vertex's diversification path links drug-development capability to unmet chronic-disease needs beyond cystic fibrosis; the Crinetics acquisition broadens endocrine pipeline exposure while adding integration and clinical-development dependencies."
     }
   ],
   "edges": [
@@ -4721,6 +4733,21 @@
         "sailpoint-ir:2025-09-09:fq2-2026-results"
       ],
       "observedAt": "2026-09-21T14:23:02Z"
+    },
+    {
+      "id": "edge:VRTX-structural-exposure",
+      "from": "company:VRTX",
+      "to": "market:VRTX-vrtx-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 88,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:VRTX:FY2025",
+        "issuer:VRTX:CRNX-acquisition"
+      ],
+      "observedAt": "2026-09-21T22:26:26Z"
     }
   ],
   "structuralSignals": [
@@ -8033,6 +8060,25 @@
       ],
       "observedAt": "2026-09-21T14:23:02Z",
       "thesis": "SailPoint's causal path is identity inventory/governance -> policy and access control across human and machine identities -> reduced privilege misuse and compliance burden -> enterprise resilience; growth in agentic identities expands the control surface and therefore the need for scalable identity governance.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:VRTX-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:VRTX-vrtx-structural-demand",
+      "affectedNodeIds": [
+        "company:VRTX"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 88,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:VRTX:FY2025",
+        "issuer:VRTX:CRNX-acquisition"
+      ],
+      "observedAt": "2026-09-21T22:26:26Z",
+      "thesis": "Vertex's diversification path links drug-development capability to unmet chronic-disease needs beyond cystic fibrosis; the Crinetics acquisition broadens endocrine pipeline exposure while adding integration and clinical-development dependencies.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

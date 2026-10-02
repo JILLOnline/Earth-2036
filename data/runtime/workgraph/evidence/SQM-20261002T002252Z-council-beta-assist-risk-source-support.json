@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "contract": "earth2036-assist-evidence-v1",
+  "generatedAt": "2026-10-02T00:22:52Z",
+  "role": "council-beta",
+  "ticker": "SQM",
+  "workId": "t0:SQM",
+  "perspective": "risk-source-support",
+  "requestId": "assist:SQM:council-alpha:council-beta:risk-source-support",
+  "inputSignature": "504b92d3dcba7810f299",
+  "rootOwner": "council-alpha",
+  "lineage": {
+    "supersedes": null,
+    "reuses": [
+      "data/runtime/workgraph/evidence/SQM-20260921T202645Z-council-beta.json",
+      "data/runtime/workgraph/evidence/SQM-20261001T182343Z-council-beta-assist.json"
+    ]
+  },
+  "claims": [
+    {
+      "claim": "SQM's 2025 annual filing describes an approximately US$2.7 billion 2025-2027 capital-expenditure program focused mainly on production-capacity expansion, including Chile lithium capacity, a seawater pipeline, iodine capacity and Australian lithium projects; this creates a source-addressed capital-intensity and execution-risk channel that Alpha can incorporate without Beta assigning a numeric risk score.",
+      "sourceIds": ["issuer:SQM:2025-20F"],
+      "affectedFactors": ["financialOperatingMomentum", "scenarioRobustness", "supplyChainResilience"],
+      "causalEdges": ["multi-year expansion capex -> funding/cash deployment -> future capacity and resilience", "project execution -> commissioning/utilization -> realized returns"],
+      "risk": "Large multi-year capital commitments can reduce resilience if commodity economics weaken or projects experience cost/schedule slippage.",
+      "falsifier": "On-budget/on-schedule execution, sustained liquidity and demand absorption with competitive unit economics would weaken this risk."
+    },
+    {
+      "claim": "The same annual filing reports dividends paid fell sharply from US$1.5 billion in 2023 to US$67.2 million in 2024 and US$4.3 million in 2025, explicitly linking the reduction to lower net income associated with lower lithium prices; this is direct evidence that lithium-price cyclicality transmits into shareholder distributions and financial flexibility.",
+      "sourceIds": ["issuer:SQM:2025-20F"],
+      "affectedFactors": ["pricingPower", "financialOperatingMomentum", "scenarioRobustness"],
+      "causalEdges": ["lithium price decline -> lower net income -> lower distributions", "commodity clearing price -> cash generation -> capital-allocation flexibility"],
+      "risk": "Current strong lithium-period earnings should not be assumed to represent normalized cash generation through the cycle.",
+      "falsifier": "Durable cash generation and distributions through materially weaker lithium pricing would demonstrate stronger cycle resilience than this historical transmission suggests."
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "issuer:SQM:2025-20F",
+      "url": "https://ir.sqm.com/static-files/ea38d208-65e2-4e5a-a636-afc2e2794c27",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-04-30",
+      "originFingerprint": "ir.sqm.com|SQM-2025.12.31-20F|2026"
+    }
+  ],
+  "risks": [
+    "multi-year capital intensity and project execution risk",
+    "commodity-price cyclicality transmitting into earnings and distributions"
+  ],
+  "contradictions": [],
+  "unknowns": [
+    "Future realized project returns, schedule adherence and funding mix are not established by the annual filing alone.",
+    "This evidence does not establish Alpha's numeric risk magnitude or score."
+  ],
+  "gatingStatus": "assist_evidence_complete_non_authoritative_for_alpha_numeric_scoring",
+  "confidence": "high_for_reported_capex_and_dividend_history_moderate_for_forward_risk_interpretation",
+  "recommendedNextState": "council-alpha should consume the primary-source risk channels when constructing source-addressed score-risk evidence and retain numeric underwriting authority",
+  "recommendedOwner": "council-alpha",
+  "doctrine": {
+    "observedWeakness": "capital intensity and commodity-linked earnings/distribution sensitivity",
+    "uncertainty": "future project economics and cycle durability",
+    "possibleImprovement": "demonstrated project execution, liquidity resilience and lower-cost capacity through the cycle",
+    "evidenceNeeded": "subsequent capex delivery, unit-cost, liquidity, leverage and cycle cash-generation evidence"
+  }
+}

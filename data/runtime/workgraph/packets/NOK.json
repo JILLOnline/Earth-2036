@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "NOK",
   "workId": "t0:NOK",
-  "generatedAt": "2026-10-02T00:54:18.101Z",
+  "generatedAt": "2026-10-02T01:03:14.369Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-07-23T00:00:00.000Z",
-    "end": "2026-09-22T07:27:18.000Z",
-    "latestEvidenceGeneratedAt": "2026-09-22T07:27:18.000Z"
+    "end": "2026-10-02T01:02:03.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-02T01:02:03.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -55,13 +55,14 @@
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/NOK-20260921T061000Z-earth-scout.json",
-    "data/runtime/workgraph/evidence/NOK-20260922T072718Z-council-beta.json"
+    "data/runtime/workgraph/evidence/NOK-20260922T072718Z-council-beta.json",
+    "data/runtime/workgraph/evidence/NOK-20261002T010203Z-earth-scout-assist.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 4,
-    "historicalEvidenceCount": 4
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -92,7 +93,11 @@
         "alignment2036",
         "bottleneckControl",
         "crossDivisionLeverage",
-        "thesisQuality"
+        "thesisQuality",
+        "alignment2036",
+        "thesisQuality",
+        "financialOperatingMomentum",
+        "scenarioRobustness"
       ],
       "adversarial-red-team": [
         "financialOperatingMomentum",
@@ -102,6 +107,8 @@
         "governancePower"
       ],
       "expectations-execution": [
+        "financialOperatingMomentum",
+        "scenarioRobustness",
         "financialOperatingMomentum",
         "scenarioRobustness"
       ]
@@ -182,6 +189,14 @@
       {
         "risk": "Manufacturing expansion intended to relieve optical bottlenecks increases execution and future utilization exposure.",
         "gating": false
+      },
+      {
+        "risk": "Independent reporting still reflects company-reported quarter data; it corroborates the reported results and demand context but does not independently audit the underlying accounting records.",
+        "gating": false
+      },
+      {
+        "risk": "A raised annual outlook can still be missed if AI/cloud order conversion, component availability, or restructuring execution deteriorates later in 2026.",
+        "gating": false
       }
     ]
   },
@@ -208,6 +223,14 @@
     },
     {
       "risk": "Manufacturing expansion intended to relieve optical bottlenecks increases execution and future utilization exposure.",
+      "gating": false
+    },
+    {
+      "risk": "Independent reporting still reflects company-reported quarter data; it corroborates the reported results and demand context but does not independently audit the underlying accounting records.",
+      "gating": false
+    },
+    {
+      "risk": "A raised annual outlook can still be missed if AI/cloud order conversion, component availability, or restructuring execution deteriorates later in 2026.",
       "gating": false
     }
   ],
@@ -237,12 +260,13 @@
     "manufacturing-and-packaging-expansion->future-optical-capacity"
   ],
   "sourceLineage": {
-    "rawSourceCount": 4,
-    "uniqueSourceCount": 1,
-    "duplicatesCollapsed": 3,
+    "rawSourceCount": 6,
+    "uniqueSourceCount": 2,
+    "duplicatesCollapsed": 4,
     "missingLineage": 0,
     "uniqueOrigins": [
-      "issuer:NOK:2026Q2:20260723"
+      "issuer:NOK:2026Q2:20260723",
+      "newswire:reuters:NOK:2026Q2:20260723"
     ]
   },
   "sources": [
@@ -253,6 +277,14 @@
       "primary": true,
       "publishedAt": "2026-07-23",
       "originFingerprint": "issuer:NOK:2026Q2:20260723"
+    },
+    {
+      "sourceId": "reuters:NOK:2026Q2:20260723",
+      "url": "https://www.reuters.com/business/nokia-q2-profit-beat-ai-demand-2026-07-23/",
+      "kind": "independent-newswire",
+      "primary": false,
+      "publishedAt": "2026-07-23",
+      "originFingerprint": "newswire:reuters:NOK:2026Q2:20260723"
     }
   ],
   "contradictions": [
@@ -263,10 +295,13 @@
       "contradiction": "Underlying comparable profitability improved while reported profitability was negative because restructuring was accelerated.",
       "material": true,
       "disposition": "reconcilable accounting/economic distinction; preserve both views rather than treat as unresolved fraud or deterioration"
+    },
+    {
+      "contradiction": "The prior issuer evidence records comparable margin improvement alongside negative reported margin from restructuring; this Reuters source corroborates comparable-profit strength but does not independently resolve the comparable-versus-reported accounting distinction."
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 2,
+    "unresolvedMaterialCount": 3,
     "items": [
       {
         "contradiction": "Comparable operating margin improved to 9.0% while reported operating margin declined to -1.0% because restructuring accelerated; underwriting should preserve both views."
@@ -275,6 +310,9 @@
         "contradiction": "Underlying comparable profitability improved while reported profitability was negative because restructuring was accelerated.",
         "material": true,
         "disposition": "reconcilable accounting/economic distinction; preserve both views rather than treat as unresolved fraud or deterioration"
+      },
+      {
+        "contradiction": "The prior issuer evidence records comparable margin improvement alongside negative reported margin from restructuring; this Reuters source corroborates comparable-profit strength but does not independently resolve the comparable-versus-reported accounting distinction."
       }
     ]
   },
@@ -294,14 +332,22 @@
     {
       "unknown": "Realized margins on the current AI/cloud order wave and post-restructuring cost savings require longitudinal confirmation.",
       "gating": false
+    },
+    {
+      "unknown": "Durability of AI/cloud order conversion beyond the current capacity-constrained build cycle remains unproven.",
+      "gating": false
+    },
+    {
+      "unknown": "Post-Q2 realized margins and cash restructuring costs require later-period validation.",
+      "gating": false
     }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 4
+    "nonGatingCount": 6
   },
   "gatingIssues": [],
-  "confidence": 90,
+  "confidence": 88,
   "preflight": {
     "passed": false,
     "failures": [

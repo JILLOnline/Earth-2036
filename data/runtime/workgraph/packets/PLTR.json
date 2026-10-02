@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "PLTR",
   "workId": "t0:PLTR",
-  "generatedAt": "2026-10-02T01:25:15.099Z",
+  "generatedAt": "2026-10-02T01:28:45.837Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-08-03T00:00:00.000Z",
-    "end": "2026-10-01T16:07:00.000Z",
-    "latestEvidenceGeneratedAt": "2026-10-01T16:07:00.000Z"
+    "end": "2026-10-02T01:27:39.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-02T01:27:39.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -56,13 +56,14 @@
   "evidencePaths": [
     "data/runtime/workgraph/evidence/PLTR-20260921T090718Z-earth-scout.json",
     "data/runtime/workgraph/evidence/PLTR-20260922T192306Z-council-beta.json",
-    "data/runtime/workgraph/evidence/PLTR-20261001T160700Z-earth-scout-assist.json"
+    "data/runtime/workgraph/evidence/PLTR-20261001T160700Z-earth-scout-assist.json",
+    "data/runtime/workgraph/evidence/PLTR-20261002T012739Z-council-beta-assist-risk-source-support.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
-    "activeEvidenceCount": 5,
-    "historicalEvidenceCount": 5
+    "activeEvidenceCount": 6,
+    "historicalEvidenceCount": 6
   },
   "factorEvidence": {
     "names": [
@@ -74,7 +75,8 @@
       "scenarioRobustness",
       "thesisQuality",
       "substitutionResilience",
-      "governancePower"
+      "governancePower",
+      "dataConfidence"
     ],
     "byPerspective": {
       "source-integrity": [],
@@ -151,7 +153,8 @@
     "scenarioRobustness",
     "thesisQuality",
     "substitutionResilience",
-    "governancePower"
+    "governancePower",
+    "dataConfidence"
   ],
   "riskEvidence": {
     "present": true,
@@ -182,6 +185,16 @@
       },
       {
         "risk": "Remaining deal value is not guaranteed revenue: termination rights and unexercised government options can reduce realized value.",
+        "gating": false,
+        "sourceIds": [
+          "palantir-ir:PLTR:2026Q2-10Q"
+        ]
+      },
+      {
+        "risk": "Backlog/RDV confidence inflation: treating remaining deal value as guaranteed revenue would overstate demand certainty because termination rights and unexercised government options can interrupt conversion.",
+        "observedWeakness": "Contract structure makes some disclosed future value contingent rather than irrevocably committed.",
+        "possibleImprovement": "Alpha can separate contracted visibility from conversion certainty and avoid equating RDV with booked revenue.",
+        "evidenceNeededToVerifyChange": "Later primary filings showing realized conversion, exercised options, renewal/termination behavior, or a reconciled bridge from RDV to recognized revenue.",
         "gating": false,
         "sourceIds": [
           "palantir-ir:PLTR:2026Q2-10Q"
@@ -220,6 +233,16 @@
       "sourceIds": [
         "palantir-ir:PLTR:2026Q2-10Q"
       ]
+    },
+    {
+      "risk": "Backlog/RDV confidence inflation: treating remaining deal value as guaranteed revenue would overstate demand certainty because termination rights and unexercised government options can interrupt conversion.",
+      "observedWeakness": "Contract structure makes some disclosed future value contingent rather than irrevocably committed.",
+      "possibleImprovement": "Alpha can separate contracted visibility from conversion certainty and avoid equating RDV with booked revenue.",
+      "evidenceNeededToVerifyChange": "Later primary filings showing realized conversion, exercised options, renewal/termination behavior, or a reconciled bridge from RDV to recognized revenue.",
+      "gating": false,
+      "sourceIds": [
+        "palantir-ir:PLTR:2026Q2-10Q"
+      ]
     }
   ],
   "dataConfidenceEvidence": {
@@ -237,18 +260,22 @@
     "edges": [
       "frontier-AI-capability -> governed-enterprise-integration -> operational-decisions",
       "sensitive-data-governance -> model-provider-constraints -> deployment-friction",
-      "government-and-commercial-workflows -> Palantir-platform-demand"
+      "government-and-commercial-workflows -> Palantir-platform-demand",
+      "remaining-deal-value -> potential future workload -> revenue visibility",
+      "termination rights and unexercised options -> conversion uncertainty -> realized revenue"
     ]
   },
   "causalEdges": [
     "frontier-AI-capability -> governed-enterprise-integration -> operational-decisions",
     "sensitive-data-governance -> model-provider-constraints -> deployment-friction",
-    "government-and-commercial-workflows -> Palantir-platform-demand"
+    "government-and-commercial-workflows -> Palantir-platform-demand",
+    "remaining-deal-value -> potential future workload -> revenue visibility",
+    "termination rights and unexercised options -> conversion uncertainty -> realized revenue"
   ],
   "sourceLineage": {
-    "rawSourceCount": 8,
+    "rawSourceCount": 9,
     "uniqueSourceCount": 4,
-    "duplicatesCollapsed": 4,
+    "duplicatesCollapsed": 5,
     "missingLineage": 0,
     "uniqueOrigins": [
       "republish:PLTR:Q2:20260803",
@@ -306,10 +333,17 @@
       "sourceIds": [
         "palantir-ir:PLTR:2026Q2-10Q"
       ]
+    },
+    {
+      "status": "bounded_not_blocking",
+      "statement": "Large RDV supports demand visibility while contractual termination/options reduce certainty of realization; both can be true simultaneously, so this is a calibration tension rather than evidence that demand is impaired.",
+      "sourceIds": [
+        "palantir-ir:PLTR:2026Q2-10Q"
+      ]
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 3,
+    "unresolvedMaterialCount": 4,
     "items": [
       {
         "contradiction": "Explosive AI demand coexists with rising concern about third-party model data governance.",
@@ -323,6 +357,13 @@
       {
         "status": "bounded_execution_tension",
         "statement": "Large remaining deal value supports demand visibility, but contractual termination/options mean it cannot be treated as committed revenue.",
+        "sourceIds": [
+          "palantir-ir:PLTR:2026Q2-10Q"
+        ]
+      },
+      {
+        "status": "bounded_not_blocking",
+        "statement": "Large RDV supports demand visibility while contractual termination/options reduce certainty of realization; both can be true simultaneously, so this is a calibration tension rather than evidence that demand is impaired.",
         "sourceIds": [
           "palantir-ir:PLTR:2026Q2-10Q"
         ]
@@ -347,11 +388,19 @@
       "gating": false
     },
     "This evidence does not establish valuation attractiveness at the current market price.",
-    "Scout does not convert remaining deal value into a numeric underwriting score."
+    "Scout does not convert remaining deal value into a numeric underwriting score.",
+    {
+      "unknown": "The retrieved evidence does not quantify historical RDV-to-revenue conversion or termination frequency.",
+      "gating": false
+    },
+    {
+      "unknown": "This assist does not establish current valuation attractiveness or Alpha's numeric risk magnitude.",
+      "gating": false
+    }
   ],
   "unknownDisposition": {
     "gatingCount": 0,
-    "nonGatingCount": 6
+    "nonGatingCount": 8
   },
   "gatingIssues": [],
   "confidence": 86,

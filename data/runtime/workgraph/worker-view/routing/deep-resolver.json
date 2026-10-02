@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-worker-routing-view-v1",
-  "generatedAt": "2026-10-02T01:25:15.106Z",
+  "generatedAt": "2026-10-02T01:28:45.846Z",
   "role": "deep-resolver",
   "selectionPolicy": "closure-frontier-v1",
   "runObjective": "Adjudicate only bounded contradiction packets and return one allowed disposition; do not duplicate source-acquisition work.",
@@ -206,8 +206,8 @@
     {
       "rank": 2,
       "ticker": "AMZN",
-      "frontier": false,
-      "frontierRank": null,
+      "frontier": true,
+      "frontierRank": 10,
       "operationalStatus": "needs_contradiction_resolution",
       "deferred": false,
       "deferredReason": null,
@@ -479,7 +479,8 @@
       "evidencePaths": [
         "data/runtime/workgraph/evidence/PLTR-20260921T090718Z-earth-scout.json",
         "data/runtime/workgraph/evidence/PLTR-20260922T192306Z-council-beta.json",
-        "data/runtime/workgraph/evidence/PLTR-20261001T160700Z-earth-scout-assist.json"
+        "data/runtime/workgraph/evidence/PLTR-20261001T160700Z-earth-scout-assist.json",
+        "data/runtime/workgraph/evidence/PLTR-20261002T012739Z-council-beta-assist-risk-source-support.json"
       ],
       "specialistCoverage": {
         "required": [
@@ -667,9 +668,148 @@
     },
     {
       "rank": 3,
-      "ticker": "STLD",
+      "ticker": "SQM",
       "frontier": true,
       "frontierRank": 4,
+      "operationalStatus": "needs_contradiction_resolution",
+      "deferred": true,
+      "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+      "executionGuard": "await_structured_contradiction_input",
+      "adjudicationPacket": {
+        "contract": "earth2036-resolver-adjudication-v1",
+        "ticker": "SQM",
+        "requiredDisposition": [
+          "resolved",
+          "non_gating",
+          "awaiting_new_evidence",
+          "still_material"
+        ],
+        "ownedFailures": [
+          "unresolved_material_contradiction"
+        ],
+        "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
+        "itemCount": 2,
+        "actionableItemCount": 0,
+        "deferredItemCount": 2,
+        "actionable": false,
+        "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+        "items": [
+          {
+            "itemId": "SQM:contradiction:1",
+            "claimA": "Very strong current lithium pricing/earnings coexist with management's need for flexible production and a slower BEV growth signal, so current margins should not be extrapolated mechanically.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Very strong current lithium pricing/earnings coexist with management's need for flexible production and a slower BEV growth signal, so current margins should not be extrapolated mechanically.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "SQM:contradiction:3",
+            "claimA": "Strong pricing and an expectations beat coexist with slower-than-expected BEV growth and management emphasis on production flexibility.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong pricing and an expectations beat coexist with slower-than-expected BEV growth and management emphasis on production flexibility.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          }
+        ],
+        "actionableItems": [],
+        "deferredItems": [
+          {
+            "itemId": "SQM:contradiction:1",
+            "claimA": "Very strong current lithium pricing/earnings coexist with management's need for flexible production and a slower BEV growth signal, so current margins should not be extrapolated mechanically.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Very strong current lithium pricing/earnings coexist with management's need for flexible production and a slower BEV growth signal, so current margins should not be extrapolated mechanically.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "SQM:contradiction:3",
+            "claimA": "Strong pricing and an expectations beat coexist with slower-than-expected BEV growth and management emphasis on production flexibility.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong pricing and an expectations beat coexist with slower-than-expected BEV growth and management emphasis on production flexibility.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          }
+        ]
+      },
+      "workId": "t0:SQM",
+      "state": "researching",
+      "packetPath": "data/runtime/workgraph/packets/SQM.json",
+      "ownedFailures": [
+        "unresolved_material_contradiction"
+      ],
+      "allFailures": [
+        "missing_specialist_perspective:source-integrity",
+        "missing_specialist_perspective:company-underwriting",
+        "missing_factor_evidence",
+        "missing_numeric_score_record",
+        "missing_score_risk_evidence",
+        "missing_data_confidence_evidence",
+        "unresolved_material_contradiction"
+      ],
+      "otherOwners": [
+        "council-alpha"
+      ],
+      "evidencePaths": [
+        "data/runtime/workgraph/evidence/SQM-20260921T140443Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/SQM-20260921T150611Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/SQM-20260921T180758Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/SQM-20260921T202645Z-council-beta.json",
+        "data/runtime/workgraph/evidence/SQM-20260922T173306Z-deep-resolver.json",
+        "data/runtime/workgraph/evidence/SQM-20261001T182343Z-council-beta-assist.json",
+        "data/runtime/workgraph/evidence/SQM-20261002T002252Z-council-beta-assist-risk-source-support.json"
+      ],
+      "specialistCoverage": {
+        "required": [
+          "source-integrity",
+          "company-underwriting",
+          "structural-causal",
+          "discovery-weak-signals",
+          "adversarial-red-team",
+          "expectations-execution"
+        ],
+        "present": [
+          "discovery-weak-signals",
+          "expectations-execution",
+          "structural-causal",
+          "adversarial-red-team",
+          "risk-source-support"
+        ],
+        "missing": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "complete": false
+      }
+    },
+    {
+      "rank": 4,
+      "ticker": "STLD",
+      "frontier": true,
+      "frontierRank": 5,
       "operationalStatus": "needs_contradiction_resolution",
       "deferred": true,
       "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
@@ -831,10 +971,10 @@
       }
     },
     {
-      "rank": 4,
+      "rank": 5,
       "ticker": "TDG",
       "frontier": true,
-      "frontierRank": 5,
+      "frontierRank": 6,
       "operationalStatus": "needs_contradiction_resolution",
       "deferred": true,
       "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
@@ -1050,10 +1190,10 @@
       }
     },
     {
-      "rank": 5,
+      "rank": 6,
       "ticker": "ZS",
       "frontier": true,
-      "frontierRank": 6,
+      "frontierRank": 7,
       "operationalStatus": "needs_contradiction_resolution",
       "deferred": true,
       "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
@@ -1146,145 +1286,6 @@
           "expectations-execution",
           "structural-causal",
           "adversarial-red-team"
-        ],
-        "missing": [
-          "source-integrity",
-          "company-underwriting"
-        ],
-        "complete": false
-      }
-    },
-    {
-      "rank": 6,
-      "ticker": "SQM",
-      "frontier": true,
-      "frontierRank": 7,
-      "operationalStatus": "needs_contradiction_resolution",
-      "deferred": true,
-      "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
-      "executionGuard": "await_structured_contradiction_input",
-      "adjudicationPacket": {
-        "contract": "earth2036-resolver-adjudication-v1",
-        "ticker": "SQM",
-        "requiredDisposition": [
-          "resolved",
-          "non_gating",
-          "awaiting_new_evidence",
-          "still_material"
-        ],
-        "ownedFailures": [
-          "unresolved_material_contradiction"
-        ],
-        "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
-        "itemCount": 2,
-        "actionableItemCount": 0,
-        "deferredItemCount": 2,
-        "actionable": false,
-        "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
-        "items": [
-          {
-            "itemId": "SQM:contradiction:1",
-            "claimA": "Very strong current lithium pricing/earnings coexist with management's need for flexible production and a slower BEV growth signal, so current margins should not be extrapolated mechanically.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Very strong current lithium pricing/earnings coexist with management's need for flexible production and a slower BEV growth signal, so current margins should not be extrapolated mechanically.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "SQM:contradiction:3",
-            "claimA": "Strong pricing and an expectations beat coexist with slower-than-expected BEV growth and management emphasis on production flexibility.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong pricing and an expectations beat coexist with slower-than-expected BEV growth and management emphasis on production flexibility.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          }
-        ],
-        "actionableItems": [],
-        "deferredItems": [
-          {
-            "itemId": "SQM:contradiction:1",
-            "claimA": "Very strong current lithium pricing/earnings coexist with management's need for flexible production and a slower BEV growth signal, so current margins should not be extrapolated mechanically.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Very strong current lithium pricing/earnings coexist with management's need for flexible production and a slower BEV growth signal, so current margins should not be extrapolated mechanically.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "SQM:contradiction:3",
-            "claimA": "Strong pricing and an expectations beat coexist with slower-than-expected BEV growth and management emphasis on production flexibility.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong pricing and an expectations beat coexist with slower-than-expected BEV growth and management emphasis on production flexibility.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          }
-        ]
-      },
-      "workId": "t0:SQM",
-      "state": "researching",
-      "packetPath": "data/runtime/workgraph/packets/SQM.json",
-      "ownedFailures": [
-        "unresolved_material_contradiction"
-      ],
-      "allFailures": [
-        "missing_specialist_perspective:source-integrity",
-        "missing_specialist_perspective:company-underwriting",
-        "missing_factor_evidence",
-        "missing_numeric_score_record",
-        "missing_score_risk_evidence",
-        "missing_data_confidence_evidence",
-        "unresolved_material_contradiction"
-      ],
-      "otherOwners": [
-        "council-alpha"
-      ],
-      "evidencePaths": [
-        "data/runtime/workgraph/evidence/SQM-20260921T140443Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/SQM-20260921T150611Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/SQM-20260921T180758Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/SQM-20260921T202645Z-council-beta.json",
-        "data/runtime/workgraph/evidence/SQM-20260922T173306Z-deep-resolver.json",
-        "data/runtime/workgraph/evidence/SQM-20261001T182343Z-council-beta-assist.json",
-        "data/runtime/workgraph/evidence/SQM-20261002T002252Z-council-beta-assist-risk-source-support.json"
-      ],
-      "specialistCoverage": {
-        "required": [
-          "source-integrity",
-          "company-underwriting",
-          "structural-causal",
-          "discovery-weak-signals",
-          "adversarial-red-team",
-          "expectations-execution"
-        ],
-        "present": [
-          "discovery-weak-signals",
-          "expectations-execution",
-          "structural-causal",
-          "adversarial-red-team",
-          "risk-source-support"
         ],
         "missing": [
           "source-integrity",
@@ -1459,8 +1460,8 @@
     {
       "rank": 8,
       "ticker": "STEM",
-      "frontier": true,
-      "frontierRank": 10,
+      "frontier": false,
+      "frontierRank": null,
       "operationalStatus": "needs_contradiction_resolution",
       "deferred": true,
       "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",

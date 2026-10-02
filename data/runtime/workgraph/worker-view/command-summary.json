@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-worker-command-summary-v1",
-  "generatedAt": "2026-10-02T05:14:38.696Z",
+  "generatedAt": "2026-10-02T05:26:05.096Z",
   "canonicalWriteAuthority": false,
   "workgraph": {
     "total": 250,
@@ -17,10 +17,10 @@
     },
     "healthy": false,
     "healthAlerts": [
-      "t0_canonical_stalled_over_2h_with_chief_ready:25",
+      "t0_canonical_stalled_over_2h_with_chief_ready:25.19",
       "owner_recent_run_zero_closure:deep-resolver:backlog=61"
     ],
-    "canonicalProgressAgeHours": 24.99943138888889,
+    "canonicalProgressAgeHours": 25.190098055555556,
     "effectiveOwnerBacklog": {
       "council-alpha": 1,
       "deep-resolver": 1,
@@ -51,7 +51,7 @@
     "stalledCount": 78,
     "throughput": {
       "changedSincePriorReconcile": 0,
-      "medianTimeInFrontierHours": 3.05,
+      "medianTimeInFrontierHours": 3.24,
       "stalledFrontierCompanies": 78
     },
     "shadowComparison": {
@@ -70,13 +70,13 @@
         "deep-resolver": 1
       },
       "actualAssist": {
-        "active": 2,
-        "dormant": 152,
+        "active": 1,
+        "dormant": 153,
         "queued": 0
       },
       "proposedAssist": {
-        "active": 2,
-        "dormant": 152,
+        "active": 1,
+        "dormant": 153,
         "queued": 0
       }
     },
@@ -85,7 +85,7 @@
         "ticker": "VRTX",
         "workId": "t0:VRTX",
         "state": "packet_ready",
-        "closureScore": 141.3,
+        "closureScore": 141.4,
         "attentionPriority": 100,
         "failures": [
           "unresolved_gating_issue",
@@ -100,7 +100,7 @@
         "activeAssists": 0,
         "contradictionStatus": "clear_or_non_gating",
         "attempts": 0,
-        "hoursSinceProgress": 0.98,
+        "hoursSinceProgress": 1.17,
         "status": "progressing",
         "inputSignature": "934e95cbf9b989872ada",
         "unchangedAttempts": 0,
@@ -114,7 +114,7 @@
         "ticker": "MWA",
         "workId": "t0:MWA",
         "state": "researching",
-        "closureScore": 65.7,
+        "closureScore": 55.8,
         "attentionPriority": 47.7,
         "failures": [
           "missing_specialist_perspective:source-integrity",
@@ -137,11 +137,11 @@
         "activeAssists": 0,
         "contradictionStatus": "material_unresolved",
         "attempts": 0,
-        "hoursSinceProgress": 0.02,
+        "hoursSinceProgress": 0.21,
         "status": "needs_contradiction_resolution",
         "inputSignature": "d3e69354751bc9100f92",
-        "unchangedAttempts": 0,
-        "latestAttemptAt": "2026-10-02T05:14:30.000Z",
+        "unchangedAttempts": 1,
+        "latestAttemptAt": "2026-10-02T05:24:35.000Z",
         "primeEligible": true,
         "selected": true,
         "firstSelectedAt": "2026-10-02T02:11:39.396Z",
@@ -155,8 +155,21 @@
       "h6": 0,
       "h24": 0
     },
-    "minutesSinceCanonicalProgress": 1500,
+    "minutesSinceCanonicalProgress": 1511,
     "recentWorkerRuns": [
+      {
+        "role": "council-beta",
+        "generatedAt": "2026-10-02T05:24:35.000Z",
+        "companiesInspected": 1,
+        "closures": 0,
+        "failuresRemoved": null,
+        "companiesAdvanced": null,
+        "companiesCanonicalized": null,
+        "newUsefulSources": 0,
+        "duplicateNoChangeArtifacts": 1,
+        "contradictionsResolved": 0,
+        "zeroYield": true
+      },
       {
         "role": "council-alpha",
         "generatedAt": "2026-10-02T05:14:30.000Z",
@@ -663,19 +676,6 @@
         "duplicateNoChangeArtifacts": 0,
         "contradictionsResolved": 0,
         "zeroYield": true
-      },
-      {
-        "role": "council-beta",
-        "generatedAt": "2026-10-01T21:26:48.000Z",
-        "companiesInspected": 1,
-        "closures": 0,
-        "failuresRemoved": null,
-        "companiesAdvanced": null,
-        "companiesCanonicalized": null,
-        "newUsefulSources": 0,
-        "duplicateNoChangeArtifacts": 0,
-        "contradictionsResolved": 0,
-        "zeroYield": true
       }
     ]
   },
@@ -696,14 +696,14 @@
     "rule": "Only Workgraph state === chief_ready AND preflight.passed === true is Chief-ready."
   },
   "assist": {
-    "active": 2,
-    "dormant": 152,
+    "active": 1,
+    "dormant": 153,
     "queued": 0,
     "archived": 365,
     "byHelper": {
       "earth-scout": 1,
       "council-alpha": 0,
-      "council-beta": 1,
+      "council-beta": 0,
       "deep-resolver": 0
     }
   },
@@ -711,6 +711,14 @@
     "healthy": true,
     "roleCycles": [],
     "deadlocks": [
+      {
+        "requestId": "assist:MWA:council-alpha:council-beta:risk-source-support",
+        "ticker": "MWA",
+        "rootOwner": "council-alpha",
+        "helperRole": "council-beta",
+        "reason": "unchanged_failed_assist_input",
+        "unlockCondition": "packet/evidence input signature changes or Chief explicitly adjudicates the dependency"
+      },
       {
         "requestId": "assist:ALB:council-alpha:earth-scout:source-acquisition",
         "ticker": "ALB",

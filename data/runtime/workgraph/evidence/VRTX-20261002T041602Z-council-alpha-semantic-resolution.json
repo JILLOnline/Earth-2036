@@ -1,0 +1,48 @@
+{
+  "version": 2,
+  "contract": "workgraph-v2-specialist-evidence",
+  "ticker": "VRTX",
+  "entityId": "VRTX",
+  "workId": "t0:VRTX",
+  "role": "council-alpha",
+  "generatedAt": "2026-10-02T04:16:02Z",
+  "perspectives": ["source-integrity", "company-underwriting", "gate-consumption-diagnostic"],
+  "result": "semantic_override_stale_packet_truth_complete",
+  "diagnostic": {
+    "packetPath": "data/runtime/workgraph/packets/VRTX.json",
+    "packetGeneratedAt": "2026-10-02T04:05:39.067Z",
+    "finding": "The active packet already contains complete source-integrity and company-underwriting coverage plus a full Methodology 1.0.0 scoreRecord with all 12 source-addressed factors. The worker semantic override still asserts those Alpha fields are outstanding. This is a deterministic projection-consumption mismatch; repeating completed underwriting would create duplicate no-change evidence.",
+    "alphaOwnedFailuresRemaining": [],
+    "gateConsumptionFault": true,
+    "canonicalAuthorityChanged": false
+  },
+  "sourceIntegrity": {
+    "identity": "validated in packet",
+    "tradability": "validated in packet",
+    "provenance": "packet resolves active immutable evidence lineage",
+    "freshness": "packet generated 2026-10-02T04:05:39.067Z",
+    "duplicateOriginCollapse": "preserved by packet evidence resolution",
+    "sourceIndependence": "score record includes primary and independent source classes"
+  },
+  "companyUnderwriting": {
+    "status": "already_complete_in_packet",
+    "scoreRecordPresent": true,
+    "calibrationVersion": "1.0.0-calibration-a",
+    "requiredComponentsPresent": 12,
+    "action": "do_not_research_completed_fields; reconcile semantic override against packet truth"
+  },
+  "assistAttempts": [],
+  "learning": {
+    "repeatedBlocker": "stale_semantic_override_claims_missing_alpha_underwriting_after_packet_truth_is_complete",
+    "sourcePathsAttempted": ["current VRTX packet", "current semantic override projection"],
+    "failedStrategy": "repeatedly researching already-complete Alpha fields",
+    "changedStrategy": "apply semantic-override incident rule and emit deterministic packet-to-projection diagnostic",
+    "nextLawfulAction": "Chief/reconcile should regenerate semantic-overrides from current packet truth and remove VRTX addAlpha when packet score readiness remains complete"
+  },
+  "lineage": {
+    "startingGitHead": "64f475e9a36c080c2da5cbfe8835d321c0d69f83",
+    "packetPath": "data/runtime/workgraph/packets/VRTX.json",
+    "supersedes": "data/runtime/workgraph/evidence/VRTX-20261001T221932Z-council-alpha-gate-consumption-diagnostic.json",
+    "reuses": ["data/runtime/workgraph/packets/VRTX.json", "data/runtime/workgraph/worker-view/semantic-overrides.json"]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "role": "council-alpha",
+  "generatedAt": "2026-10-02T12:13:53Z",
+  "sourceCycleKey": "2026-10-02T12:00Z",
+  "startingGitHead": "9d1987beb0dc49561184933dd8a0a0babaed26e2",
+  "operatingMode": "closure-first-guarded-noop",
+  "companiesInspected": [],
+  "frontierItemsAttempted": [],
+  "alphaPairsCompleted": 0,
+  "scoreRecordsCompleted": 0,
+  "artifacts": [],
+  "assistAttempts": [],
+  "blockers": [
+    {
+      "type": "no_prime_eligible_alpha_routing",
+      "detail": "The authoritative council-alpha worker routing view exposes zero visible actionable items and defers all 73 Alpha-owned backlog items under do_not_retry_without_changed_input. Semantic overrides count is zero. Closure-frontier selected items are owned by deep-resolver, not Alpha. Repeating prior Alpha underwriting/search against unchanged signatures would violate the anti-stall execution guard."
+    }
+  ],
+  "result": "lawful_noop",
+  "learning": {
+    "repeatedBlocker": "alpha_backlog_present_but_all_items_execution_guarded_on_unchanged_input",
+    "sourcePathsAttempted": [
+      "worker-view/closure-frontier.json",
+      "worker-view/semantic-overrides.json",
+      "worker-view/assist/council-alpha.json",
+      "worker-view/routing/council-alpha.json"
+    ],
+    "failedStrategy": "Prior repeated underwriting/source-search attempts against unchanged input signatures are explicitly dormant and must not be repeated.",
+    "changedStrategy": "Honored bounded routing and executionGuard; did not reopen dormant companies or duplicate source acquisition without changed input.",
+    "nextLawfulAction": "Resume Alpha company work when routing exposes a visible prime-eligible item, a semantic override sets addAlpha=true, or new Scout/Beta/source evidence changes a deferred company's input signature."
+  }
+}

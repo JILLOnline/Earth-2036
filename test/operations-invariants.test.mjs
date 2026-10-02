@@ -88,6 +88,17 @@ test("zero-defect Chief fast path runs after packet compilation and before Beast
   assert.ok(sync < fastPath && fastPath < beast);
 });
 
+test("machine cycle refreshes Workgraph and Shadow projections after canonical promotion", async () => {
+  const text = await source("scripts/earth2036-cycle.mjs");
+  const firstSync = text.indexOf('scripts/workgraph-sync.mjs');
+  const fastPath = text.indexOf('scripts/promote-chief-ready.mjs');
+  const secondSync = text.indexOf('scripts/workgraph-sync.mjs', firstSync + 1);
+  const supervision = text.indexOf('scripts/mark-council-pending.mjs');
+  const beast = text.indexOf('scripts/beast-audit.mjs');
+  assert.ok(firstSync >= 0 && fastPath >= 0 && secondSync >= 0 && supervision >= 0 && beast >= 0);
+  assert.ok(firstSync < fastPath && fastPath < secondSync && secondSync < supervision && supervision < beast);
+});
+
 test("evidence reconciliation persists routing while Beast remains a hard promotion gate", async () => {
   const text = await source(".github/workflows/earth2036-workgraph-reconcile.yml");
   const sync = text.indexOf("npm run workgraph:sync");

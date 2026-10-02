@@ -40,6 +40,10 @@ if (evidence.errors.length) {
   await runScript("scripts/sanitize-listing-runtime.mjs", "Earth 2036 listing-runtime sanitizer");
   await runScript("scripts/workgraph-sync.mjs", "Earth 2036 workgraph v2 sync/preflight");
   await runScript("scripts/promote-chief-ready.mjs", "Earth 2036 zero-defect Chief fast path");
+  // Promotion changes the canonical population. Refresh every derived Workgraph
+  // and Shadow projection before coherence checks/finalization so one cycle cannot
+  // publish a new canonical count with stale trajectory/calibration views.
+  await runScript("scripts/workgraph-sync.mjs", "Earth 2036 post-promotion Workgraph projection refresh");
   await runScript("scripts/mark-council-pending.mjs", "Earth 2036 Workgraph supervision sync");
   await runScript("scripts/beast-audit.mjs", "Earth 2036 Beast integrity audit");
   await runScript("scripts/finalize-qualified-tick.mjs", "Earth 2036 deterministic finalizer");

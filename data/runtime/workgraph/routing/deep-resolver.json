@@ -2,7 +2,7 @@
   "version": 2,
   "contract": "workgraph-v2-routing-queue",
   "role": "deep-resolver",
-  "generatedAt": "2026-10-02T02:47:10.879Z",
+  "generatedAt": "2026-10-02T03:10:26.771Z",
   "selectionPolicy": "closure-frontier-v1",
   "runObjective": "Adjudicate only bounded contradiction packets and return one allowed disposition; do not duplicate source-acquisition work.",
   "rawTotal": 60,
@@ -1181,6 +1181,180 @@
     },
     {
       "rank": 7,
+      "ticker": "MWA",
+      "workId": "t0:MWA",
+      "state": "researching",
+      "packetPath": "data/runtime/workgraph/packets/MWA.json",
+      "ownedFailures": [
+        "unresolved_gating_issue",
+        "unresolved_gating_unknown",
+        "unresolved_material_contradiction"
+      ],
+      "allFailures": [
+        "missing_specialist_perspective:source-integrity",
+        "missing_specialist_perspective:company-underwriting",
+        "missing_factor_evidence",
+        "missing_numeric_score_record",
+        "missing_score_risk_evidence",
+        "missing_data_confidence_evidence",
+        "unresolved_gating_issue",
+        "unresolved_gating_unknown",
+        "unresolved_material_contradiction"
+      ],
+      "otherOwners": [
+        "council-alpha"
+      ],
+      "evidencePaths": [
+        "data/runtime/workgraph/evidence/MWA-20260921T050430Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/MWA-20260921T172331Z-council-beta.json",
+        "data/runtime/workgraph/evidence/MWA-20261001T210937Z-earth-scout-assist.json",
+        "data/runtime/workgraph/evidence/MWA-20261002T030856Z-earth-scout-assist.json"
+      ],
+      "specialistCoverage": {
+        "required": [
+          "source-integrity",
+          "company-underwriting",
+          "structural-causal",
+          "discovery-weak-signals",
+          "adversarial-red-team",
+          "expectations-execution"
+        ],
+        "present": [
+          "discovery-weak-signals",
+          "expectations-execution",
+          "structural-causal",
+          "adversarial-red-team"
+        ],
+        "missing": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "complete": false
+      },
+      "evidenceResolution": {
+        "supersededPaths": [],
+        "resolvedGateKinds": [],
+        "activeEvidenceCount": 8,
+        "historicalEvidenceCount": 8
+      },
+      "frontier": true,
+      "frontierRank": 7,
+      "operationalStatus": "needs_contradiction_resolution",
+      "deferred": true,
+      "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+      "executionGuard": "await_structured_contradiction_input",
+      "adjudicationPacket": {
+        "contract": "earth2036-resolver-adjudication-v1",
+        "ticker": "MWA",
+        "requiredDisposition": [
+          "resolved",
+          "non_gating",
+          "awaiting_new_evidence",
+          "still_material"
+        ],
+        "ownedFailures": [
+          "unresolved_gating_issue",
+          "unresolved_gating_unknown",
+          "unresolved_material_contradiction"
+        ],
+        "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
+        "itemCount": 2,
+        "actionableItemCount": 0,
+        "deferredItemCount": 2,
+        "actionable": false,
+        "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+        "items": [
+          {
+            "itemId": "MWA:contradiction:1",
+            "claimA": null,
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "A source-addressed contradiction with identifiable claims is required before adjudication.",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "MWA:contradiction:2",
+            "claimA": null,
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "A source-addressed contradiction with identifiable claims is required before adjudication.",
+            "resolutionRule": "This is a material attribution question rather than an internal impossibility; durable normalized margin and volume evidence is needed to determine how much improvement is structural.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          }
+        ],
+        "actionableItems": [],
+        "deferredItems": [
+          {
+            "itemId": "MWA:contradiction:1",
+            "claimA": null,
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "A source-addressed contradiction with identifiable claims is required before adjudication.",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "MWA:contradiction:2",
+            "claimA": null,
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "A source-addressed contradiction with identifiable claims is required before adjudication.",
+            "resolutionRule": "This is a material attribution question rather than an internal impossibility; durable normalized margin and volume evidence is needed to determine how much improvement is structural.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          }
+        ]
+      },
+      "unresolved": {
+        "gatingIssues": [
+          {
+            "issue": "unresolved_material_contradiction",
+            "defect": "Margin improvement cannot yet be cleanly attributed between durable operating/pricing gains and temporary tariff-refund effects while aggregate volume was slightly lower.",
+            "nextLawfulEvidencePath": "Deep Resolver should compare subsequent primary quarterly results with normalized tariff/refund effects, price/mix and physical-volume disclosures to adjudicate durability."
+          }
+        ],
+        "gatingUnknowns": [
+          {
+            "unknown": "Normalized post-refund margin and the volume contribution of infrastructure renewal are not established by the cited quarter.",
+            "gating": true
+          }
+        ],
+        "materialContradictions": [
+          {
+            "claim": "Strong margin expansion occurred despite slightly lower aggregate volumes, making durability beyond pricing/refunds a key test.",
+            "severity": "moderate"
+          },
+          {
+            "claim": "Strong margin expansion occurred despite slightly lower aggregate volumes.",
+            "resolution": "This is a material attribution question rather than an internal impossibility; durable normalized margin and volume evidence is needed to determine how much improvement is structural.",
+            "resolved": false,
+            "gating": true
+          }
+        ]
+      }
+    },
+    {
+      "rank": 8,
       "ticker": "NOK",
       "workId": "t0:NOK",
       "state": "researching",
@@ -1233,7 +1407,7 @@
         "historicalEvidenceCount": 6
       },
       "frontier": true,
-      "frontierRank": 7,
+      "frontierRank": 8,
       "operationalStatus": "needs_contradiction_resolution",
       "deferred": true,
       "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
@@ -1360,179 +1534,6 @@
           },
           {
             "contradiction": "The prior issuer evidence records comparable margin improvement alongside negative reported margin from restructuring; this Reuters source corroborates comparable-profit strength but does not independently resolve the comparable-versus-reported accounting distinction."
-          }
-        ]
-      }
-    },
-    {
-      "rank": 8,
-      "ticker": "MWA",
-      "workId": "t0:MWA",
-      "state": "researching",
-      "packetPath": "data/runtime/workgraph/packets/MWA.json",
-      "ownedFailures": [
-        "unresolved_gating_issue",
-        "unresolved_gating_unknown",
-        "unresolved_material_contradiction"
-      ],
-      "allFailures": [
-        "missing_specialist_perspective:source-integrity",
-        "missing_specialist_perspective:company-underwriting",
-        "missing_factor_evidence",
-        "missing_numeric_score_record",
-        "missing_score_risk_evidence",
-        "missing_data_confidence_evidence",
-        "unresolved_gating_issue",
-        "unresolved_gating_unknown",
-        "unresolved_material_contradiction"
-      ],
-      "otherOwners": [
-        "council-alpha"
-      ],
-      "evidencePaths": [
-        "data/runtime/workgraph/evidence/MWA-20260921T050430Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/MWA-20260921T172331Z-council-beta.json",
-        "data/runtime/workgraph/evidence/MWA-20261001T210937Z-earth-scout-assist.json"
-      ],
-      "specialistCoverage": {
-        "required": [
-          "source-integrity",
-          "company-underwriting",
-          "structural-causal",
-          "discovery-weak-signals",
-          "adversarial-red-team",
-          "expectations-execution"
-        ],
-        "present": [
-          "discovery-weak-signals",
-          "expectations-execution",
-          "structural-causal",
-          "adversarial-red-team"
-        ],
-        "missing": [
-          "source-integrity",
-          "company-underwriting"
-        ],
-        "complete": false
-      },
-      "evidenceResolution": {
-        "supersededPaths": [],
-        "resolvedGateKinds": [],
-        "activeEvidenceCount": 6,
-        "historicalEvidenceCount": 6
-      },
-      "frontier": true,
-      "frontierRank": 8,
-      "operationalStatus": "needs_contradiction_resolution",
-      "deferred": true,
-      "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
-      "executionGuard": "await_structured_contradiction_input",
-      "adjudicationPacket": {
-        "contract": "earth2036-resolver-adjudication-v1",
-        "ticker": "MWA",
-        "requiredDisposition": [
-          "resolved",
-          "non_gating",
-          "awaiting_new_evidence",
-          "still_material"
-        ],
-        "ownedFailures": [
-          "unresolved_gating_issue",
-          "unresolved_gating_unknown",
-          "unresolved_material_contradiction"
-        ],
-        "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
-        "itemCount": 2,
-        "actionableItemCount": 0,
-        "deferredItemCount": 2,
-        "actionable": false,
-        "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
-        "items": [
-          {
-            "itemId": "MWA:contradiction:1",
-            "claimA": null,
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "A source-addressed contradiction with identifiable claims is required before adjudication.",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "MWA:contradiction:2",
-            "claimA": null,
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "A source-addressed contradiction with identifiable claims is required before adjudication.",
-            "resolutionRule": "This is a material attribution question rather than an internal impossibility; durable normalized margin and volume evidence is needed to determine how much improvement is structural.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          }
-        ],
-        "actionableItems": [],
-        "deferredItems": [
-          {
-            "itemId": "MWA:contradiction:1",
-            "claimA": null,
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "A source-addressed contradiction with identifiable claims is required before adjudication.",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "MWA:contradiction:2",
-            "claimA": null,
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "A source-addressed contradiction with identifiable claims is required before adjudication.",
-            "resolutionRule": "This is a material attribution question rather than an internal impossibility; durable normalized margin and volume evidence is needed to determine how much improvement is structural.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          }
-        ]
-      },
-      "unresolved": {
-        "gatingIssues": [
-          {
-            "issue": "unresolved_material_contradiction",
-            "defect": "Margin improvement cannot yet be cleanly attributed between durable operating/pricing gains and temporary tariff-refund effects while aggregate volume was slightly lower.",
-            "nextLawfulEvidencePath": "Deep Resolver should compare subsequent primary quarterly results with normalized tariff/refund effects, price/mix and physical-volume disclosures to adjudicate durability."
-          }
-        ],
-        "gatingUnknowns": [
-          {
-            "unknown": "Normalized post-refund margin and the volume contribution of infrastructure renewal are not established by the cited quarter.",
-            "gating": true
-          }
-        ],
-        "materialContradictions": [
-          {
-            "claim": "Strong margin expansion occurred despite slightly lower aggregate volumes, making durability beyond pricing/refunds a key test.",
-            "severity": "moderate"
-          },
-          {
-            "claim": "Strong margin expansion occurred despite slightly lower aggregate volumes.",
-            "resolution": "This is a material attribution question rather than an internal impossibility; durable normalized margin and volume evidence is needed to determine how much improvement is structural.",
-            "resolved": false,
-            "gating": true
           }
         ]
       }

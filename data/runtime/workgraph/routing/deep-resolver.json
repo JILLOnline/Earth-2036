@@ -2,7 +2,7 @@
   "version": 2,
   "contract": "workgraph-v2-routing-queue",
   "role": "deep-resolver",
-  "generatedAt": "2026-10-02T01:12:24.317Z",
+  "generatedAt": "2026-10-02T01:25:15.106Z",
   "selectionPolicy": "closure-frontier-v1",
   "runObjective": "Adjudicate only bounded contradiction packets and return one allowed disposition; do not duplicate source-acquisition work.",
   "rawTotal": 60,
@@ -65,7 +65,7 @@
         "historicalEvidenceCount": 7
       },
       "frontier": true,
-      "frontierRank": 2,
+      "frontierRank": 3,
       "operationalStatus": "needs_contradiction_resolution",
       "deferred": false,
       "deferredReason": null,
@@ -288,8 +288,8 @@
         "activeEvidenceCount": 6,
         "historicalEvidenceCount": 6
       },
-      "frontier": true,
-      "frontierRank": 10,
+      "frontier": false,
+      "frontierRank": null,
       "operationalStatus": "needs_contradiction_resolution",
       "deferred": false,
       "deferredReason": null,
@@ -638,7 +638,7 @@
         "historicalEvidenceCount": 5
       },
       "frontier": true,
-      "frontierRank": 3,
+      "frontierRank": 2,
       "operationalStatus": "needs_contradiction_resolution",
       "deferred": true,
       "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
@@ -777,6 +777,194 @@
     },
     {
       "rank": 3,
+      "ticker": "STLD",
+      "workId": "t0:STLD",
+      "state": "researching",
+      "packetPath": "data/runtime/workgraph/packets/STLD.json",
+      "ownedFailures": [
+        "unresolved_material_contradiction"
+      ],
+      "allFailures": [
+        "missing_specialist_perspective:source-integrity",
+        "missing_specialist_perspective:company-underwriting",
+        "missing_factor_evidence",
+        "missing_numeric_score_record",
+        "missing_score_risk_evidence",
+        "missing_data_confidence_evidence",
+        "unresolved_material_contradiction"
+      ],
+      "otherOwners": [
+        "council-alpha"
+      ],
+      "evidencePaths": [
+        "data/runtime/workgraph/evidence/STLD-20260921T140443Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/STLD-20260921T150611Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/STLD-20260921T180758Z-earth-scout.json",
+        "data/runtime/workgraph/evidence/STLD-20260921T202645Z-council-beta.json",
+        "data/runtime/workgraph/evidence/STLD-20260922T173306Z-deep-resolver.json",
+        "data/runtime/workgraph/evidence/STLD-20261001T192720Z-council-beta-assist.json"
+      ],
+      "specialistCoverage": {
+        "required": [
+          "source-integrity",
+          "company-underwriting",
+          "structural-causal",
+          "discovery-weak-signals",
+          "adversarial-red-team",
+          "expectations-execution"
+        ],
+        "present": [
+          "discovery-weak-signals",
+          "expectations-execution",
+          "structural-causal",
+          "adversarial-red-team"
+        ],
+        "missing": [
+          "source-integrity",
+          "company-underwriting"
+        ],
+        "complete": false
+      },
+      "evidenceResolution": {
+        "supersededPaths": [
+          "data/runtime/workgraph/evidence/STLD-20260921T170237Z-earth-scout.json",
+          "data/runtime/workgraph/evidence/STLD-20260921T192217Z-council-beta.json"
+        ],
+        "resolvedGateKinds": [],
+        "activeEvidenceCount": 10,
+        "historicalEvidenceCount": 14
+      },
+      "frontier": true,
+      "frontierRank": 4,
+      "operationalStatus": "needs_contradiction_resolution",
+      "deferred": true,
+      "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+      "executionGuard": "await_structured_contradiction_input",
+      "adjudicationPacket": {
+        "contract": "earth2036-resolver-adjudication-v1",
+        "ticker": "STLD",
+        "requiredDisposition": [
+          "resolved",
+          "non_gating",
+          "awaiting_new_evidence",
+          "still_material"
+        ],
+        "ownedFailures": [
+          "unresolved_material_contradiction"
+        ],
+        "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
+        "itemCount": 3,
+        "actionableItemCount": 0,
+        "deferredItemCount": 3,
+        "actionable": false,
+        "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+        "items": [
+          {
+            "itemId": "STLD:contradiction:1",
+            "claimA": "Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "STLD:contradiction:3",
+            "claimA": "Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "STLD:contradiction:5",
+            "claimA": "Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          }
+        ],
+        "actionableItems": [],
+        "deferredItems": [
+          {
+            "itemId": "STLD:contradiction:1",
+            "claimA": "Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "STLD:contradiction:3",
+            "claimA": "Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          },
+          {
+            "itemId": "STLD:contradiction:5",
+            "claimA": "Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs.",
+            "claimB": null,
+            "sourceA": null,
+            "sourceB": null,
+            "dateA": null,
+            "dateB": null,
+            "materiality": true,
+            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs.\".",
+            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+            "preferredOwner": null,
+            "independentlyActionable": false
+          }
+        ]
+      },
+      "unresolved": {
+        "gatingIssues": [],
+        "gatingUnknowns": [],
+        "materialContradictions": [
+          "Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.",
+          "Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.",
+          "Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.",
+          "Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.",
+          {
+            "contradiction": "Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs.",
+            "material": true
+          }
+        ]
+      }
+    },
+    {
+      "rank": 4,
       "ticker": "TDG",
       "workId": "t0:TDG",
       "state": "researching",
@@ -830,7 +1018,7 @@
         "historicalEvidenceCount": 6
       },
       "frontier": true,
-      "frontierRank": 4,
+      "frontierRank": 5,
       "operationalStatus": "needs_contradiction_resolution",
       "deferred": true,
       "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
@@ -1019,7 +1207,7 @@
       }
     },
     {
-      "rank": 4,
+      "rank": 5,
       "ticker": "ZS",
       "workId": "t0:ZS",
       "state": "researching",
@@ -1071,7 +1259,7 @@
         "historicalEvidenceCount": 4
       },
       "frontier": true,
-      "frontierRank": 5,
+      "frontierRank": 6,
       "operationalStatus": "needs_contradiction_resolution",
       "deferred": true,
       "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
@@ -1145,7 +1333,7 @@
       }
     },
     {
-      "rank": 5,
+      "rank": 6,
       "ticker": "SQM",
       "workId": "t0:SQM",
       "state": "researching",
@@ -1206,7 +1394,7 @@
         "historicalEvidenceCount": 15
       },
       "frontier": true,
-      "frontierRank": 6,
+      "frontierRank": 7,
       "operationalStatus": "needs_contradiction_resolution",
       "deferred": true,
       "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
@@ -1299,194 +1487,6 @@
           "Very strong current lithium pricing/earnings coexist with management's need for flexible production and a slower BEV growth signal, so current margins should not be extrapolated mechanically.",
           {
             "contradiction": "Strong pricing and an expectations beat coexist with slower-than-expected BEV growth and management emphasis on production flexibility.",
-            "material": true
-          }
-        ]
-      }
-    },
-    {
-      "rank": 6,
-      "ticker": "STLD",
-      "workId": "t0:STLD",
-      "state": "researching",
-      "packetPath": "data/runtime/workgraph/packets/STLD.json",
-      "ownedFailures": [
-        "unresolved_material_contradiction"
-      ],
-      "allFailures": [
-        "missing_specialist_perspective:source-integrity",
-        "missing_specialist_perspective:company-underwriting",
-        "missing_factor_evidence",
-        "missing_numeric_score_record",
-        "missing_score_risk_evidence",
-        "missing_data_confidence_evidence",
-        "unresolved_material_contradiction"
-      ],
-      "otherOwners": [
-        "council-alpha"
-      ],
-      "evidencePaths": [
-        "data/runtime/workgraph/evidence/STLD-20260921T140443Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/STLD-20260921T150611Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/STLD-20260921T180758Z-earth-scout.json",
-        "data/runtime/workgraph/evidence/STLD-20260921T202645Z-council-beta.json",
-        "data/runtime/workgraph/evidence/STLD-20260922T173306Z-deep-resolver.json",
-        "data/runtime/workgraph/evidence/STLD-20261001T192720Z-council-beta-assist.json"
-      ],
-      "specialistCoverage": {
-        "required": [
-          "source-integrity",
-          "company-underwriting",
-          "structural-causal",
-          "discovery-weak-signals",
-          "adversarial-red-team",
-          "expectations-execution"
-        ],
-        "present": [
-          "discovery-weak-signals",
-          "expectations-execution",
-          "structural-causal",
-          "adversarial-red-team"
-        ],
-        "missing": [
-          "source-integrity",
-          "company-underwriting"
-        ],
-        "complete": false
-      },
-      "evidenceResolution": {
-        "supersededPaths": [
-          "data/runtime/workgraph/evidence/STLD-20260921T170237Z-earth-scout.json",
-          "data/runtime/workgraph/evidence/STLD-20260921T192217Z-council-beta.json"
-        ],
-        "resolvedGateKinds": [],
-        "activeEvidenceCount": 10,
-        "historicalEvidenceCount": 14
-      },
-      "frontier": true,
-      "frontierRank": 7,
-      "operationalStatus": "needs_contradiction_resolution",
-      "deferred": true,
-      "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
-      "executionGuard": "await_structured_contradiction_input",
-      "adjudicationPacket": {
-        "contract": "earth2036-resolver-adjudication-v1",
-        "ticker": "STLD",
-        "requiredDisposition": [
-          "resolved",
-          "non_gating",
-          "awaiting_new_evidence",
-          "still_material"
-        ],
-        "ownedFailures": [
-          "unresolved_material_contradiction"
-        ],
-        "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
-        "itemCount": 3,
-        "actionableItemCount": 0,
-        "deferredItemCount": 3,
-        "actionable": false,
-        "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
-        "items": [
-          {
-            "itemId": "STLD:contradiction:1",
-            "claimA": "Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "STLD:contradiction:3",
-            "claimA": "Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "STLD:contradiction:5",
-            "claimA": "Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          }
-        ],
-        "actionableItems": [],
-        "deferredItems": [
-          {
-            "itemId": "STLD:contradiction:1",
-            "claimA": "Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "STLD:contradiction:3",
-            "claimA": "Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          },
-          {
-            "itemId": "STLD:contradiction:5",
-            "claimA": "Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs.",
-            "claimB": null,
-            "sourceA": null,
-            "sourceB": null,
-            "dateA": null,
-            "dateB": null,
-            "materiality": true,
-            "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs.\".",
-            "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-            "preferredOwner": null,
-            "independentlyActionable": false
-          }
-        ]
-      },
-      "unresolved": {
-        "gatingIssues": [],
-        "gatingUnknowns": [],
-        "materialContradictions": [
-          "Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.",
-          "Strong steel earnings and demand coexist with weaker fabrication economics and loss-making aluminum startup.",
-          "Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.",
-          "Strengthening backlog and shipments did not produce sequential fabrication operating-income growth because input costs rose.",
-          {
-            "contradiction": "Strong industry pricing and STLD backlog coexist with fabrication margin pressure from higher steel inputs.",
             "material": true
           }
         ]
@@ -1744,8 +1744,8 @@
         "activeEvidenceCount": 10,
         "historicalEvidenceCount": 14
       },
-      "frontier": false,
-      "frontierRank": null,
+      "frontier": true,
+      "frontierRank": 10,
       "operationalStatus": "needs_contradiction_resolution",
       "deferred": true,
       "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",

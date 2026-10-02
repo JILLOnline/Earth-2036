@@ -113,6 +113,67 @@ test("packet v2 requires complete six-perspective structured evidence", () => {
   assert.equal(graph.companies.AAA.state, "chief_ready");
 });
 
+test("source-addressed underwriting confidence closes the confidence gate without a duplicate source-integrity confidence marker", () => {
+  const rows = completeEvidence();
+  const sourceIntegrity = rows.find((row) => row.perspective === "source-integrity");
+  sourceIntegrity.factors = [{ name: "Identity and tradability provenance" }];
+  sourceIntegrity.confidence = null;
+
+  const packet = compilePromotionPacket(
+    "AAA",
+    rows,
+    { ticker:"AAA", state:"packet_ready", workId:"t0:AAA" },
+    { registryEntry, methodologyVersion:"1.0.0" },
+  );
+
+  assert.equal(packet.scoreReadiness.sourceAddressedEvidence.dataConfidenceEvidenceComplete, true);
+  assert.equal(packet.dataConfidenceEvidence.sourceIntegritySignalAvailable, false);
+  assert.equal(packet.dataConfidenceEvidence.sourceAddressedScoreEvidenceComplete, true);
+  assert.equal(packet.dataConfidenceEvidence.available, true);
+  assert.equal(packet.preflight.failures.includes("missing_data_confidence_evidence"), false);
+  assert.equal(packet.preflight.passed, true);
+});
+
+test("current complete packet truth consumes only stale Alpha completion gates and preserves unrelated gates", () => {
+  const rows = completeEvidence();
+  const underwriting = rows.find((row) => row.perspective === "company-underwriting");
+  underwriting.gatingIssues = [
+    "company-underwriting and complete source-addressed numeric scoreRecord remain outstanding",
+    "missing_source_addressed_current_valuation",
+    "incomplete_source_addressed_component_calibration",
+  ];
+  underwriting.unknowns = [
+    { unknown: "Current proxy/governance and capital-allocation evidence is absent from the packet.", gating: true },
+    { unknown: "A full Methodology 1.0 score still requires source-addressed evidence for every component, risk and confidence assessment.", gating: true },
+  ];
+
+  const clean = compilePromotionPacket(
+    "AAA",
+    rows,
+    { ticker:"AAA", state:"packet_ready", workId:"t0:AAA" },
+    { registryEntry, methodologyVersion:"1.0.0" },
+  );
+  assert.equal(clean.scoreReadiness.complete, true);
+  assert.equal(clean.preflight.failures.includes("unresolved_gating_issue"), false);
+  assert.equal(clean.preflight.failures.includes("unresolved_gating_unknown"), false);
+  assert.equal(clean.evidenceResolution.semanticGateConsumption.consumedGatingIssues.length, 3);
+  assert.equal(clean.evidenceResolution.semanticGateConsumption.consumedGatingUnknowns.length, 2);
+  assert.equal(clean.preflight.passed, true);
+
+  rows[0].gatingIssues = ["Regulatory injunction remains unresolved and requires adjudication."];
+  const guarded = compilePromotionPacket(
+    "AAA",
+    rows,
+    { ticker:"AAA", state:"packet_ready", workId:"t0:AAA" },
+    { registryEntry, methodologyVersion:"1.0.0" },
+  );
+  assert.equal(guarded.preflight.failures.includes("unresolved_gating_issue"), true);
+  assert.equal(
+    guarded.evidenceResolution.semanticGateConsumption.consumedGatingIssues.includes("Regulatory injunction remains unresolved and requires adjudication."),
+    false,
+  );
+});
+
 test("packet fails closed when numeric score evidence is not source-addressed for Beast", () => {
   const rows = completeEvidence();
   const underwriting = rows.find((row) => row.perspective === "company-underwriting");

@@ -46,6 +46,7 @@ jobs:
           audit_status=0
           node scripts/audit-closure-invariants.mjs || audit_status=$?
           echo "closure_invariant_status=$audit_status"
+          echo "CLOSURE_INVARIANT_STATUS=$audit_status" >> "$GITHUB_ENV"
       - name: Persist semantic override projection
         run: |
           set -euo pipefail
@@ -62,3 +63,13 @@ jobs:
           git restore --worktree .
           git pull --rebase origin main
           git push origin HEAD:main
+
+      - name: Enforce closure invariant audit
+        if: always()
+        run: |
+          set -euo pipefail
+          status="${CLOSURE_INVARIANT_STATUS:-1}"
+          if [ "$status" -ne 0 ]; then
+            echo "Closure invariant audit failed with status $status." >&2
+            exit "$status"
+          fi

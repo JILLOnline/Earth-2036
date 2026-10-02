@@ -119,6 +119,14 @@ function factorEvidenceCoverage(node, requiredKeys) {
   return { complete: missing.length === 0, missing };
 }
 
+function alphaCompletionGateSatisfiedByScoreRecord(value, scoreRecordComplete) {
+  if (!scoreRecordComplete) return false;
+  const text = typeof value === "string" ? value : JSON.stringify(value || {});
+  const alphaDimension = /(underwriting|valuation|governance|capital[ _-]+allocation|score[ _-]*record|component[ _-]+calibration|pricing[ _-]+power|supply[ _-]+chain|factor[ _-]+evidence|confidence[ _-]+evidence|risk[ _-]+evidence)/i.test(text);
+  const explicitCompletionDeficit = /(missing|incomplete|outstanding|absent|not[ _-]+source[ _-]+addressed|still[ _-]+requires?|requires?[ _-]+source[ _-]+addressed|no[ _-]+numeric[ _-]+score[ _-]*record)/i.test(text);
+  return alphaDimension && explicitCompletionDeficit;
+}
+
 export function migrateLegacyQueue(legacy, registry = null, now = new Date()) {
   if (!legacy || typeof legacy !== "object" || !legacy.companies) throw new Error("Legacy T0 queue missing companies object");
   const companies = {};
@@ -413,7 +421,7 @@ export function compilePromotionPacket(ticker, evidenceRows, graphRow, options =
       const disposition = String(c.disposition || c.resolutionStatus || "").toLowerCase();
       return c.resolved !== true && c.gating !== false && c.material !== false && !disposition.startsWith("resolved");
     });
-  const gatingUnknowns = resolvedGateKinds.has("gating_unknown")
+  const unresolvedGatingUnknowns = resolvedGateKinds.has("gating_unknown")
     ? []
     : unknowns.filter((u) => u?.gating === true);
   const confidenceValues = relevant.map((r) => r.confidence).filter(Number.isFinite);
@@ -450,10 +458,32 @@ export function compilePromotionPacket(ticker, evidenceRows, graphRow, options =
     scoreRecord.primarySourceUrls.length > 0 &&
     scoreRecord.causalMapped === true
   );
+
+  // Historical gating text is append-only, but it must not outrank newer packet truth.
+  // Only retire explicit Alpha completion-deficit assertions when the current score
+  // record proves all Methodology 1.0 components and source-addressed score evidence
+  // are complete. Unrelated legal/technical/causal gates remain fail-closed.
+  const unresolvedGatingIssues = resolvedGateKinds.has("gating_issue") ? [] : gatingIssues;
+  const consumedAlphaGatingIssues = unresolvedGatingIssues.filter((item) =>
+    alphaCompletionGateSatisfiedByScoreRecord(item, scoreRecordComplete)
+  );
+  const activeGatingIssues = unresolvedGatingIssues.filter((item) =>
+    !alphaCompletionGateSatisfiedByScoreRecord(item, scoreRecordComplete)
+  );
+  const consumedAlphaGatingUnknowns = unresolvedGatingUnknowns.filter((item) =>
+    alphaCompletionGateSatisfiedByScoreRecord(item, scoreRecordComplete)
+  );
+  const activeGatingUnknowns = unresolvedGatingUnknowns.filter((item) =>
+    !alphaCompletionGateSatisfiedByScoreRecord(item, scoreRecordComplete)
+  );
+
   const dataConfidenceFactors = sourceIntegrityRows.flatMap((r) => r.factors).filter((f) => String(typeof f === "string" ? f : f?.name || "").toLowerCase().includes("data confidence"));
   const sourceIntegrityConfidence = sourceIntegrityRows.map((r) => r.confidence).filter(Number.isFinite);
+  const sourceIntegrityConfidenceSignalAvailable = dataConfidenceFactors.length > 0 || sourceIntegrityConfidence.length > 0;
   const dataConfidenceEvidence = {
-    available: dataConfidenceFactors.length > 0 || sourceIntegrityConfidence.length > 0,
+    available: sourceIntegrityConfidenceSignalAvailable || scoreDataConfidenceEvidenceComplete,
+    sourceIntegritySignalAvailable: sourceIntegrityConfidenceSignalAvailable,
+    sourceAddressedScoreEvidenceComplete: scoreDataConfidenceEvidenceComplete,
     factors: dataConfidenceFactors,
     confidenceFloor: sourceIntegrityConfidence.length ? Math.min(...sourceIntegrityConfidence) : null,
     evidencePaths: uniqueStrings(sourceIntegrityRows.map((r) => r.path)),
@@ -488,8 +518,8 @@ export function compilePromotionPacket(ticker, evidenceRows, graphRow, options =
   if (!dataConfidenceEvidence.available || !scoreDataConfidenceEvidenceComplete) failures.push("missing_data_confidence_evidence");
   if (!causalEdges.length) failures.push("missing_causal_mapping");
   if (sourceLineage.missingLineage > 0) failures.push("missing_source_lineage");
-  if (gatingIssues.length && !resolvedGateKinds.has("gating_issue")) failures.push("unresolved_gating_issue");
-  if (gatingUnknowns.length) failures.push("unresolved_gating_unknown");
+  if (activeGatingIssues.length) failures.push("unresolved_gating_issue");
+  if (activeGatingUnknowns.length) failures.push("unresolved_gating_unknown");
   if (unresolvedContradictions.length) failures.push("unresolved_material_contradiction");
   if (confidence !== null && confidence < (options.minConfidence ?? 60)) failures.push("confidence_below_60");
   const uniqueFailures = uniqueStrings(failures);
@@ -516,6 +546,11 @@ export function compilePromotionPacket(ticker, evidenceRows, graphRow, options =
     evidenceResolution: {
       supersededPaths: [...supersededPaths].sort(),
       resolvedGateKinds: [...resolvedGateKinds].sort(),
+      semanticGateConsumption: {
+        policy: "retire-only-explicit-alpha-completion-deficits-proven-satisfied-by-current-score-record",
+        consumedGatingIssues: consumedAlphaGatingIssues,
+        consumedGatingUnknowns: consumedAlphaGatingUnknowns,
+      },
       activeEvidenceCount: relevant.length,
       historicalEvidenceCount: allRelevant.length,
     },
@@ -549,7 +584,12 @@ export function compilePromotionPacket(ticker, evidenceRows, graphRow, options =
     contradictions,
     contradictionDispositions: { unresolvedMaterialCount: unresolvedContradictions.length, items: contradictions },
     unknowns,
-    unknownDisposition: { gatingCount: gatingUnknowns.length, nonGatingCount: Math.max(0, unknowns.length - gatingUnknowns.length) },
+    unknownDisposition: {
+      gatingCount: activeGatingUnknowns.length,
+      rawGatingCount: unknowns.filter((item) => item?.gating === true).length,
+      consumedGatingCount: consumedAlphaGatingUnknowns.length,
+      nonGatingCount: unknowns.filter((item) => item?.gating !== true).length,
+    },
     gatingIssues,
     confidence,
     preflight: { passed: uniqueFailures.length === 0, failures: uniqueFailures, routing },

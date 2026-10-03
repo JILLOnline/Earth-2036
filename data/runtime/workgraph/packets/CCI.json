@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "CCI",
   "workId": "t0:CCI",
-  "generatedAt": "2026-10-03T15:54:02.112Z",
+  "generatedAt": "2026-10-03T16:26:41.306Z",
   "sourceState": "packet_ready",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2026-01-12T00:00:00.000Z",
-    "end": "2026-10-01T07:22:45.000Z",
-    "latestEvidenceGeneratedAt": "2026-10-01T07:22:45.000Z"
+    "end": "2026-10-03T16:22:30.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-03T16:22:30.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -60,20 +60,23 @@
     "data/runtime/workgraph/evidence/CCI-20260930T232916Z-council-beta-assist.json",
     "data/runtime/workgraph/evidence/CCI-20261001T063004Z-council-beta-assist.json",
     "data/runtime/workgraph/evidence/CCI-20261001T070851Z-earth-scout-assist.json",
-    "data/runtime/workgraph/evidence/CCI-20261001T072245Z-council-alpha.json"
+    "data/runtime/workgraph/evidence/CCI-20261001T072245Z-council-alpha.json",
+    "data/runtime/workgraph/evidence/CCI-20261003T162230Z-deep-resolver.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [
       "data/runtime/workgraph/evidence/CCI-20261001T072145Z-council-alpha.json"
     ],
-    "resolvedGateKinds": [],
+    "resolvedGateKinds": [
+      "material_contradiction"
+    ],
     "semanticGateConsumption": {
       "policy": "retire-only-explicit-alpha-completion-deficits-proven-satisfied-by-current-score-record",
       "consumedGatingIssues": [],
       "consumedGatingUnknowns": []
     },
-    "activeEvidenceCount": 9,
-    "historicalEvidenceCount": 11
+    "activeEvidenceCount": 10,
+    "historicalEvidenceCount": 12
   },
   "factorEvidence": {
     "names": [
@@ -434,7 +437,7 @@
   },
   "primarySourcePresence": {
     "present": true,
-    "count": 5
+    "count": 8
   },
   "causalMapping": {
     "present": true,
@@ -524,8 +527,8 @@
     }
   ],
   "sourceLineage": {
-    "rawSourceCount": 25,
-    "uniqueSourceCount": 12,
+    "rawSourceCount": 28,
+    "uniqueSourceCount": 15,
     "duplicatesCollapsed": 13,
     "missingLineage": 0,
     "uniqueOrigins": [
@@ -540,7 +543,10 @@
       "issuer:CCI:2026Q2",
       "sec:CCI:10-Q:20260805",
       "ericsson:mobility-report:traffic-q2-2026",
-      "market:stockanalysis:CCI:20260930"
+      "market:stockanalysis:CCI:20260930",
+      "crowncastle:investor-relations:FY2025-2026-outlook",
+      "crowncastle:investor-relations:fiber-sale-close-2026",
+      "crowncastle:investor-relations:2026Q2"
     ]
   },
   "sources": [
@@ -624,6 +630,30 @@
       "sourceId": "market:stockanalysis:CCI:20260930",
       "url": "https://stockanalysis.com/stocks/cci/statistics/",
       "primary": false
+    },
+    {
+      "sourceId": "issuer:CCI:FY2025-2026-outlook:20260204",
+      "url": "https://investor.crowncastle.com/news-releases/news-release-details/crown-castle-reports-fourth-quarter-and-full-year-2025-results",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-02-04",
+      "originFingerprint": "crowncastle:investor-relations:FY2025-2026-outlook"
+    },
+    {
+      "sourceId": "issuer:CCI:fiber-sale-close:20260501",
+      "url": "https://investor.crowncastle.com/node/29086",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-05-01",
+      "originFingerprint": "crowncastle:investor-relations:fiber-sale-close-2026"
+    },
+    {
+      "sourceId": "issuer:CCI:2026Q2:20260722",
+      "url": "https://investor.crowncastle.com/news-releases/news-release-details/crown-castle-reports-second-quarter-2026-results-and-updates",
+      "kind": "primary",
+      "primary": true,
+      "publishedAt": "2026-07-22",
+      "originFingerprint": "crowncastle:investor-relations:2026Q2"
     }
   ],
   "contradictions": [
@@ -657,7 +687,7 @@
     }
   ],
   "contradictionDispositions": {
-    "unresolvedMaterialCount": 5,
+    "unresolvedMaterialCount": 0,
     "items": [
       {
         "contradiction": "Balance-sheet simplification and debt reduction improve resilience while reported site-rental revenue outlook still implies contraction versus 2025."
@@ -727,15 +757,8 @@
   "gatingIssues": [],
   "confidence": 91,
   "preflight": {
-    "passed": false,
-    "failures": [
-      "unresolved_material_contradiction"
-    ],
-    "routing": [
-      {
-        "failure": "unresolved_material_contradiction",
-        "owner": "deep-resolver"
-      }
-    ]
+    "passed": true,
+    "failures": [],
+    "routing": []
   }
 }

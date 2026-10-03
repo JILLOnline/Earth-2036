@@ -126,6 +126,31 @@ test("frontier-first routing defers stalled input and gives Alpha an all-owned-f
   assert.match(queues["council-alpha"].runObjective, /remove every Alpha-owned failure/i);
 });
 
+test("frontier routing admits one changed-strategy recovery probe when an owned lane would otherwise starve", () => {
+  const tickers = ["AAA", "BBB"];
+  const graph = graphFor(tickers);
+  const packets = [
+    packetFor("AAA", ["missing_numeric_score_record", "missing_score_risk_evidence"]),
+    packetFor("BBB", ["missing_numeric_score_record"]),
+  ];
+  const queues = buildRoutingQueues(graph, packets, "2026-09-25T04:00:00.000Z", {
+    frontierFirst: true,
+    frontierTickers: [],
+    stalledTickers: ["AAA", "BBB"],
+    operationalStatusByTicker: {
+      AAA: "repeated_unchanged_input",
+      BBB: "repeated_unchanged_input",
+    },
+  });
+  const alpha = queues["council-alpha"];
+  assert.equal(alpha.total, 1);
+  assert.equal(alpha.items[0].ticker, "AAA");
+  assert.equal(alpha.items[0].recoveryProbe, true);
+  assert.equal(alpha.items[0].executionGuard, "changed_strategy_required");
+  assert.equal(alpha.deferred, 1);
+  assert.equal(alpha.deferredItems[0].ticker, "BBB");
+});
+
 test("legacy ready_for_chief sourceState is lineage only; failed preflight cannot become chief_ready", () => {
   const graph = graphFor(["LEG"]);
   const failed = packetFor("LEG", ["missing_numeric_score_record"]);

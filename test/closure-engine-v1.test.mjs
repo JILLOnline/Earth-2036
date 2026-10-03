@@ -151,6 +151,57 @@ test("frontier routing admits one changed-strategy recovery probe when an owned 
   assert.equal(alpha.deferredItems[0].ticker, "AAA");
 });
 
+test("Alpha recovery probe reactivates bounded Scout source support with a new changed-strategy signature", () => {
+  const graph = graphFor(["REC"]);
+  const packet = packetFor("REC", ["missing_factor_evidence", "missing_numeric_score_record"]);
+
+  const stalled = buildAssistRequests(
+    graph,
+    [packet],
+    [],
+    "2026-10-03T20:00:00.000Z",
+    null,
+    {
+      lifecycleEnabled: true,
+      frontierTickers: [],
+      operationalStatusByTicker: { REC: "repeated_unchanged_input" },
+    }
+  );
+  const sleeping = stalled.requests.find((row) => row.helperRole === "earth-scout");
+  assert.ok(sleeping);
+  assert.equal(sleeping.status, "dormant_until_input_changes");
+
+  const priorRun = {
+    role: "earth-scout",
+    generatedAt: "2026-10-03T20:01:00.000Z",
+    assistAttempts: [{
+      requestId: sleeping.requestId,
+      inputSignature: sleeping.inputSignature,
+      outcome: "no_new_evidence",
+    }],
+  };
+
+  const recovery = buildAssistRequests(
+    graph,
+    [packet],
+    [priorRun],
+    "2026-10-03T20:02:00.000Z",
+    stalled,
+    {
+      lifecycleEnabled: true,
+      frontierTickers: [],
+      operationalStatusByTicker: { REC: "repeated_unchanged_input" },
+      recoverySupportTickers: ["REC"],
+    }
+  );
+  const active = recovery.requests.find((row) => row.helperRole === "earth-scout");
+  assert.ok(active);
+  assert.equal(active.status, "active");
+  assert.equal(active.recoveryProbe, true);
+  assert.equal(active.executionGuard, "changed_strategy_required");
+  assert.notEqual(active.inputSignature, sleeping.inputSignature);
+});
+
 test("legacy ready_for_chief sourceState is lineage only; failed preflight cannot become chief_ready", () => {
   const graph = graphFor(["LEG"]);
   const failed = packetFor("LEG", ["missing_numeric_score_record"]);

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-worker-command-summary-v1",
-  "generatedAt": "2026-10-03T19:40:44.367Z",
+  "generatedAt": "2026-10-03T20:16:10.672Z",
   "canonicalWriteAuthority": false,
   "workgraph": {
     "total": 250,
@@ -17,11 +17,11 @@
     },
     "healthy": false,
     "healthAlerts": [
-      "t0_canonical_stalled_over_2h_with_chief_ready:3.18",
+      "t0_canonical_stalled_over_2h_with_chief_ready:3.77",
       "owner_stale_with_backlog:council-alpha:73",
       "owner_stale_with_backlog:deep-resolver:55"
     ],
-    "canonicalProgressAgeHours": 3.17692,
+    "canonicalProgressAgeHours": 3.7675602777777777,
     "effectiveOwnerBacklog": {
       "council-alpha": 1,
       "deep-resolver": 1,
@@ -52,7 +52,7 @@
     "stalledCount": 73,
     "throughput": {
       "changedSincePriorReconcile": 0,
-      "medianTimeInFrontierHours": 41.48,
+      "medianTimeInFrontierHours": 42.08,
       "stalledFrontierCompanies": 73
     },
     "shadowComparison": {
@@ -71,13 +71,13 @@
         "deep-resolver": 1
       },
       "actualAssist": {
-        "active": 0,
-        "dormant": 197,
+        "active": 2,
+        "dormant": 195,
         "queued": 0
       },
       "proposedAssist": {
-        "active": 0,
-        "dormant": 197,
+        "active": 2,
+        "dormant": 195,
         "queued": 0
       }
     },
@@ -102,7 +102,7 @@
         "activeAssists": 1,
         "contradictionStatus": "material_unresolved",
         "attempts": 0,
-        "hoursSinceProgress": 36.6,
+        "hoursSinceProgress": 37.19,
         "status": "needs_contradiction_resolution",
         "inputSignature": "0ca56081e0f8fd3b35a9",
         "unchangedAttempts": 1,
@@ -120,7 +120,7 @@
       "h6": 5,
       "h24": 5
     },
-    "minutesSinceCanonicalProgress": 191,
+    "minutesSinceCanonicalProgress": 226,
     "recentWorkerRuns": [
       {
         "role": "earth-scout",
@@ -661,12 +661,12 @@
     "rule": "Only Workgraph state === chief_ready AND preflight.passed === true is Chief-ready."
   },
   "assist": {
-    "active": 0,
-    "dormant": 197,
+    "active": 2,
+    "dormant": 195,
     "queued": 0,
-    "archived": 528,
+    "archived": 725,
     "byHelper": {
-      "earth-scout": 0,
+      "earth-scout": 2,
       "council-alpha": 0,
       "council-beta": 0,
       "deep-resolver": 0
@@ -676,14 +676,6 @@
     "healthy": true,
     "roleCycles": [],
     "deadlocks": [
-      {
-        "requestId": "assist:MWA:deep-resolver:earth-scout:contradiction-source-support",
-        "ticker": "MWA",
-        "rootOwner": "deep-resolver",
-        "helperRole": "earth-scout",
-        "reason": "unchanged_failed_assist_input",
-        "unlockCondition": "packet/evidence input signature changes or Chief explicitly adjudicates the dependency"
-      },
       {
         "requestId": "assist:MBLY:deep-resolver:earth-scout:contradiction-source-support",
         "ticker": "MBLY",
@@ -1383,14 +1375,6 @@
       {
         "requestId": "assist:RGTI:council-alpha:earth-scout:source-acquisition",
         "ticker": "RGTI",
-        "rootOwner": "council-alpha",
-        "helperRole": "earth-scout",
-        "reason": "unchanged_failed_assist_input",
-        "unlockCondition": "packet/evidence input signature changes or Chief explicitly adjudicates the dependency"
-      },
-      {
-        "requestId": "assist:RIO:council-alpha:earth-scout:source-acquisition",
-        "ticker": "RIO",
         "rootOwner": "council-alpha",
         "helperRole": "earth-scout",
         "reason": "unchanged_failed_assist_input",
@@ -2274,7 +2258,7 @@
           "evidenceReuse": 10,
           "perspectiveCoverage": 10,
           "retryPenalty": 0,
-          "activeAssist": 0,
+          "activeAssist": 5,
           "contradictionBonus": 4
         },
         "failures": [
@@ -2371,6 +2355,29 @@
           "unresolved_gating_issue",
           "unresolved_gating_unknown",
           "unresolved_material_contradiction"
+        ],
+        "principle": "Operational attention value only; never a company-quality or investment score."
+      },
+      {
+        "ticker": "RIO",
+        "state": "researching",
+        "priority": 52.7,
+        "components": {
+          "stateValue": 45,
+          "failurePenalty": -12,
+          "evidenceReuse": 8,
+          "perspectiveCoverage": 6.7,
+          "retryPenalty": 0,
+          "activeAssist": 5,
+          "contradictionBonus": 0
+        },
+        "failures": [
+          "missing_specialist_perspective:source-integrity",
+          "missing_specialist_perspective:company-underwriting",
+          "missing_factor_evidence",
+          "missing_numeric_score_record",
+          "missing_score_risk_evidence",
+          "missing_data_confidence_evidence"
         ],
         "principle": "Operational attention value only; never a company-quality or investment score."
       },
@@ -2706,32 +2713,6 @@
           "missing_numeric_score_record",
           "missing_score_risk_evidence",
           "missing_data_confidence_evidence",
-          "unresolved_material_contradiction"
-        ],
-        "principle": "Operational attention value only; never a company-quality or investment score."
-      },
-      {
-        "ticker": "MVST",
-        "state": "researching",
-        "priority": 48,
-        "components": {
-          "stateValue": 45,
-          "failurePenalty": -18,
-          "evidenceReuse": 7,
-          "perspectiveCoverage": 10,
-          "retryPenalty": 0,
-          "activeAssist": 0,
-          "contradictionBonus": 4
-        },
-        "failures": [
-          "missing_specialist_perspective:source-integrity",
-          "missing_specialist_perspective:company-underwriting",
-          "missing_factor_evidence",
-          "missing_numeric_score_record",
-          "missing_score_risk_evidence",
-          "missing_data_confidence_evidence",
-          "unresolved_gating_issue",
-          "unresolved_gating_unknown",
           "unresolved_material_contradiction"
         ],
         "principle": "Operational attention value only; never a company-quality or investment score."

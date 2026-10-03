@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-10-02T07:49:54.732Z",
+  "updatedAt": "2026-10-03T16:26:44.729Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -2078,6 +2078,18 @@
       "type": "market",
       "label": "VRTX structural demand",
       "description": "Vertex's diversification path links drug-development capability to unmet chronic-disease needs beyond cystic fibrosis; the Crinetics acquisition broadens endocrine pipeline exposure while adding integration and clinical-development dependencies."
+    },
+    {
+      "id": "company:CCI",
+      "type": "company",
+      "label": "Crown Castle",
+      "description": "After selling Fiber/Small Cells, Crown Castle is a U.S.-tower pure play: mobile-data demand -> carrier radio-network capacity/coverage -> access to scarce, permitted tower sites -> long-duration site rental. Its structural value is physical siting and colocation infrastructure rather than ownership of the radio technology itself."
+    },
+    {
+      "id": "market:CCI-technology-wireless-networks",
+      "type": "market",
+      "label": "technology:wireless_networks",
+      "description": "After selling Fiber/Small Cells, Crown Castle is a U.S.-tower pure play: mobile-data demand -> carrier radio-network capacity/coverage -> access to scarce, permitted tower sites -> long-duration site rental. Its structural value is physical siting and colocation infrastructure rather than ownership of the radio technology itself."
     }
   ],
   "edges": [
@@ -4748,6 +4760,21 @@
         "issuer:VRTX:CRNX-acquisition"
       ],
       "observedAt": "2026-09-21T22:26:26Z"
+    },
+    {
+      "id": "edge:CCI-structural-exposure",
+      "from": "company:CCI",
+      "to": "market:CCI-technology-wireless-networks",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 92,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:CCI:fiber-sale:20260501",
+        "issuer:CCI:2026Q2"
+      ],
+      "observedAt": "2026-09-22T06:26:03Z"
     }
   ],
   "structuralSignals": [
@@ -8079,6 +8106,25 @@
       ],
       "observedAt": "2026-09-21T22:26:26Z",
       "thesis": "Vertex's diversification path links drug-development capability to unmet chronic-disease needs beyond cystic fibrosis; the Crinetics acquisition broadens endocrine pipeline exposure while adding integration and clinical-development dependencies.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:CCI-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:CCI-technology-wireless-networks",
+      "affectedNodeIds": [
+        "company:CCI"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 92,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:CCI:fiber-sale:20260501",
+        "issuer:CCI:2026Q2"
+      ],
+      "observedAt": "2026-09-22T06:26:03Z",
+      "thesis": "After selling Fiber/Small Cells, Crown Castle is a U.S.-tower pure play: mobile-data demand -> carrier radio-network capacity/coverage -> access to scarce, permitted tower sites -> long-duration site rental. Its structural value is physical siting and colocation infrastructure rather than ownership of the radio technology itself.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

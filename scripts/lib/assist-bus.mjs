@@ -108,6 +108,13 @@ function needsResolverContradictionSourceSupport(packet) {
 
 function requestFor(packet, row, helperRole, capability, rootOwner, failures, nowIso, options) {
   const requestId = "assist:" + packet.ticker + ":" + rootOwner + ":" + helperRole + ":" + capability;
+  const recoverySupport = Boolean(
+    options.lifecycleEnabled !== false &&
+    options.recoverySupportTickers?.has(packet.ticker) &&
+    helperRole === "earth-scout" &&
+    rootOwner === "council-alpha" &&
+    capability === "source-acquisition"
+  );
   const inputSignature = hash({
     ticker: packet.ticker,
     state: row?.state,
@@ -116,6 +123,7 @@ function requestFor(packet, row, helperRole, capability, rootOwner, failures, no
     gatingIssues: packet.gatingIssues || [],
     unknowns: packet.unknowns || [],
     contradictions: packet.contradictions || [],
+    recoverySupport: recoverySupport ? "changed_strategy_probe_v1" : null,
   });
   const exactQuestion = capability === "source-acquisition"
     ? "Acquire materially new primary or independent evidence reusable by the root owner to close source-addressed underwriting gaps."
@@ -129,7 +137,9 @@ function requestFor(packet, row, helperRole, capability, rootOwner, failures, no
   const lifecycleEnabled = options.lifecycleEnabled !== false;
   const frontier = lifecycleEnabled && options.frontierTickers.has(packet.ticker);
   const operationalStatus = lifecycleEnabled ? (options.operationalStatusByTicker[packet.ticker] || null) : null;
-  const stalled = lifecycleEnabled && ["repeated_unchanged_input", "awaiting_external_change"].includes(operationalStatus);
+  const stalled = lifecycleEnabled &&
+    ["repeated_unchanged_input", "awaiting_external_change"].includes(operationalStatus) &&
+    !recoverySupport;
   return {
     version: 2,
     requestId,
@@ -153,11 +163,14 @@ function requestFor(packet, row, helperRole, capability, rootOwner, failures, no
     ],
     frontier,
     operationalStatus,
+    recoveryProbe: recoverySupport,
+    executionGuard: recoverySupport ? "changed_strategy_required" : null,
     priority: statePriority(row?.state || packet.sourceState) +
       failurePriority(failures) +
       Math.min(12, Number(packet?.specialistCoverage?.present?.length || 0) * 2) +
       Math.min(8, Number(row?.attempts || 0) * 2) +
-      (frontier ? 80 : 0) -
+      (frontier ? 80 : 0) +
+      (recoverySupport ? 100 : 0) -
       (stalled ? 120 : 0),
     generatedAt: nowIso,
   };
@@ -173,6 +186,7 @@ export function buildAssistRequests(
 ) {
   const normalizedOptions = {
     frontierTickers: new Set(options.frontierTickers || []),
+    recoverySupportTickers: new Set(options.recoverySupportTickers || []),
     operationalStatusByTicker: options.operationalStatusByTicker || {},
     lifecycleEnabled: options.lifecycleEnabled !== false,
   };
@@ -242,7 +256,8 @@ export function buildAssistRequests(
       const priorRequest = priorByKey[key] || null;
       const firstSeenAt = priorRequest?.firstSeenAt || priorRequest?.generatedAt || request.generatedAt;
       const stalled = normalizedOptions.lifecycleEnabled &&
-        ["repeated_unchanged_input", "awaiting_external_change"].includes(request.operationalStatus);
+        ["repeated_unchanged_input", "awaiting_external_change"].includes(request.operationalStatus) &&
+        request.recoveryProbe !== true;
       return {
         ...request,
         firstSeenAt,

@@ -26,6 +26,7 @@ function statePriority(state) {
 function failurePriority(failures) {
   if (failures.includes("missing_primary_source")) return 40;
   if (failures.includes("missing_source_lineage")) return 32;
+  if (failures.includes("unresolved_material_contradiction")) return 30;
   if (failures.includes("missing_factor_evidence")) return 22;
   if (failures.includes("missing_numeric_score_record")) return 18;
   if (failures.includes("missing_score_risk_evidence")) return 14;
@@ -63,6 +64,48 @@ function ageHours(value, nowIso) {
   return Math.max(0, Math.round(((b - a) / 3_600_000) * 100) / 100);
 }
 
+function contradictionText(value) {
+  if (typeof value === "string") return value.trim() || null;
+  if (value === null || value === undefined) return null;
+  return String(value).trim() || null;
+}
+
+function resolverContradictionIsActionable(item) {
+  const obj = item && typeof item === "object" ? item : {};
+  const plain = typeof item === "string" ? item.trim() : null;
+  const claimA = contradictionText(
+    obj.claimA ?? obj.leftClaim ?? obj.statementA ?? obj.a ?? obj.contradiction ?? plain
+  );
+  const claimB = contradictionText(
+    obj.claimB ?? obj.rightClaim ?? obj.statementB ?? obj.b ?? null
+  );
+  const sourceA = contradictionText(
+    obj.sourceA ?? obj.leftSource ?? obj.sourceId ?? obj.source ?? null
+  );
+  const sourceB = contradictionText(
+    obj.sourceB ?? obj.rightSource ?? null
+  );
+  const preferredOwner = contradictionText(
+    obj.nextOwner ?? obj.owner ?? obj.adjudicationOwner ?? null
+  );
+  return preferredOwner === "deep-resolver" ||
+    (!preferredOwner && Boolean(claimA && claimB && (sourceA || sourceB)));
+}
+
+function needsResolverContradictionSourceSupport(packet) {
+  if (!(packet?.preflight?.failures || []).includes("unresolved_material_contradiction")) return false;
+  const unresolved = (packet?.contradictions || []).filter((item) => {
+    if (!item || typeof item !== "object") return Boolean(item);
+    const disposition = String(item.disposition || item.resolutionStatus || "").toLowerCase();
+    return item.resolved !== true &&
+      item.gating !== false &&
+      item.material !== false &&
+      !disposition.startsWith("resolved");
+  });
+  if (!unresolved.length) return true;
+  return !unresolved.some((item) => resolverContradictionIsActionable(item));
+}
+
 function requestFor(packet, row, helperRole, capability, rootOwner, failures, nowIso, options) {
   const requestId = "assist:" + packet.ticker + ":" + rootOwner + ":" + helperRole + ":" + capability;
   const inputSignature = hash({
@@ -72,6 +115,7 @@ function requestFor(packet, row, helperRole, capability, rootOwner, failures, no
     evidencePaths: [...(packet.evidencePaths || [])].sort(),
     gatingIssues: packet.gatingIssues || [],
     unknowns: packet.unknowns || [],
+    contradictions: packet.contradictions || [],
   });
   const exactQuestion = capability === "source-acquisition"
     ? "Acquire materially new primary or independent evidence reusable by the root owner to close source-addressed underwriting gaps."
@@ -79,7 +123,9 @@ function requestFor(packet, row, helperRole, capability, rootOwner, failures, no
       ? "Acquire evidence that can strengthen or falsify the causal mechanism without taking over the root owner's causal judgment."
       : capability === "risk-source-support"
         ? "Acquire source-addressed downside, execution-risk and falsifier evidence Alpha can reuse without setting Alpha's numeric risk or score."
-        : "Provide bounded support without assuming the root owner's authority.";
+        : capability === "contradiction-source-support"
+          ? "Acquire materially new source-addressed evidence that supplies identifiable claim/source context for the unresolved material contradiction so Deep Resolver can adjudicate it; do not adjudicate or weaken the gate."
+          : "Provide bounded support without assuming the root owner's authority.";
   const lifecycleEnabled = options.lifecycleEnabled !== false;
   const frontier = lifecycleEnabled && options.frontierTickers.has(packet.ticker);
   const operationalStatus = lifecycleEnabled ? (options.operationalStatusByTicker[packet.ticker] || null) : null;
@@ -156,6 +202,19 @@ export function buildAssistRequests(
     const betaSourceFailures = failures.filter((failure) => failure === "missing_causal_mapping");
     if (betaSourceFailures.length && assistEligible) {
       requests.push(requestFor(packet, row, "earth-scout", "causal-source-support", "council-beta", betaSourceFailures, nowIso, normalizedOptions));
+    }
+
+    if (assistEligible && needsResolverContradictionSourceSupport(packet)) {
+      requests.push(requestFor(
+        packet,
+        row,
+        "earth-scout",
+        "contradiction-source-support",
+        "deep-resolver",
+        ["unresolved_material_contradiction"],
+        nowIso,
+        normalizedOptions
+      ));
     }
   }
 

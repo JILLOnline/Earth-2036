@@ -894,12 +894,38 @@ export function buildRoutingQueues(graph, packets, generatedAt = new Date().toIS
     });
 
     const rawItems = queues[role];
-    const deferredItems = frontierFirst
+    let deferredItems = frontierFirst
       ? rawItems.filter((item) => item.deferred === true)
       : [];
-    const actionableItems = frontierFirst
+    let actionableItems = frontierFirst
       ? rawItems.filter((item) => item.deferred !== true)
       : rawItems;
+
+    // Anti-repeat must prevent blind retries, not permanently starve a lane.
+    // If a lane has unfinished owned work but every item is stalled on an
+    // unchanged input signature, admit exactly one recovery probe. The worker
+    // must use a materially different strategy/source class before persisting.
+    // Resolver items deferred for missing structured contradiction input stay
+    // deferred; they require new source-addressed input rather than re-adjudication.
+    if (frontierFirst && actionableItems.length === 0 && deferredItems.length > 0) {
+      const recoveryCandidate = deferredItems.find((item) =>
+        item.executionGuard === "do_not_retry_without_changed_input" &&
+        !(role === "deep-resolver" && item.adjudicationPacket?.actionable !== true)
+      );
+      if (recoveryCandidate) {
+        const recoveryItem = {
+          ...recoveryCandidate,
+          deferred: false,
+          deferredReason: null,
+          executionGuard: "changed_strategy_required",
+          operationalStatus: "recovery_probe",
+          recoveryProbe: true,
+          recoveryReason: "lane_empty_with_stalled_owned_backlog",
+        };
+        actionableItems = [recoveryItem];
+        deferredItems = deferredItems.filter((item) => item !== recoveryCandidate);
+      }
+    }
 
     const runObjective = !frontierFirst
       ? null

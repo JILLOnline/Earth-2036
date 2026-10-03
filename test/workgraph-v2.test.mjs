@@ -868,6 +868,84 @@ test("assist bus exposes bounded Beta risk-source support without transferring A
   assert.equal(bus.policy.canonicalAuthorityUnchanged, true);
 });
 
+test("assist bus opens Scout source support when Resolver contradiction input is not independently actionable", () => {
+  const graph = {
+    companies: {
+      AAA: { ticker: "AAA", state: "packet_ready", workId: "t0:AAA", attempts: 0 },
+    },
+  };
+  const packet = {
+    ticker: "AAA",
+    workId: "t0:AAA",
+    sourceState: "packet_ready",
+    evidencePaths: ["evidence/AAA-beta.json"],
+    gatingIssues: [],
+    unknowns: [],
+    contradictions: [{
+      claimA: "Operating recovery coexists with a still-impaired asset.",
+      material: true,
+      gating: true,
+    }],
+    preflight: { failures: ["unresolved_material_contradiction"] },
+  };
+  const bus = buildAssistRequests(
+    graph,
+    [packet],
+    [],
+    "2026-10-03T12:00:00Z",
+    null,
+    {
+      frontierTickers: ["AAA"],
+      operationalStatusByTicker: { AAA: "needs_contradiction_resolution" },
+      lifecycleEnabled: true,
+    }
+  );
+  assert.equal(bus.active, 1);
+  assert.equal(bus.requests[0].rootOwner, "deep-resolver");
+  assert.equal(bus.requests[0].helperRole, "earth-scout");
+  assert.equal(bus.requests[0].capability, "contradiction-source-support");
+  assert.ok(bus.requests[0].exactQuestion.includes("Deep Resolver can adjudicate"));
+  assert.equal(bus.policy.rootOwnerRetainsAuthority, true);
+});
+
+test("assist bus does not duplicate Scout contradiction support when Resolver already has actionable structured input", () => {
+  const graph = {
+    companies: {
+      AAA: { ticker: "AAA", state: "packet_ready", workId: "t0:AAA", attempts: 0 },
+    },
+  };
+  const packet = {
+    ticker: "AAA",
+    workId: "t0:AAA",
+    sourceState: "packet_ready",
+    evidencePaths: ["evidence/AAA-beta.json"],
+    gatingIssues: [],
+    unknowns: [],
+    contradictions: [{
+      claimA: "Management says demand is accelerating.",
+      claimB: "Independent channel data show demand is flat.",
+      sourceA: "issuer:AAA:q2",
+      material: true,
+      gating: true,
+    }],
+    preflight: { failures: ["unresolved_material_contradiction"] },
+  };
+  const bus = buildAssistRequests(
+    graph,
+    [packet],
+    [],
+    "2026-10-03T12:00:00Z",
+    null,
+    {
+      frontierTickers: ["AAA"],
+      operationalStatusByTicker: { AAA: "needs_contradiction_resolution" },
+      lifecycleEnabled: true,
+    }
+  );
+  assert.equal(bus.active, 0);
+  assert.equal(bus.requests.length, 0);
+});
+
 
 test("assist bus sleeps an unchanged failed request and reactivates when packet inputs change", () => {
   const graph = {

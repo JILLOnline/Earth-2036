@@ -144,11 +144,11 @@ test("frontier routing admits one changed-strategy recovery probe when an owned 
   });
   const alpha = queues["council-alpha"];
   assert.equal(alpha.total, 1);
-  assert.equal(alpha.items[0].ticker, "AAA");
+  assert.equal(alpha.items[0].ticker, "BBB");
   assert.equal(alpha.items[0].recoveryProbe, true);
   assert.equal(alpha.items[0].executionGuard, "changed_strategy_required");
   assert.equal(alpha.deferred, 1);
-  assert.equal(alpha.deferredItems[0].ticker, "BBB");
+  assert.equal(alpha.deferredItems[0].ticker, "AAA");
 });
 
 test("legacy ready_for_chief sourceState is lineage only; failed preflight cannot become chief_ready", () => {

@@ -239,6 +239,17 @@ const operationalStatusByTicker = Object.fromEntries(
   (closureFrontier.candidates || []).map((row) => [row.ticker, row.status])
 );
 
+const legacyRoutingQueues = buildRoutingQueues(graph, packets, now.toISOString());
+const proposedRoutingQueues = buildRoutingQueues(graph, packets, now.toISOString(), {
+  frontierFirst: true,
+  frontierTickers,
+  stalledTickers,
+  operationalStatusByTicker,
+});
+const recoverySupportTickers = (proposedRoutingQueues?.["council-alpha"]?.items || [])
+  .filter((item) => item?.recoveryProbe === true && item?.executionGuard === "changed_strategy_required")
+  .map((item) => item.ticker);
+
 const legacyAssistBus = buildAssistRequests(
   graph,
   packets,
@@ -253,17 +264,9 @@ const proposedAssistBus = buildAssistRequests(
   roleRuns,
   now.toISOString(),
   previousAssistBus,
-  { frontierTickers, operationalStatusByTicker, lifecycleEnabled: true }
+  { frontierTickers, operationalStatusByTicker, recoverySupportTickers, lifecycleEnabled: true }
 );
 const assistBus = routingEnabled ? proposedAssistBus : legacyAssistBus;
-
-const legacyRoutingQueues = buildRoutingQueues(graph, packets, now.toISOString());
-const proposedRoutingQueues = buildRoutingQueues(graph, packets, now.toISOString(), {
-  frontierFirst: true,
-  frontierTickers,
-  stalledTickers,
-  operationalStatusByTicker,
-});
 const routingQueues = routingEnabled ? proposedRoutingQueues : legacyRoutingQueues;
 metrics.routingQueueCounts = Object.fromEntries(Object.entries(routingQueues).map(([role, queue]) => [role, queue.total]));
 metrics.effectiveOwnerBacklog = {

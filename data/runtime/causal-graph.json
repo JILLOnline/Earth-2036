@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-10-03T16:26:44.729Z",
+  "updatedAt": "2026-10-03T16:30:07.455Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -2090,6 +2090,54 @@
       "type": "market",
       "label": "technology:wireless_networks",
       "description": "After selling Fiber/Small Cells, Crown Castle is a U.S.-tower pure play: mobile-data demand -> carrier radio-network capacity/coverage -> access to scarce, permitted tower sites -> long-duration site rental. Its structural value is physical siting and colocation infrastructure rather than ownership of the radio technology itself."
+    },
+    {
+      "id": "company:ALB",
+      "type": "company",
+      "label": "Albemarle",
+      "description": "Albemarle links lithium resources and chemical conversion to batteries and electrification; its structural leverage is strongest where low-cost resource access can be converted economically into qualified battery-grade material."
+    },
+    {
+      "id": "market:ALB-alb-structural-demand",
+      "type": "market",
+      "label": "ALB structural demand",
+      "description": "Albemarle links lithium resources and chemical conversion to batteries and electrification; its structural leverage is strongest where low-cost resource access can be converted economically into qualified battery-grade material."
+    },
+    {
+      "id": "company:FLY",
+      "type": "company",
+      "label": "Firefly Aerospace",
+      "description": "Firefly links launch, lunar landing, orbital vehicles and autonomy/software around a shared mission stack; common flight technologies and co-located manufacturing can create cross-program learning and production leverage if reliability scales."
+    },
+    {
+      "id": "market:FLY-fly-structural-demand",
+      "type": "market",
+      "label": "FLY structural demand",
+      "description": "Firefly links launch, lunar landing, orbital vehicles and autonomy/software around a shared mission stack; common flight technologies and co-located manufacturing can create cross-program learning and production leverage if reliability scales."
+    },
+    {
+      "id": "company:REGN",
+      "type": "company",
+      "label": "Regeneron Pharmaceuticals, Inc.",
+      "description": "Regeneron's structural role is a drug-discovery/development platform feeding multiple therapeutic franchises; current radiopharma and helicon collaborations broaden modality options, while the human-need endpoint remains treatment of serious disease and the successor bottlenecks are clinical validation, regulatory approval, manufacturing and reimbursement."
+    },
+    {
+      "id": "market:REGN-regn-structural-demand",
+      "type": "market",
+      "label": "REGN structural demand",
+      "description": "Regeneron's structural role is a drug-discovery/development platform feeding multiple therapeutic franchises; current radiopharma and helicon collaborations broaden modality options, while the human-need endpoint remains treatment of serious disease and the successor bottlenecks are clinical validation, regulatory approval, manufacturing and reimbursement."
+    },
+    {
+      "id": "company:VRNS",
+      "type": "company",
+      "label": "Varonis Systems",
+      "description": "Varonis' all-SaaS transition links autonomous data-security software to the enterprise need to continuously control sensitive-data exposure; retiring self-hosted support concentrates delivery on the SaaS control plane but makes migration completion a near-term resilience dependency."
+    },
+    {
+      "id": "market:VRNS-vrns-structural-demand",
+      "type": "market",
+      "label": "VRNS structural demand",
+      "description": "Varonis' all-SaaS transition links autonomous data-security software to the enterprise need to continuously control sensitive-data exposure; retiring self-hosted support concentrates delivery on the SaaS control plane but makes migration completion a near-term resilience dependency."
     }
   ],
   "edges": [
@@ -4775,6 +4823,66 @@
         "issuer:CCI:2026Q2"
       ],
       "observedAt": "2026-09-22T06:26:03Z"
+    },
+    {
+      "id": "edge:ALB-structural-exposure",
+      "from": "company:ALB",
+      "to": "market:ALB-alb-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 93,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:ALB:FY2025",
+        "issuer:ALB:kemerton-idle",
+        "issuer:ALB:2026Q1"
+      ],
+      "observedAt": "2026-09-22T05:26:08Z"
+    },
+    {
+      "id": "edge:FLY-structural-exposure",
+      "from": "company:FLY",
+      "to": "market:FLY-fly-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 90,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:FLY:2026Q2",
+        "issuer:FLY:alpha-blockII"
+      ],
+      "observedAt": "2026-09-22T07:27:18Z"
+    },
+    {
+      "id": "edge:REGN-structural-exposure",
+      "from": "company:REGN",
+      "to": "market:REGN-regn-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 92,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "regeneron-ir:2026-04-13:telix-radiopharma",
+        "regeneron-ir:2026-05-18:parabilis-helicon"
+      ],
+      "observedAt": "2026-09-21T12:28:31Z"
+    },
+    {
+      "id": "edge:VRNS-structural-exposure",
+      "from": "company:VRNS",
+      "to": "market:VRNS-vrns-structural-demand",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 82,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:VRNS:saas-transition"
+      ],
+      "observedAt": "2026-09-21T22:26:26Z"
     }
   ],
   "structuralSignals": [
@@ -8125,6 +8233,82 @@
       ],
       "observedAt": "2026-09-22T06:26:03Z",
       "thesis": "After selling Fiber/Small Cells, Crown Castle is a U.S.-tower pure play: mobile-data demand -> carrier radio-network capacity/coverage -> access to scarce, permitted tower sites -> long-duration site rental. Its structural value is physical siting and colocation infrastructure rather than ownership of the radio technology itself.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:ALB-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:ALB-alb-structural-demand",
+      "affectedNodeIds": [
+        "company:ALB"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 93,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:ALB:FY2025",
+        "issuer:ALB:kemerton-idle",
+        "issuer:ALB:2026Q1"
+      ],
+      "observedAt": "2026-09-22T05:26:08Z",
+      "thesis": "Albemarle links lithium resources and chemical conversion to batteries and electrification; its structural leverage is strongest where low-cost resource access can be converted economically into qualified battery-grade material.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:FLY-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:FLY-fly-structural-demand",
+      "affectedNodeIds": [
+        "company:FLY"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 90,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:FLY:2026Q2",
+        "issuer:FLY:alpha-blockII"
+      ],
+      "observedAt": "2026-09-22T07:27:18Z",
+      "thesis": "Firefly links launch, lunar landing, orbital vehicles and autonomy/software around a shared mission stack; common flight technologies and co-located manufacturing can create cross-program learning and production leverage if reliability scales.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:REGN-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:REGN-regn-structural-demand",
+      "affectedNodeIds": [
+        "company:REGN"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 92,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "regeneron-ir:2026-04-13:telix-radiopharma",
+        "regeneron-ir:2026-05-18:parabilis-helicon"
+      ],
+      "observedAt": "2026-09-21T12:28:31Z",
+      "thesis": "Regeneron's structural role is a drug-discovery/development platform feeding multiple therapeutic franchises; current radiopharma and helicon collaborations broaden modality options, while the human-need endpoint remains treatment of serious disease and the successor bottlenecks are clinical validation, regulatory approval, manufacturing and reimbursement.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:VRNS-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:VRNS-vrns-structural-demand",
+      "affectedNodeIds": [
+        "company:VRNS"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 82,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:VRNS:saas-transition"
+      ],
+      "observedAt": "2026-09-21T22:26:26Z",
+      "thesis": "Varonis' all-SaaS transition links autonomous data-security software to the enterprise need to continuously control sensitive-data exposure; retiring self-hosted support concentrates delivery on the SaaS control plane but makes migration completion a near-term resilience dependency.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

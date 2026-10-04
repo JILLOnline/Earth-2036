@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-worker-command-summary-v1",
-  "generatedAt": "2026-10-04T08:43:51.959Z",
+  "generatedAt": "2026-10-04T09:05:09.488Z",
   "canonicalWriteAuthority": false,
   "workgraph": {
     "total": 250,
@@ -17,11 +17,11 @@
     },
     "healthy": false,
     "healthAlerts": [
-      "t0_canonical_stalled_over_2h_with_chief_ready:16.23",
+      "t0_canonical_stalled_over_2h_with_chief_ready:16.58",
       "owner_stale_with_backlog:council-alpha:73",
       "owner_stale_with_backlog:deep-resolver:55"
     ],
-    "canonicalProgressAgeHours": 16.229028888888887,
+    "canonicalProgressAgeHours": 16.583898055555554,
     "effectiveOwnerBacklog": {
       "council-alpha": 1,
       "deep-resolver": 1,
@@ -48,12 +48,12 @@
       "rule": "During T0 bootstrap, spend 80% on lawful closure while preserving non-zero expansion and future-learning floors. Revert automatically at full T0."
     },
     "backlogTotal": 74,
-    "selectedCount": 1,
-    "stalledCount": 73,
+    "selectedCount": 0,
+    "stalledCount": 74,
     "throughput": {
       "changedSincePriorReconcile": 0,
-      "medianTimeInFrontierHours": 54.54,
-      "stalledFrontierCompanies": 73
+      "medianTimeInFrontierHours": 0,
+      "stalledFrontierCompanies": 74
     },
     "shadowComparison": {
       "actualRoutingPolicy": "closure-frontier-v1",
@@ -71,48 +71,17 @@
         "deep-resolver": 1
       },
       "actualAssist": {
-        "active": 2,
-        "dormant": 195,
+        "active": 1,
+        "dormant": 196,
         "queued": 0
       },
       "proposedAssist": {
-        "active": 2,
-        "dormant": 195,
+        "active": 1,
+        "dormant": 196,
         "queued": 0
       }
     },
-    "selected": [
-      {
-        "ticker": "MWA",
-        "workId": "t0:MWA",
-        "state": "packet_ready",
-        "closureScore": 129.2,
-        "attentionPriority": 100,
-        "failures": [
-          "unresolved_gating_issue",
-          "unresolved_gating_unknown",
-          "unresolved_material_contradiction"
-        ],
-        "remainingFailures": 3,
-        "owners": [
-          "deep-resolver"
-        ],
-        "remainingOwners": 1,
-        "sourceReuse": 12,
-        "activeAssists": 1,
-        "contradictionStatus": "material_unresolved",
-        "attempts": 0,
-        "hoursSinceProgress": 9.63,
-        "status": "needs_contradiction_resolution",
-        "inputSignature": "2d75a156ff62e60aed3f",
-        "unchangedAttempts": 1,
-        "latestAttemptAt": "2026-10-04T06:02:01.000Z",
-        "primeEligible": true,
-        "selected": true,
-        "firstSelectedAt": "2026-10-02T02:11:39.396Z",
-        "executionGuard": null
-      }
-    ]
+    "selected": []
   },
   "yield": {
     "canonicalVelocity": {
@@ -120,8 +89,21 @@
       "h6": 0,
       "h24": 5
     },
-    "minutesSinceCanonicalProgress": 974,
+    "minutesSinceCanonicalProgress": 995,
     "recentWorkerRuns": [
+      {
+        "role": "earth-scout",
+        "generatedAt": "2026-10-04T09:04:16.000Z",
+        "companiesInspected": 1,
+        "closures": null,
+        "failuresRemoved": null,
+        "companiesAdvanced": null,
+        "companiesCanonicalized": null,
+        "newUsefulSources": 0,
+        "duplicateNoChangeArtifacts": 0,
+        "contradictionsResolved": 0,
+        "zeroYield": true
+      },
       {
         "role": "earth-scout",
         "generatedAt": "2026-10-04T06:02:01.000Z",
@@ -628,19 +610,6 @@
         "duplicateNoChangeArtifacts": 0,
         "contradictionsResolved": 0,
         "zeroYield": true
-      },
-      {
-        "role": "deep-resolver",
-        "generatedAt": "2026-10-02T14:33:06.000Z",
-        "companiesInspected": null,
-        "closures": 0,
-        "failuresRemoved": null,
-        "companiesAdvanced": null,
-        "companiesCanonicalized": null,
-        "newUsefulSources": 0,
-        "duplicateNoChangeArtifacts": 0,
-        "contradictionsResolved": 0,
-        "zeroYield": true
       }
     ]
   },
@@ -648,8 +617,8 @@
     "rawUnresolved": 1194,
     "totalItems": 1194,
     "buckets": {
-      "gating": 1,
-      "supporting": 1193,
+      "gating": 0,
+      "supporting": 1194,
       "superseded": 0,
       "awaitingNewInformation": 0,
       "resolvedHistory": 0
@@ -661,12 +630,12 @@
     "rule": "Only Workgraph state === chief_ready AND preflight.passed === true is Chief-ready."
   },
   "assist": {
-    "active": 2,
-    "dormant": 195,
+    "active": 1,
+    "dormant": 196,
     "queued": 0,
     "archived": 726,
     "byHelper": {
-      "earth-scout": 2,
+      "earth-scout": 1,
       "council-alpha": 0,
       "council-beta": 0,
       "deep-resolver": 0
@@ -676,6 +645,14 @@
     "healthy": true,
     "roleCycles": [],
     "deadlocks": [
+      {
+        "requestId": "assist:MWA:deep-resolver:earth-scout:contradiction-source-support",
+        "ticker": "MWA",
+        "rootOwner": "deep-resolver",
+        "helperRole": "earth-scout",
+        "reason": "unchanged_failed_assist_input",
+        "unlockCondition": "packet/evidence input signature changes or Chief explicitly adjudicates the dependency"
+      },
       {
         "requestId": "assist:MBLY:deep-resolver:earth-scout:contradiction-source-support",
         "ticker": "MBLY",
@@ -2258,7 +2235,7 @@
           "evidenceReuse": 10,
           "perspectiveCoverage": 10,
           "retryPenalty": 0,
-          "activeAssist": 5,
+          "activeAssist": 0,
           "contradictionBonus": 4
         },
         "failures": [

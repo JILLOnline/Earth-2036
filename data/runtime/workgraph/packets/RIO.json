@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "RIO",
   "workId": "t0:RIO",
-  "generatedAt": "2026-10-06T00:54:17.978Z",
+  "generatedAt": "2026-10-06T02:12:27.867Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -23,8 +23,8 @@
   },
   "evidenceWindow": {
     "start": "2025-09-26T00:00:00.000Z",
-    "end": "2026-10-05T18:15:08.000Z",
-    "latestEvidenceGeneratedAt": "2026-10-05T18:15:08.000Z"
+    "end": "2026-10-06T02:11:22.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-06T02:11:22.000Z"
   },
   "specialistCoverage": {
     "required": [
@@ -40,19 +40,19 @@
       "expectations-execution",
       "structural-causal",
       "adversarial-red-team",
-      "source-integrity"
-    ],
-    "missing": [
+      "source-integrity",
       "company-underwriting"
     ],
-    "complete": false
+    "missing": [],
+    "complete": true
   },
   "perspectives": [
     "discovery-weak-signals",
     "expectations-execution",
     "structural-causal",
     "adversarial-red-team",
-    "source-integrity"
+    "source-integrity",
+    "company-underwriting"
   ],
   "evidencePaths": [
     "data/runtime/workgraph/evidence/RIO-20260921T110238Z-earth-scout.json",
@@ -61,7 +61,8 @@
     "data/runtime/workgraph/evidence/RIO-20260927T172419Z-council-beta-assist.json",
     "data/runtime/workgraph/evidence/RIO-20260927T181400Z-earth-scout-assist.json",
     "data/runtime/workgraph/evidence/RIO-20261004T160940Z-earth-scout-assist.json",
-    "data/runtime/workgraph/evidence/RIO-20261005T181508Z-council-alpha.json"
+    "data/runtime/workgraph/evidence/RIO-20261005T181508Z-council-alpha.json",
+    "data/runtime/workgraph/evidence/RIO-20261006T021122Z-council-alpha.json"
   ],
   "evidenceResolution": {
     "supersededPaths": [],
@@ -71,8 +72,8 @@
       "consumedGatingIssues": [],
       "consumedGatingUnknowns": []
     },
-    "activeEvidenceCount": 10,
-    "historicalEvidenceCount": 10
+    "activeEvidenceCount": 11,
+    "historicalEvidenceCount": 11
   },
   "factorEvidence": {
     "names": [
@@ -87,11 +88,24 @@
       "confidenceInflation",
       "financialOperatingMomentum",
       "catalystScore",
-      "executionEvidence"
+      "executionEvidence",
+      "0",
+      "1",
+      "2"
     ],
     "byPerspective": {
       "source-integrity": [],
-      "company-underwriting": [],
+      "company-underwriting": [
+        {
+          "name": "0"
+        },
+        {
+          "name": "1"
+        },
+        {
+          "name": "2"
+        }
+      ],
       "structural-causal": [
         {
           "name": "bottleneckControl",
@@ -211,7 +225,10 @@
     "confidenceInflation",
     "financialOperatingMomentum",
     "catalystScore",
-    "executionEvidence"
+    "executionEvidence",
+    "0",
+    "1",
+    "2"
   ],
   "riskEvidence": {
     "present": true,
@@ -505,17 +522,12 @@
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_specialist_perspective:company-underwriting",
       "missing_factor_evidence",
       "missing_numeric_score_record",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence"
     ],
     "routing": [
-      {
-        "failure": "missing_specialist_perspective:company-underwriting",
-        "owner": "council-alpha"
-      },
       {
         "failure": "missing_factor_evidence",
         "owner": "council-alpha"

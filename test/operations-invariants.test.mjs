@@ -251,12 +251,15 @@ test("Trust Ledger exposes doctrine and shadow authority without turning operati
 });
 
 
-test("scheduler is hourly/manual only so code pushes cannot collide with minion evidence bursts", async () => {
+test("scheduler remains burst-safe while core engine membership changes refresh immediately", async () => {
   const text = await source(".github/workflows/earth2036-scheduler.yml");
   assert.ok(text.includes('cron: "0 * * * *"'));
   assert.ok(text.includes("workflow_dispatch:"));
+  assert.ok(/\n\s*push:\s*\n/.test(text));
+  assert.ok(text.includes("    branches: [main]"));
   assert.equal(text.includes('scripts/**'), false);
-  assert.equal(/\n\s*push:\s*\n/.test(text), false);
+  assert.equal(text.includes('"data/'), false);
+  assert.equal(text.includes('workgraph/evidence'), false);
 });
 
 test("watchdog checks twice per hour and recovers an idle stale machine before a second missed cycle", async () => {

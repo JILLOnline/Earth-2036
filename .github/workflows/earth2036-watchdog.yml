@@ -104,13 +104,14 @@ jobs:
             now_epoch=$(date -u +%s)
             if [ "$pages_head" != "$main_head" ] && [ $((now_epoch - pages_epoch)) -gt 1200 ]; then
               pages_stale=true
-              unhealthy=true
             fi
           elif [ -n "$LAST_CYCLE_AT" ]; then
             pages_stale=true
-            unhealthy=true
           fi
 
+          # Stale-but-previously-successful Pages is a recoverable freshness condition.
+          # The next step dispatches a fresh projection; a failed Pages run remains a
+          # hard execution-plane fault through pages_conclusion above.
           echo "scheduler_conclusion=$scheduler_conclusion" >> "$GITHUB_OUTPUT"
           echo "pages_conclusion=$pages_conclusion" >> "$GITHUB_OUTPUT"
           echo "reconcile_conclusion=$reconcile_conclusion" >> "$GITHUB_OUTPUT"

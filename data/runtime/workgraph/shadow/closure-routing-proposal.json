@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-closure-routing-proposal-v1",
-  "generatedAt": "2026-10-07T04:02:33.000Z",
+  "generatedAt": "2026-10-07T04:23:39.768Z",
   "canonicalWriteAuthority": false,
   "active": true,
   "queues": {
@@ -9,7 +9,7 @@
       "version": 2,
       "contract": "workgraph-v2-routing-queue",
       "role": "earth-scout",
-      "generatedAt": "2026-10-07T04:02:33.000Z",
+      "generatedAt": "2026-10-07T04:23:39.768Z",
       "selectionPolicy": "closure-frontier-v1",
       "runObjective": "Assist frontier companies only where a specific owned failure requires this lane; do not take over another owner's authority.",
       "rawTotal": 0,
@@ -22,7 +22,7 @@
       "version": 2,
       "contract": "workgraph-v2-routing-queue",
       "role": "council-alpha",
-      "generatedAt": "2026-10-07T04:02:33.000Z",
+      "generatedAt": "2026-10-07T04:23:39.768Z",
       "selectionPolicy": "closure-frontier-v1",
       "runObjective": "Frontier first: remove every Alpha-owned failure that can lawfully be removed for each visible frontier company in this run.",
       "rawTotal": 73,
@@ -5628,7 +5628,7 @@
       "version": 2,
       "contract": "workgraph-v2-routing-queue",
       "role": "council-beta",
-      "generatedAt": "2026-10-07T04:02:33.000Z",
+      "generatedAt": "2026-10-07T04:23:39.768Z",
       "selectionPolicy": "closure-frontier-v1",
       "runObjective": "Assist frontier companies only where a specific owned failure requires this lane; do not take over another owner's authority.",
       "rawTotal": 0,
@@ -5641,13 +5641,14 @@
       "version": 2,
       "contract": "workgraph-v2-routing-queue",
       "role": "deep-resolver",
-      "generatedAt": "2026-10-07T04:02:33.000Z",
+      "generatedAt": "2026-10-07T04:23:39.768Z",
       "selectionPolicy": "closure-frontier-v1",
       "runObjective": "Adjudicate only bounded contradiction packets and return one allowed disposition; do not duplicate source-acquisition work.",
       "rawTotal": 54,
-      "total": 1,
-      "deferred": 53,
-      "items": [
+      "total": 0,
+      "deferred": 54,
+      "items": [],
+      "deferredItems": [
         {
           "rank": 1,
           "ticker": "AEVA",
@@ -5721,9 +5722,9 @@
           "frontier": true,
           "frontierRank": 2,
           "operationalStatus": "needs_contradiction_resolution",
-          "deferred": false,
-          "deferredReason": null,
-          "executionGuard": null,
+          "deferred": true,
+          "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
+          "executionGuard": "await_structured_contradiction_input",
           "adjudicationPacket": {
             "contract": "earth2036-resolver-adjudication-v1",
             "ticker": "AEVA",
@@ -5738,10 +5739,10 @@
             ],
             "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
             "itemCount": 7,
-            "actionableItemCount": 1,
-            "deferredItemCount": 6,
-            "actionable": true,
-            "deferredReason": null,
+            "actionableItemCount": 0,
+            "deferredItemCount": 7,
+            "actionable": false,
+            "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
             "items": [
               {
                 "itemId": "AEVA:contradiction:1",
@@ -5769,7 +5770,7 @@
                 "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Commercial-design-win momentum is broadening faster than disclosed scaled production economics are becoming visible.\".",
                 "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
                 "preferredOwner": "deep-resolver",
-                "independentlyActionable": true
+                "independentlyActionable": false
               },
               {
                 "itemId": "AEVA:contradiction:3",
@@ -5842,22 +5843,7 @@
                 "independentlyActionable": false
               }
             ],
-            "actionableItems": [
-              {
-                "itemId": "AEVA:contradiction:2",
-                "claimA": "Commercial-design-win momentum is broadening faster than disclosed scaled production economics are becoming visible.",
-                "claimB": null,
-                "sourceA": null,
-                "sourceB": null,
-                "dateA": null,
-                "dateB": null,
-                "materiality": true,
-                "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Commercial-design-win momentum is broadening faster than disclosed scaled production economics are becoming visible.\".",
-                "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-                "preferredOwner": "deep-resolver",
-                "independentlyActionable": true
-              }
-            ],
+            "actionableItems": [],
             "deferredItems": [
               {
                 "itemId": "AEVA:contradiction:1",
@@ -5871,6 +5857,20 @@
                 "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Commercial-design-win momentum is broadening faster than disclosed scaled production economics are becoming visible.\".",
                 "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
                 "preferredOwner": null,
+                "independentlyActionable": false
+              },
+              {
+                "itemId": "AEVA:contradiction:2",
+                "claimA": "Commercial-design-win momentum is broadening faster than disclosed scaled production economics are becoming visible.",
+                "claimB": null,
+                "sourceA": null,
+                "sourceB": null,
+                "dateA": null,
+                "dateB": null,
+                "materiality": true,
+                "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Commercial-design-win momentum is broadening faster than disclosed scaled production economics are becoming visible.\".",
+                "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+                "preferredOwner": "deep-resolver",
                 "independentlyActionable": false
               },
               {
@@ -5981,11 +5981,9 @@
               }
             ]
           }
-        }
-      ],
-      "deferredItems": [
+        },
         {
-          "rank": 1,
+          "rank": 2,
           "ticker": "MWA",
           "workId": "t0:MWA",
           "state": "packet_ready",
@@ -6181,7 +6179,7 @@
           }
         },
         {
-          "rank": 2,
+          "rank": 3,
           "ticker": "MBLY",
           "workId": "t0:MBLY",
           "state": "researching",
@@ -7906,7 +7904,7 @@
           }
         },
         {
-          "rank": 3,
+          "rank": 4,
           "ticker": "NBIS",
           "workId": "t0:NBIS",
           "state": "researching",
@@ -8196,7 +8194,7 @@
           }
         },
         {
-          "rank": 4,
+          "rank": 5,
           "ticker": "LLY",
           "workId": "t0:LLY",
           "state": "researching",
@@ -8381,7 +8379,7 @@
           }
         },
         {
-          "rank": 5,
+          "rank": 6,
           "ticker": "MDB",
           "workId": "t0:MDB",
           "state": "researching",
@@ -8584,7 +8582,7 @@
           }
         },
         {
-          "rank": 6,
+          "rank": 7,
           "ticker": "SERV",
           "workId": "t0:SERV",
           "state": "researching",
@@ -9108,7 +9106,7 @@
           }
         },
         {
-          "rank": 7,
+          "rank": 8,
           "ticker": "LMT",
           "workId": "t0:LMT",
           "state": "researching",
@@ -9345,7 +9343,7 @@
           }
         },
         {
-          "rank": 8,
+          "rank": 9,
           "ticker": "PNR",
           "workId": "t0:PNR",
           "state": "researching",
@@ -9544,7 +9542,7 @@
           }
         },
         {
-          "rank": 9,
+          "rank": 10,
           "ticker": "SQM",
           "workId": "t0:SQM",
           "state": "researching",
@@ -9711,7 +9709,7 @@
           }
         },
         {
-          "rank": 10,
+          "rank": 11,
           "ticker": "LNG",
           "workId": "t0:LNG",
           "state": "researching",
@@ -9935,7 +9933,7 @@
           }
         },
         {
-          "rank": 11,
+          "rank": 12,
           "ticker": "SMR",
           "workId": "t0:SMR",
           "state": "researching",
@@ -10063,7 +10061,7 @@
           }
         },
         {
-          "rank": 12,
+          "rank": 13,
           "ticker": "MCHP",
           "workId": "t0:MCHP",
           "state": "researching",
@@ -10225,7 +10223,7 @@
           }
         },
         {
-          "rank": 13,
+          "rank": 14,
           "ticker": "STEM",
           "workId": "t0:STEM",
           "state": "researching",
@@ -10451,7 +10449,7 @@
           }
         },
         {
-          "rank": 14,
+          "rank": 15,
           "ticker": "STLD",
           "workId": "t0:STLD",
           "state": "researching",
@@ -10644,7 +10642,7 @@
           }
         },
         {
-          "rank": 15,
+          "rank": 16,
           "ticker": "AAPL",
           "workId": "t0:AAPL",
           "state": "researching",
@@ -10905,7 +10903,7 @@
           }
         },
         {
-          "rank": 16,
+          "rank": 17,
           "ticker": "ACLS",
           "workId": "t0:ACLS",
           "state": "researching",
@@ -11166,7 +11164,7 @@
           }
         },
         {
-          "rank": 17,
+          "rank": 18,
           "ticker": "AI",
           "workId": "t0:AI",
           "state": "researching",
@@ -11229,7 +11227,7 @@
           "frontierRank": null,
           "operationalStatus": "repeated_unchanged_input",
           "deferred": true,
-          "deferredReason": "Input signature has not changed after the allowed repeated attempts.",
+          "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
           "executionGuard": "do_not_retry_without_changed_input",
           "adjudicationPacket": {
             "contract": "earth2036-resolver-adjudication-v1",
@@ -11245,10 +11243,10 @@
             ],
             "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
             "itemCount": 4,
-            "actionableItemCount": 2,
-            "deferredItemCount": 2,
-            "actionable": true,
-            "deferredReason": null,
+            "actionableItemCount": 0,
+            "deferredItemCount": 4,
+            "actionable": false,
+            "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
             "items": [
               {
                 "itemId": "AI:contradiction:1",
@@ -11290,7 +11288,7 @@
                 "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Management cites accelerating market opportunity while reporting bookings below expectations.\".",
                 "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
                 "preferredOwner": "deep-resolver",
-                "independentlyActionable": true
+                "independentlyActionable": false
               },
               {
                 "itemId": "AI:contradiction:4",
@@ -11304,39 +11302,10 @@
                 "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Revenue landed within guidance, but bookings underperformed and operating losses remained substantial.\".",
                 "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
                 "preferredOwner": "deep-resolver",
-                "independentlyActionable": true
+                "independentlyActionable": false
               }
             ],
-            "actionableItems": [
-              {
-                "itemId": "AI:contradiction:3",
-                "claimA": "Management cites accelerating market opportunity while reporting bookings below expectations.",
-                "claimB": null,
-                "sourceA": null,
-                "sourceB": null,
-                "dateA": null,
-                "dateB": null,
-                "materiality": true,
-                "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Management cites accelerating market opportunity while reporting bookings below expectations.\".",
-                "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-                "preferredOwner": "deep-resolver",
-                "independentlyActionable": true
-              },
-              {
-                "itemId": "AI:contradiction:4",
-                "claimA": "Revenue landed within guidance, but bookings underperformed and operating losses remained substantial.",
-                "claimB": null,
-                "sourceA": null,
-                "sourceB": null,
-                "dateA": null,
-                "dateB": null,
-                "materiality": true,
-                "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Revenue landed within guidance, but bookings underperformed and operating losses remained substantial.\".",
-                "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-                "preferredOwner": "deep-resolver",
-                "independentlyActionable": true
-              }
-            ],
+            "actionableItems": [],
             "deferredItems": [
               {
                 "itemId": "AI:contradiction:1",
@@ -11364,6 +11333,34 @@
                 "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Revenue landed within guidance, but bookings underperformed and operating losses remained substantial.\".",
                 "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
                 "preferredOwner": null,
+                "independentlyActionable": false
+              },
+              {
+                "itemId": "AI:contradiction:3",
+                "claimA": "Management cites accelerating market opportunity while reporting bookings below expectations.",
+                "claimB": null,
+                "sourceA": null,
+                "sourceB": null,
+                "dateA": null,
+                "dateB": null,
+                "materiality": true,
+                "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Management cites accelerating market opportunity while reporting bookings below expectations.\".",
+                "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+                "preferredOwner": "deep-resolver",
+                "independentlyActionable": false
+              },
+              {
+                "itemId": "AI:contradiction:4",
+                "claimA": "Revenue landed within guidance, but bookings underperformed and operating losses remained substantial.",
+                "claimB": null,
+                "sourceA": null,
+                "sourceB": null,
+                "dateA": null,
+                "dateB": null,
+                "materiality": true,
+                "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Revenue landed within guidance, but bookings underperformed and operating losses remained substantial.\".",
+                "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+                "preferredOwner": "deep-resolver",
                 "independentlyActionable": false
               }
             ]
@@ -11396,7 +11393,7 @@
           }
         },
         {
-          "rank": 18,
+          "rank": 19,
           "ticker": "AOS",
           "workId": "t0:AOS",
           "state": "researching",
@@ -11607,7 +11604,7 @@
           }
         },
         {
-          "rank": 19,
+          "rank": 20,
           "ticker": "CAMT",
           "workId": "t0:CAMT",
           "state": "researching",
@@ -11866,7 +11863,7 @@
           }
         },
         {
-          "rank": 20,
+          "rank": 21,
           "ticker": "CF",
           "workId": "t0:CF",
           "state": "researching",
@@ -12098,7 +12095,7 @@
           }
         },
         {
-          "rank": 21,
+          "rank": 22,
           "ticker": "ADM",
           "workId": "t0:ADM",
           "state": "researching",
@@ -12335,7 +12332,7 @@
           }
         },
         {
-          "rank": 22,
+          "rank": 23,
           "ticker": "AMZN",
           "workId": "t0:AMZN",
           "state": "researching",
@@ -12397,7 +12394,7 @@
           "frontierRank": null,
           "operationalStatus": "repeated_unchanged_input",
           "deferred": true,
-          "deferredReason": "Input signature has not changed after the allowed repeated attempts.",
+          "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
           "executionGuard": "do_not_retry_without_changed_input",
           "adjudicationPacket": {
             "contract": "earth2036-resolver-adjudication-v1",
@@ -12413,10 +12410,10 @@
             ],
             "exactQuestion": "Resolve only source-addressed, independently actionable contradiction items. Do not perform open-ended duplicate research or take over Alpha-owned underwriting.",
             "itemCount": 2,
-            "actionableItemCount": 1,
-            "deferredItemCount": 1,
-            "actionable": true,
-            "deferredReason": null,
+            "actionableItemCount": 0,
+            "deferredItemCount": 2,
+            "actionable": false,
+            "deferredReason": "No independently actionable source-addressed claim pair is present; return to the root owner until structured contradictory input changes.",
             "items": [
               {
                 "itemId": "AMZN:contradiction:1",
@@ -12444,25 +12441,10 @@
                 "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong operating-income and AWS growth coexist with negative TTM free cash flow because AI capex accelerated materially.\".",
                 "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
                 "preferredOwner": "deep-resolver",
-                "independentlyActionable": true
+                "independentlyActionable": false
               }
             ],
-            "actionableItems": [
-              {
-                "itemId": "AMZN:contradiction:2",
-                "claimA": "Strong operating-income and AWS growth coexist with negative TTM free cash flow because AI capex accelerated materially.",
-                "claimB": null,
-                "sourceA": null,
-                "sourceB": null,
-                "dateA": null,
-                "dateB": null,
-                "materiality": true,
-                "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong operating-income and AWS growth coexist with negative TTM free cash flow because AI capex accelerated materially.\".",
-                "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
-                "preferredOwner": "deep-resolver",
-                "independentlyActionable": true
-              }
-            ],
+            "actionableItems": [],
             "deferredItems": [
               {
                 "itemId": "AMZN:contradiction:1",
@@ -12476,6 +12458,20 @@
                 "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong operating-income and AWS growth coexist with negative TTM free cash flow because AI capex accelerated materially.\".",
                 "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
                 "preferredOwner": null,
+                "independentlyActionable": false
+              },
+              {
+                "itemId": "AMZN:contradiction:2",
+                "claimA": "Strong operating-income and AWS growth coexist with negative TTM free cash flow because AI capex accelerated materially.",
+                "claimB": null,
+                "sourceA": null,
+                "sourceB": null,
+                "dateA": null,
+                "dateB": null,
+                "materiality": true,
+                "exactMissingFact": "Source-addressed evidence that resolves or confirms the stated material contradiction: \"Strong operating-income and AWS growth coexist with negative TTM free cash flow because AI capex accelerated materially.\".",
+                "resolutionRule": "Prefer newer primary evidence; otherwise preserve the contradiction as still_material or awaiting_new_evidence.",
+                "preferredOwner": "deep-resolver",
                 "independentlyActionable": false
               }
             ]
@@ -12498,7 +12494,7 @@
           }
         },
         {
-          "rank": 23,
+          "rank": 24,
           "ticker": "CORZ",
           "workId": "t0:CORZ",
           "state": "researching",
@@ -12731,7 +12727,7 @@
           }
         },
         {
-          "rank": 24,
+          "rank": 25,
           "ticker": "NET",
           "workId": "t0:NET",
           "state": "researching",
@@ -12891,7 +12887,7 @@
           }
         },
         {
-          "rank": 25,
+          "rank": 26,
           "ticker": "PLTR",
           "workId": "t0:PLTR",
           "state": "researching",
@@ -13094,7 +13090,7 @@
           }
         },
         {
-          "rank": 26,
+          "rank": 27,
           "ticker": "RDW",
           "workId": "t0:RDW",
           "state": "researching",
@@ -13292,7 +13288,7 @@
           }
         },
         {
-          "rank": 27,
+          "rank": 28,
           "ticker": "STM",
           "workId": "t0:STM",
           "state": "researching",
@@ -13546,7 +13542,7 @@
           }
         },
         {
-          "rank": 28,
+          "rank": 29,
           "ticker": "T",
           "workId": "t0:T",
           "state": "researching",
@@ -13794,7 +13790,7 @@
           }
         },
         {
-          "rank": 29,
+          "rank": 30,
           "ticker": "TDG",
           "workId": "t0:TDG",
           "state": "researching",
@@ -14042,7 +14038,7 @@
           }
         },
         {
-          "rank": 30,
+          "rank": 31,
           "ticker": "TECK",
           "workId": "t0:TECK",
           "state": "researching",
@@ -14254,7 +14250,7 @@
           }
         },
         {
-          "rank": 31,
+          "rank": 32,
           "ticker": "TENB",
           "workId": "t0:TENB",
           "state": "researching",
@@ -14466,7 +14462,7 @@
           }
         },
         {
-          "rank": 32,
+          "rank": 33,
           "ticker": "TMUS",
           "workId": "t0:TMUS",
           "state": "researching",
@@ -14678,7 +14674,7 @@
           }
         },
         {
-          "rank": 33,
+          "rank": 34,
           "ticker": "TSLA",
           "workId": "t0:TSLA",
           "state": "researching",
@@ -14890,7 +14886,7 @@
           }
         },
         {
-          "rank": 34,
+          "rank": 35,
           "ticker": "NOK",
           "workId": "t0:NOK",
           "state": "researching",
@@ -15080,7 +15076,7 @@
           }
         },
         {
-          "rank": 35,
+          "rank": 36,
           "ticker": "RGTI",
           "workId": "t0:RGTI",
           "state": "researching",
@@ -15276,7 +15272,7 @@
           }
         },
         {
-          "rank": 36,
+          "rank": 37,
           "ticker": "SCCO",
           "workId": "t0:SCCO",
           "state": "researching",
@@ -15404,7 +15400,7 @@
           }
         },
         {
-          "rank": 37,
+          "rank": 38,
           "ticker": "SHLS",
           "workId": "t0:SHLS",
           "state": "researching",
@@ -15531,7 +15527,7 @@
           }
         },
         {
-          "rank": 38,
+          "rank": 39,
           "ticker": "SLDP",
           "workId": "t0:SLDP",
           "state": "researching",
@@ -15658,7 +15654,7 @@
           }
         },
         {
-          "rank": 39,
+          "rank": 40,
           "ticker": "ACHR",
           "workId": "t0:ACHR",
           "state": "researching",
@@ -15848,7 +15844,7 @@
           }
         },
         {
-          "rank": 40,
+          "rank": 41,
           "ticker": "PLUG",
           "workId": "t0:PLUG",
           "state": "researching",
@@ -15984,7 +15980,7 @@
           }
         },
         {
-          "rank": 41,
+          "rank": 42,
           "ticker": "QBTS",
           "workId": "t0:QBTS",
           "state": "researching",
@@ -16142,7 +16138,7 @@
           }
         },
         {
-          "rank": 42,
+          "rank": 43,
           "ticker": "UEC",
           "workId": "t0:UEC",
           "state": "researching",
@@ -16278,7 +16274,7 @@
           }
         },
         {
-          "rank": 43,
+          "rank": 44,
           "ticker": "UUUU",
           "workId": "t0:UUUU",
           "state": "researching",
@@ -16442,7 +16438,7 @@
           }
         },
         {
-          "rank": 44,
+          "rank": 45,
           "ticker": "V",
           "workId": "t0:V",
           "state": "researching",
@@ -16580,7 +16576,7 @@
           }
         },
         {
-          "rank": 45,
+          "rank": 46,
           "ticker": "VALE",
           "workId": "t0:VALE",
           "state": "researching",
@@ -16712,7 +16708,7 @@
           }
         },
         {
-          "rank": 46,
+          "rank": 47,
           "ticker": "VIAV",
           "workId": "t0:VIAV",
           "state": "researching",
@@ -16873,7 +16869,7 @@
           }
         },
         {
-          "rank": 47,
+          "rank": 48,
           "ticker": "VZ",
           "workId": "t0:VZ",
           "state": "researching",
@@ -17035,7 +17031,7 @@
           }
         },
         {
-          "rank": 48,
+          "rank": 49,
           "ticker": "XEL",
           "workId": "t0:XEL",
           "state": "researching",
@@ -17197,7 +17193,7 @@
           }
         },
         {
-          "rank": 49,
+          "rank": 50,
           "ticker": "XYL",
           "workId": "t0:XYL",
           "state": "researching",
@@ -17359,7 +17355,7 @@
           }
         },
         {
-          "rank": 50,
+          "rank": 51,
           "ticker": "ZBRA",
           "workId": "t0:ZBRA",
           "state": "researching",
@@ -17521,7 +17517,7 @@
           }
         },
         {
-          "rank": 51,
+          "rank": 52,
           "ticker": "ZS",
           "workId": "t0:ZS",
           "state": "researching",
@@ -17652,7 +17648,7 @@
           }
         },
         {
-          "rank": 52,
+          "rank": 53,
           "ticker": "INFQ",
           "workId": "t0:INFQ",
           "state": "researching",
@@ -19604,7 +19600,7 @@
           }
         },
         {
-          "rank": 53,
+          "rank": 54,
           "ticker": "MVST",
           "workId": "t0:MVST",
           "state": "researching",

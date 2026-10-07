@@ -181,7 +181,68 @@ export function migrateLegacyQueue(legacy, registry = null, now = new Date()) {
   };
 }
 
-export function validateWorkgraph(graph, expectedCount = 250) {
+export function reconcileWorkgraphMembership(graph, registry, now = new Date()) {
+  if (!graph || typeof graph !== "object") throw new Error("Workgraph required for membership reconciliation");
+  const registryTickers = [...new Set((registry?.candidates || []).map((row) => row?.ticker).filter(Boolean))];
+  const active = new Set(registryTickers);
+  const companies = { ...(graph.companies || {}) };
+  const removed = [];
+  const added = [];
+  const changedAt = asIso(registry?.updatedAt || now);
+
+  for (const [ticker, row] of Object.entries(companies)) {
+    if (active.has(ticker)) continue;
+    removed.push({
+      ticker,
+      priorState: row?.state || null,
+      sourceState: row?.sourceState || null,
+      evidencePath: row?.evidencePath || null,
+      workId: row?.workId || `t0:${ticker}`,
+      lastTransitionAt: row?.lastTransitionAt || null,
+      reason: "inactive_registry",
+    });
+    delete companies[ticker];
+  }
+
+  for (const ticker of registryTickers) {
+    if (companies[ticker]) continue;
+    companies[ticker] = {
+      ticker,
+      state: "observed",
+      sourceState: "queued",
+      batchId: null,
+      attempts: 0,
+      blocker: null,
+      evidencePath: null,
+      lastTransitionAt: changedAt,
+      updatedAt: changedAt,
+      workId: `t0:${ticker}`,
+      preflight: null,
+      lineage: {
+        hydratedFrom: "data/runtime/entity-registry.json",
+        membershipAddedAt: changedAt,
+      },
+    };
+    added.push({
+      ticker,
+      state: "observed",
+      workId: `t0:${ticker}`,
+      membershipAddedAt: changedAt,
+    });
+  }
+
+  return {
+    graph: {
+      ...graph,
+      generatedAt: added.length || removed.length ? now.toISOString() : graph.generatedAt,
+      companies,
+    },
+    added,
+    removed,
+  };
+}
+
+export function validateWorkgraph(graph, expectedCount = 250, expectedTickers = null) {
   const errors = [];
   if (!graph || graph.version !== WORKGRAPH_VERSION) errors.push("workgraph version must be 2");
   const rows = Object.values(graph?.companies || {});
@@ -194,6 +255,15 @@ export function validateWorkgraph(graph, expectedCount = 250) {
     if (!WORKGRAPH_STATES.includes(row?.state)) errors.push(`invalid state ${row?.state} for ${row?.ticker}`);
     if (row?.state === "blocked" && !row?.blocker) errors.push(`blocked ${row?.ticker} missing exact blocker`);
     if (row?.state === "canonical" && !row?.evidencePath) errors.push(`canonical ${row?.ticker} missing evidencePath`);
+  }
+  if (expectedTickers) {
+    const expectedSet = new Set(expectedTickers);
+    for (const ticker of expectedSet) {
+      if (!seen.has(ticker)) errors.push(`missing active ticker ${ticker}`);
+    }
+    for (const ticker of seen) {
+      if (!expectedSet.has(ticker)) errors.push(`unexpected inactive ticker ${ticker}`);
+    }
   }
   return errors;
 }

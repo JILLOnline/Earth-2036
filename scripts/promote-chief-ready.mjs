@@ -128,6 +128,12 @@ export function materializeCausalProof(graph, ticker, company, structuralRow, sc
   return { graph: next, passed: true, reason: null };
 }
 
+function primaryPacketSourceUrls(packet) {
+  return [...new Set((packet?.sources || [])
+    .filter((source) => source?.url && (source.primary === true || source.kind === "primary" || source.tier === "primary"))
+    .map((source) => source.url))];
+}
+
 function independentPacketSourceUrls(packet) {
   return [...new Set((packet?.sources || [])
     .filter((source) => {
@@ -180,7 +186,10 @@ export function buildCanonicalRecord(packet, underwriting) {
     factorEvidence,
     riskEvidence,
     dataConfidenceEvidence,
-    primarySourceUrls: score.primarySourceUrls,
+    primarySourceUrls: [...new Set([
+      ...(Array.isArray(score.primarySourceUrls) ? score.primarySourceUrls : []),
+      ...primaryPacketSourceUrls(packet),
+    ])],
     independentSourceUrls: [...new Set([
       ...(Array.isArray(score.independentSourceUrls) ? score.independentSourceUrls : []),
       ...independentPacketSourceUrls(packet),

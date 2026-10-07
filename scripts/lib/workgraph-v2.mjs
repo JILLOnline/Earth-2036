@@ -248,12 +248,27 @@ function normalizeEvidenceObject(obj, filePath) {
     ? obj.factors
     : Array.isArray(obj?.affectedMethodologyFactors)
       ? obj.affectedMethodologyFactors
-      : obj?.factorEvidence && typeof obj.factorEvidence === "object"
-        ? Object.keys(obj.factorEvidence).map((name) => ({ name }))
-        : [];
+      : Array.isArray(obj?.factorEvidence)
+        ? obj.factorEvidence.map((item) => ({ name: item?.name || item?.factor || null })).filter((item) => item.name)
+        : obj?.factorEvidence && typeof obj.factorEvidence === "object"
+          ? Object.keys(obj.factorEvidence).map((name) => ({ name }))
+          : [];
   const claimFactors = claims.flatMap((claim) => Array.isArray(claim?.affectedFactors) ? claim.affectedFactors : []);
   const explicitCausalEdges = Array.isArray(obj?.causalEdges) ? obj.causalEdges : [];
   const claimCausalEdges = claims.flatMap((claim) => Array.isArray(claim?.causalEdges) ? claim.causalEdges : []);
+  const compactSource = obj?.source && typeof obj.source === "object" && obj.source.url
+    ? (() => {
+        const sourceClass = String(obj.source.class || obj.source.kind || obj.source.tier || "").toLowerCase();
+        const primary = obj.source.primary === true || sourceClass.includes("primary");
+        const independent = sourceClass.includes("independent");
+        return [{
+          ...obj.source,
+          sourceId: obj.source.sourceId || obj.source.id || obj.source.url,
+          primary,
+          kind: obj.source.kind || (primary ? "primary" : independent ? "independent-secondary" : obj.source.class || null),
+        }];
+      })()
+    : [];
   const resolverEvidenceSources = Array.isArray(obj?.resolution?.evidence)
     ? obj.resolution.evidence
         .filter((item) => item?.source)
@@ -306,7 +321,7 @@ function normalizeEvidenceObject(obj, filePath) {
     scoreRecord: obj?.scoreRecord ?? null,
     riskEvidence: obj?.riskEvidence ?? null,
     dataConfidenceEvidence: obj?.dataConfidenceEvidence ?? null,
-    sources: [...(Array.isArray(obj?.sources) ? obj.sources : []), ...resolverEvidenceSources].map(normalizeSource),
+    sources: [...(Array.isArray(obj?.sources) ? obj.sources : []), ...compactSource, ...resolverEvidenceSources].map(normalizeSource),
     risks: Array.isArray(obj?.risks) ? obj.risks : [],
     causalEdges: [...explicitCausalEdges, ...claimCausalEdges],
     contradictions: Array.isArray(obj?.contradictions) ? obj.contradictions : [],

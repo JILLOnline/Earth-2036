@@ -725,8 +725,8 @@ function normalizeResolverContradiction(item, ticker, index) {
         : "A source-addressed contradiction with identifiable claims is required before adjudication.")
   );
   const independentlyActionable =
-    preferredOwner === "deep-resolver" ||
-    (!preferredOwner && Boolean(claimA && claimB && (sourceA || sourceB)));
+    Boolean(claimA && claimB && (sourceA || sourceB)) &&
+    (preferredOwner === "deep-resolver" || !preferredOwner);
 
   return {
     itemId: contradictionText(obj.itemId ?? obj.id) || (String(ticker || "ticker") + ":contradiction:" + (index + 1)),

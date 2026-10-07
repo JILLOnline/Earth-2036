@@ -333,3 +333,23 @@ test("watchdog treats stale successful Pages as bounded auto-healable freshness"
   assert.ok(watchdog.includes('if [ "$pages_conclusion" != "success" ]; then unhealthy=true; fi'));
   assert.ok(pages.includes("  deploy:\n    needs: build\n    timeout-minutes: 10"));
 });
+
+test("active ranking excludes historical score-state records outside the current 250-member universe", async () => {
+  const engine = await source("scripts/earth2036-engine.mjs");
+  assert.ok(engine.includes(".filter(([ticker]) => universeTickers.has(normalizeTicker(ticker)))"));
+  assert.ok(engine.includes("Score-state is append-only historical memory."));
+});
+
+test("Workgraph sync reconciles active registry membership before preflight and logs transitions", async () => {
+  const sync = await source("scripts/workgraph-sync.mjs");
+  assert.ok(sync.includes("reconcileWorkgraphMembership(graph, registry, now)"));
+  assert.ok(sync.includes('contract: "earth2036-membership-event-v1"'));
+  assert.ok(sync.includes("validateWorkgraph(graph, expected, expectedTickers)"));
+});
+
+test("active-universe engine changes trigger an immediate machine cycle on main", async () => {
+  const scheduler = await source(".github/workflows/earth2036-scheduler.yml");
+  assert.ok(scheduler.includes("  push:\n    branches: [main]\n    paths:"));
+  assert.ok(scheduler.includes('      - "lib/universe-expansion.ts"'));
+  assert.ok(scheduler.includes('      - "scripts/earth2036-engine.mjs"'));
+});

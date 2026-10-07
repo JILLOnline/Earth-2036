@@ -328,7 +328,7 @@ test("watchdog treats stale successful Pages as bounded auto-healable freshness"
   const pages = await source(".github/workflows/earth2036-pages.yml");
   assert.ok(watchdog.includes("Stale-but-previously-successful Pages is recoverable when no old active"));
   assert.equal(watchdog.includes('pages_stale=true\n              unhealthy=true'), false);
-  assert.ok(watchdog.includes('active_pages_created=$(gh run list --workflow earth2036-pages.yml'));
+  assert.ok(watchdog.includes('active_pages_created=$(gh run list --repo "\${{ github.repository }}" --workflow earth2036-pages.yml'));
   assert.ok(watchdog.includes('if [ $((now_epoch - active_pages_epoch)) -gt 1200 ]; then'));
   assert.ok(watchdog.includes('if [ "$pages_conclusion" != "success" ]; then unhealthy=true; fi'));
   assert.ok(pages.includes("  deploy:\n    needs: build\n    timeout-minutes: 10"));

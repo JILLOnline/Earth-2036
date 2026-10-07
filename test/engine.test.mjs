@@ -75,6 +75,8 @@ test("canonical repository universe parses to exactly 250 unique neutral seeds",
   assert.equal(universe.filter((row) => row.seedClass === "active_universe").length, 250);
   assert.equal(universe.some((row) => Object.hasOwn(row, "rank")), false);
   assert.equal(universe.some((row) => Object.hasOwn(row, "earthScore")), false);
+  assert.equal(universe.some((row) => row.ticker === "SWKS"), true);
+  assert.equal(universe.some((row) => row.ticker === "QRVO"), false);
 });
 
 test("universe parser rejects duplicate tickers", () => {

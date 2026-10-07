@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": "earth2036-worker-command-summary-v1",
-  "generatedAt": "2026-10-07T10:03:33.593Z",
+  "generatedAt": "2026-10-07T14:15:32.192Z",
   "canonicalWriteAuthority": false,
   "workgraph": {
     "total": 250,
@@ -10,25 +10,25 @@
       "triaged": 0,
       "researching": 72,
       "evidence_complete": 0,
-      "packet_ready": 2,
-      "chief_ready": 0,
+      "packet_ready": 1,
+      "chief_ready": 1,
       "canonical": 176,
       "blocked": 0
     },
     "healthy": false,
     "healthAlerts": [
-      "t0_frontier_stalled_over_2h_without_chief_ready:packet_ready=2:canonical_age=5.66"
+      "t0_canonical_stalled_over_2h_with_chief_ready:9.86"
     ],
-    "canonicalProgressAgeHours": 5.6631525,
+    "canonicalProgressAgeHours": 9.862763333333334,
     "effectiveOwnerBacklog": {
-      "council-alpha": 2,
+      "council-alpha": 1,
       "deep-resolver": 0,
       "earth-scout": 0,
       "council-beta": 0
     },
     "routingQueueCounts": {
       "earth-scout": 0,
-      "council-alpha": 2,
+      "council-alpha": 1,
       "council-beta": 0,
       "deep-resolver": 0
     }
@@ -45,12 +45,12 @@
       "revertsAtCanonical": 250,
       "rule": "During T0 bootstrap, spend 80% on lawful closure while preserving non-zero expansion and future-learning floors. Revert automatically at full T0."
     },
-    "backlogTotal": 74,
-    "selectedCount": 2,
+    "backlogTotal": 73,
+    "selectedCount": 1,
     "stalledCount": 72,
     "throughput": {
       "changedSincePriorReconcile": 0,
-      "medianTimeInFrontierHours": 69.88,
+      "medianTimeInFrontierHours": 70.6,
       "stalledFrontierCompanies": 72
     },
     "shadowComparison": {
@@ -58,57 +58,28 @@
       "proposedRoutingPolicy": "closure-frontier-v1",
       "actualRoutingCounts": {
         "earth-scout": 0,
-        "council-alpha": 2,
+        "council-alpha": 1,
         "council-beta": 0,
         "deep-resolver": 0
       },
       "proposedRoutingCounts": {
         "earth-scout": 0,
-        "council-alpha": 2,
+        "council-alpha": 1,
         "council-beta": 0,
         "deep-resolver": 0
       },
       "actualAssist": {
-        "active": 3,
+        "active": 2,
         "dormant": 193,
         "queued": 0
       },
       "proposedAssist": {
-        "active": 3,
+        "active": 2,
         "dormant": 193,
         "queued": 0
       }
     },
     "selected": [
-      {
-        "ticker": "RIO",
-        "workId": "t0:RIO",
-        "state": "packet_ready",
-        "closureScore": 143,
-        "attentionPriority": 100,
-        "failures": [
-          "missing_factor_evidence",
-          "missing_numeric_score_record"
-        ],
-        "remainingFailures": 2,
-        "owners": [
-          "council-alpha"
-        ],
-        "remainingOwners": 1,
-        "sourceReuse": 12,
-        "activeAssists": 1,
-        "contradictionStatus": "clear_or_non_gating",
-        "attempts": 0,
-        "hoursSinceProgress": 0.02,
-        "status": "needs_underwriting",
-        "inputSignature": "ffbba219aa4ed9772ffe",
-        "unchangedAttempts": 0,
-        "latestAttemptAt": "2026-10-05T13:37:30.000Z",
-        "primeEligible": true,
-        "selected": true,
-        "firstSelectedAt": "2026-10-04T12:10:37.028Z",
-        "executionGuard": null
-      },
       {
         "ticker": "AEVA",
         "workId": "t0:AEVA",
@@ -134,7 +105,7 @@
         "activeAssists": 0,
         "contradictionStatus": "material_unresolved",
         "attempts": 0,
-        "hoursSinceProgress": 36.96,
+        "hoursSinceProgress": 41.16,
         "status": "needs_contradiction_resolution",
         "inputSignature": "5ed50b94697037240220",
         "unchangedAttempts": 0,
@@ -149,10 +120,10 @@
   "yield": {
     "canonicalVelocity": {
       "h1": 0,
-      "h6": 1,
+      "h6": 0,
       "h24": 1
     },
-    "minutesSinceCanonicalProgress": 340,
+    "minutesSinceCanonicalProgress": 592,
     "recentWorkerRuns": [
       {
         "role": "council-alpha",
@@ -680,8 +651,8 @@
     "rawUnresolved": 1415,
     "totalItems": 1415,
     "buckets": {
-      "gating": 2,
-      "supporting": 1413,
+      "gating": 1,
+      "supporting": 1414,
       "superseded": 0,
       "awaitingNewInformation": 0,
       "resolvedHistory": 0
@@ -693,12 +664,12 @@
     "rule": "Only Workgraph state === chief_ready AND preflight.passed === true is Chief-ready."
   },
   "assist": {
-    "active": 3,
+    "active": 2,
     "dormant": 193,
     "queued": 0,
-    "archived": 773,
+    "archived": 774,
     "byHelper": {
-      "earth-scout": 2,
+      "earth-scout": 1,
       "council-alpha": 0,
       "council-beta": 1,
       "deep-resolver": 0
@@ -2286,21 +2257,18 @@
       },
       {
         "ticker": "RIO",
-        "state": "packet_ready",
+        "state": "chief_ready",
         "priority": 100,
         "components": {
-          "stateValue": 88,
-          "failurePenalty": -4,
+          "stateValue": 100,
+          "failurePenalty": 0,
           "evidenceReuse": 10,
           "perspectiveCoverage": 10,
           "retryPenalty": 0,
-          "activeAssist": 5,
+          "activeAssist": 0,
           "contradictionBonus": 0
         },
-        "failures": [
-          "missing_factor_evidence",
-          "missing_numeric_score_record"
-        ],
+        "failures": [],
         "principle": "Operational attention value only; never a company-quality or investment score."
       },
       {

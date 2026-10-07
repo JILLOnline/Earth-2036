@@ -323,9 +323,13 @@ test("effective Workgraph health follows executable routing rather than deferred
   assert.ok(sync.includes("metrics.healthy = metrics.healthAlerts.length === 0"));
 });
 
-test("watchdog treats stale successful Pages as auto-healable freshness, not a hard outage", async () => {
+test("watchdog treats stale successful Pages as bounded auto-healable freshness", async () => {
   const watchdog = await source(".github/workflows/earth2036-watchdog.yml");
-  assert.ok(watchdog.includes("Stale-but-previously-successful Pages is a recoverable freshness condition."));
+  const pages = await source(".github/workflows/earth2036-pages.yml");
+  assert.ok(watchdog.includes("Stale-but-previously-successful Pages is recoverable when no old active"));
   assert.equal(watchdog.includes('pages_stale=true\n              unhealthy=true'), false);
+  assert.ok(watchdog.includes('active_pages_created=$(gh run list --workflow earth2036-pages.yml'));
+  assert.ok(watchdog.includes('if [ $((now_epoch - active_pages_epoch)) -gt 1200 ]; then'));
   assert.ok(watchdog.includes('if [ "$pages_conclusion" != "success" ]; then unhealthy=true; fi'));
+  assert.ok(pages.includes("  deploy:\n    needs: build\n    timeout-minutes: 10"));
 });

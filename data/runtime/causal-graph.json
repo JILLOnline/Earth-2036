@@ -1,7 +1,7 @@
 {
   "version": 1,
   "methodologyVersion": "1.0.0",
-  "updatedAt": "2026-10-03T16:30:07.455Z",
+  "updatedAt": "2026-10-07T04:23:46.244Z",
   "nodes": [
     {
       "id": "company:GEV",
@@ -2138,6 +2138,18 @@
       "type": "market",
       "label": "VRNS structural demand",
       "description": "Varonis' all-SaaS transition links autonomous data-security software to the enterprise need to continuously control sensitive-data exposure; retiring self-hosted support concentrates delivery on the SaaS control plane but makes migration completion a near-term resilience dependency."
+    },
+    {
+      "id": "company:TXN",
+      "type": "company",
+      "label": "Texas Instruments Incorporated",
+      "description": "Texas Instruments supplies analog and embedded semiconductor functions that bridge physical sensors, power and control systems to industrial, automotive and data-center infrastructure; broad Q2 growth across those end markets supports continued structural relevance beyond a single compute cycle."
+    },
+    {
+      "id": "market:TXN-technology-analog-and-embedded-semiconductors",
+      "type": "market",
+      "label": "technology:analog-and-embedded-semiconductors",
+      "description": "Texas Instruments supplies analog and embedded semiconductor functions that bridge physical sensors, power and control systems to industrial, automotive and data-center infrastructure; broad Q2 growth across those end markets supports continued structural relevance beyond a single compute cycle."
     }
   ],
   "edges": [
@@ -4883,6 +4895,20 @@
         "issuer:VRNS:saas-transition"
       ],
       "observedAt": "2026-09-21T22:26:26Z"
+    },
+    {
+      "id": "edge:TXN-structural-exposure",
+      "from": "company:TXN",
+      "to": "market:TXN-technology-analog-and-embedded-semiconductors",
+      "relationship": "structural_exposure",
+      "direction": 1,
+      "strength": 50,
+      "confidence": 89,
+      "evidenceTier": "Iron",
+      "sourceIds": [
+        "issuer:TXN:2026Q2"
+      ],
+      "observedAt": "2026-09-21T00:24:18Z"
     }
   ],
   "structuralSignals": [
@@ -8309,6 +8335,24 @@
       ],
       "observedAt": "2026-09-21T22:26:26Z",
       "thesis": "Varonis' all-SaaS transition links autonomous data-security software to the enterprise need to continuously control sensitive-data exposure; retiring self-hosted support concentrates delivery on the SaaS control plane but makes migration completion a near-term resilience dependency.",
+      "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
+    },
+    {
+      "id": "signal:TXN-structural-causal",
+      "kind": "structural_causal",
+      "subjectNodeId": "market:TXN-technology-analog-and-embedded-semiconductors",
+      "affectedNodeIds": [
+        "company:TXN"
+      ],
+      "direction": 1,
+      "magnitude": 50,
+      "confidence": 89,
+      "timeHorizon": "1-5y",
+      "sourceIds": [
+        "issuer:TXN:2026Q2"
+      ],
+      "observedAt": "2026-09-21T00:24:18Z",
+      "thesis": "Texas Instruments supplies analog and embedded semiconductor functions that bridge physical sensors, power and control systems to industrial, automotive and data-center infrastructure; broad Q2 growth across those end markets supports continued structural relevance beyond a single compute cycle.",
       "falsifier": "The cited structural demand path fails to translate into durable company-level economic exposure."
     }
   ],

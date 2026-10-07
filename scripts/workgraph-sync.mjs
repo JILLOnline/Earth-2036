@@ -273,6 +273,15 @@ metrics.effectiveOwnerBacklog = {
   ...metrics.ownerBacklog,
   ...metrics.routingQueueCounts,
 };
+// Raw packet ownership is audit lineage, not necessarily executable worker work.
+// Health/liveness must follow the activated routing queues so deferred or dependent
+// failures cannot manufacture a false stale-owner outage.
+metrics.healthAlerts = (metrics.healthAlerts || []).filter((alert) => {
+  const match = String(alert).match(/^owner_(?:stale_with_backlog|recent_run_zero_closure):([^:]+):/);
+  if (!match) return true;
+  return Number(metrics.effectiveOwnerBacklog?.[match[1]] || 0) > 0;
+});
+metrics.healthy = metrics.healthAlerts.length === 0;
 metrics.closureEngine = {
   routingEnabled,
   frontierSelected: closureFrontier.selectedCount,

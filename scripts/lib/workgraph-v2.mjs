@@ -1,6 +1,6 @@
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { MIN_PUBLISHABLE_DATA_CONFIDENCE, REQUIRED_SCORE_COMPONENTS } from "./runtime-gates.mjs";
+import { calculateCanonicalEarthScoreBreakdown, MIN_PUBLISHABLE_DATA_CONFIDENCE, REQUIRED_SCORE_COMPONENTS } from "./runtime-gates.mjs";
 
 export const WORKGRAPH_VERSION = 2;
 export const WORKGRAPH_STATES = ["observed","triaged","researching","evidence_complete","packet_ready","chief_ready","canonical","blocked"];
@@ -248,12 +248,27 @@ function normalizeEvidenceObject(obj, filePath) {
     ? obj.factors
     : Array.isArray(obj?.affectedMethodologyFactors)
       ? obj.affectedMethodologyFactors
-      : obj?.factorEvidence && typeof obj.factorEvidence === "object"
-        ? Object.keys(obj.factorEvidence).map((name) => ({ name }))
-        : [];
+      : Array.isArray(obj?.factorEvidence)
+        ? obj.factorEvidence.map((item) => ({ name: item?.name || item?.factor || null })).filter((item) => item.name)
+        : obj?.factorEvidence && typeof obj.factorEvidence === "object"
+          ? Object.keys(obj.factorEvidence).map((name) => ({ name }))
+          : [];
   const claimFactors = claims.flatMap((claim) => Array.isArray(claim?.affectedFactors) ? claim.affectedFactors : []);
   const explicitCausalEdges = Array.isArray(obj?.causalEdges) ? obj.causalEdges : [];
   const claimCausalEdges = claims.flatMap((claim) => Array.isArray(claim?.causalEdges) ? claim.causalEdges : []);
+  const compactSource = obj?.source && typeof obj.source === "object" && obj.source.url
+    ? (() => {
+        const sourceClass = String(obj.source.class || obj.source.kind || obj.source.tier || "").toLowerCase();
+        const primary = obj.source.primary === true || sourceClass.includes("primary");
+        const independent = sourceClass.includes("independent");
+        return [{
+          ...obj.source,
+          sourceId: obj.source.sourceId || obj.source.id || obj.source.url,
+          primary,
+          kind: obj.source.kind || (primary ? "primary" : independent ? "independent-secondary" : obj.source.class || null),
+        }];
+      })()
+    : [];
   const resolverEvidenceSources = Array.isArray(obj?.resolution?.evidence)
     ? obj.resolution.evidence
         .filter((item) => item?.source)
@@ -303,10 +318,10 @@ function normalizeEvidenceObject(obj, filePath) {
     claims,
     factors: [...explicitFactors, ...claimFactors],
     factorEvidence: obj?.factorEvidence ?? null,
-    scoreRecord: obj?.scoreRecord ?? null,
+    scoreRecord: obj?.scoreRecord ?? obj?.numericScoreRecord ?? null,
     riskEvidence: obj?.riskEvidence ?? null,
     dataConfidenceEvidence: obj?.dataConfidenceEvidence ?? null,
-    sources: [...(Array.isArray(obj?.sources) ? obj.sources : []), ...resolverEvidenceSources].map(normalizeSource),
+    sources: [...(Array.isArray(obj?.sources) ? obj.sources : []), ...compactSource, ...resolverEvidenceSources].map(normalizeSource),
     risks: Array.isArray(obj?.risks) ? obj.risks : [],
     causalEdges: [...explicitCausalEdges, ...claimCausalEdges],
     contradictions: Array.isArray(obj?.contradictions) ? obj.contradictions : [],
@@ -435,7 +450,20 @@ export function compilePromotionPacket(ticker, evidenceRows, graphRow, options =
   const normalizedComponents = rawScoreRecord
     ? Object.fromEntries(requiredScoreComponents.map((key) => [key, rawScoreRecord.components?.[key] ?? rawScoreRecord[key]]))
     : null;
-  const scoreRecord = rawScoreRecord ? { ...rawScoreRecord, components: normalizedComponents } : null;
+  const deterministicScore = rawScoreRecord
+    ? calculateCanonicalEarthScoreBreakdown({
+        ...(normalizedComponents || {}),
+        risk: rawScoreRecord.risk,
+        dataConfidence: rawScoreRecord.dataConfidence,
+      })
+    : null;
+  const scoreRecord = rawScoreRecord
+    ? {
+        ...rawScoreRecord,
+        components: normalizedComponents,
+        earthScore: deterministicScore?.valid === true ? deterministicScore.earthScore : rawScoreRecord.earthScore,
+      }
+    : null;
   const latestUnderwriting = underwritingRows.sort((a,b) => Date.parse(b.generatedAt || 0) - Date.parse(a.generatedAt || 0))[0] || null;
   const topLevelFactorEvidence = latestUnderwriting?.factorEvidence ?? null;
   const scoreRecordFactorEvidence = scoreRecord?.factorEvidence ?? null;
@@ -725,8 +753,8 @@ function normalizeResolverContradiction(item, ticker, index) {
         : "A source-addressed contradiction with identifiable claims is required before adjudication.")
   );
   const independentlyActionable =
-    preferredOwner === "deep-resolver" ||
-    (!preferredOwner && Boolean(claimA && claimB && (sourceA || sourceB)));
+    Boolean(claimA && claimB && (sourceA || sourceB)) &&
+    (preferredOwner === "deep-resolver" || !preferredOwner);
 
   return {
     itemId: contradictionText(obj.itemId ?? obj.id) || (String(ticker || "ticker") + ":contradiction:" + (index + 1)),

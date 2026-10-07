@@ -411,3 +411,31 @@ test("protected runtime baseline never regresses below 143 canonical or away fro
   assert.ok(canonical >= 143, "canonical baseline regressed below protected 143");
   assert.ok(rows.filter((row) => row.state === "canonical").every((row) => row.evidencePath));
 });
+
+test("Resolver explicit ownership cannot bypass the source-addressed claim-pair requirement", () => {
+  const graph = graphFor(["OWN"]);
+  const packet = packetFor("OWN", ["unresolved_material_contradiction"]);
+  packet.contradictions = [{
+    contradiction: "Commercial momentum is outrunning disclosed scaled economics.",
+    nextOwner: "deep-resolver",
+    material: true,
+  }];
+
+  const queues = buildRoutingQueues(graph, [packet], "2026-10-07T04:10:00.000Z", {
+    frontierFirst: true,
+    frontierTickers: ["OWN"],
+    stalledTickers: [],
+    operationalStatusByTicker: { OWN: "needs_contradiction_resolution" },
+  });
+
+  const resolver = queues["deep-resolver"];
+  assert.equal(resolver.total, 0);
+  assert.equal(resolver.deferred, 1);
+  assert.equal(resolver.deferredItems[0].executionGuard, "await_structured_contradiction_input");
+  const adjudication = resolver.deferredItems[0].adjudicationPacket;
+  assert.equal(adjudication.actionable, false);
+  assert.equal(adjudication.actionableItemCount, 0);
+  assert.equal(adjudication.items[0].preferredOwner, "deep-resolver");
+  assert.equal(adjudication.items[0].claimB, null);
+  assert.equal(adjudication.items[0].sourceA, null);
+});

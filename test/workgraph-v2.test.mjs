@@ -1098,3 +1098,37 @@ test("assist bus caps helper capacity instead of flooding one minion", () => {
   assert.equal(bus.queued, 6);
   assert.equal(bus.byHelper["earth-scout"], 6);
 });
+
+test("loader normalizes compact minion source objects and factor-evidence arrays", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "earth2036-workgraph-compact-evidence-"));
+  try {
+    const dir = path.join(root, "data", "runtime", "workgraph", "evidence");
+    await mkdir(dir, { recursive: true });
+    await writeFile(path.join(dir, "RIO-scout.json"), JSON.stringify({
+      version: 1,
+      contract: "earth2036-evidence-v1",
+      role: "earth-scout",
+      ticker: "RIO",
+      workId: "t0:RIO",
+      generatedAt: "2026-10-07T04:01:25Z",
+      source: {
+        class: "primary-sovereign",
+        publisher: "Australian Government",
+        publishedAt: "2026-10-01",
+        url: "https://example.gov/rio"
+      },
+      factorEvidence: [
+        { name: "pricingPower", direction: "mixed", sourceIds: ["rio-source"], basis: "qualitative support only" }
+      ]
+    }), "utf8");
+
+    const loaded = await loadStructuredEvidence(root);
+    assert.equal(loaded.length, 1);
+    assert.equal(loaded[0].sources.length, 1);
+    assert.equal(loaded[0].sources[0].primary, true);
+    assert.equal(loaded[0].sources[0].sourceId, "https://example.gov/rio");
+    assert.deepEqual(loaded[0].factors.map((row) => row.name), ["pricingPower"]);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});

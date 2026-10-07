@@ -104,13 +104,24 @@ jobs:
             now_epoch=$(date -u +%s)
             if [ "$pages_head" != "$main_head" ] && [ $((now_epoch - pages_epoch)) -gt 1200 ]; then
               pages_stale=true
-              unhealthy=true
             fi
           elif [ -n "$LAST_CYCLE_AT" ]; then
             pages_stale=true
-            unhealthy=true
           fi
 
+          # Stale-but-previously-successful Pages is recoverable when no old active
+          # deployment is blocking refresh. An active Pages run older than 20 minutes
+          # is itself a liveness fault; the Pages deploy job is separately time-bounded.
+          if [ "$pages_stale" = "true" ]; then
+            active_pages_created=$(gh run list --repo "${{ github.repository }}" --workflow earth2036-pages.yml --limit 20 --json status,createdAt --jq '[.[] | select(.status == "in_progress" or .status == "queued")] | sort_by(.createdAt) | .[0].createdAt // ""')
+            if [ -n "$active_pages_created" ]; then
+              active_pages_epoch=$(date -d "$active_pages_created" +%s)
+              now_epoch=$(date -u +%s)
+              if [ $((now_epoch - active_pages_epoch)) -gt 1200 ]; then
+                unhealthy=true
+              fi
+            fi
+          fi
           echo "scheduler_conclusion=$scheduler_conclusion" >> "$GITHUB_OUTPUT"
           echo "pages_conclusion=$pages_conclusion" >> "$GITHUB_OUTPUT"
           echo "reconcile_conclusion=$reconcile_conclusion" >> "$GITHUB_OUTPUT"

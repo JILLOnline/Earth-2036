@@ -308,3 +308,28 @@ test("canonical causal promotion refreshes graph-level freshness metadata", asyn
   const write = promote.indexOf('writeJson(path.join(RUNTIME, "causal-graph.json"), prospectiveGraph)');
   assert.ok(refresh >= 0 && write >= 0 && refresh < write);
 });
+
+test("Chief canonicalization carries packet primary provenance into Beast sovereignty", async () => {
+  const promote = await source("scripts/promote-chief-ready.mjs");
+  assert.ok(promote.includes("function primaryPacketSourceUrls(packet)"));
+  assert.ok(promote.includes("...primaryPacketSourceUrls(packet)"));
+  assert.ok(promote.includes("Array.isArray(score.primarySourceUrls)"));
+});
+
+test("effective Workgraph health follows executable routing rather than deferred raw ownership", async () => {
+  const sync = await source("scripts/workgraph-sync.mjs");
+  assert.ok(sync.includes("Raw packet ownership is audit lineage, not necessarily executable worker work."));
+  assert.ok(sync.includes("metrics.effectiveOwnerBacklog?.[match[1]]"));
+  assert.ok(sync.includes("metrics.healthy = metrics.healthAlerts.length === 0"));
+});
+
+test("watchdog treats stale successful Pages as bounded auto-healable freshness", async () => {
+  const watchdog = await source(".github/workflows/earth2036-watchdog.yml");
+  const pages = await source(".github/workflows/earth2036-pages.yml");
+  assert.ok(watchdog.includes("Stale-but-previously-successful Pages is recoverable when no old active"));
+  assert.equal(watchdog.includes('pages_stale=true\n              unhealthy=true'), false);
+  assert.ok(watchdog.includes('active_pages_created=$(gh run list --repo "\${{ github.repository }}" --workflow earth2036-pages.yml'));
+  assert.ok(watchdog.includes('if [ $((now_epoch - active_pages_epoch)) -gt 1200 ]; then'));
+  assert.ok(watchdog.includes('if [ "$pages_conclusion" != "success" ]; then unhealthy=true; fi'));
+  assert.ok(pages.includes("  deploy:\n    needs: build\n    timeout-minutes: 10"));
+});

@@ -38,7 +38,7 @@ export const additionalContenderSeeds: ExpansionSeed[] = [
     ["STM", "STMicroelectronics"],
     ["GFS", "GlobalFoundries"],
     ["INTC", "Intel"],
-    ["QRVO", "Qorvo"],
+    ["SWKS", "Skyworks Solutions"],
     ["ACLS", "Axcelis Technologies"],
     ["MKSI", "MKS Instruments"],
     ["ENTG", "Entegris"],

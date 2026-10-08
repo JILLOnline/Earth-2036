@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "contract": "earth2036-evidence-v1",
+  "generatedAt": "2026-10-08T08:03:41.564Z",
+  "worker": "earth-scout",
+  "role": "earth-scout",
+  "ticker": "AEVA",
+  "workId": "t0:AEVA",
+  "assistRequestId": "assist:AEVA:council-alpha:earth-scout:source-acquisition",
+  "inputSignature": "cb8de54210158554742c",
+  "authority": "source-only",
+  "methodologyVersion": "1.0.0",
+  "sourcePacket": "data/runtime/workgraph/packets/AEVA.json",
+  "sources": [
+    {
+      "sourceId": "sec:AEVA:424B5-preliminary:20260604:000119312526256366",
+      "url": "https://www.sec.gov/Archives/edgar/data/1789029/000119312526256366/d91778d424b5.htm",
+      "primary": true,
+      "kind": "primary-regulatory-filing-preliminary-prospectus",
+      "publishedAt": "2026-06-04"
+    }
+  ],
+  "observations": [
+    {
+      "sourceIds": [
+        "sec:AEVA:424B5-preliminary:20260604:000119312526256366"
+      ],
+      "claim": "Aeva's June 4, 2026 SEC-filed preliminary Form 424B5 states 62,984,603 common shares outstanding as of March 31, 2026 and explicitly excludes 2,307,265 option shares (weighted-average exercise price $2.82), 6,098,455 outstanding RSU shares, 735,294 outstanding performance-RSU shares, 1,897,916 post-March-31 RSU grants, 1,599,770 post-March-31 performance-RSU grants, and 3,000,000 Series A warrant shares (exercise price $5.00). These are security-specific potential issuance inputs, not an issuer-certified current fully diluted share count.",
+      "affectedMethodologyFactors": [
+        "marketValuationOpportunity"
+      ]
+    },
+    {
+      "sourceIds": [
+        "sec:AEVA:424B5-preliminary:20260604:000119312526256366"
+      ],
+      "claim": "The same filing additionally excludes an unspecified number of shares issuable on conversion of 4.375% convertible notes, discloses 149,038 common shares paid in May 2026 as note interest, and identifies 11,325,642 shares reserved for future issuance under the ESPP as of March 31, 2026. ESPP reserves must not be counted as issued shares; the disclosed option/RSU/warrant buckets may have changed since March 31.",
+      "affectedMethodologyFactors": [
+        "marketValuationOpportunity"
+      ]
+    }
+  ],
+  "evidence": {
+    "materiallyNew": true,
+    "addresses": [
+      "missing_factor_evidence"
+    ],
+    "exactGap": "marketValuationOpportunity/diluted-share-count-inputs",
+    "limitations": [
+      "Preliminary prospectus provides dated security-level potential dilution, not a current fully diluted capitalization or enterprise value.",
+      "The March 31 share baseline predates June equity offering; June 30 SEC 10-Q already in packet provides a later basic-share baseline and should be reconciled rather than summed blindly.",
+      "Convertible-note conversion shares, exercise/settlement updates, current official exchange closing price, cash/debt bridge, and a defensible forward denominator remain unresolved.",
+      "No score, underwriting, adjudication, canonical mutation, or Alpha authority asserted."
+    ]
+  },
+  "methodology": "Methodology 1.0 preserved; append-only source evidence; Beast/integrity gates and Earth Core canonical authority unchanged."
+}

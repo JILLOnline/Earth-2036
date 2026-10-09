@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { qualifiesT0Publication, qualifiesTick } from "./lib/runtime-gates.mjs";
+import { determineTickFinalization } from "./lib/tick-authority.mjs";
 import { evaluateEvidenceQualification, parseEvidenceDispositionLedger, evidenceQualificationMatchesState } from "./lib/evidence-qualification.mjs";
 import { buildTrajectorySnapshot, validateTrajectorySnapshot } from "./lib/trajectory-engine.mjs";
 import { loadVerifiedBridgeIndex } from "./lib/fundamentals-bridge-index.mjs";
@@ -303,13 +304,30 @@ if (!manifest?.published) {
 }
 
 const qualified = qualifiesTick({ baselinePublished: true, ...fullUniverseInput });
-const alreadyFinalized = state.lastQualifiedCycleKey === state.cycleKey;
-if (!qualified || alreadyFinalized) {
-  console.log(JSON.stringify({ councilFinalizer: "TICK_NOOP", qualified, alreadyFinalized, ...finalizationDiagnostics }, null, 2));
+const tickPath = path.join(RUNTIME, "ticks", `${state.cycleKey}.json`);
+let existingTick = null;
+try {
+  existingTick = JSON.parse(await readFile(tickPath, "utf8"));
+} catch (error) {
+  if (error.code !== "ENOENT") {
+    console.error(JSON.stringify({councilFinalizer:"BLOCKED",reason:"corrupt_or_unreadable_immutable_tick",detail:String(error.message)}));
+    process.exit(1);
+  }
+}
+let tickDecision;
+try {
+  tickDecision = determineTickFinalization({
+    cycleKey: state.cycleKey, qualified, state, manifest, existingTick,
+  });
+} catch (error) {
+  console.error(JSON.stringify({councilFinalizer:"BLOCKED",reason:"qualified_tick_authority_integrity",detail:String(error.message)}));
+  process.exit(1);
+}
+if (tickDecision.action !== "finalize") {
+  console.log(JSON.stringify({councilFinalizer:"TICK_NOOP",qualified,reason:tickDecision.action,...finalizationDiagnostics},null,2));
   process.exit(0);
 }
-
-const nextTick = Number(state.qualifiedTrialTicks || manifest?.qualifiedTrialTicksAfterBaseline || 0) + 1;
+const nextTick = tickDecision.tickNumber;
 const rankedByTicker = new Map(rankingRows.map((record) => [record.ticker, record]));
 const tickRows = (entities.candidates || []).map((entity) => {
   const rank = rankedByTicker.get(entity.ticker) ?? null;
@@ -343,7 +361,6 @@ const trajectorySnapshot = {
   captureRole: "qualified-trial-tick",
 };
 
-const tickPath = path.join(RUNTIME, "ticks", `${state.cycleKey}.json`);
 await writeJson(tickPath, {
   tickNumber: nextTick,
   cycleKey: state.cycleKey,

@@ -424,7 +424,12 @@ async function main() {
     sources,
   });
 
-  const scoreRecords = Object.entries(scoreState.candidates ?? {}).map(([ticker, record]) => ({ ticker, ...record }));
+  // Score-state is append-only historical memory. Active ranking and T0 gates must
+  // only count the current 250-member universe so a retired/delisted seed cannot
+  // remain publishable after membership changes.
+  const scoreRecords = Object.entries(scoreState.candidates ?? {})
+    .filter(([ticker]) => universeTickers.has(normalizeTicker(ticker)))
+    .map(([ticker, record]) => ({ ticker: normalizeTicker(ticker), ...record }));
   const scoredCompanies = scoreRecords.filter((record) => isScoreRecordComplete(record, METHODOLOGY_VERSION, 60)).length;
   const publishableCompanies = scoreRecords.filter((record) => isPublishableScoreRecord(record, METHODOLOGY_VERSION, 60)).length;
   const ranked = rankRecords(scoreRecords.filter((record) => isPublishableScoreRecord(record, METHODOLOGY_VERSION, 60)));

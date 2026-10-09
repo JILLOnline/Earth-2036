@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { REQUIRED_PERSPECTIVES, applyPacketState, buildRoutingQueues, compilePromotionPacket, computeWorkgraphMetrics, loadStructuredEvidence, migrateLegacyQueue, validateWorkgraph } from "../scripts/lib/workgraph-v2.mjs";
+import { REQUIRED_PERSPECTIVES, applyPacketState, buildRoutingQueues, compilePromotionPacket, computeWorkgraphMetrics, loadStructuredEvidence, migrateLegacyQueue, reconcileWorkgraphMembership, validateWorkgraph } from "../scripts/lib/workgraph-v2.mjs";
 import { auditCalibrationRecord, calibrationBand } from "../scripts/lib/calibration-engine.mjs";
 import { buildAssistRequests } from "../scripts/lib/assist-bus.mjs";
 import { buildCompanyDigitalTwin } from "../scripts/lib/digital-twin-engine.mjs";
@@ -1131,4 +1131,50 @@ test("loader normalizes compact minion source objects and factor-evidence arrays
   } finally {
     await rm(root, { recursive: true, force: true });
   }
+});
+
+test("Workgraph membership reconciliation retires inactive history and seeds the current registry member", () => {
+  const graph = {
+    version: 2,
+    policy: "workgraph-v2",
+    phase: "t0-bootstrap",
+    generatedAt: "2026-10-06T00:00:00.000Z",
+    companies: {
+      QRVO: {
+        ticker: "QRVO",
+        state: "canonical",
+        sourceState: "promoted",
+        evidencePath: "data/baseline-evidence/QRVO.json",
+        workId: "t0:QRVO",
+        lastTransitionAt: "2026-09-27T14:19:43.239Z",
+        updatedAt: "2026-09-27T14:19:43.239Z",
+      },
+      AAA: {
+        ticker: "AAA",
+        state: "researching",
+        sourceState: "researching",
+        evidencePath: null,
+        workId: "t0:AAA",
+        lastTransitionAt: "2026-10-01T00:00:00.000Z",
+        updatedAt: "2026-10-01T00:00:00.000Z",
+      },
+    },
+  };
+  const registry = {
+    updatedAt: "2026-10-07T04:24:17.680Z",
+    candidates: [{ ticker: "AAA" }, { ticker: "SWKS" }],
+  };
+
+  const result = reconcileWorkgraphMembership(graph, registry, new Date("2026-10-07T04:30:00.000Z"));
+  assert.equal(result.removed.length, 1);
+  assert.equal(result.removed[0].ticker, "QRVO");
+  assert.equal(result.removed[0].priorState, "canonical");
+  assert.equal(result.added.length, 1);
+  assert.equal(result.added[0].ticker, "SWKS");
+  assert.equal(result.graph.companies.QRVO, undefined);
+  assert.equal(result.graph.companies.SWKS.state, "observed");
+  assert.equal(result.graph.companies.SWKS.workId, "t0:SWKS");
+  assert.deepEqual(validateWorkgraph(result.graph, 2, ["AAA", "SWKS"]), []);
+  assert.match(validateWorkgraph(graph, 2, ["AAA", "SWKS"]).join("\n"), /missing active ticker SWKS/);
+  assert.match(validateWorkgraph(graph, 2, ["AAA", "SWKS"]).join("\n"), /unexpected inactive ticker QRVO/);
 });

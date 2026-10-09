@@ -1,6 +1,6 @@
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { applyPacketState, buildRoutingQueues, compilePromotionPacket, computeWorkgraphMetrics, loadRoleRuns, loadStructuredEvidence, migrateLegacyQueue, validateWorkgraph, writeWorkgraphArtifacts } from "./lib/workgraph-v2.mjs";
+import { applyPacketState, buildRoutingQueues, compilePromotionPacket, computeWorkgraphMetrics, loadRoleRuns, loadStructuredEvidence, migrateLegacyQueue, reconcileWorkgraphMembership, validateWorkgraph, writeWorkgraphArtifacts } from "./lib/workgraph-v2.mjs";
 import { auditCalibrationRecord, buildPacketCalibrationGuidance, CALIBRATION_REGISTRY } from "./lib/calibration-engine.mjs";
 import { buildAssistRequests } from "./lib/assist-bus.mjs";
 import { buildDigitalTwinShadow } from "./lib/digital-twin-engine.mjs";
@@ -20,6 +20,7 @@ const SYSTEM_STATE_PATH = path.join(ROOT, "data", "runtime", "system-state.json"
 const LIVE_BRIDGE_INDEX_PATH = path.join(ROOT, "data", "runtime", "workgraph", "shadow", "fundamentals-bridge-index.json");
 const CLOSURE_ENGINE_CONFIG_PATH = path.join(ROOT, "config", "closure-engine-v1.json");
 const EVIDENCE_REVIEW_QUEUE_PATH = path.join(ROOT, "data", "runtime", "evidence-review-queue.json");
+const MEMBERSHIP_EVENTS_PATH = path.join(ROOT, "data", "runtime", "workgraph", "membership-events.jsonl");
 
 async function readJson(file) { return JSON.parse(await readFile(file, "utf8")); }
 async function readJsonOr(file, fallback) {
@@ -175,8 +176,12 @@ try {
   graph = migrateLegacyQueue(await readJson(LEGACY_PATH), registry);
 }
 
+const now = new Date();
 const expected = Number(registry?.expected || registry?.candidates?.length || 250);
-const errors = validateWorkgraph(graph, expected);
+const expectedTickers = (registry?.candidates || []).map((row) => row?.ticker).filter(Boolean);
+const membership = reconcileWorkgraphMembership(graph, registry, now);
+graph = membership.graph;
+const errors = validateWorkgraph(graph, expected, expectedTickers);
 if (errors.length) {
   console.error("Workgraph invariant failure:", errors);
   process.exit(1);
@@ -195,13 +200,12 @@ for (const [ticker, row] of Object.entries(graph.companies)) {
   applyPacketState(graph, packet);
 }
 
-const postErrors = validateWorkgraph(graph, expected);
+const postErrors = validateWorkgraph(graph, expected, expectedTickers);
 if (postErrors.length) {
   console.error("Workgraph post-compile invariant failure:", postErrors);
   process.exit(1);
 }
 
-const now = new Date();
 const workgraphDir = path.join(ROOT, "data", "runtime", "workgraph");
 const shadowDir = path.join(workgraphDir, "shadow");
 const workerViewDir = path.join(workgraphDir, "worker-view");
@@ -297,6 +301,20 @@ metrics.closureEngine = {
     proposedAssist: { active: proposedAssistBus.active, dormant: proposedAssistBus.dormant, queued: proposedAssistBus.queued || 0 },
   },
 };
+if (membership.added.length || membership.removed.length) {
+  await mkdir(path.dirname(MEMBERSHIP_EVENTS_PATH), { recursive: true });
+  let priorMembershipEvents = "";
+  try { priorMembershipEvents = await readFile(MEMBERSHIP_EVENTS_PATH, "utf8"); } catch {}
+  const event = {
+    contract: "earth2036-membership-event-v1",
+    generatedAt: now.toISOString(),
+    registryUpdatedAt: registry?.updatedAt || null,
+    added: membership.added,
+    removed: membership.removed,
+    rule: "pre-t0 active membership follows current validated registry; historical evidence remains append-only",
+  };
+  await writeFile(MEMBERSHIP_EVENTS_PATH, `${priorMembershipEvents}${JSON.stringify(event)}\n`, "utf8");
+}
 await writeWorkgraphArtifacts(ROOT, graph, packets, metrics, routingQueues);
 await mkdir(shadowDir, { recursive: true });
 await mkdir(workerViewDir, { recursive: true });

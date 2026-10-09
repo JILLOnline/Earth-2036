@@ -251,12 +251,15 @@ test("Trust Ledger exposes doctrine and shadow authority without turning operati
 });
 
 
-test("scheduler is hourly/manual only so code pushes cannot collide with minion evidence bursts", async () => {
+test("scheduler remains burst-safe while core engine membership changes refresh immediately", async () => {
   const text = await source(".github/workflows/earth2036-scheduler.yml");
   assert.ok(text.includes('cron: "0 * * * *"'));
   assert.ok(text.includes("workflow_dispatch:"));
+  assert.ok(/\n\s*push:\s*\n/.test(text));
+  assert.ok(text.includes("    branches: [main]"));
   assert.equal(text.includes('scripts/**'), false);
-  assert.equal(/\n\s*push:\s*\n/.test(text), false);
+  assert.equal(text.includes('"data/'), false);
+  assert.equal(text.includes('workgraph/evidence'), false);
 });
 
 test("watchdog checks twice per hour and recovers an idle stale machine before a second missed cycle", async () => {
@@ -332,4 +335,24 @@ test("watchdog treats stale successful Pages as bounded auto-healable freshness"
   assert.ok(watchdog.includes('if [ $((now_epoch - active_pages_epoch)) -gt 1200 ]; then'));
   assert.ok(watchdog.includes('if [ "$pages_conclusion" != "success" ]; then unhealthy=true; fi'));
   assert.ok(pages.includes("  deploy:\n    needs: build\n    timeout-minutes: 10"));
+});
+
+test("active ranking excludes historical score-state records outside the current 250-member universe", async () => {
+  const engine = await source("scripts/earth2036-engine.mjs");
+  assert.ok(engine.includes(".filter(([ticker]) => universeTickers.has(normalizeTicker(ticker)))"));
+  assert.ok(engine.includes("Score-state is append-only historical memory."));
+});
+
+test("Workgraph sync reconciles active registry membership before preflight and logs transitions", async () => {
+  const sync = await source("scripts/workgraph-sync.mjs");
+  assert.ok(sync.includes("reconcileWorkgraphMembership(graph, registry, now)"));
+  assert.ok(sync.includes('contract: "earth2036-membership-event-v1"'));
+  assert.ok(sync.includes("validateWorkgraph(graph, expected, expectedTickers)"));
+});
+
+test("active-universe engine changes trigger an immediate machine cycle on main", async () => {
+  const scheduler = await source(".github/workflows/earth2036-scheduler.yml");
+  assert.ok(scheduler.includes("  push:\n    branches: [main]\n    paths:"));
+  assert.ok(scheduler.includes('      - "lib/universe-expansion.ts"'));
+  assert.ok(scheduler.includes('      - "scripts/earth2036-engine.mjs"'));
 });

@@ -31,6 +31,12 @@ A company can enter consideration through any verified lawful public signal, inc
 
 No market-cap minimum by itself protects or excludes a company. Tradability, evidence quality, liquidity, risk and data confidence are evaluated separately.
 
+## Pre-T0 membership integrity
+
+Before official T0, an active seed that ceases to be publicly tradable because of a completed merger, delisting, liquidation, or equivalent corporate action cannot remain in the 250-company active universe. The machine must replace it with a lawful U.S.-tradable company from the same or an adjacent research lane, preserve the outgoing company's evidence and score history for audit, log the membership transition, and start the replacement as a fresh unscored/unranked member.
+
+This rule changes active membership only. It does not transfer the outgoing company's score, evidence age, rank, or canonical status to the replacement and it does not alter Methodology 1.0 scoring. After official T0, ordinary active-boundary changes follow the challenger rule below.
+
 ## Boundary competition
 
 After official T0, the active boundary is #250 versus the strongest outside challenger.

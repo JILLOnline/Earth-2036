@@ -15,6 +15,8 @@ const sha256=s=>createHash('sha256').update(s).digest('hex');
 
 export function buildHourlyObservationArchive({state,manifest,observations,sourceHealth,rawHashes}) {
   if (!manifest?.published || state?.phase !== 'trial') return null;
+  // T0 publication is sequence zero, never a post-T0 hourly trial observation.
+  if (manifest.t0CycleKey && manifest.t0CycleKey === state.cycleKey) return null;
   const hourKey=state?.cycleKey;
   hourStart(hourKey); // enforce strict UTC hourly identity
   const source=observations?.candidates ?? {};

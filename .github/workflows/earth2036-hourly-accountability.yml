@@ -45,7 +45,9 @@ jobs:
             git clean -fd data/operations/hourly-audits
 
             node scripts/hourly-accountability.mjs
-            git add data/operations/hourly-audits
+            # Independent retrospective interpretation; leaves each as-of receipt immutable.
+            node scripts/reconcile-hourly-slots.mjs
+            git add data/operations/hourly-audits data/operations/hourly-reconciliation/latest.json
 
             if git diff --cached --quiet; then
               echo "The immutable receipt already exists; nothing to overwrite."

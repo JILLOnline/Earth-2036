@@ -3,6 +3,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { buildUniverse, normalizeTicker } from "./lib/universe-parser.mjs";
+import { evaluateEvidenceQualification, parseEvidenceDispositionLedger } from "./lib/evidence-qualification.mjs";
 import {
   baselineGate,
   isPublishableScoreRecord,
@@ -398,13 +399,16 @@ async function main() {
       : sourceFailure(submissionsSource, new Error("No SEC submissions observations succeeded")),
   );
 
-  const unresolvedQueue = [...priorQueueById.values()].filter((item) => item.status !== "resolved");
-  await writeJson(path.join(RUNTIME_DIR, "evidence-review-queue.json"), {
-    version: 1,
-    updatedAt: startedAt,
-    unresolved: unresolvedQueue.length,
-    items: [...priorQueueById.values()].sort((a, b) => String(b.detectedAt).localeCompare(String(a.detectedAt))),
-  });
+  const allFilings = [...priorQueueById.values()].sort((a, b) => String(b.detectedAt).localeCompare(String(a.detectedAt)));
+  const reviewText = await readText(path.join(ROOT, "data", "operations", "evidence-dispositions.jsonl"), "");
+  const reviewedQueue = { version: 1, updatedAt: startedAt, unresolved: allFilings.filter((x) => x.status !== "resolved").length, items: allFilings };
+  // Each new filing defaults to unresolved. Only source-hashed, attributable,
+  // explicitly reviewed dispositions can change its eligibility status.
+  const evidenceQualification = evaluateEvidenceQualification(
+    reviewedQueue, parseEvidenceDispositionLedger(reviewText), startedAt
+  );
+  await writeJson(path.join(RUNTIME_DIR, "evidence-review-queue.json"), reviewedQueue);
+  await writeJson(path.join(RUNTIME_DIR, "evidence-qualification.json"), evidenceQualification);
 
   const requiredSources = sources.filter((source) => source.requiredForTick);
   const machineCoverage = requiredSources.reduce((sum, source) => sum + Number(source.coverage || 0), 0) / Math.max(1, requiredSources.length);
@@ -451,7 +455,7 @@ async function main() {
       publishableCompanies,
       sourceCoverage: combinedCoverage,
       discoveryScanCompleted,
-      unresolvedEvidence: unresolvedQueue.length,
+      unresolvedEvidence: evidenceQualification.unresolvedMaterialOrUnreviewed,
     });
     manifest = {
       ...manifest,
@@ -478,7 +482,7 @@ async function main() {
     sourceCoverage: combinedCoverage,
     discoveryScanCompleted,
     methodologyVersion: METHODOLOGY_VERSION,
-    unresolvedEvidence: unresolvedQueue.length,
+    unresolvedEvidence: evidenceQualification.unresolvedMaterialOrUnreviewed,
     scoredCompanies: publishableCompanies,
   });
 
@@ -538,7 +542,9 @@ async function main() {
     machineDiscoveryComplete,
     discoveryScanCompleted,
     newDiscoveries: newlyListed.length,
-    unresolvedEvidence: unresolvedQueue.length,
+    unresolvedEvidence: evidenceQualification.unresolvedMaterialOrUnreviewed,
+    rawUnresolvedEvidence: evidenceQualification.rawPending,
+    evidenceQualificationFingerprint: evidenceQualification.reviewFingerprint,
     qualifiedTick: qualified,
     qualifiedTrialTicks,
     lastQualifiedCycleKey,
@@ -562,7 +568,10 @@ async function main() {
     tradabilityValidated,
     publishableCompanies,
     newDiscoveries: newlyListed.length,
-    unresolvedEvidence: unresolvedQueue.length,
+    unresolvedEvidence: evidenceQualification.unresolvedMaterialOrUnreviewed,
+    rawUnresolvedEvidence: evidenceQualification.rawPending,
+    reviewedNonGating: evidenceQualification.reviewedNonGating,
+    reviewedMaterialOpen: evidenceQualification.reviewedMaterialOpen,
     machineCoverage: state.machineSourceCoverageRatio,
     combinedCoverage: state.combinedSourceCoverageRatio,
     qualifiedTick: qualified,

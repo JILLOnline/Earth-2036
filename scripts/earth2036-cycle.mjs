@@ -47,4 +47,6 @@ if (evidence.errors.length) {
   await runScript("scripts/mark-council-pending.mjs", "Earth 2036 Workgraph supervision sync");
   await runScript("scripts/beast-audit.mjs", "Earth 2036 Beast integrity audit");
   await runScript("scripts/finalize-qualified-tick.mjs", "Earth 2036 deterministic finalizer");
+  // Separate, append-only observation archive. Does not authorize trial qualification.
+  await runScript("scripts/archive-hourly-observation.mjs", "Earth 2036 post-T0 hourly observation history");
 }

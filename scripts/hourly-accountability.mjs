@@ -119,10 +119,16 @@ async function main() {
   let runs = [], runLookupError=null;
   try {
     const repository = process.env.GITHUB_REPOSITORY || 'JILLOnline/Earth-2036';
-    const out = execFileSync('gh', ['api', 'repos/'+repository+'/actions/workflows/earth2036-scheduler.yml/runs?per_page=100'], {encoding:'utf8', timeout:30000});
+    // Request only run fields needed for accountability; large raw Actions API responses
+    // exceed execFileSync's default 1MB stdout buffer (observed live 2026-10-09).
+    const fields='[.workflow_runs[] | {id, path, created_at, run_started_at, updated_at, event, status, conclusion, run_attempt, head_sha, html_url}]';
+    const out = execFileSync('gh', [
+      'api', 'repos/'+repository+'/actions/workflows/earth2036-scheduler.yml/runs?per_page=100',
+      '--jq', fields
+    ], {encoding:'utf8', timeout:30000, maxBuffer:16*1024*1024});
     const response = JSON.parse(out);
-    if (!Array.isArray(response.workflow_runs)) throw new Error('GitHub Actions response missing workflow_runs');
-    runs=response.workflow_runs;
+    if (!Array.isArray(response)) throw new Error('GitHub Actions scheduler run projection must be an array');
+    runs=response;
   } catch(e) { runLookupError=e.message; }
   const receipt=assessHour({hourKey,cycleHistory:cycles,workflowRuns:runs,checkedAt:now.toISOString(),runLookupError});
   await mkdir(path.dirname(filename), {recursive:true});

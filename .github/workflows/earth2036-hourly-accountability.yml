@@ -59,3 +59,24 @@ jobs:
           done
           echo "FAILED to persist the independent audit receipt after 3 tries." >&2
           exit 1
+
+      - name: Alert if audited hour has no persisted observation or scheduler visibility
+        if: success()
+        run: |
+          set -euo pipefail
+          target="$(date -u -d '1 hour ago' +'%Y%m%dT%H00Z')"
+          day="$(date -u -d '1 hour ago' +'%Y/%m/%d')"
+          file="data/operations/hourly-audits/$day/$target.json"
+          node - "$file" <<'NODE'
+          const fs = require('node:fs');
+          const report = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
+          const missing = report.observationStatus !== 'persisted';
+          const lookup = report.schedulerLookup?.status !== 'available';
+          if (missing || lookup) {
+            console.error('Earth 2036 hourly observation ATTENTION:', report.hourKey,
+              'observation=', report.observationStatus, 'schedulerLookup=', report.schedulerLookup?.status);
+            process.exit(1);
+          }
+          console.log('Independent hourly observation verified for', report.hourKey,
+            'qualifiedTrialTick=', report.observation?.qualifiedTrialTick);
+          NODE

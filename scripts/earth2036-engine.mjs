@@ -314,7 +314,7 @@ async function main() {
     if (!entity.cik) {
       observations[entity.ticker] = { ticker: entity.ticker, observedAt: startedAt, status: "unresolved_identity", cik: null, filingFingerprint: null, filings: [] };
       accessionContinuityItems.push({ ticker: entity.ticker, status:"unresolved_identity", continuityEstablished:false, reason:"Issuer CIK unavailable" });
-      incompleteAccessionCursors++;
+      // Already absent from observedCount; do not subtract this case twice.
       continue;
     }
 

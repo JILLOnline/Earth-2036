@@ -5,6 +5,7 @@ import { pathToFileURL } from "node:url";
 import { buildUniverse, normalizeTicker } from "./lib/universe-parser.mjs";
 import { evaluateEvidenceQualification, parseEvidenceDispositionLedger } from "./lib/evidence-qualification.mjs";
 import { auditObservedFilingChanges } from "./lib/source-delta-observation-audit.mjs";
+import { secFilingRows, reconcileSecAccessionCursor, buildSecAccessionContinuityAudit } from "./lib/sec-accession-cursor.mjs";
 import {
   baselineGate,
   isPublishableScoreRecord,
@@ -146,19 +147,9 @@ export function mergeExchangeMaps(...maps) {
 }
 
 function recentFilings(submissions) {
-  const recent = submissions?.filings?.recent ?? {};
-  const accessions = recent.accessionNumber ?? [];
-  const result = [];
-  for (let index = 0; index < Math.min(accessions.length, 12); index += 1) {
-    result.push({
-      accessionNumber: accessions[index] ?? null,
-      filingDate: recent.filingDate?.[index] ?? null,
-      reportDate: recent.reportDate?.[index] ?? null,
-      form: recent.form?.[index] ?? null,
-      primaryDocument: recent.primaryDocument?.[index] ?? null,
-    });
-  }
-  return result;
+  // Preserve the bounded, backwards-compatible observation/UI projection,
+  // but never use the 12-row projection as the source-ingestion cutoff.
+  return secFilingRows(submissions?.filings?.recent).slice(0,12);
 }
 
 function mergeDiscoveryPool(previous, additions) {
@@ -315,11 +306,15 @@ async function main() {
   let observedCount = 0;
   let submissionLatencyTotal = 0;
   let submissionRequests = 0;
+  const accessionContinuityItems = [];
+  let incompleteAccessionCursors = 0;
 
   for (const entity of entities) {
     const previous = previousObservations.candidates?.[entity.ticker] ?? null;
     if (!entity.cik) {
       observations[entity.ticker] = { ticker: entity.ticker, observedAt: startedAt, status: "unresolved_identity", cik: null, filingFingerprint: null, filings: [] };
+      accessionContinuityItems.push({ ticker: entity.ticker, status:"unresolved_identity", continuityEstablished:false, reason:"Issuer CIK unavailable" });
+      incompleteAccessionCursors++;
       continue;
     }
 
@@ -329,6 +324,34 @@ async function main() {
       const { response, latencyMs } = await fetchWithRetry(url, { headers: { "User-Agent": SEC_USER_AGENT, Accept: "application/json" } }, 2, 10000);
       const submissions = await response.json();
       const filings = recentFilings(submissions);
+      const fullRecent = secFilingRows(submissions?.filings?.recent);
+      let continuity = reconcileSecAccessionCursor(previous, fullRecent);
+      if (continuity.archiveRequired) {
+        const archives = Array.isArray(submissions?.filings?.files) ? submissions.filings.files : [];
+        const archiveRows = [];
+        for (const archive of archives.slice(0,3)) {
+          if (!/^CIK[0-9]+-submissions-[0-9]+\\.json$/.test(String(archive?.name || ""))) continue;
+          try {
+            await sleep(115);
+            const archivedResponse = await fetchWithRetry(
+              "https://data.sec.gov/submissions/" + archive.name,
+              {headers:{"User-Agent":SEC_USER_AGENT,Accept:"application/json"}}, 2, 10000
+            );
+            archiveRows.push(...secFilingRows(archivedResponse.response ? await archivedResponse.response.json() : null));
+            continuity = reconcileSecAccessionCursor(previous, fullRecent, archiveRows);
+            if (continuity.continuityEstablished) break;
+          } catch (error) {
+            continuity = {...continuity, reason:"SEC archive retrieval failed; continuity not proven: " + String(error?.message || error).slice(0,120)};
+            break;
+          }
+        }
+      }
+      accessionContinuityItems.push({
+        ticker:entity.ticker, status:continuity.status, anchor:continuity.anchor,
+        continuityEstablished:continuity.continuityEstablished,
+        recoveredNewAccessions:continuity.newlyVisible.length,reason:continuity.reason,
+      });
+      if (!continuity.continuityEstablished) incompleteAccessionCursors++;
       const filingFingerprint = hash(filings.map((filing) => [filing.accessionNumber, filing.form, filing.filingDate]));
       observedCount += 1;
       submissionLatencyTotal += latencyMs;
@@ -346,9 +369,10 @@ async function main() {
         sourceUrl: url,
       };
 
-      if (previous?.filingFingerprint && previous.filingFingerprint !== filingFingerprint) {
-        const priorAccessions = new Set((previous.filings ?? []).map((filing) => filing.accessionNumber));
-        for (const filing of filings.filter((item) => item.accessionNumber && !priorAccessions.has(item.accessionNumber))) {
+      if (continuity.continuityEstablished) {
+        // New filings are identified using the full SEC accession cursor, not
+        // the bounded observation projection or a clock-derived fingerprint.
+        for (const filing of continuity.newlyVisible) {
           const id = `${entity.ticker}:${filing.accessionNumber}`;
           if (!priorQueueById.has(id)) {
             priorQueueById.set(id, {
@@ -370,6 +394,8 @@ async function main() {
         }
       }
     } catch (error) {
+      incompleteAccessionCursors++;
+      accessionContinuityItems.push({ticker:entity.ticker,status:"retrieval_failed",continuityEstablished:false,reason:String(error?.message||error).slice(0,160)});
       observations[entity.ticker] = {
         ticker: entity.ticker,
         observedAt: startedAt,
@@ -400,7 +426,11 @@ async function main() {
   }, startedAt);
   await writeJson(path.join(RUNTIME_DIR, "adaptation", "source-change-audit.json"), sourceChangeAudit);
 
-  const submissionCoverage = observedCount / EXPECTED;
+  const accessionContinuityAudit = buildSecAccessionContinuityAudit(accessionContinuityItems, startedAt);
+  await writeJson(path.join(RUNTIME_DIR, "adaptation", "sec-accession-continuity.json"), accessionContinuityAudit);
+  // A successfully fetched SEC snapshot is NOT enough to claim continuous
+  // accession coverage when an older cursor was not recovered.
+  const submissionCoverage = Math.max(0, observedCount - incompleteAccessionCursors) / EXPECTED;
   const submissionsSource = sourceRecord(previousHealth, "sec-submissions-universe", "SEC submissions — active universe", "primary", "hourly", true);
   sources.push(
     submissionRequests > 0

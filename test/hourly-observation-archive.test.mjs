@@ -24,6 +24,9 @@ test('No post-T0 history before baseline publication',()=>{
  assert.equal(buildHourlyObservationArchive({state:{...state,phase:'official_t0_baseline'},manifest:{published:false},observations,sourceHealth:health,rawHashes:hashes}),null);
  assert.equal(buildHourlyObservationArchive({state,manifest:{published:false},observations,sourceHealth:health,rawHashes:hashes}),null);
 });
+test('T0 publication cycle remains baseline sequence zero rather than trial observation',()=>{
+ assert.equal(buildHourlyObservationArchive({state,manifest:{published:true,t0CycleKey:state.cycleKey},observations,sourceHealth:health,rawHashes:hashes}),null);
+});
 test('Unqualified trial hours still archive truthful observations and source hashes',()=>{
  const r=buildHourlyObservationArchive({state,manifest:{published:true},observations,sourceHealth:health,rawHashes:hashes});
  assert.equal(r.cycleKey,'20261009T1400Z');

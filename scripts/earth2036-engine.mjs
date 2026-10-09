@@ -330,7 +330,7 @@ async function main() {
         const archives = Array.isArray(submissions?.filings?.files) ? submissions.filings.files : [];
         const archiveRows = [];
         for (const archive of archives.slice(0,3)) {
-          if (!/^CIK[0-9]+-submissions-[0-9]+\\.json$/.test(String(archive?.name || ""))) continue;
+          if (!/^CIK[0-9]+-submissions-[0-9]+\.json$/.test(String(archive?.name || ""))) continue;
           try {
             await sleep(115);
             const archivedResponse = await fetchWithRetry(

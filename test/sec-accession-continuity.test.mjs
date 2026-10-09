@@ -7,11 +7,11 @@ const acc=n=>"0000012345-26-"+String(n).padStart(6,"0");
 const filing=n=>({accessionNumber:acc(n),filingDate:"2026-10-09",reportDate:"2026-10-09",form:n%3===0?"8-K":"4",primaryDocument:"x.xml"});
 const prev={status:"observed",filingFingerprint:"old",filings:[filing(100),filing(99)]};
 test("SEC rows retain every accession, beyond 12, with aligned metadata and deduplication",()=>{
- const input=Array.from({length:15},(_,i)=>filing(115-i));
+ const input=Array.from({length:16},(_,i)=>filing(115-i)); // 115..100; preserve prior cursor 100.
  input.push(input[0]);
  const table={accessionNumber:input.map(x=>x.accessionNumber),filingDate:input.map(x=>x.filingDate),
  reportDate:input.map(x=>x.reportDate),form:input.map(x=>x.form),primaryDocument:input.map(x=>x.primaryDocument)};
- assert.equal(secFilingRows(table).length,15);
+ assert.equal(secFilingRows(table).length,16);
  const j=reconcileSecAccessionCursor(prev,secFilingRows(table));
  assert.equal(j.continuityEstablished,true);
  assert.equal(j.newlyVisible.length,15); // 115..101 precede the prior 100; 15 new accessions.

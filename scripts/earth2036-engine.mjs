@@ -9,7 +9,6 @@ import {
   baselineGate,
   isPublishableScoreRecord,
   isScoreRecordComplete,
-  qualifiesTick,
   rankRecords,
 } from "./lib/runtime-gates.mjs";
 
@@ -483,53 +482,14 @@ async function main() {
     await writeJson(BASELINE_MANIFEST, manifest);
   }
 
+  // Observation-only machine: the Council finalizer is the ONLY authority
+  // allowed to qualify a trial hour, increment its counter or write a tick.
+  // Preserve an already-finalized same-hour state across a scheduler rerun,
+  // but do not calculate a fresh qualification here.
   const baselinePublished = Boolean(manifest?.published);
-  const qualified = qualifiesTick({
-    baselinePublished,
-    companiesExpected: EXPECTED,
-    companiesObserved: observedCount,
-    sourceCoverage: combinedCoverage,
-    discoveryScanCompleted,
-    methodologyVersion: METHODOLOGY_VERSION,
-    unresolvedEvidence: evidenceQualification.unresolvedMaterialOrUnreviewed,
-    scoredCompanies: publishableCompanies,
-  });
-
-  let qualifiedTrialTicks = Number(runtimeState.qualifiedTrialTicks ?? manifest?.qualifiedTrialTicksAfterBaseline ?? 0);
-  let lastQualifiedCycleKey = runtimeState.lastQualifiedCycleKey ?? null;
-  if (qualified && lastQualifiedCycleKey !== thisCycle) {
-    qualifiedTrialTicks += 1;
-    lastQualifiedCycleKey = thisCycle;
-    const rankedByTicker = new Map(ranked.map((record) => [record.ticker, record]));
-    const tickRows = entities.map((entity) => {
-      const rank = rankedByTicker.get(entity.ticker) ?? null;
-      return {
-        ticker: entity.ticker,
-        rank: rank?.rank ?? null,
-        rankClass: rank?.rankClass ?? null,
-        earthScore: rank?.earthScore ?? null,
-        dataConfidence: rank?.dataConfidence ?? null,
-        risk: rank?.risk ?? null,
-        filingFingerprint: observations[entity.ticker]?.filingFingerprint ?? null,
-      };
-    });
-    await writeJson(path.join(RUNTIME_DIR, "ticks", `${thisCycle}.json`), {
-      tickNumber: qualifiedTrialTicks,
-      cycleKey: thisCycle,
-      capturedAt: startedAt,
-      methodologyVersion: METHODOLOGY_VERSION,
-      universeVersion: UNIVERSE_VERSION,
-      sourceCoverageRatio: combinedCoverage,
-      discoveryScanCompleted,
-      companiesObserved: observedCount,
-      rankings: tickRows,
-    });
-  }
-
-  if (manifest && manifest.qualifiedTrialTicksAfterBaseline !== qualifiedTrialTicks) {
-    manifest = { ...manifest, qualifiedTrialTicksAfterBaseline: qualifiedTrialTicks };
-    await writeJson(BASELINE_MANIFEST, manifest);
-  }
+  const qualifiedTrialTicks = Number(runtimeState.qualifiedTrialTicks ?? manifest?.qualifiedTrialTicksAfterBaseline ?? 0);
+  const lastQualifiedCycleKey = runtimeState.lastQualifiedCycleKey ?? null;
+  const qualified = lastQualifiedCycleKey === thisCycle && runtimeState.qualifiedTick === true;
 
   const state = {
     version: 1,

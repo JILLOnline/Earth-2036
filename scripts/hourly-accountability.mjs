@@ -109,7 +109,7 @@ export function auditReceiptPath(hourKey) {
 }
 
 async function main() {
-  const hourKey = previousHourKey();
+  const hourKey = process.env.EARTH_AUDIT_HOUR_KEY || previousHourKey();
   const now = new Date();
   const filename = path.join(ROOT, auditReceiptPath(hourKey));
   try { await readFile(filename, 'utf8'); console.log('Existing immutable hourly receipt: '+filename); return; }
@@ -119,7 +119,7 @@ async function main() {
   let runs = [], runLookupError=null;
   try {
     const repository = process.env.GITHUB_REPOSITORY || 'JILLOnline/Earth-2036';
-    const out = execFileSync('gh', ['api', 'repos/'+repository+'/actions/runs?per_page=100'], {encoding:'utf8', timeout:30000});
+    const out = execFileSync('gh', ['api', 'repos/'+repository+'/actions/workflows/earth2036-scheduler.yml/runs?per_page=100'], {encoding:'utf8', timeout:30000});
     const response = JSON.parse(out);
     if (!Array.isArray(response.workflow_runs)) throw new Error('GitHub Actions response missing workflow_runs');
     runs=response.workflow_runs;

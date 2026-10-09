@@ -322,6 +322,11 @@ if (membership.added.length || membership.removed.length) {
   };
   await writeFile(MEMBERSHIP_EVENTS_PATH, `${priorMembershipEvents}${JSON.stringify(event)}\n`, "utf8");
 }
+if (quarantinedEvidence.length) {
+  // This must precede all metrics/learning projections, not just the UI summary.
+  metrics.healthAlerts = [...new Set([...(metrics.healthAlerts || []), "worker_evidence_quarantine:" + quarantinedEvidence.length])];
+  metrics.healthy = false;
+}
 await writeWorkgraphArtifacts(ROOT, graph, packets, metrics, routingQueues);
 await mkdir(shadowDir, { recursive: true });
 await mkdir(workerViewDir, { recursive: true });
@@ -345,11 +350,6 @@ const quarantineReport = {
   handling: "Excluded from packet evidence and prohibited from chief-ready promotion; original Git files retained for repair and hard JSON CI auditing.",
 };
 await writeJsonArtifact(path.join(workgraphDir, "evidence-quarantine.json"), quarantineReport);
-if (quarantinedEvidence.length) {
-  metrics.healthAlerts = [...new Set([...(metrics.healthAlerts || []), "worker_evidence_quarantine:" + quarantinedEvidence.length])];
-  metrics.healthy = false;
-}
-
 function compactRoutingItem(item) {
   return {
     rank: item.rank,

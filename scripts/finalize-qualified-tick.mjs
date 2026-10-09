@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { qualifiesT0Publication, qualifiesTick } from "./lib/runtime-gates.mjs";
+import { evaluateEvidenceQualification, parseEvidenceDispositionLedger, evidenceQualificationMatchesState } from "./lib/evidence-qualification.mjs";
 import { buildTrajectorySnapshot, validateTrajectorySnapshot } from "./lib/trajectory-engine.mjs";
 import { loadVerifiedBridgeIndex } from "./lib/fundamentals-bridge-index.mjs";
 
@@ -54,6 +55,33 @@ if (!state?.cycleKey) {
 
 if (workgraph?.version !== 2) {
   console.error(JSON.stringify({ councilFinalizer: "BLOCKED", reason: "workgraph_v2_required" }));
+  process.exitCode = 1;
+  process.exit();
+}
+
+// Recompute evidence qualification from original filing queue and independent
+// disposition receipts. Fail closed on stale, corrupt, or mismatched summaries.
+const [reviewQueue, reviewSummary, reviewLedgerText] = await Promise.all([
+  readJson(path.join(RUNTIME, "evidence-review-queue.json"), null),
+  readJson(path.join(RUNTIME, "evidence-qualification.json"), null),
+  readText(path.join(ROOT, "data", "operations", "evidence-dispositions.jsonl"), ""),
+]);
+let independentReview;
+try {
+  independentReview = evaluateEvidenceQualification(
+    reviewQueue, parseEvidenceDispositionLedger(reviewLedgerText), state.lastCycleAt
+  );
+} catch (error) {
+  console.error(JSON.stringify({councilFinalizer:"BLOCKED",reason:"evidence_review_integrity_failure",detail:String(error.message)}));
+  process.exitCode = 1;
+  process.exit();
+}
+if (!evidenceQualificationMatchesState(independentReview, state, reviewSummary) ||
+    reviewSummary.auditedAt !== state.lastCycleAt ||
+    state.evidenceQualificationFingerprint !== independentReview.reviewFingerprint) {
+  console.error(JSON.stringify({councilFinalizer:"BLOCKED",reason:"evidence_review_fingerprint_or_count_mismatch",
+    rawUnresolvedEvidence: independentReview.rawPending,
+    reviewBlockers: independentReview.unresolvedMaterialOrUnreviewed}));
   process.exitCode = 1;
   process.exit();
 }

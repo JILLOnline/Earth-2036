@@ -85,11 +85,10 @@ function resolverContradictionIsActionable(item) {
   const sourceB = contradictionText(
     obj.sourceB ?? obj.rightSource ?? null
   );
-  const preferredOwner = contradictionText(
-    obj.nextOwner ?? obj.owner ?? obj.adjudicationOwner ?? null
-  );
-  return preferredOwner === "deep-resolver" ||
-    (!preferredOwner && Boolean(claimA && claimB && (sourceA || sourceB)));
+  // Ownership is not evidence. Match Workgraph's strict Resolver admission:
+  // without two identifiable claims and a source, Scout must acquire the
+  // missing source context instead of silently suppressing the assist.
+  return Boolean(claimA && claimB && (sourceA || sourceB));
 }
 
 function needsResolverContradictionSourceSupport(packet) {

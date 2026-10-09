@@ -86,6 +86,31 @@ if (!evidenceQualificationMatchesState(independentReview, state, reviewSummary) 
   process.exit();
 }
 
+// The machine's observation is independent of worker evidence quality.
+// Retain that observation even if one worker wrote malformed evidence, but
+// NEVER qualify T0 or a trial tick while the source-evidence audit is held.
+const quarantine = await readJson(path.join(RUNTIME, "workgraph", "evidence-quarantine.json"), null);
+if (!quarantine || quarantine.contract !== "earth2036-worker-evidence-quarantine-v1" ||
+    !Array.isArray(quarantine.items) ||
+    !Number.isInteger(quarantine.fileCount) ||
+    quarantine.fileCount !== quarantine.items.length ||
+    !Number.isFinite(Date.parse(quarantine.generatedAt || "")) ||
+    Date.parse(quarantine.generatedAt) < Date.parse(state.lastCycleAt)) {
+  console.error(JSON.stringify({councilFinalizer:"BLOCKED",reason:"missing_or_stale_worker_evidence_quarantine_audit"}));
+  process.exitCode = 1;
+  process.exit();
+}
+if (quarantine.fileCount > 0) {
+  console.warn(JSON.stringify({
+    councilFinalizer:"HELD",
+    reason:"quarantined_worker_evidence",
+    fileCount:quarantine.fileCount,
+    affectedTickers:quarantine.affectedTickers,
+    action:"no_t0_publication_or_trial_tick;machine_observation_can_persist",
+  }));
+  process.exit(0);
+}
+
 const workgraphRows = Object.values(workgraph?.companies || {});
 const expectedCompanies = Number(state.companiesExpected || 250);
 const workgraphCanonical = workgraphRows.filter((row) => row?.state === "canonical").length;

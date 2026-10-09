@@ -1,5 +1,6 @@
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import { calculateCanonicalEarthScoreBreakdown, MIN_PUBLISHABLE_DATA_CONFIDENCE, REQUIRED_SCORE_COMPONENTS } from "./runtime-gates.mjs";
 
 export const WORKGRAPH_VERSION = 2;
@@ -444,23 +445,66 @@ export async function loadRoleRuns(root) {
   return out;
 }
 
-export async function loadStructuredEvidence(root) {
+export async function loadStructuredEvidence(root, quarantined = []) {
   const dir = path.join(root, "data", "runtime", "workgraph", "evidence");
   let files = [];
-  try { files = (await readdir(dir)).filter((name) => name.endsWith(".json")); } catch { return []; }
+  try {
+    files = (await readdir(dir)).filter((name) => name.endsWith(".json")).sort();
+  } catch (error) {
+    if (error.code === "ENOENT") return [];
+    throw error; // Permission/I/O failures are not optional malformed evidence.
+  }
   const out = [];
   for (const name of files) {
     const full = path.join(dir, name);
+    const text = await readFile(full, "utf8"); // Unexpected disk failure still stops reconciliation.
     try {
-      const raw = JSON.parse(await readFile(full, "utf8"));
+      const raw = JSON.parse(text);
+      // File-atomic acceptance: a failure partway through expansion does not
+      // allow some rows from the same corrupted document to enter the packet.
+      const rows = [];
       for (const row of (Array.isArray(raw) ? raw : [raw])) {
-        for (const expanded of expandEvidenceRows(row)) out.push(normalizeEvidenceObject(expanded, path.relative(root, full)));
+        for (const expanded of expandEvidenceRows(row)) {
+          rows.push(normalizeEvidenceObject(expanded, path.relative(root, full)));
+        }
       }
+      out.push(...rows);
     } catch (error) {
-      console.warn(`Workgraph evidence load failed for ${name}: ${error?.message || error}`);
+      const match = name.match(/^([A-Z0-9.]{1,10})-/);
+      quarantined.push({
+        path: path.relative(root, full).replaceAll(path.sep, "/"),
+        ticker: match?.[1] || null,
+        sha256: createHash("sha256").update(text).digest("hex"),
+        reason: "worker_evidence_parse_or_normalization_failure",
+        errorClass: error?.name || "Error",
+      });
+      console.warn(`Workgraph evidence quarantined for ${name}: ${error?.message || error}`);
     }
   }
   return out;
+}
+
+// A failed worker artifact is never treated as positive packet evidence.
+// Existing source-backed rows remain available for forensic review, but no
+// affected noncanonical company can move to chief_ready while its source
+// lineage contains an unparseable artifact.
+export function holdPacketForEvidenceQuarantine(packet, quarantined = []) {
+  const matching = quarantined.filter((item) => !item.ticker || item.ticker === packet.ticker);
+  if (!matching.length) return packet;
+  const failures = [...new Set([...(packet.preflight?.failures || []), "invalid_worker_evidence_artifact"])];
+  return {
+    ...packet,
+    quarantinedEvidencePaths: matching.map((item) => item.path),
+    preflight: {
+      ...packet.preflight,
+      passed: false,
+      failures,
+      routing: [
+        ...(packet.preflight?.routing || []).filter((item) => item.failure !== "invalid_worker_evidence_artifact"),
+        { failure: "invalid_worker_evidence_artifact", owner: "machine" },
+      ],
+    },
+  };
 }
 
 export function compilePromotionPacket(ticker, evidenceRows, graphRow, options = {}) {

@@ -3,6 +3,7 @@ import path from "node:path";
 import { applyPacketState, buildRoutingQueues, compilePromotionPacket, computeWorkgraphMetrics, loadRoleRuns, loadStructuredEvidence, migrateLegacyQueue, reconcileWorkgraphMembership, validateWorkgraph, writeWorkgraphArtifacts } from "./lib/workgraph-v2.mjs";
 import { auditCalibrationRecord, buildPacketCalibrationGuidance, CALIBRATION_REGISTRY } from "./lib/calibration-engine.mjs";
 import { buildAssistRequests } from "./lib/assist-bus.mjs";
+import { evaluateEvidenceQualification, parseEvidenceDispositionLedger } from "./lib/evidence-qualification.mjs";
 import { buildDigitalTwinShadow } from "./lib/digital-twin-engine.mjs";
 import { buildClosureFrontier, buildValueAllocationShadow } from "./lib/value-allocator.mjs";
 import { buildDependencyShadow } from "./lib/dependency-graph.mjs";
@@ -52,7 +53,7 @@ function deriveEvidenceBacklog(queue, graph, frontier) {
     rawUnresolved: Number(queue?.unresolved || 0),
     totalItems: Array.isArray(queue?.items) ? queue.items.length : 0,
     buckets,
-    rule: "Operational decisions use gating evidence remaining; the raw historical/unresolved count remains available for audit.",
+    rule: "Frontier-gating/supporting buckets are scheduling priority only, NOT formal materiality dispositions. Unreviewed filings still block qualification.",
   };
 }
 
@@ -564,6 +565,25 @@ const dependencyShadow = buildDependencyShadow(assistBus, now.toISOString());
 await writeJsonArtifact(path.join(shadowDir, "dependencies.json"), dependencyShadow);
 const evidenceReviewQueue = await readJsonOr(EVIDENCE_REVIEW_QUEUE_PATH, { unresolved: 0, items: [] });
 const evidenceBacklog = deriveEvidenceBacklog(evidenceReviewQueue, graph, closureFrontier);
+const reviewLedgerPath = path.join(ROOT, "data", "operations", "evidence-dispositions.jsonl");
+let reviewLedgerText = "";
+try { reviewLedgerText = await readFile(reviewLedgerPath, "utf8"); }
+catch (error) { if (error.code !== "ENOENT") throw error; }
+const formalQualification = evaluateEvidenceQualification(
+  evidenceReviewQueue, parseEvidenceDispositionLedger(reviewLedgerText), now.toISOString()
+);
+evidenceBacklog.qualification = {
+  contract: formalQualification.contract,
+  rawPending: formalQualification.rawPending,
+  pendingUnreviewed: formalQualification.pendingUnreviewed,
+  reviewedMaterialOpen: formalQualification.reviewedMaterialOpen,
+  reviewedNonGating: formalQualification.reviewedNonGating,
+  reviewedResolved: formalQualification.reviewedResolved,
+  unresolvedMaterialOrUnreviewed: formalQualification.unresolvedMaterialOrUnreviewed,
+  gatePassed: formalQualification.gatePassed,
+  policy: formalQualification.policy,
+  note: "Scheduling supporting buckets are not approved non-gating materiality decisions.",
+};
 await writeJsonArtifact(path.join(workerViewDir, "command-summary.json"), {
   version: 1,
   contract: "earth2036-worker-command-summary-v1",

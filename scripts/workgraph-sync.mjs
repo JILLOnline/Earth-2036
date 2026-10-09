@@ -1,6 +1,6 @@
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { applyPacketState, buildRoutingQueues, compilePromotionPacket, computeWorkgraphMetrics, loadRoleRuns, loadStructuredEvidence, migrateLegacyQueue, reconcileWorkgraphMembership, validateWorkgraph, writeWorkgraphArtifacts } from "./lib/workgraph-v2.mjs";
+import { applyPacketState, buildRoutingQueues, compilePromotionPacket, computeWorkgraphMetrics, holdPacketForEvidenceQuarantine, loadRoleRuns, loadStructuredEvidence, migrateLegacyQueue, reconcileWorkgraphMembership, validateWorkgraph, writeWorkgraphArtifacts } from "./lib/workgraph-v2.mjs";
 import { auditCalibrationRecord, buildPacketCalibrationGuidance, CALIBRATION_REGISTRY } from "./lib/calibration-engine.mjs";
 import { buildAssistRequests } from "./lib/assist-bus.mjs";
 import { evaluateEvidenceQualification, parseEvidenceDispositionLedger } from "./lib/evidence-qualification.mjs";
@@ -188,15 +188,21 @@ if (errors.length) {
   process.exit(1);
 }
 
-const [evidence, roleRuns] = await Promise.all([loadStructuredEvidence(ROOT), loadRoleRuns(ROOT)]);
+const quarantinedEvidence = [];
+const [evidence, roleRuns] = await Promise.all([
+  loadStructuredEvidence(ROOT, quarantinedEvidence), loadRoleRuns(ROOT),
+]);
 const packets = [];
 for (const [ticker, row] of Object.entries(graph.companies)) {
   if (["canonical", "blocked"].includes(row.state)) continue;
-  const packet = compilePromotionPacket(ticker, evidence, row, {
-    minConfidence: MIN_PUBLISHABLE_DATA_CONFIDENCE,
-    methodologyVersion,
-    registryEntry: registryByTicker[ticker] || null,
-  });
+  const packet = holdPacketForEvidenceQuarantine(
+    compilePromotionPacket(ticker, evidence, row, {
+      minConfidence: MIN_PUBLISHABLE_DATA_CONFIDENCE,
+      methodologyVersion,
+      registryEntry: registryByTicker[ticker] || null,
+    }),
+    quarantinedEvidence,
+  );
   packets.push(packet);
   applyPacketState(graph, packet);
 }
@@ -316,6 +322,11 @@ if (membership.added.length || membership.removed.length) {
   };
   await writeFile(MEMBERSHIP_EVENTS_PATH, `${priorMembershipEvents}${JSON.stringify(event)}\n`, "utf8");
 }
+if (quarantinedEvidence.length) {
+  // This must precede all metrics/learning projections, not just the UI summary.
+  metrics.healthAlerts = [...new Set([...(metrics.healthAlerts || []), "worker_evidence_quarantine:" + quarantinedEvidence.length])];
+  metrics.healthy = false;
+}
 await writeWorkgraphArtifacts(ROOT, graph, packets, metrics, routingQueues);
 await mkdir(shadowDir, { recursive: true });
 await mkdir(workerViewDir, { recursive: true });
@@ -325,6 +336,20 @@ async function writeJsonArtifact(file, value) {
   await writeFile(file, `${JSON.stringify(value, null, 2)}\n`, "utf8");
 }
 
+const affected = [...new Set(quarantinedEvidence.map((item) => item.ticker).filter(Boolean))].sort();
+const unknownScope = quarantinedEvidence.some((item) => !item.ticker);
+const quarantineReport = {
+  version: 1,
+  contract: "earth2036-worker-evidence-quarantine-v1",
+  generatedAt: now.toISOString(),
+  fileCount: quarantinedEvidence.length,
+  affectedTickers: affected,
+  unknownScope,
+  affectedCanonicalTickers: affected.filter((ticker) => graph.companies[ticker]?.state === "canonical"),
+  items: quarantinedEvidence,
+  handling: "Excluded from packet evidence and prohibited from chief-ready promotion; original Git files retained for repair and hard JSON CI auditing.",
+};
+await writeJsonArtifact(path.join(workgraphDir, "evidence-quarantine.json"), quarantineReport);
 function compactRoutingItem(item) {
   return {
     rank: item.rank,
@@ -616,6 +641,13 @@ await writeJsonArtifact(path.join(workerViewDir, "command-summary.json"), {
     recentWorkerRuns: (metrics.normalizedYieldRuns || []).slice(0, 40),
   },
   evidenceBacklog,
+  workerEvidenceQuarantine: {
+    fileCount: quarantineReport.fileCount,
+    affectedTickers: quarantineReport.affectedTickers,
+    unknownScope: quarantineReport.unknownScope,
+    affectedCanonicalTickers: quarantineReport.affectedCanonicalTickers,
+    authoritativeSourcePath: "data/runtime/workgraph/evidence-quarantine.json",
+  },
   chiefReadinessSemantics: {
     sourceStateAuthoritative: false,
     rule: "Only Workgraph state === chief_ready AND preflight.passed === true is Chief-ready.",

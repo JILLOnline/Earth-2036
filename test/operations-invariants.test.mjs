@@ -68,7 +68,9 @@ test("runtime control plane skips malformed evidence fail-closed while CI retain
   assert.equal(reconcile.includes("evidence-json-integrity.test.mjs"), false);
   assert.ok(ci.includes("npm test"));
   const loader = await source("scripts/lib/workgraph-v2.mjs");
-  assert.ok(loader.includes("Workgraph evidence load failed"));
+  assert.ok(loader.includes("Workgraph evidence quarantined"));
+  assert.ok(loader.includes("holdPacketForEvidenceQuarantine"));
+  assert.ok(loader.includes("worker_evidence_parse_or_normalization_failure"));
 });
 
 test("CI watches every Earth 2036 operational workflow and publishes every verified main snapshot", async () => {

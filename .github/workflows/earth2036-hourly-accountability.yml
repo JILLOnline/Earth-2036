@@ -1,0 +1,84 @@
+name: Earth 2036 Hourly Accountability
+on:
+  schedule:
+    - cron: "12 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: earth2036-hourly-accountability
+  cancel-in-progress: false
+
+jobs:
+  hourly-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Verify audit invariants
+        run: node --test test/hourly-accountability.test.mjs
+
+      - name: Persist one independent as-of hourly audit receipt
+        id: receipt
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git config user.name "earth2036-audit[bot]"
+          git config user.email "earth2036-audit@users.noreply.github.com"
+
+          # Freeze the audited slot across retries and repository races.
+          export EARTH_AUDIT_HOUR_KEY="$(date -u -d '1 hour ago' +'%Y%m%dT%H00Z')"
+          echo "hourKey=$EARTH_AUDIT_HOUR_KEY" >> "$GITHUB_OUTPUT"
+          for attempt in 1 2 3; do
+            git fetch --no-tags --depth=1 origin main
+            git reset --hard origin/main
+            git clean -fd data/operations/hourly-audits
+
+            node scripts/hourly-accountability.mjs
+            git add data/operations/hourly-audits
+
+            if git diff --cached --quiet; then
+              echo "The immutable receipt already exists; nothing to overwrite."
+              exit 0
+            fi
+
+            git commit -m "audit: UTC hourly accountability $EARTH_AUDIT_HOUR_KEY"
+            if git push origin HEAD:main; then
+              echo "Persisted UTC hourly audit $EARTH_AUDIT_HOUR_KEY."
+              exit 0
+            fi
+            echo "Audit commit raced another writer; retrying from newest main."
+          done
+          echo "FAILED to persist the independent audit receipt after 3 tries." >&2
+          exit 1
+
+      - name: Alert if audited hour has no persisted observation or scheduler visibility
+        if: success()
+        run: |
+          set -euo pipefail
+          target="${{ steps.receipt.outputs.hourKey }}"
+          day="${target:0:4}/${target:4:2}/${target:6:2}"
+          file="data/operations/hourly-audits/$day/$target.json"
+          node - "$file" <<'NODE'
+          const fs = require('node:fs');
+          const report = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
+          const missing = report.observationStatus !== 'persisted';
+          const lookup = report.schedulerLookup?.status !== 'available';
+          if (missing || lookup) {
+            console.error('Earth 2036 hourly observation ATTENTION:', report.hourKey,
+              'observation=', report.observationStatus, 'schedulerLookup=', report.schedulerLookup?.status);
+            process.exit(1);
+          }
+          console.log('Independent hourly observation verified for', report.hourKey,
+            'qualifiedTrialTick=', report.observation?.qualifiedTrialTick);
+          NODE

@@ -152,6 +152,29 @@ jobs:
             gh workflow run earth2036-pages.yml --repo "${{ github.repository }}" --ref main -f source_sha="$main_head"
           fi
 
+      - name: Backstop missing independent hourly audit receipt
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          target="$(date -u -d '1 hour ago' +'%Y%m%dT%H00Z')"
+          day="$(date -u -d '1 hour ago' +'%Y/%m/%d')"
+          receipt="data/operations/hourly-audits/$day/$target.json"
+
+          if gh api "repos/${{ github.repository }}/contents/$receipt?ref=main" >/dev/null 2>&1; then
+            echo "Hourly accountability receipt present for $target."
+            exit 0
+          fi
+
+          active=$(gh run list --repo "${{ github.repository }}" --workflow earth2036-hourly-accountability.yml --limit 10 --json status --jq '[.[] | select(.status == "in_progress" or .status == "queued")] | length')
+          if [ "$active" = "0" ]; then
+            echo "Missing hourly receipt for $target; dispatching independent accountability workflow."
+            gh workflow run earth2036-hourly-accountability.yml --repo "${{ github.repository }}" --ref main
+          else
+            echo "Hourly accountability workflow already in progress or queued."
+          fi
+
       - name: Fail closed on unhealthy GitHub-native plane
         if: steps.execution.outputs.unhealthy == 'true'
         run: |

@@ -4,6 +4,7 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { buildUniverse, normalizeTicker } from "./lib/universe-parser.mjs";
 import { evaluateEvidenceQualification, parseEvidenceDispositionLedger } from "./lib/evidence-qualification.mjs";
+import { auditObservedFilingChanges } from "./lib/source-delta-observation-audit.mjs";
 import {
   baselineGate,
   isPublishableScoreRecord,
@@ -390,6 +391,14 @@ async function main() {
     companiesObserved: observedCount,
     candidates: observations,
   });
+
+  // Derived observation-only source change report; do NOT feed raw rolling-window
+  // differences into worker reactivation or score authority without source review.
+  const sourceChangeAudit = auditObservedFilingChanges(previousObservations, {
+    capturedAt: startedAt,
+    candidates: observations,
+  }, startedAt);
+  await writeJson(path.join(RUNTIME_DIR, "adaptation", "source-change-audit.json"), sourceChangeAudit);
 
   const submissionCoverage = observedCount / EXPECTED;
   const submissionsSource = sourceRecord(previousHealth, "sec-submissions-universe", "SEC submissions — active universe", "primary", "hourly", true);

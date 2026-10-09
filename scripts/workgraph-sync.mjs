@@ -7,6 +7,7 @@ import { evaluateEvidenceQualification, parseEvidenceDispositionLedger } from ".
 import { buildDigitalTwinShadow } from "./lib/digital-twin-engine.mjs";
 import { buildClosureFrontier, buildValueAllocationShadow } from "./lib/value-allocator.mjs";
 import { buildDependencyShadow } from "./lib/dependency-graph.mjs";
+import { buildSourceDependencyHandoffs } from "./lib/source-dependency-handoff.mjs";
 import { buildTrajectorySnapshot, validateTrajectorySnapshot } from "./lib/trajectory-engine.mjs";
 import { loadVerifiedBridgeIndex } from "./lib/fundamentals-bridge-index.mjs";
 import { MIN_PUBLISHABLE_DATA_CONFIDENCE } from "./lib/runtime-gates.mjs";
@@ -279,6 +280,10 @@ const proposedAssistBus = buildAssistRequests(
 );
 const assistBus = routingEnabled ? proposedAssistBus : legacyAssistBus;
 const routingQueues = routingEnabled ? proposedRoutingQueues : legacyRoutingQueues;
+const sourceDependencyHandoffs = buildSourceDependencyHandoffs(
+  graph, packets, proposedRoutingQueues?.["deep-resolver"], now.toISOString(),
+  { maxPilotCases: 1 }
+);
 metrics.routingQueueCounts = Object.fromEntries(Object.entries(routingQueues).map(([role, queue]) => [role, queue.total]));
 metrics.effectiveOwnerBacklog = {
   ...metrics.ownerBacklog,
@@ -394,6 +399,8 @@ function compactAssistRequest(request) {
 }
 
 await writeJsonArtifact(path.join(workgraphDir, "assist-bus.json"), assistBus);
+await writeJsonArtifact(path.join(workgraphDir, "source-dependency-handoffs.json"), sourceDependencyHandoffs);
+await writeJsonArtifact(path.join(workerViewDir, "source-dependency-handoffs.json"), sourceDependencyHandoffs);
 await writeJsonArtifact(path.join(shadowDir, "closure-frontier.json"), closureFrontier);
 await writeJsonArtifact(path.join(shadowDir, "closure-routing-proposal.json"), {
   version: 1,
@@ -641,6 +648,16 @@ await writeJsonArtifact(path.join(workerViewDir, "command-summary.json"), {
     recentWorkerRuns: (metrics.normalizedYieldRuns || []).slice(0, 40),
   },
   evidenceBacklog,
+  sourceDependencyHandoffs: {
+    authority: "non-canonical-pending-source-verification",
+    totalCandidates: sourceDependencyHandoffs.totalCandidates,
+    selected: sourceDependencyHandoffs.selected.map((x) => ({
+      ticker: x.ticker, rootOwner: x.rootOwner, sourceOwner: x.sourceOwner,
+      status: x.status, taskExecutionAuthorized: x.taskExecutionAuthorized,
+      exactMissingFacts: x.exactMissingFacts.slice(0,3),
+    })),
+    sourcePath: "data/runtime/workgraph/worker-view/source-dependency-handoffs.json",
+  },
   workerEvidenceQuarantine: {
     fileCount: quarantineReport.fileCount,
     affectedTickers: quarantineReport.affectedTickers,

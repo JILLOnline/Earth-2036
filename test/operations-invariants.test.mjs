@@ -255,7 +255,8 @@ test("Trust Ledger exposes doctrine and shadow authority without turning operati
 
 test("scheduler remains burst-safe while core engine membership changes refresh immediately", async () => {
   const text = await source(".github/workflows/earth2036-scheduler.yml");
-  assert.ok(text.includes('cron: "7,27,47 * * * *"'));
+  assert.match(text, /^    - cron: "7,27,47 \\* \\* \\* \\*"$/m);
+  assert.equal(text.includes('\\n    # Each invocation'), false);
   assert.ok(text.includes('scripts/check-hourly-observation.mjs'));
   assert.ok(text.includes("skipped_hour=true"));
   assert.ok(text.includes("if: steps.persist.outputs.skipped_hour != 'true'"));

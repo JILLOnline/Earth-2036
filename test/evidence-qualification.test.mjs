@@ -20,7 +20,12 @@ const decision=(x,disposition="non_gating")=>({
   sourceDocumentSha256:"a".repeat(64),
   rationale:"Primary source reviewed in full: disclosed matter was already captured in a verified canonical evidence packet.",
 });
-const evaluate=(items, reviews=[])=>evaluateEvidenceQualification({items},reviews,NOW);
+// Unit-test proof stubs only; production independently reads and verifies archived SEC bytes.
+const testProofs=reviews=>new Map(reviews.filter(x=>x.disposition==="non_gating"||x.disposition==="resolved").map(x=>[
+  x.reviewId,{verified:true,sourceDocumentSha256:x.sourceDocumentSha256,
+    primarySourceUrl:x.primarySourceUrl,archiveDigest:"b".repeat(64)}
+]));
+const evaluate=(items, reviews=[])=>evaluateEvidenceQualification({items},reviews,NOW,testProofs(reviews));
 
 test("unreviewed SEC forms 4 and 144 are NEVER automatically exempt",()=>{
   const rows=[item("AAA:001","4"),item("BBB:002","144"),item("CCC:003","8-K")];
@@ -106,4 +111,18 @@ test("engine writes both raw and reviewed counters; finalizer independently veri
  assert.match(finalizer,/evidenceQualificationMatchesState\(/);
  assert.match(finalizer,/evidence_review_integrity_failure/);
  assert.match(finalizer,/evidence_review_fingerprint_or_count_mismatch/);
+});
+
+test("an isolated reviewer-supplied SHA256 cannot clear without authenticated archive",()=>{
+ const x=item(),d=decision(x);
+ assert.throws(()=>evaluateEvidenceQualification({items:[x]},[d],NOW),/authenticated SEC source archive/);
+ assert.equal(evaluate([x],[d]).reviewedNonGating,1);
+});
+test("every historical review event participates in ordered ledger digest",()=>{
+ const x=item(),first=decision(x),later={...decision(x,"material_open"),
+  reviewId:"review:AAA:001:2", supersedesReviewId:first.reviewId, reviewedAt:"2026-10-09T22:00:00.000Z"};
+ const a=evaluate([x],[first,later]);
+ const b=evaluate([x],[{...first,rationale:first.rationale+" Additional source wording."},later]);
+ assert.notEqual(a.reviewLedgerDigest,b.reviewLedgerDigest);
+ assert.equal(a.unresolvedMaterialOrUnreviewed,1);
 });

@@ -109,3 +109,26 @@ Verifying the Earth 2036 workflow/helper SHA is **not enough** if `uses:` action
 `ownershipDocument`, issuer fields and matching CIK alone do not distinguish Forms 3, 4 and 5. For the selected queued entry `MRVL:0001628280-26-065570`, require an XML `documentType` value of **exactly `4`**, matched to the already authenticated queue `form` and associated SEC filing metadata. Apply the corresponding official SEC ownership XML schema/constraints to distinguish the claimed filing type; reject missing, duplicate, ambiguous or substituted `documentType`, out-of-family forms, and invalid form-specific content. Add regression fixtures for valid Form 4 and negative Forms 3/5, missing `documentType`, mismatched queue form, forged issuer CIK, missing required data, XML parser/DTD/entity attack, malformed XML and status-200 unrelated documents. Do not rely on headers, regex over source text or the current byte-hash helper as a substitute for schema-aware semantic validation.
 
 **End state:** All six reviewer findings are now written into the proposed acceptance contract. **That does not mean they have been implemented or that a security hold has been cleared.** PR #57 is still draft/held. This PR remains documentation-only; do not merge, dispatch or retrieve sources to demonstrate compliance with this proposal. Record independent approvals and verify all controls before considering any future activation.
+
+## 8. Third security review — structural blockers and exact resolution conditions
+
+Codex's third independent review of commit `700b8d0` (2026-10-10) found additional concrete design gaps. These requirements supersede any weaker approval phrasing in sections 3, 6 or 7. **This is still a NON-EXECUTABLE security design**, not a request to use the blocked #57 workflow.
+
+### P1: Administrator-independent run-bound authorization is required
+
+A GitHub environment setting alone is mutable by the very repository administrators who can change the workflow. Requiring no-self-approval and disabling "Start all waiting jobs" bypass does **not** prove that the environment cannot be reconfigured immediately before a dispatch. Before any activation, an **independent control plane whose approvals/policy cannot be configured, overridden, self-approved, replayed, or disabled by a GitHub repository administrator** must authorize the exact run attempt and reviewed revision. Each authorization must bind repository identity, permitted filing and exact source URL, immutable code/dependency hash, `github.actor`, `github.triggering_actor`, `github.run_id`, `github.run_attempt`, and expiry. The trusted control must check the actual run before the first SEC network request. A reviewer must demonstrate denial on administrator-configuration drift and rerun. If this independent authority does not exist and cannot be verified, **NO GO**; do not substitute a mutable repo-owned GitHub approval or circumvent the original tool rejection.
+
+### P2: Vendor and digest-pin the ownership schema, disable every runtime resolver
+
+A future Form 4 validator must use an exact reviewed immutable offline XSD bundle (root and every import/include), with cryptographic hashes in the pinned reviewed source dependency graph. Forbid network fetches from XML parsers, DTD handlers, XSD imports/includes and catalog resolvers; never download schemas in the job. Add tests showing that attempted external resolution fails closed and issues no outbound request. The intended single primary-document SEC request must be the **only** externally retrieved payload.
+
+### P2: Queue XSL presentation path is not a validated raw ownership XML path
+
+The present queue item `MRVL:0001628280-26-065570` stores:
+`https://www.sec.gov/Archives/edgar/data/1835632/000162828026065570/xslF345X06/wk-form4_1791591056.xml`
+
+That XSL-oriented view path is **not authenticated as canonical raw XML** for schema verification. Independently examine original SEC filing-index metadata to identify the true untransformed ownership-XML document URL, bind the precise ticker/issuer CIK/accession/document and type `4`, and separately review the selection algorithm and source identity invariants before dispatch. Never assume removing `xslF345X06/` produces a correct canonical source without SEC metadata proof; never call an HTML rendering valid Form 4 XML. If the raw document cannot be identified, **NO GO**. This requires a separate, explicitly approved source-identity specification change and tests; do not silently weaken `assertSecDocumentIdentity`.
+
+### Stop/go summary
+
+The read-only proposal cannot lawfully or truthfully satisfy a real SEC primary-byte milestone yet. The missing inputs are: (1) verifiable administrator-independent approval authority, (2) pinned offline XSD bundle and semantic negative tests, and (3) independently authenticated raw XML URL/lineage from SEC filing metadata. No workaround, dispatch, workflow activation, alternate write method or filing-gate change is approved. **A green documentation CI or clean Codex review does not resolve the execution safety hold.** Current disposition: `DESIGN_HOLD_PENDING_INDEPENDENT_AUTHORITY_AND_SOURCE_PROOF`.

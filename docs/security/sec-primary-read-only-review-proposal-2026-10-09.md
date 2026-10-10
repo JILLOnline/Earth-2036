@@ -90,3 +90,22 @@ The existing SEC archive byte verifier is **insufficient** to prove that a respo
 
 ### Final decision criteria
 The provisions above supersede the earlier weaker phrase "execution policies if available" and any suggestion that the existing byte verifier alone validates Form 4 content. Even a successful future source fetch cannot authorize filing disposition or T0 advancement. Security review remains advisory; the previous connected safety rejection is not bypassed. PR #57 stays on hold. This proposal adds no executable workflow, does not dispatch a run, and grants no background permission.
+
+
+## 7. Second security-review amendments — additional mandatory no-go controls
+
+The second Codex review (2026-10-10 01:37 UTC, reviewed SHA 58e583f) identified three more design omissions. The provisions below are requirements for any *future, separately security-approved activation*. They are not present in a deployed workflow or proven operational.
+
+### P1: Explicitly prohibit GitHub administrator bypass of protected-environment approval
+
+Designated reviewers and disabled self-review are **not sufficient** if repository administrators can bypass job approval. Verify and document that the protected environment has **"Prevent administrators from bypassing configured protection rules"** enabled. Where that option is unsupported, use an independently enforced and non-bypassable external approval gate; absent proof that neither a repository administrator nor a workflow author can skip it, **DENY the pilot**. Test the fail-closed behavior for initial runs, reruns and changes to `github.actor`/`github.triggering_actor`. Do not approve on a screenshot alone without settings provenance and an explicit authorized reviewer sign-off.
+
+### P1: Pin the entire executable dependency graph by immutable full commit SHA
+
+Verifying the Earth 2036 workflow/helper SHA is **not enough** if `uses:` actions or reusable workflows resolve to mutable tags or branches. Require every third-party and first-party action dependency and every reusable workflow called by the future implementation to be pinned to a **full-length reviewed immutable commit SHA**, never `@v5`, `@main`, mutable release tags or untrusted action forks. Security review must cover the actual pinned commits and transitive trust/dependency scopes, runner privileges, and any indirect script downloaded at runtime. Deny activation if any dependency cannot be pinned and reviewed or if the approved dependency set changes. This applies to checkout/setup actions as well as any future additions.
+
+### P2: Validate exact ownership XML document type against queued SEC form
+
+`ownershipDocument`, issuer fields and matching CIK alone do not distinguish Forms 3, 4 and 5. For the selected queued entry `MRVL:0001628280-26-065570`, require an XML `documentType` value of **exactly `4`**, matched to the already authenticated queue `form` and associated SEC filing metadata. Apply the corresponding official SEC ownership XML schema/constraints to distinguish the claimed filing type; reject missing, duplicate, ambiguous or substituted `documentType`, out-of-family forms, and invalid form-specific content. Add regression fixtures for valid Form 4 and negative Forms 3/5, missing `documentType`, mismatched queue form, forged issuer CIK, missing required data, XML parser/DTD/entity attack, malformed XML and status-200 unrelated documents. Do not rely on headers, regex over source text or the current byte-hash helper as a substitute for schema-aware semantic validation.
+
+**End state:** All six reviewer findings are now written into the proposed acceptance contract. **That does not mean they have been implemented or that a security hold has been cleared.** PR #57 is still draft/held. This PR remains documentation-only; do not merge, dispatch or retrieve sources to demonstrate compliance with this proposal. Record independent approvals and verify all controls before considering any future activation.

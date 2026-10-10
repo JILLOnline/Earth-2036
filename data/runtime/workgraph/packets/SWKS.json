@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "SWKS",
   "workId": "t0:SWKS",
-  "generatedAt": "2026-10-10T18:32:34.047Z",
+  "generatedAt": "2026-10-10T20:14:02.755Z",
   "sourceState": "observed",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -21,7 +21,11 @@
     "tradabilityStatus": "validated",
     "validatedAt": "2026-10-10T18:18:28.539Z"
   },
-  "evidenceWindow": null,
+  "evidenceWindow": {
+    "start": "2026-07-28T00:00:00.000Z",
+    "end": "2026-10-10T20:09:35.000Z",
+    "latestEvidenceGeneratedAt": "2026-10-10T20:09:35.000Z"
+  },
   "specialistCoverage": {
     "required": [
       "source-integrity",
@@ -31,19 +35,25 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "present": [],
+    "present": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missing": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
     "complete": false
   },
-  "perspectives": [],
-  "evidencePaths": [],
+  "perspectives": [
+    "discovery-weak-signals",
+    "expectations-execution"
+  ],
+  "evidencePaths": [
+    "data/runtime/workgraph/evidence/SWKS-20261010T200935Z-source-acquisition.json"
+  ],
   "evidenceResolution": {
     "supersededPaths": [],
     "resolvedGateKinds": [],
@@ -52,18 +62,33 @@
       "consumedGatingIssues": [],
       "consumedGatingUnknowns": []
     },
-    "activeEvidenceCount": 0,
-    "historicalEvidenceCount": 0
+    "activeEvidenceCount": 2,
+    "historicalEvidenceCount": 2
   },
   "factorEvidence": {
-    "names": [],
+    "names": [
+      "Revenue baseline and customer concentration",
+      "Management expectations versus execution"
+    ],
     "byPerspective": {
       "source-integrity": [],
       "company-underwriting": [],
       "structural-causal": [],
-      "discovery-weak-signals": [],
+      "discovery-weak-signals": [
+        {
+          "name": "Revenue baseline and customer concentration",
+          "direction": "mixed",
+          "basis": "Issuer financial results provide an observed revenue anchor; high single-customer concentration limits diversification inference and requires independent underwriting."
+        }
+      ],
       "adversarial-red-team": [],
-      "expectations-execution": []
+      "expectations-execution": [
+        {
+          "name": "Management expectations versus execution",
+          "direction": "unresolved",
+          "basis": "Guidance is a stated expectation requiring later realized-result comparison; acquisition outcome and synergies cannot be counted as already realized at T0."
+        }
+      ]
     }
   },
   "scoreRecord": null,
@@ -103,12 +128,45 @@
       "dataConfidenceEvidenceComplete": false
     }
   },
-  "factors": [],
+  "factors": [
+    "Revenue baseline and customer concentration",
+    "Management expectations versus execution"
+  ],
   "riskEvidence": {
-    "present": false,
-    "items": []
+    "present": true,
+    "items": [
+      {
+        "risk": "FY2025 Apple-related revenue concentration at 67% creates a substantial customer/channel dependency to examine; not independently scored.",
+        "gating": false,
+        "sourceIds": [
+          "issuer:SWKS:FY25:10K:20251107"
+        ]
+      },
+      {
+        "risk": "Qorvo transaction financing/integration effects and revenue-guidance realization were uncertain at the T0 evidence cutoff.",
+        "gating": false,
+        "sourceIds": [
+          "issuer:SWKS:FY26Q3:20260728"
+        ]
+      }
+    ]
   },
-  "risks": [],
+  "risks": [
+    {
+      "risk": "FY2025 Apple-related revenue concentration at 67% creates a substantial customer/channel dependency to examine; not independently scored.",
+      "gating": false,
+      "sourceIds": [
+        "issuer:SWKS:FY25:10K:20251107"
+      ]
+    },
+    {
+      "risk": "Qorvo transaction financing/integration effects and revenue-guidance realization were uncertain at the T0 evidence cutoff.",
+      "gating": false,
+      "sourceIds": [
+        "issuer:SWKS:FY26Q3:20260728"
+      ]
+    }
+  ],
   "dataConfidenceEvidence": {
     "available": false,
     "sourceIntegritySignalAvailable": false,
@@ -118,8 +176,8 @@
     "evidencePaths": []
   },
   "primarySourcePresence": {
-    "present": false,
-    "count": 0
+    "present": true,
+    "count": 1
   },
   "causalMapping": {
     "present": false,
@@ -127,55 +185,61 @@
   },
   "causalEdges": [],
   "sourceLineage": {
-    "rawSourceCount": 0,
-    "uniqueSourceCount": 0,
-    "duplicatesCollapsed": 0,
+    "rawSourceCount": 4,
+    "uniqueSourceCount": 1,
+    "duplicatesCollapsed": 3,
     "missingLineage": 0,
-    "uniqueOrigins": []
+    "uniqueOrigins": [
+      "issuer:skyworks-disclosures"
+    ]
   },
-  "sources": [],
+  "sources": [
+    {
+      "sourceId": "issuer:SWKS:FY26Q3:20260728",
+      "url": "https://investors.skyworksinc.com/news-releases/news-release-details/skyworks-delivers-solid-third-quarter-fiscal-year-2026-results",
+      "primary": true,
+      "kind": "primary",
+      "publishedAt": "2026-07-28",
+      "originFingerprint": "issuer:skyworks-disclosures"
+    }
+  ],
   "contradictions": [],
   "contradictionDispositions": {
     "unresolvedMaterialCount": 0,
     "items": []
   },
-  "unknowns": [],
+  "unknowns": [
+    {
+      "unknown": "Issuer claims do not independently establish customer diversification, durable non-mobile growth, or investment-quality forecasts.",
+      "gating": false
+    },
+    {
+      "unknown": "No independent source-backed proof of realized Q4 results or combined-company synergies at September 12, 2026.",
+      "gating": false
+    }
+  ],
   "unknownDisposition": {
     "gatingCount": 0,
     "rawGatingCount": 0,
     "consumedGatingCount": 0,
-    "nonGatingCount": 0
+    "nonGatingCount": 2
   },
   "gatingIssues": [],
   "confidence": null,
   "preflight": {
     "passed": false,
     "failures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
     ],
     "routing": [
-      {
-        "failure": "missing_structured_evidence",
-        "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_evidence_window",
-        "owner": "machine"
-      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"
@@ -189,20 +253,8 @@
         "owner": "council-beta"
       },
       {
-        "failure": "missing_specialist_perspective:discovery-weak-signals",
-        "owner": "earth-scout"
-      },
-      {
         "failure": "missing_specialist_perspective:adversarial-red-team",
         "owner": "council-beta"
-      },
-      {
-        "failure": "missing_specialist_perspective:expectations-execution",
-        "owner": "earth-scout"
-      },
-      {
-        "failure": "missing_primary_source",
-        "owner": "council-alpha"
       },
       {
         "failure": "missing_factor_evidence",
@@ -211,10 +263,6 @@
       {
         "failure": "missing_numeric_score_record",
         "owner": "council-alpha"
-      },
-      {
-        "failure": "missing_risk_evidence",
-        "owner": "council-beta"
       },
       {
         "failure": "missing_score_risk_evidence",

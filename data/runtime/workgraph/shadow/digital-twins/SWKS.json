@@ -4,8 +4,8 @@
   "canonicalWriteAuthority": false,
   "ticker": "SWKS",
   "workId": "t0:SWKS",
-  "inputSignature": "7a7a4d7e7273a98048c9b224",
-  "sourceState": "observed",
+  "inputSignature": "13097b24b20945e05a7abbfe",
+  "sourceState": "researching",
   "identity": {
     "ticker": "SWKS",
     "company": "Skyworks Solutions",
@@ -25,45 +25,55 @@
       "adversarial-red-team",
       "expectations-execution"
     ],
-    "presentPerspectives": [],
+    "presentPerspectives": [
+      "discovery-weak-signals",
+      "expectations-execution"
+    ],
     "missingPerspectives": [
       "source-integrity",
       "company-underwriting",
       "structural-causal",
-      "discovery-weak-signals",
-      "adversarial-red-team",
-      "expectations-execution"
+      "adversarial-red-team"
     ],
-    "primarySourceCount": 0,
+    "primarySourceCount": 1,
     "sourceLineage": {
-      "rawSourceCount": 0,
-      "uniqueSourceCount": 0,
-      "duplicatesCollapsed": 0,
+      "rawSourceCount": 4,
+      "uniqueSourceCount": 1,
+      "duplicatesCollapsed": 3,
       "missingLineage": 0,
-      "uniqueOrigins": []
+      "uniqueOrigins": [
+        "issuer:skyworks-disclosures"
+      ]
     },
-    "evidenceWindow": null,
+    "evidenceWindow": {
+      "start": "2026-07-28T00:00:00.000Z",
+      "end": "2026-10-10T20:09:35.000Z",
+      "latestEvidenceGeneratedAt": "2026-10-10T20:09:35.000Z"
+    },
     "preflightPassed": false
   },
-  "capabilitySignals": [],
+  "capabilitySignals": [
+    "Revenue baseline and customer concentration",
+    "Management expectations versus execution"
+  ],
   "constraintSignals": {
-    "risks": [],
-    "unknowns": [],
+    "risks": [
+      "FY2025 Apple-related revenue concentration at 67% creates a substantial customer/channel dependency to examine; not independently scored.",
+      "Qorvo transaction financing/integration effects and revenue-guidance realization were uncertain at the T0 evidence cutoff."
+    ],
+    "unknowns": [
+      "Issuer claims do not independently establish customer diversification, durable non-mobile growth, or investment-quality forecasts.",
+      "No independent source-backed proof of realized Q4 results or combined-company synergies at September 12, 2026."
+    ],
     "contradictions": [],
     "gatingIssues": [],
     "preflightFailures": [
-      "missing_structured_evidence",
-      "missing_evidence_window",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_specialist_perspective:structural-causal",
-      "missing_specialist_perspective:discovery-weak-signals",
       "missing_specialist_perspective:adversarial-red-team",
-      "missing_specialist_perspective:expectations-execution",
-      "missing_primary_source",
       "missing_factor_evidence",
       "missing_numeric_score_record",
-      "missing_risk_evidence",
       "missing_score_risk_evidence",
       "missing_data_confidence_evidence",
       "missing_causal_mapping"
@@ -74,16 +84,6 @@
     "edges": []
   },
   "improvementWindows": [
-    {
-      "failure": "missing_structured_evidence",
-      "question": "What evidence or interpretation would lawfully resolve missing_structured_evidence?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_evidence_window",
-      "question": "What evidence or interpretation would lawfully resolve missing_evidence_window?",
-      "stance": "improvement-oriented"
-    },
     {
       "failure": "missing_specialist_perspective:source-integrity",
       "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:source-integrity?",
@@ -100,23 +100,8 @@
       "stance": "improvement-oriented"
     },
     {
-      "failure": "missing_specialist_perspective:discovery-weak-signals",
-      "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:discovery-weak-signals?",
-      "stance": "improvement-oriented"
-    },
-    {
       "failure": "missing_specialist_perspective:adversarial-red-team",
       "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:adversarial-red-team?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_specialist_perspective:expectations-execution",
-      "question": "What evidence or interpretation would lawfully resolve missing_specialist_perspective:expectations-execution?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_primary_source",
-      "question": "Which primary source would materially improve the factual basis?",
       "stance": "improvement-oriented"
     },
     {
@@ -127,11 +112,6 @@
     {
       "failure": "missing_numeric_score_record",
       "question": "Which source-addressed factor assessments are still required before a reproducible score can be constructed?",
-      "stance": "improvement-oriented"
-    },
-    {
-      "failure": "missing_risk_evidence",
-      "question": "What evidence or interpretation would lawfully resolve missing_risk_evidence?",
       "stance": "improvement-oriented"
     },
     {
@@ -151,8 +131,16 @@
     }
   ],
   "bridgeInputs": {
-    "capabilityCandidates": [],
-    "needOrConstraintCandidates": [],
+    "capabilityCandidates": [
+      "Revenue baseline and customer concentration",
+      "Management expectations versus execution"
+    ],
+    "needOrConstraintCandidates": [
+      "Issuer claims do not independently establish customer diversification, durable non-mobile growth, or investment-quality forecasts.",
+      "No independent source-backed proof of realized Q4 results or combined-company synergies at September 12, 2026.",
+      "FY2025 Apple-related revenue concentration at 67% creates a substantial customer/channel dependency to examine; not independently scored.",
+      "Qorvo transaction financing/integration effects and revenue-guidance realization were uncertain at the T0 evidence cutoff."
+    ],
     "note": "Candidates only. A Strategic Bridge requires separate evidence, mechanism, tradeoff and falsifier analysis before recommendation."
   },
   "doctrine": {

@@ -10,6 +10,18 @@ import { assessHour, hourKeyFromDate, auditReceiptPath, parseCycleHistory } from
 const ROOT=process.cwd();
 const digest = content => createHash("sha256").update(content).digest("hex");
 
+// Pure classification of proof, never an allegation of a failed Git write.
+export function classifyHourlyObservationGap(row) {
+  if (row.retrospectiveObservationStatus === "persisted_now") return "original_observation_persisted";
+  if (row.schedulerLookup?.status !== "available") return "scheduler_lookup_unavailable";
+  const runs = row.schedulerRuns || [];
+  if (!runs.length) return "scheduler_run_not_created_in_slot";
+  if (runs.some(x => x.conclusion === "failure" || x.conclusion === "timed_out")) return "scheduler_run_failed_cause_unverified";
+  if (runs.some(x => x.status !== "completed")) return "scheduler_run_pending_at_reconciliation";
+  if (runs.some(x => x.conclusion === "success")) return "scheduler_succeeded_without_original_observation";
+  return "scheduler_attempt_outcome_undetermined";
+}
+
 export function reconcilePastSlots({cycleHistory,asOfReceipts,workflowRuns,checkedAt,windowHours=72,runLookupError=null}) {
   const now=new Date(checkedAt);
   if (!Number.isFinite(now.getTime())) throw new Error("Invalid reconciliation time");
@@ -36,6 +48,12 @@ export function reconcilePastSlots({cycleHistory,asOfReceipts,workflowRuns,check
       sourceLineSha256:retro.observation?.sourceLineSha256 ?? null,
       schedulerRuns:retro.schedulerRunsCreatedInHour,
       schedulerLookup:retro.schedulerLookup,
+      missingObservationClassification:classifyHourlyObservationGap({
+        retrospectiveObservationStatus:retrospect,
+        schedulerRuns:retro.schedulerRunsCreatedInHour,
+        schedulerLookup:retro.schedulerLookup,
+      }),
+      gitWriteFailureVerified:false, // Workflow outcome alone cannot prove a rejected Git push.
       issues:[...new Set(issueCodes)],
       qualifiedTrialTickAsObserved:retro.observation?.qualifiedTrialTick ?? null,
       rule:"Only the original cycle-history is evidence of an actual observation; this row never backfills it.",
@@ -52,6 +70,10 @@ export function reconcilePastSlots({cycleHistory,asOfReceipts,workflowRuns,check
       missingAsOfReceipts:rows.filter(x=>x.asOfObservationStatus==="no_as_of_receipt").length,
       latePersistedObservations:rows.filter(x=>x.issues.includes("late_persistence_after_as_of_audit")).length,
       failedSchedulerSlots:rows.filter(x=>x.issues.includes("scheduler_failed_or_timed_out")).length,
+      missingWithoutSchedulerRun:rows.filter(x=>x.missingObservationClassification==="scheduler_run_not_created_in_slot").length,
+      missingAfterFailedScheduler:rows.filter(x=>x.missingObservationClassification==="scheduler_run_failed_cause_unverified").length,
+      missingAfterSuccessfulScheduler:rows.filter(x=>x.missingObservationClassification==="scheduler_succeeded_without_original_observation").length,
+      missingWithSchedulerLookupUnavailable:rows.filter(x=>x.missingObservationClassification==="scheduler_lookup_unavailable").length,
     },rows,
     warning:"A missing persisted observation is not proof a scheduler did not run. Retrospective records never qualify trial ticks.",
   };

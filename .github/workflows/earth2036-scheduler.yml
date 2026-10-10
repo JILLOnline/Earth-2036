@@ -3,7 +3,7 @@ name: Earth 2036 Scheduler
 
 on:
   schedule:
-    - cron: "0 * * * *"
+    # Offset dispatch slots reduce GitHub best-effort schedule omissions.\n    # Each invocation checks committed cycle-history; never backfill old hours.\n    - cron: "7,27,47 * * * *"
   workflow_dispatch:
   push:
     branches: [main]
@@ -59,6 +59,25 @@ jobs:
             git reset --hard origin/main
             git clean -fd data
 
+            # Bound duplicate GitHub schedule dispatches to ONE original observation
+            # per UTC hour. Exit 1 on corrupt history, 2 only for truly absent
+            # observation. A completed or partial original remains immutable.
+            slot="$(date -u +'%Y%m%dT%H00Z')"
+            set +e
+            node scripts/check-hourly-observation.mjs "$slot"
+            guard_result=$?
+            set -e
+            if [ "$guard_result" -eq 0 ]; then
+              echo "Already persisted a real observation for $slot; no duplicate cycle."
+              echo "persisted_head=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+              echo "skipped_hour=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            if [ "$guard_result" -ne 2 ]; then
+              echo "Hourly guard error; fail closed rather than run on unknown history." >&2
+              exit 1
+            fi
+
             npm run engine:cycle
 
             base_head=$(git rev-parse HEAD)
@@ -89,6 +108,7 @@ jobs:
           exit 1
 
       - name: Verify persisted state and publish exact machine snapshot
+        if: steps.persist.outputs.skipped_hour != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           PERSISTED_HEAD: ${{ steps.persist.outputs.persisted_head }}

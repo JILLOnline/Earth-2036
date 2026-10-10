@@ -55,3 +55,24 @@ test("audit workflow computes reconciliation but does not replace immutable as-o
  assert.match(s,/node scripts\/reconcile-hourly-slots\.mjs/);
  assert.match(s,/hourly-reconciliation\/latest\.json/);
 });
+
+test("missing observation with no created scheduler is not called a Git write failure",()=>{
+ const a=reconcilePastSlots(input([],{},[]));
+ assert.equal(a.counts.missingWithoutSchedulerRun,2);
+ assert.equal(a.counts.missingAfterFailedScheduler,0);
+ assert.equal(a.rows[0].missingObservationClassification,"scheduler_run_not_created_in_slot");
+ assert.equal(a.rows[0].gitWriteFailureVerified,false);
+});
+test("failed scheduler and successful scheduler without an observation are separate unproven outcomes",()=>{
+ const fail=reconcilePastSlots(input([],{},[{...run,conclusion:"failure"}]));
+ assert.equal(fail.rows[0].missingObservationClassification,"scheduler_run_failed_cause_unverified");
+ assert.equal(fail.counts.missingAfterFailedScheduler,1);
+ const success=reconcilePastSlots(input());
+ assert.equal(success.rows[0].missingObservationClassification,"scheduler_succeeded_without_original_observation");
+ assert.equal(success.counts.missingAfterSuccessfulScheduler,1);
+});
+test("outage is explicitly unknown rather than inventing an absent scheduler or failed push",()=>{
+ const a=reconcilePastSlots(input([],{},[],"GitHub 403"));
+ assert.equal(a.rows[0].missingObservationClassification,"scheduler_lookup_unavailable");
+ assert.equal(a.counts.missingWithSchedulerLookupUnavailable,2);
+});

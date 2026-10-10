@@ -129,16 +129,45 @@ jobs:
           echo "pages_stale=$pages_stale" >> "$GITHUB_OUTPUT"
           echo "unhealthy=$unhealthy" >> "$GITHUB_OUTPUT"
 
-      - name: Dispatch machine scheduler when stale and idle
-        if: steps.freshness.outputs.machine_stale == 'true'
+      - name: Recover a missing current-hour scheduler slot when idle
+        if: success()
         env:
           GH_TOKEN: ${{ github.token }}
+          MACHINE_STALE: ${{ steps.freshness.outputs.machine_stale }}
         run: |
           set -euo pipefail
-          active=$(gh run list --repo "${{ github.repository }}" --workflow earth2036-scheduler.yml --limit 10 --json status --jq '[.[] | select(.status == "in_progress" or .status == "queued")] | length')
-          if [ "$active" = "0" ]; then
-            gh workflow run earth2036-scheduler.yml --repo "${{ github.repository }}" --ref main
+          # Scheduled GitHub Actions are best-effort. A healthy last cycle is not
+          # proof that a scheduler was created in the current UTC hour.
+          current_hour="$(date -u +'%Y%m%dT%H00Z')"
+          current_start="$(date -u +'%Y-%m-%dT%H:00:00Z')"
+          minute="$(date -u +'%M')"
+          minute=$((10#$minute))
+          if [ "$minute" -lt 20 ] && [ "$MACHINE_STALE" != "true" ]; then
+            echo "Current hour is not yet past the 20-minute recovery threshold."
+            exit 0
           fi
+
+          # Always check actual observed machine state and real GitHub scheduler
+          # attempts; never infer missing observations from a dashboard timestamp.
+          state="$(gh api "repos/${{ github.repository }}/contents/data/runtime/system-state.json?ref=main" --jq .content | base64 -d)"
+          observed_hour="$(jq -r '.cycleKey // ""' <<<"$state")"
+          if [ "$observed_hour" = "$current_hour" ]; then
+            echo "A real machine observation already exists for $current_hour."
+            exit 0
+          fi
+          scheduler_runs="$(gh run list --repo "${{ github.repository }}" --workflow earth2036-scheduler.yml --branch main --limit 60 --json createdAt,status,conclusion)"
+          active="$(jq '[.[] | select(.status == "in_progress" or .status == "queued")] | length' <<<"$scheduler_runs")"
+          if [ "$active" != "0" ]; then
+            echo "Scheduler already queued or active; do not dispatch a duplicate."
+            exit 0
+          fi
+          created_in_hour="$(jq -r --arg floor "$current_start" '[.[] | select(.createdAt >= $floor)] | length' <<<"$scheduler_runs")"
+          if [ "$created_in_hour" != "0" ]; then
+            echo "A scheduler was already attempted in $current_hour; report its outcome instead of blindly retrying."
+            exit 0
+          fi
+          echo "Missing real observation and scheduler attempt for $current_hour; dispatching one bounded current-hour recovery."
+          gh workflow run earth2036-scheduler.yml --repo "${{ github.repository }}" --ref main
 
       - name: Refresh stale Pages projection when idle
         if: steps.execution.outputs.pages_stale == 'true'

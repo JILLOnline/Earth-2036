@@ -73,3 +73,20 @@ permissions:
 ### Decision requested from security reviewer
 
 Choose **APPROVE DESIGN FOR A SEPARATE ACTIVATION REVIEW**, **REVISE**, or **DENY**. Approval of this Markdown document alone cannot activate or run the SEC pilot.
+
+
+## 6. Security review findings — mandatory amendments (supersede weaker provisions above)
+
+GitHub Codex finished its initial review on 2026-10-10 and identified three unresolved findings. These requirements are DOCUMENTATION ONLY; nothing below is implemented or approved for execution.
+
+### P1: Enforce independent approval for every specific attempt
+A manual GitHub Actions dispatch can be initiated by repository writers and a run can be retried. Manual activation alone is **not** trusted-actor enforcement. Before any separate activation is considered, require an independently enforced GitHub protected environment with designated reviewers and **no self-approval**, gating the fetch job before access. A distinct fail-closed authorization must bind the exact filing, both github.actor and github.triggering_actor, github.run_id, and github.run_attempt. All reruns must obtain a fresh valid approval; an old grant must not be silently reusable. The enforcement must be outside code editable by a proposed workflow contributor. If the repository cannot provide and verify this enforcement, do not activate the pilot.
+
+### P1: Pin dispatch to the approved immutable source revision
+GitHub manual dispatch accepts a ref selecting workflow/helper code on an alternate branch or tag. Merely putting a workflow on the default branch does not enforce its execution revision. A trusted gate independent of editable workflow content must require the exact separately reviewed default-branch SHA and expected ref before the request, and reject all alternate dispatch refs and unapproved reruns. If GitHub repository/environment policy cannot enforce and attest this, do not activate. Never treat the requestor-selected ref as proof of code provenance.
+
+### P2: Prove Form 4 content, not merely status, hash and URL
+The existing SEC archive byte verifier is **insufficient** to prove that a response is a Form 4: a status-200 HTML page or unrelated XML can be faithfully hashed. Any future pilot must explicitly check response type and securely parse the actual XML with DTD/external entities disabled; require an ownershipDocument root, mandatory issuer fields, and issuer CIK matching independently verified accession/issuer context. Accession-to-document identity must come from trusted SEC filing metadata rather than assumed XML accession fields. Reject unrelated XML, generic HTML/denial pages, missing fields, mismatched CIK, malformed XML and semantic spoofing. Add negative tests for each before review approval.
+
+### Final decision criteria
+The provisions above supersede the earlier weaker phrase "execution policies if available" and any suggestion that the existing byte verifier alone validates Form 4 content. Even a successful future source fetch cannot authorize filing disposition or T0 advancement. Security review remains advisory; the previous connected safety rejection is not bypassed. PR #57 stays on hold. This proposal adds no executable workflow, does not dispatch a run, and grants no background permission.

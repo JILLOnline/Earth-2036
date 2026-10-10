@@ -1,0 +1,82 @@
+name: Earth 2036 SEC Primary Byte Pilot
+
+# One bounded source test. This is NOT a review decision or a worker task.
+# Main-push trigger executes only when this workflow is first added/changed;
+# subsequent autonomous cycles do not repeat source acquisition.
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/earth2036-sec-primary-pilot.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: earth2036-sec-primary-pilot-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  capture-one-real-primary-document:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Fetch exact SEC queue entry (no review or score write)
+        env:
+          SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
+        run: |
+          set -euo pipefail
+          node scripts/archive-sec-primary.mjs MRVL:0001628280-26-065570
+
+      - name: Independently check actual archived bytes and Form 4 document body
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import { readFile, readdir } from 'node:fs/promises';
+          import { join } from 'node:path';
+          import { verifySecDocumentArchive } from './scripts/lib/sec-document-authentication.mjs';
+          const queue=JSON.parse(await readFile('data/runtime/evidence-review-queue.json','utf8'));
+          const filing=queue.items.find(x=>x.id==='MRVL:0001628280-26-065570');
+          if (!filing) throw new Error('exact_pilot_queue_item_missing');
+          const dir=join('data/operations/sec-primary-archive',filing.ticker,filing.accessionNumber);
+          const names=(await readdir(dir)).filter(x=>/^[a-f0-9]{64}\.json$/.test(x));
+          if (names.length!==1) throw new Error('pilot_requires_exactly_one_archived_document');
+          const artifact=JSON.parse(await readFile(join(dir,names[0]),'utf8'));
+          const evidence=verifySecDocumentArchive(filing,artifact,{now:new Date().toISOString()});
+          const body=Buffer.from(artifact.bodyBase64,'base64').toString('utf8');
+          if (!/<ownershipDocument(?:\s|>)/i.test(body) || !/<issuer(?:\s|>)/i.test(body)) {
+            throw new Error('source_bytes_not_expected_primary_form4_xml');
+          }
+          if (artifact.reviewStatus!=='unreviewed' || !evidence.verified)
+            throw new Error('pilot_must_not_claim_review_approval');
+          console.log(JSON.stringify({verifiedOriginalBytes:true,filingId:filing.id,
+            fetchedAt:artifact.fetchedAt,sha256:evidence.sourceDocumentSha256,
+            byteLength:evidence.byteLength,reviewApproved:false}));
+          NODE
+
+      - name: Persist source bytes on an isolated evidence branch only
+        env:
+          GH_RUN_ID: ${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          branch="evidence/sec-primary-mrvl-${GH_RUN_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add -- "data/operations/sec-primary-archive/MRVL/0001628280-26-065570/"
+          [[ "$(git diff --cached --name-only | wc -l)" -eq 1 ]] || {
+            echo "Exactly one authentic primary source artifact required." >&2
+            exit 1
+          }
+          git commit -m "evidence(sec): archive actual MRVL primary Form 4 bytes [unreviewed]"
+          git push origin "HEAD:refs/heads/$branch"
+          echo "Verified source artifact branch: $branch"
+          echo "Source acquisition does not approve a filing review or alter T0."

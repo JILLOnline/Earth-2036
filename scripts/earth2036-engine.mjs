@@ -4,6 +4,7 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { buildUniverse, normalizeTicker } from "./lib/universe-parser.mjs";
 import { evaluateEvidenceQualification, parseEvidenceDispositionLedger } from "./lib/evidence-qualification.mjs";
+import { loadVerifiedSecReviewProofs } from "./lib/sec-review-archive.mjs";
 import { auditObservedFilingChanges } from "./lib/source-delta-observation-audit.mjs";
 import { secFilingRows, reconcileSecAccessionCursor, buildSecAccessionContinuityAudit } from "./lib/sec-accession-cursor.mjs";
 import {
@@ -442,9 +443,22 @@ async function main() {
   const reviewedQueue = { version: 1, updatedAt: startedAt, unresolved: allFilings.filter((x) => x.status !== "resolved").length, items: allFilings };
   // Each new filing defaults to unresolved. Only source-hashed, attributable,
   // explicitly reviewed dispositions can change its eligibility status.
-  const evidenceQualification = evaluateEvidenceQualification(
-    reviewedQueue, parseEvidenceDispositionLedger(reviewText), startedAt
-  );
+  let evidenceQualification;
+  try {
+    const dispositions = parseEvidenceDispositionLedger(reviewText);
+    const proofs = await loadVerifiedSecReviewProofs(
+      reviewedQueue, dispositions, path.join(ROOT, "data", "operations", "sec-primary-archive"), startedAt
+    );
+    evidenceQualification = evaluateEvidenceQualification(reviewedQueue, dispositions, startedAt, proofs);
+  } catch (error) {
+    // An invalid review/source archive can never authorize clearance, but it
+    // must not prevent a real independent SEC observation from persisting.
+    // Finalizer will independently detect the raw-ledger mismatch and block.
+    console.error(JSON.stringify({event:"sec_review_archive_integrity_hold", detail:String(error?.message || error)}));
+    evidenceQualification = evaluateEvidenceQualification(reviewedQueue, [], startedAt);
+    evidenceQualification.archiveIntegrityError = String(error?.message || error).slice(0, 240);
+    evidenceQualification.gatePassed = false;
+  }
   await writeJson(path.join(RUNTIME_DIR, "evidence-review-queue.json"), reviewedQueue);
   await writeJson(path.join(RUNTIME_DIR, "evidence-qualification.json"), evidenceQualification);
 

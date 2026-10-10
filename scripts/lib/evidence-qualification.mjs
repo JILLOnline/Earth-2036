@@ -21,9 +21,10 @@ export function parseEvidenceDispositionLedger(text) {
   });
 }
 
-export function evaluateEvidenceQualification(queue, reviews = [], asOf = new Date().toISOString()) {
+export function evaluateEvidenceQualification(queue, reviews = [], asOf = new Date().toISOString(), reviewProofs = new Map()) {
   if (!queue || !Array.isArray(queue.items)) throw new Error("Evidence queue must include an items array");
   if (!Array.isArray(reviews)) throw new Error("Disposition ledger must be an array");
+  if (!(reviewProofs instanceof Map)) throw new Error("SEC source review proof index must be a Map");
   const cutoff = asTime(asOf);
   if (cutoff === null) throw new Error("Invalid evidence-qualification audit time");
 
@@ -59,6 +60,15 @@ export function evaluateEvidenceQualification(queue, reviews = [], asOf = new Da
         !nonempty(review.rationale) || review.rationale.trim().length < 40 ||
         !HASH64.test(review.sourceDocumentSha256 || "")) {
       throw new Error("Disposition lacks attributable reviewer, substantive reason, or primary-source content hash for " + review.itemId);
+    }
+    // A syntactically valid 64-character hash is NOT evidence that SEC source
+    // bytes were ever fetched. Clearance requires independently re-read proof.
+    if (review.disposition === "non_gating" || review.disposition === "resolved") {
+      const proof = reviewProofs.get(review.reviewId);
+      if (proof?.verified !== true || proof.sourceDocumentSha256 !== review.sourceDocumentSha256 ||
+          proof.primarySourceUrl !== review.primarySourceUrl || !HASH64.test(proof.archiveDigest || "")) {
+        throw new Error("Missing or mismatched authenticated SEC source archive for " + review.itemId);
+      }
     }
     const at = asTime(review.reviewedAt);
     const detected = asTime(filing.detectedAt);
@@ -99,7 +109,8 @@ export function evaluateEvidenceQualification(queue, reviews = [], asOf = new Da
     item.id, item.ticker, item.accessionNumber, item.form, item.status, item.sourceUrl
   ]).sort((a,b) => a[0].localeCompare(b[0]));
   const reviewTrace = [...latestReviews.values()].map((review) => [
-    review.itemId, review.reviewId, review.disposition, review.sourceDocumentSha256, review.reviewedAt
+    review.itemId, review.reviewId, review.disposition, review.sourceDocumentSha256, review.reviewedAt,
+    reviewProofs.get(review.reviewId)?.archiveDigest ?? null
   ]).sort((a,b) => a[0].localeCompare(b[0]));
   return {
     version: 1,
@@ -119,6 +130,7 @@ export function evaluateEvidenceQualification(queue, reviews = [], asOf = new Da
     gatePassed: unresolvedMaterialOrUnreviewed === 0,
     queueFingerprint: sha256(JSON.stringify(byId)),
     reviewFingerprint: sha256(JSON.stringify(reviewTrace)),
+    reviewLedgerDigest: sha256(JSON.stringify(reviews.map((review,index) => [index,review]))),
   };
 }
 
@@ -128,6 +140,7 @@ export function evidenceQualificationMatchesState(summary, state, reference) {
     reference?.contract === summary.contract &&
     summary.queueFingerprint === reference.queueFingerprint &&
     summary.reviewFingerprint === reference.reviewFingerprint &&
+    summary.reviewLedgerDigest === reference.reviewLedgerDigest &&
     summary.unresolvedMaterialOrUnreviewed === reference.unresolvedMaterialOrUnreviewed &&
     Number(state?.unresolvedEvidence) === summary.unresolvedMaterialOrUnreviewed &&
     Number(state?.rawUnresolvedEvidence) === summary.rawPending

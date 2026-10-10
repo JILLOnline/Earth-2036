@@ -3,6 +3,7 @@ import path from "node:path";
 import { qualifiesT0Publication, qualifiesTick } from "./lib/runtime-gates.mjs";
 import { determineTickFinalization } from "./lib/tick-authority.mjs";
 import { evaluateEvidenceQualification, parseEvidenceDispositionLedger, evidenceQualificationMatchesState } from "./lib/evidence-qualification.mjs";
+import { loadVerifiedSecReviewProofs } from "./lib/sec-review-archive.mjs";
 import { buildTrajectorySnapshot, validateTrajectorySnapshot } from "./lib/trajectory-engine.mjs";
 import { loadVerifiedBridgeIndex } from "./lib/fundamentals-bridge-index.mjs";
 
@@ -69,9 +70,11 @@ const [reviewQueue, reviewSummary, reviewLedgerText] = await Promise.all([
 ]);
 let independentReview;
 try {
-  independentReview = evaluateEvidenceQualification(
-    reviewQueue, parseEvidenceDispositionLedger(reviewLedgerText), state.lastCycleAt
+  const reviews = parseEvidenceDispositionLedger(reviewLedgerText);
+  const proofs = await loadVerifiedSecReviewProofs(
+    reviewQueue, reviews, path.join(ROOT, "data", "operations", "sec-primary-archive"), state.lastCycleAt
   );
+  independentReview = evaluateEvidenceQualification(reviewQueue, reviews, state.lastCycleAt, proofs);
 } catch (error) {
   console.error(JSON.stringify({councilFinalizer:"BLOCKED",reason:"evidence_review_integrity_failure",detail:String(error.message)}));
   process.exitCode = 1;

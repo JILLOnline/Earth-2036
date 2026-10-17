@@ -1,7 +1,7 @@
 # Earth 2036 — Project Phoenix: phased reliability rollout
 
 Date: 2026-10-17. Authority: `JILLOnline/Earth-2036@main`.
-Status: Phase 1 live; Phase 2A incident history and Phase 2B Pages provenance live. Phase 3A worker obligation shadow live; Phase 3B lease accounting live; Phase 3C original-rejection triage / disablement review under isolated PR testing. No authority migration, task restart, historical backfill or score change.
+Status: Phase 1 live; Phase 2A incident history and Phase 2B Pages provenance live. Phase 3A worker obligation shadow live; Phase 3B lease accounting live; Phase 3C original-rejection triage live (worker disable cause unresolved); Phase 4A Chief cryptographic promotion guard under isolated PR testing. No authority migration, task restart, historical backfill or score change.
 
 ## Non-negotiables
 
@@ -115,6 +115,16 @@ automatic promotion.
 
 **Go/no-go:** no promotion without the selected approval policy; Beast still
 independently verifies score/causal/provenance; deliberately unsafe fixtures fail.
+
+### Phase 4A — Signed Chief adjudication (October 17)
+
+- Root cause verified: `docs/WORKGRAPH_V2.md` calls `chief-earth` sovereign intelligent adjudicator, the actual Chief ChatGPT task is a paused workforce-liveness keeper, and the old `scripts/promote-chief-ready.mjs` could canonically promote a `chief_ready` packet after technical and Beast gates alone.
+- New policy `chief-ready-plus-signed-chief-adjudication-v1` requires an affirmative **cryptographically verified Ed25519 Chief signature over the exact persisted packet SHA-256**, ticker, work ID, compiled timestamp and bounded decision window, before any canonical record materializes. A matching genuine `reject` cannot promote.
+- `config/chief-adjudication-authority.json` ships **uncommissioned / disabled**; do not invent a signing key or commit a private key. No local repository claim or ChatGPT task timestamp authorizes signature issuance. All `chief_ready` packets therefore remain held by default, with precise reasons in the fast-path report.
+- Independent operator commissioning of a sovereign decision authority is explicitly still required. The signed decision file path is `data/operations/chief-adjudications/<TICKER>.json`; a decision can pass only after authorized public key commissioning and separate private key custody. Production is intentionally fail-closed until then. **This is not restored Chief throughput.**
+- Original Beast/score/causal/Methodology 1.0/T0 gates still apply **after** signed approval. No test-generated private key appears in production. A passing test of a generated-key fixture is not an actual Chief adjudication.
+- The same GitHub main branch remains the one canonical authority. The current paused `Earth Chief Supervisor` task remains a liveness coordinator by configuration and cannot silently acquire adjudication powers.
+- Acceptance: CI + full fault injection + live no-spurious-promotion audit. No successful Chief signoff will be claimed until a properly commissioned real one exists. Verify a future chief_ready case is **skipped** without a signed decision and has no canonical mutation.
 
 ## Phase 5 — Throughput restoration
 

@@ -1,4 +1,5 @@
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import {authorizeChiefPromotion} from "./lib/chief-adjudication-gate.mjs";
 import path from "node:path";
 import { auditScoreRecord } from "../engine/beast-integrity.mjs";
 import { calculateCanonicalEarthScoreBreakdown, isPublishableScoreRecord, rankRecords, METHODOLOGY_VERSION, MIN_PUBLISHABLE_DATA_CONFIDENCE, SCORE_CONTRACT_VERSION, SCORE_FORMULA_HASH } from "./lib/runtime-gates.mjs";
@@ -13,6 +14,8 @@ const BASELINE = path.join(DATA, "baseline-evidence");
 const METHODOLOGY = METHODOLOGY_VERSION;
 const MIN_CONFIDENCE = MIN_PUBLISHABLE_DATA_CONFIDENCE;
 const MANIFEST = path.join(DATA, "baselines", "earth2036-official-t0-2026-09-12", "manifest.json");
+const CHIEF_AUTHORITY = path.join(ROOT, "config/chief-adjudication-authority.json");
+const CHIEF_DECISIONS = path.join(DATA, "operations/chief-adjudications");
 
 async function readJson(file, fallback = null) {
   try { return JSON.parse(await readFile(file, "utf8")); } catch { return fallback; }
@@ -206,17 +209,26 @@ export function buildCanonicalRecord(packet, underwriting) {
       workId: packet.workId,
       packetGeneratedAt: packet.generatedAt,
       evidencePaths: packet.evidencePaths,
-      fastPathPolicy: "chief-ready-zero-defect-v1",
+      fastPathPolicy: "chief-ready-plus-signed-chief-adjudication-v1",
     },
   };
 }
 
+const packetSourceBytes = new Map();
 async function loadPackets() {
   const names = await readdir(PACKETS);
   const rows = [];
   for (const name of names.filter((n) => n.endsWith(".json"))) {
-    const packet = await readJson(path.join(PACKETS, name), null);
-    if (packet) rows.push(packet);
+    const raw=await readFile(path.join(PACKETS,name),"utf8");
+    let packet;
+    try{packet=JSON.parse(raw);}catch{continue;}
+    if(packet){
+      if(!/^[A-Z][A-Z0-9.-]{0,11}$/.test(packet.ticker||"") ||
+         packetSourceBytes.has(packet.ticker))
+        throw new Error("chief_invalid_or_duplicate_packet_identity");
+      packetSourceBytes.set(packet.ticker,raw);
+      rows.push(packet);
+    }
   }
   return rows;
 }
@@ -239,8 +251,22 @@ if (!workgraph?.companies) {
 let prospectiveGraph = graphState;
 const promoted = [];
 const skipped = [];
+const chiefAuthority=await readJson(CHIEF_AUTHORITY,null);
 
 for (const packet of packets.filter((p) => p?.preflight?.passed === true && workgraph.companies?.[p.ticker]?.state === "chief_ready")) {
+  // A deterministic preflight plus Beast audit does NOT substitute for the
+  // sovereign Chief's authenticated, packet-specific affirmative adjudication.
+  // There is no active signing authority until independently commissioned.
+  const decision=await readJson(path.join(CHIEF_DECISIONS,packet.ticker+".json"),null);
+  const chiefGate=authorizeChiefPromotion({
+    packet,packetBytes:packetSourceBytes.get(packet.ticker),
+    authority:chiefAuthority,decision,now:new Date().toISOString()
+  });
+  if(!chiefGate.approved){
+    skipped.push({ticker:packet.ticker,reason:chiefGate.reason,
+      governance:"chief_adjudication_required_no_automatic_promotion"});
+    continue;
+  }
   const relevant = evidence.filter((e) => e.ticker === packet.ticker);
   const underwriting = relevant
     .filter((e) => e.perspective === "company-underwriting" && e.scoreRecord)
@@ -255,6 +281,7 @@ for (const packet of packets.filter((p) => p?.preflight?.passed === true && work
   }
 
   const record = buildCanonicalRecord(packet, underwriting);
+  record.canonicalLineage = {...record.canonicalLineage, chiefApproval:chiefGate.approvalProof};
   const causal = materializeCausalProof(prospectiveGraph, packet.ticker, record.company, structural, record);
   if (!causal.passed) {
     skipped.push({ ticker: packet.ticker, reason: causal.reason });
@@ -325,7 +352,7 @@ if (promoted.length) {
 
 const report = {
   version: 1,
-  policy: "chief-ready-zero-defect-v1",
+  policy: "chief-ready-plus-signed-chief-adjudication-v1",
   generatedAt: new Date().toISOString(),
   promoted,
   skipped,

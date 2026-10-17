@@ -51,8 +51,9 @@ function canConfirmClear(plane, report) {
   if (plane === "execution") return report.planes?.execution?.status === "healthy"
     && report.planes.execution.slots > 0
     && report.planes.execution.missingAsOfReceipt === 0;
-  if (plane === "research") return ["baseline_complete", "unverified_progress"].includes(report.planes?.research?.status)
-    && report.planes?.research?.canonicalProgressAgeHours !== null;
+  // A disappeared packet-ready count is not proof of recovery. Until we have
+  // signed gate-closure deltas in P5, only completed baseline can clear this class.
+  if (plane === "research") return report.planes?.research?.status === "baseline_complete";
   if (plane === "truth") return report.planes?.truth?.status === "passing_last_audit";
   return false;
 }

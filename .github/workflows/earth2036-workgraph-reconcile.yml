@@ -195,6 +195,13 @@ jobs:
 
           if [ "$active_pages" = "0" ] && { [ "$pages_status" = "missing" ] || [ "$pages_age" -gt 1200 ]; }; then
             current_main=$(gh api "repos/${{ github.repository }}/commits/main" --jq .sha)
-            gh workflow run earth2036-pages.yml --repo "${{ github.repository }}" --ref main -f source_sha="$current_main"
-            echo "Dispatched bounded operational Pages refresh for $current_main."
+            pages_url="$(gh api "repos/${{ github.repository }}/pages" --jq '.html_url // ""' 2>/dev/null || true)"
+            comparison="$(node scripts/pages-publication-needed.mjs --mode live --target "$current_main" --pages-url "$pages_url")"
+            echo "$comparison"
+            if [ "$(jq -r '.needed' <<<"$comparison")" = "true" ]; then
+              gh workflow run earth2036-pages.yml --repo "${{ github.repository }}" --ref main -f source_sha="$current_main"
+              echo "Dispatched bounded Pages refresh for changed public inputs at $current_main."
+            else
+              echo "No public-input delta against verified Pages provenance; skip redundant deployment."
+            fi
           fi

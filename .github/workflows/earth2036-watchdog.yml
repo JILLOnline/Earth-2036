@@ -31,6 +31,22 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Compare actual published Pages provenance with current source
+        id: publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          current_main="$(gh api "repos/${{ github.repository }}/commits/main" --jq .sha)"
+          pages_url="$(gh api "repos/${{ github.repository }}/pages" --jq '.html_url // ""' 2>/dev/null || true)"
+          node scripts/pages-publication-needed.mjs --mode live --target "$current_main" --pages-url "$pages_url"
       - name: Read machine and Workgraph freshness
         id: freshness
         env:
@@ -77,6 +93,7 @@ jobs:
           LAST_CYCLE_AT: ${{ steps.freshness.outputs.last_cycle_at }}
           WORKGRAPH_HEALTHY: ${{ steps.freshness.outputs.workgraph_healthy }}
           WORKGRAPH_CRITICAL: ${{ steps.freshness.outputs.workgraph_critical }}
+          PAGES_CONTENT_NEEDS_DEPLOY: ${{ steps.publication.outputs.needed }}
         run: |
           set -euo pipefail
           latest() {
@@ -95,8 +112,8 @@ jobs:
           reconcile_conclusion=$(jq -r '.conclusion // "missing"' <<<"$reconcile")
           ci_conclusion=$(jq -r '.conclusion // "missing"' <<<"$ci")
           pages_created=$(jq -r '.createdAt // ""' <<<"$pages")
-          pages_head=$(jq -r '.headSha // ""' <<<"$pages")
-          main_head=$(gh api "repos/${{ github.repository }}/commits/main" --jq .sha)
+          # Actions event headSha is NOT proof of the published Pages sourceSha.
+          # Publication provenance is checked independently above.
 
           unhealthy=false
           if [ "$scheduler_conclusion" != "success" ]; then unhealthy=true; fi
@@ -111,10 +128,10 @@ jobs:
           if [ -n "$pages_created" ]; then
             pages_epoch=$(date -d "$pages_created" +%s)
             now_epoch=$(date -u +%s)
-            if [ "$pages_head" != "$main_head" ] && [ $((now_epoch - pages_epoch)) -gt 1200 ]; then
+            if [ "$PAGES_CONTENT_NEEDS_DEPLOY" = "true" ] && [ $((now_epoch - pages_epoch)) -gt 1200 ]; then
               pages_stale=true
             fi
-          elif [ -n "$LAST_CYCLE_AT" ]; then
+          elif [ "$PAGES_CONTENT_NEEDS_DEPLOY" = "true" ]; then
             pages_stale=true
           fi
 

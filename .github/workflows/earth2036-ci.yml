@@ -86,8 +86,19 @@ jobs:
       - name: Runtime coherence smoke
         if: steps.scope.outputs.run_engine == 'true'
         run: npm run smoke:runtime
-      - name: Dispatch Pages after verified main push
+      - name: Compare changed files with public build inputs
+        id: pages_impact
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: node scripts/pages-publication-needed.mjs --mode push --base HEAD^ --target HEAD
+      - name: Dispatch Pages only for public-input changes at current main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && steps.pages_impact.outputs.needed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run earth2036-pages.yml --repo "${{ github.repository }}" --ref main -f source_sha="${GITHUB_SHA}"
+        run: |
+          set -euo pipefail
+          current="$(gh api "repos/${{ github.repository }}/commits/main" --jq .sha)"
+          if [ "$current" != "$GITHUB_SHA" ]; then
+            echo "Main advanced since this CI snapshot; do not publish an older source."
+            exit 0
+          fi
+          gh workflow run earth2036-pages.yml --repo "${{ github.repository }}" --ref main -f source_sha="$current"

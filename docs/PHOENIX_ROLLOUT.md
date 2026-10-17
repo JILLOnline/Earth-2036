@@ -1,7 +1,7 @@
 # Earth 2036 — Project Phoenix: phased reliability rollout
 
 Date: 2026-10-17. Authority: `JILLOnline/Earth-2036@main`.
-Status: Phase 1 live pilot verified; Phase 2 continuity + incident history candidate on isolated PR branch. No authority migration, task restart, historical backfill or score change.
+Status: Phase 1 live; Phase 2A incident history live; Phase 2B Pages provenance comparison under isolated PR testing. No authority migration, task restart, historical backfill or score change.
 
 ## Non-negotiables
 
@@ -51,6 +51,15 @@ GitHub-only design cannot guarantee an exact hourly schedule without another tri
 - Watchdog still ends in FAIL on actual critical Workgraph health; the operational reporter may not override a gate.
 - A 6-hour live continuity pilot is required before declaring Phase 2 coverage improved. If GitHub creates no triggering event at all, recovery is impossible within a GitHub-only system. Do not claim fixed 24/24 coverage.
 - Publication SHA/payload deduplication remains a separate Phase 2 follow-up, gated on existing build-provenance tests. Do not treat Pages workflow event commit SHA as proof of published `source_sha`.
+
+### Phase 2B — GitHub Pages publication provenance pilot (October 17)
+
+- Avoid using GitHub Actions `headSha` as the public deployment source: it is workflow-event provenance, not the `sourceSha` embedded in the already-published `earth2036-deploy.json`.
+- `scripts/pages-publication-needed.mjs` compares the verified published source against the current Git commit tree. Exclude only explicitly-known operational-only paths (`data/operations/**`, tests, documentation, non-public Phoenix scripts and non-Pages workflows). Unknown source files and all `data/runtime/**` remain publication inputs.
+- CI main-push dispatches Pages only when changed files include a public input AND its Git SHA still equals current main. Watchdog and Workgraph compare actual published source instead of their last workflow-event commit.
+- If Pages metadata, published provenance, Git source commit or source-tree comparison cannot be verified, publication decisions fail **open**: request a deployment rather than claiming public freshness from uncertainty. This is a Pages-only behavior, never a source-integrity exception.
+- Existing scheduler machine snapshots and lawful canonical promotions continue publishing normally.
+- Do not classify this deployment optimization as a cure for missing hourly scheduler runs. Keep the six-hour actual-observation acceptance test open.
 
 ## Phase 3 — Verified workforce obligations
 

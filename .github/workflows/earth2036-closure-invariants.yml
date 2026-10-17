@@ -73,3 +73,7 @@ jobs:
             echo "Closure invariant audit failed with status $status." >&2
             exit "$status"
           fi
+      - name: Phoenix P1 read-only operating picture
+        if: always()
+        continue-on-error: true
+        run: node scripts/phoenix-inspect.mjs

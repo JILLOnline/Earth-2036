@@ -3,9 +3,9 @@ import assert from "node:assert/strict";
 import {buildTrialReviewReport} from "../scripts/lib/trial-review-report.mjs";
 const build=(n)=>({manifest:{baselineId:"t0",methodologyVersion:"1.0.0",universeVersion:"u1-250",
  qualifiedTrialTicksAfterBaseline:n,...(n===1000?{trialStatus:"complete_awaiting_review"}:{})},
- state:{qualifiedTrialTicks:n,lastQualifiedCycleKey:n?("2026"+String(1000000+n).slice(1)+"T0000Z"):null,
+ state:{qualifiedTrialTicks:n,lastQualifiedCycleKey:null,
  phase:n===1000?"trial_complete_awaiting_review":"trial"},
- ticks:Array.from({length:n},(_,i)=>({tickNumber:i+1,cycleKey:"2026"+String(1000001+i).slice(1)+"T0000Z",
+ ticks:Array.from({length:n},(_,i)=>({tickNumber:i+1,cycleKey:new Date(Date.UTC(2026,0,1,i)).toISOString().slice(0,13).replace(/[-T:]/g,"")+"00Z",
   trajectory:{validation:{passed:true},horizons:[{months:12,outcomeStatus:"pending"}]}}))});
 test("noncompleted trial does not claim completion or forecast results",()=>{
  const x=build(2);x.state.lastQualifiedCycleKey=x.ticks.at(-1).cycleKey;

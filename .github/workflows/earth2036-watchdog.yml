@@ -4,6 +4,15 @@ on:
   schedule:
     - cron: "22,42 * * * *"
   workflow_dispatch:
+  # Independent event-driven opportunities: cron nonarrival in one workflow
+  # cannot prevent recovery when another already-running GitHub workflow ends.
+  # Never include this watchdog in its own workflow_run triggers.
+  workflow_run:
+    workflows:
+      - "Earth 2036 Closure Invariants"
+      - "Earth 2036 Hourly Accountability"
+    types: [completed]
+    branches: [main]
   push:
     branches: [main]
     paths:
@@ -142,17 +151,25 @@ jobs:
           current_start="$(date -u +'%Y-%m-%dT%H:00:00Z')"
           minute="$(date -u +'%M')"
           minute=$((10#$minute))
-          if [ "$minute" -lt 20 ] && [ "$MACHINE_STALE" != "true" ]; then
-            echo "Current hour is not yet past the 20-minute recovery threshold."
+          # Dispatches at the end of an hour can run in the next hour and
+          # cannot repair the original slot. Bound recovery to 20..45 minutes.
+          if [ "$minute" -lt 20 ] || [ "$minute" -gt 45 ]; then
+            echo "Outside bounded 20-45 minute current-hour recovery window."
             exit 0
           fi
 
           # Always check actual observed machine state and real GitHub scheduler
           # attempts; never infer missing observations from a dashboard timestamp.
-          state="$(gh api "repos/${{ github.repository }}/contents/data/runtime/system-state.json?ref=main" --jq .content | base64 -d)"
-          observed_hour="$(jq -r '.cycleKey // ""' <<<"$state")"
-          if [ "$observed_hour" = "$current_hour" ]; then
-            echo "A real machine observation already exists for $current_hour."
+          # Validate immutable source history, never the mutable dashboard pointer.
+          # Missing/corrupt/duplicate history is not permission to launch a run.
+          cycle_history="$(gh api "repos/${{ github.repository }}/contents/data/runtime/cycle-history.jsonl?ref=main" --jq .content | base64 -d)"
+          observed_count="$(jq -s --arg slot "$current_hour" '[.[] | select(.cycleKey == $slot)] | length' <<<"$cycle_history")"
+          if [ "$observed_count" -gt 1 ]; then
+            echo "::error::Duplicate immutable observations for $current_hour; fail closed."
+            exit 1
+          fi
+          if [ "$observed_count" -eq 1 ]; then
+            echo "A real immutable observation already exists for $current_hour."
             exit 0
           fi
           scheduler_runs="$(gh run list --repo "${{ github.repository }}" --workflow earth2036-scheduler.yml --branch main --limit 60 --json createdAt,status,conclusion)"

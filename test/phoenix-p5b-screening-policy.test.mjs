@@ -52,7 +52,7 @@ test("bounded two-case source screening is explicitly noncanonical and never lau
 test("pre-cutoff SWKS 10-Q gets only pending authentication and materiality review",()=>{
  const row=assess().records.find(x=>x.ticker==="SWKS");
  assert.equal(row.status,"awaiting_original_sec_bytes_and_independent_materiality_review");
- assert.equal(row.afterT0Cutoff,false);assert.equal(row.secQueuedMatch,undefined);
+ assert.equal(row.afterT0Cutoff,false);assert.equal(row.secQueuedMatch,false);
  assert.equal(row.originalSECBytesAuthenticated,false);
  assert.equal(row.sourceMaterialityIndependentlyApproved,false);
 });

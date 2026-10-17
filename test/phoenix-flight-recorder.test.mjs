@@ -140,8 +140,9 @@ test("no verified worker availability means no autonomous-ready claim even with 
   const report = assessPhoenix(sample);
   assert.equal(report.planes.research.status, "baseline_complete");
   assert.equal(report.planes.workforce.status, "observed_only");
-  assert.equal(report.readyForAutonomousOperation, true);
-  // This is operational-only: no T0 publication/tick authority granted.
+  assert.equal(report.readyForAutonomousOperation, false);
+  assert.equal(report.readinessAssessment, "not_certified_read_only_pilot");
+  // No GitHub-only observation certifies ChatGPT workforce or T0.
   assert.equal(report.authority.tickQualification, false);
   assert.equal(report.authority.canonicalWrites, false);
 });

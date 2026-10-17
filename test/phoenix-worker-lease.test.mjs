@@ -39,7 +39,7 @@ test("same input fingerprint preserves first seen across Workgraph regeneration"
   const a=assess();
   const b=assess(first(),a,[],tPlus(45));
   const row=b.entries.find(x=>x.ticker==="AEVA" && x.kind==="source_assist");
-  assert.equal(row.firstSeenAt,at);
+  assert.equal(row.firstSeenAt,new Date(at).toISOString());
   assert.equal(row.leaseDurationMinutes,45);
 });
 test("unacknowledged source request becomes overdue without autorun or restart",()=>{

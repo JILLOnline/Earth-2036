@@ -51,7 +51,23 @@ export function screenPrimarySources({
       reviewDecision:["screen_for_lawful_source_acquisition_only","exclude_for_this_gate_without_changing_other_research"].includes(c?.reviewDecision),
     };
     const invalid=Object.keys(checks).filter(k=>!checks[k]);
-    if(invalid.length)throw new Error("phoenix_p5b_invalid_source_record:"+invalid.join(","));
+    if(invalid.length){
+      let diagnosis="";
+      if(invalid.includes("secUrl")){
+        try{
+          const u=new URL(c.primaryDocumentUrl);
+          const pathPrefix="https://www.sec.gov/Archives/edgar/data/"+
+            String(BigInt(c.cik))+"/"+c.accessionNumber.replaceAll("-")+"/";
+          diagnosis=":sec_url_components="+JSON.stringify({
+            protocol:u.protocol==="https:",host:u.hostname==="www.sec.gov",
+            credentials:u.username===""&&u.password==="",search:u.search==="",hash:u.hash==="",
+            prefix:u.href.startsWith(pathPrefix),traversal:!u.pathname.includes(".."),
+            basename:/^[a-zA-Z0-9_.-]+\\.htm[l]?$/.test(u.pathname.split("/").at(-1))
+          });
+        }catch(e){diagnosis=":sec_url_exception="+String(e.name);}
+      }
+      throw new Error("phoenix_p5b_invalid_source_record:"+invalid.join(",")+diagnosis);
+    }
     const key=c.ticker+":"+c.accessionNumber;
     if(seen.has(key))throw new Error("phoenix_p5b_duplicate_screening");
     seen.add(key);

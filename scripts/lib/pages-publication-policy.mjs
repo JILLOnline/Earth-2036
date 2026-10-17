@@ -15,6 +15,8 @@ const NONPUBLIC = [
   /^scripts\/lib\/phoenix-(?:control-plane|incident-journal|workforce-obligations|worker-lease|source-hold-triage)\.mjs$/,
   /^scripts\/phoenix-source-hold-inspect\.mjs$/,
   /^scripts\/phoenix-source-change-inspect\.mjs$/,
+  /^scripts\/phoenix-continuity-inspect\.mjs$/,
+  /^scripts\/lib\/phoenix-continuity-acceptance\.mjs$/,
   /^scripts\/lib\/phoenix-source-change-review\.mjs$/,
   /^config\/phoenix-known-write-rejections\.json$/,
   /^scripts\/phoenix-(?:workforce-inspect|worker-leases)\.mjs$/,

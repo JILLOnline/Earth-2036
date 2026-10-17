@@ -71,8 +71,9 @@ export function assessWorkerResumption({role,taskState=null,disableCause=null,cl
   if(!["earth-scout","council-alpha","council-beta","deep-resolver","chief-earth"].includes(role))
     throw new Error("phoenix_unknown_worker_role");
   if(!taskState || typeof taskState.enabled!=="boolean")return denial("actual_task_state_unavailable");
-  if(taskState.enabled===true)return {role,decision:"already_enabled_do_not_restart",workerRestartAuthorized:false};
+  // Active source safety concerns cannot vanish merely because a task is enabled.
   if(activeSafetyHold)return denial("unresolved_source_write_safety_hold");
+  if(taskState.enabled===true)return {role,decision:"already_enabled_do_not_restart",workerRestartAuthorized:false};
   if(!["transient_platform_interruption","operator_pause","safety_or_policy","unknown"].includes(disableCause))
     return denial("disable_cause_unverified");
   if(disableCause!=="transient_platform_interruption")return denial("disable_cause_not_verified_recoverable");

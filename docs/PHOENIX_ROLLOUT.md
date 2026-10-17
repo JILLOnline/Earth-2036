@@ -1,7 +1,7 @@
 # Earth 2036 — Project Phoenix: phased reliability rollout
 
 Date: 2026-10-17. Authority: `JILLOnline/Earth-2036@main`.
-Status: Phase 1 read-only pilot branch; no authority migration, task restart or score change.
+Status: Phase 1 live pilot verified; Phase 2 continuity + incident history candidate on isolated PR branch. No authority migration, task restart, historical backfill or score change.
 
 ## Non-negotiables
 
@@ -42,6 +42,15 @@ no existing original observation and no live attempt, subject to authorization.
 **Go/no-go:** simulated skipped cron, duplicate job, failed push, partial observation,
 and all cron events absent are distinct. Run a 6-hour live coverage pilot. Accept that a
 GitHub-only design cannot guarantee an exact hourly schedule without another trigger.
+
+### Phase 2 implementation boundaries (October 17)
+
+- Operational first-seen/open/clear/reopen facts: `data/operations/phoenix/events.jsonl` (append-only) and `current.json` (projection). Their Git commit is part of the EXISTING hourly accountability commit transaction; no new write-heavy scheduled job.
+- A fresh absence in an audit is NOT proof of recovery. Two distinct verified windows are required to close an execution incident. Unauthenticated ChatGPT worker states cannot be closed by GitHub timestamps.
+- A new `workflow_run` watchdog trigger listens to COMPLETED Closure Invariants and Hourly Accountability workflows, breaking exclusive dependence on cron. It never watches itself. Scheduler recovery is bounded to UTC minutes 20–45, only after confirming the immutable `cycle-history.jsonl` has no corresponding original record and GitHub has no current-hour attempt.
+- Watchdog still ends in FAIL on actual critical Workgraph health; the operational reporter may not override a gate.
+- A 6-hour live continuity pilot is required before declaring Phase 2 coverage improved. If GitHub creates no triggering event at all, recovery is impossible within a GitHub-only system. Do not claim fixed 24/24 coverage.
+- Publication SHA/payload deduplication remains a separate Phase 2 follow-up, gated on existing build-provenance tests. Do not treat Pages workflow event commit SHA as proof of published `source_sha`.
 
 ## Phase 3 — Verified workforce obligations
 

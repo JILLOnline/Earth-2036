@@ -145,8 +145,10 @@ export function assessPhoenix(inputs = {}) {
         trialCoverageFloorMet: combinedCoverage === null ? null : combinedCoverage >= 0.95 },
     },
     incidents: incidents.sort((a, b) => a.plane.localeCompare(b.plane) || a.code.localeCompare(b.code)),
-    readyForAutonomousOperation: incidents.length === 0 && workforce.status !== "unverified" &&
-      hours.status === "healthy" && truthStatus === "passing_last_audit" && !stalled,
+    // A GitHub-only read cannot attest ChatGPT worker availability or accepted work.
+    // This phase is diagnostic. Do not certify readiness even if every local plane passes.
+    readyForAutonomousOperation: false,
+    readinessAssessment: "not_certified_read_only_pilot",
     caveat: "Operational readiness does not qualify T0, a ranking, or a trial tick.",
   };
   return summarized;

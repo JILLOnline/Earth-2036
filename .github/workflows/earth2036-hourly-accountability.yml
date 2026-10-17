@@ -47,7 +47,16 @@ jobs:
             node scripts/hourly-accountability.mjs
             # Independent retrospective interpretation; leaves each as-of receipt immutable.
             node scripts/reconcile-hourly-slots.mjs
+            # Phoenix incident records are operational history, NOT observations,
+            # evidence, qualifications, scores, or a source of recovery authority.
+            # Keep the independent as-of audit alive if optional telemetry fails.
+            if ! node scripts/phoenix-journal.mjs; then
+              echo "::warning::Phoenix incident journal could not be updated; original hourly audit remains authoritative."
+            fi
             git add data/operations/hourly-audits data/operations/hourly-reconciliation/latest.json
+            if [ -d data/operations/phoenix ]; then
+              git add data/operations/phoenix
+            fi
 
             if git diff --cached --quiet; then
               echo "The immutable receipt already exists; nothing to overwrite."

@@ -82,7 +82,7 @@ export function buildSourceChangeReview({
         dormantAssistCount:relatedRequests.length,
         heldRequestIds:heldRequests,
         status,
-        reviewNeeded:"independent primary source content and input materiality; no assertion a filing is newly filed",
+        reviewNeeded:"independent primary source content and input materiality; newly visible accession is not proof it was newly filed",
         authorizedForAutomatedReactivation:false,
         authorizedForSafetyRejectedPayloadRetry:false,
         authorizedForChiefApproval:false,

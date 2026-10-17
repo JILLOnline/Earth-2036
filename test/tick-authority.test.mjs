@@ -65,3 +65,12 @@ test("runtime finalizer explicitly transitions at the terminal tick",async()=>{
  assert.match(f,/nextTick === TRIAL_TICK_LIMIT/);
  assert.match(f,/trial_complete_awaiting_review/);
 });
+
+test("reject replay of an older unrecorded cycle after qualified progress",()=>{
+ const a={...args(),cycleKey:"20261009T2100Z"};
+ assert.throws(()=>determineTickFinalization(a),/Out-of-order qualified cycle/);
+});
+test("reject exact same previous cycle when its tick file is missing",()=>{
+ const a={...args(),state:{qualifiedTrialTicks:4,lastQualifiedCycleKey:k}};
+ assert.throws(()=>determineTickFinalization(a),/without immutable tick file/);
+});

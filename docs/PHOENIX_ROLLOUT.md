@@ -136,6 +136,17 @@ Optimize task batching only after true per-role closure rates exist.
 **Go/no-go:** root-cause ownership is not ambiguous and at least one objectively
 useful gate change is persisted; never count a new receipt by itself as progress.
 
+### Phase 5A — SEC source-change review shadow (October 17)
+
+- **Actual upstream defect:** Closure Frontier and Assist Bus input signatures depend on packet/evidence metadata but not SEC `company-observations.candidates[ticker].filingFingerprint`. A real changed filing can be missed as a reason to review dormant work; naïvely adding fingerprints to old signatures can also reactivate hundreds of historical dormant requests with no new source.
+- The machine already produces an observation-only `source-change-audit.json`, SEC full accession continuity, and a separate SEC `evidence-review-queue.json`. These are **candidates**, not verified company-specific underwriting evidence.
+- Phase 5A correlates only a credible `observed_window_new_accessions` signal with a matching verified SEC accession continuity, current company fingerprint, SEC archive URL in the authentic review queue, and an existing stalled frontier or dormant assist. Produces **review-only** records. It does not update packet signatures, touch the queue, clear failed-source writes, start minions, promote, or qualify ticks.
+- Quarantined exact safety-rejected requests remain held even when a different filing accession is newly visible. Do not retry previously denied payload via a new filename/path. Unrelated requests aren't automatically blocked nor declared safe.
+- The first deployment causes **zero queue reactivations** even if the candidate list is nonempty. Repetition of unchanged hourly snapshots cannot manufacture new source input; a rolling SEC window drop cannot mark an unresolved candidate as successfully reviewed.
+- Production baseline at October 17 17:25 UTC: `source-change-audit.summary.unchanged=250`, `changes=[]`, and `sec-accession-continuity.continuous=250`, `incomplete=0`. Thus **no justified new-source reactivation** exists this cycle, despite approximately 72 stalled frontier candidates.
+- Fault tests cover valid cross-source accession matching, non-SEC URL, cursor gap, unchanged source, wrong input, historical dormant migration, exact safety holds and duplicated filing claims.
+- **Phase 5B activation is a separate decision** only after source record identity/materiality review and verified worker permission. No source metadata alone grants a worker restart or Chief approval.
+
 ## Phase 6 — Endurance
 
 Run 6-hour, 24-hour, then 72-hour operational windows. Monitor actual observations,

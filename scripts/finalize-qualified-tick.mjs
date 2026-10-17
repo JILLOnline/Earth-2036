@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { qualifiesT0Publication, qualifiesTick } from "./lib/runtime-gates.mjs";
-import { determineTickFinalization } from "./lib/tick-authority.mjs";
+import { determineTickFinalization, TRIAL_TICK_LIMIT } from "./lib/tick-authority.mjs";
 import { evaluateEvidenceQualification, parseEvidenceDispositionLedger, evidenceQualificationMatchesState } from "./lib/evidence-qualification.mjs";
 import { loadVerifiedSecReviewProofs } from "./lib/sec-review-archive.mjs";
 import { buildTrajectorySnapshot, validateTrajectorySnapshot } from "./lib/trajectory-engine.mjs";
@@ -397,11 +397,17 @@ const nextState = {
   discoveryScanCompleted,
   qualifiedTick: true,
   qualifiedTrialTicks: nextTick,
+  phase: nextTick === TRIAL_TICK_LIMIT ? "trial_complete_awaiting_review" : "trial",
+  qualifiedTick: true,
   lastQualifiedCycleKey: state.cycleKey,
   lastCouncilFinalizedAt: finalizedAt,
 };
 await writeJson(path.join(RUNTIME, "system-state.json"), nextState);
-await writeJson(MANIFEST, { ...manifest, qualifiedTrialTicksAfterBaseline: nextTick });
+await writeJson(MANIFEST, {
+  ...manifest, qualifiedTrialTicksAfterBaseline: nextTick,
+  trialEligible: nextTick < TRIAL_TICK_LIMIT,
+  ...(nextTick === TRIAL_TICK_LIMIT ? {trialCompletedAt:finalizedAt,trialStatus:"complete_awaiting_review"} : {}),
+});
 await appendJsonLine(path.join(RUNTIME, "tick-finalizations.jsonl"), {
   cycleKey: state.cycleKey,
   tickNumber: nextTick,

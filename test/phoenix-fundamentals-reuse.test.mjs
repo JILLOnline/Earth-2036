@@ -110,3 +110,23 @@ test("no new worker, scheduler, source write or public Pages trigger is added",a
   assert.match(workflow,/node scripts\/phoenix-fundamentals-reuse-inspect\.mjs/);
   assert.match(workflow,/continue-on-error: true/);
 });
+
+test("ordinary later machine cycle does not invalidate unchanged hashed SEC references",()=>{
+  const x=inputs();const later=new Date(Date.parse(x.index.asOf)+3600000).toISOString();
+  x.observations.capturedAt=later;x.systemState.lastCycleAt=later;
+  const r=assessFundamentalsReuse(x);
+  assert.equal(r.sourceStaleRelativeToRuntime,true);
+  assert.equal(r.runtimeCycle,later);
+  assert.equal(r.sourceCycle,x.index.asOf);
+  assert.equal(r.summary.liveSourceReferencesVerified,74);
+  assert.equal(r.summary.historicalT0EvidenceAdmitted,0);
+});
+test("source index later than runtime is rejected rather than claiming future source",()=>{
+  const x=inputs();const earlier=new Date(Date.parse(x.index.asOf)-1000).toISOString();
+  x.observations.capturedAt=earlier;x.systemState.lastCycleAt=earlier;
+  assert.throws(()=>assessFundamentalsReuse(x),/phoenix_p7a_source_or_historical_cutoff_unverified/);
+});
+test("observations and system runtime cycles must match",()=>{
+  const x=inputs();x.systemState.lastCycleAt=new Date(Date.parse(x.observations.capturedAt)+1000).toISOString();
+  assert.throws(()=>assessFundamentalsReuse(x),/phoenix_p7a_source_or_historical_cutoff_unverified/);
+});

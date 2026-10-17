@@ -27,8 +27,10 @@ export function assessFundamentalsReuse({index,health,observations,frontier,base
      !String(baseline?.baselineId||"").startsWith("earth2036-official-t0-") ||
      baseline.status!=="in_progress" || baseline.trialEligible!==false ||
      !validTime(cutoff) || !validTime(index.asOf) ||
-     health.asOf!==index.asOf || observations.capturedAt!==index.asOf ||
-     systemState?.lastCycleAt!==index.asOf ||
+     health.asOf!==index.asOf || !validTime(observations.capturedAt) ||
+     !validTime(systemState?.lastCycleAt) ||
+     observations.capturedAt!==systemState.lastCycleAt ||
+     Date.parse(observations.capturedAt)<Date.parse(index.asOf) ||
      Date.parse(index.asOf)<=Date.parse(cutoff))
     throw new Error("phoenix_p7a_source_or_historical_cutoff_unverified");
 
@@ -97,7 +99,9 @@ export function assessFundamentalsReuse({index,health,observations,frontier,base
   const verifiedRows=rows.filter(r=>r.liveReferenceVerified);
   return{
     contract:REUSE_CONTRACT,version:1,mode:"noncanonical_read_only_source_reference_inventory",
-    asOf:index.asOf,historicalEvidenceWindowEnd:cutoff,
+    asOf:index.asOf,sourceCycle:index.asOf,runtimeCycle:systemState.lastCycleAt,
+    sourceStaleRelativeToRuntime:systemState.lastCycleAt!==index.asOf,
+    historicalEvidenceWindowEnd:cutoff,
     archiveTag:health.archiveTag,archiveSha256:health.archiveSha256,
     summary:{
       totalLiveArchiveCompanies:health.companies,

@@ -44,16 +44,18 @@ test("independent completed workflows can invoke watchdog without creating a sel
   assert.doesNotMatch(yaml,/\s+- "Earth 2036 Scheduler Watchdog"/);
 });
 
-test("independent CI and Workgraph completions add opportunities without Pages or self-trigger loops",async()=>{
+test("independent CI and Workgraph completions add opportunities without costly Bridge or self-trigger loops",async()=>{
   const yaml=await readFile(new URL("../.github/workflows/earth2036-watchdog.yml",import.meta.url),"utf8");
   const portion=yaml.slice(yaml.indexOf("  workflow_run:"),yaml.indexOf("  push:"));
   for(const upstream of [
     "Earth 2036 CI",
-    "Earth 2036 Workgraph Reconcile",
-    "Fundamentals Trajectory Bridge Live Bootstrap"
+    "Earth 2036 Workgraph Reconcile"
   ])assert.ok(portion.includes('- "'+upstream+'"'),upstream);
   assert.doesNotMatch(portion,/Earth 2036 Scheduler Watchdog/);
   assert.doesNotMatch(portion,/Earth 2036 GitHub Pages/);
+  // Bridge is invoked by the scheduler and already triggers Workgraph;
+  // subscribing here doubles Watchdog jobs without an independent signal.
+  assert.doesNotMatch(portion,/Fundamentals Trajectory Bridge Live Bootstrap/);
   assert.match(portion,/types: \[completed\]/);
   assert.match(portion,/branches: \[main\]/);
 });

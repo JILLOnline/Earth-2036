@@ -75,6 +75,11 @@ test("actual safety hold blocks even with claimed benign transient",()=>{
     clearance:{verified:true,source:"authorized_task_run_diagnostics",evidenceId:"report-1"},activeSafetyHold:true});
   assert.equal(r.reason,"unresolved_source_write_safety_hold");
 });
+test("an enabled task still reports unresolved source safety holds",()=>{
+  const r=assessWorkerResumption({role:"earth-scout",taskState:{enabled:true},activeSafetyHold:true});
+  assert.equal(r.decision,"hold_disabled");
+  assert.equal(r.reason,"unresolved_source_write_safety_hold");
+});
 test("explicit operator pause never becomes recoverable interruption",()=>{
   assert.equal(assessWorkerResumption({role:"council-beta",taskState:{enabled:false},disableCause:"operator_pause"}).decision,"hold_disabled");
 });

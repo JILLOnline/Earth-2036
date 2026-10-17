@@ -37,6 +37,9 @@ export function determineTickFinalization({ cycleKey, qualified, state, manifest
   }
   if (stateCount === TRIAL_TICK_LIMIT) return {action:"trial_complete",tickNumber:stateCount};
   if (state?.phase === "trial_complete_awaiting_review") throw new Error("Trial phase conflict");
+  if (previousCycle && previousCycle >= cycleKey) {
+    throw new Error("Out-of-order qualified cycle; possible replay or clock regression");
+  }
   if (!qualified) return {action:"not_qualified",tickNumber:stateCount};
   return {action:"finalize",tickNumber:stateCount+1};
 }

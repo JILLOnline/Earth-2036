@@ -36,12 +36,13 @@ export function validateWorkerAck(receipt, obligation, now, origin={}) {
     newEvidencePaths:Array.isArray(receipt.newEvidencePaths)?receipt.newEvidencePaths:[]};
 }
 
-export function advanceWorkerLeaseLedger(obligations, previous=null, ackRecords=[], now) {
+export function advanceWorkerLeaseLedger(obligations, previous=null, ackRecords=[], now, sourceHoldFindings=[]) {
   if (obligations?.contract!==WORKFORCE_OBLIGATIONS_CONTRACT ||
       !Array.isArray(obligations.allObligations) || !cleanTime(now) ||
       (previous && previous.contract!==WORKER_LEASE_CONTRACT))
     throw new Error("phoenix_invalid_lease_inputs");
   if (!Array.isArray(ackRecords))throw new Error("phoenix_invalid_ack_records");
+  if (!Array.isArray(sourceHoldFindings))throw new Error("phoenix_invalid_source_hold_proofs");
   const seen=new Set(),current=new Set(), prior=new Map((previous?.entries||[]).map(x=>[x.id,x]));
   if (prior.size!==(previous?.entries||[]).length) throw new Error("phoenix_duplicate_previous_lease");
   const entries=[];
@@ -56,9 +57,16 @@ export function advanceWorkerLeaseLedger(obligations, previous=null, ackRecords=
     const age=when-Date.parse(firstSeenAt);
     if (!Number.isFinite(age) || age < 0)throw new Error("phoenix_future_or_invalid_lease_first_seen");
     const matches=ackRecords.filter(row=>row?.data?.obligationId===obligation.id);
+    const exactHold=sourceHoldFindings.find(row=>row?.scope==="exact_request" &&
+      row.role===obligation.owner && row.ticker===obligation.ticker &&
+      row.requestId===obligation.requestId && row.currentMatchingObligationIds?.includes(obligation.id) &&
+      typeof row.sourceSha256==="string" && /^[a-f0-9]{64}$/.test(row.sourceSha256));
     let status="awaiting_acknowledgment",ack=null,reason=null;
     if (obligation.kind==="deferred_source_dependency") {
       status="blocked_deferred_source_dependency";
+    } else if (exactHold) {
+      status="blocked_rejected_write_needs_review";
+      reason="verified_source_write_rejection:"+exactHold.sourcePath;
     } else if (obligation.status==="requires_safety_review") {
       status="blocked_safety_hold";
     } else if (obligation.status==="requires_disable_reason_review") {

@@ -88,6 +88,9 @@ export function buildWorkforceObligations({assistViews={},routingViews={},source
     total:found.length,byStatus:buckets,
     actionableWithoutWorkerAck:0,
     selected:found.slice(0,12),
+    // Full data stays internal to deterministic, noncanonical worker-lease reconciliation.
+    // compact/selected remain the bounded human-facing surfaces.
+    allObligations:found,
     compact:found.map(x=>({id:x.id,ticker:x.ticker,owner:x.owner,kind:x.kind,status:x.status,requestId:x.requestId})),
     rule:"No role is 'working' without a matching explicit receipt. A deferred contradiction is a source dependency, not a valid resolver claim pair.",
   };

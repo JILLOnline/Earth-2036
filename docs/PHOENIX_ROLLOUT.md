@@ -1,7 +1,7 @@
 # Earth 2036 — Project Phoenix: phased reliability rollout
 
 Date: 2026-10-17. Authority: `JILLOnline/Earth-2036@main`.
-Status: Phase 1 live; Phase 2A incident history and Phase 2B Pages provenance live. Phase 3A worker obligation shadow under isolated PR testing. No authority migration, task restart, historical backfill or score change.
+Status: Phase 1 live; Phase 2A incident history and Phase 2B Pages provenance live. Phase 3A worker obligation shadow live; Phase 3B strict lease/ack compatibility under isolated PR testing. No authority migration, task restart, historical backfill or score change.
 
 ## Non-negotiables
 
@@ -83,6 +83,15 @@ intervention, never a circular retry. No duplicate rejected evidence writes.
 - No "acknowledged", "sourced", "validated", or "consumed" states can be claimed from routing alone. Those require a future exact receipt/evidence verification implementation plus independent enablement/safety review.
 - Shadow output is read-only, appended to an EXISTING Closure Invariants job summary and has no new cron, repo write, task restart, rejected-evidence retry, canonical or tick side effects.
 - First pilot must show the three real frontline roles (Scout, Alpha, Beta) with actionable requests requiring external executor verification while Resolver lacks a structured case; source-dependency handoffs remain non-actionable until independently sourced.
+
+### Phase 3B — First-seen leases and strict acknowledgment compatibility (October 17)
+
+- Preserve one first-observed timestamp for each exact `obligationId` + request/input signature in `data/operations/phoenix/worker-leases.json`; updated only with the **existing hourly audit Git commit**. This date is when Phoenix first saw a route, not when an agent originally started work.
+- After 120 minutes without a matching receipt, report `unacknowledged_overdue_needs_review`; **never automatically reassign, re-enable, or retry**. Deleted/vanished routes remain historical `no_longer_routed_unverified`, not completed.
+- Optional future receipt contract `earth2036-phoenix-worker-acknowledgment-v1`: exactly matched `obligationId`, `requestId`, `inputSignature`, `owner`, `ticker`, `acknowledgedAt`, and a disposition (`accepted_for_review`, `blocked_safety_hold`, `cannot_proceed`) in `data/operations/phoenix/worker-acks/*.json`. A Git-committed receipt is **self-declared**: without independent worker identity attestation it is *not proof* of an enabled task, successful research or approved write.
+- Claimed evidence paths remain `evidence_claim_unvalidated` until primary source bytes, provenance, causal and Workgraph preflight are independently checked. A receipt cannot bypass a safety-rejected Git write, turn a deferred Resolver pair into actionable claims, or qualify a tick.
+- No task prompt changes, automation updates or automatic recovery in P3B. Phase 3C must separately verify safety disablement reason and a genuine independent clearance mechanism before modifying the paused workforce. Existing Chief governance remains unresolved and must be reconciled in Phase 4.
+- Fault injection: duplicate, stale, wrong-input, mismatched, unsigned/unverifiable receipt; fresh-to-overdue timeout; unchanged signature; disappeared work; safety hold; no unauthorized promotion. A successful CI proves compatibility, **not** restored research throughput.
 
 ## Phase 4 — Chief authority coherence
 

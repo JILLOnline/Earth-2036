@@ -53,6 +53,12 @@ jobs:
             if ! node scripts/phoenix-journal.mjs; then
               echo "::warning::Phoenix incident journal could not be updated; original hourly audit remains authoritative."
             fi
+            # Read existing Workgraph only; exact stable obligations acquire
+            # first-seen ages in this same hourly audit transaction.
+            # A missing/unverified worker receipt never authorizes a retry.
+            if ! node scripts/phoenix-worker-leases.mjs; then
+              echo "::warning::Phoenix worker lease projection failed; preserve audit truth and review the failure."
+            fi
             git add data/operations/hourly-audits data/operations/hourly-reconciliation/latest.json
             if [ -d data/operations/phoenix ]; then
               git add data/operations/phoenix

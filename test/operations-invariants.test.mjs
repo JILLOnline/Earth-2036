@@ -73,12 +73,14 @@ test("runtime control plane skips malformed evidence fail-closed while CI retain
   assert.ok(loader.includes("worker_evidence_parse_or_normalization_failure"));
 });
 
-test("CI watches every Earth 2036 operational workflow and publishes every verified main snapshot", async () => {
+test("CI protects verified public deployment without republishing operational-only commits", async () => {
   const text = await source(".github/workflows/earth2036-ci.yml");
   assert.ok(text.includes('".github/workflows/earth2036-*.yml"'));
-  assert.ok(text.includes("Dispatch Pages after verified main push"));
-  assert.ok(text.includes('source_sha="${GITHUB_SHA}"'));
-  assert.equal(text.includes("Detect browser-projection code changes"), false);
+  assert.ok(text.includes("Compare changed files with public build inputs"));
+  assert.ok(text.includes("pages-publication-needed.mjs --mode push"));
+  assert.ok(text.includes("steps.pages_impact.outputs.needed == 'true'"));
+  assert.ok(text.includes('if [ "$current" != "$GITHUB_SHA" ]; then'));
+  assert.ok(text.includes('source_sha="$current"'));
 });
 
 test("zero-defect Chief fast path runs after packet compilation and before Beast audit", async () => {

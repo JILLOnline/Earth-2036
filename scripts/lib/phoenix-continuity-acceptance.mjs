@@ -81,6 +81,9 @@ export function assessPhoenixContinuity(reconciliation){
     reconciliation.governance?.backfillsObservations!==false)
     throw new Error("phoenix_continuity_source_unverified");
   const rows=reconciliation.rows;
+  // Validate the actual UTC calendar values first, before any lexical order check.
+  // An impossible date must not be misclassified as a sorting defect.
+  for(const row of rows)slotEpoch(row.hourKey);
   const sorted=[...rows].sort((a,b)=>a.hourKey.localeCompare(b.hourKey));
   for(let i=0;i<sorted.length;i++){
     if(sorted[i]!==rows[i])throw new Error("phoenix_continuity_hour_order_mismatch");

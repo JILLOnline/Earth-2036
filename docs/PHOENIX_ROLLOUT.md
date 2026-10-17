@@ -1,7 +1,7 @@
 # Earth 2036 — Project Phoenix: phased reliability rollout
 
 Date: 2026-10-17. Authority: `JILLOnline/Earth-2036@main`.
-Status: Phase 1 live; Phase 2A incident history live; Phase 2B Pages provenance comparison under isolated PR testing. No authority migration, task restart, historical backfill or score change.
+Status: Phase 1 live; Phase 2A incident history and Phase 2B Pages provenance live. Phase 3A worker obligation shadow under isolated PR testing. No authority migration, task restart, historical backfill or score change.
 
 ## Non-negotiables
 
@@ -75,6 +75,14 @@ Unknown-disabled tasks or previously rejected writes may NOT be restarted blindl
 
 **Go/no-go:** a paused Scout with an Alpha source dependency becomes a named owner
 intervention, never a circular retry. No duplicate rejected evidence writes.
+
+### Phase 3A — Non-executing worker obligation shadow (October 17)
+
+- Compile compact, stable obligations from actual `worker-view/assist/*`, `worker-view/routing/*`, and the deferred `source-dependency-handoffs.json` selected pilot. Every obligation retains the exact request/input signature, ticker, source owner and packet path; no new worker authority is introduced.
+- Unverified ChatGPT task availability is always labeled `executor_state_unverified`, never "running". A verified disabled worker is `requires_disable_reason_review`; a verified safety hold is `requires_safety_review`; an unsourced contradiction handoff is `awaiting_verified_source_and_worker_clearance`.
+- No "acknowledged", "sourced", "validated", or "consumed" states can be claimed from routing alone. Those require a future exact receipt/evidence verification implementation plus independent enablement/safety review.
+- Shadow output is read-only, appended to an EXISTING Closure Invariants job summary and has no new cron, repo write, task restart, rejected-evidence retry, canonical or tick side effects.
+- First pilot must show the three real frontline roles (Scout, Alpha, Beta) with actionable requests requiring external executor verification while Resolver lacks a structured case; source-dependency handoffs remain non-actionable until independently sourced.
 
 ## Phase 4 — Chief authority coherence
 

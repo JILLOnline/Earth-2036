@@ -16,6 +16,8 @@ const NONPUBLIC = [
   /^scripts\/phoenix-source-hold-inspect\.mjs$/,
   /^scripts\/phoenix-source-change-inspect\.mjs$/,
   /^scripts\/phoenix-continuity-inspect\.mjs$/,
+  /^scripts\/phoenix-fundamentals-reuse-inspect\.mjs$/,
+  /^scripts\/lib\/phoenix-fundamentals-reuse\.mjs$/,
   /^scripts\/lib\/phoenix-continuity-acceptance\.mjs$/,
   /^scripts\/lib\/phoenix-source-change-review\.mjs$/,
   /^config\/phoenix-known-write-rejections\.json$/,

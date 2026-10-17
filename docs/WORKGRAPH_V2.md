@@ -111,6 +111,45 @@ Chief should not perform broad discovery, routine filing retrieval, ordinary sou
 
 There is one sovereign Chief. If future measured throughput proves adjudication itself is the bottleneck, deputy adjudicators may prepare recommendations, but canonical intelligent authority remains singular.
 
+### Chief authority reconciliation — Phoenix Phase 4 (2026-10-17)
+
+The `chief_ready` label is a **technical preflight state**, not a Chief approval.
+Earlier deterministic zero-defect fast-path promotion could write canonical state after
+preflight/Beast checks without a separately authenticated Chief decision. That
+behavior contradicted the sovereign Chief contract above.
+
+**Effective Phase 4 promotion rule:** a `chief_ready` packet must have (1)
+preflight passing; (2) an affirmative, unexpired Ed25519-signed decision for the
+**exact original packet bytes SHA-256**, exact ticker, work ID, packet timestamp and
+trusted key ID; and (3) all unchanged deterministic causal/score/Beast gates.
+The decision must be from a separately commissioned authority; a repository JSON
+label or recent ChatGPT task run cannot stand in for a signature.
+
+The authority in `config/chief-adjudication-authority.json` is intentionally
+`enabled:false` with **no public key commissioned**. Until a credential
+independently controlled by the authorized operator exists, every future
+`chief_ready` packet remains pending Chief adjudication and **no automatic
+canonical promotion occurs**. This is a fail-closed production hold, not a claim
+that any decision has happened. The private key must never be committed or
+entered into task prompts. A genuine Chief rejection is also non-promotable.
+
+Current `Earth Chief Supervisor` ChatGPT automation is configured as a **liveness
+keeper** and is disabled with unknown verified disable cause; its task prompt
+is not an adjudication policy and does not supply signing authority.
+Do not silently change its role, restart it, create a sixth task, or fabricate
+a Chief acceptance. Commissioning the sovereign adjudication channel and
+reconciling the task's responsibility requires separate explicit authorized
+review. The deterministic machine still owns technical validation and GitHub
+`main` remains the one canonical data authority.
+
+The signed decision, once independently created, is read from
+`data/operations/chief-adjudications/<TICKER>.json` with the
+`earth2036-chief-adjudication-v1` contract and bound to the SHA-256 of the
+**actual persisted packet JSON bytes**. The approval proof is copied into
+the canonical record's lineage only when the separate Beast gates also pass.
+No config, source-health, T0/tick, Methodology 1.0, worker safety-hold, or
+score-threshold override is permitted by a Chief signature.
+
 ## Deep Resolver contract
 
 Deep Resolver consumes only precise exceptions. Every directive must contain:

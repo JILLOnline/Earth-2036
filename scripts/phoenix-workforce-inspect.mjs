@@ -20,7 +20,15 @@ console.log(JSON.stringify({contract:report.contract,total:report.total,
   byStatus:report.byStatus,sourceDependencies:report.selected.filter(x=>x.kind==="deferred_source_dependency"),
   selected:report.selected.map(x=>({ticker:x.ticker,owner:x.owner,kind:x.kind,status:x.status,requestId:x.requestId}))},null,2));
 
+const lease=await read("data/operations/phoenix/worker-leases.json").catch(e=>{
+  if(e.code==="ENOENT")return null;
+  throw e;
+});
 const lines=[
+  "## Phoenix P3B — verified handoff ledger (no execution authority)","",
+  lease?"Persisted lease snapshot: "+lease.observedAt:"No persisted worker-lease snapshot yet; this is not proof of zero outstanding work.",
+  ...(lease?Object.entries(lease.byStatus||{}).sort((a,b)=>a[0].localeCompare(b[0])).map(([name,count])=>"- "+name+": "+count):[]),
+  "No worker receipt can independently authenticate its writer or validate claimed evidence.","",
   "## Phoenix P3A — non-executing workforce obligation shadow","",
   "Research queue requests are not actual ChatGPT task executions.",
   "GitHub cannot attest task enablement; all unverified owners require external review.","",

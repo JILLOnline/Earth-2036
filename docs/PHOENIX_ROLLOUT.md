@@ -1,7 +1,7 @@
 # Earth 2036 — Project Phoenix: phased reliability rollout
 
 Date: 2026-10-17. Authority: `JILLOnline/Earth-2036@main`.
-Status: Phase 1 live; Phase 2A incident history and Phase 2B Pages provenance live. Phase 3A worker obligation shadow live; Phase 3B strict lease/ack compatibility under isolated PR testing. No authority migration, task restart, historical backfill or score change.
+Status: Phase 1 live; Phase 2A incident history and Phase 2B Pages provenance live. Phase 3A worker obligation shadow live; Phase 3B lease accounting live; Phase 3C original-rejection triage / disablement review under isolated PR testing. No authority migration, task restart, historical backfill or score change.
 
 ## Non-negotiables
 
@@ -92,6 +92,17 @@ intervention, never a circular retry. No duplicate rejected evidence writes.
 - Claimed evidence paths remain `evidence_claim_unvalidated` until primary source bytes, provenance, causal and Workgraph preflight are independently checked. A receipt cannot bypass a safety-rejected Git write, turn a deferred Resolver pair into actionable claims, or qualify a tick.
 - No task prompt changes, automation updates or automatic recovery in P3B. Phase 3C must separately verify safety disablement reason and a genuine independent clearance mechanism before modifying the paused workforce. Existing Chief governance remains unresolved and must be reconciled in Phase 4.
 - Fault injection: duplicate, stale, wrong-input, mismatched, unsigned/unverifiable receipt; fresh-to-overdue timeout; unchanged signature; disappeared work; safety hold; no unauthorized promotion. A successful CI proves compatibility, **not** restored research throughput.
+
+### Phase 3C — Source-specific write holds and worker-disable review (October 17)
+
+- A reviewed, exact-path index `config/phoenix-known-write-rejections.json` points to original persisted safety-rejection bytes. The source-hold classifier reopens and hashes those bytes; unverified or changed evidence fails closed.
+- The Oct 8 Scout AEVA source-acquisition request contains a **specific rejected write**, status `evidence_write_blocked`, `evidenceCommit:not_committed`. The current exact request is held `blocked_rejected_write_needs_review`. This is not a claim that every Scout request shares that rejected payload or that unrelated requests have authorization.
+- The Oct 6 Alpha RIO role-run documents a rejected GitHub write but has no exact request ID. Keep this as `historical_target_write_rejection_unattributed`: never translate it into blanket automatic permissions or a fabricated exact input signature.
+- The only source for ChatGPT task enablement is the actual task control plane, not GitHub. Current independent review sees Scout, Alpha, Beta, Chief disabled with **unknown verified disable causes**, and Resolver enabled with no actionable cases. No worker has been restarted.
+- The explicit resumption classifier returns `hold_disabled` for unknown causes, safety holds, operator pauses or missing authorized diagnostics. Even with independently verified benign interruption, it returns `eligible_for_control_plane_review` (not automatic execution). A receipt or timestamp alone never grants authorization.
+- The hourly accountability workflow now has a bounded **push-on-audit-code-change bootstrap** in addition to its original schedule/dispatch, allowing first lease projection initialization from an actual production GitHub run. The normal immutable previous-hour audit and incident journal remain the single authority; no new recurring task is introduced.
+- Required live checks: full CI, one closure audit showing scoped rejected requests, one hourly-accountability Git commit with `worker-leases.json`, and no mutation to T0, evidence, score or tick history. Workflow failure from a genuinely missed original observation may remain the expected alert even when operational audit persistence succeeded.
+- **Not complete:** obtaining original ChatGPT task disable-event diagnostics and obtaining verified clearances. P3C cannot lawfully resume disabled workers while that evidence is absent. Do not substitute a repo issue statement for task-control-plane evidence.
 
 ## Phase 4 — Chief authority coherence
 

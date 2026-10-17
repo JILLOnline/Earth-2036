@@ -6,6 +6,7 @@ import {createHash} from "node:crypto";
 import path from "node:path";
 import {buildWorkforceObligations,WORKFORCE_ROLES} from "./lib/phoenix-workforce-obligations.mjs";
 import {advanceWorkerLeaseLedger} from "./lib/phoenix-worker-lease.mjs";
+import {deriveSourceWriteHolds} from "./lib/phoenix-source-hold-triage.mjs";
 
 const read=async (file,optional=false)=>{
   try{return JSON.parse(await readFile(file,"utf8"));}
@@ -39,8 +40,19 @@ for(const entry of files.sort((a,b)=>a.name.localeCompare(b.name))){
   ackRecords.push({data:JSON.parse(raw),
     origin:{path:name.replaceAll("\\","/"),byteSha256:createHash("sha256").update(raw).digest("hex")}});
 }
+// Verify the *actual original bytes* of each historical safety rejection,
+ // not just a manually written hold label. Missing original evidence fails
+ // the optional Phoenix projection rather than allowing a misleading clearance.
+const holdCatalog=await read("config/phoenix-known-write-rejections.json");
+const holdSources={};
+for(const entry of holdCatalog.records){
+  holdSources[entry.sourcePath]=await readFile(entry.sourcePath,"utf8");
+}
+const sourceHolds=deriveSourceWriteHolds({
+  catalog:holdCatalog,sourceFiles:holdSources,obligations,
+});
 const old=await read(root+"/worker-leases.json",true);
-const report=advanceWorkerLeaseLedger(obligations,old,ackRecords,now);
+const report=advanceWorkerLeaseLedger(obligations,old,ackRecords,now,sourceHolds.findings);
 const out=JSON.stringify(report,null,2)+"\n";
 if(out!== (old?JSON.stringify(old,null,2)+"\n":null)){
   await mkdir(root,{recursive:true});

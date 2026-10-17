@@ -147,6 +147,16 @@ useful gate change is persisted; never count a new receipt by itself as progress
 - Fault tests cover valid cross-source accession matching, non-SEC URL, cursor gap, unchanged source, wrong input, historical dormant migration, exact safety holds and duplicated filing claims.
 - **Phase 5B activation is a separate decision** only after source record identity/materiality review and verified worker permission. No source metadata alone grants a worker restart or Chief approval.
 
+### Phase 6A — Immutable 6/24/72-hour acceptance reporter (October 17)
+
+- `scripts/lib/phoenix-continuity-acceptance.mjs` validates the **original 72 chronological one-hour slots** in the source-layer `data/operations/hourly-reconciliation/latest.json`, not a green dashboard or summary counters.
+- For a counted observation it requires `retrospectiveObservationStatus=persisted_now`, a real `cycleHistoryLine`, a 64-hex original `sourceLineSha256`, and an original successful scheduler run associated with that same UTC hour. An as-of audited hour separately requires `asOfObservationStatus=persisted`, a 64-hex original receipt SHA, and its exact hourly receipt path.
+- Windows ending at the latest **completed** recorded UTC hour are assessed independently for 6h/24h/72h. The first six consecutive hours do not falsely certify 24 or 72 hours. Missing, duplicate, out-of-order or impossible UTC hour rows fail closed.
+- The job computes exact counts and longest/trailing streaks and emits them only to the existing Closure Invariants job summary. No new scheduled job, redispatch, duplicate observations, historical backfill, worker resume, canonical promotions, or trial-tick changes.
+- **Explicitly separate uptime from productivity:** even 72 consecutive validated scheduler observations cannot establish Chief signoff, source research, score readiness, T0 advancement, or tick qualification.
+- In the latest inspected 72-hour window (audit 2026-10-17 19:19Z), **24** original observations persisted and **48** hours had no original scheduler run. A green single Scheduler run is not an endurance pass.
+- Phase 6B must use subsequent actual live windows, observe six real consecutive hours with as-of receipts, and continue into 24-hour and 72-hour monitoring. Do not promise that a GitHub Actions schedule is guaranteed.
+
 ## Phase 6 — Endurance
 
 Run 6-hour, 24-hour, then 72-hour operational windows. Monitor actual observations,

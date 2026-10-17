@@ -61,7 +61,7 @@ export function screenPrimarySources({
           diagnosis=":sec_url_components="+JSON.stringify({
             protocol:u.protocol==="https:",host:u.hostname==="www.sec.gov",
             credentials:u.username===""&&u.password==="",search:u.search==="",hash:u.hash==="",
-            prefix:u.href.startsWith(pathPrefix),traversal:!u.pathname.includes(".."),
+            prefix:u.href.startsWith(pathPrefix),expected:pathPrefix,actual:u.href,basenameText:u.pathname.split("/").at(-1),traversal:!u.pathname.includes(".."),
             basename:/^[a-zA-Z0-9_.-]+\\.htm[l]?$/.test(u.pathname.split("/").at(-1))
           });
         }catch(e){diagnosis=":sec_url_exception="+String(e.name);}

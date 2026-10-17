@@ -6,7 +6,7 @@ import { createHash } from "node:crypto";
 export const PUBLICATION_POLICY = "earth2036-phoenix-pages-publication-v1";
 export const FULL_SHA = /^[a-f0-9]{40}$/;
 const NONPUBLIC = [
-  /^\.github\//,
+  /^\.github\/(?!workflows\/earth2036-pages\.yml$)/,
   /^docs\//,
   /^test\//,
   /^data\/operations\//,

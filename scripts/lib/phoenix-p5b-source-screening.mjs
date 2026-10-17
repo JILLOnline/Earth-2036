@@ -37,15 +37,21 @@ export function screenPrimarySources({
   const seen=new Set();
   const rows=[];
   for(const c of screening.records){
-    if(!exactTicker(c?.ticker) || !exactAccession(c.accessionNumber) ||
-      !/^\d{10}$/.test(c.cik||"") || !exactDate(c.filingDate) ||
-      !secUrl(c) || !["10-Q","8-K"].includes(c.form) ||
-      !["council-alpha","earth-scout","council-beta","deep-resolver"].includes(c.owner) ||
-      !Array.isArray(c.targetedWorkgraphFailures) || !c.targetedWorkgraphFailures.length ||
-      !Array.isArray(c.observedPrimaryDocumentFacts) || c.observedPrimaryDocumentFacts.length<1 ||
-      typeof c.existingResearchDoesNotProve!=="string" || c.existingResearchDoesNotProve.length<30 ||
-      !["screen_for_lawful_source_acquisition_only","exclude_for_this_gate_without_changing_other_research"].includes(c.reviewDecision))
-      throw new Error("phoenix_p5b_invalid_source_record");
+    const checks={
+      ticker:exactTicker(c?.ticker),
+      accession:exactAccession(c?.accessionNumber),
+      cik:/^\d{10}$/.test(c?.cik||""),
+      filingDate:exactDate(c?.filingDate),
+      secUrl:secUrl(c),
+      form:["10-Q","8-K"].includes(c?.form),
+      owner:["council-alpha","earth-scout","council-beta","deep-resolver"].includes(c?.owner),
+      gateFailures:Array.isArray(c?.targetedWorkgraphFailures) && c.targetedWorkgraphFailures.length>0,
+      facts:Array.isArray(c?.observedPrimaryDocumentFacts) && c.observedPrimaryDocumentFacts.length>0,
+      limitations:typeof c?.existingResearchDoesNotProve==="string" && c.existingResearchDoesNotProve.length>=30,
+      reviewDecision:["screen_for_lawful_source_acquisition_only","exclude_for_this_gate_without_changing_other_research"].includes(c?.reviewDecision),
+    };
+    const invalid=Object.keys(checks).filter(k=>!checks[k]);
+    if(invalid.length)throw new Error("phoenix_p5b_invalid_source_record:"+invalid.join(","));
     const key=c.ticker+":"+c.accessionNumber;
     if(seen.has(key))throw new Error("phoenix_p5b_duplicate_screening");
     seen.add(key);

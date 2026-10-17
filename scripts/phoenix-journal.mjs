@@ -34,6 +34,9 @@ const report = assessPhoenix({ metrics, integrity, reconciliation, system, sourc
 });
 const prior = await read(root + "/current.json", true);
 const existing = await readText(root + "/events.jsonl");
+if (existing.trim() && !prior) {
+  throw new Error("phoenix_journal_projection_missing_with_existing_immutable_history");
+}
 const next = advanceIncidentMemory(prior, report, { metrics, integrity, reconciliation });
 const appended = appendOnlyEventLines(existing, next.appendEvents);
 await mkdir(path.resolve(root), { recursive: true });

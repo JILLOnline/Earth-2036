@@ -3,6 +3,16 @@ on:
   schedule:
     - cron: "12 * * * *"
   workflow_dispatch:
+  # Explicit one-time bootstrap opportunity when the audit/lease logic changes.
+  # Not an extra hourly cron. Existing immutable receipt guards stay effective.
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/earth2036-hourly-accountability.yml"
+      - "scripts/phoenix-worker-leases.mjs"
+      - "scripts/lib/phoenix-worker-lease.mjs"
+      - "scripts/lib/phoenix-source-hold-triage.mjs"
+      - "config/phoenix-known-write-rejections.json"
 
 permissions:
   contents: write

@@ -54,3 +54,8 @@ test("missing acceptance clock is held, not silently admitted",()=>{
  assert.equal(o.heldRecords.length,2);
  assert.ok(o.heldRecords.some(q=>q.disposition==="missing_precise_sec_acceptance"));
 });
+
+test("SEC zero-padded company CIK is accepted as the identical issuer",()=>{
+ const o=fixture();o.cik="0001789029";
+ assert.equal(reviewAevaFilingWindow(o).cik,"0001789029");
+});

@@ -73,12 +73,18 @@ jobs:
           set -euo pipefail
           node --test test/phoenix-aeva-form4-audit.test.mjs
           node scripts/phoenix-aeva-form4-audit.mjs "$RUNNER_TEMP/aeva-post-cover-filing-window.json" > "$RUNNER_TEMP/aeva-original-form4.json"
-          jq -e '.expectedFilings == 5 and .canonicalWriteAuthority == false
+          jq -e '.expectedFilings == 5 and .originalXmlVerified == 5
+            and .ownerTransactionRows == 14
+            and .saleTransactions == 14
+            and .reportedSaleShares == 511745
+            and .reportedSalesProveNetIssuerShareCountChange == false
+            and .canonicalWriteAuthority == false
             and .outstandingSharesAtT0Authenticated == false
             and .issuerShareIssuanceAuthenticated == false
             and .historicalT0EvidenceAdmitted == 0
             and .marketValuationOpportunity == null' "$RUNNER_TEMP/aeva-original-form4.json"
           jq '{contract,expectedFilings,originalXmlVerified,ownerTransactionRows,
+            saleTransactions,reportedSaleShares,reportedSalesProveNetIssuerShareCountChange,
             issuerShareIssuanceAuthenticated,outstandingSharesAtT0Authenticated,
             filings:[.filings[]|{accession,status,originalXmlSha256,
               reportingOwner:.originalXmlTransactionParse.reportingOwnerName,

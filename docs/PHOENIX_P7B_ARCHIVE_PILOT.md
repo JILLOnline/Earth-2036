@@ -40,3 +40,24 @@ SEC_USER_AGENT="JILLOnline Earth2036 info@jillonlinestore.com" node scripts/phoe
 ```
 
 The runnable GitHub Actions form is `.github/workflows/phoenix-p7b-sec-archive-pilot.yml`. It is deliberately read-only and isolated from T0 ranking/publication.
+
+## Phoenix P7D — Six original EDGAR document pilot (2026-10-18)
+
+GitHub Actions read-only run [39128255744](https://github.com/JILLOnline/Earth-2036/actions/runs/39128255744) successfully retrieved **six live EDGAR primary documents** (max three per ticker: latest pre-cutoff 10-Q, 10-K, 10-K/A), recorded SHA-256/size for the retrieved bytes, and attempted original SGML header acceptance-time comparison. The complete unmodified receipt is `original-primary-report.json` in the `phoenix-p7b-sec-source-archive-readonly` job artifact.
+
+| Ticker | Accession | Form | SEC primary document | SHA256 of retrieved document | SGML header vs SEC submissions |
+| --- | --- | --- | --- | --- | --- |
+| AEVA | 0001193125-26-338179 | 10-Q | aeva-20260630.htm | 50a50d985259… | matches |
+| AEVA | 0001193125-26-116518 | 10-K | aeva-20251231.htm | c49e88aac523… | matches |
+| AEVA | 0001193125-22-123626 | 10-K/A | d335011d10ka.htm | f441b6695a7c… | matches |
+| SWKS | 0000004127-26-000049 | 10-Q | swks-20260703.htm | 643d8f161c6d… | **timestamp discrepancy** |
+| SWKS | 0000004127-25-000085 | 10-K | swks-20251003.htm | 2a1c47edd880… | **timestamp discrepancy** |
+| SWKS | 0000004127-26-000003 | 10-K/A | swks-20251003.htm | 95d9da9e38a9… | **timestamp discrepancy** |
+
+*The digests are abbreviated above for readability. The machine-readable artifact retains full 64-character digests and source URLs.*
+
+For SWKS, the raw SGML header acceptance local values are **20260728164813**, **20251107160812**, and **20260130160648**. These are respectively **4, 5, and 5 hours earlier** than the Eastern-time wall-clock values computed from the SEC submissions API's `acceptedAt` ISO timestamps. This disagreement has not been reconciled. Do **not** silently apply a timezone offset or treat the reported SEC submissions time as an independent SGML attestation.
+
+The SEC explicitly states there is *no timestamp recording when filing content first became available on sec.gov* (see SEC Webmaster FAQ and Accessing EDGAR Data). Thus successful retrieval in October 2026 is evidence of **availability now**, not independent proof of the historical first-public timestamp. The initial P7D pilot does not attest T0 public availability, review amendment supersession, underwrite companies, or promote source facts.
+
+**Next lawful closure dependencies:** independently resolve SWKS header/API discrepancy and original-publication timeline; map AEVA's missing `marketValuationOpportunity` input to defensible source-addressed and date-eligible denominator/price/debt/cash evidence; review its material contradictory claims; fill SWKS missing factor/risk/causal/confidence evidence. Worker restarts are subject to the separately recorded rejected-write safety hold. Canonical T0 progress remains untouched.

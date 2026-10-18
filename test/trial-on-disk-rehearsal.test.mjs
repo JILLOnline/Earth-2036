@@ -5,6 +5,7 @@ import {tmpdir} from "node:os";
 import {join,dirname} from "node:path";
 import {fileURLToPath} from "node:url";
 import {spawnSync} from "node:child_process";
+import {buildTrialReviewReport} from "../scripts/lib/trial-review-report.mjs";
 
 const auditScript=fileURLToPath(new URL("../scripts/audit-trial-persistence.mjs",import.meta.url));
 const reportScript=fileURLToPath(new URL("../scripts/report-trial-review.mjs",import.meta.url));
@@ -38,6 +39,9 @@ test("disk-backed rehearsal: 1000 ticks, report, crash boundaries, and read-only
   const manifest={baselineId:"synthetic-rehearsal-only",published:true,methodologyVersion:"1.0.0",
    universeVersion:"u1-250",qualifiedTrialTicksAfterBaseline:1000,trialStatus:"complete_awaiting_review"};
   await save(root,statePath,state);await save(root,manifestPath,manifest);
+  const receipt=buildTrialReviewReport({state,manifest,ticks,generatedAt:"2026-02-12T12:00:00.000Z"});
+  assert.equal(receipt.captureComplete,true);
+  await save(root,"data/runtime/trial-review-report.json",receipt);
 
   const audit=run(auditScript,root);
   assert.equal(audit.status,0,audit.stderr||audit.stdout);
@@ -50,6 +54,17 @@ test("disk-backed rehearsal: 1000 ticks, report, crash boundaries, and read-only
   assert.equal(result.trajectoryObservationHorizons.length,4);
   assert.equal(result.trajectoryObservationHorizons[0].pending,1000);
   assert.equal(result.forecastEvaluation.evaluatedPredictions,0);
+
+  // Trial-complete must not pass with a missing or forged review receipt.
+  await unlink(join(root,"data/runtime/trial-review-report.json"));
+  const missingReceipt=run(auditScript,root);
+  assert.equal(missingReceipt.status,1);
+  assert.ok(JSON.parse(missingReceipt.stdout).errors.includes("terminal_trial_review_receipt_missing_or_corrupt"));
+  await save(root,"data/runtime/trial-review-report.json",{...receipt,reportHash:"0".repeat(64)});
+  const forgedReceipt=run(auditScript,root);
+  assert.equal(forgedReceipt.status,1);
+  assert.ok(JSON.parse(forgedReceipt.stdout).errors.includes("terminal_trial_review_receipt_mismatch"));
+  await save(root,"data/runtime/trial-review-report.json",receipt);
 
   // Simulate a failed process between creating tick #1000 and updating counters.
   await save(root,statePath,{...state,phase:"trial",qualifiedTrialTicks:999,lastQualifiedCycleKey:cycle(998)});

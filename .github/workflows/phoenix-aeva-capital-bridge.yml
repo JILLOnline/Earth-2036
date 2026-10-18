@@ -9,6 +9,8 @@ on:
       - scripts/lib/phoenix-aeva-valuation-bridge.mjs
       - scripts/phoenix-aeva-valuation-reference.mjs
       - test/phoenix-aeva-valuation-bridge.test.mjs
+      - scripts/phoenix-aeva-filing-window.mjs
+      - test/phoenix-aeva-filing-window.test.mjs
   workflow_dispatch:
 
 permissions:
@@ -48,9 +50,25 @@ jobs:
               reconciliation,mutuallyExclusiveSettlementScenarios,
               methodologyFactorSatisfied,canonicalWriteAuthority,
               historicalT0EvidenceAdmitted}' "$RUNNER_TEMP/aeva-valuation-reference.json"
+      - name: Audit AEVA SEC issuer filings since dated July 30 share count
+        env:
+          SEC_USER_AGENT: JILLOnline Earth2036 info@jillonlinestore.com
+        run: |
+          set -euo pipefail
+          node --test test/phoenix-aeva-filing-window.test.mjs
+          node scripts/phoenix-aeva-filing-window.mjs > "$RUNNER_TEMP/aeva-post-cover-filing-window.json"
+          jq -e '.shareCountAsOfCutoffAuthenticated == false
+            and .issuerCapitalizationEventsExhaustivelyReviewed == false
+            and .canonicalWriteAuthority == false
+            and .historicalT0EvidenceAdmitted == 0' "$RUNNER_TEMP/aeva-post-cover-filing-window.json"
+          jq '{contract,coverShareDate,cutoff,issuerFilingCountWithinWindow,forms,
+            heldRecords,shareCountAsOfCutoffAuthenticated,
+            issuerCapitalizationEventsExhaustivelyReviewed}' "$RUNNER_TEMP/aeva-post-cover-filing-window.json"
       - uses: actions/upload-artifact@v4
         with:
           name: phoenix-aeva-noncanonical-valuation-reference
-          path: ${{ runner.temp }}/aeva-valuation-reference.json
+          path: |
+            ${{ runner.temp }}/aeva-valuation-reference.json
+            ${{ runner.temp }}/aeva-post-cover-filing-window.json
           retention-days: 3
           if-no-files-found: error

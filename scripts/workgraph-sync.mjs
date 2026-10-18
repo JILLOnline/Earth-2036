@@ -444,8 +444,25 @@ await writeJsonArtifact(path.join(workerViewDir, "closure-frontier.json"), {
   backlogTotal: closureFrontier.backlogTotal,
   selectedCount: closureFrontier.selectedCount,
   stalledCount: closureFrontier.stalledCount,
+  sourceFeasibility: closureFrontier.sourceFeasibility,
   selected: closureFrontier.selected,
   stalled: closureFrontier.stalled,
+});
+await writeJsonArtifact(path.join(workerViewDir, "source-feasibility.json"), {
+  version: 1,
+  contract: "earth2036-worker-source-feasibility-v1",
+  generatedAt: closureFrontier.generatedAt,
+  canonicalWriteAuthority: false,
+  activeHolds: closureFrontier.sourceFeasibility?.activeHolds || 0,
+  sourceHeld: closureFrontier.candidates.filter(row=>row.sourceFeasibility!==null)
+    .map(row=>({
+      ticker: row.ticker,
+      status: row.status,
+      guard: row.executionGuard,
+      requiredEvidence: row.sourceFeasibility.requiredEvidence,
+      blockingFailureNames: row.sourceFeasibility.blockingFailureNames,
+      releaseCondition: row.sourceFeasibility.releaseCondition
+    }))
 });
 const assistViewDir = path.join(workerViewDir, "assist");
 await mkdir(assistViewDir, { recursive: true });

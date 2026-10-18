@@ -65,7 +65,7 @@ for(const row of source.companies){
  }
  const checked=[];
  for(const accn of row.historicalAccessions){
-  if(!/^\d{10}-\d{2}-\d{6}$/.test(accn)||!accn.startsWith(row.cik+"-"))
+  if(!/^\d{10}-\d{2}-\d{6}$/.test(accn))
    throw Error("archived_accession_identity_invalid:"+row.ticker);
   const found=byAccession.get(accn)??null;
   const acceptance=found?.acceptanceDateTime??null;

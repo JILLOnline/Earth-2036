@@ -61,3 +61,22 @@ For SWKS, the raw SGML header acceptance local values are **20260728164813**, **
 The SEC explicitly states there is *no timestamp recording when filing content first became available on sec.gov* (see SEC Webmaster FAQ and Accessing EDGAR Data). Thus successful retrieval in October 2026 is evidence of **availability now**, not independent proof of the historical first-public timestamp. The initial P7D pilot does not attest T0 public availability, review amendment supersession, underwrite companies, or promote source facts.
 
 **Next lawful closure dependencies:** independently resolve SWKS header/API discrepancy and original-publication timeline; map AEVA's missing `marketValuationOpportunity` input to defensible source-addressed and date-eligible denominator/price/debt/cash evidence; review its material contradictory claims; fill SWKS missing factor/risk/causal/confidence evidence. Worker restarts are subject to the separately recorded rejected-write safety hold. Canonical T0 progress remains untouched.
+
+## P7D dated SEC master-index provenance — reconciled 2026-10-18
+
+**Verified run:** [39131088322](https://github.com/JILLOnline/Earth-2036/actions/runs/39131088322), source and exact-commit tests. The `daily-index-report.json` artifact was independently downloaded and examined. **Six out of six selected filings have exactly one independently matching row** in the dated SEC EDGAR daily master index. Each matching row corroborates the registrant CIK, SEC form, compact `YYYYMMDD` filing date, and original accession `.txt` archive path:
+
+| Ticker | Form | Accession | Index filing date | Matching rows |
+| --- | --- | --- | --- | --- |
+| AEVA | 10-Q | 0001193125-26-338179 | 20260806 | 1 |
+| AEVA | 10-K | 0001193125-26-116518 | 20260320 | 1 |
+| AEVA | 10-K/A | 0001193125-22-123626 | 20220427 | 1 |
+| SWKS | 10-Q | 0000004127-26-000049 | 20260728 | 1 |
+| SWKS | 10-K | 0000004127-25-000085 | 20251107 | 1 |
+| SWKS | 10-K/A | 0000004127-26-000003 | 20260130 | 1 |
+
+**Bug fixed:** SEC master index uses the exact `YYYYMMDD` representation, whereas the SEC submissions ledger uses ISO `YYYY-MM-DD`; the initial parser rejected six otherwise correct records. The regression test now checks the compact source format and refuses mismatched dates/forms, duplicate rows, and unexpected paths. Index hashes and original matching row fields remain in the run artifact.
+
+**Trust boundary:** a presently accessible, date-labeled SEC index corroborates historical filing placement, but cannot alone cryptographically attest the original publication instant. The three SWKS SGML-vs-submissions time discrepancies remain unmodified and unresolved. The six documents represent a bounded **pilot**, not a complete amendment/supersession review of 108 historical accessions. All reports retain `historicalT0EvidenceAdmitted=0`.
+
+**Immediate underwriting targets:** AEVA remains short one source-addressable `marketValuationOpportunity` Methodology 1.0 factor, plus a source-integrity perspective and material contradiction resolution. Do not derive diluted enterprise valuation from an obsolete share count; it still needs an as-of-cutoff defensible price, current basic/fully diluted denominator, convertible/warrant effects and debt/cash reconciliation. SWKS lacks all twelve source-addressed factor values plus multiple missing specialist perspectives, and is not ready for scoreRecord or chief promotion. Historical research must be directly coupled to these exact failures rather than treating archive volume as progress.

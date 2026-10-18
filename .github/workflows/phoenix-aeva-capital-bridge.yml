@@ -11,6 +11,8 @@ on:
       - test/phoenix-aeva-valuation-bridge.test.mjs
       - scripts/phoenix-aeva-filing-window.mjs
       - test/phoenix-aeva-filing-window.test.mjs
+      - scripts/phoenix-aeva-form4-audit.mjs
+      - test/phoenix-aeva-form4-audit.test.mjs
   workflow_dispatch:
 
 permissions:
@@ -64,11 +66,29 @@ jobs:
           jq '{contract,coverShareDate,cutoff,issuerFilingCountWithinWindow,forms,
             heldRecords,shareCountAsOfCutoffAuthenticated,
             issuerCapitalizationEventsExhaustivelyReviewed}' "$RUNNER_TEMP/aeva-post-cover-filing-window.json"
+      - name: Read and classify five original pre-cutoff AEVA Form 4 ownership XML filings
+        env:
+          SEC_USER_AGENT: JILLOnline Earth2036 info@jillonlinestore.com
+        run: |
+          set -euo pipefail
+          node --test test/phoenix-aeva-form4-audit.test.mjs
+          node scripts/phoenix-aeva-form4-audit.mjs "$RUNNER_TEMP/aeva-post-cover-filing-window.json" > "$RUNNER_TEMP/aeva-original-form4.json"
+          jq -e '.expectedFilings == 5 and .canonicalWriteAuthority == false
+            and .outstandingSharesAtT0Authenticated == false
+            and .issuerShareIssuanceAuthenticated == false
+            and .historicalT0EvidenceAdmitted == 0
+            and .marketValuationOpportunity == null' "$RUNNER_TEMP/aeva-original-form4.json"
+          jq '{contract,expectedFilings,originalXmlVerified,ownerTransactionRows,
+            issuerShareIssuanceAuthenticated,outstandingSharesAtT0Authenticated,
+            filings:[.filings[]|{accession,status,originalXmlSha256,
+              reportingOwner:.originalXmlTransactionParse.reportingOwnerName,
+              codes:.originalXmlTransactionParse.codeCounts}]}' "$RUNNER_TEMP/aeva-original-form4.json"
       - uses: actions/upload-artifact@v4
         with:
           name: phoenix-aeva-noncanonical-valuation-reference
           path: |
             ${{ runner.temp }}/aeva-valuation-reference.json
             ${{ runner.temp }}/aeva-post-cover-filing-window.json
+            ${{ runner.temp }}/aeva-original-form4.json
           retention-days: 3
           if-no-files-found: error

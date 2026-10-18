@@ -137,7 +137,7 @@ function requestFor(packet, row, helperRole, capability, rootOwner, failures, no
   const frontier = lifecycleEnabled && options.frontierTickers.has(packet.ticker);
   const operationalStatus = lifecycleEnabled ? (options.operationalStatusByTicker[packet.ticker] || null) : null;
   const stalled = lifecycleEnabled &&
-    ["repeated_unchanged_input", "awaiting_external_change"].includes(operationalStatus) &&
+    ["repeated_unchanged_input", "awaiting_external_change", "awaiting_unavailable_historical_primary"].includes(operationalStatus) &&
     !recoverySupport;
   return {
     version: 2,
@@ -255,7 +255,7 @@ export function buildAssistRequests(
       const priorRequest = priorByKey[key] || null;
       const firstSeenAt = priorRequest?.firstSeenAt || priorRequest?.generatedAt || request.generatedAt;
       const stalled = normalizedOptions.lifecycleEnabled &&
-        ["repeated_unchanged_input", "awaiting_external_change"].includes(request.operationalStatus) &&
+        ["repeated_unchanged_input", "awaiting_external_change", "awaiting_unavailable_historical_primary"].includes(request.operationalStatus) &&
         request.recoveryProbe !== true;
       return {
         ...request,

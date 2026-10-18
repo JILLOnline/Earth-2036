@@ -26,7 +26,7 @@ export function verifyDailyMasterIndex(text,filing){
  const expected=indexLocator(filing).expectedPath;
  const alternative="edgar/data/"+Number(filing.cik)+"/"+
   filing.accessionNumber.replace(/-/g,"")+"/"+filing.accessionNumber+".txt";
- const matchingAccessionLines=text.split(/\\r?\\n/).filter(line=>
+ const matchingAccessionLines=text.split(/\r?\n/).filter(line=>
   line.includes(filing.accessionNumber+".txt"));
  const matches=matchingAccessionLines.filter(line=>{
   const fields=line.split("|");

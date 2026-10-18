@@ -9,19 +9,25 @@ test("SEC dated index path is bounded by filing date, registrant CIK and accessi
 });
 test("unique original registrant CIK and form row matches",()=>{
  const idx="CIK|Company Name|Form Type|Date Filed|Filename\n"+
- "1789029|Aeva|10-Q|2026-08-06|edgar/data/1789029/0001193125-26-338179.txt\n";
+ "1789029|Aeva|10-Q|20260806|edgar/data/1789029/0001193125-26-338179.txt\n";
  assert.equal(verifyDailyMasterIndex(idx,f).verifiedUniqueMatch,true);
  assert.equal(verifyDailyMasterIndex(idx,{...f,form:"10-K"}).verifiedUniqueMatch,false);
+ assert.equal(verifyDailyMasterIndex(idx,{...f,filingDate:"2026-08-07"}).verifiedUniqueMatch,false);
 });
 test("supports the SEC alternative accession-directory filing path without relaxing identity",()=>{
- const content="1789029|Aeva|10-Q|2026-08-06|edgar/data/1789029/000119312526338179/0001193125-26-338179.txt";
+ const content="1789029|Aeva|10-Q|20260806|edgar/data/1789029/000119312526338179/0001193125-26-338179.txt";
  assert.equal(verifyDailyMasterIndex(content,f).verifiedUniqueMatch,true);
 });
 test("no ambiguous duplicated index rows admitted",()=>{
- const row="1789029|Aeva|10-Q|2026-08-06|edgar/data/1789029/0001193125-26-338179.txt\n";
+ const row="1789029|Aeva|10-Q|20260806|edgar/data/1789029/0001193125-26-338179.txt\n";
  assert.equal(verifyDailyMasterIndex(row+row,f).verifiedUniqueMatch,false);
 });
 test("reject file path injection and unsupported dates",()=>{
  assert.throws(()=>indexLocator({...f,accessionNumber:"../evil"}));
  assert.throws(()=>indexLocator({...f,filingDate:"2026-13-06"}));
+});
+
+test("compact master-index date is mandatory, not ISO-formatted",()=>{
+ const wrongDate="1789029|Aeva|10-Q|2026-08-06|edgar/data/1789029/0001193125-26-338179.txt";
+ assert.equal(verifyDailyMasterIndex(wrongDate,f).verifiedUniqueMatch,false);
 });

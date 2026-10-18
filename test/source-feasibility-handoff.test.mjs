@@ -173,6 +173,8 @@ test("old, post-cutoff, secondary, unaddressed, and duplicate sources do NOT reo
  };
  const changes=[
   {publishedAt:"2026-09-27"},
+  {publishedAt:"2026-02-30"},
+  {publishedAt:"2026-09-13T04:00:00Z"},
   {publishedAt:"2026-09-12"},
   {publishedAt:"2026-09-13T05:00:00Z"},
   {primary:false},
@@ -188,4 +190,18 @@ test("old, post-cutoff, secondary, unaddressed, and duplicate sources do NOT reo
   assert.equal(v.held,true,JSON.stringify(update));
   assert.equal(v.reviewCandidate,null);
  }
+});
+
+test("Eastern end-of-day cutoff permits precisely earlier UTC time but not the next second",()=>{
+ const p=packet("AEVA",failures.AEVA);
+ const s={
+  sourceId:"sec:AEVA:dated:20260912",originFingerprint:"sec.gov|AEVA|2026-09-12|new",
+  url:"https://www.sec.gov/Archives/edgar/data/1789029/000000000026111111/new.htm",
+  publishedAt:"2026-09-13T03:59:59Z",primary:true
+ };
+ p.sources=[s];
+ const allowed=resolveSourceFeasibility("AEVA",failures.AEVA,holds,p);
+ assert.equal(allowed.held,false);
+ p.sources=[{...s,publishedAt:"2026-09-13T04:00:00Z"}];
+ assert.equal(resolveSourceFeasibility("AEVA",failures.AEVA,holds,p).held,true);
 });

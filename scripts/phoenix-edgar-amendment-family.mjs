@@ -17,11 +17,6 @@ function usable(f){
   Number.isFinite(Date.parse(f.acceptedAt))&&
   Date.parse(f.acceptedAt)<=Date.parse(HISTORICAL_T0_CUTOFF);
 }
-function mapFiling(c,ticker){
- return {ticker,cik,accessionNumber:c.accessionNumber,form:c.form,
-  filedDate:c.filingDate,acceptedAt:c.acceptedAt,reportDate:c.reportDate??null,
-  primaryDocument:c.primaryDocument??null};
-}
 // Deliberately match by SEC reporting period; proximity by date is NOT a substitute.
 export function selectAmendmentFamilies(report){
  if(report?.contract!=="earth2036-phoenix-sec-acceptance-triage-v1" ||

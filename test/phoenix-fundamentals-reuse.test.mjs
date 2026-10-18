@@ -97,6 +97,11 @@ test("historical T0 cutoff cannot be shifted forward by a live bridge",()=>{
   const x=inputs();x.baseline.evidenceWindowEnd="2026-10-18T00:00:00Z";
   assert.throws(()=>assessFundamentalsReuse(x),/phoenix_p7a_source_or_historical_cutoff_unverified/);
 });
+test("a forged cutoff still earlier than the archive cannot replace frozen historical T0",()=>{
+ const x=inputs();
+ x.baseline.evidenceWindowEnd=new Date(Date.parse(x.index.asOf)-3600000).toISOString();
+ assert.throws(()=>assessFundamentalsReuse(x),/phoenix_p7a_source_or_historical_cutoff_unverified/);
+});
 test("duplicate Workgraph frontier identities fail before reuse recommendations",()=>{
   const x=inputs();x.frontier.candidates.push(structuredClone(x.frontier.candidates[0]));
   assert.throws(()=>assessFundamentalsReuse(x),/phoenix_p7a_invalid_frontier_identity/);

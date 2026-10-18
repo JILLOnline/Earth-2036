@@ -8,6 +8,8 @@ on:
       - .github/workflows/phoenix-p7b-sec-archive-pilot.yml
       - scripts/phoenix-archive-pilot.mjs
       - scripts/phoenix-sec-acceptance-audit.mjs
+      - scripts/phoenix-edgar-primary-pilot.mjs
+      - test/phoenix-edgar-primary-pilot.test.mjs
   workflow_dispatch:
 
 permissions:
@@ -55,6 +57,17 @@ jobs:
           set -euo pipefail
           node scripts/phoenix-sec-acceptance-audit.mjs "$RUNNER_TEMP/p7b/archive-report.json" > "$RUNNER_TEMP/p7b/sec-acceptance-report.json"
           jq '{contract,cutoff,publicAvailabilityAuthenticated,historicalT0EvidenceAdmitted,companies:[.companies[]|{ticker,archiveCandidates,counts,allAccessionMetadataMatched}]}' "$RUNNER_TEMP/p7b/sec-acceptance-report.json"
+      - name: Test bounded original EDGAR document contract
+        run: |
+          set -euo pipefail
+          node --test test/phoenix-edgar-primary-pilot.test.mjs
+      - name: Hash bounded original EDGAR documents, preserving availability holds
+        env:
+          SEC_USER_AGENT: JILLOnline Earth2036 info@jillonlinestore.com
+        run: |
+          set -euo pipefail
+          node scripts/phoenix-edgar-primary-pilot.mjs "$RUNNER_TEMP/p7b/sec-acceptance-report.json" > "$RUNNER_TEMP/p7b/original-primary-report.json"
+          jq '{contract,cutoff,chosenFilingCount,originalPrimaryDocumentsVerifiedNow,acceptanceHeaderMatches,publicAvailabilityAtT0Authenticated,historicalT0EvidenceAdmitted,filings:[.filings[]|{ticker,accessionNumber,form,primaryRetrievalStatus,headerAcceptanceStatus,primarySha256}]}' "$RUNNER_TEMP/p7b/original-primary-report.json"
       - uses: actions/upload-artifact@v4
         if: success()
         with:
@@ -62,5 +75,6 @@ jobs:
           path: |
             ${{ runner.temp }}/p7b/archive-report.json
             ${{ runner.temp }}/p7b/sec-acceptance-report.json
+            ${{ runner.temp }}/p7b/original-primary-report.json
           retention-days: 3
           if-no-files-found: error

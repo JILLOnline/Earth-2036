@@ -6,7 +6,7 @@ const ratio = (v) => typeof v === 'number' && Number.isFinite(v) && v >= 0 && v 
 const minutes = (time, now) => {
   const at = Date.parse(time || '');
   const end = Date.parse(now || '');
-  return Number.isFinite(at) && Number.isFinite(end) ? Math.max(0, Math.round((end - at) / 60000)) : null;
+  return Number.isFinite(at) && Number.isFinite(end) && at <= end + 300000 ? Math.max(0, Math.round((end - at) / 60000)) : null;
 };
 
 export function assessT0Recovery({ system, manifest, metrics, sourceHealth, integrity, reconciliation, leases, now }) {
@@ -31,7 +31,7 @@ export function assessT0Recovery({ system, manifest, metrics, sourceHealth, inte
   check(ratio(coverage) && ratio(sourceHealth?.machineCoverageRatio) && ratio(sourceHealth?.supervisorCoverageRatio), 'invalid_coverage_metric');
   check(integrity?.passed === true || integrity?.passed === false, 'integrity_result_missing');
   check(integer(reconciliationCounts.slots) && integer(reconciliationCounts.slotsWithoutObservation) && reconciliationCounts.slotsWithoutObservation <= reconciliationCounts.slots, 'invalid_hourly_observation_counts');
-  check(integer(leases?.count) && Object.values(leaseCounts).every(integer), 'invalid_worker_lease_counts');
+  check(integer(leases?.count) && Object.values(leaseCounts).every(integer) && Object.values(leaseCounts).reduce((a,b) => a+b,0) === leases?.count, 'invalid_worker_lease_counts');
   check(!(manifest?.published === true && canonical < expected), 'premature_t0_publication');
   check(!(system?.qualifiedTrialTicks > 0 && manifest?.published !== true), 'trial_qualified_before_t0_publication');
   check(ages.machineMinutes !== null && ages.workgraphMinutes !== null, 'missing_runtime_timestamps');
@@ -47,7 +47,7 @@ export function assessT0Recovery({ system, manifest, metrics, sourceHealth, inte
   need((leaseCounts.blocked_deferred_source_dependency || 0) > 0, 'unverified_source_dependency', 'source-review', { count: leaseCounts.blocked_deferred_source_dependency });
   need(unfinished > 0 && (counts.chief_ready || 0) === 0, 'no_chief_ready_frontier', 'council-chief', { unfinished, packetReady: counts.packet_ready || 0, selected: active });
   warn((metrics?.closureEngine?.stalledCount || 0) > 0, 'deferred_unchanged_input', { stalled: metrics?.closureEngine?.stalledCount, noResetWithoutChangedInput: true });
-  need(manifest?.published !== true, 't0_publication_not_authorized', 'earth-core', { canonical, expected });
+  warn(manifest?.published !== true && canonical < expected, 't0_not_yet_publishable', { canonical, expected, noPrematurePublication: true });
   const observedTickCount = system?.qualifiedTrialTicks;
 
   return {

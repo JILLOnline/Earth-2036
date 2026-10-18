@@ -10,7 +10,9 @@ function cutoffDay(raw){
   return raw.slice(0,10);
 }
 function filingDay(v){
-  if(typeof v!=="string"||!ISO_DAY.test(v)||new Date(v+"T00:00:00Z").toISOString().slice(0,10)!==v)
+  if(typeof v!=="string"||!ISO_DAY.test(v))throw new Error("invalid_filing_date");
+  const parsed=Date.parse(v+"T00:00:00Z");
+  if(!Number.isFinite(parsed)||new Date(parsed).toISOString().slice(0,10)!==v)
     throw new Error("invalid_filing_date");
   return v;
 }
@@ -33,7 +35,9 @@ export function auditT0EvidenceClocks({manifest,queue,qualification,frontier}){
     seen.add(item.id);
     if(!REVIEW_OPEN.has(item.status)&&item.status!=="resolved")throw new Error("unsupported_queue_status");
     const filingDate=filingDay(item.filingDate);
-    if(typeof item.sourceUrl!=="string"||!item.sourceUrl.startsWith("https://www.sec.gov/"))
+    let url;
+    try { url=new URL(item.sourceUrl); } catch { throw new Error("untrusted_sec_source_url"); }
+    if(url.protocol!=="https:"||url.hostname!=="www.sec.gov"||url.username||url.password)
       throw new Error("untrusted_sec_source_url");
     const after=filingDate>day;
     if(after)postCutoff++;else preOrSameDay++;

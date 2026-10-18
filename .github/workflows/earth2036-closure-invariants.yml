@@ -9,6 +9,9 @@ on:
       - "scripts/lib/workgraph-v2.mjs"
       - "scripts/workgraph-sync.mjs"
       - "scripts/audit-closure-invariants.mjs"
+      - "scripts/lib/t0-evidence-clock-audit.mjs"
+      - "scripts/t0-evidence-clock-audit.mjs"
+      - "test/t0-evidence-clock-audit.test.mjs"
       - "scripts/build-closure-semantic-overrides.mjs"
       - "config/closure-engine-v1.json"
       - ".github/workflows/earth2036-closure-invariants.yml"
@@ -102,3 +105,8 @@ jobs:
         run: |
           node --test test/t0-recovery-readiness.test.mjs
           node scripts/t0-recovery-audit.mjs
+      - name: Historical T0 versus rolling SEC evidence clock audit
+        if: always()
+        run: |
+          node --test test/t0-evidence-clock-audit.test.mjs
+          node scripts/t0-evidence-clock-audit.mjs

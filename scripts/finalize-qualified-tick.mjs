@@ -3,6 +3,7 @@ import path from "node:path";
 import { qualifiesT0Publication, qualifiesTick } from "./lib/runtime-gates.mjs";
 import { determineTickFinalization, TRIAL_TICK_LIMIT } from "./lib/tick-authority.mjs";
 import { auditTrialTickHistory } from "./lib/trial-tick-history-audit.mjs";
+import { sealTrialTick } from "./lib/trial-tick-seal.mjs";
 import { buildTrialReviewReport } from "./lib/trial-review-report.mjs";
 import { evaluateEvidenceQualification, parseEvidenceDispositionLedger, evidenceQualificationMatchesState } from "./lib/evidence-qualification.mjs";
 import { loadVerifiedSecReviewProofs } from "./lib/sec-review-archive.mjs";
@@ -390,7 +391,7 @@ const trajectorySnapshot = {
   captureRole: "qualified-trial-tick",
 };
 
-const finalTickSnapshot = {
+const finalTickSnapshot = sealTrialTick({
   tickNumber: nextTick,
   cycleKey: state.cycleKey,
   capturedAt: state.lastCycleAt,
@@ -414,7 +415,7 @@ const finalTickSnapshot = {
   },
   trajectory: trajectorySnapshot,
   rankings: tickRows,
-};
+}, existingTrialTicks.at(-1)?.tickRecordHash ?? null);
 await writeJson(tickPath, finalTickSnapshot);
 
 const nextState = {

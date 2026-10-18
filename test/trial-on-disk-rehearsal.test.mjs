@@ -6,6 +6,7 @@ import {join,dirname} from "node:path";
 import {fileURLToPath} from "node:url";
 import {spawnSync} from "node:child_process";
 import {buildTrialReviewReport} from "../scripts/lib/trial-review-report.mjs";
+import {sealTrialTick} from "../scripts/lib/trial-tick-seal.mjs";
 
 const auditScript=fileURLToPath(new URL("../scripts/audit-trial-persistence.mjs",import.meta.url));
 const reportScript=fileURLToPath(new URL("../scripts/report-trial-review.mjs",import.meta.url));
@@ -30,7 +31,10 @@ test("disk-backed rehearsal: 1000 ticks, report, crash boundaries, and read-only
    methodologyVersion:"1.0.0",universeVersion:"u1-250",
    rankings:fixtureRankings,
    trajectory:{validation:{passed:true},horizons:[12,24,36,60].map(months=>({months,outcomeStatus:"pending"}))},
-  }));
+  })).reduce((acc,tick)=>{
+   acc.push(sealTrialTick(tick,acc.at(-1)?.tickRecordHash??null));
+   return acc;
+  },[]);
   for(let offset=0;offset<1000;offset+=40){
    await Promise.all(ticks.slice(offset,offset+40).map(tick=>
     save(root,"data/runtime/ticks/"+tick.cycleKey+".json",tick)));
@@ -54,6 +58,13 @@ test("disk-backed rehearsal: 1000 ticks, report, crash boundaries, and read-only
   assert.equal(result.trajectoryObservationHorizons.length,4);
   assert.equal(result.trajectoryObservationHorizons[0].pending,1000);
   assert.equal(result.forecastEvaluation.evaluatedPredictions,0);
+
+  // A perfectly numbered immutable archive with modified content must fail.
+  await save(root,"data/runtime/ticks/"+cycle(500)+".json",{...ticks[500],rankings:[{ticker:"SYN001",rank:1}]});
+  const modifiedTick=run(auditScript,root);
+  assert.equal(modifiedTick.status,1);
+  assert.ok(JSON.parse(modifiedTick.stdout).errors.includes("trial_tick_content_hash_mismatch"));
+  await save(root,"data/runtime/ticks/"+cycle(500)+".json",ticks[500]);
 
   // Trial-complete must not pass with a missing or forged review receipt.
   await unlink(join(root,"data/runtime/trial-review-report.json"));

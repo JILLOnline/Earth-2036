@@ -4,13 +4,14 @@ import {readFile} from "node:fs/promises";
 import {determineTickFinalization} from "../scripts/lib/tick-authority.mjs";
 import {auditTrialTickHistory} from "../scripts/lib/trial-tick-history-audit.mjs";
 import {buildTrialReviewReport} from "../scripts/lib/trial-review-report.mjs";
+import {sealTrialTick} from "../scripts/lib/trial-tick-seal.mjs";
 const cycle=n=>new Date(Date.UTC(2026,0,1,n)).toISOString().slice(0,13).replace(/-/g,"")+"00Z";
 test("T0 to first tick, completion hold, and report share a consistent contract",()=>{
  const state={phase:"trial",qualifiedTrialTicks:0,lastQualifiedCycleKey:null};
  const manifest={published:true,qualifiedTrialTicksAfterBaseline:0};
  const ticks=[];
  assert.deepEqual(determineTickFinalization({cycleKey:cycle(0),qualified:true,state,manifest,existingTick:null}),{action:"finalize",tickNumber:1});
- ticks.push({cycleKey:cycle(0),tickNumber:1,trajectory:{validation:{passed:true},horizons:[]}});
+ ticks.push(sealTrialTick({cycleKey:cycle(0),tickNumber:1,trajectory:{validation:{passed:true},horizons:[]}}));
  state.qualifiedTrialTicks=1;state.lastQualifiedCycleKey=cycle(0);manifest.qualifiedTrialTicksAfterBaseline=1;
  assert.equal(auditTrialTickHistory({state,manifest,ticks}).passed,true);
  assert.equal(buildTrialReviewReport({state,manifest,ticks}).captureComplete,false);

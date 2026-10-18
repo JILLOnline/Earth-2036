@@ -3,9 +3,10 @@ import assert from "node:assert/strict";
 import {determineTickFinalization,TRIAL_TICK_LIMIT} from "../scripts/lib/tick-authority.mjs";
 import {auditTrialTickHistory} from "../scripts/lib/trial-tick-history-audit.mjs";
 import {buildTrialReviewReport} from "../scripts/lib/trial-review-report.mjs";
+import {sealTrialTick} from "../scripts/lib/trial-tick-seal.mjs";
 const slot=n=>new Date(Date.UTC(2026,0,1,n)).toISOString().slice(0,13).replace(/-/g,"")+"00Z";
 function fixture(count){
- const ticks=Array.from({length:count},(_,i)=>({tickNumber:i+1,cycleKey:slot(i),trajectory:{validation:{passed:true},horizons:[{months:12,outcomeStatus:"pending"},{months:24,outcomeStatus:"pending"}]}}));
+ const ticks=Array.from({length:count},(_,i)=>({tickNumber:i+1,cycleKey:slot(i),trajectory:{validation:{passed:true},horizons:[{months:12,outcomeStatus:"pending"},{months:24,outcomeStatus:"pending"}]}})).reduce((acc,t)=>{acc.push(sealTrialTick(t,acc.at(-1)?.tickRecordHash??null));return acc;},[]);
  return {ticks,state:{qualifiedTrialTicks:count,lastQualifiedCycleKey:ticks.at(-1)?.cycleKey??null,phase:count===1000?"trial_complete_awaiting_review":"trial"},manifest:{published:true,qualifiedTrialTicksAfterBaseline:count,...(count===1000?{trialStatus:"complete_awaiting_review"}:{})}};
 }
 test("full simulated 1000-tick hour sequence has exactly one terminal transition",()=>{
@@ -15,7 +16,7 @@ test("full simulated 1000-tick hour sequence has exactly one terminal transition
   const decision=determineTickFinalization({cycleKey,qualified:true,state:x.state,manifest:x.manifest,existingTick:null});
   assert.equal(decision.action,"finalize");
   assert.equal(decision.tickNumber,i+1);
-  x.ticks.push({tickNumber:i+1,cycleKey,trajectory:{validation:{passed:true},horizons:[{months:12,outcomeStatus:"pending"}]}});
+  x.ticks.push(sealTrialTick({tickNumber:i+1,cycleKey,trajectory:{validation:{passed:true},horizons:[{months:12,outcomeStatus:"pending"}]}},x.ticks.at(-1)?.tickRecordHash??null));
   x.state.qualifiedTrialTicks=i+1;x.state.lastQualifiedCycleKey=cycleKey;
   x.manifest.qualifiedTrialTicksAfterBaseline=i+1;
   if(i===999){x.state.phase="trial_complete_awaiting_review";x.manifest.trialStatus="complete_awaiting_review";}
@@ -31,7 +32,7 @@ test("full simulated 1000-tick hour sequence has exactly one terminal transition
  assert.equal(report.trajectoryObservationHorizons[0].pending,1000);
 });
 test("simulated crash after writing the last tick before updating both counters blocks",()=>{
- const x=fixture(999);x.ticks.push({tickNumber:1000,cycleKey:slot(999)});
+ const x=fixture(999);x.ticks.push(sealTrialTick({tickNumber:1000,cycleKey:slot(999)},x.ticks.at(-1)?.tickRecordHash??null));
  assert.equal(auditTrialTickHistory(x).passed,false);
  assert.equal(buildTrialReviewReport(x).captureComplete,false);
 });

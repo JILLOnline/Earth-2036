@@ -10,6 +10,10 @@ on:
       - "scripts/lib/assist-bus.mjs"
       - "scripts/lib/workgraph-v2.mjs"
       - "scripts/workgraph-sync.mjs"
+      - "scripts/lib/workgraph-evidence-qualification.mjs"
+      - "data/operations/evidence-dispositions.jsonl"
+      - "data/operations/sec-primary-archive/**"
+      - "test/workgraph-evidence-qualification.test.mjs"
       - "scripts/promote-chief-ready.mjs"
       - "scripts/lib/chief-adjudication-gate.mjs"
       - "config/chief-adjudication-authority.json"
@@ -59,7 +63,7 @@ jobs:
 
             npm ci
             npm run typecheck
-            node --test test/workgraph-v2.test.mjs test/operations-invariants.test.mjs test/closure-engine-v1.test.mjs
+            node --test test/workgraph-v2.test.mjs test/operations-invariants.test.mjs test/closure-engine-v1.test.mjs test/workgraph-evidence-qualification.test.mjs
 
             # Phase 1: always materialize truthful non-canonical routing/projection.
             # A global Beast/source-mesh failure must never hide newly-arrived evidence

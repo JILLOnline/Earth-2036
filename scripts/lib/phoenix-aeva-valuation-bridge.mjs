@@ -41,6 +41,9 @@ export function buildAevaValuationBridge({
  cutoff=HISTORICAL_T0_CUTOFF
 }={}){
  if(cutoff!==HISTORICAL_T0_CUTOFF)throw Error("historical_t0_cutoff_immutable");
+ if(JSON.stringify(source)!==JSON.stringify(AEVA_SOURCE_2026_Q2) ||
+    JSON.stringify(quote)!==JSON.stringify(AEVA_LAST_T0_SESSION_PRICE_CANDIDATE))
+  throw Error("unverified_snapshot_or_secondary_quote_override");
  if(source.ticker!=="AEVA"||source.cik!=="0001789029"||
     source.accession!=="0001193125-26-338179"||
     source.primarySha256!==AEVA_SOURCE_2026_Q2.primarySha256)

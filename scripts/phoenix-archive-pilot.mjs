@@ -7,6 +7,11 @@ import {execFileSync} from "node:child_process";
 import {buildFundamentalsTruth,extractAllStandardFacts,truthHash} from "./lib/sec-fundamentals-truth.mjs";
 import {HISTORICAL_T0_CUTOFF} from "./lib/phoenix-historical-filing-precheck.mjs";
 
+// Pinned to the original Release tag's immutable artifact and manifest digests.
+// Later live cache manifests are mutable and must not stand in for this archive.
+const RELEASE_TAG="fundamentals-cache-20261017T050818Z-39004369528";
+const RELEASE_ARCHIVE_SHA256="6379596d013d554ca20264b5c3806bd528837934eeed492c6fff51f5705a5ae2";
+const RELEASE_MANIFEST_SHA256="636c181daac0ba08272fc2fe019610975fa0fe882f137f7fbada34b6ee79cf9a";
 const file=process.argv[2];
 if(!file||process.argv.length!==3){
  console.error("Usage: node scripts/phoenix-archive-pilot.mjs <verified-bridge-cache.tar.gz>");
@@ -20,7 +25,7 @@ const [index,health]=await Promise.all([
 if(index?.asOf!==health?.asOf || index?.canonicalWriteAuthority!==false ||
   index?.trialEligible!==false || health?.canonicalWriteAuthority!==false ||
   !/^[a-f0-9]{64}$/.test(String(health.archiveSha256||"")) ||
-  !/^[a-f0-9]{64}$/.test(String(health.archiveManifestSha256||"")))
+  health.archiveTag!==RELEASE_TAG || health.archiveSha256!==RELEASE_ARCHIVE_SHA256)
  throw new Error("untrusted_or_inconsistent_bridge_metadata");
 
 const checksum=await new Promise((resolve,reject)=>{
@@ -43,8 +48,8 @@ function archiveMember(path){
 }
 const manifestBytes=archiveMember("cache-manifest.json");
 const manifestSha256=createHash("sha256").update(manifestBytes).digest("hex");
-if(manifestSha256!==health.archiveManifestSha256)
- throw new Error("archive_manifest_sha256_mismatch");
+if(manifestSha256!==RELEASE_MANIFEST_SHA256)
+ throw new Error("immutable_release_manifest_sha256_mismatch");
 const sourceManifest=JSON.parse(manifestBytes.toString("utf8"));
 if(sourceManifest?.contract!=="earth2036-bridge-source-cache-v1" ||
   !sourceManifest.companies || typeof sourceManifest.companies!=="object")
@@ -54,6 +59,7 @@ const report={
  contract:"earth2036-phoenix-p7b-archive-pilot-v3",
  mode:"noncanonical_read_only",archiveSha256:checksum,
  archiveManifestSha256:manifestSha256,archiveBytesAuthenticated:true,
+ liveCacheManifestDiffersFromRelease:health.archiveManifestSha256!==manifestSha256,
  sourceCycle:index.asOf,cutoff:HISTORICAL_T0_CUTOFF,
  historicalT0EvidenceAdmitted:0,canonicalWriteAuthority:false,
  researchWorkerRestartAuthorized:false,companies:[]

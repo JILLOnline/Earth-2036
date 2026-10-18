@@ -1,12 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {buildTrialReviewReport} from "../scripts/lib/trial-review-report.mjs";
+import {sealTrialTick} from "../scripts/lib/trial-tick-seal.mjs";
+const makeTicks=(n)=>Array.from({length:n},(_,i)=>({tickNumber:i+1,cycleKey:new Date(Date.UTC(2026,0,1,i)).toISOString().slice(0,13).replace(/-/g,"")+"00Z",trajectory:{validation:{passed:true},horizons:[{months:12,outcomeStatus:"pending"}]}})).reduce((acc,t)=>{acc.push(sealTrialTick(t,acc.at(-1)?.tickRecordHash??null));return acc;},[]);
 const build=(n)=>({manifest:{published:true,baselineId:"t0",methodologyVersion:"1.0.0",universeVersion:"u1-250",
  qualifiedTrialTicksAfterBaseline:n,...(n===1000?{trialStatus:"complete_awaiting_review"}:{})},
  state:{qualifiedTrialTicks:n,lastQualifiedCycleKey:null,
  phase:n===1000?"trial_complete_awaiting_review":"trial"},
- ticks:Array.from({length:n},(_,i)=>({tickNumber:i+1,cycleKey:new Date(Date.UTC(2026,0,1,i)).toISOString().slice(0,13).replace(/-/g,"").replace("T","T")+"00Z",
-  trajectory:{validation:{passed:true},horizons:[{months:12,outcomeStatus:"pending"}]}}))});
+ ticks:makeTicks(n)});;
 test("noncompleted trial does not claim completion or forecast results",()=>{
  const x=build(2);x.state.lastQualifiedCycleKey=x.ticks.at(-1).cycleKey;
  const r=buildTrialReviewReport(x);

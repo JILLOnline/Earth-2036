@@ -110,6 +110,8 @@ export async function auditAevaForm4(file,{
   mode:"read_only_noncanonical",
   cutoff:HISTORICAL_T0_CUTOFF,expectedFilings:5,
   originalXmlVerified:0,ownerTransactionRows:0,
+  saleTransactions:0,reportedSaleShares:0,
+  reportedSalesProveNetIssuerShareCountChange:false,
   issuerShareIssuanceAuthenticated:false,
   outstandingSharesAtT0Authenticated:false,
   stockExchangePriceTapeAuthenticated:false,
@@ -138,6 +140,13 @@ export async function auditAevaForm4(file,{
    entry.status="original_SEC_Form4_XML_verified_now";
    result.originalXmlVerified++;
    result.ownerTransactionRows+=parsed.transactions.length;
+   for(const t of parsed.transactions){
+    if(t.table==="non_derivative"&&t.code==="S"&&t.acquiredDisposed==="D"){
+     result.saleTransactions++;
+     if(Number.isSafeInteger(t.shares)&&t.shares>=0)
+      result.reportedSaleShares+=t.shares;
+    }
+   }
   }catch(error){
    entry.status="unverified:"+String(error?.message??error).slice(0,150);
   }

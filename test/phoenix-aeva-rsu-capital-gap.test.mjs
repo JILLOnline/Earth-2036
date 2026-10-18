@@ -4,6 +4,7 @@ import {deriveAevaHistoricShares,crosscheckIssuerTexts,reconcileSinhaReportedHol
  from "../scripts/phoenix-aeva-rsu-capital-gap.mjs";
 import {PINNED_ORIGINAL_FORM4_HASHES}
  from "../scripts/phoenix-aeva-form4-audit.mjs";
+import {AEVA_SOURCE_2026_Q2} from "../scripts/lib/phoenix-aeva-valuation-bridge.mjs";
 const receipt=()=>({
  contract:"earth2036-phoenix-p7h-aeva-original-Form4-v1",
  cutoff:"2026-09-12T23:59:59-04:00",
@@ -74,4 +75,12 @@ test("edited original Form4 digest, sale amount or owner holdings cannot pass",(
  assert.throws(()=>reconcileSinhaReportedHoldings(c),/form4_post_trade_holding_or_sale_disagreement/);
  const d=receipt();d.historicalT0EvidenceAdmitted=1;
  assert.throws(()=>reconcileSinhaReportedHoldings(d),/untrusted_form4_receipt/);
+});
+
+test("capital sensitivity uses exact issuer June 30 common shares, not rounded proxy",()=>{
+ const snapshot=deriveAevaHistoricShares();
+ assert.equal(AEVA_SOURCE_2026_Q2.basicJuneShares.count,68682947);
+ assert.equal(snapshot.datedIssuerBalances[2].shares,
+  AEVA_SOURCE_2026_Q2.basicJuneShares.count);
+ assert.equal(AEVA_SOURCE_2026_Q2.coverShares.count,69705758);
 });

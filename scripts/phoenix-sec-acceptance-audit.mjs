@@ -78,6 +78,7 @@ for(const row of source.companies){
    received>Date.parse(cutoff)?"accepted_after_historical_cutoff":"accepted_by_historical_cutoff";
   checked.push({
    accessionNumber:accn,form:found?.form??null,filingDate:found?.filingDate??null,
+   primaryDocument:found?.primaryDocument??null,
    acceptedAt:acceptanceVerified?acceptance:null,
    acceptanceDisposition,secMetadataUrl:found?.sourceUrl??null,
    amendment:typeof found?.form==="string"&&found.form.endsWith("/A"),

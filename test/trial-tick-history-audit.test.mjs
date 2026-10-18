@@ -1,13 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {auditTrialTickHistory} from "../scripts/lib/trial-tick-history-audit.mjs";
+import {sealTrialTick} from "../scripts/lib/trial-tick-seal.mjs";
 const input=(n=2)=>({state:{qualifiedTrialTicks:n,lastQualifiedCycleKey:n?"20261009T2300Z":null,phase:"trial"},
 manifest:{published:true,qualifiedTrialTicksAfterBaseline:n},
-ticks:n?[{tickNumber:1,cycleKey:"20261009T2200Z"},{tickNumber:2,cycleKey:"20261009T2300Z"}].slice(0,n):[]});
+ticks:n?[sealTrialTick({tickNumber:1,cycleKey:"20261009T2200Z"}),sealTrialTick({tickNumber:2,cycleKey:"20261009T2300Z"},sealTrialTick({tickNumber:1,cycleKey:"20261009T2200Z"}).tickRecordHash)].slice(0,n):[]});
 test("clean two-tick history passes",()=>assert.equal(auditTrialTickHistory(input()).passed,true));
 test("zero-tick T0 has no synthetic history",()=>assert.equal(auditTrialTickHistory(input(0)).passed,true));
 test("crash after tick JSON but before count increments fails closed",()=>{
- const x=input(0);x.ticks=[{tickNumber:1,cycleKey:"20261009T2300Z"}];
+ const x=input(0);x.ticks=[sealTrialTick({tickNumber:1,cycleKey:"20261009T2300Z"})];
  assert.ok(auditTrialTickHistory(x).errors.includes("immutable_tick_file_count_mismatch"));
 });
 test("crash after count increment but missing tick fails closed",()=>{
@@ -36,4 +37,13 @@ test("missing T0 publication attestation fails closed",()=>{
  const x=input();
  delete x.manifest.published;
  assert.ok(auditTrialTickHistory(x).errors.includes("unpublished_baseline_has_qualified_ticks"));
+});
+
+test("tampered immutable tick content fails even when names and counters agree",()=>{
+ const x=input();x.ticks[0].extraField="tampered";
+ assert.ok(auditTrialTickHistory(x).errors.includes("trial_tick_content_hash_mismatch"));
+});
+test("relinked history cannot silently drop a previous tick",()=>{
+ const x=input();x.ticks[1].previousTickHash="0".repeat(64);
+ assert.ok(auditTrialTickHistory(x).errors.includes("trial_tick_hash_chain_break"));
 });

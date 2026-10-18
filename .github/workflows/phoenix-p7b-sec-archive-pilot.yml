@@ -14,6 +14,8 @@ on:
       - test/phoenix-edgar-daily-index-pilot.test.mjs
       - scripts/phoenix-edgar-amendment-family.mjs
       - test/phoenix-edgar-amendment-family.test.mjs
+      - scripts/phoenix-sec-acceptance-reconcile.mjs
+      - test/phoenix-sec-acceptance-reconcile.test.mjs
   workflow_dispatch:
 
 permissions:
@@ -88,6 +90,14 @@ jobs:
           node --test test/phoenix-edgar-amendment-family.test.mjs
           node scripts/phoenix-edgar-amendment-family.mjs "$RUNNER_TEMP/p7b/sec-acceptance-report.json" > "$RUNNER_TEMP/p7b/amendment-family-report.json"
           jq '{contract,totalAmendments,originalPeriodMatched,amendmentPrimaryDocumentsRetrieved,originalPrimaryDocumentsRetrieved,amendmentContentReviewComplete,historicalT0EvidenceAdmitted,families:[.families[]|{ticker,amendment:.amendment.accessionNumber,original:.original.accessionNumber,sourcePeriodMatchStatus,amendmentStatus:.amendmentDocument.status,originalStatus:.originalDocument.status,supersessionDisposition}]}' "$RUNNER_TEMP/p7b/amendment-family-report.json"
+      - name: Independently compare filing-detail accepted time to SGML and submissions raw values
+        env:
+          SEC_USER_AGENT: JILLOnline Earth2036 info@jillonlinestore.com
+        run: |
+          set -euo pipefail
+          node --test test/phoenix-sec-acceptance-reconcile.test.mjs
+          node scripts/phoenix-sec-acceptance-reconcile.mjs "$RUNNER_TEMP/p7b/original-primary-report.json" > "$RUNNER_TEMP/p7b/sec-acceptance-reconciliation.json"
+          jq '{contract,filingsCompared,primarySecAgreementCount,submissionsDiscrepancyCount,originalFirstPublicAvailabilityAuthenticated,historicalT0EvidenceAdmitted,results:[.results[]|{ticker,accessionNumber,primarySecAgreement,submissionsDisagreesWithPrimary,indexStatus}]}' "$RUNNER_TEMP/p7b/sec-acceptance-reconciliation.json"
       - uses: actions/upload-artifact@v4
         if: success()
         with:
@@ -98,5 +108,6 @@ jobs:
             ${{ runner.temp }}/p7b/original-primary-report.json
             ${{ runner.temp }}/p7b/daily-index-report.json
             ${{ runner.temp }}/p7b/amendment-family-report.json
+            ${{ runner.temp }}/p7b/sec-acceptance-reconciliation.json
           retention-days: 3
           if-no-files-found: error

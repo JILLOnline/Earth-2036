@@ -1,0 +1,56 @@
+name: Phoenix AEVA Capital Bridge (research only)
+
+on:
+  push:
+    branches:
+      - ops/phoenix-p7b-research-triage-20261017
+    paths:
+      - .github/workflows/phoenix-aeva-capital-bridge.yml
+      - scripts/lib/phoenix-aeva-valuation-bridge.mjs
+      - scripts/phoenix-aeva-valuation-reference.mjs
+      - test/phoenix-aeva-valuation-bridge.test.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: phoenix-aeva-capital-bridge-research
+  cancel-in-progress: true
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Test accounting paths, exact cutoff and no canonical scoring
+        run: |
+          set -euo pipefail
+          node --test test/phoenix-aeva-valuation-bridge.test.mjs
+      - name: Produce independent, read-only valuation assumptions receipt
+        run: |
+          set -euo pipefail
+          node scripts/phoenix-aeva-valuation-reference.mjs > "$RUNNER_TEMP/aeva-valuation-reference.json"
+          jq -e '.marketValuationOpportunity == null
+            and .numericalEarthScore == null
+            and .canonicalWriteAuthority == false
+            and .stockExchangePriceTapeAuthenticated == false
+            and .SeptemberCapitalizationAuthenticated == false
+            and .historicalT0EvidenceAdmitted == 0
+            and (.mutuallyExclusiveSettlementScenarios | length == 4)' "$RUNNER_TEMP/aeva-valuation-reference.json"
+          jq '{contract,cutoff,source,marketPriceCandidate,
+              reconciliation,mutuallyExclusiveSettlementScenarios,
+              methodologyFactorSatisfied,canonicalWriteAuthority,
+              historicalT0EvidenceAdmitted}' "$RUNNER_TEMP/aeva-valuation-reference.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: phoenix-aeva-noncanonical-valuation-reference
+          path: ${{ runner.temp }}/aeva-valuation-reference.json
+          retention-days: 3
+          if-no-files-found: error

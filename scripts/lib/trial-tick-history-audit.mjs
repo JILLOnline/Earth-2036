@@ -1,3 +1,4 @@
+import {validateTrialTickSeal} from "./trial-tick-seal.mjs";
 // Read-only reconciliation before canonical trial finalization.
 // The GitHub scheduler persists all data/ changes in one Git commit, but a
 // partial local process failure must never be mistaken for a qualified tick.
@@ -11,6 +12,7 @@ export function auditTrialTickHistory({state,manifest,ticks=[]}={}){
  if(sc>0 && state?.phase==="official_t0_baseline")
    errors.push("qualified_ticks_while_still_in_baseline_phase");
  const seenNumbers=new Set(),seenCycles=new Set();
+ let previousSeal=null;
  const sorted=[...ticks].sort((a,b)=>(a.tickNumber??0)-(b.tickNumber??0));
  for(const [i,tick] of sorted.entries()){
   if(!Number.isInteger(tick?.tickNumber)||tick.tickNumber!==i+1 ||
@@ -19,6 +21,9 @@ export function auditTrialTickHistory({state,manifest,ticks=[]}={}){
     seenCycles.has(tick.cycleKey))errors.push("invalid_or_duplicate_cycle");
   if(seenNumbers.has(tick?.tickNumber))errors.push("duplicate_tick_number");
   if(i>0&&sorted[i-1].cycleKey>=tick.cycleKey)errors.push("nonmonotonic_trial_cycle");
+  const sealIssue=validateTrialTickSeal(tick,previousSeal);
+  if(sealIssue)errors.push(sealIssue);
+  previousSeal=tick?.tickRecordHash??null;
   seenNumbers.add(tick?.tickNumber);seenCycles.add(tick?.cycleKey);
  }
  if(ticks.length!==sc)errors.push("immutable_tick_file_count_mismatch");

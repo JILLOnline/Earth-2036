@@ -20,8 +20,8 @@ const mapSorted=map=>Object.fromEntries([...map].sort((a,b)=>a[0].localeCompare(
 const increase=(map,key)=>map.set(key,(map.get(key)||0)+1);
 export function auditT0EvidenceClocks({manifest,queue,qualification,frontier}){
   const day=cutoffDay(manifest?.evidenceWindowEnd);
-  if(manifest?.methodologyVersion!=="1.0.0"||manifest?.expectedCompanies!==250||manifest?.published===true)
-    throw new Error("historical_t0_manifest_not_in_progress");
+  if(manifest?.methodologyVersion!=="1.0.0"||manifest?.expectedCompanies!==250)
+    throw new Error("invalid_historical_t0_manifest");
   if(!Array.isArray(queue?.items)||!Number.isSafeInteger(queue?.unresolved)||queue.unresolved<0)
     throw new Error("missing_or_invalid_sec_evidence_queue");
   if(qualification?.contract!=="earth2036-evidence-qualification-v1")throw new Error("missing_formal_review_contract");

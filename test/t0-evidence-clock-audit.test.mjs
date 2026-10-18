@@ -74,3 +74,11 @@ test("live repository queue is distinguished from the immutable T0 cutoff",async
  assert.equal(r.frontier.postCutoffSelectedFilings,queue.items.filter(x=>selected.has(x.ticker)&&x.filingDate>cutoffDay).length);
  assert.equal(r.clocks.formalGatePassed,qualification.gatePassed);
 });
+
+test("legitimate T0 publication and trial do not break historical clock monitoring",()=>{
+ const f=fixture();f.manifest.published=true;f.manifest.status="published";
+ const r=auditT0EvidenceClocks(f);
+ assert.equal(r.clocks.definitivelyFiledAfterT0,1);
+ assert.equal(r.clocks.historicalEvidenceAutomaticallyAdmitted,0);
+ assert.equal(r.authority.t0GateChange,false);
+});

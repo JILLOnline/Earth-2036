@@ -1,7 +1,10 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { qualifiesT0Publication, qualifiesTick } from "./lib/runtime-gates.mjs";
-import { determineTickFinalization } from "./lib/tick-authority.mjs";
+import { determineTickFinalization, TRIAL_TICK_LIMIT } from "./lib/tick-authority.mjs";
+import { auditTrialTickHistory } from "./lib/trial-tick-history-audit.mjs";
+import { sealTrialTick } from "./lib/trial-tick-seal.mjs";
+import { buildTrialReviewReport } from "./lib/trial-review-report.mjs";
 import { evaluateEvidenceQualification, parseEvidenceDispositionLedger, evidenceQualificationMatchesState } from "./lib/evidence-qualification.mjs";
 import { loadVerifiedSecReviewProofs } from "./lib/sec-review-archive.mjs";
 import { buildTrajectorySnapshot, validateTrajectorySnapshot } from "./lib/trajectory-engine.mjs";
@@ -306,6 +309,30 @@ if (!manifest?.published) {
   process.exit(0);
 }
 
+// Check every immutable trial tick against both counters before writing another.
+let existingTrialTicks=[];
+try {
+ const tickDir=path.join(RUNTIME,"ticks");
+ const entries=await readdir(tickDir,{withFileTypes:true});
+ for(const entry of entries){
+  if(!entry.isFile()||!/^\\d{8}T\\d{2}00Z\\.json$/.test(entry.name))
+   throw new Error("unexpected_trial_tick_archive_entry:"+entry.name);
+  const parsed=JSON.parse(await readFile(path.join(tickDir,entry.name),"utf8"));
+  if(parsed.cycleKey+".json"!==entry.name)
+   throw new Error("tick_archive_filename_identity_mismatch");
+  existingTrialTicks.push(parsed);
+ }
+} catch(error) {
+ if(error.code!=="ENOENT"){
+  console.error(JSON.stringify({councilFinalizer:"BLOCKED",reason:"immutable_tick_archive_read_failure",detail:String(error.message)}));
+  process.exit(1);
+ }
+}
+const trialHistory=auditTrialTickHistory({state,manifest,ticks:existingTrialTicks});
+if(!trialHistory.passed){
+ console.error(JSON.stringify({councilFinalizer:"BLOCKED",reason:"immutable_tick_history_inconsistent",errors:trialHistory.errors}));
+ process.exit(1);
+}
 const qualified = qualifiesTick({ baselinePublished: true, ...fullUniverseInput });
 const tickPath = path.join(RUNTIME, "ticks", `${state.cycleKey}.json`);
 let existingTick = null;
@@ -364,7 +391,7 @@ const trajectorySnapshot = {
   captureRole: "qualified-trial-tick",
 };
 
-await writeJson(tickPath, {
+const finalTickSnapshot = sealTrialTick({
   tickNumber: nextTick,
   cycleKey: state.cycleKey,
   capturedAt: state.lastCycleAt,
@@ -388,7 +415,8 @@ await writeJson(tickPath, {
   },
   trajectory: trajectorySnapshot,
   rankings: tickRows,
-});
+}, existingTrialTicks.at(-1)?.tickRecordHash ?? null);
+await writeJson(tickPath, finalTickSnapshot);
 
 const nextState = {
   ...state,
@@ -397,11 +425,17 @@ const nextState = {
   discoveryScanCompleted,
   qualifiedTick: true,
   qualifiedTrialTicks: nextTick,
+  phase: nextTick === TRIAL_TICK_LIMIT ? "trial_complete_awaiting_review" : "trial",
   lastQualifiedCycleKey: state.cycleKey,
   lastCouncilFinalizedAt: finalizedAt,
 };
 await writeJson(path.join(RUNTIME, "system-state.json"), nextState);
-await writeJson(MANIFEST, { ...manifest, qualifiedTrialTicksAfterBaseline: nextTick });
+const nextManifest = {
+  ...manifest, qualifiedTrialTicksAfterBaseline: nextTick,
+  trialEligible: nextTick < TRIAL_TICK_LIMIT,
+  ...(nextTick === TRIAL_TICK_LIMIT ? {trialCompletedAt:finalizedAt,trialStatus:"complete_awaiting_review"} : {}),
+};
+await writeJson(MANIFEST, nextManifest);
 await appendJsonLine(path.join(RUNTIME, "tick-finalizations.jsonl"), {
   cycleKey: state.cycleKey,
   tickNumber: nextTick,
@@ -414,6 +448,19 @@ await appendJsonLine(path.join(RUNTIME, "tick-finalizations.jsonl"), {
   trajectoryValidationPassed: trajectoryErrors.length === 0,
   trajectorySnapshotHash: trajectorySnapshot.snapshotHash,
 });
+
+if (nextTick === TRIAL_TICK_LIMIT) {
+  // Generated from the same candidate files/counters as tick 1000.
+  // The scheduler's independent pre-commit audit must verify this receipt
+  // before pushing the entire data/ transaction to canonical main.
+  const report = buildTrialReviewReport({
+    state: nextState, manifest: nextManifest,
+    ticks: [...existingTrialTicks, finalTickSnapshot], generatedAt: finalizedAt,
+  });
+  if (!report.captureComplete || !report.historyPassed)
+    throw new Error("trial_completion_review_receipt_not_reproducible");
+  await writeJson(path.join(RUNTIME, "trial-review-report.json"), report);
+}
 
 console.log(JSON.stringify({
   councilFinalizer: "TICK_FINALIZED",

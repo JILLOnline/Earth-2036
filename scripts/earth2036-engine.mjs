@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { resolveTrialLifecycleState } from "./lib/trial-lifecycle-state.mjs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
@@ -499,6 +500,7 @@ async function main() {
   });
 
   let manifest = baselineManifest;
+  let lifecycleState = null;
   if (manifest) {
     const gate = baselineGate({
       identityValidated,
@@ -509,6 +511,7 @@ async function main() {
       discoveryScanCompleted,
       unresolvedEvidence: evidenceQualification.unresolvedMaterialOrUnreviewed,
     });
+    lifecycleState = resolveTrialLifecycleState({runtimeState,manifest,gatePassed:gate.passed});
     manifest = {
       ...manifest,
       identityValidated,
@@ -519,25 +522,26 @@ async function main() {
       replacementCandidates: Number(supervisor.replacementCandidates ?? manifest.replacementCandidates ?? 0),
       discoveryScanCompleted,
       sourceCoverageRatio: Math.round(combinedCoverage * 10000) / 10000,
-      trialEligible: Boolean(manifest.published && gate.passed),
+      trialEligible: lifecycleState.trialEligible,
       runtimeGate: gate,
       lastMachineCycleAt: startedAt,
     };
     await writeJson(BASELINE_MANIFEST, manifest);
   }
 
+  if (!lifecycleState) throw new Error("missing_official_t0_lifecycle_contract");
+
   // Observation-only machine: the Council finalizer is the ONLY authority
   // allowed to qualify a trial hour, increment its counter or write a tick.
   // Preserve an already-finalized same-hour state across a scheduler rerun,
   // but do not calculate a fresh qualification here.
-  const baselinePublished = Boolean(manifest?.published);
   const qualifiedTrialTicks = Number(runtimeState.qualifiedTrialTicks ?? manifest?.qualifiedTrialTicksAfterBaseline ?? 0);
   const lastQualifiedCycleKey = runtimeState.lastQualifiedCycleKey ?? null;
   const qualified = lastQualifiedCycleKey === thisCycle && runtimeState.qualifiedTick === true;
 
   const state = {
     version: 1,
-    phase: baselinePublished ? "trial" : "official_t0_baseline",
+    phase: lifecycleState.phase,
     cycleKey: thisCycle,
     lastCycleAt: startedAt,
     cycleStatus: observedCount === EXPECTED ? "completed" : "partial",

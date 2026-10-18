@@ -27,8 +27,10 @@ export function assessT0Recovery({ system, manifest, metrics, sourceHealth, inte
   check(integer(expected) && expected === 250, 'unexpected_t0_universe');
   check(Object.values(counts).every(integer) && Object.values(counts).reduce((a,b) => a+b,0) === expected, 'workgraph_population_mismatch');
   check(integer(canonical) && canonical === system?.workgraphCanonicalCompanies && canonical === system?.publishableCompanies && canonical === manifest?.publishableCompanies, 'canonical_authority_mismatch');
+  check(integer(system?.scoredCompanies) && system.scoredCompanies === manifest?.scoredCompanies && system.scoredCompanies >= canonical && (!integer(integrity?.scoreRecordsAudited) || integrity.scoreRecordsAudited >= system.scoredCompanies), 'scored_authority_mismatch');
   check(system?.qualifiedTrialTicks === manifest?.qualifiedTrialTicksAfterBaseline, 'qualified_tick_counter_mismatch');
   check(ratio(coverage) && ratio(sourceHealth?.machineCoverageRatio) && ratio(sourceHealth?.supervisorCoverageRatio), 'invalid_coverage_metric');
+  check(ratio(coverage) && Math.abs(coverage - system?.combinedSourceCoverageRatio) < 0.000001 && Math.abs(coverage - manifest?.sourceCoverageRatio) < 0.000001 && Math.abs(sourceHealth?.machineCoverageRatio - system?.machineSourceCoverageRatio) < 0.000001 && Math.abs(sourceHealth?.supervisorCoverageRatio - system?.supervisorSourceCoverageRatio) < 0.000001, 'coverage_authority_mismatch');
   check(integrity?.passed === true || integrity?.passed === false, 'integrity_result_missing');
   check(integer(reconciliationCounts.slots) && integer(reconciliationCounts.slotsWithoutObservation) && reconciliationCounts.slotsWithoutObservation <= reconciliationCounts.slots, 'invalid_hourly_observation_counts');
   check(integer(leases?.count) && Object.values(leaseCounts).every(integer) && Object.values(leaseCounts).reduce((a,b) => a+b,0) === leases?.count, 'invalid_worker_lease_counts');
@@ -57,7 +59,7 @@ export function assessT0Recovery({ system, manifest, metrics, sourceHealth, inte
     baseline: { canonical, expected, unfinished, packetReady: counts.packet_ready || 0, chiefReady: counts.chief_ready || 0, qualifiedTicks: observedTickCount, published: manifest?.published === true },
     planes: {
       scheduler: { lastCycleAt: system?.lastCycleAt || null, ageMinutes: ages.machineMinutes, missingHistoricalHours: reconciliationCounts.slotsWithoutObservation ?? null, observedWindowHours: reconciliationCounts.slots ?? null },
-      integrity: { passed: integrity?.passed, machineCoverage: sourceHealth?.machineCoverageRatio, supervisorCoverage: sourceHealth?.supervisorCoverageRatio, combinedCoverage: coverage },
+      integrity: { passed: integrity?.passed, machineCoverage: sourceHealth?.machineCoverageRatio, supervisorCoverage: sourceHealth?.supervisorCoverageRatio, combinedCoverage: coverage, scoredCompanies: system?.scoredCompanies, auditedScoreRecords: integrity?.scoreRecordsAudited ?? null },
       workforce: { persistedObligations: leases?.count, byStatus: leaseCounts, taskEnablement: 'unverified_from_github', recentTaskRunIsNotClosureProof: true },
       closure: { selected: active, deferred: metrics?.closureEngine?.stalledCount ?? null, canonicalVelocity24h: metrics?.canonicalVelocity?.h24 ?? null },
       trial: { published: manifest?.published === true, qualifiedTicks: observedTickCount, gateOpen: manifest?.runtimeGate?.passed === true },

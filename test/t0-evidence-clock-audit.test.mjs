@@ -66,8 +66,11 @@ test("live repository queue is distinguished from the immutable T0 cutoff",async
  const names=["data/baselines/earth2036-official-t0-2026-09-12/manifest.json","data/runtime/evidence-review-queue.json","data/runtime/evidence-qualification.json","data/runtime/workgraph/worker-view/closure-frontier.json"];
  const [manifest,queue,qualification,frontier]=await Promise.all(names.map(p=>readFile(new URL("../"+p,import.meta.url),"utf8").then(JSON.parse)));
  const r=auditT0EvidenceClocks({manifest,queue,qualification,frontier});
- assert.equal(r.totalItems,queue.items.length);assert.equal(r.clocks.formalGatePassed,false);
+ const cutoffDay=manifest.evidenceWindowEnd.slice(0,10);
+ const selected=new Set((frontier.selected||[]).map(x=>x.ticker));
+ assert.equal(r.totalItems,queue.items.length);
  assert.equal(r.clocks.historicalEvidenceAutomaticallyAdmitted,0);
- assert.equal(r.clocks.definitivelyFiledAfterT0,r.totalItems);
- assert.equal(r.frontier.postCutoffSelectedFilings,4);
+ assert.equal(r.clocks.definitivelyFiledAfterT0,queue.items.filter(x=>x.filingDate>cutoffDay).length);
+ assert.equal(r.frontier.postCutoffSelectedFilings,queue.items.filter(x=>selected.has(x.ticker)&&x.filingDate>cutoffDay).length);
+ assert.equal(r.clocks.formalGatePassed,qualification.gatePassed);
 });

@@ -61,8 +61,8 @@ export function findNewHistoricalPrimaryCandidate(packet,hold){
  const sourceIds=new Set(hold.baselineSourceIds);
  const origins=new Set(hold.baselineUniqueOrigins);
  const candidates=(packet?.sources||[]).filter(s=>s && s.primary===true &&
-  typeof s.sourceId==="string" && !sourceIds.has(s.sourceId) &&
-  typeof s.originFingerprint==="string" && !origins.has(s.originFingerprint) &&
+  typeof s.sourceId==="string" && s.sourceId.trim().length>0 && !sourceIds.has(s.sourceId) &&
+  typeof s.originFingerprint==="string" && s.originFingerprint.trim().length>0 && !origins.has(s.originFingerprint) &&
   typeof s.url==="string" && s.url.startsWith("https://") &&
   timeEligibleForHistoricalReview(s.publishedAt))
  .map(s=>({

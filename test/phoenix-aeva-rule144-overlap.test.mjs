@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {parseRule144,reconcileRule144ToForm4,runRule144Overlap} from "../scripts/phoenix-aeva-rule144-overlap.mjs";
 import {mkdtemp,writeFile,rm} from "node:fs/promises";
+import {PINNED_ORIGINAL_FORM4_HASHES} from "../scripts/phoenix-aeva-form4-audit.mjs";
 import {tmpdir} from "node:os";
 import {join} from "node:path";
 const makeNotice=(acc,cik,name,shares,date)=>[
@@ -27,11 +28,11 @@ const form4={
  cutoff:"2026-09-12T23:59:59-04:00",
  originalXmlVerified:5,canonicalWriteAuthority:false,historicalT0EvidenceAdmitted:0,
  filings:[
-  {accession:"0001193125-26-352272",originalXmlTransactionParse:{
+  {accession:"0001193125-26-352272",originalXmlSha256:PINNED_ORIGINAL_FORM4_HASHES["0001193125-26-352272"],originalXmlTransactionParse:{
    reportingOwnerName:"MOTLAGH KATHERINE",reportingOwnerCik:"0001830952",
    transactions:[{table:"non_derivative",code:"S",acquiredDisposed:"D",
     transactionDate:"2026-08-12",shares:2500}]}},
-  {accession:"0001193125-26-359631",originalXmlTransactionParse:{
+  {accession:"0001193125-26-359631",originalXmlSha256:PINNED_ORIGINAL_FORM4_HASHES["0001193125-26-359631"],originalXmlTransactionParse:{
    reportingOwnerName:"Sinha Saurabh",reportingOwnerCik:"0001849806",
    transactions:[{table:"non_derivative",code:"S",acquiredDisposed:"D",
     transactionDate:"2026-08-18",shares:70000}]}}
@@ -73,7 +74,7 @@ test("issuer, quantity, date and malicious XML inputs fail closed",()=>{
  assert.throws(()=>parseRule144("<!DOCTYPE foo>"+makeNotice(a,"0001830952","KATHERINE MOTLAGH",2500,"08/12/2026"),a),/untrusted_oversize_or_dtd/);
  assert.throws(()=>reconcileRule144ToForm4([parsedA()],{...form4,canonicalWriteAuthority:true}),/untrusted_original_sec_form4_report/);
 });
-test("read-only end-to-end mock preserves shares at cutoff and score as unverified",async()=>{
+test("synthetic SEC bytes fail pinned SHA gate; forged data never becomes admitted",async()=>{
  const dir=await mkdtemp(join(tmpdir(),"aeva-rule144-"));
  try{
   const w=join(dir,"window.json"),f=join(dir,"form4.json");
@@ -85,12 +86,11 @@ test("read-only end-to-end mock preserves shares at cutoff and score as unverifi
   });
   const r=await runRule144Overlap(w,f,{agent:"Test AEVA contact@company.invalid",
    fetcher,delayMs:0});
-  assert.equal(r.originalsVerified,2);
-  assert.equal(r.exactForm4OverlapCount,2);
-  assert.equal(r.duplicatedSaleSharesAvoided,72500);
-  assert.equal(r.july30SharesRestatedInNotices,true);
+  assert.equal(r.originalsVerified,0);
+  assert.equal(r.errors.length,2);
+  assert.ok(r.errors.every(x=>x.failure==="historical_rule144_original_XML_digest_changed"));
+  assert.equal(r.exactForm4OverlapCount,0);
   assert.equal(r.shareCountAsOfCutoffAuthenticated,false);
-  assert.equal(r.companyWideRsuVestingReconciled,false);
   assert.equal(r.marketValuationOpportunity,null);
   assert.equal(r.historicalT0EvidenceAdmitted,0);
   assert.equal(r.canonicalWriteAuthority,false);

@@ -20,3 +20,14 @@ test("terminal count must have matching phase and manifest",()=>{
  const x={state:{qualifiedTrialTicks:1000,lastQualifiedCycleKey:"20261009T2300Z",phase:"trial"},manifest:{qualifiedTrialTicksAfterBaseline:1000},ticks:[]};
  assert.ok(auditTrialTickHistory(x).errors.includes("trial_terminal_phase_inconsistent"));
 });
+
+test("trial receipts cannot pass with an explicitly unpublished T0",()=>{
+ const x=input();
+ x.manifest.published=false;
+ assert.ok(auditTrialTickHistory(x).errors.includes("unpublished_baseline_has_qualified_ticks"));
+});
+test("qualified trial receipts cannot belong to baseline phase",()=>{
+ const x=input();
+ x.state.phase="official_t0_baseline";
+ assert.ok(auditTrialTickHistory(x).errors.includes("qualified_ticks_while_still_in_baseline_phase"));
+});

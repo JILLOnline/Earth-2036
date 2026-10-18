@@ -9,6 +9,7 @@ on:
       - scripts/lib/source-feasibility-holds.mjs
       - scripts/lib/value-allocator.mjs
       - scripts/lib/workgraph-v2.mjs
+      - scripts/lib/assist-bus.mjs
       - scripts/workgraph-sync.mjs
       - config/source-feasibility-holds-v1.json
       - test/source-feasibility-handoff.test.mjs
@@ -46,8 +47,14 @@ jobs:
             and ([.selected[].ticker] | index("AEVA") | not)
             and ([.stalled[] | select(.ticker == "AEVA"
                and .executionGuard == "await_source_integrity_verified_primary")] | length == 1)' data/runtime/workgraph/shadow/closure-frontier.json
+          # The compact worker route truncates deferred items; validate the
+          # complete routing ledger AND the separate untruncated hold notice.
           jq -e '.deferredItems | any(.ticker == "AEVA"
-            and .executionGuard == "await_source_integrity_verified_primary")' data/runtime/workgraph/worker-view/routing/council-alpha.json
+            and .executionGuard == "await_source_integrity_verified_primary")' data/runtime/workgraph/routing/council-alpha.json
+          jq -e '.items | all(.ticker != "AEVA")' data/runtime/workgraph/worker-view/routing/council-alpha.json
+          jq -e '.sourceHeld | any(.ticker == "AEVA"
+            and .guard == "await_source_integrity_verified_primary")' data/runtime/workgraph/worker-view/source-feasibility.json
+          jq -e '.requests | all(.ticker != "AEVA")' data/runtime/workgraph/worker-view/assist/earth-scout.json
           jq '{contract,generatedAt,backlogTotal,selectedCount,stalledCount,
             sourceFeasibility,selected:[.selected[]|{ticker,status}],
             holds:[.stalled[]|select(.sourceFeasibility != null)|{ticker,status,executionGuard}]}' data/runtime/workgraph/shadow/closure-frontier.json

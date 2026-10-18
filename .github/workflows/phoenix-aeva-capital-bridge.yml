@@ -13,6 +13,8 @@ on:
       - test/phoenix-aeva-filing-window.test.mjs
       - scripts/phoenix-aeva-form4-audit.mjs
       - test/phoenix-aeva-form4-audit.test.mjs
+      - scripts/phoenix-aeva-rule144-overlap.mjs
+      - test/phoenix-aeva-rule144-overlap.test.mjs
   workflow_dispatch:
 
 permissions:
@@ -89,6 +91,28 @@ jobs:
             filings:[.filings[]|{accession,status,originalXmlSha256,
               reportingOwner:.originalXmlTransactionParse.reportingOwnerName,
               codes:.originalXmlTransactionParse.codeCounts}]}' "$RUNNER_TEMP/aeva-original-form4.json"
+      - name: Cross-check two original Form 144 notices against executed Form 4 trades
+        env:
+          SEC_USER_AGENT: JILLOnline Earth2036 info@jillonlinestore.com
+        run: |
+          set -euo pipefail
+          node --test test/phoenix-aeva-rule144-overlap.test.mjs
+          node scripts/phoenix-aeva-rule144-overlap.mjs "$RUNNER_TEMP/aeva-post-cover-filing-window.json" "$RUNNER_TEMP/aeva-original-form4.json" > "$RUNNER_TEMP/aeva-rule144-overlap.json"
+          jq -e '.noticesExpected == 2 and .originalsVerified == 2
+            and .exactForm4OverlapCount == 2
+            and .duplicatedSaleSharesAvoided == 72500
+            and .july30SharesRestatedInNotices == true
+            and .july30ReportedSharesAsOfSeptember12Verified == false
+            and .shareCountAsOfCutoffAuthenticated == false
+            and .historicalT0EvidenceAdmitted == 0
+            and .canonicalWriteAuthority == false
+            and .marketValuationOpportunity == null' "$RUNNER_TEMP/aeva-rule144-overlap.json"
+          jq '{contract,originalsVerified,exactForm4OverlapCount,
+            duplicatedSaleSharesAvoided,july30SharesRestatedInNotices,
+            shareCountAsOfCutoffAuthenticated,notices:[.notices[]|{
+              accessionNumber,reportingName,proposedShares,approximateSaleDate,
+              filerReportedOutstandingShares,originalSha256,matchedOneOriginalSale
+            }]}' "$RUNNER_TEMP/aeva-rule144-overlap.json"
       - uses: actions/upload-artifact@v4
         with:
           name: phoenix-aeva-noncanonical-valuation-reference
@@ -96,5 +120,6 @@ jobs:
             ${{ runner.temp }}/aeva-valuation-reference.json
             ${{ runner.temp }}/aeva-post-cover-filing-window.json
             ${{ runner.temp }}/aeva-original-form4.json
+            ${{ runner.temp }}/aeva-rule144-overlap.json
           retention-days: 3
           if-no-files-found: error

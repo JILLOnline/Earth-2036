@@ -5,6 +5,7 @@ import {parseSourceFeasibilityHolds,resolveSourceFeasibility}
  from "../scripts/lib/source-feasibility-holds.mjs";
 import {buildClosureFrontier} from "../scripts/lib/value-allocator.mjs";
 import {buildRoutingQueues} from "../scripts/lib/workgraph-v2.mjs";
+import {buildAssistRequests} from "../scripts/lib/assist-bus.mjs";
 
 const POLICY_PATH=new URL("../config/source-feasibility-holds-v1.json",import.meta.url);
 const policy=JSON.parse(await readFile(POLICY_PATH,"utf8"));
@@ -120,4 +121,20 @@ test("policy tampering never authorizes arbitrary time-shift or weaker source gu
   const copy=structuredClone(policy);mutator(copy);
   assert.throws(()=>parseSourceFeasibilityHolds(copy),/source_feasibility_/);
  }
+});
+
+test("Scout active assist capacity never recycles original-source-held AEVA",()=>{
+ const graph=makeGraph(), packets=Object.entries(failures).map(([ticker,fs])=>packet(ticker,fs));
+ const f=frontier();
+ const status=Object.fromEntries(f.candidates.map(x=>[x.ticker,x.status]));
+ const a=buildAssistRequests(graph,packets,[],now,null,{
+  lifecycleEnabled:true,frontierTickers:f.selected.map(x=>x.ticker),
+  recoverySupportTickers:[],operationalStatusByTicker:status
+ });
+ const aevaRequests=a.requests.filter(x=>x.ticker==="AEVA");
+ assert.ok(aevaRequests.length>0);
+ assert.ok(aevaRequests.every(x=>x.status!=="active"));
+ assert.ok(aevaRequests.every(x=>x.operationalStatus==="awaiting_unavailable_historical_primary"));
+ assert.ok(aeavaCount()>=0);
+ function aeavaCount(){return a.requests.filter(x=>x.ticker==="SWKS").length}
 });

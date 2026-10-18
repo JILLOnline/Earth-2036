@@ -15,6 +15,8 @@ on:
       - test/phoenix-aeva-form4-audit.test.mjs
       - scripts/phoenix-aeva-rule144-overlap.mjs
       - test/phoenix-aeva-rule144-overlap.test.mjs
+      - scripts/phoenix-aeva-rsu-capital-gap.mjs
+      - test/phoenix-aeva-rsu-capital-gap.test.mjs
   workflow_dispatch:
 
 permissions:
@@ -113,6 +115,25 @@ jobs:
               accessionNumber,reportingName,proposedShares,approximateSaleDate,
               filerReportedOutstandingShares,originalSha256,matchedOneOriginalSale
             }]}' "$RUNNER_TEMP/aeva-rule144-overlap.json"
+      - name: Verify original SEC issuer equity roll-forward, dated cover and CFO transition
+        env:
+          SEC_USER_AGENT: JILLOnline Earth2036 info@jillonlinestore.com
+        run: |
+          set -euo pipefail
+          node --test test/phoenix-aeva-rsu-capital-gap.test.mjs
+          node scripts/phoenix-aeva-rsu-capital-gap.mjs "$RUNNER_TEMP/aeva-original-form4.json" > "$RUNNER_TEMP/aeva-rsu-capital-gap.json"
+          jq -e '.historicalT0EvidenceAdmitted == 0
+            and .issuerShares.june30ToJuly30SharesIncrease == 1022811
+            and .issuerShares.sharesOutstandingSeptember12 == null
+            and .ownerRsuSale.ownerHoldingsChangeBetweenReportedEndpoints == -34146
+            and .ownerRsuSale.grossRsuSharesVestedSeptember2 == null
+            and .issuerPrimaryCrosscheck.transition.personnelEventCausedRsuVestingProven == false
+            and .capitalDenominatorAuthenticated == false
+            and .marketValuationOpportunity == null
+            and .canonicalWriteAuthority == false' "$RUNNER_TEMP/aeva-rsu-capital-gap.json"
+          jq '{contract,cutoff,sources,issuerShares,ownerRsuSale,
+            issuerPrimaryCrosscheck,September12IssuerShares,
+            historicalT0EvidenceAdmitted,capitalDenominatorAuthenticated}' "$RUNNER_TEMP/aeva-rsu-capital-gap.json"
       - uses: actions/upload-artifact@v4
         with:
           name: phoenix-aeva-noncanonical-valuation-reference
@@ -121,5 +142,6 @@ jobs:
             ${{ runner.temp }}/aeva-post-cover-filing-window.json
             ${{ runner.temp }}/aeva-original-form4.json
             ${{ runner.temp }}/aeva-rule144-overlap.json
+            ${{ runner.temp }}/aeva-rsu-capital-gap.json
           retention-days: 3
           if-no-files-found: error

@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {auditTrialTickHistory} from "../scripts/lib/trial-tick-history-audit.mjs";
 const input=(n=2)=>({state:{qualifiedTrialTicks:n,lastQualifiedCycleKey:n?"20261009T2300Z":null,phase:"trial"},
-manifest:{qualifiedTrialTicksAfterBaseline:n},
+manifest:{published:true,qualifiedTrialTicksAfterBaseline:n},
 ticks:n?[{tickNumber:1,cycleKey:"20261009T2200Z"},{tickNumber:2,cycleKey:"20261009T2300Z"}].slice(0,n):[]});
 test("clean two-tick history passes",()=>assert.equal(auditTrialTickHistory(input()).passed,true));
 test("zero-tick T0 has no synthetic history",()=>assert.equal(auditTrialTickHistory(input(0)).passed,true));
@@ -30,4 +30,10 @@ test("qualified trial receipts cannot belong to baseline phase",()=>{
  const x=input();
  x.state.phase="official_t0_baseline";
  assert.ok(auditTrialTickHistory(x).errors.includes("qualified_ticks_while_still_in_baseline_phase"));
+});
+
+test("missing T0 publication attestation fails closed",()=>{
+ const x=input();
+ delete x.manifest.published;
+ assert.ok(auditTrialTickHistory(x).errors.includes("unpublished_baseline_has_qualified_ticks"));
 });

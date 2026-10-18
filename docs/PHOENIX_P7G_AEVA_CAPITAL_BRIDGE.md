@@ -42,3 +42,27 @@ Formula: `candidate price × assumed common shares + retained note principal −
 6. Require Council Alpha source-integrity signoff, independent Deep Resolver material contradiction dispositions, and a complete source-addressed Methodology 1.0 scoring record.
 
 **Stop condition:** the research bridge may never mark `historicalT0EvidenceAdmitted`, `methodologyFactorSatisfied`, `chiefReadyAuthorized`, `canonicalPromotionAuthorized`, or `workerRestartAuthorized` true. The real Workgraph remains unmodified.
+
+## P7G source-window audit — July 30 to September 12, 2026
+
+The independent [read-only GitHub Actions run 39133456669](https://github.com/JILLOnline/Earth-2036/actions/runs/39133456669) queried the SEC's current company-specific submissions feed for issuer CIK `0001789029`, verified recent history includes the cover date, and preserved all precisely accepted candidate issuer filings dated after July 30 and no later than the original T0 cutoff. The exact artifact `aeva-post-cover-filing-window.json` was downloaded and inspected.
+
+The SEC submission listing contains **9** relevant filings: **five Forms 4, two Forms 144, one 8-K and one 10-Q**. Date and accession inventory:
+
+| Filing date | Form | Accession | Interpretation |
+| --- | --- | --- | --- |
+| Aug 5, 2026 | 8-K | 0001193125-26-335102 | Q2 results and executive updates; does not itself establish September share count |
+| Aug 6, 2026 | 10-Q | 0001193125-26-338179 | July 30 cover count and June 30 financials, primary starting snapshot |
+| Aug 12, 2026 | 4 | 0001193125-26-347439 | Beneficial ownership change; investigate transaction code and shares acquired/disposed |
+| Aug 12, 2026 | 4 | 0001193125-26-347443 | Beneficial ownership change; investigate separately |
+| Aug 12, 2026 | 144 | 0001950047-26-007999 | Notice of proposed restricted-stock sale; not automatically a newly issued share |
+| Aug 14, 2026 | 4 | 0001193125-26-352272 | Beneficial ownership change; not enough to update denominator |
+| Aug 18, 2026 | 144 | 0001950047-26-008329 | Proposed restricted-stock sale; not automatic issuer issuance |
+| Aug 20, 2026 | 4 | 0001193125-26-359631 | Beneficial ownership change; separate issuer-account reconciliation required |
+| Sep 4, 2026 | 4 | 0001193125-26-383903 | Last recorded owner-change form in this bounded SEC issuer-view window |
+
+No missing or after-cutoff timestamps were held in this *limited SEC issuer submissions listing*. That means the selected API listing was screened; **it is not proof that all owner-level transactions, transfer-agent share movements, warrant exercises, grants/vesting, or undisclosed company events have been exhaustively captured**. Form 4 and Form 144 observations may be secondaries, compensation settlement or issuer issuance; one cannot infer share-count changes without reviewing original XML transaction codes, grant/settlement conditions and the matching issuance ledger.
+
+**Decision:** `shareCountAsOfCutoffAuthenticated=false`, `issuerCapitalizationEventsExhaustivelyReviewed=false`, `beneficialOwnerFormsAndTransferAgentReconciled=false`, `marketValuationOpportunity=null`. The research receipt does not change Workgraph. A confirmed September share count requires a separate audited owner-level and issuer capitalization reconciliation.
+
+Executable: `scripts/phoenix-aeva-filing-window.mjs`; tests `test/phoenix-aeva-filing-window.test.mjs`; workflow `.github/workflows/phoenix-aeva-capital-bridge.yml`. The source document and secondary quote objects are deeply frozen during JavaScript execution, and modified facts/price values are rejected.

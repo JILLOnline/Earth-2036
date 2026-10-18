@@ -12,6 +12,8 @@ on:
       - test/phoenix-edgar-primary-pilot.test.mjs
       - scripts/phoenix-edgar-daily-index-pilot.mjs
       - test/phoenix-edgar-daily-index-pilot.test.mjs
+      - scripts/phoenix-edgar-amendment-family.mjs
+      - test/phoenix-edgar-amendment-family.test.mjs
   workflow_dispatch:
 
 permissions:
@@ -78,6 +80,14 @@ jobs:
           node --test test/phoenix-edgar-daily-index-pilot.test.mjs
           node scripts/phoenix-edgar-daily-index-pilot.mjs "$RUNNER_TEMP/p7b/original-primary-report.json" > "$RUNNER_TEMP/p7b/daily-index-report.json"
           jq '{contract,cutoff,checkedFilings,matchingDatedIndexes,publicAvailabilityAtT0Authenticated,historicalT0EvidenceAdmitted,records:[.records[]|{ticker,accessionNumber,status}]}' "$RUNNER_TEMP/p7b/daily-index-report.json"
+      - name: Review nine 10-K amendments with exact-report-period original documents
+        env:
+          SEC_USER_AGENT: JILLOnline Earth2036 info@jillonlinestore.com
+        run: |
+          set -euo pipefail
+          node --test test/phoenix-edgar-amendment-family.test.mjs
+          node scripts/phoenix-edgar-amendment-family.mjs "$RUNNER_TEMP/p7b/sec-acceptance-report.json" > "$RUNNER_TEMP/p7b/amendment-family-report.json"
+          jq '{contract,totalAmendments,originalPeriodMatched,amendmentPrimaryDocumentsRetrieved,originalPrimaryDocumentsRetrieved,amendmentContentReviewComplete,historicalT0EvidenceAdmitted,families:[.families[]|{ticker,amendment:.amendment.accessionNumber,original:.original.accessionNumber,sourcePeriodMatchStatus,amendmentStatus:.amendmentDocument.status,originalStatus:.originalDocument.status,supersessionDisposition}]}' "$RUNNER_TEMP/p7b/amendment-family-report.json"
       - uses: actions/upload-artifact@v4
         if: success()
         with:
@@ -87,5 +97,6 @@ jobs:
             ${{ runner.temp }}/p7b/sec-acceptance-report.json
             ${{ runner.temp }}/p7b/original-primary-report.json
             ${{ runner.temp }}/p7b/daily-index-report.json
+            ${{ runner.temp }}/p7b/amendment-family-report.json
           retention-days: 3
           if-no-files-found: error

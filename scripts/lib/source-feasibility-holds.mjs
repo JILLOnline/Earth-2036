@@ -51,8 +51,11 @@ export function parseSourceFeasibilityHolds(document){
 // sources are never allowed to release a frozen historical review.
 function timeEligibleForHistoricalReview(value){
  if(typeof value!=="string")return false;
- if(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(value))
-  return value<"2026-09-12" && Number.isFinite(Date.parse(value+"T12:00:00Z"));
+ if(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(value)){
+  const ms=Date.parse(value+"T12:00:00Z");
+  return value<"2026-09-12" && Number.isFinite(ms) &&
+    new Date(ms).toISOString().slice(0,10)===value;
+ }
  if(!/^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:[.][0-9]+)?(?:Z|[+-][0-9]{2}:[0-9]{2})$/.test(value))return false;
  const ms=Date.parse(value);
  return Number.isFinite(ms)&&ms<=Date.parse(HISTORICAL_T0_CUTOFF);

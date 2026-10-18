@@ -174,7 +174,7 @@ test("old, post-cutoff, secondary, unaddressed, and duplicate sources do NOT reo
  const changes=[
   {publishedAt:"2026-09-27"},
   {publishedAt:"2026-09-12"},
-  {publishedAt:"2026-09-13T00:00:00Z"},
+  {publishedAt:"2026-09-13T05:00:00Z"},
   {primary:false},
   {publishedAt:null},
   {url:"http://insecure.example"},

@@ -1,6 +1,7 @@
 import {verifyBridgeIndex} from "./fundamentals-bridge-index.mjs";
 
 export const REUSE_CONTRACT="earth2036-phoenix-fundamentals-reuse-inventory-v1";
+export const FROZEN_HISTORICAL_T0_CUTOFF="2026-09-12T23:59:59-04:00";
 const hash=value=>typeof value==="string" && /^[a-f0-9]{64}$/.test(value);
 const validTime=value=>typeof value==="string" && Number.isFinite(Date.parse(value));
 const safeTicker=value=>typeof value==="string" && /^[A-Z][A-Z0-9.-]{0,11}$/.test(value);
@@ -26,7 +27,7 @@ export function assessFundamentalsReuse({index,health,observations,frontier,base
      !Array.isArray(frontier.candidates) ||
      !String(baseline?.baselineId||"").startsWith("earth2036-official-t0-") ||
      baseline.status!=="in_progress" || baseline.trialEligible!==false ||
-     !validTime(cutoff) || !validTime(index.asOf) ||
+     cutoff!==FROZEN_HISTORICAL_T0_CUTOFF || !validTime(index.asOf) ||
      health.asOf!==index.asOf || !validTime(observations.capturedAt) ||
      !validTime(systemState?.lastCycleAt) ||
      observations.capturedAt!==systemState.lastCycleAt ||

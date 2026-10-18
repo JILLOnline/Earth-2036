@@ -1,7 +1,14 @@
 // Phoenix P7G: transparent, noncanonical AEVA valuation-capital structure
 // sensitivity. This module is NOT an Earth Score or source admission authority.
 import {HISTORICAL_T0_CUTOFF} from "./phoenix-historical-filing-precheck.mjs";
-const deepFreeze=value=>{\n if(value&&typeof value==="object"&&!Object.isFrozen(value)){\n  for(const item of Object.values(value))deepFreeze(item);\n  Object.freeze(value);\n }\n return value;\n};\nexport const AEVA_SOURCE_2026_Q2=deepFreeze({
+const deepFreeze=value=>{
+ if(value&&typeof value==="object"&&!Object.isFrozen(value)){
+  for(const item of Object.values(value))deepFreeze(item);
+  Object.freeze(value);
+ }
+ return value;
+};
+export const AEVA_SOURCE_2026_Q2=deepFreeze({
  ticker:"AEVA",cik:"0001789029",form:"10-Q",
  accession:"0001193125-26-338179",filingDate:"2026-08-06",
  sourceUrl:"https://www.sec.gov/Archives/edgar/data/1789029/000119312526338179/aeva-20260630.htm",

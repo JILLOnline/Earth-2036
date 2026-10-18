@@ -137,3 +137,55 @@ test("Scout active assist capacity never recycles original-source-held AEVA",()=
  assert.ok(aevaRequests.every(x=>x.operationalStatus==="awaiting_unavailable_historical_primary"));
  assert.ok(a.requests.some(x=>x.ticker==="SWKS"));
 });
+
+test("genuinely NEW dated primary lineage reopens REVIEW, not canonical source admission",()=>{
+ const g=makeGraph({AEVA:failures.AEVA});
+ const p=packet("AEVA",failures.AEVA);
+ p.sources=[{
+  sourceId:"sec:AEVA:share-count-original:20260911",
+  originFingerprint:"sec.gov|AEVA|issuer-ledger|2026-09-11|new-filing",
+  url:"https://www.sec.gov/Archives/edgar/data/1789029/000000000026111111/new.htm",
+  publishedAt:"2026-09-11",primary:true
+ }];
+ const v=resolveSourceFeasibility("AEVA",failures.AEVA,holds,p);
+ assert.equal(v.held,false);
+ assert.equal(v.reviewCandidate.mode,"noncanonical_source_review_only");
+ assert.equal(v.reviewCandidate.authenticatedForHistoricalT0,false);
+ assert.equal(v.reviewCandidate.scoringAuthorized,false);
+ assert.equal(v.reviewCandidate.canonicalPromotionAuthorized,false);
+ const ff=buildClosureFrontier(g,[p],{requests:[]},
+  {total:250,counts:{canonical:176}},[],null,now,
+  {limit:10,sourceFeasibilityHolds:holds});
+ assert.deepEqual(ff.selected.map(x=>x.ticker),["AEVA"]);
+ assert.equal(ff.selected[0].status,"needs_primary_source_review");
+ assert.equal(ff.selected[0].sourceFeasibility,null);
+ assert.equal(ff.selected[0].sourceFeasibilityReview.canonicalEvidenceAdmitted,false);
+ assert.deepEqual(ff.sourceFeasibility.sourceReviewReopenedTickers,["AEVA"]);
+});
+
+test("old, post-cutoff, secondary, unaddressed, and duplicate sources do NOT reopen",()=>{
+ const make=()=>packet("AEVA",failures.AEVA);
+ const candidate={
+  sourceId:"sec:AEVA:share-count-original:20260911",
+  originFingerprint:"sec.gov|AEVA|issuer-ledger|2026-09-11|new-filing",
+  url:"https://www.sec.gov/Archives/edgar/data/1789029/000000000026111111/new.htm",
+  publishedAt:"2026-09-11",primary:true
+ };
+ const changes=[
+  {publishedAt:"2026-09-27"},
+  {publishedAt:"2026-09-12"},
+  {publishedAt:"2026-09-13T00:00:00Z"},
+  {primary:false},
+  {publishedAt:null},
+  {url:"http://insecure.example"},
+  {originFingerprint:"sec.gov|AEVA|10-Q|2026-06-30|0001193125-26-338179"},
+  {sourceId:"sec:AEVA:10-Q:20260630"},
+  {sourceId:"sec:AEVA:original-unchanged",originFingerprint:""},
+ ];
+ for(const update of changes){
+  const p=make();p.sources=[{...candidate,...update}];
+  const v=resolveSourceFeasibility("AEVA",failures.AEVA,holds,p);
+  assert.equal(v.held,true,JSON.stringify(update));
+  assert.equal(v.reviewCandidate,null);
+ }
+});

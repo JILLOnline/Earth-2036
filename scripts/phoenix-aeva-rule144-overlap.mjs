@@ -6,10 +6,15 @@ import {createHash} from "node:crypto";
 import {resolve} from "node:path";
 import {fileURLToPath} from "node:url";
 import {fetchBounded} from "./phoenix-edgar-primary-pilot.mjs";
+import {PINNED_ORIGINAL_FORM4_HASHES} from "./phoenix-aeva-form4-audit.mjs";
 import {HISTORICAL_T0_CUTOFF} from "./lib/phoenix-historical-filing-precheck.mjs";
 export const RULE144_ACCESSIONS=Object.freeze({
  "0001950047-26-007999":{ownerCik:"0001830952",shares:2500,date:"2026-08-12"},
  "0001950047-26-008329":{ownerCik:"0001849806",shares:70000,date:"2026-08-18"}
+});
+export const PINNED_RULE144_ORIGINAL_HASHES=Object.freeze({
+ "0001950047-26-007999":"f7f70a111683ad0bdec2bae62bb2bcacae1bcf48589d96a9a8a697a9264fcb66",
+ "0001950047-26-008329":"499091dec6f27e3da43eddcdbf5d056295c7fccd2cdb5a6d9874aaca9cf27e20"
 });
 const block=(s,tag)=>s.match(new RegExp("<"+tag+"(?:\\s[^>]*)?>([\\s\\S]*?)<\\/"+tag+">"))?.[1]??null;
 const parts=(s,tag)=>[...s.matchAll(new RegExp("<"+tag+"(?:\\s[^>]*)?>([\\s\\S]*?)<\\/"+tag+">","g"))].map(x=>x[1]);
@@ -81,6 +86,8 @@ export function reconcileRule144ToForm4(notices,form4){
  return notices.map(notice=>{
   const matches=[];
   for(const row of form4.filings){
+   if(row.originalXmlSha256!==PINNED_ORIGINAL_FORM4_HASHES[row.accession])
+    throw Error("unverified_pinned_form4_original_hash");
    const parsed=row.originalXmlTransactionParse;
    if(!parsed || !parsed.reportingOwnerName ||
     normalizeName(parsed.reportingOwnerName)!==normalizeName(notice.reportingName)||
@@ -124,13 +131,17 @@ export async function runRule144Overlap(windowFile,form4File,{
  for(const row of candidates){
   if(row.primaryDocument!=="xsl144X01/primary_doc.xml" ||
     !/^0001950047-26-\d{6}$/.test(row.accessionNumber) ||
-    !row.acceptedAt || Date.parse(row.acceptedAt)>Date.parse(HISTORICAL_T0_CUTOFF))
+    typeof row.acceptedAt!=="string" ||
+    !Number.isFinite(Date.parse(row.acceptedAt)) ||
+    Date.parse(row.acceptedAt)>Date.parse(HISTORICAL_T0_CUTOFF))
    throw Error("untrusted_rule144_original_locator");
   const url="https://www.sec.gov/Archives/edgar/data/1789029/"+
    row.accessionNumber.replaceAll("-","")+"/primary_doc.xml";
   try{
    const source=await fetcher(url,agent,150000);
    const originalSha256=createHash("sha256").update(source.bytes).digest("hex");
+   if(originalSha256!==PINNED_RULE144_ORIGINAL_HASHES[row.accessionNumber])
+    throw Error("historical_rule144_original_XML_digest_changed");
    const parsed=parseRule144(source.bytes.toString("utf8"),row.accessionNumber);
    items.push({...parsed,originalUrl:url,originalSha256,originalBytes:source.bytes.length});
   }catch(e){errors.push({accessionNumber:row.accessionNumber,

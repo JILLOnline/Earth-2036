@@ -38,7 +38,8 @@ export function verifyDailyMasterIndex(text,filing){
  });
  return {matchingRows:matches.length,verifiedUniqueMatch:matches.length===1,
   accessionCandidateLines:matchingAccessionLines.length,
-  candidatePaths:matchingAccessionLines.slice(0,3).map(line=>line.split("|").at(-1)?.trim()??null)};
+  candidatePaths:matchingAccessionLines.slice(0,3).map(line=>line.split("|").at(-1)?.trim()??null),
+  candidateFieldSamples:matchingAccessionLines.slice(0,2).map(line=>line.split("|").map(field=>field.trim()).slice(0,5))};
 }
 async function getIndex(url,agent){
  if(!/^https:\/\/www\.sec\.gov\/Archives\/edgar\/daily-index\/\d{4}\/QTR[1-4]\/master\.\d{8}\.idx$/.test(url))
@@ -71,7 +72,7 @@ export async function runIndexPilot(file,agent=process.env.SEC_USER_AGENT,fetche
   const item={ticker:filing.ticker,accessionNumber:filing.accessionNumber,
    form:filing.form,filingDate:filing.filingDate,
    indexUrl,expectedPath,indexSha256:null,indexBytes:null,
-   status:"unverified",matchingRows:0,accessionCandidateLines:0,candidatePaths:[],originalFirstPublicTimestampVerified:false,
+   status:"unverified",matchingRows:0,accessionCandidateLines:0,candidatePaths:[],candidateFieldSamples:[],originalFirstPublicTimestampVerified:false,
    historicalT0EvidenceAdmitted:false};
   try{
    const response=await fetcher(indexUrl,agent);
@@ -80,6 +81,7 @@ export async function runIndexPilot(file,agent=process.env.SEC_USER_AGENT,fetche
    item.matchingRows=check.matchingRows;
    item.accessionCandidateLines=check.accessionCandidateLines;
    item.candidatePaths=check.candidatePaths;
+   item.candidateFieldSamples=check.candidateFieldSamples;
    item.status=check.verifiedUniqueMatch?"dated_sec_master_index_match":"not_found_or_ambiguous";
    if(check.verifiedUniqueMatch)out.matchingDatedIndexes++;
   }catch(e){item.status="not_verified:"+String(e?.message??e).slice(0,100)}

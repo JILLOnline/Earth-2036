@@ -1,0 +1,54 @@
+name: T0 Evidence Feasibility Preview (read only)
+
+on:
+  push:
+    branches:
+      - ops/t0-evidence-feasibility-handoff-20261018
+    paths:
+      - .github/workflows/earth2036-source-feasibility-preview.yml
+      - scripts/lib/source-feasibility-holds.mjs
+      - scripts/lib/value-allocator.mjs
+      - scripts/lib/workgraph-v2.mjs
+      - scripts/workgraph-sync.mjs
+      - config/source-feasibility-holds-v1.json
+      - test/source-feasibility-handoff.test.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - name: Install and check source-feasibility noncanonical policy
+        run: |
+          set -euo pipefail
+          npm ci
+          node --test test/source-feasibility-handoff.test.mjs test/closure-engine-v1.test.mjs test/workgraph-v2.test.mjs
+      - name: Reconcile ONLY a disposable copy of runtime routing data
+        run: |
+          set -euo pipefail
+          npm run workgraph:sync
+          jq -e '.canonicalWriteAuthority == false
+            and .backlogTotal == 74
+            and .sourceFeasibility.activeHolds == 1
+            and .sourceFeasibility.primaryResearchStarved == true
+            and ([.selected[].ticker] | index("AEVA") | not)
+            and ([.stalled[] | select(.ticker == "AEVA"
+               and .executionGuard == "await_source_integrity_verified_primary")] | length == 1)' data/runtime/workgraph/shadow/closure-frontier.json
+          jq -e '.deferredItems | any(.ticker == "AEVA"
+            and .executionGuard == "await_source_integrity_verified_primary")' data/runtime/workgraph/worker-view/routing/council-alpha.json
+          jq '{contract,generatedAt,backlogTotal,selectedCount,stalledCount,
+            sourceFeasibility,selected:[.selected[]|{ticker,status}],
+            holds:[.stalled[]|select(.sourceFeasibility != null)|{ticker,status,executionGuard}]}' data/runtime/workgraph/shadow/closure-frontier.json
+          git diff --exit-code -- data/baseline-evidence data/baselines data/runtime/current-ranking.json data/runtime/score-state.json data/runtime/causal-graph.json

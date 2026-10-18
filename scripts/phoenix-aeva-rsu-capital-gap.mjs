@@ -12,6 +12,7 @@ import {HISTORICAL_T0_CUTOFF} from "./lib/phoenix-historical-filing-precheck.mjs
 export const Q2_URL="https://www.sec.gov/Archives/edgar/data/1789029/000119312526338179/aeva-20260630.htm";
 export const Q2_SHA256="50a50d985259e53b3aa25eddcdc0fa1a654d724d8c079d7030261a43de7b0b35";
 export const TRANSITION_8K_URL="https://www.sec.gov/Archives/edgar/data/1789029/000119312526335102/aeva-20260730.htm";
+export const TRANSITION_8K_SHA256="b050086dad483b12be4c2bf5cccc7dafb70f3bb89a859d3236b92de7233708c0";
 const sha256=b=>createHash("sha256").update(b).digest("hex");
 const normalize=s=>s.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi," ")
  .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi," ")
@@ -126,6 +127,8 @@ export async function auditAevaRsuTransition(form4File,{
  if(sha256(q2.bytes)!==Q2_SHA256)throw Error("issuer_10Q_primary_source_hash_mismatch");
  const eightK=await fetcher(TRANSITION_8K_URL,agent,2*1024*1024);
  if(!eightK?.bytes?.length)throw Error("issuer_8K_unretrievable");
+ if(sha256(eightK.bytes)!==TRANSITION_8K_SHA256)
+  throw Error("issuer_8K_primary_source_hash_mismatch");
  const primary=crosscheckIssuerTexts(q2.bytes.toString("utf8"),eightK.bytes.toString("utf8"));
  return {
   contract:"earth2036-phoenix-p7j-aeva-rsu-capital-gap-v1",
@@ -133,7 +136,7 @@ export async function auditAevaRsuTransition(form4File,{
   sources:{
    q2:{url:Q2_URL,sha256:Q2_SHA256,bytes:q2.bytes.length,
     accession:"0001193125-26-338179"},
-   eightK:{url:TRANSITION_8K_URL,sha256:sha256(eightK.bytes),
+   eightK:{url:TRANSITION_8K_URL,sha256:TRANSITION_8K_SHA256,
     bytes:eightK.bytes.length,accession:"0001193125-26-335102"}
   },issuerPrimaryCrosscheck:primary,
   issuerShares:deriveAevaHistoricShares(),

@@ -95,8 +95,7 @@ export function choosePreT0Forms4(window){
   if(row.filingDate>"2026-09-12"||
     typeof row.acceptedAt!=="string"||
     Date.parse(row.acceptedAt)>Date.parse(HISTORICAL_T0_CUTOFF)||
-    !/^[-.\w]+$/.test(row.primaryDocument??"")||
-    !String(row.primaryDocument).endsWith(".xml"))
+    row.primaryDocument!=="xslF345X06/ownership.xml")
     throw Error("unsafe_or_incomplete_original_Form4_locator");
  }
  return selected;
@@ -121,7 +120,9 @@ export async function auditAevaForm4(file,{
  for(const row of rows){
   const base="https://www.sec.gov/Archives/edgar/data/1789029/"+
    row.accessionNumber.replaceAll("-","")+"/";
-  const url=base+row.primaryDocument;
+  // SEC submissions points at an XSL-rendered path; retrieve its raw source XML.
+  // The SEC filing-detail document listing separately identifies ownership.xml.
+  const url=base+"ownership.xml";
   const entry={accession:row.accessionNumber,sourceUrl:url,
    filingDate:row.filingDate,acceptedAtFromSubmissions:row.acceptedAt,
    originalXmlSha256:null,originalXmlBytes:null,status:"unverified",

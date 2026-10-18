@@ -535,7 +535,6 @@ async function main() {
   // allowed to qualify a trial hour, increment its counter or write a tick.
   // Preserve an already-finalized same-hour state across a scheduler rerun,
   // but do not calculate a fresh qualification here.
-  const baselinePublished = Boolean(manifest?.published);
   const qualifiedTrialTicks = Number(runtimeState.qualifiedTrialTicks ?? manifest?.qualifiedTrialTicksAfterBaseline ?? 0);
   const lastQualifiedCycleKey = runtimeState.lastQualifiedCycleKey ?? null;
   const qualified = lastQualifiedCycleKey === thisCycle && runtimeState.qualifiedTick === true;

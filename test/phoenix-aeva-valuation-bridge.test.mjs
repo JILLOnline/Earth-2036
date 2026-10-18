@@ -87,3 +87,9 @@ test("fails closed on forged quote, share count, SEC filing hash or moved cutoff
  assert.throws(()=>buildAevaValuationBridge({cutoff:"2026-10-18T00:00:00-04:00"}),
   /historical_t0_cutoff_immutable/);
 });
+
+test("source tables cannot be modified through exported nested objects",()=>{
+ assert.throws(()=>{AEVA_SOURCE_2026_Q2.coverShares.count=90000000},TypeError);
+ assert.throws(()=>{AEVA_LAST_T0_SESSION_PRICE_CANDIDATE.urls.push("https://example.org")},TypeError);
+ assert.equal(buildAevaValuationBridge().source.coverSharesAsOf,"2026-07-30");
+});

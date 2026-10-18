@@ -3,7 +3,7 @@ import path from "node:path";
 import { applyPacketState, buildRoutingQueues, compilePromotionPacket, computeWorkgraphMetrics, holdPacketForEvidenceQuarantine, loadRoleRuns, loadStructuredEvidence, migrateLegacyQueue, reconcileWorkgraphMembership, validateWorkgraph, writeWorkgraphArtifacts } from "./lib/workgraph-v2.mjs";
 import { auditCalibrationRecord, buildPacketCalibrationGuidance, CALIBRATION_REGISTRY } from "./lib/calibration-engine.mjs";
 import { buildAssistRequests } from "./lib/assist-bus.mjs";
-import { evaluateEvidenceQualification, parseEvidenceDispositionLedger } from "./lib/evidence-qualification.mjs";
+import { qualifyEvidenceForWorkgraph } from "./lib/workgraph-evidence-qualification.mjs";
 import { buildDigitalTwinShadow } from "./lib/digital-twin-engine.mjs";
 import { buildClosureFrontier, buildValueAllocationShadow } from "./lib/value-allocator.mjs";
 import { buildDependencyShadow } from "./lib/dependency-graph.mjs";
@@ -601,9 +601,12 @@ const reviewLedgerPath = path.join(ROOT, "data", "operations", "evidence-disposi
 let reviewLedgerText = "";
 try { reviewLedgerText = await readFile(reviewLedgerPath, "utf8"); }
 catch (error) { if (error.code !== "ENOENT") throw error; }
-const formalQualification = evaluateEvidenceQualification(
-  evidenceReviewQueue, parseEvidenceDispositionLedger(reviewLedgerText), now.toISOString()
-);
+const formalQualification = await qualifyEvidenceForWorkgraph({
+  queue: evidenceReviewQueue,
+  ledgerText: reviewLedgerText,
+  archiveRoot: path.join(ROOT, "data", "operations", "sec-primary-archive"),
+  asOf: now.toISOString(),
+});
 evidenceBacklog.qualification = {
   contract: formalQualification.contract,
   rawPending: formalQualification.rawPending,
@@ -613,6 +616,7 @@ evidenceBacklog.qualification = {
   reviewedResolved: formalQualification.reviewedResolved,
   unresolvedMaterialOrUnreviewed: formalQualification.unresolvedMaterialOrUnreviewed,
   gatePassed: formalQualification.gatePassed,
+  archiveIntegrityError: formalQualification.archiveIntegrityError || null,
   policy: formalQualification.policy,
   note: "Scheduling supporting buckets are not approved non-gating materiality decisions.",
 };

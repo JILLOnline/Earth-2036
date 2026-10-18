@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {buildTrialReviewReport} from "../scripts/lib/trial-review-report.mjs";
-const build=(n)=>({manifest:{baselineId:"t0",methodologyVersion:"1.0.0",universeVersion:"u1-250",
+const build=(n)=>({manifest:{published:true,baselineId:"t0",methodologyVersion:"1.0.0",universeVersion:"u1-250",
  qualifiedTrialTicksAfterBaseline:n,...(n===1000?{trialStatus:"complete_awaiting_review"}:{})},
  state:{qualifiedTrialTicks:n,lastQualifiedCycleKey:null,
  phase:n===1000?"trial_complete_awaiting_review":"trial"},

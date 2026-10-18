@@ -14,7 +14,7 @@ export const AEVA_SOURCE_2026_Q2=deepFreeze({
  sourceUrl:"https://www.sec.gov/Archives/edgar/data/1789029/000119312526338179/aeva-20260630.htm",
  primarySha256:"50a50d985259e53b3aa25eddcdc0fa1a654d724d8c079d7030261a43de7b0b35",
  coverShares:{asOf:"2026-07-30",count:69705758},
- basicJuneShares:{asOf:"2026-06-30",count:68683000,precision:"financial statement reported in thousands"},
+ basicJuneShares:{asOf:"2026-06-30",count:68682947,precision:"exact common shares per SEC statement of stockholders equity"},
  financialAsOf:"2026-06-30",
  cashAndCashEquivalentsUSD:43235000,
  marketableSecuritiesUSD:134654000,

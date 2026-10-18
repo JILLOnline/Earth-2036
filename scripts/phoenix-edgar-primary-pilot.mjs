@@ -61,7 +61,7 @@ export function buildEdgarUrls(row){
   headerUrl:base+row.accessionNumber+".hdr.sgml"
  };
 }
-async function fetchBounded(url,agent,limit){
+export async function fetchBounded(url,agent,limit){
  if(!url.startsWith("https://www.sec.gov/Archives/edgar/data/"))
   throw Error("unsupported_edgar_origin");
  const controller=new AbortController();

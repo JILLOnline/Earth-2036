@@ -97,3 +97,8 @@ jobs:
         if: always()
         continue-on-error: true
         run: node scripts/phoenix-fundamentals-reuse-inspect.mjs
+      - name: T0 cross-plane recovery readiness and regression gate
+        if: always()
+        run: |
+          node --test test/t0-recovery-readiness.test.mjs
+          node scripts/t0-recovery-audit.mjs

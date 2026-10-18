@@ -7,6 +7,7 @@ on:
     paths:
       - .github/workflows/phoenix-p7b-sec-archive-pilot.yml
       - scripts/phoenix-archive-pilot.mjs
+      - scripts/phoenix-sec-acceptance-audit.mjs
   workflow_dispatch:
 
 permissions:
@@ -45,12 +46,21 @@ jobs:
           set -euo pipefail
           node scripts/phoenix-archive-pilot.mjs "$RUNNER_TEMP/p7b/bridge-cache.tar.gz" \
             > "$RUNNER_TEMP/p7b/archive-report.json"
-          jq '{contract,mode,cutoff,sourceCycle,archiveBytesAuthenticated,historicalT0EvidenceAdmitted,canonicalWriteAuthority,companies:[.companies[]|{ticker,cik,sourceReferenceReconstructed,cutoffFilteredFactCount,distinctAccessions,acceptanceTimestampAttested,publicAvailabilityAttested,historicalEligibility}]}' \
+          jq '{contract,mode,cutoff,sourceCycle,archiveBytesAuthenticated,historicalT0EvidenceAdmitted,canonicalWriteAuthority,companies:[.companies[]|{ticker,cik,archivedFullPayloadVerified,liveReferenceMatches,historicalFiledDateFilteredFacts,distinctHistoricalAccessions,acceptanceTimestampAttested,publicAvailabilityAttested,historicalEligibility}]}' \
             "$RUNNER_TEMP/p7b/archive-report.json"
+      - name: Cross-check filed-date-filtered accessions with SEC submission metadata
+        env:
+          SEC_USER_AGENT: JILLOnline Earth2036 info@jillonlinestore.com
+        run: |
+          set -euo pipefail
+          node scripts/phoenix-sec-acceptance-audit.mjs "$RUNNER_TEMP/p7b/archive-report.json" > "$RUNNER_TEMP/p7b/sec-acceptance-report.json"
+          jq '{contract,cutoff,publicAvailabilityAuthenticated,historicalT0EvidenceAdmitted,companies:[.companies[]|{ticker,archiveCandidates,counts,allAccessionMetadataMatched}]}' "$RUNNER_TEMP/p7b/sec-acceptance-report.json"
       - uses: actions/upload-artifact@v4
         if: success()
         with:
           name: phoenix-p7b-sec-source-archive-readonly
-          path: ${{ runner.temp }}/p7b/archive-report.json
+          path: |
+            ${{ runner.temp }}/p7b/archive-report.json
+            ${{ runner.temp }}/p7b/sec-acceptance-report.json
           retention-days: 3
           if-no-files-found: error

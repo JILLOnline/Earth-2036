@@ -1,0 +1,123 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {readFile} from "node:fs/promises";
+import {parseSourceFeasibilityHolds,resolveSourceFeasibility}
+ from "../scripts/lib/source-feasibility-holds.mjs";
+import {buildClosureFrontier} from "../scripts/lib/value-allocator.mjs";
+import {buildRoutingQueues} from "../scripts/lib/workgraph-v2.mjs";
+
+const POLICY_PATH=new URL("../config/source-feasibility-holds-v1.json",import.meta.url);
+const policy=JSON.parse(await readFile(POLICY_PATH,"utf8"));
+const holds=parseSourceFeasibilityHolds(policy);
+const now="2026-10-18T12:00:00.000Z";
+const failures={
+ AEVA:["missing_specialist_perspective:source-integrity","missing_factor_evidence",
+  "missing_numeric_score_record","unresolved_material_contradiction"],
+ SWKS:["missing_specialist_perspective:source-integrity","missing_factor_evidence",
+  "missing_numeric_score_record","missing_causal_mapping"],
+ MWA:["unresolved_material_contradiction","missing_factor_evidence"]
+};
+const owner=f=>f.startsWith("unresolved_")?"deep-resolver":
+ f==="missing_causal_mapping"?"council-beta":"council-alpha";
+function makeGraph(failuresByTicker=failures){
+ return {version:2,phase:"t0-bootstrap",companies:Object.fromEntries(Object.keys(failuresByTicker)
+  .map(t=>[t,{ticker:t,state:"researching",workId:"t0:"+t,
+   lastTransitionAt:"2026-10-07T08:00:00Z",attempts:0}]))};
+}
+function packet(ticker,failureNames){
+ return {version:2,ticker,workId:"t0:"+ticker,sourceState:"ready_for_chief",
+  evidencePaths:["data/runtime/workgraph/evidence/"+ticker+"-original.json"],
+  evidenceWindow:{latestEvidenceGeneratedAt:"2026-10-08T08:14:46Z"},
+  sourceLineage:{uniqueSourceCount:12},
+  specialistCoverage:{required:["source-integrity","company-underwriting"],
+   present:["company-underwriting"],missing:["source-integrity"],complete:false},
+  contradictions:[],gatingIssues:[],unknowns:[],scoreReadiness:{complete:false},
+  preflight:{passed:failureNames.length===0,failures:failureNames,
+   routing:failureNames.map(f=>({failure:f,owner:owner(f)}))}
+ };
+}
+function frontier(forFailures=failures){
+ return buildClosureFrontier(makeGraph(forFailures),Object.entries(forFailures)
+  .map(([ticker,fs])=>packet(ticker,fs)),{requests:[]},
+  {total:250,counts:{canonical:176}},[],null,now,
+  {limit:10,sourceFeasibilityHolds:holds});
+}
+test("AEVA source gap is grounded in strict noncanonical registry, not scoring",()=>{
+ assert.equal(holds.size,1);
+ const a=resolveSourceFeasibility("AEVA",failures.AEVA,holds);
+ assert.equal(a.held,true);
+ assert.equal(a.hold.status,"awaiting_unavailable_historical_primary");
+ assert.equal(a.hold.executionGuard,"await_source_integrity_verified_primary");
+ assert.ok(a.hold.sourceReferences.some(x=>x.startsWith("https://www.sec.gov/")));
+ assert.equal(resolveSourceFeasibility("SWKS",failures.SWKS,holds).held,false);
+});
+test("source hold is selected OUT of primary capacity without losing company or overriding Workgraph",()=>{
+ const f=frontier();
+ const aeva=f.candidates.find(x=>x.ticker==="AEVA");
+ assert.equal(aeva.primeEligible,false);
+ assert.equal(aeva.status,"awaiting_unavailable_historical_primary");
+ assert.equal(aeva.executionGuard,"await_source_integrity_verified_primary");
+ assert.equal(aeva.selected,false);
+ assert.equal(f.selected.some(x=>x.ticker==="AEVA"),false);
+ assert.equal(f.selected.some(x=>x.ticker==="SWKS"),true);
+ assert.equal(f.backlogTotal,3);
+ assert.equal(f.sourceFeasibility.activeHolds,1);
+ assert.deepEqual(f.sourceFeasibility.holdTickers,["AEVA"]);
+ assert.equal(f.canonicalWriteAuthority,false);
+});
+test("frontier to worker routing cannot turn source hold into recovery probe",()=>{
+ const graph=makeGraph(),packets=Object.entries(failures).map(([ticker,fs])=>packet(ticker,fs));
+ const f=frontier();
+ const q=buildRoutingQueues(graph,packets,now,{
+  frontierFirst:true,
+  frontierTickers:f.selected.map(x=>x.ticker),
+  stalledTickers:f.stalled.map(x=>x.ticker),
+  operationalStatusByTicker:Object.fromEntries(f.candidates.map(x=>[x.ticker,x.status]))
+ });
+ const alpha=q["council-alpha"];
+ const hold=alpha.deferredItems.find(x=>x.ticker==="AEVA");
+ assert.ok(hold);
+ assert.equal(hold.executionGuard,"await_source_integrity_verified_primary");
+ assert.equal(hold.deferred,true);
+ assert.equal(alpha.items.some(x=>x.ticker==="AEVA"),false);
+ assert.equal(alpha.items.some(x=>x.ticker==="SWKS"),true);
+ assert.equal(alpha.items.some(x=>x.executionGuard==="changed_strategy_required"&&x.ticker==="AEVA"),false);
+});
+test("all source-held work cannot become accidental recovered executable work",()=>{
+ const graph=makeGraph({AEVA:failures.AEVA});
+ const f=frontier({AEVA:failures.AEVA});
+ const q=buildRoutingQueues(graph,[packet("AEVA",failures.AEVA)],now,{
+  frontierFirst:true,
+  frontierTickers:[],stalledTickers:["AEVA"],
+  operationalStatusByTicker:{AEVA:"awaiting_unavailable_historical_primary"}
+ });
+ assert.equal(f.selectedCount,0);
+ assert.equal(f.sourceFeasibility.primaryResearchStarved,true);
+ for(const role of ["council-alpha","deep-resolver"]){
+  const lane=q[role];
+  assert.equal(lane.total,0);
+  assert.ok(lane.deferredItems.length>=1);
+  assert.ok(lane.deferredItems.every(x=>x.executionGuard==="await_source_integrity_verified_primary"));
+ }
+});
+test("when named original-source preflight failures are genuinely resolved, routing hold releases",()=>{
+ const f=frontier({AEVA:["unresolved_material_contradiction"],SWKS:failures.SWKS});
+ const a=f.candidates.find(x=>x.ticker==="AEVA");
+ assert.equal(a.sourceFeasibility,null);
+ assert.equal(a.primeEligible,true);
+ assert.notEqual(a.status,"awaiting_unavailable_historical_primary");
+ assert.equal(resolveSourceFeasibility("AEVA",["missing_factor_evidence"],holds).held,true);
+});
+test("policy tampering never authorizes arbitrary time-shift or weaker source guard",()=>{
+ for(const mutator of [
+  p=>p.cutoff="2026-10-18T23:59:59-04:00",
+  p=>p.authority="canonical",
+  p=>p.holds[0].ticker="../AEVA",
+  p=>p.holds[0].sourceReferences=["http://unsafe/"],
+  p=>p.holds[0].triggerFailures=[],
+  p=>p.holds.push(structuredClone(p.holds[0]))
+ ]){
+  const copy=structuredClone(policy);mutator(copy);
+  assert.throws(()=>parseSourceFeasibilityHolds(copy),/source_feasibility_/);
+ }
+});

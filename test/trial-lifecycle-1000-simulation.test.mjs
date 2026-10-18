@@ -6,7 +6,7 @@ import {buildTrialReviewReport} from "../scripts/lib/trial-review-report.mjs";
 const slot=n=>new Date(Date.UTC(2026,0,1,n)).toISOString().slice(0,13).replace(/-/g,"")+"00Z";
 function fixture(count){
  const ticks=Array.from({length:count},(_,i)=>({tickNumber:i+1,cycleKey:slot(i),trajectory:{validation:{passed:true},horizons:[{months:12,outcomeStatus:"pending"},{months:24,outcomeStatus:"pending"}]}}));
- return {ticks,state:{qualifiedTrialTicks:count,lastQualifiedCycleKey:ticks.at(-1)?.cycleKey??null,phase:count===1000?"trial_complete_awaiting_review":"trial"},manifest:{qualifiedTrialTicksAfterBaseline:count,...(count===1000?{trialStatus:"complete_awaiting_review"}:{})}};
+ return {ticks,state:{qualifiedTrialTicks:count,lastQualifiedCycleKey:ticks.at(-1)?.cycleKey??null,phase:count===1000?"trial_complete_awaiting_review":"trial"},manifest:{published:true,qualifiedTrialTicksAfterBaseline:count,...(count===1000?{trialStatus:"complete_awaiting_review"}:{})}};
 }
 test("full simulated 1000-tick hour sequence has exactly one terminal transition",()=>{
  const x=fixture(0);

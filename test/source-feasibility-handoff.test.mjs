@@ -135,6 +135,5 @@ test("Scout active assist capacity never recycles original-source-held AEVA",()=
  assert.ok(aevaRequests.length>0);
  assert.ok(aevaRequests.every(x=>x.status!=="active"));
  assert.ok(aevaRequests.every(x=>x.operationalStatus==="awaiting_unavailable_historical_primary"));
- assert.ok(aeavaCount()>=0);
- function aeavaCount(){return a.requests.filter(x=>x.ticker==="SWKS").length}
+ assert.ok(a.requests.some(x=>x.ticker==="SWKS"));
 });

@@ -6,6 +6,10 @@ export function auditTrialTickHistory({state,manifest,ticks=[]}={}){
  const sc=state?.qualifiedTrialTicks,mc=manifest?.qualifiedTrialTicksAfterBaseline;
  if(!Number.isInteger(sc)||!Number.isInteger(mc)||sc<0||mc<0||sc>1000||mc>1000||sc!==mc)
    errors.push("authoritative_trial_count_mismatch");
+ if(sc>0 && manifest?.published===false)
+   errors.push("unpublished_baseline_has_qualified_ticks");
+ if(sc>0 && state?.phase==="official_t0_baseline")
+   errors.push("qualified_ticks_while_still_in_baseline_phase");
  const seenNumbers=new Set(),seenCycles=new Set();
  const sorted=[...ticks].sort((a,b)=>(a.tickNumber??0)-(b.tickNumber??0));
  for(const [i,tick] of sorted.entries()){

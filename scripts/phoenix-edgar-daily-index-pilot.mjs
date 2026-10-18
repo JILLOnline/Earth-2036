@@ -33,7 +33,7 @@ export function verifyDailyMasterIndex(text,filing){
   return fields.length===5&&
    String(Number(fields[0]))===String(Number(filing.cik))&&
    fields[2].trim()===filing.form&&
-   fields[3].trim()===filing.filingDate&&
+   fields[3].trim()===filing.filingDate.replace(/-/g,"")&&
    (fields[4].trim()===expected || fields[4].trim()===alternative);
  });
  return {matchingRows:matches.length,verifiedUniqueMatch:matches.length===1,

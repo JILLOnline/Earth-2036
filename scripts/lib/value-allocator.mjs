@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { resolveSourceFeasibility } from "./source-feasibility-holds.mjs";
 
 const STATE_VALUE = Object.freeze({
   observed: 20,
@@ -208,6 +209,7 @@ export function buildClosureFrontier(
     const failures = [...(packet?.preflight?.failures || [])];
     const owners = [...new Set((packet?.preflight?.routing || []).map((route) => route?.owner).filter(Boolean))];
     const operational = operationalStatusFor(row, packet, previousByTicker[packet.ticker], roleRuns);
+    const feasibility = resolveSourceFeasibility(packet.ticker, failures, options.sourceFeasibilityHolds, packet);
     const attention = attentionPriority(row, packet, assistBus);
     const failureCloseness = Math.max(0, 24 - failures.length * 2);
     const ownerCloseness = Math.max(0, 12 - owners.length * 3);
@@ -253,6 +255,10 @@ export function buildClosureFrontier(
       attempts: Number(row?.attempts || 0),
       hoursSinceProgress: hoursSinceProgress === null ? null : Math.round(hoursSinceProgress * 100) / 100,
       ...operational,
+      ...(feasibility.held ? { status: feasibility.hold.status, primeEligible: false } :
+        feasibility.reviewCandidate ? { status: "needs_primary_source_review", primeEligible: true } : {}),
+      sourceFeasibility: feasibility.hold,
+      sourceFeasibilityReview: feasibility.reviewCandidate,
       selected: false,
       firstSelectedAt: previousByTicker[packet.ticker]?.firstSelectedAt || null,
     });
@@ -276,7 +282,8 @@ export function buildClosureFrontier(
       firstSelectedAt: selected
         ? (prior?.selected === true && prior?.firstSelectedAt ? prior.firstSelectedAt : generatedAt)
         : null,
-      executionGuard: row.primeEligible ? null : "do_not_retry_without_changed_input",
+      executionGuard: row.sourceFeasibility?.executionGuard ||
+        (row.primeEligible ? null : "do_not_retry_without_changed_input"),
     };
   });
   const selected = finalCandidates.filter((row) => row.selected);
@@ -310,6 +317,15 @@ export function buildClosureFrontier(
       changedSincePriorReconcile: changedSincePrior,
       medianTimeInFrontierHours: Math.round(medianFrontierAgeHours * 100) / 100,
       stalledFrontierCompanies: stalled.length,
+    },
+    sourceFeasibility: {
+      activeHolds: finalCandidates.filter(x=>x.sourceFeasibility!==null).length,
+      holdTickers: finalCandidates.filter(x=>x.sourceFeasibility!==null).map(x=>x.ticker).sort(),
+      sourceReviewReopenedTickers: finalCandidates.filter(x=>x.sourceFeasibilityReview!==null)
+        .map(x=>x.ticker).sort(),
+      primaryResearchStarved: finalCandidates.length>0 && selected.length<=1,
+      fallbackResearchRequiresNewEvidence: true,
+      neverOverridesPromotionGates: true
     },
     selectionPolicy: "deterministic-close-nearest-first-with-stall-deferral",
     selected,

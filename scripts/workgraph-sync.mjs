@@ -6,6 +6,7 @@ import { buildAssistRequests } from "./lib/assist-bus.mjs";
 import { evaluateEvidenceQualification, parseEvidenceDispositionLedger } from "./lib/evidence-qualification.mjs";
 import { buildDigitalTwinShadow } from "./lib/digital-twin-engine.mjs";
 import { buildClosureFrontier, buildValueAllocationShadow } from "./lib/value-allocator.mjs";
+import { parseSourceFeasibilityHolds } from "./lib/source-feasibility-holds.mjs";
 import { buildDependencyShadow } from "./lib/dependency-graph.mjs";
 import { buildSourceDependencyHandoffs } from "./lib/source-dependency-handoff.mjs";
 import { buildTrajectorySnapshot, validateTrajectorySnapshot } from "./lib/trajectory-engine.mjs";
@@ -21,6 +22,7 @@ const LEARNING_PATH = path.join(ROOT, "data", "runtime", "workgraph", "learning-
 const SYSTEM_STATE_PATH = path.join(ROOT, "data", "runtime", "system-state.json");
 const LIVE_BRIDGE_INDEX_PATH = path.join(ROOT, "data", "runtime", "workgraph", "shadow", "fundamentals-bridge-index.json");
 const CLOSURE_ENGINE_CONFIG_PATH = path.join(ROOT, "config", "closure-engine-v1.json");
+const SOURCE_FEASIBILITY_HOLDS_PATH = path.join(ROOT, "config", "source-feasibility-holds-v1.json");
 const EVIDENCE_REVIEW_QUEUE_PATH = path.join(ROOT, "data", "runtime", "evidence-review-queue.json");
 const MEMBERSHIP_EVENTS_PATH = path.join(ROOT, "data", "runtime", "workgraph", "membership-events.jsonl");
 
@@ -222,6 +224,8 @@ const closureEngineConfig = await readJsonOr(CLOSURE_ENGINE_CONFIG_PATH, {
   routingEnabled: false,
   frontierSize: 10,
 });
+const sourceFeasibilityRegistry = await readJsonOr(SOURCE_FEASIBILITY_HOLDS_PATH, null);
+const sourceFeasibilityHolds = parseSourceFeasibilityHolds(sourceFeasibilityRegistry);
 const previousAssistBus = await readJsonOr(path.join(workgraphDir, "assist-bus.json"), null);
 const previousFrontier = await readJsonOr(path.join(shadowDir, "closure-frontier.json"), null);
 const metrics = computeWorkgraphMetrics(graph, now, evidence, roleRuns);
@@ -243,7 +247,7 @@ const closureFrontier = buildClosureFrontier(
   roleRuns,
   previousFrontier,
   now.toISOString(),
-  { limit: closureEngineConfig.frontierSize || 10 }
+  { limit: closureEngineConfig.frontierSize || 10, sourceFeasibilityHolds }
 );
 const frontierTickers = (closureFrontier.selected || []).map((row) => row.ticker);
 const stalledTickers = (closureFrontier.stalled || []).map((row) => row.ticker);
@@ -284,6 +288,17 @@ const sourceDependencyHandoffs = buildSourceDependencyHandoffs(
   graph, packets, proposedRoutingQueues?.["deep-resolver"], now.toISOString(),
   { maxPilotCases: 1 }
 );
+// Data-source starvation must be visible as a liveness failure; it does not
+// authorize an unreviewed retry or a replacement company to pass preflight.
+metrics.sourceFeasibility = closureFrontier.sourceFeasibility;
+if (routingEnabled && closureFrontier.sourceFeasibility?.primaryResearchStarved) {
+  metrics.healthAlerts = [...new Set([
+    ...(metrics.healthAlerts || []),
+    "closure_research_starved:selected=" + closureFrontier.selectedCount +
+      ":backlog=" + closureFrontier.backlogTotal +
+      ":source_holds=" + closureFrontier.sourceFeasibility.activeHolds
+  ])];
+}
 metrics.routingQueueCounts = Object.fromEntries(Object.entries(routingQueues).map(([role, queue]) => [role, queue.total]));
 metrics.effectiveOwnerBacklog = {
   ...metrics.ownerBacklog,
@@ -429,8 +444,25 @@ await writeJsonArtifact(path.join(workerViewDir, "closure-frontier.json"), {
   backlogTotal: closureFrontier.backlogTotal,
   selectedCount: closureFrontier.selectedCount,
   stalledCount: closureFrontier.stalledCount,
+  sourceFeasibility: closureFrontier.sourceFeasibility,
   selected: closureFrontier.selected,
   stalled: closureFrontier.stalled,
+});
+await writeJsonArtifact(path.join(workerViewDir, "source-feasibility.json"), {
+  version: 1,
+  contract: "earth2036-worker-source-feasibility-v1",
+  generatedAt: closureFrontier.generatedAt,
+  canonicalWriteAuthority: false,
+  activeHolds: closureFrontier.sourceFeasibility?.activeHolds || 0,
+  sourceHeld: closureFrontier.candidates.filter(row=>row.sourceFeasibility!==null)
+    .map(row=>({
+      ticker: row.ticker,
+      status: row.status,
+      guard: row.executionGuard,
+      requiredEvidence: row.sourceFeasibility.requiredEvidence,
+      blockingFailureNames: row.sourceFeasibility.blockingFailureNames,
+      releaseCondition: row.sourceFeasibility.releaseCondition
+    }))
 });
 const assistViewDir = path.join(workerViewDir, "assist");
 await mkdir(assistViewDir, { recursive: true });

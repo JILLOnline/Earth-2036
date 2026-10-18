@@ -969,6 +969,7 @@ export function buildRoutingQueues(graph, packets, generatedAt = new Date().toIS
 
       const operationalStatus = operationalStatusByTicker[packet.ticker] || null;
       const stalled = stalledTickers.has(packet.ticker);
+      const sourceFeasibilityHold = operationalStatus === "awaiting_unavailable_historical_primary";
       const adjudicationPacket = frontierFirst && role === "deep-resolver"
         ? resolverAdjudicationPacket(packet, ownedFailures)
         : null;
@@ -996,14 +997,18 @@ export function buildRoutingQueues(graph, packets, generatedAt = new Date().toIS
         deferred: frontierFirst && (stalled || resolverDeferred),
         deferredReason: resolverDeferred
           ? adjudicationPacket?.deferredReason
-          : stalled
-            ? "Input signature has not changed after the allowed repeated attempts."
-            : null,
-        executionGuard: frontierFirst && stalled
-          ? "do_not_retry_without_changed_input"
-          : resolverDeferred
-            ? "await_structured_contradiction_input"
-            : null,
+          : sourceFeasibilityHold
+            ? "Specific cutoff-period original issuer evidence is unavailable; wait for adjudicated new primary input."
+            : stalled
+              ? "Input signature has not changed after the allowed repeated attempts."
+              : null,
+        executionGuard: frontierFirst && sourceFeasibilityHold
+          ? "await_source_integrity_verified_primary"
+          : frontierFirst && stalled
+            ? "do_not_retry_without_changed_input"
+            : resolverDeferred
+              ? "await_structured_contradiction_input"
+              : null,
         adjudicationPacket,
         unresolved: role === "deep-resolver" ? {
           gatingIssues: packet?.gatingIssues || [],

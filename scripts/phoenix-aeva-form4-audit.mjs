@@ -9,6 +9,13 @@ import {fetchBounded} from "./phoenix-edgar-primary-pilot.mjs";
 import {HISTORICAL_T0_CUTOFF} from "./lib/phoenix-historical-filing-precheck.mjs";
 
 const CIK="0001789029";
+export const PINNED_ORIGINAL_FORM4_HASHES=Object.freeze({
+ "0001193125-26-347439":"630550f28193a85ca7095e9186d073cc941adbec6f440e9bf0052cec2de330c7",
+ "0001193125-26-347443":"15e523f42e8959b9ce638bdfd12da9f2f97aa68da709ac0bc1f6b7731c48f521",
+ "0001193125-26-352272":"5384536320a695109a08d55dd74cf7882c48768b509ab7cf91c1604b8aa5b5da",
+ "0001193125-26-359631":"8fed58031bfcfc1a03ce1348da00477fe50a985c7e4c8c9c5b625ce5772a7411",
+ "0001193125-26-383903":"efabd3b407d3d0a1ee90e4bfe913f9e220e71e7ad495c1db5fba7d8597eec07f"
+});
 export const EXPECTED_FORM4_ACCESSIONS=Object.freeze([
  "0001193125-26-347439","0001193125-26-347443","0001193125-26-352272",
  "0001193125-26-359631","0001193125-26-383903"
@@ -135,6 +142,8 @@ export async function auditAevaForm4(file,{
    const parsed=parseOwnershipXml(bytes.toString("utf8"),
      {expectedAccession:row.accessionNumber});
    entry.originalXmlSha256=createHash("sha256").update(bytes).digest("hex");
+   if(entry.originalXmlSha256!==PINNED_ORIGINAL_FORM4_HASHES[row.accessionNumber])
+    throw Error("historical_Form4_original_XML_digest_changed");
    entry.originalXmlBytes=bytes.length;
    entry.originalXmlTransactionParse=parsed;
    entry.status="original_SEC_Form4_XML_verified_now";

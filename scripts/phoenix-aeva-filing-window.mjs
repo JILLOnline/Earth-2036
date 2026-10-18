@@ -9,7 +9,7 @@ export const COVER_DATE="2026-07-30";
 export const SEC_ISSUER_CIK="0001789029";
 const sourceUrl="https://data.sec.gov/submissions/CIK"+SEC_ISSUER_CIK+".json";
 export function reviewAevaFilingWindow(secData){
- if(secData?.cik!==1789029 && String(secData?.cik)!=="1789029")
+ if(!secData || String(Number(secData.cik))!=="1789029")
   throw Error("SEC_issuer_identity_unverified");
  const recent=secData?.filings?.recent;
  const required=["accessionNumber","filingDate","acceptanceDateTime","form","primaryDocument"];
@@ -20,7 +20,7 @@ export function reviewAevaFilingWindow(secData){
   throw Error("SEC_recent_filing_column_lengths_mismatch");
  if(!recent.filingDate.some(x=>typeof x==="string"&&x<=COVER_DATE))
   throw Error("SEC_recent_filing_window_not_complete");
- const cutoffMs=Date.parse(HISTORICAL_T0_CUTOFF),from=COVER_DATE+"T00:00:00Z";
+ const cutoffMs=Date.parse(HISTORICAL_T0_CUTOFF);
  const records=[],held=[];
  for(let i=0;i<recent.accessionNumber.length;i++){
   const acc=recent.accessionNumber[i],date=recent.filingDate[i],

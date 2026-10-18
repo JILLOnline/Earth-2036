@@ -1,0 +1,55 @@
+name: Phoenix P7B SEC Archive Pilot (read only)
+
+on:
+  push:
+    branches:
+      - ops/phoenix-p7b-research-triage-20261017
+    paths:
+      - .github/workflows/phoenix-p7b-sec-archive-pilot.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: phoenix-p7b-archive-pilot
+  cancel-in-progress: true
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Download bounded historical SEC source cache
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/p7b"
+          gh release download fundamentals-cache-20261017T050818Z-39004369528 \
+            --repo JILLOnline/Earth-2036 \
+            --pattern bridge-cache.tar.gz --dir "$RUNNER_TEMP/p7b"
+          test "$(stat -c '%s' "$RUNNER_TEMP/p7b/bridge-cache.tar.gz")" -eq 243735107
+          printf '%s  %s\n' \
+            6379596d013d554ca20264b5c3806bd528837934eeed492c6fff51f5705a5ae2 \
+            "$RUNNER_TEMP/p7b/bridge-cache.tar.gz" | sha256sum --check
+      - name: Inspect original archived company-facts bytes without authority
+        run: |
+          set -euo pipefail
+          node scripts/phoenix-archive-pilot.mjs "$RUNNER_TEMP/p7b/bridge-cache.tar.gz" \
+            > "$RUNNER_TEMP/p7b/archive-report.json"
+          jq '{contract,mode,cutoff,sourceCycle,archiveBytesAuthenticated,historicalT0EvidenceAdmitted,canonicalWriteAuthority,companies:[.companies[]|{ticker,cik,sourceReferenceReconstructed,cutoffFilteredFactCount,distinctAccessions,acceptanceTimestampAttested,publicAvailabilityAttested,historicalEligibility}]}' \
+            "$RUNNER_TEMP/p7b/archive-report.json"
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: phoenix-p7b-sec-source-archive-readonly
+          path: ${{ runner.temp }}/p7b/archive-report.json
+          retention-days: 3
+          if-no-files-found: error

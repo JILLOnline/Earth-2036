@@ -1,0 +1,67 @@
+name: Earth 2036 T0 Original SEC Source Acquisition
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "37 14 * * *"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/earth2036-t0-sec-source-acquire.yml"
+      - "scripts/t0-primary-source-acquire.mjs"
+      - "scripts/lib/t0-primary-original-candidates.mjs"
+      - "test/t0-primary-source-acquisition.test.mjs"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: earth2036-t0-sec-source-originals
+  cancel-in-progress: false
+
+jobs:
+  original-source-acquisition:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Test immutable source acquisition and no-admission contract
+        id: tests
+        run: |
+          set -euo pipefail
+          node --test test/t0-primary-source-acquisition.test.mjs test/sec-review-archive.test.mjs
+      - name: Fetch at most two original pre-cutoff SEC documents
+        id: acquire
+        continue-on-error: true
+        env:
+          SEC_USER_AGENT: "JILLOnline Earth2036 info@jillonlinestore.com"
+        run: |
+          set -euo pipefail
+          node scripts/t0-primary-source-acquire.mjs
+      - name: Persist only authentic original source byte archives
+        if: steps.tests.outcome == 'success'
+        run: |
+          set -euo pipefail
+          git config user.name "earth2036-sec-original[bot]"
+          git config user.email "earth2036-sec-original@users.noreply.github.com"
+          git add data/operations/sec-primary-archive data/operations/phoenix/t0-source-acquisition
+          if git diff --cached --quiet; then
+            echo "No new original SEC bytes; no source write."
+            exit 0
+          fi
+          git commit -m "Earth 2036 append immutable original SEC primary research bytes"
+          # Only append independently verified original bytes and unreviewed receipts.
+          # Do not merge or alter any Workgraph worker receipt, ranking, trial or T0 gate.
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Enforce acquisition errors as visible workflow failures
+        if: steps.acquire.outcome == 'failure'
+        run: |
+          echo "SEC original acquisition had a source/identity/network failure; no clearance was granted." >&2
+          exit 1

@@ -50,7 +50,8 @@ jobs:
           set -euo pipefail
           git config user.name "earth2036-sec-original[bot]"
           git config user.email "earth2036-sec-original@users.noreply.github.com"
-          git add data/operations/sec-primary-archive data/operations/phoenix/t0-source-acquisition
+          mkdir -p data/operations/sec-primary-archive data/operations/phoenix/t0-source-acquisition
+          git add -A -- data/operations/sec-primary-archive data/operations/phoenix/t0-source-acquisition
           if git diff --cached --quiet; then
             echo "No new original SEC bytes; no source write."
             exit 0

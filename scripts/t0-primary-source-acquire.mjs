@@ -14,12 +14,12 @@ const manifest=JSON.parse(await readFile(path.join(root,"data/baselines/earth203
 const archiveRoot=path.join(root,"data/operations/sec-primary-archive");
 const receiptRoot=path.join(root,"data/operations/phoenix/t0-source-acquisition");
 const userAgent=process.env.SEC_USER_AGENT;
-const maxAttempts=2;
+const maxAttempts=3;
 const summary={contract:T0_SOURCE_ACQUISITION_CONTRACT,authority:{
   historicalAdmission:false,reviewApproval:false,scoreWrites:false,
   canonicalPromotion:false,tickQualification:false,workerRestart:false,
   retriesOfRejectedWorkerPayload:false},
-  examined:0,downloaded:[],alreadyVerified:[],failures:[],attemptedFetches:0};
+  examined:0,downloaded:[],alreadyVerified:[],holds:[],failures:[],attemptedFetches:0};
 const eligible=[];
 for(const row of T0_ORIGINAL_CANDIDATES){
   const filing=validateT0PrimaryCandidate(row,manifest);
@@ -36,6 +36,16 @@ for(const row of T0_ORIGINAL_CANDIDATES){
     verifySecDocumentArchive(filing,verified);
     assertOriginalSourceBytes(row,verified);
     summary.alreadyVerified.push({id:filing.id,sha256:verified.sourceDocumentSha256});
+    continue;
+  }
+  const holdPath=path.join(receiptRoot,"holds",filing.ticker+"-"+filing.accessionNumber+".json");
+  let hold=null;
+  try { hold=JSON.parse(await readFile(holdPath,"utf8")); }
+  catch(e) { if(e.code!=="ENOENT")throw e; }
+  if(hold){
+    if(hold.contract!==T0_SOURCE_ACQUISITION_CONTRACT||hold.filingId!==filing.id||hold.acquisitionPermitted!==false)
+      throw new Error("t0_source_invalid_persisted_hold:"+filing.id);
+    summary.holds.push({id:filing.id,error:hold.error,reason:"persisted_original_source_integrity_hold"});
     continue;
   }
   eligible.push({row,filing});
@@ -67,7 +77,22 @@ for(const {row,filing} of eligible.slice(0,maxAttempts)){
     await writeFile(dest,JSON.stringify(receipt,null,2)+"\n",{flag:"wx"});
     summary.downloaded.push({id:filing.id,sha256:artifact.sourceDocumentSha256,bytes:artifact.byteLength});
   }catch(e){
-    summary.failures.push({id:filing.id,error:String(e?.message||e).slice(0,240)});
+    const error=String(e?.message||e).slice(0,240);
+    const persistentHold=/t0_source_pinned_original_byte_hash_changed|sec_document_source_identity_mismatch|sec_document_hash_or_length_mismatch|sec_document_response_too_large/.test(error);
+    const fail={
+      contract:T0_SOURCE_ACQUISITION_CONTRACT,filingId:filing.id,sourceUrl:filing.sourceUrl,
+      recordedAt:new Date().toISOString(),error,
+      primaryOriginalBytesVerified:false,sourceReviewCompleted:false,
+      historicalAdmission:false,workerEvidenceWrite:false,
+      acquisitionPermitted:!persistentHold,
+      disposition:persistentHold?"blocked_pending_original_source_integrity_review":"retry_only_bounded_source_fetch",
+    };
+    const destination=persistentHold
+      ? path.join(receiptRoot,"holds",filing.ticker+"-"+filing.accessionNumber+".json")
+      : path.join(receiptRoot,"failed-attempts",filing.ticker+"-"+filing.accessionNumber+"-"+fail.recordedAt.replace(/[:.]/g,"-")+".json");
+    await mkdir(path.dirname(destination),{recursive:true});
+    await writeFile(destination,JSON.stringify(fail,null,2)+"\n",{flag:"wx"});
+    summary.failures.push({id:filing.id,error,disposition:fail.disposition});
   }
 }
 console.log(JSON.stringify(summary,null,2));

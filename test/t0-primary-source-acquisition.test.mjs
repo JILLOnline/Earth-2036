@@ -62,3 +62,19 @@ test("the historical T0 evidence cutoff comes from the committed baseline",async
  const m=JSON.parse(await readFile(new URL("../data/baselines/earth2036-official-t0-2026-09-12/manifest.json",import.meta.url),"utf8"));
  for(const c of T0_ORIGINAL_CANDIDATES) assert.ok(validateT0PrimaryCandidate(c,m));
 });
+
+test("failed SEC source fetches leave truthful immutable failure records",async()=>{
+ const code=await readFile(new URL("../scripts/t0-primary-source-acquire.mjs",import.meta.url),"utf8");
+ assert.match(code,/failed-attempts/);
+ assert.match(code,/primaryOriginalBytesVerified:false/);
+ assert.match(code,/historicalAdmission:false,workerEvidenceWrite:false/);
+ assert.match(code,/blocked_pending_original_source_integrity_review/);
+ assert.match(code,/flag:"wx"/);
+});
+test("permanent SHA or document-integrity failures are held before any unchanged retry",async()=>{
+ const code=await readFile(new URL("../scripts/t0-primary-source-acquire.mjs",import.meta.url),"utf8");
+ assert.match(code,/t0_source_pinned_original_byte_hash_changed/);
+ assert.match(code,/persisted_original_source_integrity_hold/);
+ assert.match(code,/acquisitionPermitted:!persistentHold/);
+ assert.match(code,/maxAttempts=3/);
+});

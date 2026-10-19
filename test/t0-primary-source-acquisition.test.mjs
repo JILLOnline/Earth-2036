@@ -10,7 +10,7 @@ const manifest={baselineId:"earth2036-official-t0-2026-09-12",
  evidenceWindowEnd:T0_SOURCE_CUTOFF};
 const row=T0_ORIGINAL_CANDIDATES[0];
 test("known verified original-source candidates have bounded source-identity and pre-cutoff dates",()=>{
- assert.equal(T0_ORIGINAL_CANDIDATES.length,4);
+ assert.equal(T0_ORIGINAL_CANDIDATES.length,5);
  for(const c of T0_ORIGINAL_CANDIDATES){
    const x=validateT0PrimaryCandidate(c,manifest);
    assert.ok(x.sourceUrl.startsWith("https://www.sec.gov/Archives/edgar/data/"));
@@ -77,4 +77,13 @@ test("permanent SHA or document-integrity failures are held before any unchanged
  assert.match(code,/persisted_original_source_integrity_hold/);
  assert.match(code,/acquisitionPermitted:!persistentHold/);
  assert.match(code,/maxAttempts=3/);
+});
+
+test("September 4 AEVA owner filing is a distinct pinned pre-cutoff original",()=>{
+ const c=T0_ORIGINAL_CANDIDATES.find(x=>x.accessionNumber==="0001193125-26-383903");
+ assert.ok(c);
+ assert.equal(c.filingDate,"2026-09-04");
+ assert.equal(c.expectedDocumentSha256,"efabd3b407d3d0a1ee90e4bfe913f9e220e71e7ad495c1db5fba7d8597eec07f");
+ const p=validateT0PrimaryCandidate(c,manifest);
+ assert.match(p.sourceUrl,/000119312526383903\/ownership\.xml$/);
 });

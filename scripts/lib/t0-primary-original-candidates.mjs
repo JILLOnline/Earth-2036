@@ -22,6 +22,11 @@ export const T0_ORIGINAL_CANDIDATES=Object.freeze([
     expectedDocumentSha256:"50a50d985259e53b3aa25eddcdc0fa1a654d724d8c079d7030261a43de7b0b35",
   },
   {
+    ticker:"AEVA",cik:"1789029",accessionNumber:"0001193125-26-383903",
+    primaryDocument:"ownership.xml",filingDate:"2026-09-04",
+    expectedDocumentSha256:"efabd3b407d3d0a1ee90e4bfe913f9e220e71e7ad495c1db5fba7d8597eec07f",
+  },
+  {
     ticker:"SWKS",cik:"4127",accessionNumber:"0000004127-26-000049",
     primaryDocument:"swks-20260703.htm",filingDate:"2026-07-28",
     expectedDocumentSha256:null,

@@ -11,6 +11,7 @@ import { buildSourceDependencyHandoffs } from "./lib/source-dependency-handoff.m
 import { buildTrajectorySnapshot, validateTrajectorySnapshot } from "./lib/trajectory-engine.mjs";
 import { loadVerifiedBridgeIndex } from "./lib/fundamentals-bridge-index.mjs";
 import { MIN_PUBLISHABLE_DATA_CONFIDENCE } from "./lib/runtime-gates.mjs";
+import { loadT0SecSourceIntake } from "./lib/t0-sec-source-intake.mjs";
 
 const ROOT = process.cwd();
 const LEGACY_PATH = path.join(ROOT, "data", "runtime", "supervisors", "t0-bootstrap-queue.json");
@@ -620,6 +621,11 @@ evidenceBacklog.qualification = {
   policy: formalQualification.policy,
   note: "Scheduling supporting buckets are not approved non-gating materiality decisions.",
 };
+const t0SourceManifest=await readJson(path.join(ROOT,"data","baselines","earth2036-official-t0-2026-09-12","manifest.json"));
+const sourceIntake=await loadT0SecSourceIntake({
+  root:ROOT,manifest:t0SourceManifest,now:now.toISOString(),
+});
+await writeJsonArtifact(path.join(workerViewDir,"sec-primary-source-intake.json"),sourceIntake);
 await writeJsonArtifact(path.join(workerViewDir, "command-summary.json"), {
   version: 1,
   contract: "earth2036-worker-command-summary-v1",
@@ -652,6 +658,12 @@ await writeJsonArtifact(path.join(workerViewDir, "command-summary.json"), {
     recentWorkerRuns: (metrics.normalizedYieldRuns || []).slice(0, 40),
   },
   evidenceBacklog,
+  secOriginalSourceIntake: {
+    contract:sourceIntake.contract,
+    counts:sourceIntake.counts,
+    allOriginalsStillNoncanonical:true,
+    sourcePath:"data/runtime/workgraph/worker-view/sec-primary-source-intake.json",
+  },
   sourceDependencyHandoffs: {
     authority: "non-canonical-pending-source-verification",
     totalCandidates: sourceDependencyHandoffs.totalCandidates,
@@ -692,6 +704,7 @@ await writeJsonArtifact(path.join(workerViewDir, "command-summary.json"), {
   workerViews: {
     assistSummary: "data/runtime/workgraph/worker-view/assist/summary.json",
     closureFrontier: "data/runtime/workgraph/worker-view/closure-frontier.json",
+    secPrimarySourceIntake: "data/runtime/workgraph/worker-view/sec-primary-source-intake.json",
     calibration: "data/runtime/workgraph/worker-view/calibration-summary.json",
     digitalTwins: "data/runtime/workgraph/worker-view/digital-twins-index.json",
     betaDigitalTwins: "data/runtime/workgraph/worker-view/council-beta-digital-twins.json",

@@ -10,7 +10,7 @@ const manifest={
   methodologyVersion:"1.0.0",evidenceWindowEnd:T0_SOURCE_CUTOFF,
   expectedCompanies:250,published:false
 };
-const NOW="2026-10-20T01:00:00.000Z";
+const NOW=new Date().toISOString();
 test("real source archives become noncanonical Workgraph source handoffs, not evidence approvals",async()=>{
  const actual=JSON.parse(await readFile(new URL("../data/baselines/earth2036-official-t0-2026-09-12/manifest.json",import.meta.url),"utf8"));
  const r=await loadT0SecSourceIntake({root:process.cwd(),manifest:actual,now:NOW});

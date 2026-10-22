@@ -2,7 +2,7 @@
   "version": 1,
   "contract": "earth2036-retrospective-hourly-reconciliation-v1",
   "mode": "retrospective_read_only",
-  "checkedAt": "2026-10-22T19:31:41.796Z",
+  "checkedAt": "2026-10-22T20:06:27.971Z",
   "windowHours": 72,
   "governance": {
     "canonicalWrites": false,
@@ -16,40 +16,17 @@
   },
   "counts": {
     "slots": 72,
-    "observationsPersistedNow": 29,
-    "slotsWithoutObservation": 43,
-    "missingAsOfReceipts": 34,
+    "observationsPersistedNow": 30,
+    "slotsWithoutObservation": 42,
+    "missingAsOfReceipts": 33,
     "latePersistedObservations": 0,
     "failedSchedulerSlots": 0,
-    "missingWithoutSchedulerRun": 42,
+    "missingWithoutSchedulerRun": 41,
     "missingAfterFailedScheduler": 0,
     "missingAfterSuccessfulScheduler": 1,
     "missingWithSchedulerLookupUnavailable": 0
   },
   "rows": [
-    {
-      "hourKey": "20261019T1900Z",
-      "asOfObservationStatus": "no_as_of_receipt",
-      "retrospectiveObservationStatus": "still_missing",
-      "asOfReceiptSha256": null,
-      "asOfReceiptPath": null,
-      "cycleHistoryLine": null,
-      "sourceLineSha256": null,
-      "schedulerRuns": [],
-      "schedulerLookup": {
-        "status": "available",
-        "observedRuns": 0
-      },
-      "missingObservationClassification": "scheduler_run_not_created_in_slot",
-      "gitWriteFailureVerified": false,
-      "issues": [
-        "no_persisted_observation_for_hour_as_of_audit",
-        "no_scheduler_run_created_in_slot",
-        "as_of_receipt_missing"
-      ],
-      "qualifiedTrialTickAsObserved": null,
-      "rule": "Only the original cycle-history is evidence of an actual observation; this row never backfills it."
-    },
     {
       "hourKey": "20261019T2000Z",
       "asOfObservationStatus": "missing_as_of_audit",
@@ -2002,6 +1979,38 @@
           "attempt": 1,
           "sha": "0af25c527f97c150d15a79b75b9694a245970959",
           "url": "https://github.com/JILLOnline/Earth-2036/actions/runs/39828490252"
+        }
+      ],
+      "schedulerLookup": {
+        "status": "available",
+        "observedRuns": 1
+      },
+      "missingObservationClassification": "original_observation_persisted",
+      "gitWriteFailureVerified": false,
+      "issues": [],
+      "qualifiedTrialTickAsObserved": false,
+      "rule": "Only the original cycle-history is evidence of an actual observation; this row never backfills it."
+    },
+    {
+      "hourKey": "20261022T1900Z",
+      "asOfObservationStatus": "persisted",
+      "retrospectiveObservationStatus": "persisted_now",
+      "asOfReceiptSha256": "955b6f52a9b77b81dd8604b39c379597584cd862df071cde36eb7d42b0124af8",
+      "asOfReceiptPath": "data/operations/hourly-audits/2026/10/22/20261022T1900Z.json",
+      "cycleHistoryLine": 453,
+      "sourceLineSha256": "99a4f59d9c9b9c2c21ddbdae5f4a4c0b3b6307109ba260d195f4a1b0d0d89b4c",
+      "schedulerRuns": [
+        {
+          "id": 39840828796,
+          "event": "workflow_dispatch",
+          "status": "completed",
+          "conclusion": "success",
+          "createdAt": "2026-10-22T19:31:21Z",
+          "startedAt": "2026-10-22T19:31:21Z",
+          "completedAt": "2026-10-22T19:33:48Z",
+          "attempt": 1,
+          "sha": "870549a7fc6665380d560bbb2867e6d0ccf81e36",
+          "url": "https://github.com/JILLOnline/Earth-2036/actions/runs/39840828796"
         }
       ],
       "schedulerLookup": {

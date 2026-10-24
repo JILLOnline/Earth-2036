@@ -1,0 +1,147 @@
+name: Phoenix AEVA Capital Bridge (research only)
+
+on:
+  push:
+    branches:
+      - ops/phoenix-p7b-research-triage-20261017
+    paths:
+      - .github/workflows/phoenix-aeva-capital-bridge.yml
+      - scripts/lib/phoenix-aeva-valuation-bridge.mjs
+      - scripts/phoenix-aeva-valuation-reference.mjs
+      - test/phoenix-aeva-valuation-bridge.test.mjs
+      - scripts/phoenix-aeva-filing-window.mjs
+      - test/phoenix-aeva-filing-window.test.mjs
+      - scripts/phoenix-aeva-form4-audit.mjs
+      - test/phoenix-aeva-form4-audit.test.mjs
+      - scripts/phoenix-aeva-rule144-overlap.mjs
+      - test/phoenix-aeva-rule144-overlap.test.mjs
+      - scripts/phoenix-aeva-rsu-capital-gap.mjs
+      - test/phoenix-aeva-rsu-capital-gap.test.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: phoenix-aeva-capital-bridge-research
+  cancel-in-progress: true
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Test accounting paths, exact cutoff and no canonical scoring
+        run: |
+          set -euo pipefail
+          node --test test/phoenix-aeva-valuation-bridge.test.mjs
+      - name: Produce independent, read-only valuation assumptions receipt
+        run: |
+          set -euo pipefail
+          node scripts/phoenix-aeva-valuation-reference.mjs > "$RUNNER_TEMP/aeva-valuation-reference.json"
+          jq -e '.marketValuationOpportunity == null
+            and .numericalEarthScore == null
+            and .canonicalWriteAuthority == false
+            and .stockExchangePriceTapeAuthenticated == false
+            and .SeptemberCapitalizationAuthenticated == false
+            and .historicalT0EvidenceAdmitted == 0
+            and (.mutuallyExclusiveSettlementScenarios | length == 4)' "$RUNNER_TEMP/aeva-valuation-reference.json"
+          jq '{contract,cutoff,source,marketPriceCandidate,
+              reconciliation,mutuallyExclusiveSettlementScenarios,
+              methodologyFactorSatisfied,canonicalWriteAuthority,
+              historicalT0EvidenceAdmitted}' "$RUNNER_TEMP/aeva-valuation-reference.json"
+      - name: Audit AEVA SEC issuer filings since dated July 30 share count
+        env:
+          SEC_USER_AGENT: JILLOnline Earth2036 info@jillonlinestore.com
+        run: |
+          set -euo pipefail
+          node --test test/phoenix-aeva-filing-window.test.mjs
+          node scripts/phoenix-aeva-filing-window.mjs > "$RUNNER_TEMP/aeva-post-cover-filing-window.json"
+          jq -e '.shareCountAsOfCutoffAuthenticated == false
+            and .issuerCapitalizationEventsExhaustivelyReviewed == false
+            and .canonicalWriteAuthority == false
+            and .historicalT0EvidenceAdmitted == 0' "$RUNNER_TEMP/aeva-post-cover-filing-window.json"
+          jq '{contract,coverShareDate,cutoff,issuerFilingCountWithinWindow,forms,
+            heldRecords,shareCountAsOfCutoffAuthenticated,
+            issuerCapitalizationEventsExhaustivelyReviewed}' "$RUNNER_TEMP/aeva-post-cover-filing-window.json"
+      - name: Read and classify five original pre-cutoff AEVA Form 4 ownership XML filings
+        env:
+          SEC_USER_AGENT: JILLOnline Earth2036 info@jillonlinestore.com
+        run: |
+          set -euo pipefail
+          node --test test/phoenix-aeva-form4-audit.test.mjs
+          node scripts/phoenix-aeva-form4-audit.mjs "$RUNNER_TEMP/aeva-post-cover-filing-window.json" > "$RUNNER_TEMP/aeva-original-form4.json"
+          jq -e '.expectedFilings == 5 and .originalXmlVerified == 5
+            and .ownerTransactionRows == 14
+            and .saleTransactions == 14
+            and .reportedSaleShares == 511745
+            and .reportedSalesProveNetIssuerShareCountChange == false
+            and .canonicalWriteAuthority == false
+            and .outstandingSharesAtT0Authenticated == false
+            and .issuerShareIssuanceAuthenticated == false
+            and .historicalT0EvidenceAdmitted == 0
+            and .marketValuationOpportunity == null' "$RUNNER_TEMP/aeva-original-form4.json"
+          jq '{contract,expectedFilings,originalXmlVerified,ownerTransactionRows,
+            saleTransactions,reportedSaleShares,reportedSalesProveNetIssuerShareCountChange,
+            issuerShareIssuanceAuthenticated,outstandingSharesAtT0Authenticated,
+            filings:[.filings[]|{accession,status,originalXmlSha256,
+              reportingOwner:.originalXmlTransactionParse.reportingOwnerName,
+              codes:.originalXmlTransactionParse.codeCounts}]}' "$RUNNER_TEMP/aeva-original-form4.json"
+      - name: Cross-check two original Form 144 notices against executed Form 4 trades
+        env:
+          SEC_USER_AGENT: JILLOnline Earth2036 info@jillonlinestore.com
+        run: |
+          set -euo pipefail
+          node --test test/phoenix-aeva-rule144-overlap.test.mjs
+          node scripts/phoenix-aeva-rule144-overlap.mjs "$RUNNER_TEMP/aeva-post-cover-filing-window.json" "$RUNNER_TEMP/aeva-original-form4.json" > "$RUNNER_TEMP/aeva-rule144-overlap.json"
+          jq -e '.noticesExpected == 2 and .originalsVerified == 2
+            and .exactForm4OverlapCount == 2
+            and .duplicatedSaleSharesAvoided == 72500
+            and .july30SharesRestatedInNotices == true
+            and .july30ReportedSharesAsOfSeptember12Verified == false
+            and .shareCountAsOfCutoffAuthenticated == false
+            and .historicalT0EvidenceAdmitted == 0
+            and .canonicalWriteAuthority == false
+            and .marketValuationOpportunity == null' "$RUNNER_TEMP/aeva-rule144-overlap.json"
+          jq '{contract,originalsVerified,exactForm4OverlapCount,
+            duplicatedSaleSharesAvoided,july30SharesRestatedInNotices,
+            shareCountAsOfCutoffAuthenticated,notices:[.notices[]|{
+              accessionNumber,reportingName,proposedShares,approximateSaleDate,
+              filerReportedOutstandingShares,originalSha256,matchedOneOriginalSale
+            }]}' "$RUNNER_TEMP/aeva-rule144-overlap.json"
+      - name: Verify original SEC issuer equity roll-forward, dated cover and CFO transition
+        env:
+          SEC_USER_AGENT: JILLOnline Earth2036 info@jillonlinestore.com
+        run: |
+          set -euo pipefail
+          node --test test/phoenix-aeva-rsu-capital-gap.test.mjs
+          node scripts/phoenix-aeva-rsu-capital-gap.mjs "$RUNNER_TEMP/aeva-original-form4.json" > "$RUNNER_TEMP/aeva-rsu-capital-gap.json"
+          jq -e '.historicalT0EvidenceAdmitted == 0
+            and .issuerShares.june30ToJuly30SharesIncrease == 1022811
+            and .issuerShares.sharesOutstandingSeptember12 == null
+            and .ownerRsuSale.ownerHoldingsChangeBetweenReportedEndpoints == -34146
+            and .ownerRsuSale.grossRsuSharesVestedSeptember2 == null
+            and .issuerPrimaryCrosscheck.transition.personnelEventCausedRsuVestingProven == false
+            and .capitalDenominatorAuthenticated == false
+            and .marketValuationOpportunity == null
+            and .canonicalWriteAuthority == false' "$RUNNER_TEMP/aeva-rsu-capital-gap.json"
+          jq '{contract,cutoff,sources,issuerShares,ownerRsuSale,
+            issuerPrimaryCrosscheck,September12IssuerShares,
+            historicalT0EvidenceAdmitted,capitalDenominatorAuthenticated}' "$RUNNER_TEMP/aeva-rsu-capital-gap.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: phoenix-aeva-noncanonical-valuation-reference
+          path: |
+            ${{ runner.temp }}/aeva-valuation-reference.json
+            ${{ runner.temp }}/aeva-post-cover-filing-window.json
+            ${{ runner.temp }}/aeva-original-form4.json
+            ${{ runner.temp }}/aeva-rule144-overlap.json
+            ${{ runner.temp }}/aeva-rsu-capital-gap.json
+          retention-days: 3
+          if-no-files-found: error

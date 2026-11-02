@@ -3,7 +3,7 @@
   "contract": "workgraph-v2-promotion-packet",
   "ticker": "TECK",
   "workId": "t0:TECK",
-  "generatedAt": "2026-11-02T02:48:39.371Z",
+  "generatedAt": "2026-11-02T09:24:35.530Z",
   "sourceState": "researching",
   "sourceStateSemantics": {
     "authoritative": false,
@@ -15,11 +15,11 @@
     "ticker": "TECK",
     "company": "Teck Resources",
     "cik": "0000886986",
-    "exchange": "NYSE",
-    "exchangeName": "Teck Resources Ltd Ordinary Shares",
+    "exchange": null,
+    "exchangeName": null,
     "identityStatus": "validated",
-    "tradabilityStatus": "validated",
-    "validatedAt": "2026-11-02T02:38:43.554Z"
+    "tradabilityStatus": "unresolved",
+    "validatedAt": "2026-11-02T09:23:52.038Z"
   },
   "evidenceWindow": {
     "start": "2025-10-07T00:00:00.000Z",
@@ -286,6 +286,7 @@
   "preflight": {
     "passed": false,
     "failures": [
+      "missing_tradability_validation",
       "missing_specialist_perspective:source-integrity",
       "missing_specialist_perspective:company-underwriting",
       "missing_factor_evidence",
@@ -295,6 +296,10 @@
       "unresolved_material_contradiction"
     ],
     "routing": [
+      {
+        "failure": "missing_tradability_validation",
+        "owner": "machine"
+      },
       {
         "failure": "missing_specialist_perspective:source-integrity",
         "owner": "council-alpha"

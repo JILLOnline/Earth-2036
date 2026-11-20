@@ -2,7 +2,7 @@
   "version": 1,
   "contract": "earth2036-retrospective-hourly-reconciliation-v1",
   "mode": "retrospective_read_only",
-  "checkedAt": "2026-11-20T02:26:12.667Z",
+  "checkedAt": "2026-11-20T03:05:49.910Z",
   "windowHours": 72,
   "governance": {
     "canonicalWrites": false,
@@ -16,39 +16,17 @@
   },
   "counts": {
     "slots": 72,
-    "observationsPersistedNow": 13,
-    "slotsWithoutObservation": 59,
+    "observationsPersistedNow": 14,
+    "slotsWithoutObservation": 58,
     "missingAsOfReceipts": 57,
     "latePersistedObservations": 0,
     "failedSchedulerSlots": 0,
-    "missingWithoutSchedulerRun": 59,
+    "missingWithoutSchedulerRun": 58,
     "missingAfterFailedScheduler": 0,
     "missingAfterSuccessfulScheduler": 0,
     "missingWithSchedulerLookupUnavailable": 0
   },
   "rows": [
-    {
-      "hourKey": "20261117T0200Z",
-      "asOfObservationStatus": "missing_as_of_audit",
-      "retrospectiveObservationStatus": "still_missing",
-      "asOfReceiptSha256": "295e652266618cfdb1ebeeee95364d19bcaac6018f20e3c12596bf00a86f759f",
-      "asOfReceiptPath": "data/operations/hourly-audits/2026/11/17/20261117T0200Z.json",
-      "cycleHistoryLine": null,
-      "sourceLineSha256": null,
-      "schedulerRuns": [],
-      "schedulerLookup": {
-        "status": "available",
-        "observedRuns": 0
-      },
-      "missingObservationClassification": "scheduler_run_not_created_in_slot",
-      "gitWriteFailureVerified": false,
-      "issues": [
-        "no_persisted_observation_for_hour_as_of_audit",
-        "no_scheduler_run_created_in_slot"
-      ],
-      "qualifiedTrialTickAsObserved": null,
-      "rule": "Only the original cycle-history is evidence of an actual observation; this row never backfills it."
-    },
     {
       "hourKey": "20261117T0300Z",
       "asOfObservationStatus": "missing_as_of_audit",
@@ -1821,6 +1799,38 @@
         "no_scheduler_run_created_in_slot"
       ],
       "qualifiedTrialTickAsObserved": null,
+      "rule": "Only the original cycle-history is evidence of an actual observation; this row never backfills it."
+    },
+    {
+      "hourKey": "20261120T0200Z",
+      "asOfObservationStatus": "persisted",
+      "retrospectiveObservationStatus": "persisted_now",
+      "asOfReceiptSha256": "1305db50ed31c602f3eaa3b93907a93717befba2cbc3b6f55d46343b08fbda8e",
+      "asOfReceiptPath": "data/operations/hourly-audits/2026/11/20/20261120T0200Z.json",
+      "cycleHistoryLine": 652,
+      "sourceLineSha256": "f78d52ef8fe150c2759b5b04d8c27869db943ef81bb3dc9fa84e1634367c2ac9",
+      "schedulerRuns": [
+        {
+          "id": 44660717479,
+          "event": "workflow_dispatch",
+          "status": "completed",
+          "conclusion": "success",
+          "createdAt": "2026-11-20T02:25:41Z",
+          "startedAt": "2026-11-20T02:25:41Z",
+          "completedAt": "2026-11-20T02:27:52Z",
+          "attempt": 1,
+          "sha": "2ad293fe7706b61e9b8b73b2f16e191537ddce82",
+          "url": "https://github.com/JILLOnline/Earth-2036/actions/runs/44660717479"
+        }
+      ],
+      "schedulerLookup": {
+        "status": "available",
+        "observedRuns": 1
+      },
+      "missingObservationClassification": "original_observation_persisted",
+      "gitWriteFailureVerified": false,
+      "issues": [],
+      "qualifiedTrialTickAsObserved": false,
       "rule": "Only the original cycle-history is evidence of an actual observation; this row never backfills it."
     }
   ],
